@@ -1,0 +1,3 @@
+# Keep generated review artifacts out of text diffs.
+*.pdf binary
+*.pptx binary

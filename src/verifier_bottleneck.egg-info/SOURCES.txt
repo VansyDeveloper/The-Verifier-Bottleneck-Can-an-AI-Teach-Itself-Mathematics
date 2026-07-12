@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/verifier_bottleneck/__init__.py
+src/verifier_bottleneck/affine.py
+src/verifier_bottleneck/checker.py
+src/verifier_bottleneck/filters.py
+src/verifier_bottleneck/manifests.py
+src/verifier_bottleneck/metrics.py
+src/verifier_bottleneck.egg-info/PKG-INFO
+src/verifier_bottleneck.egg-info/SOURCES.txt
+src/verifier_bottleneck.egg-info/dependency_links.txt
+src/verifier_bottleneck.egg-info/top_level.txt
