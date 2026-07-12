@@ -1,0 +1,4 @@
+ctlhS1 1.0 16 0.5 0.5 --seed 1
+ctlhS2 1.0 16 0.5 0.5 --seed 2
+ctlfS1 1.0 16 0.5 0.5 --noise-mode fresh --seed 1
+ctlfS2 1.0 16 0.5 0.5 --noise-mode fresh --seed 2

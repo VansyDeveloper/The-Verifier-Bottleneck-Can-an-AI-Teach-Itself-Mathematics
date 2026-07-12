@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verifier-bottleneck-modcomp"
+version = "0.1.0"
+description = "Reproducible experiments on verifier noise in modular-composition RL"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+analysis = [
+  "matplotlib>=3.8",
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "tensorboard>=2.16",
+]
+train = [
+  "accelerate>=1.2",
+  "datasets>=3.2",
+  "torch>=2.5",
+  "transformers>=4.48",
+  "trl>=0.15",
+  "vllm>=0.7",
+]
+report = ["markdown>=3.7"]
+
+[tool.setuptools.packages.find]
+include = ["modcomp*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
