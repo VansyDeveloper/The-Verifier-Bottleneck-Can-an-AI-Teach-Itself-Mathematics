@@ -1,9 +1,10 @@
 """Noisy verifier with dials (alpha, beta).
 
-alpha = P(accept | answer correct), beta = P(accept | answer wrong).
-alpha=1, beta=0 is the perfect checker; alpha=beta carries zero information.
-Noise is deterministic given (completion, prompt, seed) so a re-run reproduces
-the same verdicts.
+``alpha = P(accept | correct)`` and ``beta = P(accept | wrong)``.  The primary
+experiment keys one deterministic uniform draw by a unique rollout event id.
+That makes reruns reproducible without making the verdict a property of the
+answer text.  ``noisy_verdict`` is retained only for the legacy, answer-keyed
+ablation.
 """
 
 import hashlib
@@ -35,8 +36,25 @@ def _unit_hash(*parts):
     return int.from_bytes(h[:8], "big") / 2**64
 
 
+def noisy_verdict_from_event(correct, event_id, alpha, beta):
+    """Return ``(accepted, u)`` for one unique rollout event.
+
+    ``event_id`` must be assigned before inspecting the completion and must be
+    unique per rollout. Reusing it is intentionally idempotent; changing only
+    the rollout id produces a fresh deterministic draw.
+    """
+    if not event_id:
+        raise ValueError("event_id must be non-empty")
+    if not 0 <= alpha <= 1 or not 0 <= beta <= 1:
+        raise ValueError("alpha and beta must lie in [0, 1]")
+    u = _unit_hash(str(event_id))
+    return u < (alpha if correct else beta), u
+
+
 def noisy_verdict(completion, prompt, p, target_A, target_B, alpha, beta, seed=0):
-    """Returns (accepted, correct). Reward for RL is float(accepted)."""
+    """Legacy answer-keyed noise; not iid when a completion is repeated."""
+    if not 0 <= alpha <= 1 or not 0 <= beta <= 1:
+        raise ValueError("alpha and beta must lie in [0, 1]")
     correct = is_correct(completion, p, target_A, target_B)
     u = _unit_hash(str(seed), prompt, completion)
     accepted = u < (alpha if correct else beta)

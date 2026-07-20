@@ -10,10 +10,7 @@ import argparse
 import json
 import os
 
-# This box has no cu12 nvcc, so flashinfer's JIT-compiled sampling kernels can't
-# build. Fall back to the FlashAttention backend + non-flashinfer sampler.
 os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
-os.environ.setdefault("VLLM_ATTENTION_BACKEND", "FLASH_ATTN")
 
 from modcomp.checker import is_correct
 from modcomp.gen import make_dataset

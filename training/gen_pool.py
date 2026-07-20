@@ -11,7 +11,6 @@ import json
 import os
 
 os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
-os.environ.setdefault("VLLM_ATTENTION_BACKEND", "FLASH_ATTN")
 
 from vllm import LLM, SamplingParams
 
