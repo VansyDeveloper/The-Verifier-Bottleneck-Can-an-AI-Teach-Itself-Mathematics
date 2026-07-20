@@ -1,0 +1,56 @@
+# OS and editor files
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Training artifacts (large and machine-specific)
+runs/
+checkpoints/
+shards/
+wandb/
+lightning_logs/
+events.out.tfevents.*
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# Logs and local pools
+logs/
+logs_*.txt
+*.log
+pool_offline.jsonl
+pool_offline.jsonl.stats.json
+
+# Raw experiment dumps copied from private training servers
+results_remote/
+
+# Generated/intermediate files
+tmp/
+docs/report.html
+# Generated slide assets are ignored, but the final presentation is versioned.
+outputs/*
+!outputs/verifier_bottleneck_plan.html
+!outputs/verifier_bottleneck_plan.pdf
+!outputs/verifier_bottleneck_plan.pptx
+
+legacy/
+docs/
+AGENTS.md
+CLAUDE.md
+
+offtop/
