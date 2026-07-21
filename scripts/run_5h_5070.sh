@@ -1,6 +1,7 @@
 #!/bin/bash
-# Time-budgeted pilot: every H2 alpha-beta cell once, then epsilon measurement.
+# Time-planned pilot: every H2 alpha-beta cell once, then epsilon measurement.
 # This is a 25-cell/one-seed pilot, not the 75-run paper protocol.
+# The five-hour budget sizes the run but never kills an active process.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 [ -f .venv/bin/activate ] && source .venv/bin/activate
@@ -16,10 +17,14 @@ if [ "${SLEEP_MODE:-0}" = 1 ]; then PROFILE_TAG=${PROFILE_TAG}_sleep; fi
 TIMING_S1=${TIMING_S1:-logs/rtx5070_${MODEL_TAG}_${PROFILE_TAG}_s1.txt}
 TIMING_S5=${TIMING_S5:-logs/rtx5070_${MODEL_TAG}_${PROFILE_TAG}_s5.txt}
 SESSION_TAG=${SESSION_TAG:-$(date -u +%Y%m%dT%H%M%SZ)}
+H2_DATA_OUT="results/data/pilot5h_${SESSION_TAG}"
+FIGURES_OUT="results/figures/pilot5h_${SESSION_TAG}"
+EPSILON_OUT="results/data/exploration_5h_5070_${SESSION_TAG}.json"
 
 case "$MAX_SECONDS:$MAX_PILOT_STEPS:$RESERVE_SECONDS" in
   *[!0-9:]*|:*|*:) echo "time and step limits must be positive integers" >&2; exit 2 ;;
 esac
+case "$RUN_EPSILON" in 0|1) ;; *) echo "RUN_EPSILON must be 0 or 1" >&2; exit 2 ;; esac
 if [ "$MAX_SECONDS" -le 120 ] || [ "$MAX_PILOT_STEPS" -le 0 ] \
   || [ "$RESERVE_SECONDS" -le 0 ] \
   || [ "$RESERVE_SECONDS" -ge $((MAX_SECONDS - 120)) ]; then
@@ -45,43 +50,44 @@ if [ "${DRY_RUN:-0}" = 1 ]; then
   exit 0
 fi
 
-# Put model caching, calibration, every cell, collection, and epsilon under one
-# absolute wall-time cap. Internal deadlines leave five minutes for shutdown.
-if [ "${RTX5070_BUDGET_INNER:-0}" != 1 ]; then
-  export RTX5070_BUDGET_INNER=1 MODEL MAX_SECONDS MAX_PILOT_STEPS
-  export RESERVE_SECONDS RUN_EPSILON TIMING_S1 TIMING_S5 SESSION_TAG
-  exec timeout --signal=INT --kill-after=120s "$((MAX_SECONDS - 120))s" \
-    bash "$0" "$@"
-fi
-
 started=$(date +%s)
-deadline=$((started + MAX_SECONDS - 120))
+target_deadline=$((started + MAX_SECONDS))
 mkdir -p logs runs/incomplete
 
 run_epsilon() {
-  local remaining=$1
-  if [ "$remaining" -le 60 ]; then
-    echo "less than six minutes remain; epsilon was not started" >&2
-    return 124
-  fi
+  local profile=${1:-full}
   local epsilon_args=(
     --model "$MODEL" --n-problems 8 --k 8 --reference-samples 32
     --resolution-m 4 8 16 --temperatures 0.5 0.8 1.0 1.3
     --proposal-temperature 1.3 --mixture-weights 0 0.25 0.5 0.75 1
     --max-tokens 128 --gpu-memory-utilization 0.70
-    --out "results/data/exploration_5h_5070_${SESSION_TAG}.json"
+    --out "$EPSILON_OUT"
   )
-  if [ "$remaining" -lt 1500 ]; then
+  if [ "$profile" = small ]; then
     epsilon_args=(
       --model "$MODEL" --n-problems 4 --k 4 --reference-samples 16
       --resolution-m 4 8 --temperatures 0.7 1.0 1.3
       --proposal-temperature 1.3 --mixture-weights 0 0.5 1
       --max-tokens 128 --gpu-memory-utilization 0.70
-      --out "results/data/exploration_5h_5070_${SESSION_TAG}.json"
+      --out "$EPSILON_OUT"
     )
   fi
-  timeout --signal=INT --kill-after=60s "${remaining}s" \
-    python eval/eval_exploration.py "${epsilon_args[@]}"
+  python eval/eval_exploration.py "${epsilon_args[@]}"
+}
+
+plot_results() {
+  local plot_args=(--out "$FIGURES_OUT")
+  if [ -s "$H2_DATA_OUT/checker_grid_summary.json" ]; then
+    plot_args+=(--h2-summary "$H2_DATA_OUT/checker_grid_summary.json")
+  fi
+  if [ -s "$EPSILON_OUT" ]; then
+    plot_args+=(--exploration "$EPSILON_OUT")
+  fi
+  if [ "${#plot_args[@]}" -eq 2 ]; then
+    echo "no collected JSON available for plotting" >&2
+    return 0
+  fi
+  python analysis/plot_core_results.py "${plot_args[@]}"
 }
 
 calibration_status=0
@@ -105,10 +111,14 @@ fi
 if [ "$calibration_status" -ne 0 ]; then
   echo "calibration failed; H2 is infeasible, attempting the smallest epsilon run" >&2
   set +e
-  run_epsilon "$((deadline - $(date +%s) - 300))"
+  run_epsilon small
   epsilon_status=$?
   set -e
-  echo "Five-hour pilot stopped after calibration (calibration=$calibration_status, epsilon=$epsilon_status)"
+  set +e
+  plot_results
+  plot_status=$?
+  set -e
+  echo "Five-hour pilot stopped after calibration (calibration=$calibration_status, epsilon=$epsilon_status, plots=$plot_status)"
   exit "$calibration_status"
 fi
 
@@ -132,11 +142,10 @@ else
   fixed_seconds=$((time_s1 - seconds_per_step))
   if [ "$fixed_seconds" -lt 0 ]; then fixed_seconds=0; fi
 fi
-grid_deadline=$((deadline - RESERVE_SECONDS))
-grid_seconds=$((grid_deadline - $(date +%s)))
+effective_reserve=$((RUN_EPSILON * RESERVE_SECONDS))
+grid_seconds=$((target_deadline - effective_reserve - $(date +%s)))
 if [ "$grid_seconds" -le 60 ]; then
-  echo "calibration consumed the grid budget; giving H2 one minute, then preserving epsilon" >&2
-  grid_deadline=$(($(date +%s) + 60))
+  echo "calibration consumed the planned grid budget; using a one-minute sizing floor" >&2
   grid_seconds=60
 fi
 safe_seconds_per_cell=$((grid_seconds * 10 / 14 / 25))
@@ -152,7 +161,7 @@ fi
 if [ "$pilot_steps" -lt 1 ]; then pilot_steps=1; fi
 if [ "$pilot_steps" -gt "$MAX_PILOT_STEPS" ]; then pilot_steps=$MAX_PILOT_STEPS; fi
 
-echo "Five-hour pilot: 25 cells, seed=0, steps=$pilot_steps, hard cap=${MAX_SECONDS}s"
+echo "Five-hour-target pilot: 25 cells, seed=0, steps=$pilot_steps; no runtime kill timer"
 echo "Calibration: s1=${time_s1}s, s5=${time_s5}s, fixed~${fixed_seconds}s, step~${seconds_per_step}s"
 if [ "$pilot_steps" -lt 3 ]; then
   echo "WARNING: fewer than 3 steps only validate the pipeline, not an H2 effect" >&2
@@ -167,25 +176,15 @@ failure_file="logs/rtx5070_5h_failures_${SESSION_TAG}.tsv"
 cell_index=0
 completed=0
 failures=0
-budget_exhausted=0
 
 for alpha in "${alphas[@]}"; do
   for beta in "${betas[@]}"; do
-    remaining_cells=$((25 - cell_index))
-    remaining_grid=$((grid_deadline - $(date +%s)))
-    if [ "$remaining_grid" -le 30 ]; then
-      budget_exhausted=1
-      break 2
-    fi
-    cell_limit=$((remaining_grid / remaining_cells))
-    if [ "$cell_limit" -lt 30 ]; then cell_limit=30; fi
     set +e
-    timeout --signal=INT --kill-after=60s "${cell_limit}s" \
-      env MODEL="$MODEL" NPROC=1 ALPHAS="$alpha" BETAS="$beta" SEEDS="0" \
-        STEPS="$pilot_steps" GENERATIONS=2 TRAIN_SIZE=2000 EVAL_SIZE=32 \
-        EVAL_STEPS=999999 CONFIG_TAG="rtx5070_5h_${SESSION_TAG}" \
-        CONFIG_OUT="$config_file" \
-        bash scripts/sweep.sh "${train_args[@]}"
+    env MODEL="$MODEL" NPROC=1 ALPHAS="$alpha" BETAS="$beta" SEEDS="0" \
+      STEPS="$pilot_steps" GENERATIONS=2 TRAIN_SIZE=2000 EVAL_SIZE=32 \
+      EVAL_STEPS=999999 CONFIG_TAG="rtx5070_5h_${SESSION_TAG}" \
+      CONFIG_OUT="$config_file" \
+      bash scripts/sweep.sh "${train_args[@]}"
     cell_status=$?
     set -e
     if [ "$cell_status" -eq 0 ]; then
@@ -207,8 +206,6 @@ done
 
 if [ "$completed" -eq 25 ]; then
   grid_status=0
-elif [ "$budget_exhausted" -eq 1 ]; then
-  grid_status=124
 else
   grid_status=1
 fi
@@ -219,8 +216,7 @@ if [ -s "$config_file" ] && [ "$completed" -gt 0 ]; then
   collector_args=(
     --run-prefix "h2_c${config_id}_" --expected-seeds 1
     --allow-short-horizon --allow-missing-forgetting
-    --figures-out "results/figures/pilot5h_${SESSION_TAG}"
-    --data-out "results/data/pilot5h_${SESSION_TAG}"
+    --data-out "$H2_DATA_OUT"
   )
   if [ "$completed" -lt 25 ]; then collector_args+=(--allow-partial-grid); fi
   set +e
@@ -236,12 +232,18 @@ fi
 epsilon_status=0
 if [ "$RUN_EPSILON" = 1 ]; then
   set +e
-  run_epsilon "$((deadline - $(date +%s) - 300))"
+  run_epsilon full
   epsilon_status=$?
   set -e
 fi
 
+set +e
+plot_results
+plot_status=$?
+set -e
+
 elapsed=$(( $(date +%s) - started ))
-echo "Five-hour pilot finished in ${elapsed}s (grid=$grid_status, epsilon=$epsilon_status)"
+echo "Five-hour pilot finished in ${elapsed}s (grid=$grid_status, epsilon=$epsilon_status, plots=$plot_status)"
 if [ "$grid_status" -ne 0 ]; then exit "$grid_status"; fi
 if [ "$epsilon_status" -ne 0 ]; then exit "$epsilon_status"; fi
+if [ "$plot_status" -ne 0 ]; then exit "$plot_status"; fi

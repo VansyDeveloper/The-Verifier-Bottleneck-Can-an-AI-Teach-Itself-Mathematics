@@ -24,14 +24,14 @@ train = [
   # vLLM 0.18.0 requires this exact public PyTorch release.  The uv source
   # below selects matching CUDA 12.9 wheels for the Blackwell/WSL2 path.
   "torch==2.10.0",
-  "torchvision==0.25.0",
-  "torchaudio==2.10.0",
+  "torchvision==0.25.0; sys_platform == 'linux'",
+  "torchaudio==2.10.0; sys_platform == 'linux'",
   "transformers>=4.56.2,<5",
   # Tested API pair: TRL 1.5.1 declares vLLM 0.12--0.18 compatibility.
   "trl==1.5.1",
-  "vllm==0.18.0",
+  "vllm==0.18.0; sys_platform == 'linux'",
   # 0.2.4 lacks a CPython 3.12 Linux x86_64 wheel.
-  "xgrammar==0.2.3",
+  "xgrammar==0.2.3; sys_platform == 'linux'",
 ]
 report = ["markdown>=3.7"]
 
@@ -41,9 +41,20 @@ url = "https://download.pytorch.org/whl/cu129"
 explicit = true
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu129" }
-torchvision = { index = "pytorch-cu129" }
-torchaudio = { index = "pytorch-cu129" }
+torch = [
+  { index = "pytorch-cu129", marker = "sys_platform == 'linux'" },
+]
+torchvision = [
+  { index = "pytorch-cu129", marker = "sys_platform == 'linux'" },
+]
+torchaudio = [
+  { index = "pytorch-cu129", marker = "sys_platform == 'linux'" },
+]
+
+[tool.uv]
+required-environments = [
+  "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
 
 [tool.setuptools.packages.find]
 include = ["modcomp*"]

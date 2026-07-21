@@ -16,6 +16,7 @@ from math import sqrt
 from statistics import fmean, stdev
 
 os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
+os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")
 
 from modcomp.exploration import novelty_metrics, outcome_class
 from modcomp.gen import make_dataset
@@ -103,13 +104,26 @@ def main():
     ap.add_argument("--prime-max", type=int, default=29)
     ap.add_argument("--style", choices=["verbose", "compact"], default="compact")
     ap.add_argument("--max-tokens", type=int, default=384)
+    ap.add_argument(
+        "--backend",
+        choices=["auto", "vllm", "transformers"],
+        default="auto",
+        help="auto uses vLLM on CUDA and Transformers elsewhere",
+    )
+    ap.add_argument("--device", choices=["auto", "cuda", "mps", "cpu"], default="auto")
+    ap.add_argument(
+        "--generation-batch-size",
+        type=int,
+        default=8,
+        help="Transformers-only generation chunk; does not change candidate K",
+    )
     ap.add_argument("--tp", type=int, default=1)
     ap.add_argument("--gpu-memory-utilization", type=float, default=0.8)
     ap.add_argument("--out", default="results/data/exploration_sweep.json")
     args = ap.parse_args()
 
-    if args.k <= 0 or args.n_problems <= 0:
-        ap.error("--k and --n-problems must be positive")
+    if args.k <= 0 or args.n_problems <= 0 or args.generation_batch_size <= 0:
+        ap.error("--k, --n-problems, and --generation-batch-size must be positive")
     reference_samples = 4 * args.k if args.reference_samples is None else args.reference_samples
     resolution_ms = list(
         dict.fromkeys([args.k] if args.resolution_m is None else args.resolution_m)
@@ -126,8 +140,6 @@ def main():
     if any(temperature <= 0 for temperature in all_temperatures):
         ap.error("temperatures must be positive when drawing more than one candidate")
 
-    from vllm import LLM, SamplingParams
-
     rows = make_dataset(
         args.n_problems,
         seed=args.seed + 10_000,
@@ -138,31 +150,112 @@ def main():
         style=args.style,
     )
     prompts = [row["prompt"] for row in rows]
-    llm = LLM(
-        model=args.model,
-        tensor_parallel_size=args.tp,
-        gpu_memory_utilization=args.gpu_memory_utilization,
-    )
+    import torch
 
-    def sample(temperature, n, seed):
-        params = [
-            SamplingParams(
-                n=n,
-                temperature=temperature,
-                top_p=1.0,
-                max_tokens=args.max_tokens,
-                seed=seed + problem_index,
-                stop=["\nProblem:", "\nSolved:", "\n\n\n"],
-            )
-            for problem_index in range(len(prompts))
-        ]
-        outputs = llm.generate(prompts, params)
-        return [
-            [outcome_class(candidate.text, row["p"]) for candidate in output.outputs]
-            for row, output in zip(rows, outputs)
-        ]
+    backend = args.backend
+    if backend == "auto":
+        backend = "vllm" if torch.cuda.is_available() else "transformers"
+
+    resolved_device = None
+    resolved_dtype = None
+    if backend == "vllm":
+        if args.device not in {"auto", "cuda"}:
+            ap.error("the vllm backend only supports --device auto/cuda in this repository")
+        from vllm import LLM, SamplingParams
+
+        llm = LLM(
+            model=args.model,
+            tensor_parallel_size=args.tp,
+            gpu_memory_utilization=args.gpu_memory_utilization,
+        )
+        resolved_device = "cuda"
+        resolved_dtype = "vllm-auto"
+
+        def sample(temperature, n, seed):
+            params = [
+                SamplingParams(
+                    n=n,
+                    temperature=temperature,
+                    top_p=1.0,
+                    max_tokens=args.max_tokens,
+                    seed=seed + problem_index,
+                    stop=["\nProblem:", "\nSolved:", "\n\n\n"],
+                )
+                for problem_index in range(len(prompts))
+            ]
+            outputs = llm.generate(prompts, params)
+            candidates = [
+                [outcome_class(candidate.text, row["p"]) for candidate in output.outputs]
+                for row, output in zip(rows, outputs)
+            ]
+            if any(len(row) != n for row in candidates):
+                raise RuntimeError("vLLM returned the wrong number of candidates")
+            return candidates
+
+    else:
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+
+        if args.device == "auto":
+            if torch.backends.mps.is_available():
+                resolved_device = "mps"
+            elif torch.cuda.is_available():
+                resolved_device = "cuda"
+            else:
+                resolved_device = "cpu"
+        else:
+            resolved_device = args.device
+        if resolved_device == "mps" and not torch.backends.mps.is_available():
+            ap.error("MPS is unavailable; check Apple Silicon PyTorch installation")
+        if resolved_device == "cuda" and not torch.cuda.is_available():
+            ap.error("CUDA is unavailable")
+        dtype = torch.float16 if resolved_device == "mps" else (
+            torch.bfloat16 if resolved_device == "cuda" else torch.float32
+        )
+        resolved_dtype = str(dtype).removeprefix("torch.")
+        tokenizer = AutoTokenizer.from_pretrained(args.model)
+        if tokenizer.pad_token_id is None:
+            tokenizer.pad_token = tokenizer.eos_token
+        model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype)
+        model.to(resolved_device)
+        model.eval()
+        stop_strings = ("\nProblem:", "\nSolved:", "\n\n\n")
+
+        def trim_stop(text):
+            positions = [text.find(stop) for stop in stop_strings if stop in text]
+            return text[: min(positions)] if positions else text
+
+        def sample(temperature, n, seed):
+            candidates = []
+            for problem_index, (prompt, row) in enumerate(zip(prompts, rows)):
+                encoded = tokenizer(prompt, return_tensors="pt")
+                encoded = {key: value.to(resolved_device) for key, value in encoded.items()}
+                prompt_length = encoded["input_ids"].shape[1]
+                texts = []
+                for chunk_index, start in enumerate(range(0, n, args.generation_batch_size)):
+                    chunk_size = min(args.generation_batch_size, n - start)
+                    torch.manual_seed(seed + problem_index + 1_000_000 * chunk_index)
+                    with torch.inference_mode():
+                        generated = model.generate(
+                            **encoded,
+                            do_sample=True,
+                            temperature=temperature,
+                            top_p=1.0,
+                            max_new_tokens=args.max_tokens,
+                            num_return_sequences=chunk_size,
+                            pad_token_id=tokenizer.pad_token_id,
+                        )
+                    texts.extend(
+                        trim_stop(tokenizer.decode(tokens[prompt_length:], skip_special_tokens=True))
+                        for tokens in generated
+                    )
+                if len(texts) != n:
+                    raise RuntimeError("Transformers returned the wrong number of candidates")
+                candidates.append([outcome_class(text, row["p"]) for text in texts])
+            return candidates
 
     reference = sample(args.reference_temperature, reference_samples, args.seed + 100_000)
+    if any(len(row) != reference_samples for row in reference):
+        raise RuntimeError("reference sample count does not match M")
     reported_temperatures = list(dict.fromkeys([*args.temperatures, args.reference_temperature]))
     temperatures = list(
         dict.fromkeys([*reported_temperatures, args.proposal_temperature])
@@ -171,8 +264,12 @@ def main():
         temperature: sample(temperature, args.k, args.seed + 200_000 + 10_000 * index)
         for index, temperature in enumerate(temperatures)
     }
+    if any(len(row) != args.k for candidates in sampled.values() for row in candidates):
+        raise RuntimeError("candidate sample count does not match K")
 
     def evaluate(name, candidates, metadata, resolution_m):
+        if len(candidates) != len(rows) or any(len(row) != args.k for row in candidates):
+            raise RuntimeError("every problem must retain exactly K candidates")
         per_problem = []
         for index, (row, ref, cand) in enumerate(zip(rows, reference, candidates)):
             metrics = novelty_metrics(
@@ -188,6 +285,7 @@ def main():
             "name": f"m{resolution_m}_{name}",
             "resolution_m": resolution_m,
             "eta": 1 / resolution_m,
+            "candidate_k": args.k,
             **metadata,
             "mean": aggregate(per_problem),
             "per_problem": per_problem,
@@ -280,6 +378,12 @@ def main():
             "temperatures": args.temperatures,
             "mixture_weights": args.mixture_weights,
             "resolution_m": resolution_ms,
+            "backend": backend,
+            "device": resolved_device,
+            "dtype": resolved_dtype,
+            "generation_batch_size": (
+                args.generation_batch_size if backend == "transformers" else None
+            ),
         },
         "conditions": conditions,
     }

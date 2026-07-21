@@ -151,9 +151,18 @@ claims require `--require-plateau` or a declared longer horizon. Same-`J`
 FN-heavy and FP-heavy cells test finite-time error asymmetry.
 
 The RTX 5070 wrapper is deliberately a different estimand: it covers all 25
-cells once, adapts a short horizon to a five-hour wall-clock budget, and then
+cells once, adapts a short horizon to a five-hour planning budget, and then
 measures epsilon. It is for pipeline validation and effect-size scouting only;
 it does not replace the three-seed, 600-step protocol above.
+
+The M1 Pro wrapper first times one complete Transformers/MPS cell. It runs all
+25 cells only when that measured cost fits the guarded budget; otherwise it
+runs the three declared sentinels $(1,0)$, $(0.6,0.6)$, and $(0.2,0.8)$ for
+$J>0$, $J=0$, and $J<0$. This fallback is a phase-boundary diagnostic, not a
+completed checker grid. Both modes keep $G$, temperature, task distribution,
+and candidate budget fixed and reserve time for the epsilon sweep. The budget is
+used only for pre-run sizing: no active training or evaluation process is killed
+when the target time is crossed.
 
 The `J=0` phase boundary is already derived and tested in RLV-epsilon-R
 (arXiv:2601.04411). Consequently, a plain alpha-beta phase diagram is a
@@ -185,6 +194,22 @@ The sequence of experiments is:
    epsilon.
 
 Do not launch a full 25-by-temperature training product before these controls.
+
+The primary reporting surface is deliberately only three figures:
+
+1. a full $(\alpha,\beta)$ heatmap of held-out final-minus-initial gain, or an
+   explicitly cell-counted partial diagnostic, with the $\alpha=\beta$ boundary
+   shown explicitly;
+2. gain against realized signed alignment (falling back to configured $J$), so
+   finite-sample checker behavior is not silently replaced by its target value;
+3. parseable $\Delta\widehat\varepsilon^{1/m}$ against pass@1 at fixed $K$,
+   separated by temperature and policy-mixture interventions and repeated over
+   all requested resolutions.
+
+Raw epsilon is excluded from the main figure because it counts $\bot$. A
+one-seed five-hour pilot is labeled as having no seed-level uncertainty, and
+the epsilon bars are problem-level standard errors conditional on the sampled
+support.
 
 ## 5. Composition claim boundary
 

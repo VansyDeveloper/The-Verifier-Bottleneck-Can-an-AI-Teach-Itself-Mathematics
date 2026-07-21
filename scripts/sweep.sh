@@ -24,15 +24,23 @@ CONFIG_TAG=${CONFIG_TAG:-}
 export NPROC=${NPROC:-1}
 mkdir -p logs
 
+hash256() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$@"
+  else
+    shasum -a 256 "$@"
+  fi
+}
+
 CONFIG_ID=$(
   {
     printf '%s\0' "$MODEL" "$STEPS" "$TEMPERATURE" "$GENERATIONS" "$NPROC"
     printf '%s\0' "$PRIME_MAX" "$K_MIN" "$K_MAX" "$STYLE" "$EVAL_SPLIT"
     printf '%s\0' "$TRAIN_SIZE" "$EVAL_SIZE" "$EVAL_STEPS" "$CONFIG_TAG"
     printf '%s\0' "${SAVE_FINAL:-0}" "$@"
-    sha256sum scripts/sweep.sh scripts/run_train.sh training/train_grpo.py \
+    hash256 scripts/sweep.sh scripts/run_train.sh training/train_grpo.py \
       modcomp/checker.py modcomp/gen.py modcomp/metrics.py pyproject.toml uv.lock
-  } | sha256sum
+  } | hash256
 )
 CONFIG_ID=${CONFIG_ID%% *}
 CONFIG_ID=${CONFIG_ID:0:10}

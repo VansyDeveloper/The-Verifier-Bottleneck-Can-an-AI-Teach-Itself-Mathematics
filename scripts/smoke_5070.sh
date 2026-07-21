@@ -1,5 +1,6 @@
 #!/bin/bash
 # Fast end-to-end check for Windows 10 + WSL2 + RTX 5070 12 GB.
+# Runtime is measured and logged; no artificial timeout interrupts the work.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 [ -f .venv/bin/activate ] && source .venv/bin/activate
@@ -12,7 +13,8 @@ TIMING_FILE=${TIMING_FILE:-logs/rtx5070_${MODEL_TAG}_${PROFILE_TAG}_s1.txt}
 CALIBRATION_STEPS=${CALIBRATION_STEPS:-1}
 RUN_EPSILON=${RUN_EPSILON:-1}
 RUN_TESTS=${RUN_TESTS:-1}
-SMOKE_MAX_SECONDS=${SMOKE_MAX_SECONDS:-1800}
+EPSILON_OUT=results/data/exploration_smoke_5070.json
+FIGURES_OUT=results/figures/smoke_5070
 
 train_args=(
   --lora --lora-r 8 --lora-alpha 16
@@ -30,20 +32,6 @@ if [ "${DRY_RUN:-0}" = 1 ]; then
     DRY_RUN=1 bash scripts/sweep.sh "${train_args[@]}"
   echo "DRY RUN: epsilon smoke would run with n=4, K=4, M=16"
   exit 0
-fi
-
-case "$SMOKE_MAX_SECONDS" in
-  ''|*[!0-9]*) echo "SMOKE_MAX_SECONDS must be a positive integer" >&2; exit 2 ;;
-esac
-if [ "$SMOKE_MAX_SECONDS" -le 60 ]; then
-  echo "SMOKE_MAX_SECONDS must exceed the 60-second kill grace" >&2
-  exit 2
-fi
-if [ "${RTX5070_SMOKE_INNER:-0}" != 1 ]; then
-  export RTX5070_SMOKE_INNER=1 MODEL TIMING_FILE CALIBRATION_STEPS
-  export RUN_EPSILON RUN_TESTS SMOKE_MAX_SECONDS
-  exec timeout --signal=INT --kill-after=60s "$((SMOKE_MAX_SECONDS - 60))s" \
-    bash "$0" "$@"
 fi
 
 mkdir -p logs
@@ -90,7 +78,9 @@ if [ "$RUN_EPSILON" = 1 ]; then
     --resolution-m 4 8 --temperatures 0.7 1.0 1.3 \
     --proposal-temperature 1.3 --mixture-weights 0 0.5 1 \
     --max-tokens 128 --gpu-memory-utilization 0.70 \
-    --out results/data/exploration_smoke_5070.json
+    --out "$EPSILON_OUT"
+  python analysis/plot_core_results.py \
+    --exploration "$EPSILON_OUT" --out "$FIGURES_OUT"
 fi
 
 echo "RTX 5070 smoke test complete"

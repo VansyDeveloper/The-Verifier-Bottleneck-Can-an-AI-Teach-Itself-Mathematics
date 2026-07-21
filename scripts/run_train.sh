@@ -13,5 +13,16 @@ ALPHA=${1:-1.0}
 BETA=${2:-0.0}
 shift 2 || true
 
-accelerate launch --num_processes ${NPROC:-8} --mixed_precision bf16 training/train_grpo.py \
-  --alpha "$ALPHA" --beta "$BETA" "$@"
+if [ "$(uname -s)" = Darwin ]; then
+  if [ "${NPROC:-1}" != 1 ]; then
+    echo "Apple MPS supports only NPROC=1 in this launcher" >&2
+    exit 2
+  fi
+  export PYTORCH_ENABLE_MPS_FALLBACK=${PYTORCH_ENABLE_MPS_FALLBACK:-1}
+  python training/train_grpo.py --alpha "$ALPHA" --beta "$BETA" \
+    --generation-backend transformers --precision "${PRECISION:-auto}" "$@"
+else
+  accelerate launch --num_processes "${NPROC:-8}" \
+    --mixed_precision "${MIXED_PRECISION:-bf16}" training/train_grpo.py \
+    --alpha "$ALPHA" --beta "$BETA" --precision "${PRECISION:-auto}" "$@"
+fi

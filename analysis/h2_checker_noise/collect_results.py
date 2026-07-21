@@ -1,6 +1,4 @@
-"""Collect true_accuracy curves from the sweep's TensorBoard logs into one table
-and plot the H2 picture: eval true_accuracy vs step per (alpha, beta), plus final
-true_accuracy vs signed checker signal (alpha - beta).
+"""Collect true_accuracy curves from the sweep's TensorBoard logs into JSON.
 
   python analysis/h2_checker_noise/collect_results.py
 """
@@ -216,7 +214,6 @@ def main():
         action="store_true",
         help="require every seed's last window endpoint change to be within tolerance",
     )
-    ap.add_argument("--figures-out", default="results/figures")
     ap.add_argument("--data-out", default="results/data")
     args = ap.parse_args()
     if args.expected_seeds <= 0:
@@ -225,7 +222,6 @@ def main():
         ap.error("--min-steps must be positive")
     if args.plateau_window < 2 or args.plateau_tolerance < 0:
         ap.error("--plateau-window must be >=2 and --plateau-tolerance non-negative")
-    os.makedirs(args.figures_out, exist_ok=True)
     os.makedirs(args.data_out, exist_ok=True)
 
     runs = {}
@@ -404,54 +400,6 @@ def main():
             f"{time_90:>12s} {time_95:>12s} "
             f"{str(cell['plateau_all_seeds']):>5s}"
         )
-
-    try:
-        import matplotlib
-
-        matplotlib.use("Agg")
-        import matplotlib.pyplot as plt
-
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5))
-        for cell in sorted(summary.values(), key=lambda value: -value["info"]):
-            if cell["mean_eval_true_acc"]:
-                ax1.plot(
-                    cell["eval_steps"],
-                    cell["mean_eval_true_acc"],
-                    marker="o",
-                    label=f"α={cell['alpha']}, β={cell['beta']}",
-                )
-        ax1.set_xlabel("training step")
-        ax1.set_ylabel("eval true_accuracy")
-        ax1.set_title("H2: self-improvement vs checker (α,β)")
-        ax1.legend(fontsize=8)
-        ax1.grid(alpha=0.3)
-
-        pts = [
-            (cell["info"], cell["mean_gain"], cell["se_gain"])
-            for cell in summary.values()
-            if cell["mean_gain"] is not None
-        ]
-        pts.sort()
-        if pts:
-            ax2.errorbar(
-                [p[0] for p in pts],
-                [p[1] for p in pts],
-                yerr=[p[2] for p in pts],
-                fmt="s",
-            )
-            ax2.axhline(0, color="k", lw=0.8)
-            ax2.axvline(0, color="r", ls="--", lw=0.8, label="break-even α=β")
-            ax2.set_xlabel("signed checker signal (α − β)")
-            ax2.set_ylabel("Δ true_accuracy (final − first)")
-            ax2.set_title("H2: mean gain ± SE vs signed checker signal")
-            ax2.legend(fontsize=8)
-            ax2.grid(alpha=0.3)
-        fig.tight_layout()
-        fig.savefig(os.path.join(args.figures_out, "checker_phase_overview.png"), dpi=130)
-        print("wrote", os.path.join(args.figures_out, "checker_phase_overview.png"))
-    except Exception as e:
-        print("plot skipped:", e)
-
 
 if __name__ == "__main__":
     main()

@@ -11,7 +11,9 @@ import os
 from collections import defaultdict
 
 os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
+os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")
 
+import torch
 from datasets import Dataset
 from trl import GRPOConfig, GRPOTrainer
 
@@ -73,6 +75,18 @@ def parse_args():
     ap.add_argument("--max-completion-length", type=int, default=256)
     ap.add_argument("--vllm-gpu-memory-utilization", type=float, default=0.25)
     ap.add_argument(
+        "--generation-backend",
+        choices=["auto", "transformers", "vllm"],
+        default="auto",
+        help="auto uses vLLM on CUDA and Transformers model.generate elsewhere",
+    )
+    ap.add_argument(
+        "--precision",
+        choices=["auto", "bf16", "fp16", "fp32"],
+        default="auto",
+        help="auto uses bf16 on CUDA, fp16 on MPS, and fp32 on CPU",
+    )
+    ap.add_argument(
         "--vllm-enable-sleep-mode",
         action="store_true",
         help="offload colocated vLLM state between phases to reduce peak VRAM use",
@@ -98,6 +112,17 @@ def main():
         raise SystemExit("--alpha and --beta must lie in [0, 1]")
     if args.num_generations < 2 or args.num_generations % 2:
         raise SystemExit("--num-generations must be an even integer >= 2")
+    use_vllm = args.generation_backend == "vllm" or (
+        args.generation_backend == "auto" and torch.cuda.is_available()
+    )
+    if use_vllm and not torch.cuda.is_available():
+        raise SystemExit("vLLM training requires CUDA; use --generation-backend transformers")
+    if args.vllm_enable_sleep_mode and not use_vllm:
+        raise SystemExit("--vllm-enable-sleep-mode requires the vllm generation backend")
+    use_mps = torch.backends.mps.is_available()
+    precision = args.precision
+    if precision == "auto":
+        precision = "bf16" if torch.cuda.is_available() else "fp16" if use_mps else "fp32"
     world_size = int(os.environ.get("WORLD_SIZE", "1"))
     if args.eval_size % world_size:
         raise SystemExit(
@@ -205,7 +230,7 @@ def main():
                     captured_correctness[int(index)].append(score)
         return scores
 
-    cfg = GRPOConfig(
+    cfg_kwargs = dict(
         output_dir=out_dir,
         run_name=run_name,
         seed=args.seed,
@@ -223,15 +248,10 @@ def main():
         loss_type="grpo",
         vllm_importance_sampling_correction=False,
         reward_weights=[1.0, 0.0],
-        # Stop once the model finishes its answer or starts a fresh problem, so
-        # it doesn't ramble into invented few-shot items and waste tokens.
-        generation_kwargs={"stop": ["\nProblem:", "\nSolved:", "\n\n\n"]},
-        use_vllm=True,
-        vllm_mode="colocate",
-        vllm_max_model_length=1024,
-        vllm_gpu_memory_utilization=args.vllm_gpu_memory_utilization,
-        vllm_enable_sleep_mode=args.vllm_enable_sleep_mode,
-        bf16=True,
+        use_vllm=use_vllm,
+        bf16=precision == "bf16",
+        fp16=precision == "fp16",
+        dataloader_pin_memory=not use_mps,
         gradient_checkpointing=True,
         logging_steps=1,
         # Never write mid-run optimizer checkpoints: a single 1.7B checkpoint is
@@ -244,6 +264,16 @@ def main():
         log_completions=True,
         num_completions_to_print=0,
     )
+    if use_vllm:
+        cfg_kwargs.update(
+            # Transformers.generate has no vLLM-style string stop parameter.
+            generation_kwargs={"stop": ["\nProblem:", "\nSolved:", "\n\n\n"]},
+            vllm_mode="colocate",
+            vllm_max_model_length=1024,
+            vllm_gpu_memory_utilization=args.vllm_gpu_memory_utilization,
+            vllm_enable_sleep_mode=args.vllm_enable_sleep_mode,
+        )
+    cfg = GRPOConfig(**cfg_kwargs)
 
     peft_config = None
     if args.lora:
@@ -278,8 +308,17 @@ def main():
                         if args.noise_mode == "iid"
                         else "legacy answer-keyed quenched noise"
                     ),
+                    "resolved_generation_backend": "vllm" if use_vllm else "transformers",
+                    "resolved_precision": precision,
+                    "accelerator_device": (
+                        "cuda" if torch.cuda.is_available() else "mps" if use_mps else "cpu"
+                    ),
                     "package_versions": {
-                        package: importlib.metadata.version(package)
+                        package: (
+                            importlib.metadata.version(package)
+                            if package != "vllm" or use_vllm
+                            else None
+                        )
                         for package in ("torch", "transformers", "trl", "vllm", "peft")
                     },
                 },
