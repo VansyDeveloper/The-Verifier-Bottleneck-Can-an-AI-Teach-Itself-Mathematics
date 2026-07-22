@@ -1,6 +1,7 @@
 import unittest
 
 from analysis.h2_checker_noise.collect_results import (
+    coalesce_scalars,
     first_hitting_step,
     parse_config_id,
     parse_run_name,
@@ -9,6 +10,15 @@ from analysis.h2_checker_noise.collect_results import (
 
 
 class H2CollectorTest(unittest.TestCase):
+    def test_duplicate_tensorboard_steps_are_averaged(self):
+        steps, values = coalesce_scalars(
+            [60, 0, 60, 15],
+            [0.2, 0.1, 0.4, 0.3],
+        )
+        self.assertEqual(steps, [0, 15, 60])
+        self.assertEqual(values[:2], [0.1, 0.3])
+        self.assertAlmostEqual(values[2], 0.3)
+
     def test_hitting_time_is_per_curve(self):
         self.assertEqual(first_hitting_step([0, 25, 50], [0.4, 0.91, 0.8], 0.9), 25)
         self.assertIsNone(first_hitting_step([0, 25], [0.4, 0.89], 0.9))

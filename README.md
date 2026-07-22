@@ -239,6 +239,29 @@ This dry-run prints the 25-cell command surface; it does not predict whether
 runtime calibration will select the full grid or the three-cell diagnostic.
 Every cell streams output to the terminal and `logs/<run>.log`; TensorBoard
 events remain under `runs/<run>/` while the overnight job continues.
+The M1 pilot keeps the latest optimizer checkpoint for each active cell. If it
+is interrupted, rerun the same `bash scripts/run_5h_m1.sh` command: completed
+cells are skipped and the interrupted cell resumes from its latest checkpoint.
+Set `CHECKPOINT_STEPS=N` to save every N optimizer steps (the default is 1).
+Use `PILOT_MODE=three-cell-diagnostic` to force only the declared positive,
+zero, and negative checker-signal cells instead of the full 25-cell grid.
+`GENERATIONS`, `PER_DEVICE_BATCH`, and `MAX_COMPLETION_LENGTH` can be raised for
+follow-up runs; the initial time-calibrated smoke profile remains `2/2/64`.
+`PRIME_MAX`, `K_MIN`, and `K_MAX` select an easier or harder task regime.
+Set `SEEDS="0 1 2"` to aggregate repeated runs; matching completed seeds are
+skipped automatically.
+Set `EVAL_STEPS=N` for intermediate held-out curves instead of endpoint-only
+evaluation; long runs should also use `SAVE_FINAL=1` to retain final adapters.
+
+After the short M1 pilots, the substantive local follow-up is a roughly
+9-11 hour three-cell, three-seed, 60-step run with evaluations every 15 steps:
+
+```bash
+bash scripts/run_long_m1.sh
+```
+
+It keeps final LoRA adapters and checkpoints every five optimizer steps. It is
+still a local long-horizon diagnostic, not the full 25-cell, 600-step protocol.
 
 The following RTX/WSL launchers remain available as an optional faster path.
 

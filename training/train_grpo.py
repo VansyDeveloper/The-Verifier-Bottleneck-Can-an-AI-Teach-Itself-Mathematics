@@ -15,6 +15,8 @@ os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")
 
 import torch
 from datasets import Dataset
+from transformers import TrainerCallback
+from transformers.trainer_utils import get_last_checkpoint
 from trl import GRPOConfig, GRPOTrainer
 
 from modcomp.checker import is_correct, noisy_verdict, noisy_verdict_from_event
@@ -69,6 +71,11 @@ def parse_args():
     ap.add_argument("--lr", type=float, default=1e-6)
     ap.add_argument("--max-steps", type=int, default=300)
     ap.add_argument("--save-steps", type=int, default=50)
+    ap.add_argument(
+        "--checkpointing",
+        action="store_true",
+        help="save and automatically resume the latest optimizer checkpoint",
+    )
     ap.add_argument("--eval-steps", type=int, default=25)
     ap.add_argument("--per-device-batch", type=int, default=16)
     ap.add_argument("--grad-accum", type=int, default=2)
@@ -112,6 +119,8 @@ def main():
         raise SystemExit("--alpha and --beta must lie in [0, 1]")
     if args.num_generations < 2 or args.num_generations % 2:
         raise SystemExit("--num-generations must be an even integer >= 2")
+    if args.checkpointing and args.save_steps <= 0:
+        raise SystemExit("--save-steps must be positive when --checkpointing is enabled")
     use_vllm = args.generation_backend == "vllm" or (
         args.generation_backend == "auto" and torch.cuda.is_available()
     )
@@ -254,10 +263,9 @@ def main():
         dataloader_pin_memory=not use_mps,
         gradient_checkpointing=True,
         logging_steps=1,
-        # Never write mid-run optimizer checkpoints: a single 1.7B checkpoint is
-        # ~20GB (weights+optimizer) and the shared fuse mount runs near-full.
-        # Curriculum stages still persist weights-only via trainer.save_model(final).
-        save_strategy="no",
+        save_strategy="steps" if args.checkpointing else "no",
+        save_steps=args.save_steps,
+        save_total_limit=1,
         eval_strategy="steps",
         eval_steps=args.eval_steps,
         report_to=["tensorboard"],
@@ -296,6 +304,48 @@ def main():
         eval_dataset=eval_ds,
         peft_config=peft_config,
     )
+
+    class ExperimentStateCallback(TrainerCallback):
+        resume_mps_rng_state = None
+
+        def on_train_begin(self, training_args, state, control, **kwargs):
+            if self.resume_mps_rng_state is not None:
+                torch.mps.set_rng_state(self.resume_mps_rng_state)
+                self.resume_mps_rng_state = None
+            return control
+
+        def on_step_end(self, training_args, state, control, **kwargs):
+            if state.global_step >= state.max_steps:
+                control.should_save = False
+            return control
+
+        def on_save(self, training_args, state, control, **kwargs):
+            checkpoint_dir = os.path.join(out_dir, f"checkpoint-{state.global_step}")
+            state_path = os.path.join(
+                checkpoint_dir, f"experiment_state_rank{training_args.process_index}.json"
+            )
+            tmp_path = f"{state_path}.tmp"
+            with open(tmp_path, "w") as f:
+                json.dump(
+                    {
+                        "noise_call_index": noise_call_index,
+                        "checker_counts": dict(checker_counts),
+                    },
+                    f,
+                )
+            os.replace(tmp_path, state_path)
+            if torch.backends.mps.is_available():
+                torch.save(
+                    torch.mps.get_rng_state(),
+                    os.path.join(
+                        checkpoint_dir,
+                        f"mps_rng_state_rank{training_args.process_index}.pt",
+                    ),
+                )
+            return control
+
+    experiment_state_callback = ExperimentStateCallback()
+    trainer.add_callback(experiment_state_callback)
     os.makedirs(out_dir, exist_ok=True)
     if trainer.accelerator.is_main_process:
         with open(os.path.join(out_dir, "run_config.json"), "w") as f:
@@ -331,7 +381,28 @@ def main():
     capture_eval = False
     baseline_capture = {key: list(values) for key, values in captured_correctness.items()}
 
-    trainer.train()
+    resume_checkpoint = get_last_checkpoint(out_dir) if args.checkpointing else None
+    if resume_checkpoint:
+        resume_state_path = os.path.join(
+            resume_checkpoint,
+            f"experiment_state_rank{trainer.accelerator.process_index}.json",
+        )
+        with open(resume_state_path) as f:
+            resume_state = json.load(f)
+        noise_call_index = int(resume_state["noise_call_index"])
+        checker_counts.update(resume_state["checker_counts"])
+        mps_rng_path = os.path.join(
+            resume_checkpoint,
+            f"mps_rng_state_rank{trainer.accelerator.process_index}.pt",
+        )
+        if torch.backends.mps.is_available():
+            experiment_state_callback.resume_mps_rng_state = torch.load(
+                mps_rng_path, map_location="cpu", weights_only=True
+            )
+        if trainer.accelerator.is_main_process:
+            print(f"Resuming from {resume_checkpoint}")
+
+    trainer.train(resume_from_checkpoint=resume_checkpoint)
 
     captured_correctness.clear()
     capture_eval = True

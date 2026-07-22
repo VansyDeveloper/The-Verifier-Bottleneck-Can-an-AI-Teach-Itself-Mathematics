@@ -34,20 +34,31 @@ def parse_config_id(name):
     return parts[1][1:] if len(parts) > 1 and parts[1].startswith("c") else "legacy"
 
 
+def coalesce_scalars(steps, values):
+    """Return one mean value per TensorBoard step."""
+    by_step = defaultdict(list)
+    for step, value in zip(steps, values):
+        by_step[step].append(value)
+    ordered_steps = sorted(by_step)
+    return ordered_steps, [fmean(by_step[step]) for step in ordered_steps]
+
+
 def read_scalar(run_dir, tag):
     from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 
-    ev_dirs = glob.glob(os.path.join(run_dir, "**", "events.out.tfevents.*"), recursive=True)
+    event_files = glob.glob(
+        os.path.join(run_dir, "**", "events.out.tfevents.*"), recursive=True
+    )
+    event_dirs = sorted({os.path.dirname(path) for path in event_files})
     steps, vals = [], []
-    for ev in sorted(ev_dirs):
-        acc = EventAccumulator(os.path.dirname(ev))
+    for event_dir in event_dirs:
+        acc = EventAccumulator(event_dir)
         acc.Reload()
         if tag in acc.Tags().get("scalars", []):
             for s in acc.Scalars(tag):
                 steps.append(s.step)
                 vals.append(s.value)
-    order = sorted(range(len(steps)), key=lambda i: steps[i])
-    return [steps[i] for i in order], [vals[i] for i in order]
+    return coalesce_scalars(steps, vals)
 
 
 def mean_se(values):

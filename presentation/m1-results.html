@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Результаты M1: verifier bottleneck</title>
+  <style>
+    :root {
+      --stage: #07090b;
+      --slide: #0d1013;
+      --panel: #141a1f;
+      --paper: #f2efe6;
+      --muted: #aab7c0;
+      --line: #42505c;
+      --acid: #d7ff3f;
+      --cyan: #53d8ff;
+      --orange: #ffb000;
+      --display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+      --text: Menlo, Monaco, "DejaVu Sans Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--stage);
+    }
+
+    .viewport {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      background: var(--stage);
+    }
+
+    .stage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform-origin: 0 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      padding: 66px 82px;
+      visibility: hidden;
+      opacity: 0;
+      overflow: hidden;
+      color: var(--paper);
+      font-family: var(--text);
+      background:
+        radial-gradient(circle at 82% 12%, rgba(83, 216, 255, .07), transparent 28%),
+        radial-gradient(circle at 16% 90%, rgba(215, 255, 63, .04), transparent 24%),
+        var(--slide);
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .28;
+      background-image: radial-gradient(circle at center, rgba(83, 216, 255, .2) 0 2px, transparent 2.5px);
+      background-size: 76px 76px;
+      mask-image: linear-gradient(90deg, transparent, #000 28%, #000 78%, transparent);
+    }
+
+    .slide.active {
+      visibility: visible;
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .chrome,
+    .body {
+      position: relative;
+      z-index: 2;
+    }
+
+    .chrome {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 18px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .body {
+      height: 890px;
+      padding-top: 38px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--display);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    h2 {
+      font-size: 72px;
+      line-height: .98;
+    }
+
+    h3 {
+      font-size: 35px;
+      line-height: 1.05;
+    }
+
+    .acid { color: var(--acid); }
+    .cyan { color: var(--cyan); }
+    .orange { color: var(--orange); }
+    .muted { color: var(--muted); }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      color: #cbd4d9;
+      font-size: 16px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 410px;
+      gap: 34px;
+      height: 674px;
+      margin-top: 30px;
+    }
+
+    .chart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .chart img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .callout {
+      padding: 24px;
+      border-left: 6px solid var(--cyan);
+      background: var(--panel);
+    }
+
+    .callout.orange-border { border-color: var(--orange); }
+    .callout.acid-border { border-color: var(--acid); }
+
+    .callout .value {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--paper);
+      font-family: var(--display);
+      font-size: 45px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .callout p,
+    .footnote {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .side .footnote {
+      margin-top: auto;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(13, 16, 19, .75);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .metric {
+      padding: 20px 22px;
+      border-top: 5px solid var(--line);
+      background: var(--panel);
+    }
+
+    .metric.exact { border-color: var(--cyan); }
+    .metric.neutral { border-color: var(--muted); }
+    .metric.harmful { border-color: var(--orange); }
+
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--display);
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .metric small {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .wide-chart {
+      height: 470px;
+      margin-top: 22px;
+    }
+
+    .seed-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 34px;
+      height: 710px;
+      margin-top: 30px;
+    }
+
+    .seed-notes {
+      display: grid;
+      align-content: start;
+      gap: 18px;
+    }
+
+    .seed-note {
+      padding: 25px 27px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .seed-note strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--acid);
+      font-family: var(--display);
+      font-size: 31px;
+    }
+
+    .seed-note p {
+      color: #cbd4d9;
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .conclusion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 50px;
+    }
+
+    .conclusion {
+      min-height: 470px;
+      padding: 32px 34px;
+      border: 2px solid var(--line);
+      background: var(--panel);
+    }
+
+    .conclusion.support { border-color: var(--cyan); }
+    .conclusion.limit { border-color: var(--orange); }
+
+    .conclusion h3 {
+      margin-bottom: 26px;
+      color: var(--paper);
+      font-size: 40px;
+    }
+
+    .conclusion p {
+      margin: 20px 0;
+      padding-left: 22px;
+      border-left: 3px solid var(--line);
+      color: #cbd4d9;
+      font-size: 21px;
+      line-height: 1.45;
+    }
+
+    .decision {
+      margin-top: 26px;
+      padding: 24px 28px;
+      border-left: 7px solid var(--acid);
+      background: #11171b;
+      color: var(--paper);
+      font-size: 23px;
+      line-height: 1.4;
+    }
+
+    .controls {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 9px 14px;
+      border: 1px solid rgba(170, 183, 192, .3);
+      background: rgba(7, 9, 11, .88);
+      color: var(--muted);
+      font: 13px/1 var(--text);
+    }
+
+    .track {
+      width: 100px;
+      height: 3px;
+      background: var(--line);
+    }
+
+    .bar {
+      width: 25%;
+      height: 100%;
+      background: var(--acid);
+    }
+
+    @media print {
+      @page {
+        size: 13.333333in 7.5in;
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+      }
+
+      .viewport,
+      .stage {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        transform: none !important;
+      }
+
+      .slide {
+        position: relative;
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+      }
+
+      .controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="viewport">
+    <main class="stage" id="stage">
+      <section class="slide active" aria-label="Траектории точности">
+        <div class="chrome"><span>M1 Pro / 21-22 июля 2026</span><span>01 / 04</span></div>
+        <div class="body">
+          <h2>Точный чекер дал лучший <span class="cyan">финальный результат</span></h2>
+          <div class="meta">
+            <span class="chip">Qwen3-0.6B-Base + LoRA</span>
+            <span class="chip">3 режима × 3 seed</span>
+            <span class="chip">60 шагов / G=8</span>
+            <span class="chip">10 ч 05 мин</span>
+          </div>
+          <div class="result-grid">
+            <div class="chart"><img src="assets/m1_accuracy_curves.png" alt="Точность на отложенной выборке по шагам обучения"></div>
+            <aside class="side">
+              <div class="callout">
+                <span class="value cyan">22,7%</span>
+                <p>Точный чекер. Пик был на шаге 30: 24,5%. Дальше рост не продолжился.</p>
+              </div>
+              <div class="callout">
+                <span class="value">20,3%</span>
+                <p>Нейтральный чекер закончил почти на исходном уровне 19,8%.</p>
+              </div>
+              <div class="callout orange-border">
+                <span class="value orange">18,8%</span>
+                <p>Вредный чекер закончил ниже исходной точки.</p>
+              </div>
+              <p class="footnote">Линии показывают среднее по трём seed, заливка соответствует ±1 SE. Две оценки на шаге 60 усреднены.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-label="Прирост и согласованность чекера">
+        <div class="chrome"><span>Финальный прирост / среднее ± SE</span><span>02 / 04</span></div>
+        <div class="body">
+          <h2>Три режима выстроились в <span class="acid">ожидаемом порядке</span></h2>
+          <div class="metric-grid">
+            <div class="metric harmful"><small>вредный чекер</small><strong class="orange">−1,0 п.п.</strong><small>SE 2,3 п.п.</small></div>
+            <div class="metric neutral"><small>нейтральный чекер</small><strong>+0,5 п.п.</strong><small>SE 1,9 п.п.</small></div>
+            <div class="metric exact"><small>точный чекер</small><strong class="cyan">+2,9 п.п.</strong><small>SE 1,1 п.п.</small></div>
+          </div>
+          <div class="chart wide-chart"><img src="assets/m1_gain_vs_alignment.png" alt="Прирост точности против фактической согласованности чекера"></div>
+          <p class="footnote" style="margin-top:14px">Разрыв между точным и вредным режимами: 3,9 п.п. Фактическая согласованность TPR − FPR составила 1,000; −0,024 и −0,610.</p>
+        </div>
+      </section>
+
+      <section class="slide" aria-label="Разброс по seed">
+        <div class="chrome"><span>Разброс между запусками</span><span>03 / 04</span></div>
+        <div class="body">
+          <h2>Порядок держится на <span class="acid">двух seed из трёх</span></h2>
+          <div class="seed-grid">
+            <div class="chart"><img src="assets/m1_gain_by_seed.png" alt="Финальный прирост точности отдельно для каждого seed"></div>
+            <div class="seed-notes">
+              <div class="seed-note">
+                <strong>Seed 0</strong>
+                <p>Точный режим лучше нейтрального, нейтральный лучше вредного.</p>
+              </div>
+              <div class="seed-note">
+                <strong>Seed 1</strong>
+                <p>Все три режима дали одинаковый прирост +3,1 п.п. Разделения нет.</p>
+              </div>
+              <div class="seed-note">
+                <strong>Seed 2</strong>
+                <p>Снова виден ожидаемый порядок. Точный режим прибавил 4,7 п.п., вредный потерял 1,6 п.п.</p>
+              </div>
+              <div class="callout acid-border">
+                <p>Среднее выглядит правильно, но n=3 мало для уверенного статистического вывода.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-label="Вывод и ограничения">
+        <div class="chrome"><span>Что показывают эти запуски</span><span>04 / 04</span></div>
+        <div class="body">
+          <h2>Поддержка гипотезы есть. <span class="orange">Финальной проверки пока нет</span></h2>
+          <div class="conclusion-grid">
+            <article class="conclusion support">
+              <h3 class="cyan">Что видно</h3>
+              <p>Средний результат растёт вместе с качеством чекера.</p>
+              <p>Точный и вредный режимы разделяет 3,9 п.п. на финальном шаге.</p>
+              <p>Фактические TPR и FPR подтвердили, что чекеры работали как задумано.</p>
+            </article>
+            <article class="conclusion limit">
+              <h3 class="orange">Где граница вывода</h3>
+              <p>Всего три seed. 95%-е доверительные интервалы прироста включают ноль во всех режимах.</p>
+              <p>Ни один режим не вышел на плато по всем трём seed. Пороги 90% и 95% не достигнуты.</p>
+              <p>В base-solved метрике всего 3-4 задачи на seed. Этого мало для вывода о забывании.</p>
+            </article>
+          </div>
+          <div class="decision">Новые локальные обучения останавливаем. Если понадобится более сильный вывод, сначала переоценим девять сохранённых адаптеров на крупной фиксированной выборке. Полный H2-протокол оставляем для GPU: 25 режимов × 3 seed, минимум 600 шагов.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="controls"><span id="counter">1 / 4</span><div class="track"><div class="bar" id="bar"></div></div><span>← →</span></div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const stage = document.getElementById("stage");
+    let current = 0;
+
+    function scale() {
+      const factor = Math.min(innerWidth / 1920, innerHeight / 1080);
+      const x = (innerWidth - 1920 * factor) / 2;
+      const y = (innerHeight - 1080 * factor) / 2;
+      stage.style.transform = `translate(${x}px, ${y}px) scale(${factor})`;
+    }
+
+    function show(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+      document.getElementById("counter").textContent = `${current + 1} / ${slides.length}`;
+      document.getElementById("bar").style.width = `${100 * (current + 1) / slides.length}%`;
+    }
+
+    addEventListener("resize", scale);
+    addEventListener("keydown", event => {
+      if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(event.key)) show(current + 1);
+      if (["ArrowLeft", "ArrowUp", "PageUp"].includes(event.key)) show(current - 1);
+      if (event.key === "Home") show(0);
+      if (event.key === "End") show(slides.length - 1);
+    });
+    scale();
+    show(0);
+  </script>
+</body>
+</html>
