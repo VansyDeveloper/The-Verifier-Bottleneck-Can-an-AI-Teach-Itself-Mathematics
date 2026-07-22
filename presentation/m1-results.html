@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Результаты M1: verifier bottleneck</title>
+  <title>M1 results: the verifier bottleneck</title>
   <style>
     :root {
-      --stage: #07090b;
-      --slide: #0d1013;
-      --panel: #141a1f;
-      --paper: #f2efe6;
-      --muted: #aab7c0;
-      --line: #42505c;
-      --acid: #d7ff3f;
-      --cyan: #53d8ff;
-      --orange: #ffb000;
-      --display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-      --text: Menlo, Monaco, "DejaVu Sans Mono", monospace;
+      --stage: #ffffff;
+      --slide: #ffffff;
+      --panel: #f5f6f8;
+      --paper: #17191d;
+      --muted: #626a78;
+      --line: #d3d8e0;
+      --acid: #2468f2;
+      --cyan: #2468f2;
+      --orange: #ef6c27;
+      --display: "Helvetica Neue", Arial, sans-serif;
+      --text: "Helvetica Neue", Arial, sans-serif;
     }
 
     * {
@@ -220,6 +220,16 @@
       background: rgba(13, 16, 19, .75);
     }
 
+    .epsilon-grid {
+      grid-template-columns: 1fr 390px;
+      height: 610px;
+      margin-top: 22px;
+    }
+
+    .epsilon-grid .callout .value {
+      font-size: 38px;
+    }
+
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -358,6 +368,115 @@
       background: var(--acid);
     }
 
+    /* White research-plan style from verifier_bottleneck_plan.pdf. */
+    .slide {
+      color: var(--paper);
+      background: var(--slide);
+    }
+
+    .slide::before { display: none; }
+
+    .chrome {
+      padding: 0;
+      border: 0;
+      color: var(--cyan);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .11em;
+    }
+
+    .chrome span:last-child {
+      position: absolute;
+      top: 930px;
+      right: 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .body {
+      height: 920px;
+      padding-top: 18px;
+    }
+
+    h2 {
+      max-width: 1760px;
+      color: var(--paper);
+      font-size: 68px;
+      line-height: 1.02;
+      letter-spacing: -.025em;
+    }
+
+    .meta { margin-top: 20px; }
+
+    .chip {
+      padding: 8px 13px;
+      border: 0;
+      border-radius: 18px;
+      background: #f0f2f5;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .chart {
+      padding: 0;
+      border: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .callout {
+      border-left: 5px solid var(--cyan);
+      background: #f7f8fa;
+    }
+
+    .callout .value { color: var(--paper); }
+
+    .side .footnote {
+      border: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .metric {
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .metric.neutral { border-color: #8a929f; }
+
+    .seed-note {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--cyan);
+      background: #ffffff;
+    }
+
+    .seed-note strong { color: var(--cyan); }
+    .seed-note p { color: var(--paper); }
+
+    .conclusion {
+      border: 1px solid var(--line);
+      border-top-width: 5px;
+      background: #ffffff;
+    }
+
+    .conclusion h3 { color: var(--paper); }
+    .conclusion p { color: #30343a; }
+
+    .decision {
+      border-left: 6px solid var(--cyan);
+      background: #f5f6f8;
+      color: var(--paper);
+    }
+
+    .controls {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, .94);
+      color: var(--muted);
+    }
+
     @media print {
       @page {
         size: 13.333333in 7.5in;
@@ -404,103 +523,132 @@
 <body>
   <div class="viewport">
     <main class="stage" id="stage">
-      <section class="slide active" aria-label="Траектории точности">
-        <div class="chrome"><span>M1 Pro / 21-22 июля 2026</span><span>01 / 04</span></div>
+      <section class="slide active" aria-label="Accuracy trajectories">
+        <div class="chrome"><span>M1 results / 21-22 July 2026</span><span>01 / 05</span></div>
         <div class="body">
-          <h2>Точный чекер дал лучший <span class="cyan">финальный результат</span></h2>
+          <h2>A reliable verifier gives the <span class="cyan">best final result</span></h2>
           <div class="meta">
             <span class="chip">Qwen3-0.6B-Base + LoRA</span>
-            <span class="chip">3 режима × 3 seed</span>
-            <span class="chip">60 шагов / G=8</span>
-            <span class="chip">10 ч 05 мин</span>
+            <span class="chip">3 regimes × 3 seeds</span>
+            <span class="chip">60 steps / G=8</span>
+            <span class="chip">10 h 05 min</span>
           </div>
           <div class="result-grid">
-            <div class="chart"><img src="assets/m1_accuracy_curves.png" alt="Точность на отложенной выборке по шагам обучения"></div>
+            <div class="chart"><img src="assets/m1_accuracy_curves.png" alt="Held-out accuracy across training steps"></div>
             <aside class="side">
               <div class="callout">
-                <span class="value cyan">22,7%</span>
-                <p>Точный чекер. Пик был на шаге 30: 24,5%. Дальше рост не продолжился.</p>
+                <span class="value cyan">22.7%</span>
+                <p>Reliable verifier. Accuracy peaked at step 30 at 24.5%; gains did not continue.</p>
               </div>
               <div class="callout">
-                <span class="value">20,3%</span>
-                <p>Нейтральный чекер закончил почти на исходном уровне 19,8%.</p>
+                <span class="value">20.3%</span>
+                <p>The uninformative verifier finished close to the 19.8% baseline.</p>
               </div>
               <div class="callout orange-border">
-                <span class="value orange">18,8%</span>
-                <p>Вредный чекер закончил ниже исходной точки.</p>
+                <span class="value orange">18.8%</span>
+                <p>The misleading verifier finished below baseline.</p>
               </div>
-              <p class="footnote">Линии показывают среднее по трём seed, заливка соответствует ±1 SE. Две оценки на шаге 60 усреднены.</p>
+              <p class="footnote">Lines show means across three seeds; bands show ±1 SE. The two step-60 evaluations are averaged.</p>
             </aside>
           </div>
         </div>
       </section>
 
-      <section class="slide" aria-label="Прирост и согласованность чекера">
-        <div class="chrome"><span>Финальный прирост / среднее ± SE</span><span>02 / 04</span></div>
+      <section class="slide" aria-label="Gain and verifier alignment">
+        <div class="chrome"><span>Final gain / mean ± SE</span><span>02 / 05</span></div>
         <div class="body">
-          <h2>Три режима выстроились в <span class="acid">ожидаемом порядке</span></h2>
+          <h2>The three regimes follow the <span class="acid">expected order</span></h2>
           <div class="metric-grid">
-            <div class="metric harmful"><small>вредный чекер</small><strong class="orange">−1,0 п.п.</strong><small>SE 2,3 п.п.</small></div>
-            <div class="metric neutral"><small>нейтральный чекер</small><strong>+0,5 п.п.</strong><small>SE 1,9 п.п.</small></div>
-            <div class="metric exact"><small>точный чекер</small><strong class="cyan">+2,9 п.п.</strong><small>SE 1,1 п.п.</small></div>
+            <div class="metric harmful"><small>misleading verifier</small><strong class="orange">−1.0 pp</strong><small>SE 2.3 pp</small></div>
+            <div class="metric neutral"><small>uninformative verifier</small><strong>+0.5 pp</strong><small>SE 1.9 pp</small></div>
+            <div class="metric exact"><small>reliable verifier</small><strong class="cyan">+2.9 pp</strong><small>SE 1.1 pp</small></div>
           </div>
-          <div class="chart wide-chart"><img src="assets/m1_gain_vs_alignment.png" alt="Прирост точности против фактической согласованности чекера"></div>
-          <p class="footnote" style="margin-top:14px">Разрыв между точным и вредным режимами: 3,9 п.п. Фактическая согласованность TPR − FPR составила 1,000; −0,024 и −0,610.</p>
+          <div class="chart wide-chart"><img src="assets/m1_gain_vs_alignment.png" alt="Accuracy gain against realized verifier alignment"></div>
+          <p class="footnote" style="margin-top:14px">Reliable-versus-misleading gap: 3.9 pp. Realized TPR − FPR was 1.000, −0.024, and −0.610.</p>
         </div>
       </section>
 
-      <section class="slide" aria-label="Разброс по seed">
-        <div class="chrome"><span>Разброс между запусками</span><span>03 / 04</span></div>
+      <section class="slide" aria-label="Variation across seeds">
+        <div class="chrome"><span>Variation across runs</span><span>03 / 05</span></div>
         <div class="body">
-          <h2>Порядок держится на <span class="acid">двух seed из трёх</span></h2>
+          <h2>The expected order holds for <span class="acid">two of three seeds</span></h2>
           <div class="seed-grid">
-            <div class="chart"><img src="assets/m1_gain_by_seed.png" alt="Финальный прирост точности отдельно для каждого seed"></div>
+            <div class="chart"><img src="assets/m1_gain_by_seed.png" alt="Final accuracy gain for each seed"></div>
             <div class="seed-notes">
               <div class="seed-note">
                 <strong>Seed 0</strong>
-                <p>Точный режим лучше нейтрального, нейтральный лучше вредного.</p>
+                <p>Reliable beats uninformative; uninformative beats misleading.</p>
               </div>
               <div class="seed-note">
                 <strong>Seed 1</strong>
-                <p>Все три режима дали одинаковый прирост +3,1 п.п. Разделения нет.</p>
+                <p>All three regimes gained the same +3.1 pp. No separation.</p>
               </div>
               <div class="seed-note">
                 <strong>Seed 2</strong>
-                <p>Снова виден ожидаемый порядок. Точный режим прибавил 4,7 п.п., вредный потерял 1,6 п.п.</p>
+                <p>The expected order returns. Reliable gains 4.7 pp; misleading loses 1.6 pp.</p>
               </div>
               <div class="callout acid-border">
-                <p>Среднее выглядит правильно, но n=3 мало для уверенного статистического вывода.</p>
+                <p>The mean has the expected order, but n=3 is too small for a firm statistical conclusion.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="slide" aria-label="Вывод и ограничения">
-        <div class="chrome"><span>Что показывают эти запуски</span><span>04 / 04</span></div>
+      <section class="slide" aria-label="Effective support and exploration">
+        <div class="chrome"><span>Exploration / Serguei Barannikov definition</span><span>04 / 05</span></div>
         <div class="body">
-          <h2>Поддержка гипотезы есть. <span class="orange">Финальной проверки пока нет</span></h2>
+          <h2>Interventions did not <span class="orange">expand useful support</span></h2>
+          <div class="meta">
+            <span class="chip">Qwen3-0.6B-Base</span>
+            <span class="chip">π: T=1.0</span>
+            <span class="chip">8 problems × 1 seed</span>
+            <span class="chip">M=32 / K=8</span>
+            <span class="chip">m=4, 8, 16</span>
+          </div>
+          <div class="result-grid epsilon-grid">
+            <div class="chart"><img src="assets/m1_epsilon_frontier.png" alt="Novel mass change and pass at one across temperatures and policy mixtures"></div>
+            <aside class="side">
+              <div class="callout orange-border">
+                <span class="value orange">Δε<sub>parse</sub> ≤ 0</span>
+                <p>Neither temperature nor policy mixture produced more novel parseable mass than baseline.</p>
+              </div>
+              <div class="callout orange-border">
+                <span class="value orange">ε<sub>correct</sub> = 0</span>
+                <p>No condition reached a new correct answer class outside baseline support.</p>
+              </div>
+              <p class="footnote">Δε<sub>parse</sub> ranged from −17.2 to 0 pp. Error bars are ±1 problem-level SE. This is answer-level novelty; one seed is insufficient for a stable statistical conclusion.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-label="Conclusion and limitations">
+        <div class="chrome"><span>What these runs show</span><span>05 / 05</span></div>
+        <div class="body">
+          <h2>Evidence supports the hypothesis; <span class="orange">final validation is still pending</span></h2>
           <div class="conclusion-grid">
             <article class="conclusion support">
-              <h3 class="cyan">Что видно</h3>
-              <p>Средний результат растёт вместе с качеством чекера.</p>
-              <p>Точный и вредный режимы разделяет 3,9 п.п. на финальном шаге.</p>
-              <p>Фактические TPR и FPR подтвердили, что чекеры работали как задумано.</p>
+              <h3 class="cyan">What we observe</h3>
+              <p>Mean performance rises with verifier quality.</p>
+              <p>Reliable and misleading regimes differ by 3.9 pp at the final step.</p>
+              <p>Realized TPR and FPR confirm that the verifiers behaved as intended.</p>
             </article>
             <article class="conclusion limit">
-              <h3 class="orange">Где граница вывода</h3>
-              <p>Всего три seed. 95%-е доверительные интервалы прироста включают ноль во всех режимах.</p>
-              <p>Ни один режим не вышел на плато по всем трём seed. Пороги 90% и 95% не достигнуты.</p>
-              <p>В base-solved метрике всего 3-4 задачи на seed. Этого мало для вывода о забывании.</p>
+              <h3 class="orange">Limits</h3>
+              <p>Only three seeds. The 95% confidence interval for gain includes zero in every regime.</p>
+              <p>No regime plateaued across all three seeds; neither the 90% nor 95% threshold was reached.</p>
+              <p>The base-solved metric contains only 3-4 problems per seed, too few to assess forgetting.</p>
+              <p>The exploration pilot found Δε<sub>parse</sub> ≤ 0 and ε<sub>correct</sub> = 0 on eight problems and one seed.</p>
             </article>
           </div>
-          <div class="decision">Новые локальные обучения останавливаем. Если понадобится более сильный вывод, сначала переоценим девять сохранённых адаптеров на крупной фиксированной выборке. Полный H2-протокол оставляем для GPU: 25 режимов × 3 seed, минимум 600 шагов.</div>
+          <div class="decision">Stop new local training runs. If stronger evidence is needed, first reevaluate the nine saved adapters on a larger fixed set. Reserve the full H2 protocol for GPUs: 25 regimes × 3 seeds, at least 600 steps.</div>
         </div>
       </section>
     </main>
   </div>
 
-  <div class="controls"><span id="counter">1 / 4</span><div class="track"><div class="bar" id="bar"></div></div><span>← →</span></div>
+  <div class="controls"><span id="counter">1 / 5</span><div class="track"><div class="bar" id="bar"></div></div><span>← →</span></div>
 
   <script>
     const slides = [...document.querySelectorAll(".slide")];
