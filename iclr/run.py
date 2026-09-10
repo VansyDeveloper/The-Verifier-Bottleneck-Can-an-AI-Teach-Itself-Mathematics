@@ -92,17 +92,48 @@ def comparison_entries(jobs: list[dict], output: Path) -> list[dict]:
             for arm in ('atomic_control', 'composition')]
 
 
+def update_comparison(path: Path, entries: list[dict]) -> None:
+    from .common import write_json
+    previous = json.loads(path.read_text()) if path.exists() else []
+    combined = {}
+    context = None
+    for entry in [*previous, *entries]:
+        key = entry['seed'], entry['arm']
+        if key in combined and combined[key] != entry:
+            raise ValueError(f'Comparison path changed for {key}')
+        combined[key] = entry
+        run_name = Path(entry['metrics']).parent.parent.name
+        config = json.loads((path.parent / 'configs' / f'{run_name}.json').read_text())
+        current = {k: v for k, v in config.items() if k not in ('seed', 'output', 'replay_fraction', 'budget_mode')}
+        if context is not None and current != context:
+            raise ValueError('Paired seeds have different data, base model or training settings; use a new --output')
+        context = current
+    write_json(path, [combined[key] for key in sorted(combined)])
+
+
+def completed_jobs(output: Path, reference: dict) -> list[dict]:
+    jobs = [json.loads(path.read_text()) for path in sorted((output / 'configs').glob('*.json'))]
+    return [job for job in jobs if all(job.get(key) == reference[key] for key in ('model', 'base', 'data'))
+            and (Path(job['output']) / 'DONE').is_file()]
+
+
 def write_results(jobs: list[dict], path: Path, baseline: Path) -> None:
+    from .common import file_hash
     base = json.loads((baseline / 'summary.json').read_text())
     rows = []
     for job in jobs:
         directory = Path(job['output'])
         if not (directory / 'DONE').is_file():
             raise ValueError(f'missing completed run: {directory}')
+        done = json.loads((directory / 'DONE').read_text())
+        for name in ('budget.json', 'eval/summary.json'):
+            if file_hash(directory / name) != done['files'][name]:
+                raise ValueError(f'Completed result changed: {directory / name}')
         budget = json.loads((directory / 'budget.json').read_text())
         summary = json.loads((directory / 'eval' / 'summary.json').read_text())
         row = {key: job[key] for key in ('model', 'seed', 'method', 'supervision', 'replay_fraction',
-                                        'budget_mode', 'depth3_only')}
+                                        'budget_mode', 'depth3_only', 'epochs', 'learning_rate',
+                                        'micro_batch', 'effective_batch')}
         row.update({key: budget.get(key) for key in ('optimizer_steps', 'example_exposures', 'unique_tasks',
                     'all_target_tokens', 'total_forward_tokens', 'wall_seconds', 'peak_memory_bytes')})
         for family, metrics in summary['families'].items():
@@ -165,7 +196,7 @@ def main(argv: list[str] | None = None) -> None:
         entries = comparison_entries(jobs, output)
         if entries:
             comparison = output / f'comparison_{model_name}.json'
-            write_config(comparison, entries)
+            update_comparison(comparison, entries)
             print(f'Paired analysis manifest: {comparison}', flush=True)
         for command in commands:
             print(shlex.join(command), flush=True)
@@ -174,7 +205,7 @@ def main(argv: list[str] | None = None) -> None:
             for command in commands:
                 subprocess.run(command, check=True)
             result_path = output / f'results_{model_name}.csv'
-            write_results(jobs, result_path, baseline)
+            write_results(completed_jobs(output, jobs[0]), result_path, baseline)
             print(f'Results: {result_path}', flush=True)
     except ValueError as exc:
         arg_parser.error(str(exc))

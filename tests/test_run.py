@@ -1,12 +1,50 @@
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 
-from iclr.run import build_jobs, comparison_entries, parser, recipe_cells, write_config
+from iclr.run import build_jobs, comparison_entries, completed_jobs, main, parser, recipe_cells, update_comparison, write_config
 
 
 class QueueTest(unittest.TestCase):
+    def test_extend_seed_queue_without_changing_existing_jobs(self):
+        with tempfile.TemporaryDirectory() as directory, redirect_stdout(StringIO()):
+            output = Path(directory)
+            command = ['--recipe', 'size', '--data', 'data', '--base', 'base', '--model', 'Qwen/Qwen3-0.6B',
+                       '--output', directory, '--seeds']
+            main(command + ['0'])
+            original = {path: path.read_bytes() for path in (output / 'configs').glob('*.json')}
+            main(command + ['0', '1', '2'])
+            comparison = output / 'comparison_Qwen_Qwen3-0.6B.json'
+            entries = json.loads(comparison.read_text())
+            self.assertEqual(len(entries), 6)
+            self.assertTrue(all(path.read_bytes() == content for path, content in original.items()))
+            main(command + ['0'])
+            self.assertEqual(json.loads(comparison.read_text()), entries)
+            with self.assertRaises(ValueError):
+                update_comparison(comparison, [{**entries[0], 'metrics': 'different.jsonl'}])
+            args = parser().parse_args(command + ['3', '--epochs', '3'])
+            for job in build_jobs(args):
+                write_config(output / 'configs' / f"{Path(job['output']).name}.json", job)
+            with self.assertRaises(ValueError):
+                update_comparison(comparison, comparison_entries(build_jobs(args), output))
+            self.assertEqual(json.loads(comparison.read_text()), entries)
+
+    def test_completed_summary_keeps_previous_recipes_and_excludes_other_bases(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            reference = {'model': 'Qwen', 'base': 'base', 'data': 'data'}
+            for index, fields in enumerate(({}, {'method': 'set_mass'}, {'base': 'other'}, {'unfinished': True})):
+                job = {**reference, **fields, 'output': str(output / 'runs' / str(index))}
+                write_config(output / 'configs' / f'{index}.json', job)
+                Path(job['output']).mkdir(parents=True)
+                if not fields.get('unfinished'):
+                    (Path(job['output']) / 'DONE').write_text('{}')
+            jobs = completed_jobs(output, reference)
+            self.assertEqual([Path(job['output']).name for job in jobs], ['0', '1'])
+
     def test_recipes_pair_and_reuse_controls(self):
         args = parser().parse_args(["--recipe", "replay", "trace", "set", "size",
                                    "--data", "bundle", "--base", "atomic", "--model", "Qwen/Qwen3-0.6B",

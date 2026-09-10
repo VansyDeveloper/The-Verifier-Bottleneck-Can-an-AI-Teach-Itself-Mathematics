@@ -42,7 +42,9 @@ def create_tiny_model(path):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--device", choices=["cpu", "cuda"], default="cpu")
     args = parser.parse_args(argv)
+    device = args.device
     out = args.out.resolve()
     if out.exists() and any(out.iterdir()):
         parser.error(f"choose an empty --out directory: {out}")
@@ -57,7 +59,7 @@ def main(argv=None):
         print(label, flush=True)
         with (out / f"{label}.stdout.log").open("w") as stdout, (out / f"{label}.stderr.log").open("w") as stderr:
             try:
-                subprocess.run(command, env=environment, stdout=stdout, stderr=stderr, check=True)
+                subprocess.run(command, env=environment, stdout=stdout, stderr=stderr, check=True, timeout=180)
             except subprocess.CalledProcessError as exc:
                 raise RuntimeError(f"{label} failed; see {out / (label + '.stderr.log')}") from exc
 
@@ -66,15 +68,15 @@ def main(argv=None):
         run("data", ["iclr.data", "--out", out / "data", "--smoke"])
         base = out / "atomic" / "checkpoint"
         run("init", ["iclr.train", "--init", "--model", model, "--data", out / "data", "--out", base.parent,
-                     "--epochs", 1, "--device", "cpu", "--micro-batch", 1, "--effective-batch", 10,
+                     "--epochs", 1, "--device", device, "--micro-batch", 1, "--effective-batch", 10,
                      "--prefix-batch", 8, "--num-examples", 10])
         run("baseline", ["iclr.evaluate", "--base", base, "--data", out / "data",
-                         "--out", out / "baseline", "--device", "cpu", "--prefix-batch", 8])
+                         "--out", out / "baseline", "--device", device, "--prefix-batch", 8])
         from iclr.run import build_jobs, comparison_entries, parser as queue_parser, write_config, write_results
         args = queue_parser().parse_args([
             "--recipe", "trace", "size", "set", "--model", str(model), "--base", str(base),
             "--data", str(out / "data"), "--output", str(out), "--seeds", "0", "--epochs", "1",
-            "--num-examples", "10", "--effective-batch", "10", "--device", "cpu"])
+            "--num-examples", "10", "--effective-batch", "10", "--device", device])
         jobs = build_jobs(args)
         jobs = [job for job in jobs if not (job["method"] == "ce" and job["supervision"] == "program"
                                            and job["budget_mode"] == "examples")]
@@ -83,7 +85,7 @@ def main(argv=None):
             write_config(path, job)
             run(f"branch_{index}", ["iclr.train", "--config", path])
         run("baseline_resume", ["iclr.evaluate", "--base", base, "--data", out / "data",
-                                "--out", out / "baseline", "--device", "cpu", "--prefix-batch", 8])
+                                "--out", out / "baseline", "--device", device, "--prefix-batch", 8])
         run("train_resume", ["iclr.train", "--config", out / "configs" / "0.json"])
         budgets = []
         for directory in [base.parent, *(Path(job["output"]) for job in jobs)]:
@@ -96,15 +98,24 @@ def main(argv=None):
         assert len({(b["optimizer_steps"], b["example_exposures"]) for b in budgets[3:]}) == 1
         for label in ("baseline_resume", "train_resume"):
             assert "Already complete:" in (out / f"{label}.stdout.log").read_text()
+        from iclr.common import file_hash
+        resumed = Path(jobs[0]["output"])
+        training_hash = file_hash(resumed / "training_metrics.jsonl")
+        (resumed / "DONE").unlink()
+        run("evaluation_resume", ["iclr.train", "--config", out / "configs" / "0.json"])
+        assert (resumed / "DONE").is_file()
+        assert file_hash(resumed / "training_metrics.jsonl") == training_hash
         comparison = out / "comparison.json"
         write_config(comparison, comparison_entries(jobs, out))
         write_results(jobs, out / "results.csv", out / "baseline")
         run("analysis", ["iclr.analyze", "--manifest", comparison, "--output", out / "analysis"])
         (out / "DONE.json").write_text(json.dumps({
             "status": "PASS", "model": "random tiny Qwen3; 1 layer, hidden size 32",
+            "device": device,
             "offline": True, "scientific_result": False, "training_branches": len(jobs),
             "matched_ce_target_tokens": budgets[0]["all_target_tokens"],
             "completed_run_reuse_checked": True,
+            "resume_evaluation_without_retraining_checked": True,
             "wall_seconds": time.monotonic() - started}, indent=2) + "\n")
         print(f"PASS: {out / 'DONE.json'}", flush=True)
     except Exception as exc:

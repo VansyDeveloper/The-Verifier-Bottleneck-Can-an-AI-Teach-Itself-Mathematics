@@ -121,7 +121,7 @@ def program_scores(model, tokenizer, token_ids, row, batch_size=8, accounting=No
                 accounting['total_forward_tokens'] += encoded.input_ids.numel()
                 accounting['prefix_sequences'] += len(chunk)
             positions = (encoded.attention_mask.cumsum(-1) - 1).clamp(min=0)
-            logits = model(**encoded, position_ids=positions).logits[:, -1].float()
+            logits = model(**encoded, position_ids=positions, logits_to_keep=1).logits[:, -1].float()
             logprobs = logits.log_softmax(-1)
             for i, prefix in enumerate(chunk):
                 for op in core.OPS:

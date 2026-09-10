@@ -1,77 +1,182 @@
 {
-  "code_sha256": "55b317c44134132fd0a6030fc619bd081f04fb2059a1c43c38acb569e2ee760b",
-  "tests": {
-    "command": "python -m pytest -q",
-    "passed": 9
+  "checked_at": "2026-09-11",
+  "code_sha256": "3ec70794cf480a0cb634c010042b468c08857e44da64a391f9ea43159dec685f",
+  "dependency_environment": {
+    "checks": [
+      "uv sync --locked",
+      "uv sync --locked --offline --dry-run",
+      "uv pip check"
+    ],
+    "limitation": "Downloading every locked wheel from scratch was not tested.",
+    "packages": 55,
+    "setup": "New venv seeded with hardlinked installed packages; uv applied 12 small updates and removed 6 unused packages. Original venv unchanged.",
+    "status": "PASS"
+  },
+  "dependency_lock_check": "PASS: locked sync completed; repeated offline dry-run reports no changes.",
+  "environment": {
+    "cuda": "12.4",
+    "git_commit": "3300d3aef477b654e5c8b6bac5f812c9922c1899",
+    "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+    "packages": {
+      "numpy": "2.4.6",
+      "peft": "0.19.1",
+      "scipy": "1.17.1",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.1"
+    },
+    "python": "3.11.13"
+  },
+  "full_generated_data": {
+    "all_correct_trajectory_states": 45474,
+    "generation_seconds": 78.08,
+    "manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+    "tasks": 13600
+  },
+  "gpu_training": {
+    "dataset_manifest_sha256": "c3945c34b78ce876b0fff322482289c8308ff2ac7e72e38cfb6744941bd859f0",
+    "epochs": 1,
+    "fixed_failures": [
+      "CUDA AdamW foreach buffer exceeded local VRAM; native fused AdamW completes the update.",
+      "Reload probe compared against pre-merge BF16 scores; it now compares against the serialized post-merge model."
+    ],
+    "initialization": {
+      "budget": {
+        "optimizer_impl": "adamw_fused",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 2774296576,
+        "wall_seconds": 0.7979718170827255
+      },
+      "examples": 1,
+      "path": "outputs/qwen06_gpu_final",
+      "receipt_sha256": "3170ed2db7a4cacc781b25f0035932fd2463ffd2f4b5e2b1906b1256c6da4dca",
+      "reload": {
+        "max_absolute_difference": 0.0,
+        "merge_max_absolute_difference": 0.41611480712890625,
+        "tolerance": 0.1
+      },
+      "status": "PASS"
+    },
+    "limitations": [
+      "Real model checks use BF16 and one optimizer step; planned full experiments use FP32.",
+      "Qwen3-1.7B and A100 were not tested; local GPU has 4 GB VRAM.",
+      "Atomic BF16 LoRA merge changes scores; serialization is checked separately."
+    ],
+    "micro_batch": 1,
+    "objectives": [
+      {
+        "budget": {
+          "optimizer_impl": "adamw_fused",
+          "optimizer_steps": 1,
+          "peak_memory_bytes": 1532124672,
+          "wall_seconds": 0.8989506510552019
+        },
+        "examples": 2,
+        "path": "outputs/qwen06_objectives_gpu/runs/Qwen_Qwen3-0.6B_ce_program_r00_examples_d3_seed0",
+        "receipt_sha256": "847340c9b96fbbe2a6af70f9c1fc4729a00f50b25a776a6e6b9f3d36df298e28",
+        "reload": {
+          "max_absolute_difference": 0.0,
+          "merge_max_absolute_difference": null,
+          "tolerance": 0.1
+        },
+        "status": "PASS"
+      },
+      {
+        "budget": {
+          "optimizer_impl": "adamw_fused",
+          "optimizer_steps": 1,
+          "peak_memory_bytes": 1629675008,
+          "wall_seconds": 14.512961282976903
+        },
+        "examples": 2,
+        "path": "outputs/qwen06_objectives_gpu/runs/Qwen_Qwen3-0.6B_set_mass_program_r00_examples_d3_seed0",
+        "receipt_sha256": "5b810645a69a715e3d417e0b6174eb39ae67f72bec547d25bee92f9d1c8717a7",
+        "reload": {
+          "max_absolute_difference": 0.0,
+          "merge_max_absolute_difference": null,
+          "tolerance": 0.1
+        },
+        "status": "PASS"
+      },
+      {
+        "budget": {
+          "optimizer_impl": "adamw_fused",
+          "optimizer_steps": 1,
+          "peak_memory_bytes": 1629675008,
+          "wall_seconds": 14.66041438805405
+        },
+        "examples": 2,
+        "path": "outputs/qwen06_objectives_gpu/runs/Qwen_Qwen3-0.6B_single_norm_program_r00_examples_d3_seed0",
+        "receipt_sha256": "43b29ec30ec0ad9efd27c943a73fde0d8a6bab395b9f20f2cff215984cb3c1c2",
+        "reload": {
+          "max_absolute_difference": 0.0,
+          "merge_max_absolute_difference": null,
+          "tolerance": 0.1
+        },
+        "status": "PASS"
+      }
+    ],
+    "precision": "bfloat16",
+    "prefix_batch": 1,
+    "real_model": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "scientific_result": false,
+    "set_comparison_correct_counts": [
+      1,
+      2
+    ],
+    "weights_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b"
+  },
+  "historical_full_hitk": "MISSING_INPUTS: main-series task metrics or frozen tasks, atomic export and six paired adapters",
+  "local_series": {
+    "curves": "b282f1196d8893a0364347cab2c65a466de57e2f349e2c2a3177dc9160589156",
+    "manifest_sha256": "ed3a5eb32090305582403771d966d3fbf60d47e64d53a9a0676765fe127ef9cb",
+    "runs": 12,
+    "task_sets": 2,
+    "tasks_per_set": 300,
+    "training_seed_pairs": 3
   },
   "runtime_smoke": {
-    "status": "PASS",
-    "model": "random tiny Qwen3; 1 layer, hidden size 32",
-    "offline": true,
-    "scientific_result": false,
-    "training_branches": 5,
-    "matched_ce_target_tokens": 298,
-    "completed_run_reuse_checked": true,
-    "wall_seconds": 42.68465561699122
-  },
-  "environment": {
-    "python": "3.11.13",
-    "packages": {
-      "torch": "2.6.0+cu124",
-      "transformers": "4.57.1",
-      "peft": "0.19.1",
-      "numpy": "2.4.6",
-      "scipy": "1.17.1"
+    "cpu": {
+      "completed_run_reuse_checked": true,
+      "device": "cpu",
+      "matched_ce_target_tokens": 298,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "status": "PASS",
+      "training_branches": 5,
+      "wall_seconds": 46.41162109200377
     },
-    "cuda": "12.4",
-    "gpu": null,
-    "git_commit": "42c70c8c164367005155e85e456692dfe4e5c8ec"
+    "gpu": {
+      "completed_run_reuse_checked": true,
+      "device": "cuda",
+      "matched_ce_target_tokens": 298,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "status": "PASS",
+      "training_branches": 5,
+      "wall_seconds": 46.107329724007286
+    }
   },
-  "gpu_training": "NOT_RUN: no usable NVIDIA driver on this machine",
-  "fresh_dependency_install": "NOT_COMPLETED: repeated CUDA downloads cancelled; runtime verified in the existing environment shown here",
-  "historical_full_hitk": "MISSING_INPUTS: main-series task metrics or frozen tasks, atomic export and six paired adapters",
-  "full_generated_data": {
-    "manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
-    "tasks": 13600,
-    "all_correct_trajectory_states": 45474,
-    "generation_seconds": 78.08
+  "tests": {
+    "command": "uv run python -m pytest -q",
+    "passed": 12
   },
   "tokenizer_checks": [
     {
       "model": "Qwen/Qwen3-0.6B",
+      "operation_tokenization": "PASS",
       "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
-      "vocabulary_size": 151674,
-      "operation_tokenization": "PASS"
+      "vocabulary_size": 151674
     },
     {
       "model": "Qwen/Qwen3-1.7B",
+      "operation_tokenization": "PASS",
       "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
-      "vocabulary_size": 151674,
-      "operation_tokenization": "PASS"
+      "vocabulary_size": 151674
     }
-  ],
-  "clean_checkout": {
-    "commit": "e4a2fd2",
-    "tests_passed": 9,
-    "smoke": {
-      "status": "PASS",
-      "model": "random tiny Qwen3; 1 layer, hidden size 32",
-      "offline": true,
-      "scientific_result": false,
-      "training_branches": 5,
-      "matched_ce_target_tokens": 298,
-      "completed_run_reuse_checked": true,
-      "wall_seconds": 42.68465561699122
-    },
-    "dependency_environment": "existing venv, fixed direct versions recorded above"
-  },
-  "dependency_lock_check": "PASS: uv lock --check; 57 packages resolved",
-  "local_series": {
-    "manifest_sha256": "ed3a5eb32090305582403771d966d3fbf60d47e64d53a9a0676765fe127ef9cb",
-    "runs": 12,
-    "training_seed_pairs": 3,
-    "task_sets": 2,
-    "tasks_per_set": 300,
-    "curves": "b282f1196d8893a0364347cab2c65a466de57e2f349e2c2a3177dc9160589156"
-  }
+  ]
 }

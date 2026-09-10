@@ -58,10 +58,10 @@ def token_matched_groups(pool, budgets, seed):
 
 
 def train_updates(model, tokenizer, ids, groups, cfg, output):
-    optimizer = torch.optim.AdamW((p for p in model.parameters() if p.requires_grad),
-                                 lr=cfg['learning_rate'], weight_decay=0)
-    scheduler = get_cosine_schedule_with_warmup(optimizer, int(.03 * len(groups)), len(groups))
     device = next(model.parameters()).device
+    optimizer = torch.optim.AdamW((p for p in model.parameters() if p.requires_grad),
+                                 lr=cfg['learning_rate'], weight_decay=0, fused=device.type == 'cuda')
+    scheduler = get_cosine_schedule_with_warmup(optimizer, int(.03 * len(groups)), len(groups))
     receipt = Counter()
     unique = set()
     started = time.monotonic()
@@ -116,6 +116,7 @@ def train_updates(model, tokenizer, ids, groups, cfg, output):
             log.flush()
             print(f'step {step}/{len(groups)} loss={total_loss:.5f}', flush=True)
     return {**receipt, 'optimizer_steps': len(groups), 'unique_tasks': len(unique),
+            'optimizer_impl': 'adamw_fused' if device.type == 'cuda' else 'adamw_single_tensor',
             'wall_seconds': time.monotonic() - started,
             'peak_memory_bytes': torch.cuda.max_memory_allocated() if device.type == 'cuda' else None,
             'loss_normalization': 'supervised_tokens_per_update' if cfg['method'] == 'ce' else 'tasks_per_update',
@@ -206,9 +207,17 @@ def run(config):
                     probe = compositions[0]
                     with torch.inference_mode():
                         before = program_scores(model, tokenizer, ids, probe, cfg['prefix_batch']).cpu()
-                    write_json(output / 'reload_probe.json', {'task': probe, 'scores': before.tolist()})
+                    merge_difference = None
                     if initialize:
                         model = model.merge_and_unload()
+                        with torch.inference_mode():
+                            merged = program_scores(model, tokenizer, ids, probe, cfg['prefix_batch']).cpu()
+                        merge_difference = float((merged - before).abs().max())
+                        if cfg['dtype'] == 'float32' and merge_difference > 1e-4:
+                            raise RuntimeError(f'FP32 LoRA merge changed scores by {merge_difference}')
+                        before = merged
+                    write_json(output / 'reload_probe.json', {'task': probe, 'scores': before.tolist(),
+                                                              'merge_max_absolute_difference': merge_difference})
                     model.save_pretrained(payload)
                     tokenizer.save_pretrained(payload)
                     if initialize:
@@ -238,7 +247,8 @@ def run(config):
                 tolerance = .1 if cfg['dtype'] == 'bfloat16' else 1e-4
                 if difference > tolerance:
                     raise RuntimeError(f'Save/reload scores differ by {difference} > {tolerance}')
-                write_json(output / 'reload_check.json', {'max_absolute_difference': difference, 'tolerance': tolerance})
+                write_json(output / 'reload_check.json', {'max_absolute_difference': difference, 'tolerance': tolerance,
+                    'merge_max_absolute_difference': probe['merge_max_absolute_difference']})
                 evaluate(model, tokenizer, ids, data, output / 'eval',
                          {'training_seed': cfg['seed'], 'method': cfg['method'], 'base_hash': binding['base_hash'],
                           'model_hash': trained['payload_hash'], 'data_hash': binding['data_hash'],

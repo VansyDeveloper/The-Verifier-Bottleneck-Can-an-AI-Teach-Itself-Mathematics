@@ -7,12 +7,25 @@ import time
 import traceback
 from collections import defaultdict
 from pathlib import Path
+from statistics import fmean
 
 import torch
 import composition_core as core
 import composition_eval as legacy
 from .common import code_hash, environment, file_hash, read_jsonl, tree_hash, verify_data, write_json
 from .modeling import PROMPT_VERSION, SCORER_ID, load
+
+
+def family_summaries(metrics):
+    result = {}
+    for family in 'ABCD':
+        rows = [row for row in metrics if row['family'] == family]
+        multiple = [row for row in rows if row['correct_count'] >= 2]
+        result[family] = {key: fmean(row[key] for row in rows) for key in ('hit@32', 'correct_mass', 'mrr')}
+        result[family]['n_multisolution'] = len(multiple)
+        for key in ('correct_conditional_entropy', 'correct_effective_count', 'max_correct_conditional_probability'):
+            result[family]['multisolution_' + key] = fmean(row[key] for row in multiple) if multiple else None
+    return result
 
 
 def evaluate(model, tokenizer, token_ids, data, out, binding, split='dev', prefix_batch=8):
@@ -76,9 +89,7 @@ def evaluate(model, tokenizer, token_ids, data, out, binding, split='dev', prefi
     summary = {'binding': metadata, 'split': split, 'atomic_plan': plan, 'atomic_apply': apply,
                'atomic_parse': dict(per_op), 'ranking_accounting': accounting,
                'seconds': time.monotonic() - start,
-               'families': {f: {key: sum(row[key] for row in metrics if row['family'] == f) /
-                               sum(row['family'] == f for row in metrics)
-                               for key in ('hit@32', 'correct_mass', 'mrr')} for f in 'ABCD'}}
+               'families': family_summaries(metrics)}
     write_json(out / 'summary.json', summary)
     return summary
 
@@ -99,7 +110,8 @@ def main():
     binding = {'base_hash': tree_hash(Path(args.base)),
                'adapter_hash': tree_hash(Path(args.adapter)) if args.adapter else None,
                'data_hash': file_hash(Path(args.data) / 'manifest.json'),
-               'code_hash': code_hash(), 'split': args.split, 'prefix_batch': args.prefix_batch}
+               'code_hash': code_hash(), 'split': args.split, 'prefix_batch': args.prefix_batch,
+               'device': args.device, 'dtype': 'float32'}
     out = Path(args.out)
     if (out / 'DONE').exists():
         receipt = json.loads((out / 'DONE').read_text())
