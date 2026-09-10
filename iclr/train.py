@@ -124,7 +124,18 @@ def train_updates(model, tokenizer, ids, groups, cfg, output):
 
 
 def run(config):
+    unknown = set(config) - (DEFAULTS.keys() | {'initialize', 'model', 'base', 'revision', 'data', 'output', 'num_examples'})
+    if unknown:
+        raise ValueError(f'Unknown training settings: {sorted(unknown)}')
     cfg = {**DEFAULTS, **config}
+    initialize = cfg.get('initialize', False)
+    for key in ('depth3_only', 'gradient_checkpointing'):
+        if type(cfg[key]) is not bool:
+            raise ValueError(f'{key} must be a boolean')
+    if type(initialize) is not bool:
+        raise ValueError('initialize must be a boolean')
+    if type(cfg['seed']) is not int or not 0 <= cfg['seed'] < 2**32:
+        raise ValueError('seed must be an integer in [0, 2**32)')
     for key in ('epochs', 'effective_batch', 'micro_batch', 'prefix_batch', 'lora_rank', 'lora_alpha'):
         if type(cfg[key]) is not int or cfg[key] <= 0:
             raise ValueError(f'{key} must be a positive integer')
@@ -132,13 +143,16 @@ def run(config):
         raise ValueError('Unknown objective or supervision')
     if cfg['budget_mode'] not in ('examples', 'target_tokens') or not 0 <= cfg['replay_fraction'] <= 1:
         raise ValueError('Invalid budget or replay')
-    if cfg['learning_rate'] <= 0 or not 0 <= cfg['lora_dropout'] < 1:
+    if not math.isfinite(cfg['learning_rate']) or cfg['learning_rate'] <= 0 or not 0 <= cfg['lora_dropout'] < 1:
         raise ValueError('Invalid learning rate or dropout')
-    if cfg['method'] != 'ce' and (not cfg['depth3_only'] or cfg['replay_fraction'] != 0 or cfg['budget_mode'] != 'examples'):
-        raise ValueError('Set comparison is depth3-only, replay0, task-averaged')
+    if initialize and (cfg['method'] != 'ce' or cfg['replay_fraction'] != 1 or
+                       cfg['budget_mode'] != 'examples' or cfg['depth3_only']):
+        raise ValueError('Atomic initialization requires CE, replay1, example budget, and atomic tasks')
+    if cfg['method'] != 'ce' and (not cfg['depth3_only'] or cfg['replay_fraction'] != 0 or
+                                cfg['budget_mode'] != 'examples' or cfg['supervision'] != 'program'):
+        raise ValueError('Set comparison is program-only, depth3-only, replay0, task-averaged')
     data, output = Path(cfg['data']), Path(cfg['output'])
     manifest = verify_data(data)
-    initialize = cfg.get('initialize', False)
     default_size = 2 * manifest['files']['atomic_train.jsonl']['rows'] if initialize else manifest['config']['size']
     size = default_size if cfg.get('num_examples') is None else cfg['num_examples']
     if type(size) is not int or size < 1:

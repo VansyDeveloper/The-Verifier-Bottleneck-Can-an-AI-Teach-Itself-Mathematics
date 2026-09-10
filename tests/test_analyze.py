@@ -2,6 +2,8 @@ import json
 import tempfile
 from pathlib import Path
 
+import pytest
+
 from iclr.analyze import analyze, historical_summary, load_manifest
 
 
@@ -31,6 +33,8 @@ def test_paired_curves_and_identity():
         assert curves[31]["sign_flip_p"] == 0.25
         assert sum(r["atomic_control"] for r in curves) / 125 == (126 - 21) / 125
         assert (root / "output" / "paired_task_deltas.csv").is_file()
+        assert "composition_rank" in (root / "output" / "paired_task_deltas.csv").read_text().splitlines()[0]
+        assert "composition_only" in (root / "output" / "table9_counts.csv").read_text().splitlines()[0]
         path = root / entries[-1]["metrics"]
         original = path.read_text()
         path.write_text(original.replace("fingerprint0", "different"))
@@ -49,6 +53,62 @@ def test_paired_curves_and_identity():
             assert "provenance" in str(error)
         else:
             raise AssertionError("incompatible scoring conventions accepted")
+
+
+def test_named_contrasts_and_input_provenance(tmp_path):
+    arms = ("program_only", "program_trace")
+    entries = []
+    for arm, rank in zip(arms, (40, 1)):
+        row = dict(task_id="task", task_fingerprint="fingerprint", split="dev_A", p=5,
+                   depth=3, best_rank=rank, correct_mass=.2, base_hash="same-model",
+                   data_hash="same-data", model_hash=arm, training_seed=7)
+        (tmp_path / f"{arm}.jsonl").write_text(json.dumps(row) + "\n")
+        entries.append(dict(seed=7, arm=arm, metrics=f"{arm}.jsonl",
+                            scorer_id="full_vocab_op_tokens_v1", tokenizer_hash="tokenizer",
+                            prompt_version="stage4_plan_v1"))
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps(entries))
+    curves = analyze(manifest, tmp_path / "output", plots=True, arms=arms)
+    assert curves[31]["program_only"] == 0
+    assert curves[31]["program_trace"] == 1
+    assert curves[31]["delta"] == 1
+    assert curves[-1]["delta"] == 0
+    assert (tmp_path / "output" / "hitk_0_depth3.pdf").is_file()
+    assert "treatment_rank" in (tmp_path / "output" / "paired_task_deltas.csv").read_text().splitlines()[0]
+    assert "treatment_only" in (tmp_path / "output" / "table9_counts.csv").read_text().splitlines()[0]
+    assert json.loads((tmp_path / "output" / "analysis.json").read_text())["arms"] == {
+        "control": "program_only", "treatment": "program_trace"}
+    metric = tmp_path / "program_trace.jsonl"
+    original = metric.read_text()
+    for key, value in (("base_hash", "other-model"), ("data_hash", "other-data"), ("training_seed", 8)):
+        row = {**json.loads(original), key: value}
+        metric.write_text(json.dumps(row) + "\n")
+        with pytest.raises(ValueError, match="provenance|seed mismatch"):
+            load_manifest(manifest, arms)
+    metric.write_text(original)
+
+
+def test_all_arms_cannot_silently_drop_the_same_task(tmp_path):
+    from composition_core import trajectory
+    from iclr.data import correct_programs
+
+    tasks = [dict(task_id=f"task{i}", task_fingerprint=f"fingerprint{i}", split="dev_A",
+                  depth=3, p=5, start=[1, 2, i + 1],
+                  target=list(trajectory([1, 2, i + 1], ("SH1", "SH1", "SH1"), 5)[-1]))
+             for i in range(2)]
+    (tmp_path / "tasks.jsonl").write_text("".join(json.dumps(task) + "\n" for task in tasks))
+    entries = []
+    for arm in ("atomic_control", "composition"):
+        row = {**tasks[0], "best_rank": 1, "correct_mass": .2,
+               "correct_count": len(correct_programs(tasks[0]))}
+        (tmp_path / f"{arm}.jsonl").write_text(json.dumps(row) + "\n")
+        entries.append(dict(seed=0, arm=arm, metrics=f"{arm}.jsonl", tasks="tasks.jsonl",
+                            scorer_id="full_vocab_op_tokens_v1", tokenizer_hash="tokenizer",
+                            prompt_version="stage4_plan_v1"))
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps(entries))
+    with pytest.raises(ValueError, match="full task file"):
+        load_manifest(manifest)
 
 
 def test_published_table9():

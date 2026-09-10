@@ -36,8 +36,8 @@ def recipe_cells(recipes: list[str]) -> list[dict]:
 
 
 def build_jobs(args: argparse.Namespace) -> list[dict]:
-    if not args.seeds or len(set(args.seeds)) != len(args.seeds) or min(args.seeds) < 0:
-        raise ValueError("seeds must be distinct nonnegative integers")
+    if not args.seeds or len(set(args.seeds)) != len(args.seeds) or not all(0 <= seed < 2**32 for seed in args.seeds):
+        raise ValueError("seeds must be distinct integers in [0, 2**32)")
     if args.micro_batch <= 0 or args.effective_batch <= 0 or args.effective_batch % args.micro_batch:
         raise ValueError("effective batch must be a positive multiple of micro batch")
     if (args.epochs <= 0 or (args.num_examples is not None and args.num_examples <= 0)
@@ -92,7 +92,7 @@ def comparison_entries(jobs: list[dict], output: Path) -> list[dict]:
             for arm in ('atomic_control', 'composition')]
 
 
-def update_comparison(path: Path, entries: list[dict]) -> None:
+def update_comparison(path: Path, entries: list[dict], varying=('replay_fraction', 'budget_mode')) -> None:
     from .common import write_json
     previous = json.loads(path.read_text()) if path.exists() else []
     combined = {}
@@ -104,11 +104,42 @@ def update_comparison(path: Path, entries: list[dict]) -> None:
         combined[key] = entry
         run_name = Path(entry['metrics']).parent.parent.name
         config = json.loads((path.parent / 'configs' / f'{run_name}.json').read_text())
-        current = {k: v for k, v in config.items() if k not in ('seed', 'output', 'replay_fraction', 'budget_mode')}
+        current = {k: v for k, v in config.items() if k not in ('seed', 'output', *varying)}
         if context is not None and current != context:
             raise ValueError('Paired seeds have different data, base model or training settings; use a new --output')
         context = current
     write_json(path, [combined[key] for key in sorted(combined)])
+
+
+def ablation_comparisons(jobs: list[dict], output: Path):
+    """Pair existing runs; these comparisons add no training jobs."""
+    fields = ('method', 'supervision', 'replay_fraction', 'budget_mode', 'depth3_only')
+    cells = {}
+    for job in jobs:
+        cells.setdefault(tuple(job[key] for key in fields), {})[job['seed']] = job
+    trace = ('ce', 'trace', .2, 'examples', False)
+    specs = [
+        ('trace_examples', ('ce', 'program', .2, 'examples', False), trace,
+         ('program_only', 'program_trace'), ('supervision',)),
+        ('trace_tokens', ('ce', 'program', .2, 'target_tokens', False), trace,
+         ('program_token_matched', 'program_trace'), ('supervision', 'budget_mode')),
+    ]
+    specs.extend((f'replay{round(100 * fraction):02d}',
+                  ('ce', 'trace', 0., 'examples', False), ('ce', 'trace', fraction, 'examples', False),
+                  ('replay00', f'replay{round(100 * fraction):02d}'), ('replay_fraction',))
+                 for fraction in (.1, .2, .4))
+    specs.extend((name, (control, 'program', 0., 'examples', True),
+                  (treatment, 'program', 0., 'examples', True), (control, treatment), ('method',))
+                 for name, control, treatment in (
+                     ('set_single_control', 'ce', 'single_norm'),
+                     ('set_mass', 'single_norm', 'set_mass'), ('set_vs_ce', 'ce', 'set_mass')))
+    for name, control, treatment, arms, varying in specs:
+        seeds = sorted(cells.get(control, {}).keys() & cells.get(treatment, {}).keys())
+        entries = [{'seed': seed, 'arm': arm, 'metrics': str(
+                    (Path(cells[cell][seed]['output']) / 'eval' / 'metrics.jsonl').relative_to(output))}
+                   for seed in seeds for arm, cell in zip(arms, (control, treatment))]
+        if entries:
+            yield name, entries, arms, varying
 
 
 def completed_jobs(output: Path, reference: dict) -> list[dict]:
@@ -126,6 +157,10 @@ def write_results(jobs: list[dict], path: Path, baseline: Path) -> None:
         if not (directory / 'DONE').is_file():
             raise ValueError(f'missing completed run: {directory}')
         done = json.loads((directory / 'DONE').read_text())
+        if any(done['binding']['config'].get(key) != value for key, value in job.items()):
+            raise ValueError(f'Completed run has a different configuration: {directory}')
+        if any(done['binding'][key] != base['binding'][key] for key in ('base_hash', 'data_hash')):
+            raise ValueError(f'Baseline and completed run have different model/data: {directory}')
         for name in ('budget.json', 'eval/summary.json'):
             if file_hash(directory / name) != done['files'][name]:
                 raise ValueError(f'Completed result changed: {directory / name}')
@@ -198,9 +233,17 @@ def main(argv: list[str] | None = None) -> None:
             comparison = output / f'comparison_{model_name}.json'
             update_comparison(comparison, entries)
             print(f'Paired analysis manifest: {comparison}', flush=True)
+        analyses = []
+        for name, entries, arms, varying in ablation_comparisons(jobs, output):
+            comparison = output / f'comparison_{model_name}_{name}.json'
+            update_comparison(comparison, entries, varying)
+            analyses.append([sys.executable, '-m', 'iclr.analyze', '--manifest', str(comparison),
+                             '--arms', *arms, '--output', str(output / 'analysis' / model_name / name), '--plots'])
         for command in commands:
             print(shlex.join(command), flush=True)
         print(f"{len(jobs)} jobs; configs in {Path(args.output).resolve() / 'configs'}", flush=True)
+        for command in analyses:
+            print('After training: ' + shlex.join(command), flush=True)
         if args.execute:
             for command in commands:
                 subprocess.run(command, check=True)

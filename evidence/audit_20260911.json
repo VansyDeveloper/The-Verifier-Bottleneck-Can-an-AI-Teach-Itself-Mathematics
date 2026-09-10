@@ -1,0 +1,206 @@
+{
+  "checked_at": "2026-09-11",
+  "code_sha256": "8ca2da6fd0633bb13a20b8e2e99c7a6cc038a9038cfd571b11ecf4d9112ec60d",
+  "data_integrity": {
+    "dataset_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+    "dev_multisolution_counts": {
+      "dev_A.jsonl": 91,
+      "dev_B.jsonl": 0,
+      "dev_C.jsonl": 87,
+      "dev_D.jsonl": 1,
+      "dev_atomic.jsonl": 0
+    },
+    "distinct_states_checked": 45474,
+    "method": [
+      "Verify each JSONL SHA256 against the generated manifest and check row counts.",
+      "Recompute every semantic task fingerprint; reject duplicate task IDs.",
+      "Enumerate all 5**depth programs with the exact polynomial interpreter, verify full correct counts and all family motif constraints.",
+      "Independently search depths 1 through depth, checking shortest depth and total shortest solution count.",
+      "Enumerate all states of every correct trajectory; reject overlap with any previously accepted task in any split.",
+      "Build 4 replay fractions for each of 3 seeds and check exact replacement budget, equal atomic PLAN/APPLY x operation counts, nested composition IDs, and exact depth ratio 1:2:1."
+    ],
+    "replay_seed_combinations_checked": 12,
+    "status": "PASS",
+    "tasks_checked": 13600
+  },
+  "dependencies": {
+    "fresh_install": "NOT_COMPLETED: uncached torch wheel; only 3.3 GiB free for a 5.3 GiB environment. Wheel downloads and hashes from scratch were not verified.",
+    "installed_packages": 55,
+    "lock_sha256": "3e9ca0b4e1a60584815ec6e7bcabb883cdede7b720c56002fd9a052b55aa3e60",
+    "locked_sync": "PASS; offline dry-run makes no changes",
+    "uv_pip_check": "PASS",
+    "wheel_availability": "55/55 compatible locked wheel URLs returned HTTP 200 to HEAD requests"
+  },
+  "environment": {
+    "cuda": "12.4",
+    "git_commit": "ec71d5374b22ced840a32351f6b319ea577014fe",
+    "git_status": " M README.md\n M evidence/README.md\n M iclr/analyze.py\n M iclr/run.py\n M iclr/smoke.py\n M iclr/train.py\n M plans/README.md\n M tests/test_analyze.py\n M tests/test_modeling.py\n M tests/test_run.py\n",
+    "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+    "packages": {
+      "numpy": "2.4.6",
+      "peft": "0.19.1",
+      "scipy": "1.17.1",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.1"
+    },
+    "python": "3.11.13"
+  },
+  "fixes": [
+    "Reject composition-trained checkpoints mislabeled as atomic initialization.",
+    "Reject TRACE labels on objectives that only train program probabilities; reject misspelled and invalid settings.",
+    "Reject paired analysis with incompatible model/data provenance or incomplete declared task coverage.",
+    "Prepare eight paired ablation manifests without extra training; preserve default CSV column names.",
+    "Check completed result configuration and baseline identity before combining results.",
+    "Run all seven smoke branches through the actual queue CLI, including save/reload and evaluation recovery."
+  ],
+  "real_model": {
+    "base": "Existing local one-step atomic test checkpoint; this is not a trained research baseline.",
+    "base_sha256": "aed31d12fc4306ddace001c51ea4d9cb75bdef31cae95192b197ac5f10053f5f",
+    "device": "cuda",
+    "model": "Qwen/Qwen3-0.6B",
+    "paired_analysis": "PASS: single_norm versus set_mass on the same eight test tasks",
+    "precision": "bfloat16",
+    "runs": [
+      {
+        "budget": {
+          "all_target_tokens": 8,
+          "composition_exposures": 2,
+          "composition_target_tokens": 8,
+          "example_exposures": 2,
+          "loss_normalization": "supervised_tokens_per_update",
+          "masked_target_tokens": 0,
+          "optimizer_impl": "adamw_fused",
+          "optimizer_steps": 1,
+          "peak_memory_bytes": 1532124672,
+          "prompt_tokens": 136,
+          "set_token_counters": null,
+          "total_forward_tokens": 144,
+          "unique_tasks": 2,
+          "wall_seconds": 1.3848119908943772
+        },
+        "method": "ce",
+        "receipt_sha256": "6752f9493676fed1e2ed9c97db59d663c5e71b83f16f1a05109a74e8dbded8c6",
+        "reload_check": {
+          "max_absolute_difference": 0.0,
+          "merge_max_absolute_difference": null,
+          "tolerance": 0.1
+        }
+      },
+      {
+        "budget": {
+          "all_target_tokens": 8,
+          "composition_exposures": 2,
+          "composition_target_tokens": 8,
+          "example_exposures": 2,
+          "loss_normalization": "tasks_per_update",
+          "masked_target_tokens": 0,
+          "optimizer_impl": "adamw_fused",
+          "optimizer_steps": 1,
+          "peak_memory_bytes": 1629675008,
+          "prefix_sequences": 62,
+          "prompt_tokens": 136,
+          "set_token_counters": "reference program labels, not CE targets",
+          "total_forward_tokens": 4326,
+          "unique_tasks": 2,
+          "wall_seconds": 18.388137307949364
+        },
+        "method": "single_norm",
+        "receipt_sha256": "e0f1b5dba45d0bd33b01bc22a52ae8ec483b4a08e09d86b0734138fd4f56ec0f",
+        "reload_check": {
+          "max_absolute_difference": 0.0,
+          "merge_max_absolute_difference": null,
+          "tolerance": 0.1
+        }
+      },
+      {
+        "budget": {
+          "all_target_tokens": 8,
+          "composition_exposures": 2,
+          "composition_target_tokens": 8,
+          "example_exposures": 2,
+          "loss_normalization": "tasks_per_update",
+          "masked_target_tokens": 0,
+          "optimizer_impl": "adamw_fused",
+          "optimizer_steps": 1,
+          "peak_memory_bytes": 1629675008,
+          "prefix_sequences": 62,
+          "prompt_tokens": 136,
+          "set_token_counters": "reference program labels, not CE targets",
+          "total_forward_tokens": 4326,
+          "unique_tasks": 2,
+          "wall_seconds": 16.239628690993413
+        },
+        "method": "set_mass",
+        "receipt_sha256": "429eb6442bce2decd1c7a49d00bf03a52f53da46614be8518065b5f720470b91",
+        "reload_check": {
+          "max_absolute_difference": 0.0,
+          "merge_max_absolute_difference": null,
+          "tolerance": 0.1
+        }
+      }
+    ],
+    "scientific_result": false
+  },
+  "runtime_smoke": {
+    "cpu": {
+      "completed_run_reuse_checked": true,
+      "device": "cpu",
+      "matched_ce_target_tokens": 298,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "path": "outputs/audit_cpu_final_20260911",
+      "queue_execute_checked": true,
+      "receipt_sha256": "992adfd3c5174177088957d1039780d4e27f544ccec69c269e37b16a89f8c1ae",
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "set_paired_analysis_checked": true,
+      "status": "PASS",
+      "training_branches": 7,
+      "wall_seconds": 77.8295785629889
+    },
+    "cuda": {
+      "completed_run_reuse_checked": true,
+      "device": "cuda",
+      "matched_ce_target_tokens": 298,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "path": "outputs/audit_cuda_final_20260911",
+      "queue_execute_checked": true,
+      "receipt_sha256": "c1d519ea0f9e07eae6d77479a9a80fd6ea9cd5cb3d681773bf3142d84d88c3e1",
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "set_paired_analysis_checked": true,
+      "status": "PASS",
+      "training_branches": 7,
+      "wall_seconds": 56.89942382310983
+    }
+  },
+  "scope": {
+    "artem": [
+      "full Hit(K) analysis",
+      "fixed-exposure replay",
+      "program versus program plus TRACE",
+      "candidate-normalized correct-set mass",
+      "main control pair for another model size"
+    ],
+    "atomic_readiness": "Fresh PLAN/APPLY quality per operation must be inspected before the full rented-GPU queue.",
+    "default_design": "Three-seed development screening; final model evaluation not run. Minimum two-sided sign-flip p with three seeds is 0.25.",
+    "dima_experiments_added": [],
+    "historical_evidence": "Submitted PDF and three legacy source hashes match originals. Primary Table 9 arithmetic and local second-series curves pass tests.",
+    "not_verified": [
+      "Full FP32 runs on A100",
+      "Qwen3-1.7B training",
+      "Full fresh dependency installation",
+      "Reproduction of the main six-run Hit(K) curve: missing stage4_composition_confirmation_full.zip"
+    ],
+    "set_objective": "Probability normalized inside all 125 depth-three programs. Withheld pairs absent from positive solutions can occur among negative candidates."
+  },
+  "starting_commit": "ec71d53",
+  "status": "PASS for the checks below; full research runs not performed",
+  "tests": {
+    "command": "uv run python -m pytest -q",
+    "independent_loss_check": "All parameter gradients and scores agree with teacher-forced scoring of all 125 complete programs.",
+    "passed": 16,
+    "subtests_passed": 14
+  }
+}

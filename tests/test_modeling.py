@@ -11,6 +11,20 @@ import composition_eval as legacy
 
 
 class ModelingTest(unittest.TestCase):
+    def test_rejects_mislabeled_training_configs_before_loading_data_or_models(self):
+        from iclr.train import run
+        for fields in ({'initialize': True},
+                       {'initialize': True, 'replay_fraction': .2},
+                       {'initialize': True, 'replay_fraction': 1., 'depth3_only': True},
+                       {'method': 'set_mass', 'depth3_only': True, 'replay_fraction': 0.},
+                       {'method': 'single_norm', 'depth3_only': True, 'replay_fraction': 0.},
+                       {'learning_rate': float('nan')}, {'learning_rate': float('inf')},
+                       {'learning_rage': .1}, {'initialize': 'false'},
+                       {'depth3_only': 'false'}, {'gradient_checkpointing': 'false'},
+                       {'seed': -1}, {'seed': 2**32}, {'seed': True}):
+            with self.subTest(fields=fields), self.assertRaises(ValueError):
+                run(fields)
+
     def test_atomic_initialization_preserves_tied_embeddings(self):
         torch.set_num_threads(1)
         with tempfile.TemporaryDirectory() as directory:
@@ -83,6 +97,21 @@ class ModelingTest(unittest.TestCase):
             gradients = [p.grad for p in model.parameters() if p.grad is not None]
             self.assertTrue(all(torch.isfinite(gradient).all() for gradient in gradients))
             self.assertGreater(sum(float(gradient.abs().sum()) for gradient in gradients), 0)
+            prefix_gradients = {name: p.grad.clone() for name, p in model.named_parameters() if p.grad is not None}
+            model.zero_grad(set_to_none=True)
+            # Independent oracle: score 125 complete sequences in one teacher-forced batch.
+            all_examples = [modeling.encode(tokenizer, {'prompt': core.plan_prompt(row),
+                            'answer': core.program_answer(program)}) for program in programs]
+            batch = modeling.collate(tokenizer, all_examples, 'cpu')
+            labels = batch.pop('labels')[:, 1:]
+            logprobs = model(**batch).logits[:, :-1].float().log_softmax(-1)
+            active = (labels != -100) & (labels != tokenizer.eos_token_id)
+            direct_scores = (logprobs.gather(-1, labels.clamp(min=0).unsqueeze(-1)).squeeze(-1) * active).sum(-1)
+            torch.testing.assert_close(scores, direct_scores, rtol=1e-6, atol=3e-6)
+            modeling.set_loss(direct_scores, mask, witness, 'set_mass').backward()
+            for name, parameter in model.named_parameters():
+                if name in prefix_gradients:
+                    torch.testing.assert_close(parameter.grad, prefix_gradients[name], rtol=3e-4, atol=1e-6)
             toy = torch.tensor([.2, -.7, 1.1], requires_grad=True)
             all_correct = modeling.set_loss(toy, torch.ones(3, dtype=torch.bool), 0, "set_mass")
             self.assertEqual(float(all_correct), 0.)

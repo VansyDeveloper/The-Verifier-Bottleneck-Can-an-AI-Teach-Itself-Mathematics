@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -70,23 +71,19 @@ def main(argv=None):
         run("init", ["iclr.train", "--init", "--model", model, "--data", out / "data", "--out", base.parent,
                      "--epochs", 1, "--device", device, "--micro-batch", 1, "--effective-batch", 10,
                      "--prefix-batch", 8, "--num-examples", 10])
-        run("baseline", ["iclr.evaluate", "--base", base, "--data", out / "data",
-                         "--out", out / "baseline", "--device", device, "--prefix-batch", 8])
-        from iclr.run import build_jobs, comparison_entries, parser as queue_parser, write_config, write_results
-        args = queue_parser().parse_args([
+        from iclr.run import build_jobs, parser as queue_parser
+        queue_arguments = [
             "--recipe", "trace", "size", "set", "--model", str(model), "--base", str(base),
             "--data", str(out / "data"), "--output", str(out), "--seeds", "0", "--epochs", "1",
-            "--num-examples", "10", "--effective-batch", "10", "--device", device])
-        jobs = build_jobs(args)
-        jobs = [job for job in jobs if not (job["method"] == "ce" and job["supervision"] == "program"
-                                           and job["budget_mode"] == "examples")]
-        for index, job in enumerate(jobs):
-            path = out / "configs" / f"{index}.json"
-            write_config(path, job)
-            run(f"branch_{index}", ["iclr.train", "--config", path])
+            "--num-examples", "10", "--effective-batch", "10", "--device", device]
+        jobs = build_jobs(queue_parser().parse_args(queue_arguments))
+        run("queue", ["iclr.run", *queue_arguments, "--execute"])
+        model_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(model))
+        baseline = out / f"baseline_{model_name}"
+        first_config = out / "configs" / f"{Path(jobs[0]['output']).name}.json"
         run("baseline_resume", ["iclr.evaluate", "--base", base, "--data", out / "data",
-                                "--out", out / "baseline", "--device", device, "--prefix-batch", 8])
-        run("train_resume", ["iclr.train", "--config", out / "configs" / "0.json"])
+                                "--out", baseline, "--device", device, "--prefix-batch", 8])
+        run("train_resume", ["iclr.train", "--config", first_config])
         budgets = []
         for directory in [base.parent, *(Path(job["output"]) for job in jobs)]:
             assert (directory / "DONE").is_file(), f"missing completed receipt: {directory}"
@@ -94,27 +91,31 @@ def main(argv=None):
             assert reload_check["max_absolute_difference"] <= reload_check["tolerance"]
             if directory != base.parent:
                 budgets.append(json.loads((directory / "budget.json").read_text()))
-        assert len({(b["optimizer_steps"], b["all_target_tokens"]) for b in budgets[:3]}) == 1
-        assert len({(b["optimizer_steps"], b["example_exposures"]) for b in budgets[3:]}) == 1
+        assert len({(budgets[i]["optimizer_steps"], budgets[i]["all_target_tokens"]) for i in (0, 2, 3)}) == 1
+        assert len({(b["optimizer_steps"], b["example_exposures"]) for b in budgets[4:]}) == 1
+        assert budgets[0]['example_exposures'] == budgets[1]['example_exposures']
         for label in ("baseline_resume", "train_resume"):
             assert "Already complete:" in (out / f"{label}.stdout.log").read_text()
         from iclr.common import file_hash
         resumed = Path(jobs[0]["output"])
         training_hash = file_hash(resumed / "training_metrics.jsonl")
         (resumed / "DONE").unlink()
-        run("evaluation_resume", ["iclr.train", "--config", out / "configs" / "0.json"])
+        run("evaluation_resume", ["iclr.train", "--config", first_config])
         assert (resumed / "DONE").is_file()
         assert file_hash(resumed / "training_metrics.jsonl") == training_hash
-        comparison = out / "comparison.json"
-        write_config(comparison, comparison_entries(jobs, out))
-        write_results(jobs, out / "results.csv", out / "baseline")
+        comparison = out / f"comparison_{model_name}.json"
+        assert (out / f"results_{model_name}.csv").is_file()
         run("analysis", ["iclr.analyze", "--manifest", comparison, "--output", out / "analysis"])
+        run("set_analysis", ["iclr.analyze", "--manifest", out / f"comparison_{model_name}_set_mass.json",
+                             "--arms", "single_norm", "set_mass", "--output", out / "set_analysis"])
         (out / "DONE.json").write_text(json.dumps({
             "status": "PASS", "model": "random tiny Qwen3; 1 layer, hidden size 32",
             "device": device,
             "offline": True, "scientific_result": False, "training_branches": len(jobs),
             "matched_ce_target_tokens": budgets[0]["all_target_tokens"],
             "completed_run_reuse_checked": True,
+            "queue_execute_checked": True,
+            "set_paired_analysis_checked": True,
             "resume_evaluation_without_retraining_checked": True,
             "wall_seconds": time.monotonic() - started}, indent=2) + "\n")
         print(f"PASS: {out / 'DONE.json'}", flush=True)

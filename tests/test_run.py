@@ -5,7 +5,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
 
-from iclr.run import build_jobs, comparison_entries, completed_jobs, main, parser, recipe_cells, update_comparison, write_config
+from iclr.run import ablation_comparisons, build_jobs, comparison_entries, completed_jobs, main, parser, recipe_cells, update_comparison, write_config
 
 
 class QueueTest(unittest.TestCase):
@@ -65,6 +65,16 @@ class QueueTest(unittest.TestCase):
         self.assertTrue(all(entry['metrics'].startswith('runs/') and
                             entry['metrics'].endswith('/eval/metrics.jsonl') for entry in entries))
         self.assertEqual(comparison_entries([j for j in jobs if j['depth3_only']], Path(args.output).resolve()), [])
+        contrasts = list(ablation_comparisons(jobs, Path(args.output).resolve()))
+        self.assertEqual(len(contrasts), 8)
+        for _, entries, arms, varying in contrasts:
+            self.assertEqual(len(entries), 6)
+            self.assertEqual({entry['arm'] for entry in entries}, set(arms))
+            paired_jobs = [next(job for job in jobs if Path(job['output']).name ==
+                               Path(entry['metrics']).parent.parent.name) for entry in entries]
+            settings = [{k: v for k, v in job.items() if k not in ('seed', 'output', *varying)}
+                        for job in paired_jobs]
+            self.assertTrue(all(setting == settings[0] for setting in settings))
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "config.json"
             write_config(path, jobs[0])
@@ -75,6 +85,23 @@ class QueueTest(unittest.TestCase):
         args.seeds = [0, 0]
         with self.assertRaises(ValueError):
             build_jobs(args)
+
+    def test_ablation_manifests_preserve_seeds_and_reject_changed_settings(self):
+        with tempfile.TemporaryDirectory() as directory, redirect_stdout(StringIO()):
+            command = ['--recipe', 'trace', 'set', '--data', 'data', '--base', 'base', '--model', 'Qwen',
+                       '--output', directory, '--seeds']
+            main(command + ['0'])
+            main(command + ['0', '1', '2'])
+            path = Path(directory) / 'comparison_Qwen_set_mass.json'
+            original = path.read_bytes()
+            entries = json.loads(original)
+            self.assertEqual(len(entries), 6)
+            self.assertEqual({entry['arm'] for entry in entries}, {'single_norm', 'set_mass'})
+            main(command + ['0'])
+            self.assertEqual(path.read_bytes(), original)
+            with self.assertRaises(SystemExit):
+                main(command + ['3', '--learning-rate', '0.002'])
+            self.assertEqual(path.read_bytes(), original)
 
 
 if __name__ == "__main__":
