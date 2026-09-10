@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/secondary_worker.py", line 116, in <module>
+    main()
+  File "/workspace/secondary_worker.py", line 75, in main
+    confirm.require_frozen()
+  File "/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py", line 1234, in require_frozen
+    recovery = require_recovery_amendment()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py", line 539, in require_recovery_amendment
+    receipt.get("training_bindings") != _training_bindings() or
+                                        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py", line 390, in _training_bindings
+    training = require_training()
+               ^^^^^^^^^^^^^^^^^^
+  File "/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py", line 1054, in require_training
+    raise RuntimeError(f"replicate {label} {branch} adapter/receipt binding failed")
+RuntimeError: replicate 0 atomic_control adapter/receipt binding failed

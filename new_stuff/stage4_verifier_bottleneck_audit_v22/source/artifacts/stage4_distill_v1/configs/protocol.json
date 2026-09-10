@@ -1,0 +1,15 @@
+{
+  "schema_version": "stage4.v1",
+  "model_primary": "Qwen/Qwen3-0.6B",
+  "model_fallback": "Qwen/Qwen3-1.7B",
+  "source_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+  "operation_tokens": {"SH1":"<OP0>","SC2":"<OP1>","REV":"<OP2>","AC1":"<OP3>","AX1":"<OP4>"},
+  "train_fields": [5,7,13,19,23,29],
+  "transfer_fields": [11,17],
+  "heldout_motifs": [["AX1","SH1"],["AC1","REV"],["SC2","AX1"]],
+  "split_sizes": {"train":4000,"dev_a":500,"final_a":1000,"final_b":1000,"final_c":500,"final_d":500},
+  "pilot": {"seed":0,"lr":0.0001,"epochs":2,"replay":0.2,"effective_batch":64,"warmup_ratio":0.03,"max_grad_norm":1.0,"bf16":true},
+  "atomic_gates": {"plan":0.95,"apply_each":0.90,"spread_pp":10.0},
+  "pilot_gates": {"base_hit32_min":0.05,"base_hit32_max":0.50,"delta_hit32":0.08,"forgetting":0.02,"leakage":0},
+  "confirm": {"seeds":[0,1,2,3,4,5],"bootstrap_repetitions":20000,"mean_delta":0.05,"positive_seeds":5,"alpha":0.05}
+}

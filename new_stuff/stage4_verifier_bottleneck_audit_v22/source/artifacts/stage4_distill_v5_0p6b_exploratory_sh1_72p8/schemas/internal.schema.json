@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.v5.internal.v1",
+  "x-schema-aliases": [
+    "stage4.distill.v5.protocol.v1",
+    "stage4.composition.v5.atomic-reference-audit.v1",
+    "stage4.composition.v5.preregistration-manifest.v1",
+    "stage4.composition.v5.split-audit.v1",
+    "stage4.composition.v5.discover-audit.v1",
+    "stage4.composition.v5.data-manifest.v1",
+    "stage4.composition.v5.prepare.v1",
+    "stage4.composition.v5.resolved-config.v1",
+    "stage4.composition.v5.eval-binding.v1",
+    "stage4.composition.v5.pilot-attempt.v1",
+    "stage4.composition.v5.selection-freeze.v1",
+    "stage4.composition.v5.config-freeze.v1",
+    "stage4.composition.v5.final-generation.v1",
+    "stage4.composition.v5.pilot-decision.v1",
+    "stage4.composition.v5.pilot-dev-b.v1",
+    "stage4.composition.v5.terminal.v1",
+    "stage4.composition.v5.final-access.v1",
+    "stage4.composition.v5.seed-result.v1",
+    "stage4.composition.v5.confirmatory-statistics.v1",
+    "stage4.composition.v5.accounting.v1",
+    "stage4.composition.v5.confirm-evidence.v1",
+    "stage4.distill.v5.eval-status.v1",
+    "stage4.distill.v5.eval-shard-receipt.v1",
+    "stage4.distill.v5.ranking-summary.v1",
+    "stage4.distill.v5.atomic-generation.v1",
+    "stage4.composition.v5.atomic-eval.v1",
+    "stage4.distill.v5.atomic-export.v1",
+    "stage4.distill.v5.equal-budget.v1",
+    "stage4.distill.v5.training-status.v1",
+    "stage4.distill.v5.training-receipt.v1",
+    "stage4.composition.v5.archive-contents.v1",
+    "stage4.composition.v5.ranking-validation.v1",
+    "stage4.composition.v5.validation.v1",
+    "stage4.composition.v5.confirm-ranking-matrix.v1",
+    "stage4.composition.v5.terminal-readiness.v1",
+    "stage4.atomic.v5.paired-statistics.v1"
+  ],
+  "type": "object",
+  "required": ["schema"],
+  "properties": {
+    "schema": {
+      "enum": [
+        "stage4.composition.v5.internal.v1",
+        "stage4.distill.v5.protocol.v1",
+        "stage4.composition.v5.atomic-reference-audit.v1",
+        "stage4.composition.v5.preregistration-manifest.v1",
+        "stage4.composition.v5.split-audit.v1",
+        "stage4.composition.v5.discover-audit.v1",
+        "stage4.composition.v5.data-manifest.v1",
+        "stage4.composition.v5.prepare.v1",
+        "stage4.composition.v5.resolved-config.v1",
+        "stage4.composition.v5.eval-binding.v1",
+        "stage4.composition.v5.pilot-attempt.v1",
+        "stage4.composition.v5.selection-freeze.v1",
+        "stage4.composition.v5.config-freeze.v1",
+        "stage4.composition.v5.final-generation.v1",
+        "stage4.composition.v5.pilot-decision.v1",
+        "stage4.composition.v5.pilot-dev-b.v1",
+        "stage4.composition.v5.terminal.v1",
+        "stage4.composition.v5.final-access.v1",
+        "stage4.composition.v5.seed-result.v1",
+        "stage4.composition.v5.confirmatory-statistics.v1",
+        "stage4.composition.v5.accounting.v1",
+        "stage4.composition.v5.confirm-evidence.v1",
+        "stage4.distill.v5.eval-status.v1",
+        "stage4.distill.v5.eval-shard-receipt.v1",
+        "stage4.distill.v5.ranking-summary.v1",
+        "stage4.distill.v5.atomic-generation.v1",
+        "stage4.composition.v5.atomic-eval.v1",
+        "stage4.distill.v5.atomic-export.v1",
+        "stage4.distill.v5.equal-budget.v1",
+        "stage4.distill.v5.training-status.v1",
+        "stage4.distill.v5.training-receipt.v1",
+        "stage4.composition.v5.archive-contents.v1",
+        "stage4.composition.v5.ranking-validation.v1",
+        "stage4.composition.v5.validation.v1",
+        "stage4.composition.v5.confirm-ranking-matrix.v1",
+        "stage4.composition.v5.terminal-readiness.v1",
+        "stage4.atomic.v5.paired-statistics.v1"
+      ]
+    },
+    "status": {"type": "string", "minLength": 1},
+    "model": {"type": "string", "minLength": 1},
+    "seed": {"type": "integer", "minimum": 0},
+    "branch": {"type": "string", "minLength": 1},
+    "split": {"type": "string", "minLength": 1},
+    "binding": {"type": "object"},
+    "task_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"schema": {"const": "stage4.distill.v5.protocol.v1"}}},
+      "then": {"required": ["stage", "model", "model_size_lock", "pilot_initial", "confirm", "ranking"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.preregistration-manifest.v1"}}},
+      "then": {"required": ["status", "model", "git_commit", "protocol_sha256", "preregistration_sha256", "code", "schemas"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.data-manifest.v1"}}},
+      "then": {"required": ["status", "files"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.prepare.v1"}}},
+      "then": {"required": ["status", "model"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.resolved-config.v1"}}},
+      "then": {"required": ["seed", "lr", "epochs", "atomic_replay", "effective_batch", "micro_batch"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.eval-binding.v1"}}},
+      "then": {"required": ["seed", "attempt", "branch", "split", "model_sha256", "data_sha256"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.pilot-attempt.v1"}}},
+      "then": {"required": ["status", "attempt_id", "resolved_config", "checks", "pass"]}
+    },
+    {
+      "if": {"properties": {"schema": {"enum": ["stage4.composition.v5.selection-freeze.v1", "stage4.composition.v5.config-freeze.v1"]}}},
+      "then": {"required": ["status", "model", "selected_attempt", "resolved_config"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.final-generation.v1"}}},
+      "then": {"required": ["status", "config_frozen_sha256", "test_files", "evaluation_count"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.pilot-decision.v1"}}},
+      "then": {"required": ["status", "model", "selected_attempt", "selected", "attempts", "final_created", "composition_confirm_unlocked"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.pilot-dev-b.v1"}}},
+      "then": {"required": ["status", "selected_attempt", "used_for_selection", "branches"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.terminal.v1"}}},
+      "then": {"required": ["status", "scientific_result"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.final-access.v1"}}},
+      "then": {"required": ["status", "config_frozen_sha256", "test_files", "series"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.seed-result.v1"}}},
+      "then": {"required": ["run_id", "status", "seed", "atomic_base", "atomic_control", "composition_distill"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.confirmatory-statistics.v1"}}},
+      "then": {"required": ["model", "analyses", "positive_A", "positive_B"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.accounting.v1"}}},
+      "then": {"required": ["training_runs", "optimizer_steps", "loss_bearing_target_tokens_seen", "training_wall_seconds", "ranking_task_evaluations", "candidate_program_scores", "receipts"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.atomic.v5.paired-statistics.v1"}}},
+      "then": {"required": ["tasks", "before_accuracy", "after_accuracy", "delta", "after_only", "before_only", "exact_mcnemar_p_two_sided", "paired_bootstrap", "apply_by_operation", "sh1_slices"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.confirm-evidence.v1"}}},
+      "then": {"required": ["status", "seeds", "files"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.distill.v5.eval-status.v1"}}},
+      "then": {"required": ["status", "branch", "binding", "tasks"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.distill.v5.eval-shard-receipt.v1"}}},
+      "then": {"required": ["status", "branch", "binding", "task_ids", "ranking_sha256", "metrics_sha256", "ranking_rows", "metrics_rows"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.distill.v5.ranking-summary.v1"}}},
+      "then": {"required": ["branch", "binding", "n_tasks"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.distill.v5.atomic-generation.v1"}}},
+      "then": {"required": ["task_id", "operation", "target", "raw_completion", "correct", "match_mode"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.atomic-eval.v1"}}},
+      "then": {"required": ["status", "branch", "binding", "plan", "apply", "tasks", "generation_sha256"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.distill.v5.atomic-export.v1"}}},
+      "then": {"required": ["status", "model", "atomic_decision_sha256", "source_adapter_tree_sha256"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.distill.v5.equal-budget.v1"}}},
+      "then": {"required": ["records_each", "loss_bearing_target_tokens_each", "per_record_target_budget_equal"]}
+    },
+    {
+      "if": {"properties": {"schema": {"enum": ["stage4.distill.v5.training-status.v1", "stage4.distill.v5.training-receipt.v1"]}}},
+      "then": {"required": ["status", "branch", "seed", "effective_batch", "epochs", "input_sha256"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.archive-contents.v1"}}},
+      "then": {"required": ["compact", "full"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.ranking-validation.v1"}}},
+      "then": {"required": ["ranking_files", "ranking_file_count", "ranking_rows", "confirm_matrix"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.validation.v1"}}},
+      "then": {"required": ["status", "syntax_and_schema", "atomic_references", "terminal_readiness"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.confirm-ranking-matrix.v1"}}},
+      "then": {"required": ["status", "seeds", "branches", "splits", "cells", "ranking_rows", "config_frozen_sha256"]}
+    },
+    {
+      "if": {"properties": {"schema": {"const": "stage4.composition.v5.terminal-readiness.v1"}}},
+      "then": {"required": ["status", "mode", "terminal_path", "scientific_result"]}
+    }
+  ],
+  "additionalProperties": true
+}

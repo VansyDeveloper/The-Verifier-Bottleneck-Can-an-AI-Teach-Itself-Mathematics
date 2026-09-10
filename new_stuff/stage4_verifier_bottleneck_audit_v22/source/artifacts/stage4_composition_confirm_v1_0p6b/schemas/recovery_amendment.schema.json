@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.confirmation.recovery-amendment-receipt.v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "status",
+    "amendment_id",
+    "git_commit",
+    "created_at_unix",
+    "spec_sha256",
+    "original_bindings",
+    "blindness_snapshot",
+    "training_bindings",
+    "code",
+    "scope",
+    "algorithm"
+  ],
+  "properties": {
+    "schema": {"const": "stage4.composition.confirmation.recovery-amendment-receipt.v1"},
+    "status": {"const": "FROZEN"},
+    "amendment_id": {"const": "RECOVERY_AMENDMENT_001"},
+    "git_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "created_at_unix": {"type": "number"},
+    "spec_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "original_bindings": {"type": "object"},
+    "blindness_snapshot": {"type": "object"},
+    "training_bindings": {"type": "object"},
+    "code": {"type": "object", "minProperties": 1},
+    "scope": {"type": "object", "minProperties": 1},
+    "algorithm": {"type": "object", "minProperties": 1}
+  }
+}

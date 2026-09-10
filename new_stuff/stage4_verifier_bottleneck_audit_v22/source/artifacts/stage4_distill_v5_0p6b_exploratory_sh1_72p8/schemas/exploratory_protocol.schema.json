@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.distill.v5.exploratory-protocol.v1",
+  "type": "object",
+  "required": [
+    "schema", "stage", "study_class", "claim_scope", "registered_stage4_result_remains", "model",
+    "model_size_lock", "prepilot_atomic_rescue", "source_checkpoint_mutation",
+    "execution_scope", "numeric_runtime", "atomic", "pilot_data", "pilot_initial", "pilot_gates",
+    "interpretation"
+  ],
+  "properties": {
+    "schema": {"const": "stage4.distill.v5.exploratory-protocol.v1"},
+    "study_class": {"const": "EXPLORATORY_FOLLOWUP"},
+    "claim_scope": {"const": "exploratory_signal_only"},
+    "registered_stage4_result_remains": {"const": "FAILED_CALIBRATION_GATE"},
+    "model": {"const": "Qwen/Qwen3-0.6B"},
+    "model_size_lock": {"const": "0.6B"},
+    "prepilot_atomic_rescue": {"const": false},
+    "source_checkpoint_mutation": {"const": false},
+    "execution_scope": {"const": "discover_and_seed0_pilot_only"},
+    "numeric_runtime": {
+      "type": "object",
+      "required": ["atomic_source_evaluation_dtype", "atomic_export_storage_dtype", "branch_master_dtype", "branch_compute_dtype"],
+      "properties": {
+        "atomic_source_evaluation_dtype": {"const": "float32"},
+        "atomic_export_storage_dtype": {"const": "float32"},
+        "branch_master_dtype": {"const": "float32"},
+        "branch_compute_dtype": {"const": "bfloat16_autocast"}
+      }
+    },
+    "atomic": {
+      "type": "object",
+      "required": ["selection_mode", "registered_gate_passed", "old_atomic_final_access_forbidden", "exploratory_floor"],
+      "properties": {
+        "selection_mode": {"const": "EXPLORATORY_CORRECTIVE_OVERRIDE"},
+        "registered_gate_passed": {"const": false},
+        "old_atomic_final_access_forbidden": {"const": true}
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "required": ["pilot_pass_label", "confirmatory_stage4_success_allowed", "multi_seed_execution_in_this_protocol", "parent_negative_endpoint_may_be_rewritten"],
+      "properties": {
+        "pilot_pass_label": {"const": "EXPLORATORY_COMPOSITION_SIGNAL"},
+        "confirmatory_stage4_success_allowed": {"const": false},
+        "multi_seed_execution_in_this_protocol": {"const": false},
+        "parent_negative_endpoint_may_be_rewritten": {"const": false}
+      }
+    }
+  }
+}

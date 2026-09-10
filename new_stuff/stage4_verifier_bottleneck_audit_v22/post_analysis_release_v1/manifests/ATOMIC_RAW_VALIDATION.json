@@ -1,0 +1,385 @@
+{
+  "jobs": 13,
+  "reports": [
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.575
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.915
+      },
+      "canonical_branch": "atomic_base",
+      "eval_name": "replicateshared_atomic_base",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.99
+        },
+        "overall": 0.998
+      },
+      "raw_sha256": "AF413C33CB430879E929C5C3A045B7075076F868F94868AD2FCA60BC4D1C45D1",
+      "replicate": "shared",
+      "result_sha256": "C9D5810C514ABA885F2421CCE0C215D387E9DBFE9B0982871D7CC1FFE596E43C",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.455
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.891
+      },
+      "canonical_branch": "atomic_control",
+      "eval_name": "replicate0_atomic_control",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.985
+        },
+        "overall": 0.997
+      },
+      "raw_sha256": "8DEEC9E97AACD5D4AEE189012852D6EA57F676054D0E4F1E0732B8A999E1DEAB",
+      "replicate": "0",
+      "result_sha256": "5D6DD15A75B46F18F9FA12E91197436FDA39A571000A1FA92BAC76CD32AAF7AC",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 0.995,
+          "SH1": 0.215
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.842
+      },
+      "canonical_branch": "composition_distill",
+      "eval_name": "replicate0_composition_distill",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 0.94,
+          "SC2": 0.995,
+          "SH1": 0.92
+        },
+        "overall": 0.971
+      },
+      "raw_sha256": "5796D311042F81822A199C41D4B9D11B5948E9A18379FA36FE35E1ADB560826D",
+      "replicate": "0",
+      "result_sha256": "98CE50BFF3401CE9960D99B566B8DCB6F28E22E1850DD9331A8C660D3A328771",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.555
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.911
+      },
+      "canonical_branch": "atomic_control",
+      "eval_name": "replicate1_atomic_control",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.985
+        },
+        "overall": 0.997
+      },
+      "raw_sha256": "4644F1D545F2F53474A0F32C9DA71FE975882791BE899B4543363795CC8EEFA1",
+      "replicate": "1",
+      "result_sha256": "04E956F5BBAF8F5A356D96C68E9166EA0029479A991344B7F8467680B0F48BBF",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 0.995,
+          "SH1": 0.27
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.853
+      },
+      "canonical_branch": "composition_distill",
+      "eval_name": "replicate1_composition_distill",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 0.94,
+          "SC2": 0.99,
+          "SH1": 0.94
+        },
+        "overall": 0.974
+      },
+      "raw_sha256": "741C02ED4CB0EDB800F36689B52D47843E257E0684EBABCCBABAB3D8BCD71CF9",
+      "replicate": "1",
+      "result_sha256": "8B1AFCE2E0F30E95D64ECA39A559729E949FEF565592FD5325DF75E12F5554A1",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.53
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.906
+      },
+      "canonical_branch": "atomic_control",
+      "eval_name": "replicate2_atomic_control",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.985
+        },
+        "overall": 0.997
+      },
+      "raw_sha256": "2EF12CFE5D4CD97C49332543CF279322E71A4F173B47D295BA9F229A20ED4794",
+      "replicate": "2",
+      "result_sha256": "796E4C984BC28ABE85DF7FE8AAB843BB98D8DE72408CD27C59E2A3F67C518E04",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 0.995,
+          "SH1": 0.28
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.855
+      },
+      "canonical_branch": "composition_distill",
+      "eval_name": "replicate2_composition_distill",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 0.975,
+          "SC2": 0.99,
+          "SH1": 0.96
+        },
+        "overall": 0.985
+      },
+      "raw_sha256": "7153E97BF3D879CA82C59DA4C11639F83D110171F90AB25BF198346F30200821",
+      "replicate": "2",
+      "result_sha256": "1B6ACBF04D7F6999FD2914969105F1F39831740BD834EBFD6647F643272D1EE7",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 0.995,
+          "SH1": 0.455
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.89
+      },
+      "canonical_branch": "atomic_control",
+      "eval_name": "replicate3_atomic_control",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.985
+        },
+        "overall": 0.997
+      },
+      "raw_sha256": "2BFD99C88D0EEDE64BFBE766489C2837B8196A2D0D4E3CC99532D3FF1D77E30B",
+      "replicate": "3",
+      "result_sha256": "7F7B6E2B3062BFD632281F517153F6E3647D99CD08E0946BFF78C45D27958315",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 0.995,
+          "SH1": 0.315
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.862
+      },
+      "canonical_branch": "composition_distill",
+      "eval_name": "replicate3_composition_distill",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 0.99,
+          "SC2": 0.985,
+          "SH1": 0.92
+        },
+        "overall": 0.979
+      },
+      "raw_sha256": "F052A1477AED3D193BEBD1BA60F96EECD2C96CE1EAE78959C38AB672D3B1500A",
+      "replicate": "3",
+      "result_sha256": "A2D433C38F31D09F2E84B6EBC80215C5477E0B90530F60EE18A3562E0266F494",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.555
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.911
+      },
+      "canonical_branch": "atomic_control",
+      "eval_name": "replicate4_atomic_control",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.985
+        },
+        "overall": 0.997
+      },
+      "raw_sha256": "ED126DBC23CBCB91F26A8C6D41413ACC944EAAAFCEEEB1B5256BCD6E30AF8973",
+      "replicate": "4",
+      "result_sha256": "DD15CA307636926A15DBF0B462C7ED98ADB8CD8D756F6402BBB472B787D4AA0C",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 0.99,
+          "SH1": 0.33
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.864
+      },
+      "canonical_branch": "composition_distill",
+      "eval_name": "replicate4_composition_distill",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 0.995,
+          "SC2": 0.995,
+          "SH1": 0.94
+        },
+        "overall": 0.986
+      },
+      "raw_sha256": "27CBFF60C28CCA97697E43508455BD99131795AD9FED5ADF8EF8D2B2E19C44F6",
+      "replicate": "4",
+      "result_sha256": "9075E519C21187C915B747F7B22AD8DDC383DDFF435470DF0D1121E9EA9ED6AA",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.54
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.908
+      },
+      "canonical_branch": "atomic_control",
+      "eval_name": "replicate5_atomic_control",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 1.0,
+          "SH1": 0.99
+        },
+        "overall": 0.998
+      },
+      "raw_sha256": "2D92CECC6F71F3572B173FF971D6CB97AE0F2D5BAD313EB1F9ADF606D945914F",
+      "replicate": "5",
+      "result_sha256": "80D030906EF278C32076658A188B1ED1B3EA08A9F89CD0D5AE89605817AF01E3",
+      "tasks": 1000
+    },
+    {
+      "apply": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 1.0,
+          "SC2": 0.995,
+          "SH1": 0.335
+        },
+        "match_mode": "stripped_exact_equality",
+        "overall": 0.866
+      },
+      "canonical_branch": "composition_distill",
+      "eval_name": "replicate5_composition_distill",
+      "plan": {
+        "by_operation": {
+          "AC1": 1.0,
+          "AX1": 1.0,
+          "REV": 0.935,
+          "SC2": 0.99,
+          "SH1": 0.935
+        },
+        "overall": 0.972
+      },
+      "raw_sha256": "1A6993C77539C6CD571DE33273868BBFE5D435B72006234CCE2F4D17317C63F3",
+      "replicate": "5",
+      "result_sha256": "770AF9DAECB658BC03B93480A643CB225CC30AA2C476FCEAF9E9F4795FF2AED7",
+      "tasks": 1000
+    }
+  ],
+  "rows": 13000,
+  "schema": "stage4.post-analysis.atomic-raw-validation.v1",
+  "status": "PASS"
+}

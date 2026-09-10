@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.v5.run-index.v1",
+  "type": "object",
+  "required": [
+    "schema", "runs", "run_count", "status_counts", "kind_counts",
+    "pilot_attempts", "pilot_attempt_count", "pilot_decision", "statuses",
+    "status_record_count", "terminal"
+  ],
+  "properties": {
+    "schema": {"const": "stage4.composition.v5.run-index.v1"},
+    "runs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["schema", "run_id", "status", "source", "kind"],
+        "properties": {
+          "schema": {"const": "stage4.composition.v5.run.v1"},
+          "run_id": {"type": "string", "minLength": 1},
+          "status": {"type": "string", "minLength": 1},
+          "source": {"type": "string", "minLength": 1},
+          "kind": {"type": "string", "minLength": 1},
+          "source_schema": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
+    },
+    "run_count": {"type": "integer", "minimum": 1},
+    "status_counts": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "integer", "minimum": 1}
+    },
+    "kind_counts": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "integer", "minimum": 1}
+    },
+    "pilot_attempts": {"type": "array", "items": {"$ref": "#/$defs/run"}},
+    "pilot_attempt_count": {"type": "integer", "minimum": 0},
+    "pilot_decision": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/run"}]},
+    "statuses": {"type": "array", "items": {"$ref": "#/$defs/run"}},
+    "status_record_count": {"type": "integer", "minimum": 0},
+    "terminal": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/run"}]}
+  },
+  "$defs": {
+    "run": {
+      "type": "object",
+      "required": ["schema", "run_id", "status", "source", "kind"],
+      "properties": {
+        "schema": {"const": "stage4.composition.v5.run.v1"},
+        "run_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1},
+        "source": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

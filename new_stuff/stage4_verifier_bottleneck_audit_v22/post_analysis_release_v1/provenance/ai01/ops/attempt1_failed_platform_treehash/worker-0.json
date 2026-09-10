@@ -1,0 +1,30 @@
+{
+  "assignments": [
+    [
+      0,
+      "atomic_control"
+    ],
+    [
+      1,
+      "composition_distill"
+    ],
+    [
+      3,
+      "atomic_control"
+    ],
+    [
+      4,
+      "composition_distill"
+    ]
+  ],
+  "completed": [],
+  "error": "replicate 0 atomic_control adapter/receipt binding failed",
+  "error_type": "RuntimeError",
+  "failed_at_unix": 1785635325.18636,
+  "pid": 54,
+  "schema": "stage4.ai01.secondary-worker.v1",
+  "started_at_unix": 1785635325.0208044,
+  "status": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/secondary_worker.py\", line 75, in main\n    confirm.require_frozen()\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 1234, in require_frozen\n    recovery = require_recovery_amendment()\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 539, in require_recovery_amendment\n    receipt.get(\"training_bindings\") != _training_bindings() or\n                                        ^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 390, in _training_bindings\n    training = require_training()\n               ^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 1054, in require_training\n    raise RuntimeError(f\"replicate {label} {branch} adapter/receipt binding failed\")\nRuntimeError: replicate 0 atomic_control adapter/receipt binding failed\n",
+  "worker": 0
+}

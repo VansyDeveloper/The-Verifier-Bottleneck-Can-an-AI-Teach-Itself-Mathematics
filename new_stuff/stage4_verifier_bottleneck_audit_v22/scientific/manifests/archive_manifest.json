@@ -1,0 +1,19 @@
+{
+  "compact": {
+    "bytes": 1407202,
+    "members": 116,
+    "path": "C:\\MyProject\\verifier_bottleneck_codex_pack\\artifacts\\stage4_composition_confirm_v1_0p6b\\archives\\stage4_composition_confirmation_audit.zip",
+    "sha256": "850F31C434BA4A93FB5F4F5FB8ED824A4748812B8B3FA557EB2059F9237FEC7A"
+  },
+  "full": {
+    "bytes": 1104839307,
+    "members": 6847,
+    "path": "C:\\MyProject\\verifier_bottleneck_codex_pack\\artifacts\\stage4_composition_confirm_v1_0p6b\\archives\\stage4_composition_confirmation_full.zip",
+    "sha256": "A4116A2C39ACEA988275C5ADCE90BF3795134B1E04C25BFBB4293A955D9CCED2"
+  },
+  "legacy_model_or_dataset_payload_included": false,
+  "legacy_runtime_code_included_in_full": true,
+  "release_content_manifest_sha256": "1653369CC4DE814FF5A6FD5EAEC1B16CAD74427A31D2769F2390B52D3AA30140",
+  "schema": "stage4.composition.confirmation.archives.v1",
+  "status": "DONE"
+}

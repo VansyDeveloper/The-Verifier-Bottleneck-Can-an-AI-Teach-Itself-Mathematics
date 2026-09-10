@@ -1,0 +1,46 @@
+{
+  "schema": "stage4.ai01.acceleration.restore.v1",
+  "status": "PASS",
+  "captured_at": "2026-08-02T07:18:23.2120208+03:00",
+  "host": "ai01",
+  "endpoint": "192.168.5.214:22",
+  "scientific_transfer": {
+    "rankings_tar_sha256": "4FF70397D8E88CDC0A716E197B1FE6FBF8872B2FAF0A9777F4EE7703E2BEAA6C",
+    "provenance_tar_sha256": "B139884389118F7CE3C680BE7A6AB67BDD8F901643A76621E1F35717B243114D",
+    "raw_shards": 2080,
+    "metrics": 2080,
+    "receipts": 2080,
+    "partials": 0
+  },
+  "stage4_workers": {
+    "terminal_states_before_removal": [
+      "stage4-secondary-worker-0 exited exit=0",
+      "stage4-secondary-worker-1 exited exit=0",
+      "stage4-secondary-worker-2 exited exit=0"
+    ],
+    "removed_after_verified_transfer": true
+  },
+  "restored_containers": {
+    "qwen35-9b-2gpu": {
+      "restart_policy": "unless-stopped",
+      "state": "running",
+      "api": "http://127.0.0.1:8004/v1/models",
+      "http_status": 200,
+      "model_id": "qwen35-9b"
+    },
+    "qwen35-4b-gpu2": {
+      "restart_policy": "unless-stopped",
+      "state": "running",
+      "api": "http://127.0.0.1:8003/v1/models",
+      "http_status": 200,
+      "model_id": "qwen35-4b-gpu2"
+    }
+  },
+  "systemd": {
+    "vllm-models.service": {"active": "active", "enabled": "enabled"},
+    "vllm-watchdog.timer": {"active": "active", "enabled": "enabled"},
+    "vllm-watchdog.service": {"active": "inactive", "enabled": "static"}
+  },
+  "gpu_memory_after_restore_mib": [15098, 15098, 14480],
+  "prestate_restored": true
+}

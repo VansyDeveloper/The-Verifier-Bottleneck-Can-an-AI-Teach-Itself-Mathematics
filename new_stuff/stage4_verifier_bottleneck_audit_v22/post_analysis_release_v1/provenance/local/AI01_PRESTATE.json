@@ -1,0 +1,42 @@
+{
+  "schema": "stage4.ai01.acceleration.prestate.v1",
+  "captured_at": "2026-08-02T04:05:52+03:00",
+  "authorization": "User authorized temporary shutdown of vLLM watchdogs and model containers for Stage 4 exact evaluation, with mandatory restoration afterward.",
+  "host": {
+    "hostname": "ai01",
+    "endpoint": "192.168.5.214:22",
+    "user": "prodstar",
+    "host_key_sha256": "SHA256:9xR14UPcB7JajtI9Azd/EF5W09jpACSRTLGPtc/IXeg",
+    "auth_locator": "C:/MyProject/NewProdstarServer/ai01-access.md"
+  },
+  "gpus": [
+    {"index": 0, "name": "NVIDIA GeForce RTX 5080", "memory_total_mib": 16303, "memory_used_mib": 15098, "utilization_percent": 0},
+    {"index": 1, "name": "NVIDIA GeForce RTX 5080", "memory_total_mib": 16303, "memory_used_mib": 15098, "utilization_percent": 0},
+    {"index": 2, "name": "NVIDIA GeForce RTX 5080", "memory_total_mib": 16303, "memory_used_mib": 14480, "utilization_percent": 0}
+  ],
+  "containers": [
+    {"name": "qwen35-9b-2gpu", "id": "8c4435b70286", "state": "running", "restart_policy": "unless-stopped", "image": "vllm/vllm-openai:v0.23.0-cu129-ubuntu2404", "gpus": [0, 1]},
+    {"name": "qwen35-4b-gpu2", "id": "2a3f3deb5d45", "state": "running", "restart_policy": "unless-stopped", "image": "vllm/vllm-openai:v0.23.0-cu129-ubuntu2404", "gpus": [2]}
+  ],
+  "systemd": {
+    "vllm-models.service": {"active": "active", "enabled": "enabled"},
+    "vllm-watchdog.timer": {"active": "active", "enabled": "enabled"},
+    "vllm-watchdog.service": {"active": "inactive", "enabled": "static"},
+    "ru-caucasus-continual-gpu-pipeline.service": {"active": "inactive", "enabled": "enabled"},
+    "ru-caucasus-unified-v3-gpu-pipeline.service": {"active": "inactive", "enabled": "disabled"}
+  },
+  "stop_sequence": [
+    "systemctl mask --now vllm-watchdog.timer vllm-watchdog.service vllm-models.service",
+    "docker update --restart=no qwen35-9b-2gpu qwen35-4b-gpu2",
+    "docker stop -t 120 qwen35-9b-2gpu qwen35-4b-gpu2"
+  ],
+  "restore_sequence": [
+    "docker update --restart=unless-stopped qwen35-9b-2gpu qwen35-4b-gpu2",
+    "systemctl unmask vllm-watchdog.timer vllm-watchdog.service vllm-models.service",
+    "systemctl enable vllm-models.service vllm-watchdog.timer",
+    "systemctl start vllm-models.service",
+    "systemctl start vllm-watchdog.timer",
+    "verify both APIs at 127.0.0.1:8003 and 127.0.0.1:8004"
+  ],
+  "handoff_message_id": "1f7ccd75-4d73-4f3d-ba13-484037b81bb0"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.v5.exploratory-source-audit.v1",
+  "type": "object",
+  "required": [
+    "schema", "status", "study_class", "registered_atomic_pass",
+    "registered_stage4_result", "selected_adapter_tree_sha256",
+    "structural_checks", "eligibility_checks", "old_atomic_final_accessed"
+  ],
+  "properties": {
+    "schema": {"const": "stage4.composition.v5.exploratory-source-audit.v1"},
+    "status": {"const": "PASS"},
+    "study_class": {"const": "EXPLORATORY_FOLLOWUP"},
+    "registered_atomic_pass": {"const": false},
+    "registered_stage4_result": {"const": "FAILED_CALIBRATION_GATE"},
+    "selected_adapter_tree_sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"},
+    "structural_checks": {"type": "object"},
+    "eligibility_checks": {"type": "object"},
+    "old_atomic_final_accessed": {"const": false}
+  }
+}

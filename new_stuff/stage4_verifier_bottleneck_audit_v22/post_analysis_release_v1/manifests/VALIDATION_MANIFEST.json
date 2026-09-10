@@ -1,0 +1,54 @@
+{
+  "analysis_decision": {
+    "positive_composition_confirmation": true,
+    "status": "POSITIVE_COMPOSITION_CONFIRMATION"
+  },
+  "atomic_raw": "PASS",
+  "figures": {
+    "primary_effect": {
+      "bytes": 33318,
+      "path": "figures/primary_effect.png",
+      "sha256": "C1A2C8ED3F59EEB175922E661FF7511E0EBB8259F9A9BA3F13DD9C7DA55FC744"
+    },
+    "secondary_effects": {
+      "bytes": 62491,
+      "path": "figures/secondary_effects.png",
+      "sha256": "9701557ED76C22E4EF37A02670D4357CCF3EFAF9819BC7481EAD7566F1A4B8C5"
+    }
+  },
+  "python": "3.11.9",
+  "report": {
+    "bytes": 3096,
+    "path": "FINAL_REPORT.md",
+    "sha256": "9476BC2731A2305CCB2E25023BAE82B0A71222290531C173917EAD974C3CC7B1"
+  },
+  "schema": "stage4.post-analysis.validation.v1",
+  "scientific_seal": {
+    "checked": 6828,
+    "errors": [],
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "tables": {
+    "atomic_forgetting": {
+      "bytes": 2323,
+      "path": "tables/atomic_forgetting.csv",
+      "sha256": "38AB5F30F7FE3DF2438458955F126A98212EE0EAE4DD691344BF7EBB2A05F615"
+    },
+    "atomic_plan_apply": {
+      "bytes": 1152,
+      "path": "tables/atomic_plan_apply.csv",
+      "sha256": "7B36B70A645D2A1510E87E578B23D08B978C6EA6F923CE29DC8F333F08170657"
+    },
+    "primary_per_replicate": {
+      "bytes": 429,
+      "path": "tables/primary_per_replicate.csv",
+      "sha256": "BA8952DA353976E9F4E7372F3AFB638E3C4F21EE416C8EB182A729AC15FBF8C4"
+    },
+    "secondary_endpoints": {
+      "bytes": 804,
+      "path": "tables/secondary_endpoints.csv",
+      "sha256": "8D7C5E93DDF2D7E98DA320F7DE1AF69BF9F9C4EE180E8F81FA1D5857DD379A0E"
+    }
+  }
+}

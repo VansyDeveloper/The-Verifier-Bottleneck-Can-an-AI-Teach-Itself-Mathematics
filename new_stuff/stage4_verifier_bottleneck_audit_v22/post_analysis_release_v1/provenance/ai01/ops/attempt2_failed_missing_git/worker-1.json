@@ -1,0 +1,30 @@
+{
+  "assignments": [
+    [
+      0,
+      "composition_distill"
+    ],
+    [
+      2,
+      "atomic_control"
+    ],
+    [
+      3,
+      "composition_distill"
+    ],
+    [
+      5,
+      "atomic_control"
+    ]
+  ],
+  "completed": [],
+  "error": "[Errno 2] No such file or directory: 'git'",
+  "error_type": "FileNotFoundError",
+  "failed_at_unix": 1785635539.9341478,
+  "pid": 53,
+  "schema": "stage4.ai01.secondary-worker.v1",
+  "started_at_unix": 1785635534.658544,
+  "status": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/secondary_worker.py\", line 96, in main\n    confirm.require_frozen()\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 1234, in require_frozen\n    recovery = require_recovery_amendment()\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 542, in require_recovery_amendment\n    _assert_amendment_commit(receipt)\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 438, in _assert_amendment_commit\n    if subprocess.run(\n       ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 548, in run\n    with Popen(*popenargs, **kwargs) as process:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 1026, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n  File \"/usr/lib/python3.12/subprocess.py\", line 1955, in _execute_child\n    raise child_exception_type(errno_num, err_msg, err_filename)\nFileNotFoundError: [Errno 2] No such file or directory: 'git'\n",
+  "worker": 1
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.confirmation.analysis.v1",
+  "type": "object",
+  "required": ["schema", "status", "study_class", "primary", "secondary_holm", "descriptive_non_gating", "integrity", "decision", "bindings"],
+  "properties": {
+    "schema": {"const": "stage4.composition.confirmation.analysis.v1"},
+    "status": {"const": "DONE"},
+    "study_class": {"const": "PREREGISTERED_COMPOSITION_ONLY_CONFIRMATION"},
+    "primary": {"type": "object"},
+    "secondary_holm": {"type": "object"},
+    "descriptive_non_gating": {"type": "object"},
+    "integrity": {"type": "object"},
+    "decision": {
+      "type": "object",
+      "required": ["status", "positive_composition_confirmation"],
+      "properties": {
+        "status": {"enum": ["POSITIVE_COMPOSITION_CONFIRMATION", "NO_CONFIRMATORY_COMPOSITION_EVIDENCE", "INVALID_CONFIRMATION_INTEGRITY"]},
+        "positive_composition_confirmation": {"type": "boolean"}
+      }
+    },
+    "bindings": {"type": "object"}
+  }
+}
+

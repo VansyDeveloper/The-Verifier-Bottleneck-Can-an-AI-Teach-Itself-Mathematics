@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.distill.v5.exploratory-atomic-authorization.v1",
+  "type": "object",
+  "required": [
+    "schema", "status", "study_class", "export_authorized",
+    "registered_atomic_pass", "model", "selected_adapter", "source_files",
+    "selected_adapter_tree_sha256", "old_atomic_final_access_forbidden"
+  ],
+  "properties": {
+    "schema": {"const": "stage4.distill.v5.exploratory-atomic-authorization.v1"},
+    "status": {"const": "AUTHORIZED_FOR_EXPLORATION"},
+    "study_class": {"const": "EXPLORATORY_FOLLOWUP"},
+    "export_authorized": {"const": true},
+    "registered_atomic_pass": {"const": false},
+    "model": {"const": "Qwen/Qwen3-0.6B"},
+    "selected_adapter": {"type": "string", "minLength": 1},
+    "source_files": {
+      "type": "object",
+      "minProperties": 14,
+      "maxProperties": 14,
+      "required": [
+        "atomic_decision", "calibration_gate", "calibration_generations", "training_receipt",
+        "corrective_seal", "atomic_protocol", "data_manifest", "calibration_data",
+        "corrective_data_manifest", "corrective_allocation", "corrective_sh1_data",
+        "corrective_control_data", "corrective_plan_raw", "plan_raw_audit_receipt"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"}
+        }
+      }
+    },
+    "selected_adapter_tree_sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"},
+    "old_atomic_final_access_forbidden": {"const": true}
+  }
+}

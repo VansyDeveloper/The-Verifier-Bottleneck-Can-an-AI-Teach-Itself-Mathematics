@@ -1,0 +1,39 @@
+{
+  "actual_correct_mass": 8.748914782279979e-13,
+  "actual_log_gap": -27.164969630539417,
+  "actual_rank_metrics": {
+    "best_rank": 212,
+    "hit@1": 0.0,
+    "hit@16": 0.0,
+    "hit@32": 0.0,
+    "hit@64": 0.0,
+    "hit@8": 0.0,
+    "mrr": 0.0047169811320754715
+  },
+  "candidate_count": 625,
+  "correct_flags_exact": true,
+  "correct_program_rank_map_exact": true,
+  "cuda": "12.9",
+  "depth": 4,
+  "expected_correct_mass": 8.748368020077757e-13,
+  "expected_log_gap": -27.16501459851861,
+  "expected_rank_metrics": {
+    "best_rank": 212,
+    "hit@1": 0.0,
+    "hit@16": 0.0,
+    "hit@32": 0.0,
+    "hit@64": 0.0,
+    "hit@8": 0.0,
+    "mrr": 0.0047169811320754715
+  },
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "max_score_abs_diff": 0.000141143798828125,
+  "mismatch_positions": 2,
+  "pid": 1,
+  "program_order_exact": false,
+  "rank_metrics_exact": true,
+  "schema": "stage4.ai01.cross-environment-equivalence.v1",
+  "status": "FAIL",
+  "task_id": "s4c-7dde4b59f4d8f16a1d54970f",
+  "torch": "2.11.0+cu129"
+}

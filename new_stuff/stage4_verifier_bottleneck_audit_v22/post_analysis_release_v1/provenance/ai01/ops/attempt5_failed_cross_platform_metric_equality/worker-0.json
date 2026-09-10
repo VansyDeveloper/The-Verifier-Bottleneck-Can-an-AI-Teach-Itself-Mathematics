@@ -1,0 +1,30 @@
+{
+  "assignments": [
+    [
+      0,
+      "atomic_control"
+    ],
+    [
+      1,
+      "composition_distill"
+    ],
+    [
+      3,
+      "atomic_control"
+    ],
+    [
+      4,
+      "composition_distill"
+    ]
+  ],
+  "completed": [],
+  "error": "cached metrics differ from independently derived raw rankings: /workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/rankings/replicate0/metrics/replicate0_atomic_control_final_b/part-00000.jsonl",
+  "error_type": "RuntimeError",
+  "failed_at_unix": 1785635884.8376455,
+  "pid": 54,
+  "schema": "stage4.ai01.secondary-worker.v1",
+  "started_at_unix": 1785635803.934516,
+  "status": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/secondary_worker.py\", line 113, in main\n    result = confirm.evaluate_branch(\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 1312, in evaluate_branch\n    summary, _ = eval_lib.evaluate_ranking(model, tokenizer, token_ids, rows, out_root, name,\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_eval.py\", line 222, in evaluate_ranking\n    all_metrics.extend(_rederive_cached_ranking_shard(shard_rows, ranking_path, metric_path,\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_eval.py\", line 190, in _rederive_cached_ranking_shard\n    raise RuntimeError(f\"cached metrics differ from independently derived raw rankings: {metric_path}\")\nRuntimeError: cached metrics differ from independently derived raw rankings: /workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/rankings/replicate0/metrics/replicate0_atomic_control_final_b/part-00000.jsonl\n",
+  "worker": 0
+}

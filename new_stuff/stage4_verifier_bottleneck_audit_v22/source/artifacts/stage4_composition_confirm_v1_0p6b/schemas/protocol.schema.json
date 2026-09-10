@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.confirmation.protocol.v1",
+  "type": "object",
+  "required": ["schema", "study_class", "model", "model_size_lock", "replicates", "training", "final_data", "primary", "statistics"],
+  "properties": {
+    "schema": {"const": "stage4.composition.confirmation.protocol.v1"},
+    "study_class": {"const": "PREREGISTERED_COMPOSITION_ONLY_CONFIRMATION"},
+    "model": {"const": "Qwen/Qwen3-0.6B"},
+    "model_size_lock": {"const": "0.6B"},
+    "replicates": {"type": "array", "minItems": 6, "maxItems": 6},
+    "training": {"type": "object"},
+    "final_data": {"type": "object"},
+    "primary": {"type": "object"},
+    "statistics": {"type": "object"}
+  }
+}
+

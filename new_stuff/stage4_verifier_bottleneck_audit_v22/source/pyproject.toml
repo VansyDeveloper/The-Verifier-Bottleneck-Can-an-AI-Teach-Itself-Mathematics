@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vbexp"
+version = "0.1.0"
+description = "Verifier Bottleneck composition and exploration sandbox"
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "jsonschema>=4.0"]
+analysis = ["numpy>=1.26", "pandas>=2.2", "scipy>=1.12", "matplotlib>=3.8"]
+ml = ["torch", "transformers", "datasets", "accelerate", "peft", "trl"]
+
+[project.scripts]
+vbexp = "vbexp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

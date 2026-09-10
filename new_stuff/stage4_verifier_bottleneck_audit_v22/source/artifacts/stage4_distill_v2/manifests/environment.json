@@ -1,0 +1,18 @@
+{
+  "cuda": "12.8",
+  "git_branch": "stage4-distill-v2",
+  "base_v1_commit": "72b2a7b7e1807ce89cf1a6bf3d4e42627e6c26d2",
+  "preregistration_commit": "4889b04982679f20a9be16b95e1b3c174394878c",
+  "training_code_commit": "5cd551e8b210",
+  "runtime_micro_batch": 8,
+  "runtime_gradient_accumulation": 8,
+  "runtime_smoke": {
+    "loss": 2.640056848526001,
+    "sequence_length": 94,
+    "seconds": 0.5447995662689209,
+    "peak_vram_mb": 5441.18115234375
+  },
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "seed": 0,
+  "torch": "2.10.0+cu128"
+}

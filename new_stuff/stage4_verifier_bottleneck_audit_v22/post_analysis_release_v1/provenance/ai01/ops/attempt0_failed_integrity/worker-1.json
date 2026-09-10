@@ -1,0 +1,30 @@
+{
+  "assignments": [
+    [
+      0,
+      "composition_distill"
+    ],
+    [
+      2,
+      "atomic_control"
+    ],
+    [
+      3,
+      "composition_distill"
+    ],
+    [
+      5,
+      "atomic_control"
+    ]
+  ],
+  "completed": [],
+  "error": "recovery original binding failed_stdout_sha256 hash mismatch: /workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/runs/failures/freeze_attempt0/confirmation.stdout.log",
+  "error_type": "RuntimeError",
+  "failed_at_unix": 1785635225.0161192,
+  "pid": 53,
+  "schema": "stage4.ai01.secondary-worker.v1",
+  "started_at_unix": 1785635224.9420218,
+  "status": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/secondary_worker.py\", line 75, in main\n    confirm.require_frozen()\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 1234, in require_frozen\n    recovery = require_recovery_amendment()\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 531, in require_recovery_amendment\n    _assert_recovery_original_bindings(spec)\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 256, in _assert_recovery_original_bindings\n    _assert_hash(path, bindings[key], f\"recovery original binding {key}\")\n  File \"/workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py\", line 772, in _assert_hash\n    raise RuntimeError(f\"{label} hash mismatch: {path}\")\nRuntimeError: recovery original binding failed_stdout_sha256 hash mismatch: /workspace/repo/artifacts/stage4_composition_confirm_v1_0p6b/runs/failures/freeze_attempt0/confirmation.stdout.log\n",
+  "worker": 1
+}

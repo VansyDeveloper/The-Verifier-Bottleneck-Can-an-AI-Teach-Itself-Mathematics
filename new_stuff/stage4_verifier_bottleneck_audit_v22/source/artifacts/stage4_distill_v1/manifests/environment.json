@@ -1,0 +1,14 @@
+{
+  "delta_sha256": "02484C30E2FFE9D3DC91E7F22D44D0014C9D5AA6FBB8B35DD2227DAA3A091E08",
+  "delta_zip": "C:\\Users\\NS.PRODSTAR\\Downloads\\verifier_bottleneck_stage4_delta_instructions_only.zip",
+  "git_branch": "stage4-distill-v1",
+  "git_commit": "041f6c33b0a2e07eabe382e75a3e3880b8c37652",
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "numpy": "2.3.5",
+  "peft": "0.19.1",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "scipy": "1.16.3",
+  "torch": "2.10.0+cu128",
+  "transformers": "4.57.6"
+}

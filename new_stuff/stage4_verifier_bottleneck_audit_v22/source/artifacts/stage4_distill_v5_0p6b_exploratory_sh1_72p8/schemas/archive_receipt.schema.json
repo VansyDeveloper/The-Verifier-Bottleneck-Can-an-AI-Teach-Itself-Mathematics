@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.v5.archive-receipt.v1",
+  "type": "object",
+  "required": ["schema", "source_manifest", "atomic_payload_manifest", "archives"],
+  "properties": {
+    "schema": {"const": "stage4.composition.v5.archive-receipt.v1"},
+    "source_manifest": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"const": "manifests/SHA256SUMS.json"},
+        "sha256": {"type": "string", "pattern": "^[0-9A-F]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "atomic_payload_manifest": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["path", "sha256", "root", "tree_sha256", "file_count", "total_bytes"],
+          "properties": {
+            "path": {"const": "manifests/ATOMIC_PAYLOAD_SHA256SUMS.json"},
+            "sha256": {"type": "string", "pattern": "^[0-9A-F]{64}$"},
+            "root": {"const": "stage4_sh1_v5_0p6b"},
+            "tree_sha256": {"type": "string", "pattern": "^[0-9A-F]{64}$"},
+            "file_count": {"type": "integer", "minimum": 1},
+            "total_bytes": {"type": "integer", "minimum": 0}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "archives": {
+      "type": "object",
+      "required": ["compact", "full"],
+      "properties": {
+        "compact": {"$ref": "#/$defs/archive"},
+        "full": {"$ref": "#/$defs/archive"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "archive": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256", "crc_test", "members", "membership_sha256", "roots"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9A-F]{64}$"},
+        "crc_test": {"const": "PASS"},
+        "members": {"type": "integer", "minimum": 1},
+        "membership_sha256": {"type": "string", "pattern": "^[0-9A-F]{64}$"},
+        "roots": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {"type": "string", "minLength": 1},
+          "additionalProperties": {"type": "integer", "minimum": 1}
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

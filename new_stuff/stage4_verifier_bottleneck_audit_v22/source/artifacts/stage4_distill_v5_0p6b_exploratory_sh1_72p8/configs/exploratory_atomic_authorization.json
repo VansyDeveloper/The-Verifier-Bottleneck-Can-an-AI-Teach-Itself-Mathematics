@@ -1,0 +1,71 @@
+{
+  "schema": "stage4.distill.v5.exploratory-atomic-authorization.v1",
+  "status": "AUTHORIZED_FOR_EXPLORATION",
+  "study_class": "EXPLORATORY_FOLLOWUP",
+  "export_authorized": true,
+  "registered_atomic_pass": false,
+  "registered_stage4_result": "FAILED_CALIBRATION_GATE",
+  "composition_claim_ceiling": "EXPLORATORY_SIGNAL_ONLY",
+  "model": "Qwen/Qwen3-0.6B",
+  "selected_adapter": "artifacts/stage4_sh1_v5_0p6b/adapters/corrective",
+  "source_files": {
+    "atomic_decision": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/runs/ATOMIC_DECISION.json",
+      "sha256": "EC4F0F9FA9FC8F35CE8B079F246FE933FEA646E96CC3B0E54354225D809D57C3"
+    },
+    "calibration_gate": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/runs/corrective_calibration_gate.json",
+      "sha256": "685E31DEF284D896473BCD7E836BA523C2B8FD8CFD76952122D7EB78D35C8A8D"
+    },
+    "calibration_generations": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/runs/generations/corrective_calibration.jsonl",
+      "sha256": "12BE2E437EF5CE8C8580D0918F0E319E5E3E0808CB9344E9FDD8D1DD8E1FD8CE"
+    },
+    "training_receipt": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/adapters/corrective/training_receipt.json",
+      "sha256": "91FF92A6C6A3DC74AD446B5314B635820344326AA30480ED1438BD2866873FBA"
+    },
+    "corrective_seal": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/manifests/phase_seals/corrective.json",
+      "sha256": "6F19107706222514D1C5E5A72CA4658CCCB947F31AB893620B9E30DC8F50C0D9"
+    },
+    "atomic_protocol": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/configs/protocol.json",
+      "sha256": "A1D482BD81ED3DB0A13062C61CF1FF4FB9F4C5EF241D0E99E8FC2849D9DB0018"
+    },
+    "data_manifest": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/manifests/data_manifest.json",
+      "sha256": "4E8BCC6AE0174EBCCFD8C2FF3D15E445469B8FC17FC4E5A9FF224F089D828724"
+    },
+    "calibration_data": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/data/calibration.jsonl",
+      "sha256": "7861F649D18042ADCC88ED7E43726F4A934667AF138DC383F3587EFBEF45BC66"
+    },
+    "corrective_data_manifest": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/manifests/corrective_data_manifest.json",
+      "sha256": "4841C38D56972244D47EC7B0D470B218A7E5D326416FA904BFDD93B36F7423A9"
+    },
+    "corrective_allocation": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/manifests/corrective_allocation.json",
+      "sha256": "56E47E440BC974930F4E333E859DD3A146E7C1606CA0C01697C331A1058CBBDB"
+    },
+    "corrective_sh1_data": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/data/corrective_sh1.jsonl",
+      "sha256": "5CCE3B099D86B5DB67C47EF3E795212145C459460D8AE15652A2D94122CFC765"
+    },
+    "corrective_control_data": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/data/corrective_control.jsonl",
+      "sha256": "9681A633404CF03C5974D9379825D6F4950F859BF83DE3C820515B9189BA0737"
+    },
+    "corrective_plan_raw": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/runs/audit/plan/corrective_calibration.jsonl",
+      "sha256": "65E1811E32A49F2D0FF4F8F1382BFE4C486A533D7100BBD71CC4516DAB82B7A1"
+    },
+    "plan_raw_audit_receipt": {
+      "path": "artifacts/stage4_sh1_v5_0p6b/manifests/plan_raw_audit.json",
+      "sha256": "B1C769AAE4FCA5BEEDA5AF6D32ECD2E383A6A5DCFA1E1205AEB6BE89CCFC959B"
+    }
+  },
+  "selected_adapter_tree_sha256": "2F847EF64B1EA61D5C2EA363572A39E54C14933DD676BEB497353F4F9B66D103",
+  "old_atomic_final_access_forbidden": true
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.distill.v5.prepare-failure.v1",
+  "type": "object",
+  "required": [
+    "schema", "status", "attempt", "stage", "failure_class", "error",
+    "branch_training_started", "model_composition_metrics_observed",
+    "registered_stage4_result_remains", "git_commit", "preregistration_sha256",
+    "atomic_export_tree_sha256", "discover", "log", "failed_at_utc"
+  ],
+  "properties": {
+    "schema": {"const": "stage4.distill.v5.prepare-failure.v1"},
+    "status": {"const": "FAILED"},
+    "attempt": {"const": 1},
+    "stage": {"const": "prepare-discover"},
+    "failure_class": {"const": "FIRST_OPERATION_BALANCE"},
+    "branch_training_started": {"const": false},
+    "model_composition_metrics_observed": {"const": false},
+    "registered_stage4_result_remains": {"const": "FAILED_CALIBRATION_GATE"},
+    "git_commit": {"type": "string", "pattern": "^[A-Fa-f0-9]{40}$"},
+    "preregistration_sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"},
+    "atomic_export_tree_sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"},
+    "discover": {
+      "type": "object",
+      "required": ["candidate_trajectories", "unique_trajectories", "solvable_tasks", "full_signatures", "minimum_position_count", "first_operation", "first_operation_spread", "held_motif_leaks", "passes_minimums"],
+      "properties": {
+        "first_operation_spread": {"const": 3},
+        "held_motif_leaks": {"const": 0},
+        "passes_minimums": {"const": false}
+      }
+    },
+    "log": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"}
+      }
+    }
+  }
+}

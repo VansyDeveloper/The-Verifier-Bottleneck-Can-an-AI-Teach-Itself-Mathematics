@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.v5.frozen-source-identity.v1",
+  "type": "object",
+  "required": [
+    "schema", "status", "study_class", "registered_atomic_pass", "tasks",
+    "metrics", "per_task_exact_match", "source_gate_sha256", "source_apply_sha256",
+    "source_plan_sha256", "base_generation_sha256", "authorization_sha256",
+    "old_atomic_final_accessed"
+  ],
+  "properties": {
+    "schema": {"const": "stage4.composition.v5.frozen-source-identity.v1"},
+    "status": {"const": "PASS"},
+    "study_class": {"const": "EXPLORATORY_FOLLOWUP"},
+    "registered_atomic_pass": {"const": false},
+    "tasks": {"const": 1800},
+    "per_task_exact_match": {"const": true},
+    "old_atomic_final_accessed": {"const": false}
+  }
+}

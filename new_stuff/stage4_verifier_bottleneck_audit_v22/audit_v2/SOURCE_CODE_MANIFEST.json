@@ -1,0 +1,484 @@
+{
+  "base_archive": "stage4_verifier_bottleneck_audit_v1.zip",
+  "base_archive_sha256": "207A3B518CACE7448B5EC7AB5D6AD168C8FEC0CD2162CFCC8B3BABFB197AFC5E",
+  "excluded_heavy_artifacts": [
+    "base model weights",
+    "LoRA adapters and checkpoints",
+    "raw full-program ranking shards",
+    "generated training and evaluation datasets"
+  ],
+  "files": [
+    {
+      "archive_path": "source/README.md",
+      "bytes": 5321,
+      "path": "README.md",
+      "sha256": "3796CA09FB119CD554E607B8EC7586EE17D0537E0586D18391A1190BEC3A8909"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/PREREGISTRATION.md",
+      "bytes": 2776,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/PREREGISTRATION.md",
+      "sha256": "CD5B955FE933147F3AABB587569A1612FC167089D54CD76068374336587C7262"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/RECOVERY_AMENDMENT_001.json",
+      "bytes": 2951,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/RECOVERY_AMENDMENT_001.json",
+      "sha256": "5A32B8F1B51EB1D22CBB26B3837B649843A39876FBCB02FD2245AF6B3CE4593A"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/RECOVERY_AMENDMENT_001.md",
+      "bytes": 4128,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/RECOVERY_AMENDMENT_001.md",
+      "sha256": "3CE41D61F7E2828BECBCE94E0BEE4A0838EDC64E5EE1E638AD5FD0643054B4C9"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py",
+      "bytes": 103904,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py",
+      "sha256": "20EABA39BA4D603AF9D23B9F21104C682EC7D831C5E462EAFE142334D22DAAA5"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm_atomic_v11.py",
+      "bytes": 9559,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/code/confirm_atomic_v11.py",
+      "sha256": "3CD48580BAB68244EF2E4AC40C2616605C199E6B3964D89BF60B71B284C16756"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm_stats.py",
+      "bytes": 8630,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/code/confirm_stats.py",
+      "sha256": "D7FBB22D2401BE385D4960FD130E731C3ACE988297F8643648364F021D1D94C2"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/configs/protocol.json",
+      "bytes": 4073,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/configs/protocol.json",
+      "sha256": "381B94FE055335DF4B853840153822755784E962B53F6B86D5CFA53FE85F687A"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/post_analysis_release_v1/code/build_audit_v2.py",
+      "bytes": 8742,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/post_analysis_release_v1/code/build_audit_v2.py",
+      "sha256": "52A4AA63F63251DB1119D7FE9446682B870B47E6A918C7081D037C03C592C648"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/post_analysis_release_v1/code/build_post_analysis_release.py",
+      "bytes": 25284,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/post_analysis_release_v1/code/build_post_analysis_release.py",
+      "sha256": "3554ACF3C06D0E7A5F49D4FDAF1F9D2AD124F20E3172FCF9895C4633D9E37E9D"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/schemas/analysis.schema.json",
+      "bytes": 1040,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/schemas/analysis.schema.json",
+      "sha256": "E733D67F76012B88780DE83ED8AF6A27B0D043BA89AA80A5C831AD44DC812DFA"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/schemas/freeze.schema.json",
+      "bytes": 1655,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/schemas/freeze.schema.json",
+      "sha256": "CC4BA629B96A695E02A847CBB91F34162145F923DF79565075F6C6445CC141B1"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/schemas/protocol.schema.json",
+      "bytes": 745,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/schemas/protocol.schema.json",
+      "sha256": "9F77F4176717A0030D301E09873139A60C7901F42E770BCC9D2C50ECD44F390F"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/schemas/recovery_amendment.schema.json",
+      "bytes": 1084,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/schemas/recovery_amendment.schema.json",
+      "sha256": "FFB6418D9D2E4FA0A0384FEDDFF6B6B5C373E1EBC555882192F2026C4C46BCF7"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/tests/test_confirm_stats.py",
+      "bytes": 1977,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/tests/test_confirm_stats.py",
+      "sha256": "0B333C17F936F2403D66B8D5D8C7ABB652EA6056BFC349A0DE4A33EFEB7DD848"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/tests/test_protocol.py",
+      "bytes": 1422,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/tests/test_protocol.py",
+      "sha256": "092A2225EE78E393855EF50A3382A65DDB4FE66F97D52EC5BA3031DCE414F0DE"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/tests/test_recovery_amendment.py",
+      "bytes": 14693,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/tests/test_recovery_amendment.py",
+      "sha256": "C26E94929CC0E2B43DA75C40C2BA11485CE9CAEADDBF7DCB2856779636694345"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_composition_confirm_v1_0p6b/tests/test_runtime_bindings.py",
+      "bytes": 1114,
+      "path": "artifacts/stage4_composition_confirm_v1_0p6b/tests/test_runtime_bindings.py",
+      "sha256": "900AB57AA843F563B9B25F4C0B21E393FCB7DE7606022DA3705484E30853B8C8"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/reevaluate_atomic.py",
+      "bytes": 2094,
+      "path": "artifacts/stage4_distill_v1/code/reevaluate_atomic.py",
+      "sha256": "ED4A4A2D8F1F3568BA85D0624507594BEC5D3FA5CEC50037A2122C0FB93241D5"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/report_negative.py",
+      "bytes": 7372,
+      "path": "artifacts/stage4_distill_v1/code/report_negative.py",
+      "sha256": "3A2E366415C7E079979BFF3F45800912CEE3DF21E3A488E283D84D1E50791230"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/runtime_audit.py",
+      "bytes": 3031,
+      "path": "artifacts/stage4_distill_v1/code/runtime_audit.py",
+      "sha256": "B345F91B3E1565525F05DE2653F6132DBA5632F1F513827F5BD2CA2BAABF5B9F"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/stage4.py",
+      "bytes": 20462,
+      "path": "artifacts/stage4_distill_v1/code/stage4.py",
+      "sha256": "35264D69CED11FDD2A9C7EF42C48BF545D0A5CA22D254E2434B54334B9ED9564"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/stage4_core.py",
+      "bytes": 11062,
+      "path": "artifacts/stage4_distill_v1/code/stage4_core.py",
+      "sha256": "7BD1CD61344228407E5E78394FDEE5165DA602EF03A49999498D660FA9D5881F"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/stage4_eval.py",
+      "bytes": 5614,
+      "path": "artifacts/stage4_distill_v1/code/stage4_eval.py",
+      "sha256": "2CAA31EB92A1EB596A0DE4B1C8600D19D8AF86BF20167492FC35F1010B691E01"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/stage4_model.py",
+      "bytes": 9394,
+      "path": "artifacts/stage4_distill_v1/code/stage4_model.py",
+      "sha256": "A0BAE11BC5679EEA46B35BF06ABF0746C158227BBC215308BA58C4555E1DEF19"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/code/stage4_stats.py",
+      "bytes": 2002,
+      "path": "artifacts/stage4_distill_v1/code/stage4_stats.py",
+      "sha256": "16546FB3257D67F04C5744E5DE410FE6B7E7ACBB9F9705E293AACBD1A0E488B0"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/configs/protocol.json",
+      "bytes": 946,
+      "path": "artifacts/stage4_distill_v1/configs/protocol.json",
+      "sha256": "78EF4FC2AA4B9CC332EFAB27818D365D81F80A7D675E8C12C7EA9744F4D74100"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v1/manifests/environment.json",
+      "bytes": 602,
+      "path": "artifacts/stage4_distill_v1/manifests/environment.json",
+      "sha256": "C1FAFC0E76895D212762E25CDADC06E345CBBEB51400B9BF6244F987A0B9DF14"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v2/code/release_v2.py",
+      "bytes": 10643,
+      "path": "artifacts/stage4_distill_v2/code/release_v2.py",
+      "sha256": "6DBDE496F689F4A4D756C287AA9BD5CC40AC6660D886BD9DF226C17D8617D6AD"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v2/code/v2_atomic.py",
+      "bytes": 11831,
+      "path": "artifacts/stage4_distill_v2/code/v2_atomic.py",
+      "sha256": "FB2AED4AEFCF00B0303D4D805DB56E6ADA517E670A1CCBECE4DBDE50BA2EA528"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v2/configs/atomic_protocol.json",
+      "bytes": 861,
+      "path": "artifacts/stage4_distill_v2/configs/atomic_protocol.json",
+      "sha256": "1B6F8C0CC06CA112D7F517BE83700431157DC15AB2983EED7652ACE34EBEC301"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v2/manifests/environment.json",
+      "bytes": 544,
+      "path": "artifacts/stage4_distill_v2/manifests/environment.json",
+      "sha256": "AF4A80F8B343B546F58DA19AE69F597A1F36FD30DF5D7D38DF054ABD0DAF5F76"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v3/code/v3_train.py",
+      "bytes": 9859,
+      "path": "artifacts/stage4_distill_v3/code/v3_train.py",
+      "sha256": "7BB3F4662633B1C0D0085D578707641E602935176FA8C93EA77EE52C5C64F513"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v3/configs/protocol.json",
+      "bytes": 555,
+      "path": "artifacts/stage4_distill_v3/configs/protocol.json",
+      "sha256": "C2D1ECF577E7E3C20ACD8232B4A4C0B8094BB91CAFC090A3CC8BC4965B63553A"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v3/manifests/environment.json",
+      "bytes": 284,
+      "path": "artifacts/stage4_distill_v3/manifests/environment.json",
+      "sha256": "171C2AC13899B45AF6641C3A43EC492BE2445CF5132817A84ED7B2AA814180B3"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/PREREGISTRATION.md",
+      "bytes": 5151,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/PREREGISTRATION.md",
+      "sha256": "D9AD5E1B3EA6F09FA3FF62C22649EE028B62690043B5ACEBFB8DDE6E8017B1F7"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_core.py",
+      "bytes": 48162,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_core.py",
+      "sha256": "E62CAB096F7A8524092E5343FD037ADB6D67ED13FD8C0B6DED9537757CB5A89A"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_eval.py",
+      "bytes": 26821,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_eval.py",
+      "sha256": "0E9452CCF2842F46D911CD702B75F29A98426534B0E5B709250AEA50FA799EFC"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_model.py",
+      "bytes": 32668,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_model.py",
+      "sha256": "253671C5602F05F4F5604509B8D8C1D1D99BF340996A972802FA2AF5ED4FD233"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_release.py",
+      "bytes": 85692,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_release.py",
+      "sha256": "4696D9D86636E10128F2D5B237F83F7F0FECAC9B2E727DC84312F2C451BDD777"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_stats.py",
+      "bytes": 22986,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_stats.py",
+      "sha256": "6A2C4164448E80B43492DDC7DEA0CC418A331C463249F02A48808E10C0321994"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/stage4.py",
+      "bytes": 142782,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/stage4.py",
+      "sha256": "2F69B8E7829C2CB56C6D525783CF182278434BDFB18023D207C4BC6DB79B8102"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/configs/exploratory_atomic_authorization.json",
+      "bytes": 3382,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/configs/exploratory_atomic_authorization.json",
+      "sha256": "6A95BE0AD380C3657CBB96102BB14DE6FEA8210F712EC993F0679B323867CCCE"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/configs/protocol.json",
+      "bytes": 4930,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/configs/protocol.json",
+      "sha256": "89220E6E3FA7B56544BF73ABBD9F143EC831880075892475A12B38C4C5CE38A5"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/archive_receipt.schema.json",
+      "bytes": 2376,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/archive_receipt.schema.json",
+      "sha256": "F120D2E1F11E41D0B0F4A57CA5B6903D3726B030F538DF3FC553FA6743B7EE23"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/atomic_payload_sha256.schema.json",
+      "bytes": 1095,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/atomic_payload_sha256.schema.json",
+      "sha256": "83FD7B0FE7F009D76C60609C0E9FC0D87E1A3E9C71F5FF8D5E0F2A8DC65EE7F1"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/atomic_reference.schema.json",
+      "bytes": 1831,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/atomic_reference.schema.json",
+      "sha256": "AAB5A694B49D6AC352DF55C0EA85EDC05057B0EDADCB06325C10A5C20B75A296"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_atomic_authorization.schema.json",
+      "bytes": 1675,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_atomic_authorization.schema.json",
+      "sha256": "DE586305470894F8ADD4F9D57C1C7964275671D1DBDDD5D1CBB35BDE493A4358"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_pilot_decision.schema.json",
+      "bytes": 1220,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_pilot_decision.schema.json",
+      "sha256": "69EBD9806DA7C85A3C7294ED8C7CEDB39135B43B354CB9890B5C8A24917DAD11"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_protocol.schema.json",
+      "bytes": 2356,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_protocol.schema.json",
+      "sha256": "E6F4407273231AA014664B483B1FFC26B919A0DBA5DC09B3BE2268990098E4BD"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_source_audit.schema.json",
+      "bytes": 906,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/exploratory_source_audit.schema.json",
+      "sha256": "691E10FFA358148E47F6AD586B5A1240089D49D297DAAF26F9EEE3EB898AE297"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/frozen_source_identity.schema.json",
+      "bytes": 790,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/frozen_source_identity.schema.json",
+      "sha256": "AE8FC09AE2B44D050CEAF32A3D4293CB8018D519286BEFEC16FE4DC056D983B0"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/import_failure.schema.json",
+      "bytes": 1772,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/import_failure.schema.json",
+      "sha256": "25C55443C61B2D4D8562C4FB774F1836C7664733315EAA369A53B6AEDC5A88CA"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/internal.schema.json",
+      "bytes": 10657,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/internal.schema.json",
+      "sha256": "782CD38033754120748EFD1C23791729FED31DF7CA3B4B8984B0612EF04F81F2"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/prepare_failure.schema.json",
+      "bytes": 1738,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/prepare_failure.schema.json",
+      "sha256": "D278BF399B3622D81E23C426866B5B623C8EAEDE100F366E696A51AB0A1306BC"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/ranking.schema.json",
+      "bytes": 2281,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/ranking.schema.json",
+      "sha256": "C2F326CC7DA5AC778CFDB0983F7BC3623E5B1365CB7A4475F055B7AECE9ED61C"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/run.schema.json",
+      "bytes": 798,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/run.schema.json",
+      "sha256": "6C4A18D6B76EA539A4E8EBBE9579719BB1B11CA7280E66D012989123C04FFB5F"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/run_index.schema.json",
+      "bytes": 2280,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/run_index.schema.json",
+      "sha256": "EAF241FD03B5C6A77748D113C9574344D5C898DFDFD32BE55DE18DCE0091EE62"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/sha256.schema.json",
+      "bytes": 708,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/sha256.schema.json",
+      "sha256": "55517C9B7D0961E87605381F22ED841D09E0D449980B9D9D47BFBEFE5384198C"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/task.schema.json",
+      "bytes": 2612,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/task.schema.json",
+      "sha256": "89794770846901B530522E2BCC00A4C7B514FBBFD159382B4B5187126A5929EB"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/task_metrics.schema.json",
+      "bytes": 1569,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/task_metrics.schema.json",
+      "sha256": "CED52A9CCE5913307744837091017E3C4B8570C24EF44FA85F3DAA29419A3890"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/trajectory.schema.json",
+      "bytes": 1376,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/schemas/trajectory.schema.json",
+      "sha256": "856DF0E4182B8CF5EC3C09318D3EF825DE1D7FB6BF94FA3BF28618779FD3DD6E"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_atomic_negative_report.py",
+      "bytes": 1184,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_atomic_negative_report.py",
+      "sha256": "EB15C9130F1CE72B9027F93CA554F035173038BC846BE84D2025805F809F5918"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_core.py",
+      "bytes": 15541,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_core.py",
+      "sha256": "ACCBD12A0AD4DA7A967229CAFB6F1C74033A7FEAB3EBC36FCA6E3963E7EA24C4"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_pipeline.py",
+      "bytes": 33845,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_pipeline.py",
+      "sha256": "71069D4AD54C07F518F435748A6E8586BB377F0DED091A6AE6F7A39BFD2C0482"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_release.py",
+      "bytes": 31212,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_release.py",
+      "sha256": "20361D34E25951C87A8FBFA96F19C3C43260174718392F2492C72EA729DFE9AC"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_stats.py",
+      "bytes": 8661,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_composition_stats.py",
+      "sha256": "79C29FD100B1BE80AF8D28D30086CD246785616CC27BE88CABDD7228A4F530E6"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_exploratory_guard.py",
+      "bytes": 6266,
+      "path": "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/tests/test_exploratory_guard.py",
+      "sha256": "E4D1EA137A02317023C29062AA818407A75EE2E48E12304EE3AB7D0CAC9FBBD8"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_sh1_v5_0p6b/PREREGISTRATION.md",
+      "bytes": 2349,
+      "path": "artifacts/stage4_sh1_v5_0p6b/PREREGISTRATION.md",
+      "sha256": "6F06CBE15F2AC2441912BFEB0735B628CEC28D19B021650B9894E0DA798C039B"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_sh1_v5_0p6b/code/plan_raw_audit.py",
+      "bytes": 9466,
+      "path": "artifacts/stage4_sh1_v5_0p6b/code/plan_raw_audit.py",
+      "sha256": "D637BA596C23CE1DFEEF42915C4707FA630614F58B6B794C812558DA7B9F478D"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_sh1_v5_0p6b/code/v5_train.py",
+      "bytes": 39894,
+      "path": "artifacts/stage4_sh1_v5_0p6b/code/v5_train.py",
+      "sha256": "302A07A1BC14CA7311D9E0965B6DB992200677B6CEC96A31DCD1B8F6ADFF057D"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_sh1_v5_0p6b/configs/protocol.json",
+      "bytes": 1297,
+      "path": "artifacts/stage4_sh1_v5_0p6b/configs/protocol.json",
+      "sha256": "A1D482BD81ED3DB0A13062C61CF1FF4FB9F4C5EF241D0E99E8FC2849D9DB0018"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_sh1_v5_0p6b/manifests/environment.json",
+      "bytes": 312,
+      "path": "artifacts/stage4_sh1_v5_0p6b/manifests/environment.json",
+      "sha256": "DF1DE3D478BD62740EDEF5002C24BBB77CA1D1BA48B86CB2BD00D92F2EADC3B8"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_sh1_v5_0p6b/tests/test_plan_raw_audit.py",
+      "bytes": 1681,
+      "path": "artifacts/stage4_sh1_v5_0p6b/tests/test_plan_raw_audit.py",
+      "sha256": "3CBCF228F7E27FDD0C97E094FA6006009A62FF06DE6851428FA9576F63B61420"
+    },
+    {
+      "archive_path": "source/artifacts/stage4_sh1_v5_0p6b/tests/test_v5.py",
+      "bytes": 7477,
+      "path": "artifacts/stage4_sh1_v5_0p6b/tests/test_v5.py",
+      "sha256": "F9EBD22DE1C2AE57F89DF53FB2FB98EF89346FF948C9297020445E89C10BE89E"
+    },
+    {
+      "archive_path": "source/pyproject.toml",
+      "bytes": 658,
+      "path": "pyproject.toml",
+      "sha256": "11123B9FDB07F0269FE851C7CEE16E80532BD46B95B69149845747D61811E502"
+    }
+  ],
+  "required_runtime_files": [
+    "artifacts/stage4_composition_confirm_v1_0p6b/code/confirm.py",
+    "artifacts/stage4_composition_confirm_v1_0p6b/code/confirm_stats.py",
+    "artifacts/stage4_distill_v1/code/stage4_core.py",
+    "artifacts/stage4_distill_v2/code/v2_atomic.py",
+    "artifacts/stage4_distill_v3/code/v3_train.py",
+    "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_core.py",
+    "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_eval.py",
+    "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_model.py",
+    "artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/stage4.py",
+    "artifacts/stage4_sh1_v5_0p6b/code/v5_train.py"
+  ],
+  "schema": "stage4.audit.source-code-manifest.v2",
+  "source_file_count": 76,
+  "source_total_bytes": 866711,
+  "status": "PASS"
+}

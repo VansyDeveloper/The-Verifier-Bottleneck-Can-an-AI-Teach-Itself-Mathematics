@@ -1,0 +1,13 @@
+{"milestone": "primary_replicate_done", "replicate": 0, "control_hit32": 0.435, "distill_hit32": 0.737, "delta": 0.302}
+{"milestone": "primary_replicate_done", "replicate": 1, "control_hit32": 0.457, "distill_hit32": 0.724, "delta": 0.26699999999999996}
+{"milestone": "primary_replicate_done", "replicate": 2, "control_hit32": 0.454, "distill_hit32": 0.714, "delta": 0.25999999999999995}
+{"milestone": "primary_replicate_done", "replicate": 3, "control_hit32": 0.46, "distill_hit32": 0.752, "delta": 0.292}
+{"milestone": "primary_replicate_done", "replicate": 4, "control_hit32": 0.459, "distill_hit32": 0.729, "delta": 0.26999999999999996}
+{"milestone": "primary_replicate_done", "replicate": 5, "control_hit32": 0.454, "distill_hit32": 0.707, "delta": 0.25299999999999995}
+{"milestone": "primary_analysis_done", "decision": "POSITIVE_COMPOSITION_CONFIRMATION", "mean_delta": 0.274, "ci95": [0.2540331252133247, 0.2939668747866753], "p": 3.4451821433491873e-07, "positive_replicates": 6}
+{"milestone": "secondary_replicate_done", "replicate": 0}
+{"milestone": "secondary_replicate_done", "replicate": 1}
+{"milestone": "secondary_replicate_done", "replicate": 2}
+{"milestone": "secondary_replicate_done", "replicate": 3}
+{"milestone": "secondary_replicate_done", "replicate": 4}
+{"milestone": "secondary_replicate_done", "replicate": 5}

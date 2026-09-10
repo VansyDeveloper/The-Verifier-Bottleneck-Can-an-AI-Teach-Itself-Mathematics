@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage4.composition.confirmation.config-freeze.v1",
+  "type": "object",
+  "required": ["schema", "status", "model", "selection_freeze_sha256", "training_done_sha256", "final_data_manifest_sha256", "final_split_audit_sha256", "original_preregistration_sha256", "recovery_amendment_sha256", "recovery_blindness_snapshot_sha256", "recovery_freeze_started_sha256", "freeze_attempt0_failed_sha256", "confirm_atomic_generation_audit_sha256", "test_files", "primary"],
+  "properties": {
+    "schema": {"const": "stage4.composition.confirmation.config-freeze.v1"},
+    "status": {"const": "FROZEN"},
+    "model": {"const": "Qwen/Qwen3-0.6B"},
+    "selection_freeze_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "training_done_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "final_data_manifest_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "final_split_audit_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "original_preregistration_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "recovery_amendment_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "recovery_blindness_snapshot_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "recovery_freeze_started_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "freeze_attempt0_failed_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "confirm_atomic_generation_audit_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "test_files": {"type": "object", "minProperties": 1},
+    "primary": {"type": "object"}
+  }
+}

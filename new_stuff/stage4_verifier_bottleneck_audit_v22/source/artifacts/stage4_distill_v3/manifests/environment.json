@@ -1,0 +1,9 @@
+{
+  "cuda": "12.8",
+  "git_branch": "stage4-distill-v3",
+  "git_commit": "94da827508a1ab8c80331e4245194f5e689eff53",
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "parent_adapter": "artifacts/stage4_distill_v2/adapters/atomic_hard_cycle",
+  "seed": 0,
+  "torch": "2.10.0+cu128"
+}
