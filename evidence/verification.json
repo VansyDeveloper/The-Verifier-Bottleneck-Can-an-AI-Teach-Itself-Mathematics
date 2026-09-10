@@ -1,8 +1,8 @@
 {
-  "code_sha256": "cd282b67e312a2acc3fedcd21d13e5dde5e4efe15e5661ca7afa320750a9370c",
+  "code_sha256": "55b317c44134132fd0a6030fc619bd081f04fb2059a1c43c38acb569e2ee760b",
   "tests": {
     "command": "python -m pytest -q",
-    "passed": 8
+    "passed": 9
   },
   "runtime_smoke": {
     "status": "PASS",
@@ -12,7 +12,7 @@
     "training_branches": 5,
     "matched_ce_target_tokens": 298,
     "completed_run_reuse_checked": true,
-    "wall_seconds": 44.73307344398927
+    "wall_seconds": 42.68465561699122
   },
   "environment": {
     "python": "3.11.13",
@@ -51,8 +51,8 @@
     }
   ],
   "clean_checkout": {
-    "commit": "7dbe49b",
-    "tests_passed": 8,
+    "commit": "e4a2fd2",
+    "tests_passed": 9,
     "smoke": {
       "status": "PASS",
       "model": "random tiny Qwen3; 1 layer, hidden size 32",
@@ -61,8 +61,17 @@
       "training_branches": 5,
       "matched_ce_target_tokens": 298,
       "completed_run_reuse_checked": true,
-      "wall_seconds": 42.41782971599605
+      "wall_seconds": 42.68465561699122
     },
     "dependency_environment": "existing venv, fixed direct versions recorded above"
+  },
+  "dependency_lock_check": "PASS: uv lock --check; 57 packages resolved",
+  "local_series": {
+    "manifest_sha256": "ed3a5eb32090305582403771d966d3fbf60d47e64d53a9a0676765fe127ef9cb",
+    "runs": 12,
+    "training_seed_pairs": 3,
+    "task_sets": 2,
+    "tasks_per_set": 300,
+    "curves": "b282f1196d8893a0364347cab2c65a466de57e2f349e2c2a3177dc9160589156"
   }
 }
