@@ -1,0 +1,18 @@
+{
+  "tasks": 100,
+  "iid_pass_at_k": 0.22,
+  "prefix_pass_at_k": 0.34,
+  "delta_percentage_points": 12.0,
+  "paired_bootstrap_95_ci_percentage_points": [
+    2.0,
+    22.0
+  ],
+  "bootstrap_repetitions": 10000,
+  "prefix_only_successes": 20,
+  "iid_only_successes": 8,
+  "both_success": 14,
+  "both_fail": 58,
+  "mcnemar_exact_two_sided_p": 0.03569813817739487,
+  "iid_run": "artifacts\\runs\\20260727T094614Z_qwen3-0.6b_plan-dev_exploration_action-iid-vs-prefix_exact_seed0",
+  "prefix_run": "artifacts\\runs\\20260727T094614Z_qwen3-0.6b_plan-dev_exploration_action-iid-vs-prefix_exact_seed0"
+}

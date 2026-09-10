@@ -1,0 +1,35 @@
+{
+  "tier": "pilot",
+  "files": [
+    {
+      "path": "artifacts/data/pilot/sft_train_apply.jsonl",
+      "size": 365102,
+      "sha256": "05aececbdf53d2d56744e6fb1c7cffa032bd363bfbbdc96572421c27871608d2"
+    },
+    {
+      "path": "artifacts/data/pilot/sft_train_plan.jsonl",
+      "size": 357120,
+      "sha256": "d60b1b354002df3e846a7093755518135fd6e221bdd4dc9699a16ded932f8d16"
+    },
+    {
+      "path": "artifacts/data/pilot/sft_validation_apply.jsonl",
+      "size": 36970,
+      "sha256": "335d0861d55efe9b96c83689ba38a87d6d5b4c735bc08218a134e73ba421d0d3"
+    },
+    {
+      "path": "artifacts/data/pilot/sft_validation_plan.jsonl",
+      "size": 36242,
+      "sha256": "3eb60862970cdb16fd56a2c47be8d12cf34d9455f9c547ec3a2750d638d3e6c8"
+    },
+    {
+      "path": "artifacts/data/pilot/dev_exploration.jsonl",
+      "size": 36878,
+      "sha256": "f4202f592affc2114bf3c4313b383fc73cc987aff48d180f865135bdd1a18132"
+    },
+    {
+      "path": "artifacts/data/pilot/final_like_heldout.jsonl",
+      "size": 75576,
+      "sha256": "6b46f341fb4c860e1a5ed14ae76919ab1971666d7484ed9c02a2d24f4bc9fd5a"
+    }
+  ]
+}

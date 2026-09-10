@@ -1,0 +1,106 @@
+{
+  "held_motifs": [
+    [
+      "AX1",
+      "SH1"
+    ],
+    [
+      "AC1",
+      "REV"
+    ],
+    [
+      "SC2",
+      "AX1"
+    ]
+  ],
+  "files": [
+    {
+      "split": "sft_train_composition_nomotif",
+      "path": "artifacts/data/pilot/sft_train_composition_nomotif.jsonl",
+      "count": 4000,
+      "sha256": "d8c991e3019da1ab963a636530764341b03f6ca70339fd30f0c01798de992de9",
+      "generator_seed": 40000,
+      "rejected": 1604,
+      "primes": [
+        5,
+        7,
+        13,
+        19,
+        23,
+        29
+      ],
+      "depths": [
+        2,
+        3
+      ]
+    },
+    {
+      "split": "motif_a_d3",
+      "path": "artifacts/data/pilot/motif_a_d3.jsonl",
+      "count": 250,
+      "sha256": "1b15e97223f786fb8ad1e253195827027b81fc828eef1bf196e8e4a006d07b8c",
+      "generator_seed": 40011,
+      "requires_held_motif": false,
+      "rejected_duplicate": 1,
+      "rejected_motif_filter": 169,
+      "primes": [
+        5,
+        7,
+        13,
+        19,
+        23,
+        29
+      ],
+      "depth": 3
+    },
+    {
+      "split": "motif_b_d3",
+      "path": "artifacts/data/pilot/motif_b_d3.jsonl",
+      "count": 250,
+      "sha256": "e453a04c6e0243bf299702208ca8c043d3092097dda8e223f8cccb5a2eddd571",
+      "generator_seed": 40012,
+      "requires_held_motif": true,
+      "rejected_duplicate": 10,
+      "rejected_motif_filter": 890,
+      "primes": [
+        5,
+        7,
+        13,
+        19,
+        23,
+        29
+      ],
+      "depth": 3
+    },
+    {
+      "split": "motif_c_d3",
+      "path": "artifacts/data/pilot/motif_c_d3.jsonl",
+      "count": 250,
+      "sha256": "81204ed543d9a3c2c0a1731d707db73aeb067945c6daf4e90e33c6272461039f",
+      "generator_seed": 40013,
+      "requires_held_motif": false,
+      "rejected_duplicate": 1,
+      "rejected_motif_filter": 148,
+      "primes": [
+        11,
+        17
+      ],
+      "depth": 3
+    },
+    {
+      "split": "motif_d_d3",
+      "path": "artifacts/data/pilot/motif_d_d3.jsonl",
+      "count": 250,
+      "sha256": "aab3fd895f46d01d26d781f6063d049b533bb7ba92147f412827f349ebec3fe7",
+      "generator_seed": 40014,
+      "requires_held_motif": true,
+      "rejected_duplicate": 1,
+      "rejected_motif_filter": 955,
+      "primes": [
+        11,
+        17
+      ],
+      "depth": 3
+    }
+  ]
+}

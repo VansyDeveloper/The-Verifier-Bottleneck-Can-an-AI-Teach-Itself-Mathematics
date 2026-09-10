@@ -1,0 +1,24 @@
+{
+  "runs": 206,
+  "done": 196,
+  "failed": 7,
+  "incomplete": 3,
+  "scientific_ci_available": true,
+  "confirmatory_pilot": {
+    "seed_count": 3,
+    "paired_seed_tasks": 600,
+    "mean_iid_pass_at_32": 0.12666666666666668,
+    "mean_prefix_pass_at_32": 0.2866666666666666,
+    "mean_delta_percentage_points": 16.0,
+    "hierarchical_paired_bootstrap_95_ci_percentage_points": [
+      12.166666666666666,
+      19.833333333333332
+    ],
+    "bootstrap_repetitions": 10000,
+    "positive_direction_seeds": 3,
+    "prefix_only": 125,
+    "iid_only": 29,
+    "mcnemar_exact_two_sided_p_pooled": 2.1040062766468492e-15
+  },
+  "reason": "Three-seed 150-step confirmatory pilot; this is not the 400-step full protocol."
+}

@@ -1,0 +1,1721 @@
+{
+  "preregistrations": [
+    "artifacts/preregistration_capacity_2026-08-02.md",
+    "artifacts/preregistration_amendment_001_2026-08-03.md"
+  ],
+  "metric": "exhaustive Hit@K over all 5^depth programs",
+  "bootstrap_repetitions": 10000,
+  "bootstrap_unit": "crossed training seed x task",
+  "completed_grid_cells": 32,
+  "joint_c1_c2_verdict": "METHOD_CEILING",
+  "overall_verdict": "METHOD_CEILING_WITH_CATASTROPHIC_APPLY_COLLAPSE",
+  "capacity_success_counted_under_retention_rule": false,
+  "run_index": {
+    "capacity_d2_heldout|atomic": {
+      "run_id": "20260803T061805Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T061805Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/capacity_d2_heldout.jsonl",
+      "input_sha256": "7c66ffdd39e321c71663a70f31f2d05b6df380966a816c662348eb06a9149872",
+      "config_sha256": "f69688c6961d706d90cab930559b39c1f3ea8cc6e2470f7c8307719cae417785",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 183.57787386298878,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d2_heldout|oracle0": {
+      "run_id": "20260803T062112Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-oracle0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T062112Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-oracle0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed0",
+      "adapter_sha256": "763369215ebee5bb51890e4d1191919d937f061ab18b4d2e39ba6103c65cf698",
+      "input": "artifacts/data/pilot/capacity_d2_heldout.jsonl",
+      "input_sha256": "7c66ffdd39e321c71663a70f31f2d05b6df380966a816c662348eb06a9149872",
+      "config_sha256": "703ee137e35bb6d9cd17b3c0c6e4972a3721b158310507d5e98fd724947a358f",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 183.18234085000586,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d2_heldout|oracle1": {
+      "run_id": "20260803T062418Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-oracle1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T062418Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-oracle1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed1",
+      "adapter_sha256": "5711ef62975702930c69fc292b416e84f85f8a178ea299480ea60be39d0f7133",
+      "input": "artifacts/data/pilot/capacity_d2_heldout.jsonl",
+      "input_sha256": "7c66ffdd39e321c71663a70f31f2d05b6df380966a816c662348eb06a9149872",
+      "config_sha256": "94c6a6cb283aba8c2eb8f06a7c413f8c33ade4322b705464f72024434070ce46",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 183.29279382998357,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d2_heldout|oracle2": {
+      "run_id": "20260803T062725Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-oracle2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T062725Z_qwen3-0.6b_capacity_d2_heldout_ranking_rank-oracle2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed2",
+      "adapter_sha256": "cdd62862d7d296a024258e8f3802858b864d0909f93a8ca9e1143a6119b52508",
+      "input": "artifacts/data/pilot/capacity_d2_heldout.jsonl",
+      "input_sha256": "7c66ffdd39e321c71663a70f31f2d05b6df380966a816c662348eb06a9149872",
+      "config_sha256": "85b6d8b72d7e2364195081129320bc227b344cbedde189fbd3597ae41ef7d893",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 183.2328488950152,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d2_train|atomic": {
+      "run_id": "20260803T060534Z_qwen3-0.6b_capacity_d2_train_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T060534Z_qwen3-0.6b_capacity_d2_train_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/capacity_d2_train.jsonl",
+      "input_sha256": "86fbd22f717de1c5b9cc67a061b702361c2af7aca353e8793f9c38523bac8f45",
+      "config_sha256": "b632c0a0a18b2932475a4f34c37f9a5b95ba5b8af4a78b0dfe29438df0effdba",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 184.20459738001227,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d2_train|oracle0": {
+      "run_id": "20260803T060841Z_qwen3-0.6b_capacity_d2_train_ranking_rank-oracle0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T060841Z_qwen3-0.6b_capacity_d2_train_ranking_rank-oracle0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed0",
+      "adapter_sha256": "763369215ebee5bb51890e4d1191919d937f061ab18b4d2e39ba6103c65cf698",
+      "input": "artifacts/data/pilot/capacity_d2_train.jsonl",
+      "input_sha256": "86fbd22f717de1c5b9cc67a061b702361c2af7aca353e8793f9c38523bac8f45",
+      "config_sha256": "010fdd8225e79ad6878d96abaab66fce98d88b96504fec267138ab708650799a",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 184.69415804400342,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d2_train|oracle1": {
+      "run_id": "20260803T061149Z_qwen3-0.6b_capacity_d2_train_ranking_rank-oracle1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T061149Z_qwen3-0.6b_capacity_d2_train_ranking_rank-oracle1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed1",
+      "adapter_sha256": "5711ef62975702930c69fc292b416e84f85f8a178ea299480ea60be39d0f7133",
+      "input": "artifacts/data/pilot/capacity_d2_train.jsonl",
+      "input_sha256": "86fbd22f717de1c5b9cc67a061b702361c2af7aca353e8793f9c38523bac8f45",
+      "config_sha256": "94dab4e10f46858edbeb806e345c68309cf2815b55e0d696c8e4238ee4d8d678",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 184.50660076999338,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d2_train|oracle2": {
+      "run_id": "20260803T061457Z_qwen3-0.6b_capacity_d2_train_ranking_rank-oracle2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T061457Z_qwen3-0.6b_capacity_d2_train_ranking_rank-oracle2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed2",
+      "adapter_sha256": "cdd62862d7d296a024258e8f3802858b864d0909f93a8ca9e1143a6119b52508",
+      "input": "artifacts/data/pilot/capacity_d2_train.jsonl",
+      "input_sha256": "86fbd22f717de1c5b9cc67a061b702361c2af7aca353e8793f9c38523bac8f45",
+      "config_sha256": "589eafaf87685227623a9acaa87219cfacac0cfa30eda0168702e65367adbc56",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 1800,
+      "elapsed_seconds": 184.2994498030166,
+      "peak_cuda_bytes": 1353595392
+    },
+    "capacity_d3_heldout|atomic": {
+      "run_id": "20260803T073445Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T073445Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/capacity_d3_heldout.jsonl",
+      "input_sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7",
+      "config_sha256": "cfa3e1421719c207e371f3923b4145fe9ec753a61b0903c3cd5c76d978776966",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 951.1706149519887,
+      "peak_cuda_bytes": 1354378240
+    },
+    "capacity_d3_heldout|oracle0": {
+      "run_id": "20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed0",
+      "adapter_sha256": "763369215ebee5bb51890e4d1191919d937f061ab18b4d2e39ba6103c65cf698",
+      "input": "artifacts/data/pilot/capacity_d3_heldout.jsonl",
+      "input_sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7",
+      "config_sha256": "790a796ed383fc2ed6ace5fd924297975bf0e8f97089d90e1bfe19ead85354cc",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 951.180114125018,
+      "peak_cuda_bytes": 1354378240
+    },
+    "capacity_d3_heldout|oracle1": {
+      "run_id": "20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed1",
+      "adapter_sha256": "5711ef62975702930c69fc292b416e84f85f8a178ea299480ea60be39d0f7133",
+      "input": "artifacts/data/pilot/capacity_d3_heldout.jsonl",
+      "input_sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7",
+      "config_sha256": "ef76fbc4a736e6d576c16325cfb85b19d7764a1d7ff82ae885285b8ec46c44b2",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 951.6509034979972,
+      "peak_cuda_bytes": 1354378240
+    },
+    "capacity_d3_heldout|oracle2": {
+      "run_id": "20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed2",
+      "adapter_sha256": "cdd62862d7d296a024258e8f3802858b864d0909f93a8ca9e1143a6119b52508",
+      "input": "artifacts/data/pilot/capacity_d3_heldout.jsonl",
+      "input_sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7",
+      "config_sha256": "d79a022c8e79fb3f5d4bbbd2d0d68974f0d368333fa26961c8e5722950dd9b97",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 950.7754227699479,
+      "peak_cuda_bytes": 1354378240
+    },
+    "capacity_d3_train|atomic": {
+      "run_id": "20260803T063031Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T063031Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/capacity_d3_train.jsonl",
+      "input_sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d",
+      "config_sha256": "725487ad6c8412232e2180542e30d6cac40ea62198cd9b68c0caa4be9c69204b",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 960.7213745350018,
+      "peak_cuda_bytes": 1354378240
+    },
+    "capacity_d3_train|oracle0": {
+      "run_id": "20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed0",
+      "adapter_sha256": "763369215ebee5bb51890e4d1191919d937f061ab18b4d2e39ba6103c65cf698",
+      "input": "artifacts/data/pilot/capacity_d3_train.jsonl",
+      "input_sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d",
+      "config_sha256": "7d56100b33faa4ccf88daeb7a62372ec08ce7a454773c7010965ab6d25fcea51",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 960.0209285650053,
+      "peak_cuda_bytes": 1354378240
+    },
+    "capacity_d3_train|oracle1": {
+      "run_id": "20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed1",
+      "adapter_sha256": "5711ef62975702930c69fc292b416e84f85f8a178ea299480ea60be39d0f7133",
+      "input": "artifacts/data/pilot/capacity_d3_train.jsonl",
+      "input_sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d",
+      "config_sha256": "8fa5d0297d1a4bbb6981617fa941d40af9bad15e44db76fa8b8980cecca92644",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 960.3706948480103,
+      "peak_cuda_bytes": 1354378240
+    },
+    "capacity_d3_train|oracle2": {
+      "run_id": "20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_oracle_seed2",
+      "adapter_sha256": "cdd62862d7d296a024258e8f3802858b864d0909f93a8ca9e1143a6119b52508",
+      "input": "artifacts/data/pilot/capacity_d3_train.jsonl",
+      "input_sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d",
+      "config_sha256": "a0564abbfc8e522bc8bb20dd304f1bfcb29e72579b14a06d226eca3ff00eb00b",
+      "status": "DONE",
+      "tasks": 300,
+      "model_passes": 9300,
+      "elapsed_seconds": 959.9497632150305,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_a_d3|atomic": {
+      "run_id": "20260803T083823Z_qwen3-0.6b_motif_a_d3_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T083823Z_qwen3-0.6b_motif_a_d3_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/motif_a_d3.jsonl",
+      "input_sha256": "1b15e97223f786fb8ad1e253195827027b81fc828eef1bf196e8e4a006d07b8c",
+      "config_sha256": "420a986abd7c77c60ce16a05ee507c730685d70d1348d9a5b1983e3b8d64976c",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 799.1118272350286,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_a_d3|nomotif0": {
+      "run_id": "20260803T085146Z_qwen3-0.6b_motif_a_d3_ranking_rank-nomotif0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T085146Z_qwen3-0.6b_motif_a_d3_ranking_rank-nomotif0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed0",
+      "adapter_sha256": "af3498e0725f9054a60cbc959715f3aa3464c25b254379a9f90332c9a9653104",
+      "input": "artifacts/data/pilot/motif_a_d3.jsonl",
+      "input_sha256": "1b15e97223f786fb8ad1e253195827027b81fc828eef1bf196e8e4a006d07b8c",
+      "config_sha256": "6c4887bf7132cad23c11d40a08af522784bd55fc709430c7a3a20155d8e562e0",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 798.1940384559566,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_a_d3|nomotif1": {
+      "run_id": "20260803T090507Z_qwen3-0.6b_motif_a_d3_ranking_rank-nomotif1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T090507Z_qwen3-0.6b_motif_a_d3_ranking_rank-nomotif1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed1",
+      "adapter_sha256": "be62ca23b30388946b88afdcb9bbcb2cf585c70de30a5542ad04f649a0063238",
+      "input": "artifacts/data/pilot/motif_a_d3.jsonl",
+      "input_sha256": "1b15e97223f786fb8ad1e253195827027b81fc828eef1bf196e8e4a006d07b8c",
+      "config_sha256": "de0720f1483e1a8d8a69ddb230bddb798525a8d78287a9ffcc3ad801ca8984aa",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 797.9978842450073,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_a_d3|nomotif2": {
+      "run_id": "20260803T091829Z_qwen3-0.6b_motif_a_d3_ranking_rank-nomotif2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T091829Z_qwen3-0.6b_motif_a_d3_ranking_rank-nomotif2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed2",
+      "adapter_sha256": "685a29134f38f11db6f65cd65da33a06e185befd72fb01c8003f5271a0666aef",
+      "input": "artifacts/data/pilot/motif_a_d3.jsonl",
+      "input_sha256": "1b15e97223f786fb8ad1e253195827027b81fc828eef1bf196e8e4a006d07b8c",
+      "config_sha256": "3b2cbf45b2dca27bc48b281abda483c0d55dccd289491cd023541e6554225257",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 800.0641206629807,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_b_d3|atomic": {
+      "run_id": "20260803T093152Z_qwen3-0.6b_motif_b_d3_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T093152Z_qwen3-0.6b_motif_b_d3_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/motif_b_d3.jsonl",
+      "input_sha256": "e453a04c6e0243bf299702208ca8c043d3092097dda8e223f8cccb5a2eddd571",
+      "config_sha256": "c61090d005c76bd1f000771a974ebd2dc5dd726d2c10237afb01767783f7df9e",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 847.4505106529687,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_b_d3|nomotif0": {
+      "run_id": "20260803T094604Z_qwen3-0.6b_motif_b_d3_ranking_rank-nomotif0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T094604Z_qwen3-0.6b_motif_b_d3_ranking_rank-nomotif0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed0",
+      "adapter_sha256": "af3498e0725f9054a60cbc959715f3aa3464c25b254379a9f90332c9a9653104",
+      "input": "artifacts/data/pilot/motif_b_d3.jsonl",
+      "input_sha256": "e453a04c6e0243bf299702208ca8c043d3092097dda8e223f8cccb5a2eddd571",
+      "config_sha256": "95a4c1762fc124547d5b802b246488f89d7223b7f3f81028d4fd65d5297cb8dd",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 895.185335725022,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_b_d3|nomotif1": {
+      "run_id": "20260803T100103Z_qwen3-0.6b_motif_b_d3_ranking_rank-nomotif1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T100103Z_qwen3-0.6b_motif_b_d3_ranking_rank-nomotif1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed1",
+      "adapter_sha256": "be62ca23b30388946b88afdcb9bbcb2cf585c70de30a5542ad04f649a0063238",
+      "input": "artifacts/data/pilot/motif_b_d3.jsonl",
+      "input_sha256": "e453a04c6e0243bf299702208ca8c043d3092097dda8e223f8cccb5a2eddd571",
+      "config_sha256": "5d5f022997149bdcc965b1c1fa6c7bbb0bcb8699b920f61a49222ee3141d9ff2",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 871.3778256130172,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_b_d3|nomotif2": {
+      "run_id": "20260803T101538Z_qwen3-0.6b_motif_b_d3_ranking_rank-nomotif2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T101538Z_qwen3-0.6b_motif_b_d3_ranking_rank-nomotif2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed2",
+      "adapter_sha256": "685a29134f38f11db6f65cd65da33a06e185befd72fb01c8003f5271a0666aef",
+      "input": "artifacts/data/pilot/motif_b_d3.jsonl",
+      "input_sha256": "e453a04c6e0243bf299702208ca8c043d3092097dda8e223f8cccb5a2eddd571",
+      "config_sha256": "0a15fea16fa205d7a4da6c209a4b237afacac6c5b1aa92a6f3f9a4a7c22669c1",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 851.5674375620438,
+      "peak_cuda_bytes": 1354378240
+    },
+    "motif_c_d3|atomic": {
+      "run_id": "20260803T102953Z_qwen3-0.6b_motif_c_d3_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T102953Z_qwen3-0.6b_motif_c_d3_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/motif_c_d3.jsonl",
+      "input_sha256": "81204ed543d9a3c2c0a1731d707db73aeb067945c6daf4e90e33c6272461039f",
+      "config_sha256": "1fffea4b621c142341802780f63444b96b324a15d8753c7bb680f968dc9926b1",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 861.8087776869652,
+      "peak_cuda_bytes": 1353595392
+    },
+    "motif_c_d3|nomotif0": {
+      "run_id": "20260803T104419Z_qwen3-0.6b_motif_c_d3_ranking_rank-nomotif0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T104419Z_qwen3-0.6b_motif_c_d3_ranking_rank-nomotif0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed0",
+      "adapter_sha256": "af3498e0725f9054a60cbc959715f3aa3464c25b254379a9f90332c9a9653104",
+      "input": "artifacts/data/pilot/motif_c_d3.jsonl",
+      "input_sha256": "81204ed543d9a3c2c0a1731d707db73aeb067945c6daf4e90e33c6272461039f",
+      "config_sha256": "f6c4b9ccf59faa44a08fcb79488635aa5fdfec014072df0776a214f779e83704",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 839.7386655079899,
+      "peak_cuda_bytes": 1353595392
+    },
+    "motif_c_d3|nomotif1": {
+      "run_id": "20260803T105822Z_qwen3-0.6b_motif_c_d3_ranking_rank-nomotif1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T105822Z_qwen3-0.6b_motif_c_d3_ranking_rank-nomotif1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed1",
+      "adapter_sha256": "be62ca23b30388946b88afdcb9bbcb2cf585c70de30a5542ad04f649a0063238",
+      "input": "artifacts/data/pilot/motif_c_d3.jsonl",
+      "input_sha256": "81204ed543d9a3c2c0a1731d707db73aeb067945c6daf4e90e33c6272461039f",
+      "config_sha256": "654fd57a9caba9deaba6b4d283d6160792e96d3387ae2c3892a56b1655b3937e",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 836.8155898669502,
+      "peak_cuda_bytes": 1353595392
+    },
+    "motif_c_d3|nomotif2": {
+      "run_id": "20260803T111222Z_qwen3-0.6b_motif_c_d3_ranking_rank-nomotif2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T111222Z_qwen3-0.6b_motif_c_d3_ranking_rank-nomotif2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed2",
+      "adapter_sha256": "685a29134f38f11db6f65cd65da33a06e185befd72fb01c8003f5271a0666aef",
+      "input": "artifacts/data/pilot/motif_c_d3.jsonl",
+      "input_sha256": "81204ed543d9a3c2c0a1731d707db73aeb067945c6daf4e90e33c6272461039f",
+      "config_sha256": "b9f5fde20212f211a5eadd2fc4c011be79beee4383379e80655c8b0c21f00586",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 853.8399387170211,
+      "peak_cuda_bytes": 1353595392
+    },
+    "motif_d_d3|atomic": {
+      "run_id": "20260803T112640Z_qwen3-0.6b_motif_d_d3_ranking_rank-atomic_exact_seed0",
+      "run_path": "artifacts/runs/20260803T112640Z_qwen3-0.6b_motif_d_d3_ranking_rank-atomic_exact_seed0",
+      "adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+      "adapter_sha256": "4aeefb49a3523db10aafe0e0b3cab38bdb21cef58110a508404f63bd332b0c85",
+      "input": "artifacts/data/pilot/motif_d_d3.jsonl",
+      "input_sha256": "aab3fd895f46d01d26d781f6063d049b533bb7ba92147f412827f349ebec3fe7",
+      "config_sha256": "eb7840ecd13e75453b8f590829ae86417d9a5a22f080260316f3d276db83c66e",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 863.122099840024,
+      "peak_cuda_bytes": 1353595392
+    },
+    "motif_d_d3|nomotif0": {
+      "run_id": "20260803T114107Z_qwen3-0.6b_motif_d_d3_ranking_rank-nomotif0_exact_seed0",
+      "run_path": "artifacts/runs/20260803T114107Z_qwen3-0.6b_motif_d_d3_ranking_rank-nomotif0_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed0",
+      "adapter_sha256": "af3498e0725f9054a60cbc959715f3aa3464c25b254379a9f90332c9a9653104",
+      "input": "artifacts/data/pilot/motif_d_d3.jsonl",
+      "input_sha256": "aab3fd895f46d01d26d781f6063d049b533bb7ba92147f412827f349ebec3fe7",
+      "config_sha256": "5b88c06f331d0aba8487809b0e9b9a12522d358d6f51dbe45ab3fee395f46005",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 883.1231759560178,
+      "peak_cuda_bytes": 1353595392
+    },
+    "motif_d_d3|nomotif1": {
+      "run_id": "20260803T115554Z_qwen3-0.6b_motif_d_d3_ranking_rank-nomotif1_exact_seed0",
+      "run_path": "artifacts/runs/20260803T115554Z_qwen3-0.6b_motif_d_d3_ranking_rank-nomotif1_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed1",
+      "adapter_sha256": "be62ca23b30388946b88afdcb9bbcb2cf585c70de30a5542ad04f649a0063238",
+      "input": "artifacts/data/pilot/motif_d_d3.jsonl",
+      "input_sha256": "aab3fd895f46d01d26d781f6063d049b533bb7ba92147f412827f349ebec3fe7",
+      "config_sha256": "5a22f0dae87347324b5c9a1f74563235eaea1075f30c13951a2c93f8b83b1ab5",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 872.4386335429735,
+      "peak_cuda_bytes": 1353595392
+    },
+    "motif_d_d3|nomotif2": {
+      "run_id": "20260803T121031Z_qwen3-0.6b_motif_d_d3_ranking_rank-nomotif2_exact_seed0",
+      "run_path": "artifacts/runs/20260803T121031Z_qwen3-0.6b_motif_d_d3_ranking_rank-nomotif2_exact_seed0",
+      "adapter": "artifacts/adapters/sft_composition_nomotif_seed2",
+      "adapter_sha256": "685a29134f38f11db6f65cd65da33a06e185befd72fb01c8003f5271a0666aef",
+      "input": "artifacts/data/pilot/motif_d_d3.jsonl",
+      "input_sha256": "aab3fd895f46d01d26d781f6063d049b533bb7ba92147f412827f349ebec3fe7",
+      "config_sha256": "65371f65899b754c0d535634aa25d94ed94d92e0c50dee7751c27896f3a73493",
+      "status": "DONE",
+      "tasks": 250,
+      "model_passes": 7750,
+      "elapsed_seconds": 842.3363900289987,
+      "peak_cuda_bytes": 1353595392
+    }
+  },
+  "compute": {
+    "ranking_model_passes": 212800,
+    "ranking_elapsed_seconds": 22631.002731241984,
+    "forgetting_completion_tokens": 7452,
+    "forgetting_elapsed_seconds": 309.6927278730436,
+    "peak_cuda_bytes": 1354378240
+  },
+  "atomic_forgetting": {
+    "complete": true,
+    "missing": [],
+    "excluded_complete_runs": [
+      "20260803T200251Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-atomic-sft_validation_apply_non_sh1_exact_seed0 (CUDA unavailable)",
+      "20260803T200632Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-atomic-sft_validation_plan_exact_seed0 (CUDA unavailable)"
+    ],
+    "arm_table": {
+      "atomic|sft_validation_apply_non_sh1": {
+        "pass_at_1": 1.0,
+        "parse_rate": 1.0,
+        "tasks": 80,
+        "actual_completion_tokens": 1062,
+        "elapsed_seconds": 43.65143867203733,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201851Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-atomic-sft_validation_apply_non_sh1_exact_seed0"
+      },
+      "atomic|sft_validation_plan": {
+        "pass_at_1": 0.98,
+        "parse_rate": 1.0,
+        "tasks": 100,
+        "actual_completion_tokens": 481,
+        "elapsed_seconds": 21.04913854500046,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201944Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-atomic-sft_validation_plan_exact_seed0"
+      },
+      "nomotif0|sft_validation_apply_non_sh1": {
+        "pass_at_1": 0.0,
+        "parse_rate": 0.0,
+        "tasks": 80,
+        "actual_completion_tokens": 501,
+        "elapsed_seconds": 20.692573708016425,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201605Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-nomotif0-sft_validation_apply_non_sh1_exact_seed0"
+      },
+      "nomotif0|sft_validation_plan": {
+        "pass_at_1": 0.97,
+        "parse_rate": 1.0,
+        "tasks": 100,
+        "actual_completion_tokens": 481,
+        "elapsed_seconds": 19.637883201998193,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201629Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-nomotif0-sft_validation_plan_exact_seed0"
+      },
+      "nomotif1|sft_validation_apply_non_sh1": {
+        "pass_at_1": 0.0,
+        "parse_rate": 0.0,
+        "tasks": 80,
+        "actual_completion_tokens": 392,
+        "elapsed_seconds": 16.18784902401967,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201652Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-nomotif1-sft_validation_apply_non_sh1_exact_seed0"
+      },
+      "nomotif1|sft_validation_plan": {
+        "pass_at_1": 0.98,
+        "parse_rate": 1.0,
+        "tasks": 100,
+        "actual_completion_tokens": 481,
+        "elapsed_seconds": 20.587412305001635,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201712Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-nomotif1-sft_validation_plan_exact_seed0"
+      },
+      "nomotif2|sft_validation_apply_non_sh1": {
+        "pass_at_1": 0.0,
+        "parse_rate": 0.0,
+        "tasks": 80,
+        "actual_completion_tokens": 543,
+        "elapsed_seconds": 22.430987204017583,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201737Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-nomotif2-sft_validation_apply_non_sh1_exact_seed0"
+      },
+      "nomotif2|sft_validation_plan": {
+        "pass_at_1": 0.96,
+        "parse_rate": 1.0,
+        "tasks": 100,
+        "actual_completion_tokens": 481,
+        "elapsed_seconds": 21.179545942984987,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201803Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-nomotif2-sft_validation_plan_exact_seed0"
+      },
+      "oracle0|sft_validation_apply_non_sh1": {
+        "pass_at_1": 0.0,
+        "parse_rate": 0.0,
+        "tasks": 80,
+        "actual_completion_tokens": 454,
+        "elapsed_seconds": 19.089727684971876,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201339Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-oracle0-sft_validation_apply_non_sh1_exact_seed0"
+      },
+      "oracle0|sft_validation_plan": {
+        "pass_at_1": 0.97,
+        "parse_rate": 1.0,
+        "tasks": 100,
+        "actual_completion_tokens": 481,
+        "elapsed_seconds": 19.410164208034985,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201402Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-oracle0-sft_validation_plan_exact_seed0"
+      },
+      "oracle1|sft_validation_apply_non_sh1": {
+        "pass_at_1": 0.0,
+        "parse_rate": 0.0,
+        "tasks": 80,
+        "actual_completion_tokens": 501,
+        "elapsed_seconds": 20.811659032013267,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201425Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-oracle1-sft_validation_apply_non_sh1_exact_seed0"
+      },
+      "oracle1|sft_validation_plan": {
+        "pass_at_1": 0.97,
+        "parse_rate": 1.0,
+        "tasks": 100,
+        "actual_completion_tokens": 483,
+        "elapsed_seconds": 19.781022965966258,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201449Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-oracle1-sft_validation_plan_exact_seed0"
+      },
+      "oracle2|sft_validation_apply_non_sh1": {
+        "pass_at_1": 0.0,
+        "parse_rate": 0.0,
+        "tasks": 80,
+        "actual_completion_tokens": 630,
+        "elapsed_seconds": 25.464351773960516,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201512Z_qwen3-0.6b_sft_validation_apply_non_sh1_evaluation_composition-forget-oracle2-sft_validation_apply_non_sh1_exact_seed0"
+      },
+      "oracle2|sft_validation_plan": {
+        "pass_at_1": 0.91,
+        "parse_rate": 1.0,
+        "tasks": 100,
+        "actual_completion_tokens": 481,
+        "elapsed_seconds": 19.718973605020437,
+        "peak_cuda_bytes": 1353595392,
+        "run_id": "20260803T201541Z_qwen3-0.6b_sft_validation_plan_evaluation_composition-forget-oracle2-sft_validation_plan_exact_seed0"
+      }
+    },
+    "summary": {
+      "atomic_apply_pass_at_1": 1.0,
+      "trained_apply_mean_pass_at_1": 0.0,
+      "trained_apply_delta_pp": -100.0,
+      "atomic_plan_pass_at_1": 0.98,
+      "trained_plan_mean_pass_at_1": 0.9600000000000001,
+      "trained_plan_delta_pp": -1.9999999999999907,
+      "all_trained_apply_pass_at_1_zero": true,
+      "retention_warning": "CATASTROPHIC_APPLY_COLLAPSE"
+    }
+  },
+  "arm_table": {
+    "capacity_d2_train|atomic": {
+      "hit_at_1": 0.09,
+      "hit_at_8": 0.67,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 7.593333333333334,
+      "mean_correct_mass": 0.0757645539321032,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d2_train|oracle0": {
+      "hit_at_1": 0.5233333333333333,
+      "hit_at_8": 0.9833333333333333,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 1.9666666666666666,
+      "mean_correct_mass": 0.3888645408123887,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d2_train|oracle1": {
+      "hit_at_1": 0.5333333333333333,
+      "hit_at_8": 0.9866666666666667,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 1.9,
+      "mean_correct_mass": 0.4579169763349369,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d2_train|oracle2": {
+      "hit_at_1": 0.5433333333333333,
+      "hit_at_8": 0.99,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 1.83,
+      "mean_correct_mass": 0.48337573258442557,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d2_heldout|atomic": {
+      "hit_at_1": 0.06333333333333334,
+      "hit_at_8": 0.6566666666666666,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 7.593333333333334,
+      "mean_correct_mass": 0.059919803356484815,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d2_heldout|oracle0": {
+      "hit_at_1": 0.49,
+      "hit_at_8": 0.9966666666666667,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 1.8533333333333333,
+      "mean_correct_mass": 0.38822685798446865,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d2_heldout|oracle1": {
+      "hit_at_1": 0.55,
+      "hit_at_8": 1.0,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 1.6433333333333333,
+      "mean_correct_mass": 0.46602087727390684,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d2_heldout|oracle2": {
+      "hit_at_1": 0.5466666666666666,
+      "hit_at_8": 0.9966666666666667,
+      "hit_at_32": 1.0,
+      "mean_best_rank": 1.6733333333333333,
+      "mean_correct_mass": 0.4817764473785623,
+      "candidates_per_task": 25,
+      "tasks": 300
+    },
+    "capacity_d3_train|atomic": {
+      "hit_at_1": 0.016666666666666666,
+      "hit_at_8": 0.10333333333333333,
+      "hit_at_32": 0.43333333333333335,
+      "mean_best_rank": 42.87,
+      "mean_correct_mass": 0.016306680522779653,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "capacity_d3_train|oracle0": {
+      "hit_at_1": 0.12333333333333334,
+      "hit_at_8": 0.5466666666666666,
+      "hit_at_32": 0.8866666666666667,
+      "mean_best_rank": 13.333333333333334,
+      "mean_correct_mass": 0.06659368514149211,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "capacity_d3_train|oracle1": {
+      "hit_at_1": 0.15,
+      "hit_at_8": 0.56,
+      "hit_at_32": 0.9366666666666666,
+      "mean_best_rank": 11.57,
+      "mean_correct_mass": 0.08645167088519255,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "capacity_d3_train|oracle2": {
+      "hit_at_1": 0.12666666666666668,
+      "hit_at_8": 0.5666666666666667,
+      "hit_at_32": 0.9233333333333333,
+      "mean_best_rank": 11.863333333333333,
+      "mean_correct_mass": 0.08242822341117965,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "capacity_d3_heldout|atomic": {
+      "hit_at_1": 0.01,
+      "hit_at_8": 0.06666666666666667,
+      "hit_at_32": 0.3466666666666667,
+      "mean_best_rank": 47.70333333333333,
+      "mean_correct_mass": 0.008699619210256028,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "capacity_d3_heldout|oracle0": {
+      "hit_at_1": 0.13333333333333333,
+      "hit_at_8": 0.5133333333333333,
+      "hit_at_32": 0.9233333333333333,
+      "mean_best_rank": 12.873333333333333,
+      "mean_correct_mass": 0.07795024736326264,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "capacity_d3_heldout|oracle1": {
+      "hit_at_1": 0.17666666666666667,
+      "hit_at_8": 0.61,
+      "hit_at_32": 0.9666666666666667,
+      "mean_best_rank": 9.86,
+      "mean_correct_mass": 0.09382319227071598,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "capacity_d3_heldout|oracle2": {
+      "hit_at_1": 0.12333333333333334,
+      "hit_at_8": 0.5433333333333333,
+      "hit_at_32": 0.9233333333333333,
+      "mean_best_rank": 11.486666666666666,
+      "mean_correct_mass": 0.08844812516364761,
+      "candidates_per_task": 125,
+      "tasks": 300
+    },
+    "motif_a_d3|atomic": {
+      "hit_at_1": 0.02,
+      "hit_at_8": 0.148,
+      "hit_at_32": 0.388,
+      "mean_best_rank": 45.204,
+      "mean_correct_mass": 0.015752918961274228,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_a_d3|nomotif0": {
+      "hit_at_1": 0.164,
+      "hit_at_8": 0.6,
+      "hit_at_32": 0.964,
+      "mean_best_rank": 9.572,
+      "mean_correct_mass": 0.12248053972311017,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_a_d3|nomotif1": {
+      "hit_at_1": 0.176,
+      "hit_at_8": 0.604,
+      "hit_at_32": 0.948,
+      "mean_best_rank": 9.96,
+      "mean_correct_mass": 0.12783417330426977,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_a_d3|nomotif2": {
+      "hit_at_1": 0.184,
+      "hit_at_8": 0.524,
+      "hit_at_32": 0.908,
+      "mean_best_rank": 12.364,
+      "mean_correct_mass": 0.09302811479610183,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_b_d3|atomic": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.064,
+      "hit_at_32": 0.388,
+      "mean_best_rank": 51.268,
+      "mean_correct_mass": 0.0018933101353538282,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_b_d3|nomotif0": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.02,
+      "hit_at_32": 0.172,
+      "mean_best_rank": 57.22,
+      "mean_correct_mass": 0.0017379446702218537,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_b_d3|nomotif1": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.028,
+      "hit_at_32": 0.248,
+      "mean_best_rank": 55.004,
+      "mean_correct_mass": 0.00250879700698464,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_b_d3|nomotif2": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.056,
+      "hit_at_32": 0.34,
+      "mean_best_rank": 55.452,
+      "mean_correct_mass": 0.008772842262678309,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_c_d3|atomic": {
+      "hit_at_1": 0.012,
+      "hit_at_8": 0.092,
+      "hit_at_32": 0.348,
+      "mean_best_rank": 47.356,
+      "mean_correct_mass": 0.009289616062918685,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_c_d3|nomotif0": {
+      "hit_at_1": 0.188,
+      "hit_at_8": 0.652,
+      "hit_at_32": 0.96,
+      "mean_best_rank": 8.224,
+      "mean_correct_mass": 0.13612400633829722,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_c_d3|nomotif1": {
+      "hit_at_1": 0.152,
+      "hit_at_8": 0.624,
+      "hit_at_32": 0.96,
+      "mean_best_rank": 9.172,
+      "mean_correct_mass": 0.12465271546874249,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_c_d3|nomotif2": {
+      "hit_at_1": 0.224,
+      "hit_at_8": 0.548,
+      "hit_at_32": 0.888,
+      "mean_best_rank": 13.14,
+      "mean_correct_mass": 0.10744189920867508,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_d_d3|atomic": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.056,
+      "hit_at_32": 0.416,
+      "mean_best_rank": 47.028,
+      "mean_correct_mass": 0.0005500875988829295,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_d_d3|nomotif0": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.032,
+      "hit_at_32": 0.18,
+      "mean_best_rank": 58.248,
+      "mean_correct_mass": 0.0029563113722101816,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_d_d3|nomotif1": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.012,
+      "hit_at_32": 0.28,
+      "mean_best_rank": 55.768,
+      "mean_correct_mass": 0.0019491323272761904,
+      "candidates_per_task": 125,
+      "tasks": 250
+    },
+    "motif_d_d3|nomotif2": {
+      "hit_at_1": 0.0,
+      "hit_at_8": 0.048,
+      "hit_at_32": 0.336,
+      "mean_best_rank": 57.364,
+      "mean_correct_mass": 0.008774590763160436,
+      "candidates_per_task": 125,
+      "tasks": 250
+    }
+  },
+  "contrasts": {
+    "C1_primary_supervision_transfers_to_heldout_fields": {
+      "k": 32,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks": 300,
+          "baseline": 0.3466666666666667,
+          "branch": 0.9233333333333333,
+          "delta_pp": 57.666666666666664,
+          "task_bootstrap_95_ci_pp": [
+            51.33333333333333,
+            63.66666666666667
+          ],
+          "branch_only": 182,
+          "baseline_only": 9,
+          "mcnemar_exact_two_sided_p": 5.158322401431159e-43
+        },
+        {
+          "role": "oracle1",
+          "tasks": 300,
+          "baseline": 0.3466666666666667,
+          "branch": 0.9666666666666667,
+          "delta_pp": 62.0,
+          "task_bootstrap_95_ci_pp": [
+            56.333333333333336,
+            67.66666666666666
+          ],
+          "branch_only": 189,
+          "baseline_only": 3,
+          "mcnemar_exact_two_sided_p": 3.759088349162535e-52
+        },
+        {
+          "role": "oracle2",
+          "tasks": 300,
+          "baseline": 0.3466666666666667,
+          "branch": 0.9233333333333333,
+          "delta_pp": 57.666666666666664,
+          "task_bootstrap_95_ci_pp": [
+            51.66666666666667,
+            63.66666666666667
+          ],
+          "branch_only": 178,
+          "baseline_only": 5,
+          "mcnemar_exact_two_sided_p": 2.7159232435014537e-46
+        }
+      ],
+      "mean_baseline": 0.3466666666666667,
+      "mean_branch": 0.9377777777777778,
+      "mean_delta_pp": 59.111111111111114,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        53.0,
+        65.33333333333333
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05
+    },
+    "C2_compositions_learnable_in_domain": {
+      "k": 32,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks": 300,
+          "baseline": 0.43333333333333335,
+          "branch": 0.8866666666666667,
+          "delta_pp": 45.33333333333333,
+          "task_bootstrap_95_ci_pp": [
+            38.333333333333336,
+            52.33333333333333
+          ],
+          "branch_only": 159,
+          "baseline_only": 23,
+          "mcnemar_exact_two_sided_p": 3.3057411767799156e-26
+        },
+        {
+          "role": "oracle1",
+          "tasks": 300,
+          "baseline": 0.43333333333333335,
+          "branch": 0.9366666666666666,
+          "delta_pp": 50.33333333333333,
+          "task_bootstrap_95_ci_pp": [
+            44.0,
+            56.333333333333336
+          ],
+          "branch_only": 158,
+          "baseline_only": 7,
+          "mcnemar_exact_two_sided_p": 2.596824383194792e-38
+        },
+        {
+          "role": "oracle2",
+          "tasks": 300,
+          "baseline": 0.43333333333333335,
+          "branch": 0.9233333333333333,
+          "delta_pp": 49.0,
+          "task_bootstrap_95_ci_pp": [
+            42.66666666666667,
+            55.333333333333336
+          ],
+          "branch_only": 154,
+          "baseline_only": 7,
+          "mcnemar_exact_two_sided_p": 3.4918388675773617e-37
+        }
+      ],
+      "mean_baseline": 0.43333333333333335,
+      "mean_branch": 0.9155555555555556,
+      "mean_delta_pp": 48.22222222222222,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        41.333333333333336,
+        55.00000000000001
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05,
+      "bootstrap_p_holm_adjusted": 0.00029997000299970003
+    },
+    "C1_at_hit1": {
+      "k": 1,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks": 300,
+          "baseline": 0.01,
+          "branch": 0.13333333333333333,
+          "delta_pp": 12.333333333333334,
+          "task_bootstrap_95_ci_pp": [
+            8.333333333333332,
+            16.333333333333332
+          ],
+          "branch_only": 40,
+          "baseline_only": 3,
+          "mcnemar_exact_two_sided_p": 3.0213413992896676e-09
+        },
+        {
+          "role": "oracle1",
+          "tasks": 300,
+          "baseline": 0.01,
+          "branch": 0.17666666666666667,
+          "delta_pp": 16.666666666666664,
+          "task_bootstrap_95_ci_pp": [
+            12.333333333333334,
+            21.333333333333336
+          ],
+          "branch_only": 52,
+          "baseline_only": 2,
+          "mcnemar_exact_two_sided_p": 1.6497914145929826e-13
+        },
+        {
+          "role": "oracle2",
+          "tasks": 300,
+          "baseline": 0.01,
+          "branch": 0.12333333333333334,
+          "delta_pp": 11.333333333333332,
+          "task_bootstrap_95_ci_pp": [
+            7.666666666666666,
+            15.333333333333332
+          ],
+          "branch_only": 37,
+          "baseline_only": 3,
+          "mcnemar_exact_two_sided_p": 1.946500560734421e-08
+        }
+      ],
+      "mean_baseline": 0.01,
+      "mean_branch": 0.14444444444444443,
+      "mean_delta_pp": 13.444444444444445,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        9.333333333333334,
+        17.888888888888886
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05
+    },
+    "C2_at_hit1": {
+      "k": 1,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks": 300,
+          "baseline": 0.016666666666666666,
+          "branch": 0.12333333333333334,
+          "delta_pp": 10.666666666666668,
+          "task_bootstrap_95_ci_pp": [
+            6.666666666666667,
+            14.666666666666666
+          ],
+          "branch_only": 37,
+          "baseline_only": 5,
+          "mcnemar_exact_two_sided_p": 4.4337048166198656e-07
+        },
+        {
+          "role": "oracle1",
+          "tasks": 300,
+          "baseline": 0.016666666666666666,
+          "branch": 0.15,
+          "delta_pp": 13.333333333333334,
+          "task_bootstrap_95_ci_pp": [
+            9.0,
+            18.0
+          ],
+          "branch_only": 45,
+          "baseline_only": 5,
+          "mcnemar_exact_two_sided_p": 4.209852022540872e-09
+        },
+        {
+          "role": "oracle2",
+          "tasks": 300,
+          "baseline": 0.016666666666666666,
+          "branch": 0.12666666666666668,
+          "delta_pp": 11.0,
+          "task_bootstrap_95_ci_pp": [
+            7.000000000000001,
+            15.0
+          ],
+          "branch_only": 38,
+          "baseline_only": 5,
+          "mcnemar_exact_two_sided_p": 2.4995097192004323e-07
+        }
+      ],
+      "mean_baseline": 0.016666666666666666,
+      "mean_branch": 0.13333333333333333,
+      "mean_delta_pp": 11.666666666666666,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        8.0,
+        15.555555555555555
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05
+    },
+    "depth2_train_supervision_effect_at_hit8": {
+      "k": 8,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks": 300,
+          "baseline": 0.67,
+          "branch": 0.9833333333333333,
+          "delta_pp": 31.333333333333336,
+          "task_bootstrap_95_ci_pp": [
+            26.0,
+            36.666666666666664
+          ],
+          "branch_only": 95,
+          "baseline_only": 1,
+          "mcnemar_exact_two_sided_p": 2.4486242498060206e-27
+        },
+        {
+          "role": "oracle1",
+          "tasks": 300,
+          "baseline": 0.67,
+          "branch": 0.9866666666666667,
+          "delta_pp": 31.666666666666664,
+          "task_bootstrap_95_ci_pp": [
+            26.333333333333332,
+            37.0
+          ],
+          "branch_only": 97,
+          "baseline_only": 2,
+          "mcnemar_exact_two_sided_p": 1.5622601366996918e-26
+        },
+        {
+          "role": "oracle2",
+          "tasks": 300,
+          "baseline": 0.67,
+          "branch": 0.99,
+          "delta_pp": 32.0,
+          "task_bootstrap_95_ci_pp": [
+            26.666666666666668,
+            37.666666666666664
+          ],
+          "branch_only": 98,
+          "baseline_only": 2,
+          "mcnemar_exact_two_sided_p": 7.969072864542661e-27
+        }
+      ],
+      "mean_baseline": 0.67,
+      "mean_branch": 0.9866666666666667,
+      "mean_delta_pp": 31.666666666666664,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        26.333333333333332,
+        37.0
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05
+    },
+    "depth2_heldout_supervision_effect_at_hit8": {
+      "k": 8,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks": 300,
+          "baseline": 0.6566666666666666,
+          "branch": 0.9966666666666667,
+          "delta_pp": 34.0,
+          "task_bootstrap_95_ci_pp": [
+            28.666666666666668,
+            39.33333333333333
+          ],
+          "branch_only": 102,
+          "baseline_only": 0,
+          "mcnemar_exact_two_sided_p": 3.944304526105059e-31
+        },
+        {
+          "role": "oracle1",
+          "tasks": 300,
+          "baseline": 0.6566666666666666,
+          "branch": 1.0,
+          "delta_pp": 34.333333333333336,
+          "task_bootstrap_95_ci_pp": [
+            28.999999999999996,
+            39.666666666666664
+          ],
+          "branch_only": 103,
+          "baseline_only": 0,
+          "mcnemar_exact_two_sided_p": 1.9721522630525295e-31
+        },
+        {
+          "role": "oracle2",
+          "tasks": 300,
+          "baseline": 0.6566666666666666,
+          "branch": 0.9966666666666667,
+          "delta_pp": 34.0,
+          "task_bootstrap_95_ci_pp": [
+            28.666666666666668,
+            39.33333333333333
+          ],
+          "branch_only": 102,
+          "baseline_only": 0,
+          "mcnemar_exact_two_sided_p": 3.944304526105059e-31
+        }
+      ],
+      "mean_baseline": 0.6566666666666666,
+      "mean_branch": 0.9977777777777778,
+      "mean_delta_pp": 34.11111111111111,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        28.77777777777778,
+        39.666666666666664
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05
+    },
+    "C3_depth_effect_fields_fixed_d2_minus_d3_at_hit8": {
+      "k": 8,
+      "paired": false,
+      "bootstrap_unit": "crossed_training_seed_x_task_sets",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.5466666666666666,
+          "b": 0.9833333333333333,
+          "delta_pp": 43.666666666666664,
+          "task_bootstrap_95_ci_pp": [
+            37.66666666666667,
+            49.33333333333334
+          ]
+        },
+        {
+          "role": "oracle1",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.56,
+          "b": 0.9866666666666667,
+          "delta_pp": 42.666666666666664,
+          "task_bootstrap_95_ci_pp": [
+            36.66666666666667,
+            48.333333333333336
+          ]
+        },
+        {
+          "role": "oracle2",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.5666666666666667,
+          "b": 0.99,
+          "delta_pp": 42.333333333333336,
+          "task_bootstrap_95_ci_pp": [
+            36.66666666666667,
+            48.0
+          ]
+        }
+      ],
+      "mean_a": 0.5577777777777778,
+      "mean_b": 0.9866666666666667,
+      "mean_delta_pp": 42.888888888888886,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        38.0,
+        47.66666666666667
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "bootstrap_two_sided_p": 9.999000099990002e-05,
+      "bootstrap_p_holm_adjusted": 0.00029997000299970003
+    },
+    "C3_depth_effect_fields_fixed_d2_minus_d3_at_hit1": {
+      "k": 1,
+      "paired": false,
+      "bootstrap_unit": "crossed_training_seed_x_task_sets",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.12333333333333334,
+          "b": 0.5233333333333333,
+          "delta_pp": 40.0,
+          "task_bootstrap_95_ci_pp": [
+            33.33333333333333,
+            46.666666666666664
+          ]
+        },
+        {
+          "role": "oracle1",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.15,
+          "b": 0.5333333333333333,
+          "delta_pp": 38.33333333333333,
+          "task_bootstrap_95_ci_pp": [
+            31.333333333333336,
+            45.333333333333336
+          ]
+        },
+        {
+          "role": "oracle2",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.12666666666666668,
+          "b": 0.5433333333333333,
+          "delta_pp": 41.666666666666664,
+          "task_bootstrap_95_ci_pp": [
+            35.0,
+            48.33333333333334
+          ]
+        }
+      ],
+      "mean_a": 0.13333333333333333,
+      "mean_b": 0.5333333333333333,
+      "mean_delta_pp": 40.0,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        34.0,
+        45.666666666666664
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "bootstrap_two_sided_p": 9.999000099990002e-05
+    },
+    "C4_field_effect_depth_fixed_train_minus_heldout": {
+      "k": 32,
+      "paired": false,
+      "bootstrap_unit": "crossed_training_seed_x_task_sets",
+      "per_seed": [
+        {
+          "role": "oracle0",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.9233333333333333,
+          "b": 0.8866666666666667,
+          "delta_pp": -3.6666666666666625,
+          "task_bootstrap_95_ci_pp": [
+            -8.333333333333337,
+            1.0000000000000009
+          ]
+        },
+        {
+          "role": "oracle1",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.9666666666666667,
+          "b": 0.9366666666666666,
+          "delta_pp": -3.0000000000000027,
+          "task_bootstrap_95_ci_pp": [
+            -6.333333333333336,
+            0.33333333333334103
+          ]
+        },
+        {
+          "role": "oracle2",
+          "tasks_a": 300,
+          "tasks_b": 300,
+          "a": 0.9233333333333333,
+          "b": 0.9233333333333333,
+          "delta_pp": 0.0,
+          "task_bootstrap_95_ci_pp": [
+            -4.333333333333334,
+            4.0000000000000036
+          ]
+        }
+      ],
+      "mean_a": 0.9377777777777778,
+      "mean_b": 0.9155555555555556,
+      "mean_delta_pp": -2.2222222222222254,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        -6.000000000000005,
+        1.5555555555555545
+      ],
+      "ci_excludes_zero": false,
+      "positive_direction_seeds": 0,
+      "negative_direction_seeds": 2,
+      "seed_count": 3,
+      "bootstrap_two_sided_p": 0.24637536246375363,
+      "bootstrap_p_holm_adjusted": 0.24637536246375363
+    },
+    "M1_primary_held_motif_known_field": {
+      "k": 32,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "nomotif0",
+          "tasks": 250,
+          "baseline": 0.388,
+          "branch": 0.172,
+          "delta_pp": -21.6,
+          "task_bootstrap_95_ci_pp": [
+            -29.2,
+            -14.000000000000002
+          ],
+          "branch_only": 25,
+          "baseline_only": 79,
+          "mcnemar_exact_two_sided_p": 1.0540017368882998e-07
+        },
+        {
+          "role": "nomotif1",
+          "tasks": 250,
+          "baseline": 0.388,
+          "branch": 0.248,
+          "delta_pp": -14.000000000000002,
+          "task_bootstrap_95_ci_pp": [
+            -22.0,
+            -6.0
+          ],
+          "branch_only": 38,
+          "baseline_only": 73,
+          "mcnemar_exact_two_sided_p": 0.0011510187915276821
+        },
+        {
+          "role": "nomotif2",
+          "tasks": 250,
+          "baseline": 0.388,
+          "branch": 0.34,
+          "delta_pp": -4.8,
+          "task_bootstrap_95_ci_pp": [
+            -13.200000000000001,
+            3.2
+          ],
+          "branch_only": 50,
+          "baseline_only": 62,
+          "mcnemar_exact_two_sided_p": 0.2985928528328461
+        }
+      ],
+      "mean_baseline": 0.388,
+      "mean_branch": 0.25333333333333335,
+      "mean_delta_pp": -13.466666666666665,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        -24.0,
+        -2.666666666666667
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 0,
+      "negative_direction_seeds": 3,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 0.013298670132986702
+    },
+    "M2_held_motif_new_field": {
+      "k": 32,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "nomotif0",
+          "tasks": 250,
+          "baseline": 0.416,
+          "branch": 0.18,
+          "delta_pp": -23.599999999999998,
+          "task_bootstrap_95_ci_pp": [
+            -31.2,
+            -16.0
+          ],
+          "branch_only": 27,
+          "baseline_only": 86,
+          "mcnemar_exact_two_sided_p": 2.340613293581683e-08
+        },
+        {
+          "role": "nomotif1",
+          "tasks": 250,
+          "baseline": 0.416,
+          "branch": 0.28,
+          "delta_pp": -13.600000000000001,
+          "task_bootstrap_95_ci_pp": [
+            -22.400000000000002,
+            -4.8
+          ],
+          "branch_only": 48,
+          "baseline_only": 82,
+          "mcnemar_exact_two_sided_p": 0.0036340112928066356
+        },
+        {
+          "role": "nomotif2",
+          "tasks": 250,
+          "baseline": 0.416,
+          "branch": 0.336,
+          "delta_pp": -8.0,
+          "task_bootstrap_95_ci_pp": [
+            -16.400000000000002,
+            0.8
+          ],
+          "branch_only": 52,
+          "baseline_only": 72,
+          "mcnemar_exact_two_sided_p": 0.08755276689017025
+        }
+      ],
+      "mean_baseline": 0.416,
+      "mean_branch": 0.2653333333333333,
+      "mean_delta_pp": -15.066666666666666,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        -25.60333333333333,
+        -4.266666666666667
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 0,
+      "negative_direction_seeds": 3,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 0.0057994200579942,
+      "bootstrap_p_holm_adjusted": 0.0057994200579942
+    },
+    "M3a_seen_motif_known_field": {
+      "k": 32,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "nomotif0",
+          "tasks": 250,
+          "baseline": 0.388,
+          "branch": 0.964,
+          "delta_pp": 57.599999999999994,
+          "task_bootstrap_95_ci_pp": [
+            51.2,
+            63.6
+          ],
+          "branch_only": 146,
+          "baseline_only": 2,
+          "mcnemar_exact_two_sided_p": 6.180847266443903e-41
+        },
+        {
+          "role": "nomotif1",
+          "tasks": 250,
+          "baseline": 0.388,
+          "branch": 0.948,
+          "delta_pp": 56.00000000000001,
+          "task_bootstrap_95_ci_pp": [
+            49.6,
+            62.4
+          ],
+          "branch_only": 143,
+          "baseline_only": 3,
+          "mcnemar_exact_two_sided_p": 1.1632167341972592e-38
+        },
+        {
+          "role": "nomotif2",
+          "tasks": 250,
+          "baseline": 0.388,
+          "branch": 0.908,
+          "delta_pp": 52.0,
+          "task_bootstrap_95_ci_pp": [
+            45.2,
+            58.8
+          ],
+          "branch_only": 137,
+          "baseline_only": 7,
+          "mcnemar_exact_two_sided_p": 2.0745989755018755e-32
+        }
+      ],
+      "mean_baseline": 0.388,
+      "mean_branch": 0.94,
+      "mean_delta_pp": 55.2,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        48.13333333333333,
+        62.0
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05,
+      "bootstrap_p_holm_adjusted": 0.00029997000299970003
+    },
+    "M3c_seen_motif_new_field": {
+      "k": 32,
+      "paired": true,
+      "bootstrap_unit": "crossed_training_seed_x_task",
+      "per_seed": [
+        {
+          "role": "nomotif0",
+          "tasks": 250,
+          "baseline": 0.348,
+          "branch": 0.96,
+          "delta_pp": 61.199999999999996,
+          "task_bootstrap_95_ci_pp": [
+            54.800000000000004,
+            67.60000000000001
+          ],
+          "branch_only": 156,
+          "baseline_only": 3,
+          "mcnemar_exact_two_sided_p": 1.8339493651851043e-42
+        },
+        {
+          "role": "nomotif1",
+          "tasks": 250,
+          "baseline": 0.348,
+          "branch": 0.96,
+          "delta_pp": 61.199999999999996,
+          "task_bootstrap_95_ci_pp": [
+            55.2,
+            67.2
+          ],
+          "branch_only": 153,
+          "baseline_only": 0,
+          "mcnemar_exact_two_sided_p": 1.7516230804060213e-46
+        },
+        {
+          "role": "nomotif2",
+          "tasks": 250,
+          "baseline": 0.348,
+          "branch": 0.888,
+          "delta_pp": 54.0,
+          "task_bootstrap_95_ci_pp": [
+            47.599999999999994,
+            60.4
+          ],
+          "branch_only": 138,
+          "baseline_only": 3,
+          "mcnemar_exact_two_sided_p": 3.352870916839435e-37
+        }
+      ],
+      "mean_baseline": 0.348,
+      "mean_branch": 0.936,
+      "mean_delta_pp": 58.8,
+      "crossed_seed_task_bootstrap_95_ci_pp": [
+        51.46666666666667,
+        65.73333333333333
+      ],
+      "ci_excludes_zero": true,
+      "positive_direction_seeds": 3,
+      "negative_direction_seeds": 0,
+      "seed_count": 3,
+      "seed_direction_exact_two_sided_p": 0.25,
+      "bootstrap_two_sided_p": 9.999000099990002e-05,
+      "bootstrap_p_holm_adjusted": 0.00029997000299970003
+    },
+    "M4_main_effects": {
+      "k": 32,
+      "bootstrap_unit": "crossed_training_seed_x_task_family",
+      "motif_effect_pp": 71.26666666666668,
+      "motif_crossed_seed_task_bootstrap_95_ci_pp": [
+        58.533333333333324,
+        83.6
+      ],
+      "motif_ci_excludes_zero": true,
+      "motif_bootstrap_two_sided_p": 9.999000099990002e-05,
+      "field_effect_pp": -0.9999999999999953,
+      "field_crossed_seed_task_bootstrap_95_ci_pp": [
+        -8.266666666666667,
+        6.333333333333331
+      ],
+      "field_ci_excludes_zero": false,
+      "field_bootstrap_two_sided_p": 0.7914208579142086,
+      "seen_mean_pp": 57.00000000000001,
+      "held_mean_pp": -14.266666666666666,
+      "known_field_mean_pp": 20.86666666666667,
+      "new_field_mean_pp": 21.866666666666664
+    }
+  }
+}

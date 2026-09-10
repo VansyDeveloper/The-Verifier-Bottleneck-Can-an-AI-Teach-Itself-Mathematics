@@ -1,0 +1,21 @@
+name: verifier_x_exploration
+base_checkpoint: artifacts/adapters/sft_atomic_r16
+exploration_methods:
+  - iid_t07
+  - prefix_balanced
+verifier_regimes:
+  - name: exact
+    alpha: 1.0
+    beta: 0.0
+  - name: informative
+    alpha: 0.8
+    beta: 0.2
+  - name: uninformative
+    alpha: 0.5
+    beta: 0.5
+  - name: misleading
+    alpha: 0.2
+    beta: 0.8
+seeds: [0, 1, 2]
+steps_pilot: 150
+steps_full: 400

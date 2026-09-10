@@ -1,0 +1,278 @@
+{
+  "files": [
+    {
+      "split": "sft_train_apply",
+      "path": "artifacts/data/pilot/sft_train_apply.jsonl",
+      "count": 1000,
+      "size": 365102,
+      "sha256": "05aececbdf53d2d56744e6fb1c7cffa032bd363bfbbdc96572421c27871608d2",
+      "primes": [
+        5,
+        7
+      ],
+      "depths": [
+        1
+      ],
+      "modes": [
+        "apply"
+      ]
+    },
+    {
+      "split": "sft_train_plan",
+      "path": "artifacts/data/pilot/sft_train_plan.jsonl",
+      "count": 1000,
+      "size": 357120,
+      "sha256": "d60b1b354002df3e846a7093755518135fd6e221bdd4dc9699a16ded932f8d16",
+      "primes": [
+        5,
+        7
+      ],
+      "depths": [
+        1
+      ],
+      "modes": [
+        "plan"
+      ]
+    },
+    {
+      "split": "sft_validation_apply",
+      "path": "artifacts/data/pilot/sft_validation_apply.jsonl",
+      "count": 100,
+      "size": 36970,
+      "sha256": "335d0861d55efe9b96c83689ba38a87d6d5b4c735bc08218a134e73ba421d0d3",
+      "primes": [
+        5,
+        7
+      ],
+      "depths": [
+        1
+      ],
+      "modes": [
+        "apply"
+      ]
+    },
+    {
+      "split": "sft_validation_apply_non_sh1",
+      "path": "artifacts/data/pilot/sft_validation_apply_non_sh1.jsonl",
+      "count": 80,
+      "size": 29564,
+      "sha256": "25091306302389c8578eec37dcafa95b5137eaeb7ea3eeb19efbd76876354fba",
+      "primes": [
+        5,
+        7
+      ],
+      "depths": [
+        1
+      ],
+      "modes": [
+        "apply"
+      ]
+    },
+    {
+      "split": "sft_validation_plan",
+      "path": "artifacts/data/pilot/sft_validation_plan.jsonl",
+      "count": 100,
+      "size": 36242,
+      "sha256": "3eb60862970cdb16fd56a2c47be8d12cf34d9455f9c547ec3a2750d638d3e6c8",
+      "primes": [
+        5,
+        7
+      ],
+      "depths": [
+        1
+      ],
+      "modes": [
+        "plan"
+      ]
+    },
+    {
+      "split": "sft_calibration_sh1",
+      "path": "artifacts/data/pilot/sft_calibration_sh1.jsonl",
+      "count": 4000,
+      "size": 1391033,
+      "sha256": "330896c166c59ca8b7efd22a2b92d7fa929fa90b583e569d1366a8328bb551f9",
+      "primes": [
+        5,
+        7,
+        13,
+        19,
+        23,
+        29
+      ],
+      "depths": [
+        1
+      ],
+      "modes": [
+        "apply"
+      ]
+    },
+    {
+      "split": "dev_exploration",
+      "path": "artifacts/data/pilot/dev_exploration.jsonl",
+      "count": 100,
+      "size": 36878,
+      "sha256": "f4202f592affc2114bf3c4313b383fc73cc987aff48d180f865135bdd1a18132",
+      "primes": [
+        5,
+        7
+      ],
+      "depths": [
+        2,
+        3
+      ],
+      "modes": [
+        "plan"
+      ]
+    },
+    {
+      "split": "rl_train",
+      "path": "artifacts/data/pilot/rl_train.jsonl",
+      "count": 500,
+      "size": 186985,
+      "sha256": "140e95b8192d0e19e79716385fcdd2361483b07990324f7f933c007aace7715f",
+      "primes": [
+        5,
+        7,
+        13,
+        19,
+        23,
+        29
+      ],
+      "depths": [
+        2,
+        3
+      ],
+      "modes": [
+        "plan"
+      ]
+    },
+    {
+      "split": "final_like_heldout",
+      "path": "artifacts/data/pilot/final_like_heldout.jsonl",
+      "count": 200,
+      "size": 75576,
+      "sha256": "6b46f341fb4c860e1a5ed14ae76919ab1971666d7484ed9c02a2d24f4bc9fd5a",
+      "primes": [
+        11,
+        17
+      ],
+      "depths": [
+        3
+      ],
+      "modes": [
+        "plan"
+      ]
+    },
+    {
+      "split": "confirmatory_heldout",
+      "path": "artifacts/data/pilot/confirmatory_heldout.jsonl",
+      "count": 300,
+      "size": 113775,
+      "sha256": "4a2e4fd1c7d1e9766ddc23c43014713beb8ddb2f5dc30a518c209137dca96d45",
+      "primes": [
+        11,
+        17
+      ],
+      "depths": [
+        3
+      ],
+      "modes": [
+        "plan"
+      ]
+    }
+  ],
+  "overlaps": [
+    {
+      "a": "dev_exploration",
+      "b": "rl_train",
+      "shared_exact_keys": 1,
+      "severity": "train_eval_leak"
+    },
+    {
+      "a": "sft_calibration_sh1",
+      "b": "sft_train_apply",
+      "shared_exact_keys": 90,
+      "severity": "within_stage_overlap"
+    },
+    {
+      "a": "sft_calibration_sh1",
+      "b": "sft_validation_apply",
+      "shared_exact_keys": 5,
+      "severity": "within_stage_overlap"
+    },
+    {
+      "a": "sft_train_apply",
+      "b": "sft_validation_apply",
+      "shared_exact_keys": 12,
+      "severity": "within_stage_overlap"
+    },
+    {
+      "a": "sft_train_apply",
+      "b": "sft_validation_apply_non_sh1",
+      "shared_exact_keys": 8,
+      "severity": "within_stage_overlap"
+    },
+    {
+      "a": "sft_train_plan",
+      "b": "sft_validation_plan",
+      "shared_exact_keys": 11,
+      "severity": "within_stage_overlap"
+    },
+    {
+      "a": "sft_validation_apply",
+      "b": "sft_validation_apply_non_sh1",
+      "shared_exact_keys": 80,
+      "severity": "within_stage_overlap"
+    }
+  ],
+  "checks": {
+    "sft_only_depth_1": true,
+    "heldout_splits_use_heldout_primes_only": {
+      "final_like_heldout": true,
+      "confirmatory_heldout": true
+    },
+    "heldout_primes_absent_from_training": {
+      "rl_train": true,
+      "sft_calibration_sh1": true,
+      "sft_train_apply": true,
+      "sft_train_plan": true
+    },
+    "train_eval_leaks": [
+      {
+        "a": "dev_exploration",
+        "b": "rl_train",
+        "shared_exact_keys": 1,
+        "severity": "train_eval_leak"
+      }
+    ]
+  },
+  "known_issues": [
+    {
+      "id": "stale-heldout-prime-flag",
+      "detail": "generator.py writes difficulty.heldout_prime = False unconditionally, so rows on primes 11 and 17 carry a wrong flag. The field is not part of the task_id hash and is never read by the verifier, splits or metrics; prime membership is determined by the p field, which is correct everywhere. Left unchanged on purpose: rewriting it would alter frozen file bytes and invalidate the preregistered SHA256 values.",
+      "scientific_impact": "none"
+    },
+    {
+      "id": "sft-train-primes",
+      "detail": "prepare_smoke_data.py generates the atomic SFT splits on primes 5 and 7 only, while docs/03 section 3.3 declares train primes 5, 7, 13, 19, 23, 29. RL training does use all six. The narrower SFT prime set makes held-out generalisation harder, so the deviation is conservative with respect to every positive claim. Recorded in DECISIONS.md D-019.",
+      "scientific_impact": "conservative"
+    },
+    {
+      "id": "rl-dev-overlap",
+      "detail": "rl_train and dev_exploration share exactly one task by exact key. dev_exploration is a selection set, not a reported test set, and the selection rule (temperature matching on distinct programs per task) is recomputed without that task in the integrity report below.",
+      "scientific_impact": "negligible"
+    }
+  ],
+  "train_primes_declared": [
+    5,
+    7,
+    13,
+    19,
+    23,
+    29
+  ],
+  "heldout_primes_declared": [
+    11,
+    17
+  ]
+}

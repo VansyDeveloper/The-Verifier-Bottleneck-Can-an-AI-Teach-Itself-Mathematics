@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MetricsRecord",
+  "type": "object",
+  "required": [
+    "run_id",
+    "split",
+    "step",
+    "metrics"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "split": {
+      "type": "string"
+    },
+    "step": {
+      "type": "integer"
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "number",
+          "integer",
+          "null"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+model_name_or_path: Qwen/Qwen3-0.6B-Base
+trust_remote_code: true
+dtype_preference: [bfloat16, float16]
+use_quantization: false
+max_seq_length: 384
+padding_side: left
+attention_implementation: auto

@@ -1,0 +1,43 @@
+{
+  "files": [
+    {
+      "split": "sft_train_composition_noisy_b10",
+      "path": "artifacts/data/pilot/sft_train_composition_noisy_b10.jsonl",
+      "source": "sft_train_composition",
+      "alpha": 1.0,
+      "beta_requested": 0.1,
+      "count": 4000,
+      "labels_corrupted": 409,
+      "beta_realised": 0.10225,
+      "labels_verified_incorrect": 409,
+      "sha256": "edd81f307e6059aabf4ecc911e43a84460228df4ad7c4c174831cdaf91641727",
+      "seed": 50031
+    },
+    {
+      "split": "sft_train_composition_noisy_b25",
+      "path": "artifacts/data/pilot/sft_train_composition_noisy_b25.jsonl",
+      "source": "sft_train_composition",
+      "alpha": 1.0,
+      "beta_requested": 0.25,
+      "count": 4000,
+      "labels_corrupted": 1009,
+      "beta_realised": 0.25225,
+      "labels_verified_incorrect": 1009,
+      "sha256": "1ea23123e0999399e58d7b130cc3628a11e87d4db7841739dad486b5a841b63a",
+      "seed": 50046
+    },
+    {
+      "split": "sft_train_composition_noisy_b50",
+      "path": "artifacts/data/pilot/sft_train_composition_noisy_b50.jsonl",
+      "source": "sft_train_composition",
+      "alpha": 1.0,
+      "beta_requested": 0.5,
+      "count": 4000,
+      "labels_corrupted": 1989,
+      "beta_realised": 0.49725,
+      "labels_verified_incorrect": 1989,
+      "sha256": "523e1bd9eb3fab37efaaa138b2631d65d7d22e0c5d21586561235861404889d4",
+      "seed": 50071
+    }
+  ]
+}

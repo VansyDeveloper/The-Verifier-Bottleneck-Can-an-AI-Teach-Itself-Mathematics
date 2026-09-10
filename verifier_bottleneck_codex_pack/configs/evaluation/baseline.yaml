@@ -1,0 +1,16 @@
+name: baseline_evaluation
+model_config: configs/model/qwen3_0_6b_base.yaml
+data_config: configs/data/polynomial_programs.yaml
+adapters:
+  - null
+  - artifacts/adapters/sft_atomic_r16
+sampling:
+  temperature: 0.7
+  top_p: 1.0
+  max_new_tokens: 64
+  k_values: [1, 4, 8, 16, 32, 64]
+splits:
+  - sft_validation
+  - test_apply_indomain
+  - test_apply_heldout
+  - test_plan_final
