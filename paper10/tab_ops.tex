@@ -1,0 +1,19 @@
+\begin{table}[!tbh]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|l|l|p{.34\linewidth}|}
+\hline
+\textbf{Code} & \textbf{Transformation} & \textbf{Effect} \\
+\hline
+SH1 & $P(x) \mapsto P(x+1)$ & shift of the argument by one \\ \hline
+SC2 & $P(x) \mapsto P(2x)$ & scaling of the argument \\ \hline
+REV & $[c_0, \ldots, c_d] \mapsto [c_d, \ldots, c_0]$ & reversal of the vector \\ \hline
+AC1 & $c_0 \mapsto c_0 + 1$ & change of the free coefficient \\ \hline
+AX1 & $c_1 \mapsto c_1 + 1$ & change of the coefficient at $x$ \\ \hline
+\end{tabular}
+\caption{The five atomic transformations, all taken modulo $p$. Each one is
+computed deterministically and none of them changes the length of the state
+vector, so programs of small depth can be enumerated in full. AC1 and AX1 look
+similar and touch different coordinates, so after REV or SH1 they lead to
+different final states.}
+\label{tab:ops}
+\end{table}

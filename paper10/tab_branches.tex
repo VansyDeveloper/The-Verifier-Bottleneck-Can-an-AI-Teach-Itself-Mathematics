@@ -1,0 +1,19 @@
+% ------------------------------------------------- branches
+\begin{table}[!tbh]
+\centering\footnotesize\setlength{\tabcolsep}{5pt}
+\begin{tabular}{|l|p{.30\linewidth}|p{.34\linewidth}|}
+\hline
+\textbf{Branch} & \textbf{Training data} & \textbf{Purpose} \\
+\hline
+atomic control & fresh atomic tasks & control for the effect of further training and of the number of tokens \\ \hline
+composition branch & full correct composition trajectories and 20 percent atomic replay & consolidation of verified operation sequences \\ \hline
+\end{tabular}
+\caption{The two branches of the confirmatory series. Each independent run started
+from one frozen atomic adapter and split into these two. The correct composition
+trajectories were found by exhaustive search and confirmed by the deterministic
+verifier. The main branch received all the tokens of the program and the
+intermediate states, and the control branch received an equal number of training
+tokens and steps on atomic tasks alone, so a difference in the result cannot be
+explained by a longer period of training.}
+\label{tab:branches}
+\end{table}

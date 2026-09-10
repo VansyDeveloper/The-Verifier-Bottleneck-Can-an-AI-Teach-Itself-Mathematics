@@ -1,0 +1,26 @@
+\begin{table}[!tbh]
+\centering\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|l|r|r|}
+\hline
+\textbf{Contrast in exhaustive Hit@32} & \textbf{$\Delta$, pp} & \textbf{95\% CI} \\
+\hline
+\multicolumn{3}{|l|}{E3, against the shared starting checkpoint} \\ \hline
+supervision, known fields & $+48.22$ & $[+41.33, +55.00]$ \\ \hline
+supervision, fields 11 and 17 & $+59.11$ & $[+53.00, +65.33]$ \\ \hline
+known $-$ held-out fields, after supervision & $-2.22$ & $[-6.00, +1.56]$ \\ \hline
+depth 2 $-$ depth 3 at Hit@8, fields fixed & $+42.89$ & $[+38.00, +47.67]$ \\ \hline
+\multicolumn{3}{|l|}{E5, against an equal-budget atomic control} \\ \hline
+atomic control, known fields & $+0.11$ & $[-6.44, +6.44]$ \\ \hline
+atomic control, fields 11 and 17 & $+1.67$ & $[-4.67, +7.67]$ \\ \hline
+supervision $-$ atomic control, known fields & $+48.11$ & $[+38.67, +57.11]$ \\ \hline
+supervision $-$ atomic control, fields 11, 17 & $+57.44$ & $[+49.67, +65.33]$ \\ \hline
+\end{tabular}
+\caption{Direct supervision on correct depth-3 programs, 300 tasks per split and
+three training seeds, with all 125 candidate programs ranked exactly. The first two
+rows of each block compare a trained adapter with the reference named in the block
+heading. The atomic control received the same 1875 optimiser steps, the same
+learning rate and the same number of training examples on atomic data alone, so
+the lower block separates the content of the supervision from the length of the
+optimisation.}
+\label{tab:capacity}
+\end{table}

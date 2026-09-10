@@ -1,0 +1,24 @@
+\begin{table}[!tbh]
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|l|p{.40\linewidth}|p{.19\linewidth}|l|}
+\hline
+& \textbf{Intervention} & \textbf{Evaluation} & \textbf{Status} \\
+\hline
+E1 & search method at matched candidate diversity & 300 tasks, 3 seeds & confirmatory \\ \hline
+E2 & 400 steps of GRPO with an exploring sampler & 300 tasks, 3 seeds & confirmatory \\ \hline
+E3 & supervision on correct depth-2 and depth-3 programs & $4 \times 300$, 3 seeds & confirmatory \\ \hline
+E4 & removal of three operation pairs from supervision & $4 \times 250$, 3 seeds & confirmatory \\ \hline
+E5 & equal-budget control, motif-present control, APPLY mixture, depth 4, verifier noise & reused sets, 125 new tasks & post-hoc \\ \hline
+\end{tabular}
+\caption{The five studies and their status, stated before any result is shown. E1
+to E4 were preregistered, with the primary endpoint, the decision rule and the
+frozen set fixed in advance. E4 was added by an amendment whose position in time
+relative to the opening of E3's data cannot be established from the artifacts, so it
+is a disclosed extension and not an independently preregistered test. E5 collects
+boundary conditions on sets
+that E3 and E4 had already opened, together with one newly generated depth-4
+split, and is therefore reported as post-hoc. The verifier levels of E5 use one
+training seed each and the rest of E5 uses three. The claims of E1 to E4 stand
+without E5.}
+\label{tab:design}
+\end{table}

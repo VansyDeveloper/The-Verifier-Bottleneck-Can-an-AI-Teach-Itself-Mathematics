@@ -1,0 +1,22 @@
+% ------------------------------------------------- diverse compositions
+\begin{table}[!tbh]
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|c|c|l|l|l|l|}
+\hline
+\textbf{Depth} & \textbf{$p$} & \textbf{Start} & \textbf{Target} & \textbf{A correct program} & \textbf{Type} \\
+\hline
+2 & 7  & $[1, 2, 3]$        & $[3, 2, 2]$        & AC1, REV           & unique shortest \\ \hline
+3 & 11 & $[0, 2, 2, 5]$     & $[5, 4, 1, 0]$     & AX1, REV, SC2      & unique shortest \\ \hline
+3 & 7  & $[4, 4, 5, 6]$     & $[0, 2, 4, 5]$     & SH1, REV, AC1      & unique shortest \\ \hline
+4 & 11 & $[10, 10, 2]$      & $[0, 10, 7]$       & SC2, REV, SC2, SH1 & unique shortest \\ \hline
+4 & 23 & $[7, 8, 18, 5]$    & $[16, 20, 1, 10]$  & REV, AX1, SH1, SC2 & one solution \\ \hline
+4 & 19 & $[17, 12, 16, 10]$ & $[17, 13, 16, 11]$ & the two of Fig.~\ref{fig:example} & two solutions \\ \hline
+\end{tabular}
+\caption{Correct compositions across different fields, degrees and depths. Every
+row was re-executed with the deterministic interpreter of the experiments, and
+every uniqueness claim was re-checked by exhaustive search over all programs of
+that depth and shorter. Order matters throughout: on the second row the sequence
+REV, AX1, SC2 gives $[5, 6, 8, 0]$ instead of the target, and on the fourth row
+exchanging the first two operations gives $[4, 8, 6]$.}
+\label{tab:examples}
+\end{table}

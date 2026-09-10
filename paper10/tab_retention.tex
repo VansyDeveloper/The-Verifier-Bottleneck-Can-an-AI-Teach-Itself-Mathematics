@@ -1,0 +1,17 @@
+\begin{table}[!tbh]
+\centering\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|p{.30\linewidth}|r|r|r|r|}
+\hline
+\textbf{Training mixture} & \textbf{APPLY} & \textbf{Parse} & \textbf{PLAN} & \textbf{Vectors} \\
+\hline
+no composition supervision & 1.000 & 1.000 & 0.980 & 80/80 \\ \hline
+APPLY absent from the stream & 0.000 & 0.000 & 0.910--0.980 & 0/480 \\ \hline
+APPLY at 17 percent of the stream & 0.975--1.000 & 1.000 & 0.850--0.970 & 240/240 \\ \hline
+\end{tabular}
+\caption{The atomic modes on the frozen validation splits, 80 APPLY tasks and 100
+PLAN tasks, at greedy decoding. The APPLY and PLAN columns give pass@1 and the
+Parse column gives the parse rate of the APPLY answers. The last column counts
+answers to an APPLY prompt that contain a coefficient vector at all, pooled over
+the six adapters of the middle row and the three of the last row.}
+\label{tab:retention}
+\end{table}

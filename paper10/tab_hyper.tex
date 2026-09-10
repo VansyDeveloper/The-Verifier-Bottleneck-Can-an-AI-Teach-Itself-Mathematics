@@ -1,0 +1,24 @@
+% ------------------------------------------------- hyper-parameters
+\begin{table}[!tbh]
+\centering\footnotesize\setlength{\tabcolsep}{6pt}
+\begin{tabular}{|l|r|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+LoRA rank & 32 \\ \hline
+scaling factor & 64 \\ \hline
+dropout probability & 0.05 \\ \hline
+learning rate & $1 \times 10^{-4}$ \\ \hline
+epochs & 2 \\ \hline
+effective batch size & 64 \\ \hline
+warm-up fraction & 3 percent \\ \hline
+gradient-norm clip & 1.0 \\ \hline
+arithmetic format & bfloat16 \\ \hline
+atomic replay in the main branch & 20 percent \\ \hline
+\end{tabular}
+\caption{Fine-tuning parameters of the confirmatory series, from its frozen protocol.
+Both branches used low-rank adaptation with these settings and the base weights
+stayed identical, and new adapters were created for every independent run so that
+stability across runs could be assessed.}
+\label{tab:hyper}
+\end{table}
