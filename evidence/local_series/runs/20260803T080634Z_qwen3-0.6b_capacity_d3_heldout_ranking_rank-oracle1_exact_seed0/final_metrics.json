@@ -1,0 +1,17 @@
+{
+  "hit_at_1": 0.17666666666666667,
+  "hit_at_4": 0.41333333333333333,
+  "hit_at_8": 0.61,
+  "hit_at_16": 0.8033333333333333,
+  "hit_at_32": 0.9666666666666667,
+  "hit_at_64": 0.9933333333333333,
+  "mean_best_rank": 9.86,
+  "mrr": 0.3257780778969444,
+  "mean_correct_mass": 0.09382319227071598,
+  "mean_solutions_per_task": 1.5333333333333334,
+  "candidates_per_task": 125,
+  "tasks": 300,
+  "model_passes": 9300,
+  "elapsed_seconds": 951.6509034979972,
+  "peak_cuda_bytes": 1354378240
+}

@@ -1,0 +1,17 @@
+{
+  "commit": "42c70c8",
+  "files": {
+    "composition_core.py": {
+      "source": "new_stuff/stage4_verifier_bottleneck_audit_v22/source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_core.py",
+      "sha256": "e62cab096f7a8524092e5343fd037adb6d67ed13fd8c0b6ded9537757cb5a89a"
+    },
+    "composition_eval.py": {
+      "source": "new_stuff/stage4_verifier_bottleneck_audit_v22/source/artifacts/stage4_distill_v5_0p6b_exploratory_sh1_72p8/code/composition_eval.py",
+      "sha256": "0e9452ccf2842f46d911cd702b75f29a98426534b0e5b709250aea50fa799efc"
+    },
+    "confirm_stats.py": {
+      "source": "new_stuff/stage4_verifier_bottleneck_audit_v22/source/artifacts/stage4_composition_confirm_v1_0p6b/code/confirm_stats.py",
+      "sha256": "d7fbb22d2401be385d4960fd130e731c3ace988297f8643648364f021d1d94c2"
+    }
+  }
+}

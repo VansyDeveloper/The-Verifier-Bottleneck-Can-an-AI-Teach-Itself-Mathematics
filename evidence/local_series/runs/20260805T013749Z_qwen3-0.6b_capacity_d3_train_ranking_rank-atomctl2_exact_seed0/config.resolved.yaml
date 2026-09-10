@@ -1,0 +1,16 @@
+adapter: artifacts/adapters/sft_atomic_control_eqbudget_seed2
+adapter_sha256: 783e53130b50dd4b1f55dfdd6ef8d91e2bee78dd67c0b17590f2c27a4fa849bf
+input: artifacts/data/pilot/capacity_d3_train.jsonl
+input_sha256: bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d
+k_values:
+- 1
+- 4
+- 8
+- 16
+- 32
+- 64
+metric: exhaustive_hit_at_k
+model_name_or_path: Qwen/Qwen3-0.6B-Base
+sampling: none_exhaustive_enumeration
+temperature: 1.0
+tie_break: lexicographic_operation_signature

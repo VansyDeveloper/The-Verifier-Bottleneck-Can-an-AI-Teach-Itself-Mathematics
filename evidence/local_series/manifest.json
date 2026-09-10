@@ -1,0 +1,873 @@
+{
+  "schema": "iclr.local-series-ranking.v1",
+  "model": "Qwen/Qwen3-0.6B-Base",
+  "study": "local second series; disclosed post-hoc atomic controls",
+  "historical_main_six_seed_series": false,
+  "scoring": "softmax over five summed operation-continuation token scores at each prefix; temperature 1",
+  "scorer_id": "vbexp_five_operation_normalization_v1",
+  "full_program_scores_available": false,
+  "tokenizer_revision_at_run": null,
+  "tokenizer_hash_at_run": null,
+  "source_snapshot_is_current_not_run_bound": true,
+  "adapter_hashes_are_current_snapshots_unless_recorded": true,
+  "files": {
+    "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml": {
+      "sha256": "ad96748815eab5c5707f8200bcd6999348d45b984badf3e136f5bb9ccf8d7700",
+      "bytes": 978,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml"
+    },
+    "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json": {
+      "sha256": "d9c4c28a5b32ee23432342c4c31a0f5e6a1286938ebe99ae3809f37c232c0f56",
+      "bytes": 254,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json"
+    },
+    "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json": {
+      "sha256": "a8ba725426ad4c6570183ad8ea8934036eb4373fff837fcbe62a88a78e8cb42c",
+      "bytes": 1204,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json"
+    },
+    "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt": {
+      "sha256": "4281ca10352a19dd60b34ae0e01ce60dae6150729281fafeb081bf9149d4d486",
+      "bytes": 234,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt"
+    },
+    "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml": {
+      "sha256": "8549512cf867f06562881f0bf245e42bc3f68fec022503be7955f4d6ac205fc8",
+      "bytes": 978,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml"
+    },
+    "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json": {
+      "sha256": "133aa37099b8487536c9568f61f979ddab097dc1d1c147c0c38c2bb53ed20426",
+      "bytes": 254,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json"
+    },
+    "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json": {
+      "sha256": "1856a6feb16c2493107eb8710f8d9ab94da841ab620e31945ca6698a46e71c36",
+      "bytes": 1204,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json"
+    },
+    "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt"
+    },
+    "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml": {
+      "sha256": "aa666a5278bee88c3e4df8528150996591abe509bc5ee51da3a74773c64a787f",
+      "bytes": 978,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml"
+    },
+    "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json": {
+      "sha256": "1ee98cbb50ef08ecf72c4d23bc546eb994f70ab073ce40d861d32ccc3604981c",
+      "bytes": 255,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json"
+    },
+    "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json": {
+      "sha256": "865aed09e182cd1a1ddc6e23a52e8625bbb76fa8523918b57498f708a9733d7c",
+      "bytes": 1204,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json"
+    },
+    "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt"
+    },
+    "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml": {
+      "sha256": "c4cebb82e6fe5735b36ce2e77053c138bc370349ed12482fceaad8d0e52e8a0c",
+      "bytes": 931,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml"
+    },
+    "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json": {
+      "sha256": "7db5077596e954f2afa0c56bd30d9c8e5f2230df0220ef1cb70f0190b22e5e31",
+      "bytes": 261,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json"
+    },
+    "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json": {
+      "sha256": "62156313d5f2df181f8fc00061d6dc2eb882871e8ca041da77b615d838399949",
+      "bytes": 1204,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json"
+    },
+    "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt"
+    },
+    "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml": {
+      "sha256": "fa09bef22a724de5dea76a09de3bc8258648fa608a6ad0c114bc93f401bce27e",
+      "bytes": 931,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml"
+    },
+    "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json": {
+      "sha256": "894034a8e5c6fdc981730046dea9ef5f34ffc5005b412e86ba8c959c669d574b",
+      "bytes": 261,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json"
+    },
+    "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json": {
+      "sha256": "51ed70e01f1d2cc1b95e3d53b78843a6be518365cf1be2421b74337031964803",
+      "bytes": 1204,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json"
+    },
+    "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt"
+    },
+    "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml": {
+      "sha256": "62fbede17fe5cfcbf8fa560fba7bb6d3994f3057c1efa38f789186f4cf2865af",
+      "bytes": 931,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml"
+    },
+    "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json": {
+      "sha256": "c93a98a6a0d47a93ce87265dbcbd65d108aa82e827909a543fefb86ae5abd09e",
+      "bytes": 262,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json"
+    },
+    "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json": {
+      "sha256": "d2fa8cc6a83d0436529994d74fb6912a36fe76d27ccc50daf5de31beed95d03c",
+      "bytes": 1204,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json"
+    },
+    "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt"
+    },
+    "data/capacity_d3_train.jsonl": {
+      "sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d",
+      "bytes": 113005,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/data/pilot/capacity_d3_train.jsonl"
+    },
+    "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/generations.jsonl": {
+      "sha256": "d5535fa0ee549c3e9ffa4952f5eb15e133d290ef202c56fe40bf29c063bd1f63",
+      "bytes": 92063,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/generations.jsonl"
+    },
+    "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/config.resolved.yaml": {
+      "sha256": "95087c332cbe4f65ea82af1a30b8fca3cf33e00dfaafc6aae1bf1b7e664eb855",
+      "bytes": 480,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/final_metrics.json": {
+      "sha256": "efcba37e0fea7913aacd7dfb75f6d76149ba0ec5cdfb0474d516f44a441104e3",
+      "bytes": 493,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/final_metrics.json"
+    },
+    "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/run_manifest.json": {
+      "sha256": "e5bbf74a86cfa8b3a49f44c1edde0c37f2e2316a7a6914a9608d494d5cb30b39",
+      "bytes": 1224,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/run_manifest.json"
+    },
+    "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/git_state.txt"
+    },
+    "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/generations.jsonl": {
+      "sha256": "b6978a53be4b84c971210076d7d5aa5594b1d7d30563786f0335c6fd953f022b",
+      "bytes": 91094,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/generations.jsonl"
+    },
+    "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/config.resolved.yaml": {
+      "sha256": "7d56100b33faa4ccf88daeb7a62372ec08ce7a454773c7010965ab6d25fcea51",
+      "bytes": 315,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/final_metrics.json": {
+      "sha256": "eb60c077d032f7a93f90521444b1f79c14e2665cd08815d3c1865429e5ac89a4",
+      "bytes": 501,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/final_metrics.json"
+    },
+    "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/run_manifest.json": {
+      "sha256": "988dc984d4ebaf84a8db6eacc6f700c7c136e9ac1ac1b28d0df4647e9a046cf1",
+      "bytes": 1223,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/run_manifest.json"
+    },
+    "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/git_state.txt"
+    },
+    "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/generations.jsonl": {
+      "sha256": "c7f6f93c1f5ec0f03a07858c0d4496212d11e7f6667d94414d645ef52cbe428e",
+      "bytes": 92079,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/generations.jsonl"
+    },
+    "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/config.resolved.yaml": {
+      "sha256": "a68cf719e1857d59a9cf84ab62aa88e5389f3992e1f3f47de935365ac8c01a4e",
+      "bytes": 480,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/final_metrics.json": {
+      "sha256": "6f4ce241d8f68e561a168e7ec69cbdd2e9c5a5d88cbdc138537aa78a35983619",
+      "bytes": 492,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/final_metrics.json"
+    },
+    "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/run_manifest.json": {
+      "sha256": "bcab2db641ca48d727e8f50a4403944184abeaf04618071ee57ccf1084f7d06b",
+      "bytes": 1224,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/run_manifest.json"
+    },
+    "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/git_state.txt"
+    },
+    "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/generations.jsonl": {
+      "sha256": "0614c519c4376a5c95aff52064f1d551c9c81ce3c7f5d4b190ff8cf1a8b800a7",
+      "bytes": 91042,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/generations.jsonl"
+    },
+    "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/config.resolved.yaml": {
+      "sha256": "8fa5d0297d1a4bbb6981617fa941d40af9bad15e44db76fa8b8980cecca92644",
+      "bytes": 315,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/final_metrics.json": {
+      "sha256": "15b2c33568ab6ec911d8c2f790770cb46345ac62c1fdd2822c93b0159d697df4",
+      "bytes": 446,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/final_metrics.json"
+    },
+    "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/run_manifest.json": {
+      "sha256": "40cb125f943669fc8d7066f61874361584a305c115e0e69a9dcada91813119da",
+      "bytes": 1223,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/run_manifest.json"
+    },
+    "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/git_state.txt"
+    },
+    "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/generations.jsonl": {
+      "sha256": "2117bd2c13eeab028f78fc03915544d485a853b4105681dcfa15e09c0aa3d8fd",
+      "bytes": 92080,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/generations.jsonl"
+    },
+    "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/config.resolved.yaml": {
+      "sha256": "f82131e29c433a7f2697786f61e0f340128faadd0be73132ba31b498a62ac757",
+      "bytes": 480,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/final_metrics.json": {
+      "sha256": "cab1b45a5ba45e585fff658400fedcb4a847bc0715ed2448e135c2c248d469ef",
+      "bytes": 462,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/final_metrics.json"
+    },
+    "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/run_manifest.json": {
+      "sha256": "0622a60918b59d76443395f6911d75f76907548721d7f740ca2c014ca6fb796a",
+      "bytes": 1224,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/run_manifest.json"
+    },
+    "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/git_state.txt"
+    },
+    "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/generations.jsonl": {
+      "sha256": "dec05138de8a620db2176bd6bf0441e2d728de1a83c644847d3fe64ee793531a",
+      "bytes": 91058,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/generations.jsonl"
+    },
+    "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/config.resolved.yaml": {
+      "sha256": "a0564abbfc8e522bc8bb20dd304f1bfcb29e72579b14a06d226eca3ff00eb00b",
+      "bytes": 315,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/final_metrics.json": {
+      "sha256": "70bdc3a5b876c1c2202f6dcf7c906ee0f49c667edf078da7438f96810cfbedc5",
+      "bytes": 473,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/final_metrics.json"
+    },
+    "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/run_manifest.json": {
+      "sha256": "9172c68a7aa5630600afa34ba026b8b6f883ecbc3a67dd36d51cf37f1d9bb85e",
+      "bytes": 1223,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/run_manifest.json"
+    },
+    "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/git_state.txt"
+    },
+    "data/capacity_d3_heldout.jsonl": {
+      "sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7",
+      "bytes": 113355,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/data/pilot/capacity_d3_heldout.jsonl"
+    },
+    "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/generations.jsonl": {
+      "sha256": "12dd0d13caaca2aa22031eccd0b888d6dbeeb79536d72ce94596ed6c22070e46",
+      "bytes": 92699,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/generations.jsonl"
+    },
+    "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/config.resolved.yaml": {
+      "sha256": "69704abdbf8f1f236d1c3f20cfce269677dc47427ee67e517392be419026a64d",
+      "bytes": 482,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/final_metrics.json": {
+      "sha256": "b20f902b492ed9bbf0fb4657aebb84b3c0d44c806e692f85a2eecce4a3e03da7",
+      "bytes": 490,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/final_metrics.json"
+    },
+    "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/run_manifest.json": {
+      "sha256": "d821cb756a058cbcda8dd097a7177396aed968616617c1282fd2e325bd659eec",
+      "bytes": 1226,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/run_manifest.json"
+    },
+    "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/git_state.txt"
+    },
+    "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/generations.jsonl": {
+      "sha256": "2888c6c26ef9e963055d89a0e336024f5afc24f5ef6a0df949c79b0a83206a16",
+      "bytes": 91695,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/generations.jsonl"
+    },
+    "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/config.resolved.yaml": {
+      "sha256": "790a796ed383fc2ed6ace5fd924297975bf0e8f97089d90e1bfe19ead85354cc",
+      "bytes": 317,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/final_metrics.json": {
+      "sha256": "ea824d1333d9d0ecc92d1ea80b235ee1450f40957fdf9b61a0a61b4e324a12e8",
+      "bytes": 502,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/final_metrics.json"
+    },
+    "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/run_manifest.json": {
+      "sha256": "63acf45afcbdeddb7a6e9e37a6e5c7bd7f2aa3ee44badc3fe6aaac2a2b1376fc",
+      "bytes": 1225,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/run_manifest.json"
+    },
+    "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/git_state.txt"
+    },
+    "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/generations.jsonl": {
+      "sha256": "0262e07258dc25466122ab014043816e9572e2cf6474a3a1cd9d4dedd5d18fff",
+      "bytes": 92739,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/generations.jsonl"
+    },
+    "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/config.resolved.yaml": {
+      "sha256": "4ae9f5e38e0b1ad1ee8212fdddb159a88a768ed179615b41fe0270236bda5324",
+      "bytes": 482,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/final_metrics.json": {
+      "sha256": "09b21d0a0701f3b3a1cba1864f9b556c3c0b6b64518474be7627145b3640e544",
+      "bytes": 493,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/final_metrics.json"
+    },
+    "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/run_manifest.json": {
+      "sha256": "4978b8340787d96bf77290cc7e35784bc056884baa6fd8f076def1545caa2fe4",
+      "bytes": 1226,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/run_manifest.json"
+    },
+    "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/git_state.txt"
+    },
+    "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/generations.jsonl": {
+      "sha256": "ce7dee2ce414db8bd00f07bad663f790d6b1278f9d44262e2a126f3085561013",
+      "bytes": 91611,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/generations.jsonl"
+    },
+    "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/config.resolved.yaml": {
+      "sha256": "ef76fbc4a736e6d576c16325cfb85b19d7764a1d7ff82ae885285b8ec46c44b2",
+      "bytes": 317,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/final_metrics.json": {
+      "sha256": "9d64e759b541d48218bca3c67a551fd3bdb441b58145461dbeed86471fd5a180",
+      "bytes": 489,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/final_metrics.json"
+    },
+    "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/run_manifest.json": {
+      "sha256": "c687e2166b3fba5730dbe439e66f1c6dafd5a4c8b64c313d961b67e3330db253",
+      "bytes": 1225,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/run_manifest.json"
+    },
+    "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/git_state.txt"
+    },
+    "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/generations.jsonl": {
+      "sha256": "ab7df6fc3173d0c26f483224a650e47f068753598e1422f3262c2d33cd2b6330",
+      "bytes": 92702,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/generations.jsonl"
+    },
+    "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/config.resolved.yaml": {
+      "sha256": "da784f3e278fb898cc69579552e6a884ac5636224fb50b349613975937b497bb",
+      "bytes": 482,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/final_metrics.json": {
+      "sha256": "90c4e9cc1143ef4ed426a0e0ede241c5bd96a6661169ef8bd1a16997152cbb02",
+      "bytes": 507,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/final_metrics.json"
+    },
+    "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/run_manifest.json": {
+      "sha256": "fcc136cb6dcbe4f95b7500691fa6cd94882493902915bc8501b58bdf11896f20",
+      "bytes": 1226,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/run_manifest.json"
+    },
+    "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/git_state.txt": {
+      "sha256": "5fec843ef62033acf0a8185fdc7e4ca5f1b7fbc98b3580ee1dbf8d0dde2057c4",
+      "bytes": 312,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/git_state.txt"
+    },
+    "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/generations.jsonl": {
+      "sha256": "7f1f12d94d662de55d6f7b4afe619805453da60a15cfe5e780fdd92ec028858c",
+      "bytes": 91673,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/generations.jsonl"
+    },
+    "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/config.resolved.yaml": {
+      "sha256": "d79a022c8e79fb3f5d4bbbd2d0d68974f0d368333fa26961c8e5722950dd9b97",
+      "bytes": 317,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/config.resolved.yaml"
+    },
+    "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/final_metrics.json": {
+      "sha256": "b379a9270f0df77a0cd4bafc4d583c67732ab3971d51df0b2411c8cd79ac1fe8",
+      "bytes": 502,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/final_metrics.json"
+    },
+    "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/run_manifest.json": {
+      "sha256": "641a5c6a37938f804102b98a6b711daefb8810507804e6ff0a0d1a7812ee7b09",
+      "bytes": 1225,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/run_manifest.json"
+    },
+    "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/git_state.txt": {
+      "sha256": "4d8eb396e0b251332c0bd97eb853d7efc36501464ba89724fd830f9a6d6084db",
+      "bytes": 251,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/artifacts/runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/git_state.txt"
+    },
+    "source_snapshot/scripts/run_exhaustive_ranking.py": {
+      "sha256": "62e8b1690d9066108666591e9d94f5375e344aba56ea02fdd7f14f537f112ebf",
+      "bytes": 8538,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/scripts/run_exhaustive_ranking.py"
+    },
+    "source_snapshot/src/vbexp/action_policy.py": {
+      "sha256": "3c0ad71fdda192b9ac9abddf96b2cba99eeffd37f964c015ece5c78726666c2c",
+      "bytes": 3538,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/src/vbexp/action_policy.py"
+    },
+    "source_snapshot/src/vbexp/prompts.py": {
+      "sha256": "a4ad429a59d08075e658504025c36eb2407084d3033137b67fed9b7f863f6914",
+      "bytes": 1216,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/src/vbexp/prompts.py"
+    },
+    "source_snapshot/src/vbexp/modeling.py": {
+      "sha256": "a895e4916201d581a7e1e29c371d6bd76942635f9c5039b644d55f852205961d",
+      "bytes": 5038,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/src/vbexp/modeling.py"
+    },
+    "source_snapshot/src/vbexp/polynomial.py": {
+      "sha256": "c96bb2df709aa64ea2a32895053f5876636fc1ff7d0349652b58085e2437718e",
+      "bytes": 2799,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/src/vbexp/polynomial.py"
+    },
+    "source_snapshot/scripts/train_sft.py": {
+      "sha256": "a93beeac5c9a1067921c2450073a480f94e15a71efef5071409c13bf53cff7d7",
+      "bytes": 8084,
+      "original_path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack/scripts/train_sft.py"
+    }
+  },
+  "runs": [
+    {
+      "split": "capacity_d3_train",
+      "training_seed": 0,
+      "arm": "atomic_control",
+      "run_id": "20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_train.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260805T010545Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl0_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0",
+        "seed": 0,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml",
+          "final_metrics.json": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json",
+          "run_manifest.json": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json",
+          "git_state.txt": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt"
+        },
+        "weights_sha256": "8041c1ccf1d907cd0258c4af880c4d8b9919f8baf0844e13daf6443b805fc251",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": "8041c1ccf1d907cd0258c4af880c4d8b9919f8baf0844e13daf6443b805fc251",
+      "recorded_input_sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d"
+    },
+    {
+      "split": "capacity_d3_train",
+      "training_seed": 0,
+      "arm": "composition",
+      "run_id": "20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_train.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260803T064635Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle0_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0",
+        "seed": 0,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml",
+          "final_metrics.json": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json",
+          "run_manifest.json": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json",
+          "git_state.txt": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt"
+        },
+        "weights_sha256": "763369215ebee5bb51890e4d1191919d937f061ab18b4d2e39ba6103c65cf698",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": null,
+      "recorded_input_sha256": null
+    },
+    {
+      "split": "capacity_d3_train",
+      "training_seed": 1,
+      "arm": "atomic_control",
+      "run_id": "20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_train.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260805T012147Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl1_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1",
+        "seed": 1,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml",
+          "final_metrics.json": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json",
+          "run_manifest.json": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json",
+          "git_state.txt": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt"
+        },
+        "weights_sha256": "f1e9a73a6774497fac63201e34b4c585299e2cbe0e6709f99d729187f1f874d1",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": "f1e9a73a6774497fac63201e34b4c585299e2cbe0e6709f99d729187f1f874d1",
+      "recorded_input_sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d"
+    },
+    {
+      "split": "capacity_d3_train",
+      "training_seed": 1,
+      "arm": "composition",
+      "run_id": "20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_train.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260803T070238Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle1_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1",
+        "seed": 1,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml",
+          "final_metrics.json": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json",
+          "run_manifest.json": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json",
+          "git_state.txt": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt"
+        },
+        "weights_sha256": "5711ef62975702930c69fc292b416e84f85f8a178ea299480ea60be39d0f7133",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": null,
+      "recorded_input_sha256": null
+    },
+    {
+      "split": "capacity_d3_train",
+      "training_seed": 2,
+      "arm": "atomic_control",
+      "run_id": "20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_train.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260805T013749Z_qwen3-0.6b_capacity_d3_train_ranking_rank-atomctl2_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2",
+        "seed": 2,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml",
+          "final_metrics.json": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json",
+          "run_manifest.json": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json",
+          "git_state.txt": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt"
+        },
+        "weights_sha256": "783e53130b50dd4b1f55dfdd6ef8d91e2bee78dd67c0b17590f2c27a4fa849bf",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": "783e53130b50dd4b1f55dfdd6ef8d91e2bee78dd67c0b17590f2c27a4fa849bf",
+      "recorded_input_sha256": "bacf9e3d08c76f91ebaf93db388a19593d05abdce0765622777dbdeb5a94f23d"
+    },
+    {
+      "split": "capacity_d3_train",
+      "training_seed": 2,
+      "arm": "composition",
+      "run_id": "20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_train.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260803T071842Z_qwen3-0.6b_capacity_d3_train_ranking_rank-oracle2_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2",
+        "seed": 2,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml",
+          "final_metrics.json": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json",
+          "run_manifest.json": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json",
+          "git_state.txt": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt"
+        },
+        "weights_sha256": "cdd62862d7d296a024258e8f3802858b864d0909f93a8ca9e1143a6119b52508",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": null,
+      "recorded_input_sha256": null
+    },
+    {
+      "split": "capacity_d3_heldout",
+      "training_seed": 0,
+      "arm": "atomic_control",
+      "run_id": "20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_heldout.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260805T015350Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl0_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0",
+        "seed": 0,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml",
+          "final_metrics.json": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json",
+          "run_manifest.json": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json",
+          "git_state.txt": "training/20260805T001709Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt"
+        },
+        "weights_sha256": "8041c1ccf1d907cd0258c4af880c4d8b9919f8baf0844e13daf6443b805fc251",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": "8041c1ccf1d907cd0258c4af880c4d8b9919f8baf0844e13daf6443b805fc251",
+      "recorded_input_sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7"
+    },
+    {
+      "split": "capacity_d3_heldout",
+      "training_seed": 0,
+      "arm": "composition",
+      "run_id": "20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_heldout.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260803T075040Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle0_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0",
+        "seed": 0,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/config.resolved.yaml",
+          "final_metrics.json": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/final_metrics.json",
+          "run_manifest.json": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/run_manifest.json",
+          "git_state.txt": "training/20260802T093741Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed0/git_state.txt"
+        },
+        "weights_sha256": "763369215ebee5bb51890e4d1191919d937f061ab18b4d2e39ba6103c65cf698",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": null,
+      "recorded_input_sha256": null
+    },
+    {
+      "split": "capacity_d3_heldout",
+      "training_seed": 1,
+      "arm": "atomic_control",
+      "run_id": "20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_heldout.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260805T020943Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl1_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1",
+        "seed": 1,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml",
+          "final_metrics.json": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json",
+          "run_manifest.json": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json",
+          "git_state.txt": "training/20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt"
+        },
+        "weights_sha256": "f1e9a73a6774497fac63201e34b4c585299e2cbe0e6709f99d729187f1f874d1",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": "f1e9a73a6774497fac63201e34b4c585299e2cbe0e6709f99d729187f1f874d1",
+      "recorded_input_sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7"
+    },
+    {
+      "split": "capacity_d3_heldout",
+      "training_seed": 1,
+      "arm": "composition",
+      "run_id": "20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_heldout.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260803T080634Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle1_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1",
+        "seed": 1,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/config.resolved.yaml",
+          "final_metrics.json": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/final_metrics.json",
+          "run_manifest.json": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/run_manifest.json",
+          "git_state.txt": "training/20260803T043903Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1/git_state.txt"
+        },
+        "weights_sha256": "5711ef62975702930c69fc292b416e84f85f8a178ea299480ea60be39d0f7133",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": null,
+      "recorded_input_sha256": null
+    },
+    {
+      "split": "capacity_d3_heldout",
+      "training_seed": 2,
+      "arm": "atomic_control",
+      "run_id": "20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_heldout.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260805T022535Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-atomctl2_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2",
+        "seed": 2,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml",
+          "final_metrics.json": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json",
+          "run_manifest.json": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json",
+          "git_state.txt": "training/20260805T004931Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt"
+        },
+        "weights_sha256": "783e53130b50dd4b1f55dfdd6ef8d91e2bee78dd67c0b17590f2c27a4fa849bf",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": "783e53130b50dd4b1f55dfdd6ef8d91e2bee78dd67c0b17590f2c27a4fa849bf",
+      "recorded_input_sha256": "7657b19f7957e64cf2d2ddda7d3b51ff9634a6033b3a2be004c9b3b08f2490c7"
+    },
+    {
+      "split": "capacity_d3_heldout",
+      "training_seed": 2,
+      "arm": "composition",
+      "run_id": "20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0",
+      "ranking_seed": 0,
+      "data": "data/capacity_d3_heldout.jsonl",
+      "files": {
+        "generations.jsonl": "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/generations.jsonl",
+        "config.resolved.yaml": "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/config.resolved.yaml",
+        "final_metrics.json": "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/final_metrics.json",
+        "run_manifest.json": "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/run_manifest.json",
+        "git_state.txt": "runs/20260803T082229Z_qwen3-0.6b_capacity_d3_heldout_ranking_rank-oracle2_exact_seed0/git_state.txt"
+      },
+      "training": {
+        "run_id": "20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2",
+        "seed": 2,
+        "model": "Qwen/Qwen3-0.6B-Base",
+        "base_adapter": "artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+        "files": {
+          "config.resolved.yaml": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/config.resolved.yaml",
+          "final_metrics.json": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/final_metrics.json",
+          "run_manifest.json": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/run_manifest.json",
+          "git_state.txt": "training/20260803T045619Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed2/git_state.txt"
+        },
+        "weights_sha256": "cdd62862d7d296a024258e8f3802858b864d0909f93a8ca9e1143a6119b52508",
+        "matches_run_checkpoint": true,
+        "steps": 1875,
+        "train_examples": 5000
+      },
+      "recorded_adapter_sha256": null,
+      "recorded_input_sha256": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "status": "aggregate arithmetic reproduced; task-level ranks unavailable here",
+  "source_sha256": "2f03b9bee2ff6cc0ffd2d8388ef39df97e7b360136600880880d5bfa80abcef1",
+  "atomic_control_hit32": 0.4531666666666667,
+  "composition_hit32": 0.7271666666666666,
+  "seed_statistics": {
+    "n": 6,
+    "df": 5,
+    "mean_delta": 0.274,
+    "mean_delta_pp": 27.400000000000002,
+    "sample_sd": 0.019026297590440437,
+    "standard_error": 0.007767453465154025,
+    "t": 35.275396399760304,
+    "t_nonfinite": null,
+    "p_two_sided": 3.445182143349188e-07,
+    "t_ci95": [
+      0.2540331252133247,
+      0.2939668747866753
+    ],
+    "positive_seed_count": 6
+  },
+  "exact_sign_flip": {
+    "statistic": "absolute_mean_seed_delta",
+    "alternative": "two_sided",
+    "ties": "included",
+    "extreme_count": 2,
+    "permutations": 64,
+    "p_numerator": 1,
+    "p_denominator": 32,
+    "p_two_sided": 0.03125,
+    "minimum_attainable_p": 0.03125,
+    "gating": false
+  }
+}

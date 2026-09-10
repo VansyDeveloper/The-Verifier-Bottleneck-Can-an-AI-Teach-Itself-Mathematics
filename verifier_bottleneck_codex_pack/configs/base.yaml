@@ -1,9 +1,0 @@
-project: verifier_bottleneck
-run_tier: pilot
-output_root: artifacts
-seeds: [0, 1, 2]
-deterministic: true
-log_every_steps: 10
-save_raw_generations: true
-save_failed_runs: true
-final_test_read_only: true

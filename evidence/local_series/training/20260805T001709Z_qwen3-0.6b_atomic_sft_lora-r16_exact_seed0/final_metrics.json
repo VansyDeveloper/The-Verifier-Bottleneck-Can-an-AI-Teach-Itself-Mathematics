@@ -1,0 +1,9 @@
+{
+  "steps": 1875,
+  "mean_loss": 0.04438963879546915,
+  "last_loss": 0.011097248746347795,
+  "elapsed_seconds": 967.7125465780045,
+  "peak_cuda_bytes": 2341582848,
+  "adapter": "artifacts/adapters/sft_atomic_control_eqbudget_seed0",
+  "train_examples": 5000
+}

@@ -1,0 +1,14 @@
+adapter: artifacts/adapters/sft_composition_oracle_seed2
+input: artifacts/data/pilot/capacity_d3_heldout.jsonl
+k_values:
+- 1
+- 4
+- 8
+- 16
+- 32
+- 64
+metric: exhaustive_hit_at_k
+model_name_or_path: Qwen/Qwen3-0.6B-Base
+sampling: none_exhaustive_enumeration
+temperature: 1.0
+tie_break: lexicographic_operation_signature

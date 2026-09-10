@@ -1,0 +1,35 @@
+allow_composition: true
+apply_weight: 0
+base_adapter: artifacts/adapters/sft_atomic_r32_pilot_aw4_cont
+base_config: configs/base.yaml
+data_config: configs/data/polynomial_programs.yaml
+eval_steps: 250
+extra_train_files:
+- artifacts/data/pilot/sft_train_composition.jsonl
+gradient_accumulation_steps: 8
+learning_rate: 0.0002
+learning_rate_resolved: 0.0002
+logging_steps: 10
+lora_config: configs/training/lora_r32.yaml
+lr_scheduler_type: cosine
+max_epochs: 3
+max_seq_length: 384
+max_steps: 1875
+micro_batch_size: 2
+model_config: configs/model/qwen3_0_6b_base.yaml
+model_name_or_path: Qwen/Qwen3-0.6B-Base
+name: sft_atomic_r16
+num_train_epochs: 1
+per_device_train_batch_size: 8
+save_steps: 250
+seed: 0
+selection_metric: atomic_plan_pass_at_1
+selection_split: sft_validation
+tier: pilot
+train_files:
+- artifacts/data/pilot/sft_train_apply.jsonl
+- artifacts/data/pilot/sft_train_plan.jsonl
+train_split: sft_train
+validation_split: sft_validation
+warmup_ratio: 0.03
+weight_decay: 0.0

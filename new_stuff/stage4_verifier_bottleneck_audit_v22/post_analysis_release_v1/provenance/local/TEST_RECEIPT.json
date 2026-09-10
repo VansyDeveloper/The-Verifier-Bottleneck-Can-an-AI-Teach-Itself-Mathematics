@@ -1,9 +1,0 @@
-{
-  "schema": "stage4.confirmation.test-receipt.v1",
-  "status": "PASS",
-  "command": "python -m pytest -q artifacts\\stage4_composition_confirm_v1_0p6b\\tests artifacts\\stage4_distill_v5_0p6b_exploratory_sh1_72p8\\tests",
-  "tests_passed": 134,
-  "tests_failed": 0,
-  "wall_seconds": 17.20,
-  "captured_at": "2026-08-02T05:37:00+03:00"
-}

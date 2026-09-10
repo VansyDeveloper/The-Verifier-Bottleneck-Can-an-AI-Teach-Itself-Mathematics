@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "model": "random tiny Qwen3; 1 layer, hidden size 32",
+  "offline": true,
+  "scientific_result": false,
+  "training_branches": 5,
+  "matched_ce_target_tokens": 298,
+  "completed_run_reuse_checked": true,
+  "wall_seconds": 44.73307344398927
+}

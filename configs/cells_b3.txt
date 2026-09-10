@@ -1,2 +1,0 @@
-od2S2 1.0 16 1.0 0.4 --seed 2
-od2F 1.0 16 1.0 0.4 --noise-mode fresh --seed 1

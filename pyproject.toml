@@ -1,67 +1,32 @@
-[build-system]
-requires = ["setuptools>=69"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "verifier-bottleneck-modcomp"
+name = "verifier-bottleneck-iclr"
 version = "0.1.0"
-description = "Reproducible experiments on verifier noise in modular-composition RL"
-readme = "README.md"
-requires-python = ">=3.10,<3.14"
-dependencies = []
-
-[project.optional-dependencies]
-analysis = [
+description = "Artem's supervised follow-up experiments for the Verifier Bottleneck"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "torch==2.6.0",
+  "transformers==4.57.1",
+  "peft==0.19.1",
+  "numpy==2.4.6",
+  "scipy==1.17.1",
   "matplotlib>=3.8",
-  "numpy>=1.26",
-  "pandas>=2.2",
-  "tensorboard>=2.16",
 ]
-train = [
-  "accelerate>=1.4",
-  "datasets>=4.7",
-  "peft>=0.14",
-  # vLLM 0.18.0 requires this exact public PyTorch release.  The uv source
-  # below selects matching CUDA 12.9 wheels for the Blackwell/WSL2 path.
-  "torch==2.10.0",
-  "torchvision==0.25.0; sys_platform == 'linux'",
-  "torchaudio==2.10.0; sys_platform == 'linux'",
-  "transformers>=4.56.2,<5",
-  # Tested API pair: TRL 1.5.1 declares vLLM 0.12--0.18 compatibility.
-  "trl==1.5.1",
-  "vllm==0.18.0; sys_platform == 'linux'",
-  # 0.2.4 lacks a CPython 3.12 Linux x86_64 wheel.
-  "xgrammar==0.2.3; sys_platform == 'linux'",
-]
-report = ["markdown>=3.7"]
 
-[[tool.uv.index]]
-name = "pytorch-cu129"
-url = "https://download.pytorch.org/whl/cu129"
-explicit = true
-
-[tool.uv.sources]
-torch = [
-  { index = "pytorch-cu129", marker = "sys_platform == 'linux'" },
-]
-torchvision = [
-  { index = "pytorch-cu129", marker = "sys_platform == 'linux'" },
-]
-torchaudio = [
-  { index = "pytorch-cu129", marker = "sys_platform == 'linux'" },
-]
+[dependency-groups]
+dev = ["pytest>=8,<10"]
 
 [tool.uv]
-required-environments = [
-  "sys_platform == 'darwin' and platform_machine == 'arm64'",
-]
+package = false
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
 
-[tool.setuptools.packages.find]
-include = ["modcomp*"]
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
 
-[tool.ruff]
-target-version = "py310"
-line-length = 100
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
 
-[tool.ruff.lint]
-select = ["E4", "E7", "E9", "F"]
+[tool.uv.sources]
+torch = {index = "pytorch-cu124"}

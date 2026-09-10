@@ -1,0 +1,43 @@
+{
+  "full_program_scores_available": false,
+  "historical_tokenizer_hash_and_revision": null,
+  "hit32": [
+    {
+      "atomic_control": 0.4344444444444444,
+      "composition": 0.9155555555555556,
+      "delta": 0.4811111111111111,
+      "delta_ci95_high": 0.6757165796427007,
+      "delta_ci95_low": 0.2865056425795215,
+      "depth": 3,
+      "k": 32,
+      "sign_flip_p": 0.25,
+      "split": "capacity_d3_train"
+    },
+    {
+      "atomic_control": 0.3633333333333333,
+      "composition": 0.9377777777777778,
+      "delta": 0.5744444444444444,
+      "delta_ci95_high": 0.7335786960523906,
+      "delta_ci95_low": 0.4153101928364983,
+      "depth": 3,
+      "k": 32,
+      "sign_flip_p": 0.25,
+      "split": "capacity_d3_heldout"
+    }
+  ],
+  "intervals": "95% pointwise t intervals over three paired training seeds",
+  "main_six_seed_series": false,
+  "model": "Qwen/Qwen3-0.6B-Base",
+  "ranking_cli_seed_is_not_training_seed": true,
+  "scorer": "softmax over five summed operation-continuation token scores at each prefix; temperature 1",
+  "sign_flip_test": "Hit@32 only; three seeds imply minimum two-sided p=0.25",
+  "source_manifest_sha256": "ed3a5eb32090305582403771d966d3fbf60d47e64d53a9a0676765fe127ef9cb",
+  "source_snapshot_is_current_not_run_bound": true,
+  "study": "local second series; disclosed post-hoc atomic controls",
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "validation": "source hashes, paired IDs, saved Hit@K, exact solution counts and top1 labels"
+}

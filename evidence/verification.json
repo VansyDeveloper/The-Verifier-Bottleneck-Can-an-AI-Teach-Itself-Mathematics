@@ -1,0 +1,68 @@
+{
+  "code_sha256": "cd282b67e312a2acc3fedcd21d13e5dde5e4efe15e5661ca7afa320750a9370c",
+  "tests": {
+    "command": "python -m pytest -q",
+    "passed": 8
+  },
+  "runtime_smoke": {
+    "status": "PASS",
+    "model": "random tiny Qwen3; 1 layer, hidden size 32",
+    "offline": true,
+    "scientific_result": false,
+    "training_branches": 5,
+    "matched_ce_target_tokens": 298,
+    "completed_run_reuse_checked": true,
+    "wall_seconds": 44.73307344398927
+  },
+  "environment": {
+    "python": "3.11.13",
+    "packages": {
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.1",
+      "peft": "0.19.1",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1"
+    },
+    "cuda": "12.4",
+    "gpu": null,
+    "git_commit": "42c70c8c164367005155e85e456692dfe4e5c8ec"
+  },
+  "gpu_training": "NOT_RUN: no usable NVIDIA driver on this machine",
+  "fresh_dependency_install": "NOT_COMPLETED: repeated CUDA downloads cancelled; runtime verified in the existing environment shown here",
+  "historical_full_hitk": "MISSING_INPUTS: main-series task metrics or frozen tasks, atomic export and six paired adapters",
+  "full_generated_data": {
+    "manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+    "tasks": 13600,
+    "all_correct_trajectory_states": 45474,
+    "generation_seconds": 78.08
+  },
+  "tokenizer_checks": [
+    {
+      "model": "Qwen/Qwen3-0.6B",
+      "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+      "vocabulary_size": 151674,
+      "operation_tokenization": "PASS"
+    },
+    {
+      "model": "Qwen/Qwen3-1.7B",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "vocabulary_size": 151674,
+      "operation_tokenization": "PASS"
+    }
+  ],
+  "clean_checkout": {
+    "commit": "7dbe49b",
+    "tests_passed": 8,
+    "smoke": {
+      "status": "PASS",
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "scientific_result": false,
+      "training_branches": 5,
+      "matched_ce_target_tokens": 298,
+      "completed_run_reuse_checked": true,
+      "wall_seconds": 42.41782971599605
+    },
+    "dependency_environment": "existing venv, fixed direct versions recorded above"
+  }
+}

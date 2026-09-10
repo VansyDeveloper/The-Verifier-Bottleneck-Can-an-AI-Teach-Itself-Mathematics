@@ -1,0 +1,11 @@
+$ git rev-parse HEAD
+f654e416885f33aeeab0f085fa536ea2f5b52749
+
+$ git status --short --branch
+## artem_branch...origin/artem_branch
+?? ../bottleneck.docx
+?? ../bottleneck.zip
+?? ../lectures_smiles2026/
+?? "../m1-results (3).pdf"
+?? ../new_stuff/
+?? ./

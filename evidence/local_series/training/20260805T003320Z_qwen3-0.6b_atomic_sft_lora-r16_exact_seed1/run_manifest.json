@@ -1,0 +1,39 @@
+{
+  "run_id": "20260805T003320Z_qwen3-0.6b_atomic_sft_lora-r16_exact_seed1",
+  "status": "DONE",
+  "config_sha256": "fa09bef22a724de5dea76a09de3bc8258648fa608a6ad0c114bc93f401bce27e",
+  "seed": 1,
+  "started_at": "2026-08-05T00:33:20.778488+00:00",
+  "git_commit": null,
+  "model": {
+    "name_or_path": "Qwen/Qwen3-0.6B-Base"
+  },
+  "environment": {
+    "created_at": "2026-08-05T00:33:20.778525+00:00",
+    "python": "3.11.13 (main, Sep  2 2025, 14:20:25) [Clang 20.1.4 ]",
+    "platform": "Linux-5.15.0-91-generic-x86_64-with-glibc2.35",
+    "cwd": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/verifier_bottleneck_codex_pack",
+    "pid": 116189,
+    "packages": {
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.1",
+      "peft": "0.19.1",
+      "accelerate": "1.14.0",
+      "PyYAML": "6.0.3"
+    },
+    "torch": {
+      "version": "2.6.0+cu124",
+      "cuda": "12.4",
+      "cuda_available": true,
+      "bf16_supported": true,
+      "devices": [
+        {
+          "name": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+          "total_memory": 3951624192
+        }
+      ]
+    }
+  },
+  "artifacts": [],
+  "finished_at": "2026-08-05T00:49:28.191098+00:00"
+}

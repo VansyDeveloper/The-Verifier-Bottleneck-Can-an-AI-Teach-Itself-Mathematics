@@ -1,0 +1,211 @@
+{
+  "schema": "iclr.data.v1",
+  "status": "fresh_screening_data",
+  "historical_reproduction": false,
+  "config": {
+    "size": 5000,
+    "eval_size": 200,
+    "atomic_per_op": 1000,
+    "seed": 20260910,
+    "smoke": false
+  },
+  "state_exclusion": "all states of all correct programs, across all tasks and splits",
+  "heldout_motifs": [
+    [
+      "AX1",
+      "SH1"
+    ],
+    [
+      "AC1",
+      "REV"
+    ],
+    [
+      "SC2",
+      "AX1"
+    ]
+  ],
+  "files": {
+    "train.jsonl": {
+      "rows": 5000,
+      "bytes": 2950839,
+      "sha256": "ad6ceb9a0f4483c1f7bb23f53190d49e4e5683fdec482802c1c6cb1d7898be87",
+      "field_depth_counts": {
+        "13:2": 236,
+        "13:3": 450,
+        "13:4": 243,
+        "19:2": 266,
+        "19:3": 549,
+        "19:4": 291,
+        "23:2": 248,
+        "23:3": 538,
+        "23:4": 288,
+        "29:2": 270,
+        "29:3": 580,
+        "29:4": 282,
+        "5:2": 91,
+        "5:3": 125,
+        "5:4": 44,
+        "7:2": 139,
+        "7:3": 258,
+        "7:4": 102
+      },
+      "operation_counts": {}
+    },
+    "atomic_train.jsonl": {
+      "rows": 5000,
+      "bytes": 2507751,
+      "sha256": "9dddfc6c0cc942eb436e1ff3ad7ddcde867896502c26b978553a90c4a93ea6d2",
+      "field_depth_counts": {
+        "13:1": 906,
+        "19:1": 1052,
+        "23:1": 1129,
+        "29:1": 1100,
+        "5:1": 271,
+        "7:1": 542
+      },
+      "operation_counts": {
+        "AC1": 1000,
+        "AX1": 1000,
+        "REV": 1000,
+        "SC2": 1000,
+        "SH1": 1000
+      }
+    },
+    "dev_A.jsonl": {
+      "rows": 200,
+      "bytes": 118511,
+      "sha256": "61806c80d82b14208f60b11a73e45008ff15e422457034f690bcb4a93a5fd7e1",
+      "field_depth_counts": {
+        "13:3": 44,
+        "19:3": 45,
+        "23:3": 51,
+        "29:3": 51,
+        "5:3": 1,
+        "7:3": 8
+      },
+      "operation_counts": {}
+    },
+    "dev_B.jsonl": {
+      "rows": 200,
+      "bytes": 109273,
+      "sha256": "ff41d5b52ae4117496e8c6ad317d268c7faebd82623ffdda0ef7b81cb5025119",
+      "field_depth_counts": {
+        "13:3": 35,
+        "19:3": 40,
+        "23:3": 46,
+        "29:3": 62,
+        "5:3": 1,
+        "7:3": 16
+      },
+      "operation_counts": {}
+    },
+    "dev_C.jsonl": {
+      "rows": 200,
+      "bytes": 114404,
+      "sha256": "9379fd8a963dca1fd8e65c38b46de03fed2d1f999dcc9698b8178727902ffa4a",
+      "field_depth_counts": {
+        "11:3": 95,
+        "17:3": 105
+      },
+      "operation_counts": {}
+    },
+    "dev_D.jsonl": {
+      "rows": 200,
+      "bytes": 107777,
+      "sha256": "4d60ff055bdf9e594e8fddfaf7cd4d2105146179513fb7918d31c2412271dbdf",
+      "field_depth_counts": {
+        "11:3": 94,
+        "17:3": 106
+      },
+      "operation_counts": {}
+    },
+    "dev_atomic.jsonl": {
+      "rows": 1000,
+      "bytes": 500195,
+      "sha256": "5dbab7ca8f7332cfc13f10cfd9caf0bffbaeb7c6bdff0c72b1a52293ce3830e7",
+      "field_depth_counts": {
+        "13:1": 187,
+        "19:1": 216,
+        "23:1": 214,
+        "29:1": 225,
+        "5:1": 50,
+        "7:1": 108
+      },
+      "operation_counts": {
+        "AC1": 200,
+        "AX1": 200,
+        "REV": 200,
+        "SC2": 200,
+        "SH1": 200
+      }
+    },
+    "final_A.jsonl": {
+      "rows": 200,
+      "bytes": 118949,
+      "sha256": "fd0b2d15fc00f7a47e1dc77a582ed2c35ca03702711d1375fffcc853c1bd4885",
+      "field_depth_counts": {
+        "13:3": 37,
+        "19:3": 47,
+        "23:3": 43,
+        "29:3": 57,
+        "5:3": 3,
+        "7:3": 13
+      },
+      "operation_counts": {}
+    },
+    "final_B.jsonl": {
+      "rows": 200,
+      "bytes": 111029,
+      "sha256": "1224c58e3eb1c7ff532380e059b00b7c49d5d19c378a0ae8155fa6776ba47bd6",
+      "field_depth_counts": {
+        "13:3": 28,
+        "19:3": 49,
+        "23:3": 45,
+        "29:3": 60,
+        "5:3": 2,
+        "7:3": 16
+      },
+      "operation_counts": {}
+    },
+    "final_C.jsonl": {
+      "rows": 200,
+      "bytes": 115406,
+      "sha256": "9f2a5910af5035914b8a417c4e3e5df10d64aa5ef32b07398853b80e1745a9c6",
+      "field_depth_counts": {
+        "11:3": 98,
+        "17:3": 102
+      },
+      "operation_counts": {}
+    },
+    "final_D.jsonl": {
+      "rows": 200,
+      "bytes": 108203,
+      "sha256": "dc525b0e615a9410df338e91e7cdd1c47f9a8dadf0fa4e90b89f78a6dd0dd672",
+      "field_depth_counts": {
+        "11:3": 83,
+        "17:3": 117
+      },
+      "operation_counts": {}
+    },
+    "final_atomic.jsonl": {
+      "rows": 1000,
+      "bytes": 502219,
+      "sha256": "8c476833828efed05e36b4b7a6d9f735e200bf84851c4b94bcd3e18910216adf",
+      "field_depth_counts": {
+        "13:1": 183,
+        "19:1": 206,
+        "23:1": 244,
+        "29:1": 215,
+        "5:1": 41,
+        "7:1": 111
+      },
+      "operation_counts": {
+        "AC1": 200,
+        "AX1": 200,
+        "REV": 200,
+        "SC2": 200,
+        "SH1": 200
+      }
+    }
+  }
+}

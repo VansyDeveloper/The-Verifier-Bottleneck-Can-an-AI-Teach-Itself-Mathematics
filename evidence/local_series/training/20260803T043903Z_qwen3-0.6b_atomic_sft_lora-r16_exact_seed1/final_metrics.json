@@ -1,0 +1,9 @@
+{
+  "steps": 1875,
+  "mean_loss": 0.3215326442149392,
+  "last_loss": 0.1520615103380645,
+  "elapsed_seconds": 1032.6174278179824,
+  "peak_cuda_bytes": 2478270976,
+  "adapter": "artifacts/adapters/sft_composition_oracle_seed1",
+  "train_examples": 5000
+}
