@@ -1,9 +1,13 @@
 import tempfile
 import unittest
+import json
+import random
+from collections import Counter
 from pathlib import Path
 from unittest.mock import patch
 
 import torch
+import numpy as np
 
 from iclr import modeling
 from iclr.smoke import create_tiny_model
@@ -12,6 +16,101 @@ import composition_eval as legacy
 
 
 class ModelingTest(unittest.TestCase):
+    def test_set_loss_invariants_and_probability_update(self):
+        scores = torch.tensor([-10000., -10001., -9999., -10002.], requires_grad=True)
+        singleton = torch.tensor([False, True, False, False])
+        single = modeling.set_loss(scores, singleton, 1, 'single_norm')
+        set_single = modeling.set_loss(scores, singleton, 1, 'set_mass')
+        torch.testing.assert_close(single, set_single)
+        torch.testing.assert_close(torch.autograd.grad(single, scores)[0],
+                                   torch.autograd.grad(set_single, scores)[0])
+        mask = torch.tensor([True, False, True, False])
+        loss = modeling.set_loss(scores, mask, 0, 'set_mass')
+        self.assertTrue(torch.isfinite(loss))
+        permutation = torch.tensor([3, 0, 2, 1])
+        permuted = scores.detach()[permutation].requires_grad_()
+        permuted_loss = modeling.set_loss(permuted, mask[permutation], 1, 'set_mass')
+        torch.testing.assert_close(loss, permuted_loss)
+        gradient = torch.autograd.grad(loss, scores)[0]
+        torch.testing.assert_close(gradient[permutation], torch.autograd.grad(permuted_loss, permuted)[0])
+        before = scores.softmax(0)[mask].sum()
+        after = (scores.detach() - .1 * gradient).softmax(0)[mask].sum()
+        self.assertGreater(float(after), float(before))
+
+    def test_ce_components_and_midpoint_preserve_training(self):
+        from iclr.train import component_summary, token_matched_groups, train_updates
+        torch.set_num_threads(1)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = create_tiny_model(root / 'tiny')
+            model, tokenizer, ids = modeling.load(base, initialize=True, train=True, device='cpu',
+                                                  lora_dropout=.25, gradient_checkpointing=False)
+            row = {'p': 7, 'depth': 2, 'start': [1, 2, 3], 'witness': ['SC2', 'REV']}
+            row['target'] = list(core.trajectory(row['start'], row['witness'], row['p'])[-1])
+            from iclr.data import render_target
+            examples = [
+                {'prompt': core.plan_prompt(row), 'answer': render_target(row, 'program_trace'),
+                 'kind': 'composition', 'task_id': 'trace'},
+                {'prompt': core.plan_prompt(row), 'answer': render_target(row, 'program_only'),
+                 'kind': 'composition', 'task_id': 'program'},
+                {'prompt': 'RESULT:', 'answer': '[1,2,3]', 'kind': 'atomic_apply', 'task_id': 'apply'},
+            ]
+            encoded = [modeling.encode(tokenizer, item) for item in examples]
+            self.assertEqual([value for value in encoded[0]['target_types'] if value == 1], [1, 1])
+            self.assertNotIn(4, encoded[0]['target_types'])
+            self.assertNotIn(2, encoded[2]['target_types'])
+            self.assertEqual(Counter(encoded[1]['target_types'])[3], 1)
+            masked = token_matched_groups([encoded[0]], [3], 0)[0][0]
+            self.assertEqual(sum(label != -100 for label in masked['labels']), 3)
+            self.assertEqual(masked['target_types'], encoded[0]['target_types'])
+            batch = modeling.collate(tokenizer, [masked, encoded[2]], 'cpu', include_target_types=True)
+            accounting = Counter()
+            with patch.object(model, 'forward', wraps=model.forward) as forward:
+                loss = modeling.ce_sum(model, batch, accounting)
+                self.assertEqual(forward.call_count, 1)
+            summary = component_summary(accounting)
+            self.assertEqual(summary['operation']['tokens'], 2)
+            self.assertEqual(summary['trace']['tokens'], 1)
+            self.assertEqual(summary['eos']['tokens'], 1)
+            self.assertEqual(summary['apply']['tokens'], encoded[2]['target_tokens'] - 1)
+            self.assertAlmostEqual(sum(part['loss_sum'] for part in summary.values()), float(loss), places=5)
+            self.assertEqual(sum(part['tokens'] for part in summary.values()), int((batch['labels'] != -100).sum()))
+
+            initial = {name: parameter.detach().clone() for name, parameter in model.state_dict().items()}
+            cfg = {'method': 'ce', 'learning_rate': 1e-3, 'micro_batch': 1}
+            states, rng_states = [], []
+            callbacks = []
+
+            def midpoint(step):
+                callbacks.append(step)
+                model.eval()
+                random.random()
+                np.random.rand(5)
+                torch.rand(5)
+
+            for name, callback in [('plain', None), ('midpoint', midpoint)]:
+                output = root / name
+                output.mkdir()
+                model.load_state_dict(initial)
+                modeling.seed_all(19)
+                budget = train_updates(model, tokenizer, ids, [[item] for item in encoded], cfg, output,
+                                       midpoint_callback=callback)
+                states.append({key: value.detach().clone() for key, value in model.state_dict().items()})
+                rng_states.append((random.random(), float(np.random.rand()), torch.rand(5)))
+                self.assertTrue(model.training)
+                self.assertEqual(budget['all_target_tokens'], sum(part['tokens'] for part in budget['ce_components'].values()))
+                logs = [json.loads(line) for line in (output / 'training_metrics.jsonl').read_text().splitlines()]
+                for record in logs:
+                    self.assertAlmostEqual(sum(part['loss_sum'] for part in record['ce_components'].values()) /
+                                           record['target_tokens'], record['loss'], places=5)
+                stream = [json.loads(line) for line in (output / 'training_stream.jsonl').read_text().splitlines()]
+                self.assertEqual([item['target_types'] for item in stream], [item['target_types'] for item in encoded])
+            self.assertEqual(callbacks, [1])
+            for name in states[0]:
+                torch.testing.assert_close(states[0][name], states[1][name], rtol=0, atol=0)
+            self.assertEqual(rng_states[0][:2], rng_states[1][:2])
+            torch.testing.assert_close(rng_states[0][2], rng_states[1][2], rtol=0, atol=0)
+
     def test_unsupported_architecture_fails_before_tokenizer_or_weights(self):
         with tempfile.TemporaryDirectory() as directory:
             (Path(directory) / 'config.json').write_text('{"model_type": "qwen3_5"}')

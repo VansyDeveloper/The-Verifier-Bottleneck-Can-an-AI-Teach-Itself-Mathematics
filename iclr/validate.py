@@ -11,7 +11,7 @@ from statistics import fmean
 import composition_core as core
 import composition_eval as legacy
 from .common import file_hash, read_jsonl, tree_hash, verify_data, verify_receipt
-from .modeling import PROMPT_VERSION, SCORER_ID
+from .modeling import PROMPT_VERSION, SCORER_ID, TARGET_TYPES
 
 
 def equal(actual, expected, label):
@@ -38,12 +38,17 @@ def ordered_rows(path, tasks):
 
 
 def training_budget(run, data, config):
+    budget = json.loads((run / 'budget.json').read_text())
+    diagnostics = budget.get('diagnostics_version')
+    if diagnostics is not None:
+        equal(diagnostics, 1, 'training diagnostics version')
     sources = {row['task_id']: row for name in ('train', 'atomic_train')
                for row in read_jsonl(data / f'{name}.jsonl')}
     counters = [kind + suffix for kind in ('composition', 'atomic_plan', 'atomic_apply')
                 for suffix in ('_exposures', '_target_tokens')]
     totals = Counter(dict.fromkeys([*counters, *(op + '_exposures' for op in core.OPS)], 0))
     steps, widths, unique = defaultdict(Counter), defaultdict(list), set()
+    component_counts, component_totals = defaultdict(Counter), Counter()
     stream = read_jsonl(run / 'training_stream.jsonl')
     for row in stream:
         task, kind, step = sources[row['task_id']], row['kind'], row['step']
@@ -63,6 +68,18 @@ def training_budget(run, data, config):
         prompt = next(index for index, label in enumerate(labels) if label != -100)
         if any(label == -100 for label in labels[prompt:prompt + targets]):
             raise ValueError('Training target labels are not contiguous')
+        if diagnostics is not None:
+            types = row['target_types']
+            if (len(types) != len(labels) or any(type(value) is not int or value not in range(5) for value in types)
+                    or types[:prompt] != [0] * prompt or types[-1] != 3 or 3 in types[:-1]
+                    or any(value == 0 for value in types[prompt:])):
+                raise ValueError('Invalid training target types')
+            allowed = {4} if kind == 'atomic_apply' else {1, 2}
+            if not set(types[prompt:-1]) <= allowed or (config['supervision'] == 'program' and 2 in types):
+                raise ValueError('Training target types disagree with supervision')
+            for label, target_type in zip(labels, types):
+                if label != -100:
+                    component_counts[step][TARGET_TYPES[target_type - 1]] += 1
         totals.update(example_exposures=1, all_target_tokens=targets,
                       prompt_tokens=prompt, masked_target_tokens=len(tokens) - prompt - targets,
                       **{kind + '_exposures': 1, kind + '_target_tokens': targets})
@@ -83,6 +100,21 @@ def training_budget(run, data, config):
         for key in ('loss', 'gradient_norm', 'seconds'):
             if isinstance(row[key], bool) or not isinstance(row[key], (int, float)) or not math.isfinite(row[key]):
                 raise ValueError(f'Nonfinite training {key}')
+        if diagnostics is not None:
+            if config['method'] != 'ce':
+                equal(row['ce_components'], None, 'set objective CE diagnostics')
+                continue
+            components = row['ce_components']
+            for name in TARGET_TYPES:
+                equal(components[name]['tokens'], component_counts[row['step']][name], 'CE component tokens')
+                value = components[name]['loss_sum']
+                if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+                    raise ValueError('Invalid CE component loss')
+                component_totals[name + '_tokens'] += components[name]['tokens']
+                component_totals[name + '_loss_sum'] += value
+            loss = sum(components[name]['loss_sum'] for name in TARGET_TYPES) / row['target_tokens']
+            if not math.isclose(row['loss'], loss, rel_tol=1e-6, abs_tol=1e-7):
+                raise ValueError('CE components disagree with optimizer loss')
     if config['method'] == 'ce':
         micro_batch = config['micro_batch']
         totals['total_forward_tokens'] = sum(max(chunk) * len(chunk) for group in widths.values()
@@ -90,8 +122,12 @@ def training_budget(run, data, config):
     totals.update(optimizer_steps=len(steps), unique_tasks=len(unique))
     equal(len(steps), config['epochs'] * math.ceil(config['num_examples'] / config['effective_batch']),
           'configured optimizer steps')
-    budget = json.loads((run / 'budget.json').read_text())
     equal({key: budget.get(key, 0) for key in totals}, dict(totals), 'training budget')
+    if diagnostics is not None:
+        expected = {name: {'tokens': component_totals[name + '_tokens'],
+                          'loss_sum': component_totals[name + '_loss_sum']} for name in TARGET_TYPES}
+        equal(budget['ce_components'], expected if config['method'] == 'ce' else None, 'CE component budget')
+    return budget
 
 
 def validate(run, data):
@@ -121,7 +157,28 @@ def validate(run, data):
         expected.update(training_seed=config['seed'], method=config['method'],
                         model_hash=receipt['payload_hash'],
                         **{key: config[key] for key in ('device', 'dtype', 'prefix_batch')})
-        training_budget(run, data, config)
+        budget = training_budget(run, data, config)
+        if budget.get('diagnostics_version') == 1:
+            equal(summary['split'], 'dev', 'training evaluation split')
+            expected['checkpoint_step'] = budget['optimizer_steps']
+            needs_midpoint = not config.get('initialize') and budget['optimizer_steps'] >= 2
+            if needs_midpoint:
+                midpoint = json.loads((run / 'midpoint.json').read_text())
+                mid_hash = tree_hash(run / 'mid_adapter')
+                equal(midpoint, {'checkpoint_step': budget['optimizer_steps'] // 2,
+                                'split': 'dev', 'payload_hash': mid_hash}, 'midpoint')
+                for record in (training, receipt):
+                    equal(record['midpoint_payload_hash'], mid_hash, 'midpoint saved model')
+                    for name in ('midpoint.json', 'mid_eval/DONE', 'mid_eval/binding.json',
+                                 'mid_eval/summary.json', 'mid_eval/rankings.jsonl', 'mid_eval/metrics.jsonl',
+                                 'mid_eval/atomic_plan.jsonl', 'mid_eval/atomic_apply.jsonl',
+                                 'mid_eval/evaluation_environment.json'):
+                        if name not in record['files']:
+                            raise ValueError(f'Midpoint receipt omits {name}')
+                mid_binding = json.loads((run / 'mid_eval/binding.json').read_text())
+                equal(mid_binding, {**expected, 'split': 'dev', 'model_hash': mid_hash,
+                                   'checkpoint_step': midpoint['checkpoint_step']}, 'midpoint provenance')
+                validate(run / 'mid_eval', data)
     else:
         expected = receipt['binding']
         if 'binding.json' not in receipt['files']:
@@ -154,12 +211,17 @@ def validate(run, data):
         label = task['task_id']
         fingerprint = core.canonical_task_fingerprint(task['p'], task['start'], task['target'], task['depth'])
         equal(task['task_fingerprint'], fingerprint, f'{label}/fingerprint')
-        equal(raw, metadata, f'{label}/ranking provenance')
-        equal(metric, metadata, f'{label}/metric provenance')
+        record_metadata = {key: value for key, value in metadata.items() if key != 'split'}
+        equal(raw, record_metadata, f'{label}/ranking provenance')
+        equal(metric, record_metadata, f'{label}/metric provenance')
+        # Earlier standalone evaluations stored the phase here instead of the
+        # task split. Their family and exact task identity are still checked.
+        if raw.get('split') not in (task['split'], metadata.get('split')):
+            raise ValueError(f'{label}/ranking split disagrees with task')
         # Reuse the frozen independent enumeration/order/correctness check; its
         # historical branch/binding wrapper is not present in these new files.
         recomputed = legacy._ranking_metric_from_raw(
-            {**task, 'split': metadata.get('split', task['split'])},
+            {**task, 'split': raw['split']},
             {**raw, 'branch': 'iclr', 'binding': metadata}, 'iclr', metadata)
         recomputed.pop('branch')
         recomputed.pop('binding')
@@ -238,6 +300,7 @@ def validate(run, data):
             'split': split, 'composition_tasks': len(tasks), 'atomic_tasks': len(atomic),
             'raw_results_recomputed': True, 'payload_hash_checked': trained,
             'training_budget_checked': trained, 'source_code_hash': metadata['code_hash'],
+            'midpoint_checked': trained and budget.get('diagnostics_version') == 1 and needs_midpoint,
             'input_receipt_sha256': file_hash(run / 'DONE'), 'data_hash': metadata['data_hash'],
             'model_inference_repeated': False}
 

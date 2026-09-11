@@ -35,6 +35,7 @@ def evaluate(model, tokenizer, token_ids, data, out, binding, split='dev', prefi
     tokenizer_hash = hashlib.sha256(tokenizer.backend_tokenizer.to_str().encode()).hexdigest()
     metadata = {**binding, 'scorer_id': SCORER_ID, 'prompt_version': PROMPT_VERSION,
                 'tokenizer_hash': tokenizer_hash}
+    record_metadata = {key: value for key, value in metadata.items() if key != 'split'}
     model.eval()
     metrics, accounting = [], {}
     start = time.monotonic()
@@ -51,7 +52,7 @@ def evaluate(model, tokenizer, token_ids, data, out, binding, split='dev', prefi
                 entropy = -sum(p * (item['score'] - correct_logz) for p, item in zip(conditional, correct))
                 # JSON has no infinity; a wholly correct candidate space has no log gap.
                 metric['log_gap'] = metric['log_gap'] if math.isfinite(metric['log_gap']) else None
-                metric.update(metadata, family=family, degree=len(row['start']) - 1,
+                metric.update(record_metadata, split=row['split'], family=family, degree=len(row['start']) - 1,
                               candidate_count=len(candidates), correct_count=len(correct),
                               sh1_any=any('SH1' in x['program'] for x in correct),
                               sh1_required=all('SH1' in x['program'] for x in correct),
@@ -59,7 +60,7 @@ def evaluate(model, tokenizer, token_ids, data, out, binding, split='dev', prefi
                               correct_conditional_entropy=entropy, correct_effective_count=math.exp(entropy),
                               max_correct_conditional_probability=max(conditional))
                 metrics.append(metric)
-                raw.write(json.dumps({**ranking, **metadata}, allow_nan=False) + '\n')
+                raw.write(json.dumps({**ranking, **record_metadata, 'split': row['split']}, allow_nan=False) + '\n')
     (out / 'rankings.jsonl.partial').replace(out / 'rankings.jsonl')
     legacy.write_jsonl(out / 'metrics.jsonl', metrics)
     atomic_rows = read_jsonl(Path(data) / f'{split}_atomic.jsonl')

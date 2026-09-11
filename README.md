@@ -1,6 +1,6 @@
 # Расчёты Артёма к ICLR
 
-Нужны Linux x86_64, Git, uv и Python 3.11. [Кто что делает](plans/README.md).
+Нужны Linux x86_64, Git, uv и Python 3.11. [Кто что делает](plans/README.md), [что готово и что осталось](plans/STATUS.md).
 
 ```bash
 git clone --branch artem_iclr --single-branch https://github.com/VansyDeveloper/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics.git
@@ -58,4 +58,4 @@ uv run python -m iclr.run --recipe size --model Qwen/Qwen3-8B \
 
 В сравниваемых вариантах сохраняйте одинаковые `--dtype`, `--micro-batch`, `--effective-batch`, `--prefix-batch`. BF16 требует подходящей CUDA-карты. Время и память полной серии на A100 пока не измерены.
 
-Верните весь `outputs/`: данные, веса, логи и результаты. Сводка лежит в `results_*.csv`; очередь также печатает команды парного анализа каждого сравнения. [Что сохраняется и как проверить результаты](evidence/README.md), [готовые локальные кривые](evidence/local_series/README.md), [проверка перед передачей](evidence/output_validation_20260911.json).
+Верните весь `outputs/`: данные, веса, логи и результаты. Сводка лежит в `results_*.csv`; очередь также печатает команды парного анализа каждого сравнения. [Что сохраняется и как проверить результаты](evidence/README.md), [готовые локальные кривые](evidence/local_series/README.md), [проверка по исходным планам](evidence/plan_audit_20260911.json).

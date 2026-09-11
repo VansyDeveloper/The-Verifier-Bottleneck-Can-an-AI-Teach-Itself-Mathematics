@@ -181,6 +181,7 @@ def write_results(jobs: list[dict], path: Path, baseline: Path) -> None:
                 row[f'{operation}_{metric}'] = accuracy
                 row[f'{operation}_{metric}_change'] = accuracy - base[f'atomic_{metric}']['by_operation'][operation]
             row[f'{operation}_parse'] = summary['atomic_parse'][operation]['parse_rate']
+            row[f'{operation}_semantic_given_parse'] = summary['atomic_parse'][operation]['semantic_accuracy_given_parse']
         rows.append(row)
     temporary = path.with_suffix('.csv.tmp')
     with temporary.open('w', newline='', encoding='utf-8') as stream:
@@ -188,6 +189,19 @@ def write_results(jobs: list[dict], path: Path, baseline: Path) -> None:
         writer.writeheader()
         writer.writerows(rows)
     temporary.replace(path)
+
+
+def write_run_index(output: Path) -> None:
+    from .common import write_json
+    rows = []
+    for path in sorted((output / 'configs').glob('*.json')):
+        config = json.loads(path.read_text())
+        directory = Path(config['output'])
+        status = next((name for name in ('DONE', 'FAILED', 'TRAINED')
+                       if (directory / name).is_file()), 'PLANNED')
+        rows.append({'config': path.relative_to(output).as_posix(), 'run': str(directory),
+                     'status': status, 'training_saved': (directory / 'TRAINED').is_file()})
+    write_json(output / 'run_index.json', rows)
 
 
 def parser() -> argparse.ArgumentParser:
@@ -250,9 +264,13 @@ def main(argv: list[str] | None = None) -> None:
         print(f"{len(jobs)} jobs; configs in {Path(args.output).resolve() / 'configs'}", flush=True)
         for command in analyses:
             print('After training: ' + shlex.join(command), flush=True)
+        write_run_index(output)
         if args.execute:
             for command in commands:
-                subprocess.run(command, check=True)
+                try:
+                    subprocess.run(command, check=True)
+                finally:
+                    write_run_index(output)
             result_path = output / f'results_{model_name}.csv'
             write_results(completed_jobs(output, jobs[0]), result_path, baseline)
             print(f'Results: {result_path}', flush=True)

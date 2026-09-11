@@ -5,10 +5,25 @@ from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
 
-from iclr.run import ablation_comparisons, build_jobs, comparison_entries, completed_jobs, main, parser, recipe_cells, update_comparison, write_config
+from iclr.run import ablation_comparisons, build_jobs, comparison_entries, completed_jobs, main, parser, recipe_cells, update_comparison, write_config, write_run_index
 
 
 class QueueTest(unittest.TestCase):
+    def test_run_index_keeps_failed_and_unstarted_runs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            for name, markers in [('completed', ['DONE', 'TRAINED']),
+                                  ('failed_eval', ['FAILED', 'TRAINED']), ('waiting', [])]:
+                run = output / 'runs' / name
+                run.mkdir(parents=True)
+                write_config(output / 'configs' / f'{name}.json', {'output': str(run)})
+                for marker in markers:
+                    (run / marker).write_text('{}')
+            write_run_index(output)
+            rows = json.loads((output / 'run_index.json').read_text())
+            self.assertEqual([row['status'] for row in rows], ['DONE', 'FAILED', 'PLANNED'])
+            self.assertTrue(rows[1]['training_saved'])
+
     def test_dtype_reaches_training_and_baseline(self):
         with tempfile.TemporaryDirectory() as directory, redirect_stdout(StringIO()) as stdout:
             command = ['--recipe', 'size', '--data', 'data', '--base', 'base', '--model', 'large-model',

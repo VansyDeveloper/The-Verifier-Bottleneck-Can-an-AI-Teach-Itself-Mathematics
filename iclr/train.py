@@ -9,13 +9,14 @@ import traceback
 from collections import Counter
 from pathlib import Path
 
+import numpy as np
 import torch
 from transformers import get_cosine_schedule_with_warmup
 import composition_core as core
 from .common import code_hash, environment, file_hash, read_jsonl, tree_hash, verify_data, write_json
 from .data import mixture
 from .evaluate import evaluate
-from .modeling import collate, ce_sum, encode, load, program_scores, seed_all, set_loss
+from .modeling import TARGET_TYPES, collate, ce_sum, encode, load, program_scores, seed_all, set_loss
 
 DEFAULTS = dict(method='ce', supervision='trace', replay_fraction=.2,
                 budget_mode='examples', depth3_only=False, seed=0, epochs=2,
@@ -57,12 +58,13 @@ def token_matched_groups(pool, budgets, seed):
     return groups
 
 
-def train_updates(model, tokenizer, ids, groups, cfg, output):
+def train_updates(model, tokenizer, ids, groups, cfg, output, midpoint_callback=None):
     device = next(model.parameters()).device
     optimizer = torch.optim.AdamW((p for p in model.parameters() if p.requires_grad),
                                  lr=cfg['learning_rate'], weight_decay=0, fused=device.type == 'cuda')
     scheduler = get_cosine_schedule_with_warmup(optimizer, int(.03 * len(groups)), len(groups))
     receipt = Counter()
+    component_totals = Counter()
     unique = set()
     started = time.monotonic()
     if device.type == 'cuda':
@@ -73,11 +75,12 @@ def train_updates(model, tokenizer, ids, groups, cfg, output):
             optimizer.zero_grad(set_to_none=True)
             total_tokens = sum(item['target_tokens'] for item in group)
             total_loss = 0.
+            components = Counter()
             if cfg['method'] == 'ce':
                 for offset in range(0, len(group), cfg['micro_batch']):
                     chunk = group[offset:offset + cfg['micro_batch']]
-                    batch = collate(tokenizer, chunk, device)
-                    loss = ce_sum(model, batch) / total_tokens
+                    batch = collate(tokenizer, chunk, device, include_target_types=True)
+                    loss = ce_sum(model, batch, accounting=components) / total_tokens
                     loss.backward()
                     total_loss += float(loss.detach())
                     receipt['total_forward_tokens'] += batch['input_ids'].numel()
@@ -100,6 +103,7 @@ def train_updates(model, tokenizer, ids, groups, cfg, output):
             for item in group:
                 stream.write(json.dumps({'step': step, 'task_id': item['task_id'], 'kind': item['kind'],
                                          'input_ids': item['input_ids'], 'labels': item['labels'],
+                                         'target_types': item['target_types'],
                                          'set_objective': cfg['method'] if cfg['method'] != 'ce' else None}) + '\n')
                 receipt['example_exposures'] += 1
                 receipt['prompt_tokens'] += item['prompt_tokens']
@@ -110,17 +114,37 @@ def train_updates(model, tokenizer, ids, groups, cfg, output):
                     receipt[item['operation'] + '_exposures'] += 1
                 receipt['masked_target_tokens'] += item.get('masked_target_tokens', 0)
                 unique.add(item['task_id'])
+            component_totals.update(components)
             log.write(json.dumps({'step': step, 'loss': total_loss, 'gradient_norm': float(norm),
                                   'target_tokens': total_tokens, 'examples': len(group),
+                                  'ce_components': component_summary(components) if cfg['method'] == 'ce' else None,
                                   'seconds': time.monotonic() - started}, allow_nan=False) + '\n')
             log.flush()
             print(f'step {step}/{len(groups)} loss={total_loss:.5f}', flush=True)
-    return {**receipt, 'optimizer_steps': len(groups), 'unique_tasks': len(unique),
+            if midpoint_callback is not None and len(groups) >= 2 and step == len(groups) // 2:
+                python_state, numpy_state = random.getstate(), np.random.get_state()
+                training = model.training
+                try:
+                    devices = [device.index] if device.type == 'cuda' else []
+                    with torch.random.fork_rng(devices=devices):
+                        midpoint_callback(step)
+                finally:
+                    random.setstate(python_state)
+                    np.random.set_state(numpy_state)
+                    model.train(training)
+    return {**receipt, 'diagnostics_version': 1, 'optimizer_steps': len(groups), 'unique_tasks': len(unique),
+            'measurement_scope': 'training_and_midpoint_evaluation' if midpoint_callback is not None and len(groups) >= 2 else 'training',
             'optimizer_impl': 'adamw_fused' if device.type == 'cuda' else 'adamw_single_tensor',
             'wall_seconds': time.monotonic() - started,
             'peak_memory_bytes': torch.cuda.max_memory_allocated() if device.type == 'cuda' else None,
+            'ce_components': component_summary(component_totals) if cfg['method'] == 'ce' else None,
             'loss_normalization': 'supervised_tokens_per_update' if cfg['method'] == 'ce' else 'tasks_per_update',
             'set_token_counters': 'reference program labels, not CE targets' if cfg['method'] != 'ce' else None}
+
+
+def component_summary(counters):
+    return {name: {'tokens': counters[name + '_tokens'], 'loss_sum': counters[name + '_loss_sum']}
+            for name in TARGET_TYPES}
 
 
 def run(config):
@@ -170,6 +194,8 @@ def run(config):
         done = json.loads((output / 'DONE').read_text())
         if done['binding'] != binding or done['payload_hash'] != tree_hash(output / ('checkpoint' if initialize else 'adapter')):
             raise ValueError('Completed run differs from requested config or saved payload')
+        if done.get('midpoint_payload_hash') is not None and done['midpoint_payload_hash'] != tree_hash(output / 'mid_adapter'):
+            raise ValueError('Completed midpoint adapter changed')
         for name, digest in done['files'].items():
             if file_hash(output / name) != digest:
                 raise ValueError(f'Completed output changed: {name}')
@@ -215,7 +241,26 @@ def run(config):
                             groups.extend(token_matched_groups(encoded, budgets, epoch_seed))
                         else:
                             groups.extend(epoch_groups(encoded, cfg['effective_batch'], epoch_seed))
-                    budget = train_updates(model, tokenizer, ids, groups, cfg, output)
+                    def midpoint(step):
+                        mid_adapter, mid_eval = output / 'mid_adapter', output / 'mid_eval'
+                        model.save_pretrained(mid_adapter)
+                        tokenizer.save_pretrained(mid_adapter)
+                        mid_hash = tree_hash(mid_adapter)
+                        mid_binding = {key: binding[key] for key in ('base_hash', 'data_hash', 'code_hash')}
+                        mid_binding.update(training_seed=cfg['seed'], method=cfg['method'], split='dev',
+                            checkpoint_step=step, model_hash=mid_hash,
+                            **{key: cfg[key] for key in ('dtype', 'device', 'prefix_batch')})
+                        mid_eval.mkdir(parents=True, exist_ok=True)
+                        write_json(mid_eval / 'binding.json', mid_binding)
+                        evaluate(model, tokenizer, ids, data, mid_eval, mid_binding,
+                                 split='dev', prefix_batch=cfg['prefix_batch'])
+                        write_json(mid_eval / 'DONE', {'binding': mid_binding, 'files': {
+                            p.name: file_hash(p) for p in mid_eval.glob('*.json*')}})
+                        write_json(output / 'midpoint.json', {'checkpoint_step': step, 'split': 'dev',
+                                   'payload_hash': mid_hash})
+
+                    budget = train_updates(model, tokenizer, ids, groups, cfg, output,
+                                           midpoint_callback=None if initialize else midpoint)
                     write_json(output / 'budget.json', budget)
                     model.eval()
                     probe = compositions[0]
@@ -238,17 +283,26 @@ def run(config):
                         write_json(payload / 'iclr_atomic.json', {'model': cfg['model'],
                             'model_revision': getattr(model.config, '_commit_hash', None),
                             'data_hash': binding['data_hash'], 'protocol': 'fresh_atomic_plan_apply_v1'})
+                    training_files = ['budget.json', 'training_metrics.jsonl', 'training_stream.jsonl',
+                                      'reload_probe.json', 'resolved_model.json', 'environment.json']
+                    mid_hash = None
+                    if not initialize and len(groups) >= 2:
+                        mid_hash = tree_hash(output / 'mid_adapter')
+                        training_files.extend(['midpoint.json', 'mid_eval/DONE', *(
+                            str(p.relative_to(output)) for p in (output / 'mid_eval').glob('*.json*'))])
                     write_json(output / 'TRAINED', {'payload_hash': tree_hash(payload),
+                        'midpoint_payload_hash': mid_hash,
                         'model_revision': getattr(model.config, '_commit_hash', None),
-                        'files': {name: file_hash(output / name) for name in
-                                  ('budget.json', 'training_metrics.jsonl', 'training_stream.jsonl',
-                                   'reload_probe.json', 'resolved_model.json', 'environment.json')}})
+                        'files': {name: file_hash(output / name) for name in training_files}})
                     del model
                     if torch.cuda.is_available():
                         torch.cuda.empty_cache()
                 trained = json.loads((output / 'TRAINED').read_text())
                 if trained['payload_hash'] != tree_hash(payload):
                     raise ValueError('Saved checkpoint changed after training')
+                if (trained.get('midpoint_payload_hash') is not None and
+                        trained['midpoint_payload_hash'] != tree_hash(output / 'mid_adapter')):
+                    raise ValueError('Saved midpoint adapter changed after training')
                 for name, digest in trained['files'].items():
                     if file_hash(output / name) != digest:
                         raise ValueError(f'Training receipt changed after training: {name}')
@@ -265,13 +319,17 @@ def run(config):
                     'merge_max_absolute_difference': probe['merge_max_absolute_difference']})
                 evaluate(model, tokenizer, ids, data, output / 'eval',
                          {'training_seed': cfg['seed'], 'method': cfg['method'], 'base_hash': binding['base_hash'],
+                          'checkpoint_step': json.loads((output / 'budget.json').read_text())['optimizer_steps'],
                           'model_hash': trained['payload_hash'], 'data_hash': binding['data_hash'],
                           'code_hash': binding['code_hash'], 'dtype': cfg['dtype'],
                           'device': cfg['device'], 'prefix_batch': cfg['prefix_batch']},
                          prefix_batch=cfg['prefix_batch'])
         files = {str(p.relative_to(output)): file_hash(p) for p in output.rglob('*.json*')
                  if payload not in p.parents}
-        write_json(output / 'DONE', {'binding': binding, 'payload_hash': trained['payload_hash'], 'files': files})
+        if trained.get('midpoint_payload_hash') is not None:
+            files['mid_eval/DONE'] = file_hash(output / 'mid_eval' / 'DONE')
+        write_json(output / 'DONE', {'binding': binding, 'payload_hash': trained['payload_hash'],
+                                    'midpoint_payload_hash': trained.get('midpoint_payload_hash'), 'files': files})
         (output / 'FAILED').unlink(missing_ok=True)
         print(f'Complete: {output}')
     except Exception:

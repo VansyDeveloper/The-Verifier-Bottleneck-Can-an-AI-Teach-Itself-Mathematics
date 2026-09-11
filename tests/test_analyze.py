@@ -59,7 +59,7 @@ def test_named_contrasts_and_input_provenance(tmp_path):
     arms = ("program_only", "program_trace")
     entries = []
     for arm, rank in zip(arms, (40, 1)):
-        row = dict(task_id="task", task_fingerprint="fingerprint", split="dev_A", p=5,
+        row = dict(task_id="task", task_fingerprint="fingerprint", split="dev", family="A", p=5,
                    depth=3, best_rank=rank, correct_mass=.2, base_hash="same-model",
                    data_hash="same-data", model_hash=arm, training_seed=7)
         (tmp_path / f"{arm}.jsonl").write_text(json.dumps(row) + "\n")
@@ -69,6 +69,7 @@ def test_named_contrasts_and_input_provenance(tmp_path):
     manifest = tmp_path / "manifest.json"
     manifest.write_text(json.dumps(entries))
     curves = analyze(manifest, tmp_path / "output", plots=True, arms=arms)
+    assert {row['split'] for row in curves} == {'dev_A'}
     assert curves[31]["program_only"] == 0
     assert curves[31]["program_trace"] == 1
     assert curves[31]["delta"] == 1
@@ -78,6 +79,9 @@ def test_named_contrasts_and_input_provenance(tmp_path):
     assert "treatment_only" in (tmp_path / "output" / "table9_counts.csv").read_text().splitlines()[0]
     assert json.loads((tmp_path / "output" / "analysis.json").read_text())["arms"] == {
         "control": "program_only", "treatment": "program_trace"}
+    bootstrap = json.loads((tmp_path / "output" / "analysis.json").read_text())['crossed_bootstrap_hit32']
+    assert bootstrap['endpoints'][0]['ci95'] is None
+    assert bootstrap['samples'] is None
     metric = tmp_path / "program_trace.jsonl"
     original = metric.read_text()
     for key, value in (("base_hash", "other-model"), ("data_hash", "other-data"), ("training_seed", 8)):
@@ -86,6 +90,61 @@ def test_named_contrasts_and_input_provenance(tmp_path):
         with pytest.raises(ValueError, match="provenance|seed mismatch"):
             load_manifest(manifest, arms)
     metric.write_text(original)
+
+
+def test_crossed_bootstrap_pairing_reproduction_and_saved_samples(tmp_path):
+    import numpy as np
+    from confirm_stats import crossed_seed_task_bootstrap
+    from iclr.analyze import crossed_bootstrap
+    from iclr.common import file_hash
+
+    matrix = np.array([[1, 0, -1], [0, 1, 0], [-1, 0, 1]], dtype=float)
+    receipt, samples = crossed_bootstrap(matrix, repetitions=513, seed=19)
+    np.testing.assert_array_equal(samples, crossed_bootstrap(matrix, 513, 19)[1])
+    # Independent reference: each replicate draws one task list shared by all drawn seeds.
+    rng = np.random.Generator(np.random.PCG64(19))
+    expected = []
+    for start in range(0, 513, 256):
+        count = min(256, 513 - start)
+        seed_draws = rng.integers(0, 3, size=(count, 3))
+        task_draws = rng.integers(0, 3, size=(count, 3))
+        expected.extend(sum(matrix[s, t] for s in ss for t in tt) / 9
+                        for ss, tt in zip(seed_draws, task_draws))
+    np.testing.assert_array_equal(samples, expected)
+    six = np.concatenate((matrix, -matrix))
+    old_receipt, old_samples = crossed_seed_task_bootstrap(six, 513, 19)
+    adapted_receipt, adapted_samples = crossed_bootstrap(six, 513, 19)
+    np.testing.assert_array_equal(adapted_samples, old_samples)
+    assert adapted_receipt == old_receipt
+    np.testing.assert_array_equal(receipt['ci95'], np.quantile(samples, [.025, .975]))
+    with pytest.raises(ValueError, match='bootstrap needs'):
+        crossed_bootstrap([[float('nan')], [0]])
+
+    entries = []
+    for seed in range(3):
+        for arm in ('atomic_control', 'composition'):
+            rows = [dict(task_id=f'{family}{i}', task_fingerprint=f'{family}{i}', split='final',
+                         family=family, p=5, depth=3, best_rank=(40 if arm == 'atomic_control' and i == 0 else 1),
+                         correct_mass=.2) for family in 'AB' for i in range(2)]
+            name = f'{seed}_{arm}.jsonl'
+            (tmp_path / name).write_text(''.join(json.dumps(row) + '\n' for row in rows))
+            entries.append(dict(seed=seed, arm=arm, metrics=name, scorer_id='scorer',
+                                tokenizer_hash='tokenizer', prompt_version='prompt'))
+    manifest = tmp_path / 'comparison.json'
+    manifest.write_text(json.dumps(entries))
+    curves = analyze(manifest, tmp_path / 'result', bootstrap_repetitions=513, bootstrap_seed=19)
+    assert {row['split'] for row in curves} == {'final_A', 'final_B'}
+    assert len(curves) == 250
+    report = json.loads((tmp_path / 'result/analysis.json').read_text())['crossed_bootstrap_hit32']
+    assert report['samples']['sha256'] == file_hash(tmp_path / 'result' / report['samples']['path'])
+    with np.load(tmp_path / 'result' / report['samples']['path'], allow_pickle=False) as saved:
+        for endpoint in report['endpoints']:
+            assert endpoint['observed_mean'] == .5
+            assert endpoint['repetitions'] == 513
+            # Identical paired seed rows [1,0] leave only the shared two-task draw variable.
+            actual = saved[endpoint['sample_key']]
+            assert set(actual) == {0., .5, 1.}
+            np.testing.assert_array_equal(actual, crossed_bootstrap([[1, 0]] * 3, 513, 19)[1])
 
 
 def test_all_arms_cannot_silently_drop_the_same_task(tmp_path):

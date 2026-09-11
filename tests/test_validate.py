@@ -12,7 +12,7 @@ import composition_core as core
 import composition_eval as legacy
 
 
-def make_saved_evaluation(root, monkeypatch, trained):
+def make_saved_evaluation(root, monkeypatch, trained, split='dev'):
     data, run = root / 'data', root / 'run'
     generate(data, size=20, eval_size=2, atomic_per_op=5, smoke=True)
     binding = dict(base_hash='base', data_hash=file_hash(data / 'manifest.json'), code_hash='old-code',
@@ -22,29 +22,31 @@ def make_saved_evaluation(root, monkeypatch, trained):
         payload.mkdir(parents=True)
         (payload / 'weights').write_bytes(b'fixture payload; no model is loaded')
         payload_hash = tree_hash(payload)
-        config = dict(seed=0, method='ce', device='cpu', dtype='float32', prefix_batch=8,
+        config = dict(seed=0, method='ce', supervision='program', device='cpu', dtype='float32', prefix_batch=8,
                       micro_batch=1, epochs=1, effective_batch=1, num_examples=1,
                       data='/different/machine/data', output='/different/machine/run')
         done_binding = {'config': config, **{key: binding[key] for key in ('base_hash', 'data_hash', 'code_hash')}}
         write_json(run / 'config.resolved.json', done_binding)
         task = read_jsonl(data / 'train.jsonl')[0]
         legacy.write_jsonl(run / 'training_stream.jsonl', [dict(step=1, task_id=task['task_id'], kind='composition',
-            input_ids=[1, 2], labels=[-100, 2], set_objective=None)])
+            input_ids=[1, 2, 3], labels=[-100, 2, 3], target_types=[0, 1, 3], set_objective=None)])
+        components = {name: {'tokens': 0, 'loss_sum': 0.} for name in ('operation', 'trace', 'eos', 'apply')}
+        components.update(operation={'tokens': 1, 'loss_sum': .6}, eos={'tokens': 1, 'loss_sum': .4})
         legacy.write_jsonl(run / 'training_metrics.jsonl', [dict(step=1, loss=.5, gradient_norm=.1,
-            target_tokens=1, examples=1, seconds=1.)])
-        write_json(run / 'budget.json', dict(optimizer_steps=1, example_exposures=1, all_target_tokens=1,
-            composition_exposures=1, composition_target_tokens=1, unique_tasks=1, prompt_tokens=1,
-            masked_target_tokens=0, total_forward_tokens=2))
+            target_tokens=2, examples=1, seconds=1., ce_components=components)])
+        write_json(run / 'budget.json', dict(optimizer_steps=1, example_exposures=1, all_target_tokens=2,
+            composition_exposures=1, composition_target_tokens=2, unique_tasks=1, prompt_tokens=1,
+            masked_target_tokens=0, total_forward_tokens=3, diagnostics_version=1, ce_components=components))
         for name in ('reload_probe.json', 'resolved_model.json', 'environment.json', 'reload_check.json'):
             write_json(run / name, {'fixture': True})
         write_json(run / 'TRAINED', {'payload_hash': payload_hash,
             'files': {name: file_hash(run / name) for name in
                       ('reload_probe.json', 'resolved_model.json', 'environment.json',
                        'training_stream.jsonl', 'training_metrics.jsonl', 'budget.json')}})
-        binding.update(training_seed=0, method='ce', model_hash=payload_hash)
+        binding.update(training_seed=0, method='ce', model_hash=payload_hash, checkpoint_step=1)
         out = run / 'eval'
     else:
-        binding.update(adapter_hash=None, split='dev')
+        binding.update(adapter_hash=None, split=split)
         done_binding = binding
         out = run
         write_json(out / 'binding.json', binding)
@@ -77,7 +79,7 @@ def make_saved_evaluation(root, monkeypatch, trained):
     monkeypatch.setattr(legacy, 'atomic_apply_metrics', atomic_apply)
     model = SimpleNamespace(eval=lambda: None)
     tokenizer = SimpleNamespace(backend_tokenizer=SimpleNamespace(to_str=lambda: 'test tokenizer'))
-    evaluate.evaluate(model, tokenizer, {}, data, out, binding)
+    evaluate.evaluate(model, tokenizer, {}, data, out, binding, split=split)
     receipt = {'binding': done_binding, 'files': {str(path.relative_to(run)): file_hash(path)
                for path in run.rglob('*.json*') if 'adapter' not in path.parts}}
     if trained:
@@ -86,9 +88,9 @@ def make_saved_evaluation(root, monkeypatch, trained):
     return data, run
 
 
-@pytest.mark.parametrize('trained', [False, True])
-def test_copied_output_recomputes_and_rejects_corruption(tmp_path, monkeypatch, trained):
-    data, run = make_saved_evaluation(tmp_path / 'original', monkeypatch, trained)
+@pytest.mark.parametrize('trained,split', [(False, 'dev'), (False, 'final'), (True, 'dev')])
+def test_copied_output_recomputes_and_rejects_corruption(tmp_path, monkeypatch, trained, split):
+    data, run = make_saved_evaluation(tmp_path / 'original', monkeypatch, trained, split)
     copied = tmp_path / 'copied'
     shutil.copytree(data.parent, copied)
     shutil.rmtree(data.parent)
@@ -102,6 +104,8 @@ def test_copied_output_recomputes_and_rejects_corruption(tmp_path, monkeypatch, 
     metrics = out / 'metrics.jsonl'
     original = metrics.read_text()
     rows = [json.loads(line) for line in original.splitlines()]
+    assert {row['split'] for row in rows} == {f'{split}_{family}' for family in 'ABCD'}
+    assert {row['split'] for row in read_jsonl(out / 'rankings.jsonl')} == {row['split'] for row in rows}
     rows[0]['correct_mass'] = .123456789
     metrics.write_text(''.join(json.dumps(row) + '\n' for row in rows))
     with pytest.raises(ValueError, match='missing or changed'):
@@ -160,6 +164,21 @@ def test_copied_output_recomputes_and_rejects_corruption(tmp_path, monkeypatch, 
             write_json(run / 'TRAINED', training)
             write_json(run / 'DONE', receipt)
             with pytest.raises(ValueError, match='updates|Nonfinite'):
+                validate(run, data)
+        legacy.write_jsonl(run / 'training_metrics.jsonl', logs)
+        for record in (receipt, training):
+            record['files']['training_metrics.jsonl'] = file_hash(run / 'training_metrics.jsonl')
+        write_json(run / 'TRAINED', training)
+        write_json(run / 'DONE', receipt)
+        for key in ('tokens', 'loss_sum'):
+            changed = json.loads(json.dumps(logs))
+            changed[0]['ce_components']['operation'][key] += 1
+            legacy.write_jsonl(run / 'training_metrics.jsonl', changed)
+            for record in (receipt, training):
+                record['files']['training_metrics.jsonl'] = file_hash(run / 'training_metrics.jsonl')
+            write_json(run / 'TRAINED', training)
+            write_json(run / 'DONE', receipt)
+            with pytest.raises(ValueError, match='CE component'):
                 validate(run, data)
         legacy.write_jsonl(run / 'training_metrics.jsonl', logs)
         for record in (receipt, training):

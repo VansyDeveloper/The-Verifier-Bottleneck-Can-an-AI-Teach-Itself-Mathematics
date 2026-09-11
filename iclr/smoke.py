@@ -79,7 +79,7 @@ def main(argv=None):
         from iclr.run import build_jobs, parser as queue_parser
         queue_arguments = [
             "--recipe", "trace", "size", "set", "--model", str(model), "--base", str(base),
-            "--data", str(out / "data"), "--output", str(out), "--seeds", "0", "--epochs", "1",
+            "--data", str(out / "data"), "--output", str(out), "--seeds", "0", "--epochs", "2",
             "--num-examples", "10", "--effective-batch", "10", "--device", device, "--dtype", args.dtype]
         jobs = build_jobs(queue_parser().parse_args(queue_arguments))
         run("queue", ["iclr.run", *queue_arguments, "--execute"])
@@ -96,6 +96,7 @@ def main(argv=None):
             assert reload_check["max_absolute_difference"] <= reload_check["tolerance"]
             if directory != base.parent:
                 budgets.append(json.loads((directory / "budget.json").read_text()))
+                assert json.loads((directory / 'midpoint.json').read_text())['checkpoint_step'] == 1
         assert len({(budgets[i]["optimizer_steps"], budgets[i]["all_target_tokens"]) for i in (0, 2, 3)}) == 1
         assert len({(b["optimizer_steps"], b["example_exposures"]) for b in budgets[4:]}) == 1
         assert budgets[0]['example_exposures'] == budgets[1]['example_exposures']
@@ -116,7 +117,8 @@ def main(argv=None):
         from iclr.validate import validate
         directories = [base.parent, baseline, *(Path(job['output']) for job in jobs)]
         for directory in directories:
-            validate(directory, out / 'data')
+            result = validate(directory, out / 'data')
+            assert result['midpoint_checked'] == (directory not in (base.parent, baseline))
         with tempfile.TemporaryDirectory(prefix='iclr-transfer-', dir=out.parent) as temporary:
             copied = Path(temporary) / 'outputs'
             shutil.copytree(out, copied)
@@ -134,6 +136,7 @@ def main(argv=None):
             "set_paired_analysis_checked": True,
             "resume_evaluation_without_retraining_checked": True,
             "raw_result_validation_checked": True,
+            "midpoint_and_loss_components_checked": True,
             "copied_output_validation_and_analysis_checked": True,
             "wall_seconds": time.monotonic() - started}, indent=2) + "\n")
         print(f"PASS: {out / 'DONE.json'}", flush=True)

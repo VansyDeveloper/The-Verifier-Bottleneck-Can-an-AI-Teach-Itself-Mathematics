@@ -10,6 +10,7 @@ from collections import defaultdict
 from pathlib import Path
 from statistics import fmean, stdev
 
+import numpy as np
 from scipy.stats import t as student_t
 
 from composition_core import enumerate_programs, trajectory
@@ -85,6 +86,9 @@ def load_manifest(path, arms=ARMS):
         rows, run_inputs = {}, None
         for raw in read_rows(path.parent / entry["metrics"]):
             row = {**raw, **raw.get("metrics", {})}
+            # Older standalone evaluations overwrote the task split with the phase.
+            if row.get("split") in ("dev", "final") and row.get("family") in ("A", "B", "C", "D"):
+                row["split"] = f"{row['split']}_{row['family']}"
             current = provenance(entry, row)
             if scorer is not None and current != scorer:
                 raise ValueError("incompatible scorer/tokenizer/prompt provenance")
@@ -191,7 +195,39 @@ def write_csv(path, rows):
         writer.writerows(rows)
 
 
-def analyze(manifest, output, plots=False, arms=ARMS):
+def crossed_bootstrap(matrix, repetitions=20000, seed=20260727):
+    """Adapt confirm_stats.crossed_seed_task_bootstrap to two or more runs."""
+    values = np.asarray(matrix, dtype=np.float64)
+    if (values.ndim != 2 or values.shape[0] < 2 or values.shape[1] == 0
+            or not np.isfinite(values).all()):
+        raise ValueError("bootstrap needs a finite (seeds >= 2, tasks >= 1) matrix")
+    if type(repetitions) is not int or repetitions < 2 or type(seed) is not int or seed < 0:
+        raise ValueError("bootstrap repetitions must be >= 2 and seed must be nonnegative integers")
+    n_seeds, n_tasks = values.shape
+    rng = np.random.Generator(np.random.PCG64(seed))
+    replicates = np.empty(repetitions, dtype=np.float64)
+    # Keep the frozen implementation's batches and draw order for six-seed parity.
+    for start in range(0, repetitions, min(256, repetitions)):
+        count = min(256, repetitions - start)
+        seed_draws = rng.integers(0, n_seeds, size=(count, n_seeds))
+        task_draws = rng.integers(0, n_tasks, size=(count, n_tasks))
+        for index in range(count):
+            replicates[start + index] = values[np.ix_(seed_draws[index], task_draws[index])].mean()
+    lower, upper = np.quantile(replicates, (0.025, 0.975), method="linear")
+    receipt = {"algorithm": "crossed_seed_task_percentile_v1", "repetitions": repetitions,
+               "rng": {"library": "numpy", "bit_generator": "PCG64", "seed": seed},
+               "seed_draw_size": n_seeds, "task_draw_size": n_tasks,
+               "shared_task_draw_across_seeds": True, "equal_seed_weight": True,
+               "dtype": "float64", "quantile_method": "linear", "quantiles": [0.025, 0.975],
+               "observed_mean": float(values.mean()), "bootstrap_mean": float(replicates.mean()),
+               "ci95": [float(lower), float(upper)]}
+    return receipt, replicates
+
+
+def analyze(manifest, output, plots=False, arms=ARMS, bootstrap_repetitions=20000, bootstrap_seed=20260727):
+    if (type(bootstrap_repetitions) is not int or bootstrap_repetitions < 2
+            or type(bootstrap_seed) is not int or bootstrap_seed < 0):
+        raise ValueError("bootstrap repetitions must be >= 2 and seed must be nonnegative integers")
     runs, scorer = load_manifest(manifest, arms)
     treatment = "composition" if tuple(arms) == ARMS else "treatment"
     treatment_only = treatment + "_only"
@@ -201,7 +237,21 @@ def analyze(manifest, output, plots=False, arms=ARMS):
     for task_id, row in first.items():
         groups[row["split"], row["depth"]].append(task_id)
     curves, summaries, pairs, counts, strata, strata_by_seed = [], [], [], [], [], []
+    bootstrap_endpoints, bootstrap_samples = [], {}
     for (split, depth), ids in sorted(groups.items()):
+        ids = sorted(ids)
+        endpoint = dict(split=split, depth=depth, metric="Hit@32", n_seeds=len(seeds), n_tasks=len(ids))
+        if len(seeds) >= 2:
+            differences = [[int(runs[seed, arms[1]][task]["best_rank"] <= 32)
+                            - int(runs[seed, arms[0]][task]["best_rank"] <= 32) for task in ids]
+                           for seed in seeds]
+            bootstrap, samples = crossed_bootstrap(differences, bootstrap_repetitions, bootstrap_seed)
+            sample_key = f"group_{len(bootstrap_endpoints)}"
+            bootstrap_samples[sample_key] = samples
+            endpoint.update(bootstrap, sample_key=sample_key, status="estimated")
+        else:
+            endpoint.update(status="not estimated: fewer than two independent training seeds", ci95=None)
+        bootstrap_endpoints.append(endpoint)
         for k in range(1, 5 ** depth + 1):
             hits = {arm: [sum(runs[seed, arm][task]["best_rank"] <= k for task in ids)
                           for seed in seeds] for arm in arms}
@@ -266,6 +316,16 @@ def analyze(manifest, output, plots=False, arms=ARMS):
                "n_seeds": len(seeds), "n_tasks": len(first), "interval": "pointwise paired run t, 95%",
                "sign_flip_endpoint": "Hit@32 only; no tests selected from the full curve",
                "status": "reanalysis; no new training", "unknown_strata": "not available in source metrics/tasks"}
+    receipt["crossed_bootstrap_hit32"] = {
+        "role": "endpoint robustness intervals; not simultaneous curve bands or a significance gate",
+        "arm_pairing": "treatment minus control before resampling",
+        "ordering": "sorted training seeds and task IDs within each split/depth",
+        "endpoints": bootstrap_endpoints, "samples": None}
+    if bootstrap_samples:
+        sample_file = output / "bootstrap_hit32.npz"
+        np.savez_compressed(sample_file, **bootstrap_samples)
+        receipt["crossed_bootstrap_hit32"]["samples"] = {
+            "path": sample_file.name, "sha256": file_hash(sample_file)}
     sources = set()
     for entry in json.loads(Path(manifest).read_text()):
         for key in ("metrics", "tasks"):
@@ -355,9 +415,12 @@ def main():
     parser.add_argument("--plots", action="store_true")
     parser.add_argument("--arms", nargs=2, default=ARMS, metavar=("CONTROL", "TREATMENT"),
                         help="manifest arm names; differences are treatment minus control")
+    parser.add_argument("--bootstrap-repetitions", type=int, default=20000)
+    parser.add_argument("--bootstrap-seed", type=int, default=20260727)
     args = parser.parse_args()
     if args.manifest:
-        analyze(args.manifest, args.output, args.plots, args.arms)
+        analyze(args.manifest, args.output, args.plots, args.arms,
+                args.bootstrap_repetitions, args.bootstrap_seed)
     else:
         historical_summary(args.historical_summary, args.output)
 

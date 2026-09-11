@@ -1,0 +1,95 @@
+{
+  "checked_at": "2026-09-11",
+  "code_sha256": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+  "fixed_gaps": [
+    "Standalone evaluation retains family-specific task splits, including final.",
+    "Historical standalone phase-only split labels are normalized before paired analysis.",
+    "Crossed seed/task bootstrap at the predefined Hit@32 endpoint with stored replicates.",
+    "Fixed midpoint dev evaluation and saved adapter; training RNG and final checkpoint selection preserved.",
+    "Separate operation/TRACE/EOS/APPLY masks, active-token counts and CE loss sums.",
+    "Run index preserves completed, failed and unstarted configurations."
+  ],
+  "frozen_sources": "All three legacy modules and the submitted PDF are unchanged",
+  "noise_audit_sha256": "e1f6d3b5d54a2f3e2721c22a0d5638cbdb06a01c10bf1ec94a18f006a39bc26a",
+  "ownership": {
+    "artem_recipes": [
+      "replay",
+      "trace",
+      "set",
+      "size"
+    ],
+    "dima_private_or_unpublished_runs_checked": false,
+    "dima_reserved": [
+      "GRPO and diagnostics",
+      "diverse trajectory selection",
+      "withheld-pair sweep"
+    ]
+  },
+  "remaining": [
+    "Full training/evaluation of the planned supervised series",
+    "Real Qwen3-8B training smoke and A100 time/memory measurement",
+    "Missing original main six-seed task rankings or stage4_composition_confirmation_full.zip",
+    "External benchmark and any new verifier-quality sweep need a separately chosen team protocol",
+    "Apply paper/REVISION_NOTES.md to the working manuscript and incorporate future results"
+  ],
+  "scientific_improvement_established": false,
+  "smoke": {
+    "plan_audit_cpu": {
+      "completed_run_reuse_checked": true,
+      "copied_output_validation_and_analysis_checked": true,
+      "device": "cpu",
+      "dtype": "float32",
+      "matched_ce_target_tokens": 596,
+      "midpoint_and_loss_components_checked": true,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "queue_execute_checked": true,
+      "raw_result_validation_checked": true,
+      "receipt_sha256": "62ba84d7d69220188f3af39f6c5721e17de6a1a2d6ea826edf93fb53fce1af7e",
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "set_paired_analysis_checked": true,
+      "status": "PASS",
+      "training_branches": 7,
+      "wall_seconds": 61.48125146700113
+    },
+    "plan_audit_cuda": {
+      "completed_run_reuse_checked": true,
+      "copied_output_validation_and_analysis_checked": true,
+      "device": "cuda",
+      "dtype": "bfloat16",
+      "matched_ce_target_tokens": 596,
+      "midpoint_and_loss_components_checked": true,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "queue_execute_checked": true,
+      "raw_result_validation_checked": true,
+      "receipt_sha256": "3a8ac9232d8337a2f9b2c985abaab4fef77cc2a225f926bc78b4a0ef1d8c365c",
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "set_paired_analysis_checked": true,
+      "status": "PASS",
+      "training_branches": 7,
+      "wall_seconds": 69.83250138199946
+    }
+  },
+  "source_plans_sha256": {
+    "IMPLEMENTATION_PLAN_RU.md": "01735426d3ae4466b14a3b6c45d6cc2d23c9f37ee1e1f2aa870bfa46c7b573c7",
+    "v1_plan.md": "3179a9c6e41f1b7c4021daa1ee4a6b50c121b1ac7327b43c6665e1e3eabfc304"
+  },
+  "starting_commit": "3b69e4b",
+  "status": "PASS for listed implementation checks; the full research plan is not complete",
+  "tests": {
+    "checks": [
+      "six-seed bootstrap agrees with frozen implementation and shares task draws",
+      "singleton gradients, candidate permutation, negative scores, gradient step toward correct-set mass",
+      "CE component accounting uses one forward and excludes masked targets",
+      "midpoint callback preserves exact trained parameters and Python/NumPy/Torch RNG",
+      "rehashed wrong CE component counts/losses are rejected",
+      "dev/final standalone task families are retained"
+    ],
+    "junit_sha256": "5a0e129a8887f104ce3feceff4be41e0c96c726ff1fd821b961ecffadf55271c",
+    "passed": 28,
+    "subtests_passed": 14
+  }
+}

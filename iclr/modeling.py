@@ -13,6 +13,7 @@ import composition_core as core
 
 SCORER_ID = 'full_vocab_op_tokens_v1'
 PROMPT_VERSION = 'stage4_plan_v1'
+TARGET_TYPES = ('operation', 'trace', 'eos', 'apply')
 
 
 def seed_all(seed):
@@ -82,11 +83,15 @@ def load(base, *, adapter=None, train=False, initialize=False, device='auto',
 def encode(tokenizer, example):
     prompt = tokenizer.encode(example['prompt'], add_special_tokens=False)
     answer = tokenizer.encode(' ' + example['answer'], add_special_tokens=False) + [tokenizer.eos_token_id]
+    program = example['answer'].startswith(tuple(core.TOKENS.values()))
+    operations = {tokenizer.convert_tokens_to_ids(token) for token in core.TOKENS.values()}
+    types = [1 if token in operations else 2 for token in answer[:-1]] if program else [4] * (len(answer) - 1)
     return {**example, 'input_ids': prompt + answer, 'labels': [-100] * len(prompt) + answer,
+            'target_types': [0] * len(prompt) + types + [3],
             'target_tokens': len(answer), 'prompt_tokens': len(prompt)}
 
 
-def collate(tokenizer, examples, device):
+def collate(tokenizer, examples, device, include_target_types=False):
     width = max(len(item['input_ids']) for item in examples)
     ids, masks, labels = [], [], []
     for item in examples:
@@ -96,21 +101,32 @@ def collate(tokenizer, examples, device):
         labels.append([-100] * padding + item['labels'])
     attention = torch.tensor(masks, device=device)
     positions = (attention.cumsum(-1) - 1).clamp(min=0)
-    return dict(input_ids=torch.tensor(ids, device=device), attention_mask=attention,
-                position_ids=positions, labels=torch.tensor(labels, device=device))
+    batch = dict(input_ids=torch.tensor(ids, device=device), attention_mask=attention,
+                 position_ids=positions, labels=torch.tensor(labels, device=device))
+    if include_target_types:
+        batch['target_types'] = torch.tensor([[0] * (width - len(item['input_ids'])) + item['target_types']
+                                              for item in examples], device=device)
+    return batch
 
 
-def ce_sum(model, batch):
+def ce_sum(model, batch, accounting=None):
     labels = batch['labels'][:, 1:]
     active = (labels != -100).any(0).nonzero().flatten()
     if not active.numel():
         raise ValueError('CE batch has no predicted target tokens')
     labels = labels[:, int(active[0]):]
     # Avoid materializing vocabulary logits for prompt positions with no loss.
-    logits = model(**{k: v for k, v in batch.items() if k != 'labels'},
+    logits = model(**{k: v for k, v in batch.items() if k not in ('labels', 'target_types')},
                    logits_to_keep=labels.shape[1] + 1).logits[:, :-1].float()
-    return F.cross_entropy(logits.reshape(-1, logits.shape[-1]), labels.reshape(-1),
-                           reduction='sum', ignore_index=-100)
+    losses = F.cross_entropy(logits.reshape(-1, logits.shape[-1]), labels.reshape(-1),
+                            reduction='none', ignore_index=-100).reshape_as(labels)
+    if accounting is not None:
+        types = batch['target_types'][:, 1 + int(active[0]):]
+        for index, name in enumerate(TARGET_TYPES, 1):
+            mask = (types == index) & (labels != -100)
+            accounting[name + '_tokens'] += int(mask.sum())
+            accounting[name + '_loss_sum'] += float(losses.detach()[mask].double().sum())
+    return losses.sum()
 
 
 def program_scores(model, tokenizer, token_ids, row, batch_size=8, accounting=None):
