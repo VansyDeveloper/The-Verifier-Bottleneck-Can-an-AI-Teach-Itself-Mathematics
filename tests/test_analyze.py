@@ -136,6 +136,28 @@ def test_analysis_rejects_mixed_precision_and_mixed_checkpoints(tmp_path):
     metric.write_text(original)
 
 
+def test_analysis_checks_completed_run_files(tmp_path):
+    from iclr.common import file_hash, write_json
+    directory = tmp_path / 'run'
+    (directory / 'eval').mkdir(parents=True)
+    metric = directory / 'eval/metrics.jsonl'
+    metric.write_text('{}\n')
+    write_json(directory / 'DONE', {'files': {'eval/metrics.jsonl': file_hash(metric)}})
+    manifest = tmp_path / 'comparison.json'
+    write_json(manifest, [{'seed': 0, 'arm': 'atomic_control', 'metrics': 'run/eval/metrics.jsonl'}])
+    metric.write_text('{"changed": true}\n')
+    with pytest.raises(ValueError, match='missing or changed'):
+        load_manifest(manifest)
+    (directory / 'DONE').unlink()
+    (directory / 'TRAINED').write_text('{}')
+    with pytest.raises(ValueError, match='not complete'):
+        load_manifest(manifest)
+    (directory / 'TRAINED').unlink()
+    (directory / 'eval/binding.json').write_text('{}')
+    with pytest.raises(ValueError, match='not complete'):
+        load_manifest(manifest)
+
+
 def test_published_table9():
     source = Path(__file__).resolve().parents[1] / "evidence" / "PRIMARY_ANALYSIS.json"
     primary = json.loads(source.read_text())["primary"]

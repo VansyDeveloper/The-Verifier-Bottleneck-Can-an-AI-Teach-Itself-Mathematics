@@ -31,6 +31,21 @@ def file_hash(path):
     return digest.hexdigest()
 
 
+def verify_receipt(directory, name='DONE'):
+    directory = Path(directory).resolve()
+    receipt = json.loads((directory / name).read_text())
+    files = receipt.get('files')
+    if not isinstance(files, dict) or not files:
+        raise ValueError(f'Completion receipt has no file hashes: {directory}')
+    for name, digest in files.items():
+        path = (directory / name).resolve()
+        if not path.is_relative_to(directory):
+            raise ValueError(f'Receipt path leaves the run directory: {name}')
+        if not path.is_file() or file_hash(path) != digest:
+            raise ValueError(f'Completed output missing or changed: {path}')
+    return receipt
+
+
 def tree_hash(path):
     digest = hashlib.sha256()
     files = sorted(p for p in Path(path).rglob('*') if p.is_file())

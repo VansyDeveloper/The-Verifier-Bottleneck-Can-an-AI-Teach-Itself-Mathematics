@@ -14,7 +14,7 @@ from scipy.stats import t as student_t
 
 from composition_core import enumerate_programs, trajectory
 from confirm_stats import exact_sign_flip, seed_t_statistics
-from .common import file_hash, read_jsonl
+from .common import file_hash, read_jsonl, verify_receipt
 
 ARMS = ("atomic_control", "composition")
 PROVENANCE = ("scorer_id", "tokenizer_hash", "prompt_version")
@@ -62,6 +62,15 @@ def load_manifest(path, arms=ARMS):
         if arm not in arms or (seed, arm) in runs:
             raise ValueError(f"invalid or duplicate arm: {seed}/{arm}")
         files = {file.resolve() for file in input_files(path.parent / entry["metrics"])}
+        for file in files:
+            for directory in (file.parent, file.parent.parent):
+                if (directory / 'DONE').is_file():
+                    receipt = verify_receipt(directory)
+                    if file.relative_to(directory).as_posix() not in receipt['files']:
+                        raise ValueError(f'Metrics are not covered by the completion receipt: {file}')
+                    break
+                if any((directory / name).is_file() for name in ('TRAINED', 'binding.json')):
+                    raise ValueError(f'Evaluation is not complete: {directory}')
         if files & used_metrics:
             raise ValueError("one metrics file cannot represent multiple independent arms/seeds")
         used_metrics.update(files)

@@ -6,8 +6,10 @@ import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -111,6 +113,17 @@ def main(argv=None):
         run("analysis", ["iclr.analyze", "--manifest", comparison, "--output", out / "analysis"])
         run("set_analysis", ["iclr.analyze", "--manifest", out / f"comparison_{model_name}_set_mass.json",
                              "--arms", "single_norm", "set_mass", "--output", out / "set_analysis"])
+        from iclr.validate import validate
+        directories = [base.parent, baseline, *(Path(job['output']) for job in jobs)]
+        for directory in directories:
+            validate(directory, out / 'data')
+        with tempfile.TemporaryDirectory(prefix='iclr-transfer-', dir=out.parent) as temporary:
+            copied = Path(temporary) / 'outputs'
+            shutil.copytree(out, copied)
+            for directory in directories:
+                validate(copied / directory.relative_to(out), copied / 'data')
+            from iclr.analyze import analyze
+            analyze(copied / comparison.name, copied / 'transferred_analysis')
         (out / "DONE.json").write_text(json.dumps({
             "status": "PASS", "model": "random tiny Qwen3; 1 layer, hidden size 32",
             "device": device, "dtype": args.dtype,
@@ -120,6 +133,8 @@ def main(argv=None):
             "queue_execute_checked": True,
             "set_paired_analysis_checked": True,
             "resume_evaluation_without_retraining_checked": True,
+            "raw_result_validation_checked": True,
+            "copied_output_validation_and_analysis_checked": True,
             "wall_seconds": time.monotonic() - started}, indent=2) + "\n")
         print(f"PASS: {out / 'DONE.json'}", flush=True)
     except Exception as exc:

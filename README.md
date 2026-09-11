@@ -58,4 +58,4 @@ uv run python -m iclr.run --recipe size --model Qwen/Qwen3-8B \
 
 В сравниваемых вариантах сохраняйте одинаковые `--dtype`, `--micro-batch`, `--effective-batch`, `--prefix-batch`. BF16 требует подходящей CUDA-карты. Время и память полной серии на A100 пока не измерены.
 
-Верните весь `outputs/`: данные, веса, логи и результаты. Сводка лежит в `results_*.csv`; очередь также печатает команды парного анализа каждого сравнения. [Команды для H(K)](evidence/README.md), [готовые локальные кривые](evidence/local_series/README.md), [проверка кода до выбора второй модели](evidence/audit_followup_20260911.json).
+Верните весь `outputs/`: данные, веса, логи и результаты. Сводка лежит в `results_*.csv`; очередь также печатает команды парного анализа каждого сравнения. [Что сохраняется и как проверить результаты](evidence/README.md), [готовые локальные кривые](evidence/local_series/README.md), [проверка перед передачей](evidence/output_validation_20260911.json).

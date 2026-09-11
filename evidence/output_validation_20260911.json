@@ -1,0 +1,179 @@
+{
+  "checked_at": "2026-09-11",
+  "code_sha256": "ebd46b3f406c922ebbdf448fdb8834441d5c006328378f21c852ec66a011e5c5",
+  "dependencies": {
+    "cache_reused": true,
+    "command": "uv sync --locked --link-mode hardlink",
+    "installed_packages": 55,
+    "lock_sha256": "3e9ca0b4e1a60584815ec6e7bcabb883cdede7b720c56002fd9a052b55aa3e60",
+    "locked_offline_dry_run": "No changes",
+    "new_virtual_environment": true,
+    "pip_check": "PASS",
+    "prepared_packages": 25
+  },
+  "environment": {
+    "cuda": "12.4",
+    "git_commit": "aa15845e57847228fa344588b2ca197aa52f552f",
+    "git_status": " M README.md\n M evidence/README.md\n M iclr/analyze.py\n M iclr/common.py\n M iclr/smoke.py\n M tests/test_analyze.py\n?? iclr/validate.py\n?? tests/test_validate.py\n",
+    "gpu": null,
+    "packages": {
+      "numpy": "2.4.6",
+      "peft": "0.19.1",
+      "scipy": "1.17.1",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.1"
+    },
+    "python": "3.11.13"
+  },
+  "frozen_source_hashes": "Three legacy Python files match legacy/SOURCES.json",
+  "full_data": {
+    "candidate_programs_checked_by_depth": {
+      "1": 68000,
+      "2": 165000,
+      "3": 668750,
+      "4": 781250
+    },
+    "checked_at": "2026-09-11T11:10:52.073739+00:00",
+    "checks": [
+      "Every manifest hash, byte count, row count, field/depth count and operation count",
+      "Task schema, canonical identity, normalized coefficients, declared family and field membership",
+      "Independent itertools enumeration of every program from depth one through declared depth",
+      "No shorter solution; all correct programs satisfy the declared withheld-pair rule",
+      "Exact witness states, complete correct counts and stored first two shortest solutions",
+      "Atomic tasks have one correct operation",
+      "Unique tasks and disjoint union of states from all correct programs across every task and split"
+    ],
+    "compared_with": "evidence/audit_followup_20260911.json:data",
+    "data_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+    "distinct_states_checked": 45474,
+    "files_checked": 12,
+    "matches_previous_manifest": true,
+    "model_inference": false,
+    "overlaps": {
+      "correct_trajectory_states_between_tasks": 0,
+      "task_fingerprints": 0,
+      "task_ids": 0
+    },
+    "replay_mixtures_rechecked": false,
+    "rows_by_file": {
+      "atomic_train.jsonl": 5000,
+      "dev_A.jsonl": 200,
+      "dev_B.jsonl": 200,
+      "dev_C.jsonl": 200,
+      "dev_D.jsonl": 200,
+      "dev_atomic.jsonl": 1000,
+      "final_A.jsonl": 200,
+      "final_B.jsonl": 200,
+      "final_C.jsonl": 200,
+      "final_D.jsonl": 200,
+      "final_atomic.jsonl": 1000,
+      "train.jsonl": 5000
+    },
+    "source_hashes": {
+      "iclr/data.py": "a3ab196274b03a2b234edb886a447072fee28be1e1c90c3670ff2d72b80af144",
+      "legacy/composition_core.py": "e62cab096f7a8524092e5343fd037adb6d67ed13fd8c0b6ded9537757cb5a89a"
+    },
+    "status": "PASS",
+    "tasks_by_correct_program_count": {
+      "1": 11031,
+      "10": 1,
+      "2": 806,
+      "3": 1287,
+      "4": 288,
+      "5": 5,
+      "6": 171,
+      "7": 5,
+      "8": 6
+    },
+    "tasks_checked": 13600,
+    "wall_seconds": 32.442
+  },
+  "scope": {
+    "a100_runtime_or_memory_measured": false,
+    "full_training_runs": false,
+    "model_size_comparison_dtype": "bfloat16",
+    "models": [
+      "Qwen/Qwen3-0.6B",
+      "Qwen/Qwen3-8B"
+    ],
+    "output_validation": "Hashes, task coverage, verifier correctness, saved-metric recomputation and training budgets; model probabilities are not recomputed.",
+    "previous_training_and_model_metadata_audit": "evidence/audit_followup_20260911.json",
+    "qwen3_8b_weights_loaded": false,
+    "scientific_improvement_established": false,
+    "transfer": "Copied bundles validate and support paired reanalysis. Queue resume retains original absolute paths."
+  },
+  "smoke": {
+    "publish_cpu": {
+      "completed_run_reuse_checked": true,
+      "copied_output_validation_and_analysis_checked": true,
+      "device": "cpu",
+      "dtype": "float32",
+      "matched_ce_target_tokens": 298,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "queue_execute_checked": true,
+      "raw_result_validation_checked": true,
+      "receipt_sha256": "b1d64cd2863a9578f249ab1c3c4101ac0114d6c621917976b4adf1595d5e7285",
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "set_paired_analysis_checked": true,
+      "status": "PASS",
+      "training_branches": 7,
+      "wall_seconds": 58.98344474300029
+    },
+    "publish_cuda_bf16": {
+      "completed_run_reuse_checked": true,
+      "copied_output_validation_and_analysis_checked": true,
+      "cuda_version": "12.4",
+      "device": "cuda",
+      "dtype": "bfloat16",
+      "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+      "matched_ce_target_tokens": 298,
+      "model": "random tiny Qwen3; 1 layer, hidden size 32",
+      "offline": true,
+      "queue_execute_checked": true,
+      "raw_result_validation_checked": true,
+      "receipt_sha256": "3439b5aab1c000bd6f6f78693c04d895585e8e309e89feff091e702eac12911b",
+      "resume_evaluation_without_retraining_checked": true,
+      "scientific_result": false,
+      "set_paired_analysis_checked": true,
+      "status": "PASS",
+      "training_branches": 7,
+      "wall_seconds": 65.20808985199983
+    }
+  },
+  "status": "PASS for the listed technical and data checks",
+  "tests": {
+    "command": "python -m pytest -q --junitxml=outputs/publish_tests.xml",
+    "corruption_cases": [
+      "changed metrics, including updated checksum",
+      "missing task",
+      "incorrect verifier flag",
+      "changed saved weights",
+      "changed training token/exposure budgets",
+      "missing required provenance files",
+      "Boolean training log numbers",
+      "incomplete run supplied to paired analysis"
+    ],
+    "junit_sha256": "ffb00f1ee079e55d8249b95c7e10ebd5bda92527094ba13aa63441fde8ef5ec6",
+    "passed": 23,
+    "subtests_passed": 14
+  },
+  "validator_cli": {
+    "atomic_tasks": 10,
+    "composition_tasks": 8,
+    "cuda_visible_devices": "",
+    "data_hash": "c3945c34b78ce876b0fff322482289c8308ff2ac7e72e38cfb6744941bd859f0",
+    "data_status": "smoke",
+    "input_receipt_sha256": "20943be06740d5ae6e045df7e3bf04cc9b88f86e3b62200cddb381b02fd7d1ce",
+    "model_inference_repeated": false,
+    "model_weights_loaded": false,
+    "payload_hash_checked": true,
+    "raw_results_recomputed": true,
+    "run": "/tmp/artem_iclr/outputs/publish_cpu/atomic",
+    "source_code_hash": "ebd46b3f406c922ebbdf448fdb8834441d5c006328378f21c852ec66a011e5c5",
+    "split": "dev",
+    "status": "PASS",
+    "training_budget_checked": true
+  }
+}
