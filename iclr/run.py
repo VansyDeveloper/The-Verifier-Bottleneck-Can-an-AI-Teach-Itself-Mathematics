@@ -45,6 +45,8 @@ def build_jobs(args: argparse.Namespace) -> list[dict]:
         raise ValueError("epochs, num-examples and lr must be positive")
     if args.prefix_batch <= 0:
         raise ValueError("prefix-batch must be positive")
+    if args.dtype == 'bfloat16' and args.device == 'cpu':
+        raise ValueError('bfloat16 requires a CUDA device with BF16 support')
     model_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", args.model)
     jobs = []
     for cell in recipe_cells(args.recipe):
@@ -57,7 +59,7 @@ def build_jobs(args: argparse.Namespace) -> list[dict]:
                          "output": str(Path(args.output).resolve() / "runs" / name),
                          "epochs": args.epochs, "learning_rate": args.learning_rate,
                          "micro_batch": args.micro_batch, "effective_batch": args.effective_batch,
-                         "device": args.device, "dtype": "float32", "prefix_batch": args.prefix_batch,
+                         "device": args.device, "dtype": args.dtype, "prefix_batch": args.prefix_batch,
                          "gradient_checkpointing": True,
                          "lora_rank": 32, "lora_alpha": 64, "lora_dropout": .05})
             if args.num_examples is not None:
@@ -168,7 +170,7 @@ def write_results(jobs: list[dict], path: Path, baseline: Path) -> None:
         summary = json.loads((directory / 'eval' / 'summary.json').read_text())
         row = {key: job[key] for key in ('model', 'seed', 'method', 'supervision', 'replay_fraction',
                                         'budget_mode', 'depth3_only', 'epochs', 'learning_rate',
-                                        'micro_batch', 'effective_batch')}
+                                        'micro_batch', 'effective_batch', 'dtype')}
         row.update({key: budget.get(key) for key in ('optimizer_steps', 'example_exposures', 'unique_tasks',
                     'all_target_tokens', 'total_forward_tokens', 'wall_seconds', 'peak_memory_bytes')})
         for family, metrics in summary['families'].items():
@@ -202,6 +204,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--micro-batch", type=int, default=1)
     result.add_argument("--effective-batch", type=int, default=64)
     result.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
+    result.add_argument("--dtype", choices=("float32", "bfloat16"), default="float32")
     result.add_argument("--prefix-batch", type=int, default=8)
     result.add_argument("--execute", action="store_true", help="run the prepared queue sequentially")
     return result
@@ -222,18 +225,21 @@ def main(argv: list[str] | None = None) -> None:
         commands = [[sys.executable, "-m", "iclr.evaluate", "--base", str(Path(args.base).resolve()),
                      "--data", str(Path(args.data).resolve()), "--out",
                      str(baseline),
-                     "--device", args.device, "--prefix-batch", str(args.prefix_batch)]]
+                     "--device", args.device, "--dtype", args.dtype,
+                     "--prefix-batch", str(args.prefix_batch)]]
         for job in jobs:
             name = Path(job["output"]).name
             path = Path(args.output).resolve() / "configs" / f"{name}.json"
             write_config(path, job)
             commands.append([sys.executable, "-m", "iclr.train", "--config", str(path)])
         entries = comparison_entries(jobs, output)
+        analyses = []
         if entries:
             comparison = output / f'comparison_{model_name}.json'
             update_comparison(comparison, entries)
             print(f'Paired analysis manifest: {comparison}', flush=True)
-        analyses = []
+            analyses.append([sys.executable, '-m', 'iclr.analyze', '--manifest', str(comparison),
+                             '--output', str(output / 'analysis' / model_name / 'size'), '--plots'])
         for name, entries, arms, varying in ablation_comparisons(jobs, output):
             comparison = output / f'comparison_{model_name}_{name}.json'
             update_comparison(comparison, entries, varying)

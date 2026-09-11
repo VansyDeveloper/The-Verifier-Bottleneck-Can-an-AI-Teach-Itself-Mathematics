@@ -1,4 +1,33 @@
-from iclr.evaluate import family_summaries
+import json
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+
+import pytest
+
+from iclr.evaluate import family_summaries, main
+
+
+def test_cli_loads_and_records_requested_dtype():
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        base, data, output = root / 'base', root / 'data', root / 'eval'
+        base.mkdir()
+        data.mkdir()
+        (base / 'config.json').write_text('{}')
+        (data / 'manifest.json').write_text('{"files": {}}')
+        command = ['--base', str(base), '--data', str(data), '--out', str(output),
+                   '--device', 'cuda', '--dtype', 'bfloat16']
+        with patch('iclr.evaluate.load', return_value=(None, None, None)) as load, \
+                patch('iclr.evaluate.evaluate'):
+            main(command)
+            main(command)
+            load.assert_called_once_with(str(base), adapter=None, device='cuda', dtype='bfloat16')
+        with pytest.raises(ValueError, match='different inputs'):
+            main(command + ['--dtype', 'float32'])
+        with pytest.raises(SystemExit):
+            main(command + ['--device', 'cpu'])
+        assert json.loads((output / 'DONE').read_text())['binding']['dtype'] == 'bfloat16'
 
 
 def test_diversity_summary_only_counts_multiple_correct_programs():

@@ -44,7 +44,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--device", choices=["cpu", "cuda"], default="cpu")
+    parser.add_argument("--dtype", choices=["float32", "bfloat16"], default="float32")
     args = parser.parse_args(argv)
+    if args.dtype == "bfloat16" and args.device != "cuda":
+        parser.error("bfloat16 requires --device cuda")
     device = args.device
     out = args.out.resolve()
     if out.exists() and any(out.iterdir()):
@@ -70,19 +73,19 @@ def main(argv=None):
         base = out / "atomic" / "checkpoint"
         run("init", ["iclr.train", "--init", "--model", model, "--data", out / "data", "--out", base.parent,
                      "--epochs", 1, "--device", device, "--micro-batch", 1, "--effective-batch", 10,
-                     "--prefix-batch", 8, "--num-examples", 10])
+                     "--prefix-batch", 8, "--num-examples", 10, "--dtype", args.dtype])
         from iclr.run import build_jobs, parser as queue_parser
         queue_arguments = [
             "--recipe", "trace", "size", "set", "--model", str(model), "--base", str(base),
             "--data", str(out / "data"), "--output", str(out), "--seeds", "0", "--epochs", "1",
-            "--num-examples", "10", "--effective-batch", "10", "--device", device]
+            "--num-examples", "10", "--effective-batch", "10", "--device", device, "--dtype", args.dtype]
         jobs = build_jobs(queue_parser().parse_args(queue_arguments))
         run("queue", ["iclr.run", *queue_arguments, "--execute"])
         model_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(model))
         baseline = out / f"baseline_{model_name}"
         first_config = out / "configs" / f"{Path(jobs[0]['output']).name}.json"
         run("baseline_resume", ["iclr.evaluate", "--base", base, "--data", out / "data",
-                                "--out", baseline, "--device", device, "--prefix-batch", 8])
+                                "--out", baseline, "--device", device, "--prefix-batch", 8, "--dtype", args.dtype])
         run("train_resume", ["iclr.train", "--config", first_config])
         budgets = []
         for directory in [base.parent, *(Path(job["output"]) for job in jobs)]:
@@ -110,7 +113,7 @@ def main(argv=None):
                              "--arms", "single_norm", "set_mass", "--output", out / "set_analysis"])
         (out / "DONE.json").write_text(json.dumps({
             "status": "PASS", "model": "random tiny Qwen3; 1 layer, hidden size 32",
-            "device": device,
+            "device": device, "dtype": args.dtype,
             "offline": True, "scientific_result": False, "training_branches": len(jobs),
             "matched_ce_target_tokens": budgets[0]["all_target_tokens"],
             "completed_run_reuse_checked": True,

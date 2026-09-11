@@ -1,6 +1,7 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import torch
 
@@ -11,6 +12,14 @@ import composition_eval as legacy
 
 
 class ModelingTest(unittest.TestCase):
+    def test_unsupported_architecture_fails_before_tokenizer_or_weights(self):
+        with tempfile.TemporaryDirectory() as directory:
+            (Path(directory) / 'config.json').write_text('{"model_type": "qwen3_5"}')
+            with patch.object(modeling.AutoTokenizer, 'from_pretrained') as tokenizer:
+                with self.assertRaisesRegex(ValueError, 'qwen3_5'):
+                    modeling.load(directory, initialize=True, device='cpu')
+                tokenizer.assert_not_called()
+
     def test_rejects_mislabeled_training_configs_before_loading_data_or_models(self):
         from iclr.train import run
         for fields in ({'initialize': True},
@@ -125,9 +134,22 @@ class ModelingTest(unittest.TestCase):
                         modeling.encode(tokenizer, {"prompt": "RESULT:", "answer": "[1,2,3]"})]
             tokens = sum(item["target_tokens"] for item in examples)
             model.zero_grad(set_to_none=True)
-            full = modeling.ce_sum(model, modeling.collate(tokenizer, examples, "cpu")) / tokens
+            batch = modeling.collate(tokenizer, examples, "cpu")
+            full = modeling.ce_sum(model, batch) / tokens
             full.backward()
             full_gradients = {name: p.grad.clone() for name, p in model.named_parameters() if p.grad is not None}
+            model.zero_grad(set_to_none=True)
+            dense_logits = model(**{k: v for k, v in batch.items() if k != 'labels'}).logits[:, :-1].float()
+            dense = torch.nn.functional.cross_entropy(
+                dense_logits.reshape(-1, dense_logits.shape[-1]), batch['labels'][:, 1:].reshape(-1),
+                reduction='sum', ignore_index=-100) / tokens
+            torch.testing.assert_close(full.detach(), dense.detach(), rtol=1e-6, atol=1e-6)
+            dense.backward()
+            for name, parameter in model.named_parameters():
+                if name in full_gradients:
+                    torch.testing.assert_close(parameter.grad, full_gradients[name], rtol=3e-4, atol=1e-6)
+            with self.assertRaisesRegex(ValueError, 'no predicted target tokens'):
+                modeling.ce_sum(model, {**batch, 'labels': torch.full_like(batch['labels'], -100)})
             model.zero_grad(set_to_none=True)
             separate = []
             for example in examples:

@@ -11,7 +11,7 @@ uv run python -m iclr.smoke --out outputs/smoke
 uv run python -m iclr.smoke --device cuda --out outputs/smoke_gpu
 ```
 
-Две последние команды проверяют весь путь на маленькой случайной модели, сначала на CPU, затем на GPU. Веса не скачиваются. Штатная серия работает в FP32; карты на 4 ГБ для неё недостаточно. После проверки подготовьте данные и атомарную модель:
+Две последние команды проверяют весь путь на маленькой случайной модели, сначала на CPU, затем на GPU. Веса не скачиваются. По умолчанию используется FP32; для BF16 добавьте `--dtype bfloat16` к GPU-проверке и выберите новый `--out`. Для полной серии нужна карта больше 4 ГБ. Затем подготовьте данные и атомарную модель:
 
 ```bash
 uv run python -m iclr.data --out outputs/data
@@ -30,6 +30,22 @@ uv run python -m iclr.run --recipe replay trace \
 
 Команда показывает очередь; `--execute` запускает её. `replay trace` дают 21 расчёт, отдельный `--recipe set` добавляет 9. Для первого замера выберите `--recipe size --seeds 0`. Готовые одинаковые расчёты пропускаются; менять параметры следует в новом `--output`.
 
-Для Qwen3-1.7B повторите подготовку с её моделью и revision `70d244cc86ccca08cf5af4e1e306ecf908b1ad5e`, отдельными `--out` и `--output`; затем запустите `--recipe size` с её checkpoint. Параметры `--micro-batch`, `--effective-batch`, `--prefix-batch` должны совпадать внутри пары.
+В исходной серии используется Qwen3-0.6B. Для Qwen3-1.7B повторите подготовку с revision `70d244cc86ccca08cf5af4e1e306ecf908b1ad5e` и отдельными каталогами.
 
-Верните весь `outputs/`: данные, веса, логи и результаты. Сводка лежит в `results_*.csv`; очередь также печатает команды парного анализа каждого сравнения. [Команды для H(K)](evidence/README.md), [готовые локальные кривые](evidence/local_series/README.md), [проверка ветки](evidence/audit_20260911.json).
+Для крупной модели той же семьи есть [Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B). Конфигурация и токенизатор проверены; полный запуск 8B ещё не выполнен:
+
+```bash
+uv run python -m iclr.train --init --model Qwen/Qwen3-8B \
+  --revision b968826d9c46dd6066d109eabc6255188de91218 \
+  --data outputs/data --out outputs/atomic_8b --num-examples 10000 \
+  --device cuda --dtype bfloat16 --prefix-batch 1
+uv run python -m iclr.run --recipe size --model Qwen/Qwen3-8B \
+  --base outputs/atomic_8b/checkpoint --data outputs/data --output outputs/q8b \
+  --seeds 0 --device cuda --dtype bfloat16 --prefix-batch 1
+```
+
+Здесь тоже нужен `--execute` для запуска очереди. В сравниваемых вариантах сохраняйте одинаковые `--dtype`, `--micro-batch`, `--effective-batch`, `--prefix-batch`; для сравнения размеров повторите пару 0.6B с теми же настройками. BF16 требует подходящей CUDA-карты. Время и память полной серии на A100 пока не измерены.
+
+Для предложенной 9B нужно точное название модели. [Qwen3.5-9B](https://huggingface.co/Qwen/Qwen3.5-9B) имеет другую архитектуру и с закреплёнными зависимостями не загружается; её поддержка пока не подготовлена.
+
+Верните весь `outputs/`: данные, веса, логи и результаты. Сводка лежит в `results_*.csv`; очередь также печатает команды парного анализа каждого сравнения. [Команды для H(K)](evidence/README.md), [готовые локальные кривые](evidence/local_series/README.md), [последняя проверка ветки](evidence/audit_followup_20260911.json).

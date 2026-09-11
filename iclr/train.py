@@ -266,7 +266,9 @@ def run(config):
                 evaluate(model, tokenizer, ids, data, output / 'eval',
                          {'training_seed': cfg['seed'], 'method': cfg['method'], 'base_hash': binding['base_hash'],
                           'model_hash': trained['payload_hash'], 'data_hash': binding['data_hash'],
-                          'code_hash': binding['code_hash']}, prefix_batch=cfg['prefix_batch'])
+                          'code_hash': binding['code_hash'], 'dtype': cfg['dtype'],
+                          'device': cfg['device'], 'prefix_batch': cfg['prefix_batch']},
+                         prefix_batch=cfg['prefix_batch'])
         files = {str(p.relative_to(output)): file_hash(p) for p in output.rglob('*.json*')
                  if payload not in p.parents}
         write_json(output / 'DONE', {'binding': binding, 'payload_hash': trained['payload_hash'], 'files': files})

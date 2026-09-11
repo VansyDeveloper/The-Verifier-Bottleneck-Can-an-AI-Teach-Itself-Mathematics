@@ -9,6 +9,23 @@ from iclr.run import ablation_comparisons, build_jobs, comparison_entries, compl
 
 
 class QueueTest(unittest.TestCase):
+    def test_dtype_reaches_training_and_baseline(self):
+        with tempfile.TemporaryDirectory() as directory, redirect_stdout(StringIO()) as stdout:
+            command = ['--recipe', 'size', '--data', 'data', '--base', 'base', '--model', 'large-model',
+                       '--output', directory, '--seeds', '0', '--dtype', 'bfloat16', '--device', 'cuda']
+            main(command)
+            main(command)
+            configs = [json.loads(path.read_text()) for path in (Path(directory) / 'configs').glob('*.json')]
+            self.assertTrue(configs and all(config['dtype'] == 'bfloat16' for config in configs))
+            baseline = next(line for line in stdout.getvalue().splitlines() if 'iclr.evaluate' in line)
+            self.assertIn('--dtype bfloat16', baseline)
+            self.assertIn('After training: ', stdout.getvalue())
+            self.assertIn('comparison_large-model.json', stdout.getvalue())
+            with self.assertRaises(SystemExit):
+                main(command + ['--device', 'cpu'])
+            with self.assertRaises(SystemExit):
+                main(command + ['--dtype', 'float32'])
+
     def test_extend_seed_queue_without_changing_existing_jobs(self):
         with tempfile.TemporaryDirectory() as directory, redirect_stdout(StringIO()):
             output = Path(directory)

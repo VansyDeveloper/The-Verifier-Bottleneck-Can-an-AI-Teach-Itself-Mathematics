@@ -82,13 +82,13 @@ def load_manifest(path, arms=ARMS):
             scorer = current
             sources = (entry, row, row.get("binding", {}), row.get("provenance", {}))
             inputs = []
-            for key in ("base_hash", "data_hash", "model_hash"):
+            for key in ("base_hash", "data_hash", "dtype", "model_hash", "adapter_hash"):
                 values = {source[key] for source in sources if source.get(key) is not None}
                 if len(values) > 1:
                     raise ValueError(f"conflicting {key} provenance")
                 inputs.append(next(iter(values), None))
             if run_inputs is not None and inputs != run_inputs:
-                raise ValueError("one run contains different base/data/model provenance")
+                raise ValueError("one run contains different checkpoint/data/precision provenance")
             run_inputs = inputs
             task_id = row["task_id"]
             if task_id in rows:
@@ -136,9 +136,9 @@ def load_manifest(path, arms=ARMS):
             raise ValueError("metrics file has no tasks")
         if tasks and rows.keys() != tasks.keys():
             raise ValueError("metrics do not cover the full task file")
-        if shared_inputs is not None and run_inputs[:2] != shared_inputs:
-            raise ValueError("paired runs have different base/data provenance")
-        shared_inputs = run_inputs[:2]
+        if shared_inputs is not None and run_inputs[:3] != shared_inputs:
+            raise ValueError("paired runs have different base/data/precision provenance")
+        shared_inputs = run_inputs[:3]
         identities = {task_id: tuple(row.get(key) for key in IDENTITY) for task_id, row in rows.items()}
         if not identities or (reference is not None and identities != reference):
             raise ValueError("paired task IDs/fingerprints/strata differ across arms or seeds")
@@ -147,7 +147,7 @@ def load_manifest(path, arms=ARMS):
     seeds = sorted({seed for seed, _ in runs})
     if set(runs) != set(itertools.product(seeds, arms)):
         raise ValueError(f"each seed needs both arms: {arms}")
-    return runs, dict(zip(PROVENANCE, scorer))
+    return runs, {**dict(zip(PROVENANCE, scorer)), "dtype": shared_inputs[2]}
 
 
 def interval(values):

@@ -111,6 +111,31 @@ def test_all_arms_cannot_silently_drop_the_same_task(tmp_path):
         load_manifest(manifest)
 
 
+def test_analysis_rejects_mixed_precision_and_mixed_checkpoints(tmp_path):
+    entries = []
+    for arm in ("atomic_control", "composition"):
+        rows = [dict(task_id=f"task{i}", task_fingerprint=f"fingerprint{i}", split="dev_A", p=5,
+                     depth=3, best_rank=1, correct_mass=.5, base_hash="base", data_hash="data",
+                     adapter_hash=arm, dtype="float32") for i in range(2)]
+        (tmp_path / f"{arm}.jsonl").write_text("".join(json.dumps(row) + "\n" for row in rows))
+        entries.append(dict(seed=0, arm=arm, metrics=f"{arm}.jsonl", scorer_id="full_vocab_op_tokens_v1",
+                            tokenizer_hash="tokenizer", prompt_version="stage4_plan_v1"))
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps(entries))
+    assert load_manifest(manifest)[1]["dtype"] == "float32"
+    metric = tmp_path / "composition.jsonl"
+    original = metric.read_text()
+    for key, value, indices in (("adapter_hash", "another-checkpoint", [1]),
+                                ("dtype", "bfloat16", [0, 1]), ("dtype", None, [0, 1])):
+        rows = [json.loads(line) for line in original.splitlines()]
+        for index in indices:
+            rows[index][key] = value
+        metric.write_text("".join(json.dumps(row) + "\n" for row in rows))
+        with pytest.raises(ValueError, match="provenance"):
+            load_manifest(manifest)
+    metric.write_text(original)
+
+
 def test_published_table9():
     source = Path(__file__).resolve().parents[1] / "evidence" / "PRIMARY_ANALYSIS.json"
     primary = json.loads(source.read_text())["primary"]

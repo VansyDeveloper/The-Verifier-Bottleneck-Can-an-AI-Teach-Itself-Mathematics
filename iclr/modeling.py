@@ -7,7 +7,7 @@ import torch
 import torch.nn.functional as F
 from peft import LoraConfig, PeftModel, get_peft_model
 from tokenizers import AddedToken
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 import composition_core as core
 
@@ -33,6 +33,7 @@ def load(base, *, adapter=None, train=False, initialize=False, device='auto',
         raise ValueError('dtype must be float32 or bfloat16')
     if dtype == 'bfloat16' and (device != 'cuda' or not torch.cuda.is_bf16_supported()):
         raise ValueError('bfloat16 requires a CUDA device with BF16 support')
+    config = AutoConfig.from_pretrained(base, revision=revision)
     tokenizer = AutoTokenizer.from_pretrained(base, revision=revision)
     if initialize:
         tokenizer.add_special_tokens({'additional_special_tokens': [
@@ -51,7 +52,7 @@ def load(base, *, adapter=None, train=False, initialize=False, device='auto',
             if tokenizer.encode(prefix + ' ' + core.TOKENS[op], add_special_tokens=False) != expected:
                 raise ValueError('Operation tokenization differs between training and ranking')
     model = AutoModelForCausalLM.from_pretrained(
-        base, revision=revision, torch_dtype=getattr(torch, dtype), attn_implementation='sdpa')
+        base, config=config, revision=revision, torch_dtype=getattr(torch, dtype), attn_implementation='sdpa')
     if initialize:
         model.resize_token_embeddings(len(tokenizer), mean_resizing=False)
         with torch.no_grad():
@@ -101,7 +102,13 @@ def collate(tokenizer, examples, device):
 
 def ce_sum(model, batch):
     labels = batch['labels'][:, 1:]
-    logits = model(**{k: v for k, v in batch.items() if k != 'labels'}).logits[:, :-1].float()
+    active = (labels != -100).any(0).nonzero().flatten()
+    if not active.numel():
+        raise ValueError('CE batch has no predicted target tokens')
+    labels = labels[:, int(active[0]):]
+    # Avoid materializing vocabulary logits for prompt positions with no loss.
+    logits = model(**{k: v for k, v in batch.items() if k != 'labels'},
+                   logits_to_keep=labels.shape[1] + 1).logits[:, :-1].float()
     return F.cross_entropy(logits.reshape(-1, logits.shape[-1]), labels.reshape(-1),
                            reduction='sum', ignore_index=-100)
 

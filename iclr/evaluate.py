@@ -94,24 +94,27 @@ def evaluate(model, tokenizer, token_ids, data, out, binding, split='dev', prefi
     return summary
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description='Exact Stage4 ranking and atomic retention')
     parser.add_argument('--base', required=True)
     parser.add_argument('--adapter')
     parser.add_argument('--data', required=True)
     parser.add_argument('--out', required=True)
     parser.add_argument('--split', choices=['dev', 'final'], default='dev')
-    parser.add_argument('--device', default='auto')
+    parser.add_argument('--device', choices=['auto', 'cpu', 'cuda'], default='auto')
+    parser.add_argument('--dtype', choices=['float32', 'bfloat16'], default='float32')
     parser.add_argument('--prefix-batch', type=int, default=8)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.prefix_batch < 1:
         parser.error('--prefix-batch must be positive')
+    if args.dtype == 'bfloat16' and args.device == 'cpu':
+        parser.error('bfloat16 requires a CUDA device with BF16 support')
     verify_data(args.data)
     binding = {'base_hash': tree_hash(Path(args.base)),
                'adapter_hash': tree_hash(Path(args.adapter)) if args.adapter else None,
                'data_hash': file_hash(Path(args.data) / 'manifest.json'),
                'code_hash': code_hash(), 'split': args.split, 'prefix_batch': args.prefix_batch,
-               'device': args.device, 'dtype': 'float32'}
+               'device': args.device, 'dtype': args.dtype}
     out = Path(args.out)
     if (out / 'DONE').exists():
         receipt = json.loads((out / 'DONE').read_text())
@@ -124,7 +127,7 @@ def main():
         raise ValueError('Partial evaluation belongs to different inputs; use a new output directory')
     write_json(out / 'binding.json', binding)
     try:
-        model, tokenizer, ids = load(args.base, adapter=args.adapter, device=args.device)
+        model, tokenizer, ids = load(args.base, adapter=args.adapter, device=args.device, dtype=args.dtype)
         evaluate(model, tokenizer, ids, args.data, out, binding, args.split, args.prefix_batch)
         files = {p.name: file_hash(p) for p in out.glob('*.json*') if p.name != 'DONE'}
         write_json(out / 'DONE', {'binding': binding, 'files': files})
