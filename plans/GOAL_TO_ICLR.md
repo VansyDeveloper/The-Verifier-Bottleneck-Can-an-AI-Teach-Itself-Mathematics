@@ -184,6 +184,7 @@ CUDA, веса и прежние пути outputs не нужны. Содерж�
 | `results/experiments/<block>/evaluations/<run>/execution.jsonl` | Ответы atomic/true-intermediate/program execution |
 | `results/experiments/<block>/training/<run>/` | Budgets, training stream, witness, метрики, reload, прежний eval и квитанции |
 | `results/data/` | Задачи, ограничения, manifests и протокол |
+| `results/reference_data/` | Прежние исходные задачи для повторного аудита исключений без доступа к серверу |
 | `code/` | Исходники, uv.lock, инструкции и прежние доказательные отчёты |
 
 Сравнивайте seed по одинаковому data_hash и task_id. Панели, final, глубина 4

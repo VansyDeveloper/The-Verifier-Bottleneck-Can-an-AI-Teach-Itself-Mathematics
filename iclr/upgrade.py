@@ -407,6 +407,13 @@ def bundle(args):
     files = [(p, 'results/' + p.relative_to(root).as_posix()) for p in sorted(root.rglob('*'))
              if p.is_file() and p.name != '.queue.lock' and
              (args.include_models or p.suffix not in ('.safetensors', '.bin', '.pt', '.pth', '.ckpt'))]
+    if queue.get('reference'):
+        reference = Path(queue['reference'])
+        manifest = verify_data(reference)
+        if file_hash(reference / 'manifest.json') != queue['reference_hash']:
+            raise ValueError('Inherited reference data changed before export')
+        files.extend((reference / name, 'results/reference_data/' + name)
+                     for name in ['manifest.json', *manifest['files']])
     source = [*(ROOT / 'iclr').glob('*.py'), *(ROOT / 'legacy').glob('*.py'),
               ROOT / 'uv.lock', ROOT / 'pyproject.toml', ROOT / 'README.md',
               *(ROOT / 'plans').glob('*.json'), ROOT / 'plans/GOAL_TO_ICLR.md',

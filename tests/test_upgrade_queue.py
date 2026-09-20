@@ -69,7 +69,12 @@ write_json(out / "DONE", {"files": {p.name: file_hash(p) for p in out.glob("*.js
              'kind': 'receipt', 'resource': 'gpu', 'depends_on': dependencies}
             for name, dependencies in (('a', []), ('b', ['a']), ('c', []))]
     path = tmp_path / 'queue.json'
-    write_json(path, {'models': [], 'source_code_hash': code_hash(), 'jobs': jobs})
+    reference = tmp_path.parent / (tmp_path.name + '_reference')
+    reference.mkdir()
+    (reference / 'train.jsonl').write_text('{"old_task": 1}\n')
+    write_json(reference / 'manifest.json', {'files': {'train.jsonl': {'sha256': file_hash(reference / 'train.jsonl')}}})
+    write_json(path, {'models': [], 'source_code_hash': code_hash(), 'jobs': jobs,
+                      'reference': str(reference), 'reference_hash': file_hash(reference / 'manifest.json')})
     write_json(tmp_path / 'status.json', {'queue_sha256': file_hash(path),
                'jobs': {j['id']: {'status': 'planned'} for j in jobs}})
     args = argparse.Namespace(queue=str(path), gpus=['0', '1'], cpu_threads=1, retry_failed=False, send_on_complete=True)
@@ -88,6 +93,7 @@ write_json(out / "DONE", {"files": {p.name: file_hash(p) for p in out.glob("*.js
         assert saved.testzip() is None
         assert json.loads(saved.read('EXPORT_MANIFEST.json'))['status'] == 'complete'
         assert json.loads(saved.read('results/b/result.json'))['value'] == 42
+        assert saved.read('results/reference_data/train.jsonl') == (reference / 'train.jsonl').read_bytes()
     (tmp_path / 'a/model.safetensors').write_bytes(b'weights must not be sent')
     destination = tmp_path.parent / ('send_to_artem_exp_' + tmp_path.name)
     send_results(argparse.Namespace(out=str(tmp_path), destination=str(destination), allow_incomplete=False))
