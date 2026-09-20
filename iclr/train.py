@@ -14,7 +14,7 @@ import torch
 from transformers import get_cosine_schedule_with_warmup
 import composition_core as core
 from .common import code_hash, environment, file_hash, read_jsonl, tree_hash, verify_data, write_json
-from .data import mixture
+from .data import assign_witnesses, constraint_hits, mixture
 from .evaluate import evaluate
 from .modeling import TARGET_TYPES, collate, ce_sum, encode, load, program_scores, seed_all, set_loss
 
@@ -22,7 +22,8 @@ DEFAULTS = dict(method='ce', supervision='trace', replay_fraction=.2,
                 budget_mode='examples', depth3_only=False, seed=0, epochs=2,
                 effective_batch=64, micro_batch=1, learning_rate=1e-4,
                 lora_rank=32, lora_alpha=64, lora_dropout=.05,
-                device='auto', dtype='float32', gradient_checkpointing=True, prefix_batch=8)
+                device='auto', dtype='float32', gradient_checkpointing=True, prefix_batch=8,
+                witness_policy='fixed')
 
 
 def epoch_groups(examples, batch_size, seed):
@@ -65,6 +66,7 @@ def train_updates(model, tokenizer, ids, groups, cfg, output, midpoint_callback=
     scheduler = get_cosine_schedule_with_warmup(optimizer, int(.03 * len(groups)), len(groups))
     receipt = Counter()
     component_totals = Counter()
+    composition_operations, composition_pairs = Counter(), Counter()
     unique = set()
     started = time.monotonic()
     if device.type == 'cuda':
@@ -90,7 +92,7 @@ def train_updates(model, tokenizer, ids, groups, cfg, output, midpoint_callback=
                     programs = core.enumerate_programs(row['depth'])
                     mask = torch.tensor([core.verify_program(row['start'], row['target'], p, row['p'])
                                          for p in programs], device=device)
-                    if any(core.motif_count(p) for p, correct in zip(programs, mask.tolist()) if correct):
+                    if any(constraint_hits(p, row) for p, correct in zip(programs, mask.tolist()) if correct):
                         raise ValueError('Set supervision leaks a withheld pair')
                     witness = programs.index(tuple(row['witness']))
                     scores = program_scores(model, tokenizer, ids, row, cfg['prefix_batch'], receipt)
@@ -101,7 +103,9 @@ def train_updates(model, tokenizer, ids, groups, cfg, output, midpoint_callback=
             optimizer.step()
             scheduler.step()
             for item in group:
+                program = [core.INV_TOKENS[token] for token in item['answer'].split() if token in core.INV_TOKENS]
                 stream.write(json.dumps({'step': step, 'task_id': item['task_id'], 'kind': item['kind'],
+                                         'program': program,
                                          'input_ids': item['input_ids'], 'labels': item['labels'],
                                          'target_types': item['target_types'],
                                          'set_objective': cfg['method'] if cfg['method'] != 'ce' else None}) + '\n')
@@ -112,6 +116,9 @@ def train_updates(model, tokenizer, ids, groups, cfg, output, midpoint_callback=
                 receipt[item['kind'] + '_exposures'] += 1
                 if item.get('operation'):
                     receipt[item['operation'] + '_exposures'] += 1
+                if item['kind'] == 'composition':
+                    composition_operations.update(program)
+                    composition_pairs.update('>'.join(pair) for pair in zip(program, program[1:]))
                 receipt['masked_target_tokens'] += item.get('masked_target_tokens', 0)
                 unique.add(item['task_id'])
             component_totals.update(components)
@@ -138,6 +145,8 @@ def train_updates(model, tokenizer, ids, groups, cfg, output, midpoint_callback=
             'wall_seconds': time.monotonic() - started,
             'peak_memory_bytes': torch.cuda.max_memory_allocated() if device.type == 'cuda' else None,
             'ce_components': component_summary(component_totals) if cfg['method'] == 'ce' else None,
+            'composition_operation_counts': dict(composition_operations),
+            'composition_pair_counts': dict(composition_pairs),
             'loss_normalization': 'supervised_tokens_per_update' if cfg['method'] == 'ce' else 'tasks_per_update',
             'set_token_counters': 'reference program labels, not CE targets' if cfg['method'] != 'ce' else None}
 
@@ -165,6 +174,12 @@ def run(config):
             raise ValueError(f'{key} must be a positive integer')
     if cfg['method'] not in ('ce', 'single_norm', 'set_mass') or cfg['supervision'] not in ('program', 'trace'):
         raise ValueError('Unknown objective or supervision')
+    if cfg['witness_policy'] not in ('fixed', 'uniform', 'balanced'):
+        raise ValueError('Unknown witness policy')
+    if cfg['witness_policy'] != 'fixed' and (initialize or cfg['method'] != 'ce' or
+            cfg['supervision'] != 'program' or cfg['replay_fraction'] != 0 or
+            cfg['budget_mode'] != 'examples' or not cfg['depth3_only']):
+        raise ValueError('Witness intervention requires CE, PROGRAM-only, depth3, replay0, example budget')
     if cfg['budget_mode'] not in ('examples', 'target_tokens') or not 0 <= cfg['replay_fraction'] <= 1:
         raise ValueError('Invalid budget or replay')
     if not math.isfinite(cfg['learning_rate']) or cfg['learning_rate'] <= 0 or not 0 <= cfg['lora_dropout'] < 1:
@@ -235,6 +250,9 @@ def run(config):
                     groups = []
                     for epoch in range(cfg['epochs']):
                         epoch_seed = cfg['seed'] + epoch
+                        if cfg['witness_policy'] != 'fixed':
+                            encoded = [encode(tokenizer, item) for item in
+                                       assign_witnesses(examples, cfg['witness_policy'], epoch_seed)]
                         if cfg['budget_mode'] == 'target_tokens':
                             budgets = [sum(item['target_tokens'] for item in group) for group in
                                        epoch_groups(reference, cfg['effective_batch'], epoch_seed)]

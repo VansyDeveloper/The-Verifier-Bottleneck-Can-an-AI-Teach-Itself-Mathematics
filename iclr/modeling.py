@@ -62,7 +62,7 @@ def load(base, *, adapter=None, train=False, initialize=False, device='auto',
                 for layer in (model.get_input_embeddings(), model.get_output_embeddings()):
                     layer.weight[token_ids[op]].copy_(layer.weight[source].mean(0))
     if adapter:
-        model = PeftModel.from_pretrained(model, adapter, is_trainable=False)
+        model = PeftModel.from_pretrained(model, adapter, is_trainable=train)
     elif train:
         config = LoraConfig(
             r=lora_rank, lora_alpha=lora_alpha, lora_dropout=lora_dropout,
@@ -129,8 +129,11 @@ def ce_sum(model, batch, accounting=None):
     return losses.sum()
 
 
-def program_scores(model, tokenizer, token_ids, row, batch_size=8, accounting=None):
+def program_scores(model, tokenizer, token_ids, row, batch_size=8, accounting=None,
+                   normalization='full', prefix_logprobs=None):
     """Differentiable equivalent of the frozen Stage4 full-vocabulary scorer."""
+    if normalization not in ('full', 'local') or batch_size < 1:
+        raise ValueError('Expected full/local normalization and a positive prefix batch')
     device = next(model.parameters()).device
     scores = {(): torch.zeros((), device=device)}
     for _ in range(int(row['depth'])):
@@ -146,9 +149,15 @@ def program_scores(model, tokenizer, token_ids, row, batch_size=8, accounting=No
             positions = (encoded.attention_mask.cumsum(-1) - 1).clamp(min=0)
             logits = model(**encoded, position_ids=positions, logits_to_keep=1).logits[:, -1].float()
             logprobs = logits.log_softmax(-1)
+            action_logprobs = logprobs[:, [token_ids[op] for op in core.OPS]]
+            if prefix_logprobs is not None:
+                prefix_logprobs.extend({'prefix': list(prefix), 'full_action_logprobs': values}
+                                      for prefix, values in zip(chunk, action_logprobs.detach().cpu().tolist()))
+            if normalization == 'local':
+                action_logprobs = action_logprobs.log_softmax(-1)
             for i, prefix in enumerate(chunk):
-                for op in core.OPS:
-                    next_scores[prefix + (op,)] = scores[prefix] + logprobs[i, token_ids[op]]
+                for j, op in enumerate(core.OPS):
+                    next_scores[prefix + (op,)] = scores[prefix] + action_logprobs[i, j]
         scores = next_scores
     return torch.stack([scores[p] for p in core.enumerate_programs(row['depth'])])
 

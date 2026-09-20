@@ -1,0 +1,114 @@
+{
+  "checks": [
+    {
+      "correct": [
+        true,
+        false,
+        false
+      ],
+      "group_size": 2,
+      "max_error": 2.7755575615628914e-17
+    },
+    {
+      "correct": [
+        true,
+        true,
+        false
+      ],
+      "group_size": 2,
+      "max_error": 2.7755575615628914e-17
+    },
+    {
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "group_size": 2,
+      "max_error": 0.0
+    },
+    {
+      "correct": [
+        false,
+        false,
+        false
+      ],
+      "group_size": 2,
+      "max_error": 0.0
+    },
+    {
+      "correct": [
+        true,
+        false,
+        false
+      ],
+      "group_size": 3,
+      "max_error": 2.7755575615628914e-17
+    },
+    {
+      "correct": [
+        true,
+        true,
+        false
+      ],
+      "group_size": 3,
+      "max_error": 8.326672684688674e-17
+    },
+    {
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "group_size": 3,
+      "max_error": 0.0
+    },
+    {
+      "correct": [
+        false,
+        false,
+        false
+      ],
+      "group_size": 3,
+      "max_error": 0.0
+    },
+    {
+      "correct": [
+        true,
+        false,
+        false
+      ],
+      "group_size": 5,
+      "max_error": 5.551115123125783e-16
+    },
+    {
+      "correct": [
+        true,
+        true,
+        false
+      ],
+      "group_size": 5,
+      "max_error": 4.996003610813204e-16
+    },
+    {
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "group_size": 5,
+      "max_error": 0.0
+    },
+    {
+      "correct": [
+        false,
+        false,
+        false
+      ],
+      "group_size": 5,
+      "max_error": 0.0
+    }
+  ],
+  "scope": "exact expectation of the binary population-std normalized reward gradient; no KL, clipping or optimizer expectation identity",
+  "status": "PASS"
+}

@@ -190,7 +190,17 @@ class ModelingTest(unittest.TestCase):
             row = {"task_id": "probe", "task_fingerprint": "probe", "split": "dev_A", "depth": 3,
                    "p": 7, "start": [1, 2, 3], "witness": ["SH1", "SC2", "REV"]}
             row["target"] = list(core.trajectory(row["start"], row["witness"], row["p"])[-1])
-            scores = modeling.program_scores(model, tokenizer, token_ids, row, batch_size=8)
+            prefixes = []
+            scores = modeling.program_scores(model, tokenizer, token_ids, row, batch_size=8,
+                                              prefix_logprobs=prefixes)
+            from iclr.upgrade_evaluate import from_prefixes
+            decomposed = {tuple(r['program']): r for r in from_prefixes(row, prefixes)['ranking']}
+            full = torch.tensor([decomposed[p]['score'] for p in core.enumerate_programs(3)])
+            local = torch.tensor([decomposed[p]['local_score'] for p in core.enumerate_programs(3)])
+            torch.testing.assert_close(scores.detach(), full, rtol=1e-6, atol=3e-6)
+            torch.testing.assert_close(modeling.program_scores(model, tokenizer, token_ids, row,
+                                       normalization='local').detach(), local, rtol=1e-6, atol=3e-6)
+            torch.testing.assert_close(local.exp().sum(), torch.tensor(1.), rtol=1e-6, atol=1e-6)
             _, ranking = legacy.score_task(model, tokenizer, token_ids, row, batch_size=3)
             expected = {tuple(item["program"]): item["score"] for item in ranking["ranking"]}
             torch.testing.assert_close(scores.detach(), torch.tensor([expected[p] for p in core.enumerate_programs(3)]),
