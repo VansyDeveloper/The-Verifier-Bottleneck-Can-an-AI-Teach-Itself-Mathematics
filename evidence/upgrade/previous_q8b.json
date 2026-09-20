@@ -1,0 +1,544 @@
+{
+  "actual_training_runs": 6,
+  "baseline_atomic_parse": {
+    "AC1": {
+      "n": 200,
+      "parse_rate": 1.0,
+      "parsed": 200,
+      "semantic_accuracy_given_parse": 1.0,
+      "semantic_correct": 200
+    },
+    "AX1": {
+      "n": 200,
+      "parse_rate": 1.0,
+      "parsed": 200,
+      "semantic_accuracy_given_parse": 1.0,
+      "semantic_correct": 200
+    },
+    "REV": {
+      "n": 200,
+      "parse_rate": 1.0,
+      "parsed": 200,
+      "semantic_accuracy_given_parse": 1.0,
+      "semantic_correct": 200
+    },
+    "SC2": {
+      "n": 200,
+      "parse_rate": 1.0,
+      "parsed": 200,
+      "semantic_accuracy_given_parse": 0.49,
+      "semantic_correct": 98
+    },
+    "SH1": {
+      "n": 200,
+      "parse_rate": 1.0,
+      "parsed": 200,
+      "semantic_accuracy_given_parse": 0.0,
+      "semantic_correct": 0
+    }
+  },
+  "baseline_atomic_plan": {
+    "accounting": {
+      "input_tokens": 68835,
+      "model_forward_passes": 32,
+      "prompt_sequences": 1000
+    },
+    "by_operation": {
+      "AC1": 1.0,
+      "AX1": 0.99,
+      "REV": 1.0,
+      "SC2": 0.99,
+      "SH1": 0.975
+    },
+    "overall": 0.991
+  },
+  "comparison_sha256": "e3ab5463c2a163479a18d31341d92678e7c37f027661e22b1a6479ab948ea3d8",
+  "external_csv_differences": [
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.23,
+      "family": "B",
+      "raw_package": 0.165,
+      "seed": 0
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.25,
+      "family": "D",
+      "raw_package": 0.2,
+      "seed": 0
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.505,
+      "family": "A",
+      "raw_package": 0.495,
+      "seed": 1
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.26,
+      "family": "B",
+      "raw_package": 0.18,
+      "seed": 1
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.405,
+      "family": "C",
+      "raw_package": 0.4,
+      "seed": 1
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.235,
+      "family": "D",
+      "raw_package": 0.205,
+      "seed": 1
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.5,
+      "family": "A",
+      "raw_package": 0.525,
+      "seed": 2
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.245,
+      "family": "B",
+      "raw_package": 0.23,
+      "seed": 2
+    },
+    {
+      "arm": "atomic_control",
+      "external_csv": 0.245,
+      "family": "D",
+      "raw_package": 0.235,
+      "seed": 2
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.91,
+      "family": "A",
+      "raw_package": 0.9,
+      "seed": 0
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.86,
+      "family": "C",
+      "raw_package": 0.87,
+      "seed": 0
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.91,
+      "family": "A",
+      "raw_package": 0.915,
+      "seed": 1
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.095,
+      "family": "B",
+      "raw_package": 0.1,
+      "seed": 1
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.86,
+      "family": "C",
+      "raw_package": 0.865,
+      "seed": 1
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.1,
+      "family": "D",
+      "raw_package": 0.08,
+      "seed": 1
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.05,
+      "family": "B",
+      "raw_package": 0.095,
+      "seed": 2
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.88,
+      "family": "C",
+      "raw_package": 0.875,
+      "seed": 2
+    },
+    {
+      "arm": "composition",
+      "external_csv": 0.035,
+      "family": "D",
+      "raw_package": 0.08,
+      "seed": 2
+    }
+  ],
+  "external_csv_sha256": "d44f073abc1202e42430d658ad929a2c2b8c7cad69203af3dfc702183f7b3908",
+  "internal_csv_sha256": "fc9d069164d49756a452d618e8330c029c6309efae0805bc2fa793737254d040",
+  "model_inference_repeated": false,
+  "runs": [
+    {
+      "adapter_hash": "af3150176f305e87e92f4ec47968e3665aa6a4d7b074e74f0fdcc67a02c44564",
+      "arm": "atomic_control",
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "done_sha256": "0159d7bc3826388e4786dd0a15aea19ff89ed226161484af5f959f6cf55b1bdb",
+      "hashed_files_checked": 29,
+      "historical_config": {
+        "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+        "budget_mode": "target_tokens",
+        "data": "/workspace/verifier-bottleneck/outputs/data",
+        "depth3_only": false,
+        "device": "cuda",
+        "dtype": "bfloat16",
+        "effective_batch": 64,
+        "epochs": 2,
+        "gradient_checkpointing": true,
+        "learning_rate": 0.0001,
+        "lora_alpha": 64,
+        "lora_dropout": 0.05,
+        "lora_rank": 32,
+        "method": "ce",
+        "micro_batch": 16,
+        "model": "Qwen/Qwen3-8B",
+        "num_examples": 5000,
+        "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed0",
+        "prefix_batch": 32,
+        "replay_fraction": 1.0,
+        "seed": 0,
+        "supervision": "trace"
+      },
+      "model": "Qwen/Qwen3-8B",
+      "raw_hit32": {
+        "A": 0.5,
+        "B": 0.165,
+        "C": 0.4,
+        "D": 0.2
+      },
+      "run": "runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed0",
+      "seed": 0,
+      "tasks_per_family": {
+        "A": 200,
+        "B": 200,
+        "C": 200,
+        "D": 200
+      },
+      "weights_present": false
+    },
+    {
+      "adapter_hash": "7e5e2700c5bd3a900e4dcca8763d4d487d7a14e6a97eccc439c7773b56ef5953",
+      "arm": "composition",
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "done_sha256": "b7de74fc89baf516ce12e7c4937dcc829f6fe1c303014637e50e634e1ad38efa",
+      "hashed_files_checked": 29,
+      "historical_config": {
+        "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+        "budget_mode": "examples",
+        "data": "/workspace/verifier-bottleneck/outputs/data",
+        "depth3_only": false,
+        "device": "cuda",
+        "dtype": "bfloat16",
+        "effective_batch": 64,
+        "epochs": 2,
+        "gradient_checkpointing": true,
+        "learning_rate": 0.0001,
+        "lora_alpha": 64,
+        "lora_dropout": 0.05,
+        "lora_rank": 32,
+        "method": "ce",
+        "micro_batch": 16,
+        "model": "Qwen/Qwen3-8B",
+        "num_examples": 5000,
+        "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed0",
+        "prefix_batch": 32,
+        "replay_fraction": 0.2,
+        "seed": 0,
+        "supervision": "trace"
+      },
+      "model": "Qwen/Qwen3-8B",
+      "raw_hit32": {
+        "A": 0.9,
+        "B": 0.055,
+        "C": 0.87,
+        "D": 0.065
+      },
+      "run": "runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed0",
+      "seed": 0,
+      "tasks_per_family": {
+        "A": 200,
+        "B": 200,
+        "C": 200,
+        "D": 200
+      },
+      "weights_present": false
+    },
+    {
+      "adapter_hash": "cc6f98364f1da6f3a2aac19fe15b788796766eb00cda27686491c4f1d21cdcae",
+      "arm": "atomic_control",
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "done_sha256": "236c07c500456d7f2913dcebf9b962aa3537024ba317f6c9db04111a53717c7c",
+      "hashed_files_checked": 29,
+      "historical_config": {
+        "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+        "budget_mode": "target_tokens",
+        "data": "/workspace/verifier-bottleneck/outputs/data",
+        "depth3_only": false,
+        "device": "cuda",
+        "dtype": "bfloat16",
+        "effective_batch": 64,
+        "epochs": 2,
+        "gradient_checkpointing": true,
+        "learning_rate": 0.0001,
+        "lora_alpha": 64,
+        "lora_dropout": 0.05,
+        "lora_rank": 32,
+        "method": "ce",
+        "micro_batch": 16,
+        "model": "Qwen/Qwen3-8B",
+        "num_examples": 5000,
+        "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed1",
+        "prefix_batch": 32,
+        "replay_fraction": 1.0,
+        "seed": 1,
+        "supervision": "trace"
+      },
+      "model": "Qwen/Qwen3-8B",
+      "raw_hit32": {
+        "A": 0.495,
+        "B": 0.18,
+        "C": 0.4,
+        "D": 0.205
+      },
+      "run": "runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed1",
+      "seed": 1,
+      "tasks_per_family": {
+        "A": 200,
+        "B": 200,
+        "C": 200,
+        "D": 200
+      },
+      "weights_present": false
+    },
+    {
+      "adapter_hash": "c29302c050c8c8ffd5b04e3c018628b29dd34766503d269fd5cafa149bd6c1f8",
+      "arm": "composition",
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "done_sha256": "d8ff39056172d78893e7fdbb48dfbcd61f13297e7328c7aa999227a4682eb00c",
+      "hashed_files_checked": 29,
+      "historical_config": {
+        "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+        "budget_mode": "examples",
+        "data": "/workspace/verifier-bottleneck/outputs/data",
+        "depth3_only": false,
+        "device": "cuda",
+        "dtype": "bfloat16",
+        "effective_batch": 64,
+        "epochs": 2,
+        "gradient_checkpointing": true,
+        "learning_rate": 0.0001,
+        "lora_alpha": 64,
+        "lora_dropout": 0.05,
+        "lora_rank": 32,
+        "method": "ce",
+        "micro_batch": 16,
+        "model": "Qwen/Qwen3-8B",
+        "num_examples": 5000,
+        "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed1",
+        "prefix_batch": 32,
+        "replay_fraction": 0.2,
+        "seed": 1,
+        "supervision": "trace"
+      },
+      "model": "Qwen/Qwen3-8B",
+      "raw_hit32": {
+        "A": 0.915,
+        "B": 0.1,
+        "C": 0.865,
+        "D": 0.08
+      },
+      "run": "runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed1",
+      "seed": 1,
+      "tasks_per_family": {
+        "A": 200,
+        "B": 200,
+        "C": 200,
+        "D": 200
+      },
+      "weights_present": false
+    },
+    {
+      "adapter_hash": "5b190e41786e6d3a08567245013b3e7065a1dee8ed45b03dbaaf85201aeea291",
+      "arm": "atomic_control",
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "done_sha256": "bce9159533a4f81d5551c10c1a73e84784d997fb0a45b86cea3ea97a69974aba",
+      "hashed_files_checked": 29,
+      "historical_config": {
+        "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+        "budget_mode": "target_tokens",
+        "data": "/workspace/verifier-bottleneck/outputs/data",
+        "depth3_only": false,
+        "device": "cuda",
+        "dtype": "bfloat16",
+        "effective_batch": 64,
+        "epochs": 2,
+        "gradient_checkpointing": true,
+        "learning_rate": 0.0001,
+        "lora_alpha": 64,
+        "lora_dropout": 0.05,
+        "lora_rank": 32,
+        "method": "ce",
+        "micro_batch": 16,
+        "model": "Qwen/Qwen3-8B",
+        "num_examples": 5000,
+        "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed2",
+        "prefix_batch": 32,
+        "replay_fraction": 1.0,
+        "seed": 2,
+        "supervision": "trace"
+      },
+      "model": "Qwen/Qwen3-8B",
+      "raw_hit32": {
+        "A": 0.525,
+        "B": 0.23,
+        "C": 0.415,
+        "D": 0.235
+      },
+      "run": "runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed2",
+      "seed": 2,
+      "tasks_per_family": {
+        "A": 200,
+        "B": 200,
+        "C": 200,
+        "D": 200
+      },
+      "weights_present": false
+    },
+    {
+      "adapter_hash": "4e96ac6b74b11c8720745a71535a618bbf6df3281e5585dfb450ddb90e736155",
+      "arm": "composition",
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "done_sha256": "9bdc226268d6a3566a803b4c1331fbb611e6e3ca45960b2e6afbc98d4778a100",
+      "hashed_files_checked": 29,
+      "historical_config": {
+        "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+        "budget_mode": "examples",
+        "data": "/workspace/verifier-bottleneck/outputs/data",
+        "depth3_only": false,
+        "device": "cuda",
+        "dtype": "bfloat16",
+        "effective_batch": 64,
+        "epochs": 2,
+        "gradient_checkpointing": true,
+        "learning_rate": 0.0001,
+        "lora_alpha": 64,
+        "lora_dropout": 0.05,
+        "lora_rank": 32,
+        "method": "ce",
+        "micro_batch": 16,
+        "model": "Qwen/Qwen3-8B",
+        "num_examples": 5000,
+        "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed2",
+        "prefix_batch": 32,
+        "replay_fraction": 0.2,
+        "seed": 2,
+        "supervision": "trace"
+      },
+      "model": "Qwen/Qwen3-8B",
+      "raw_hit32": {
+        "A": 0.92,
+        "B": 0.095,
+        "C": 0.875,
+        "D": 0.08
+      },
+      "run": "runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed2",
+      "seed": 2,
+      "tasks_per_family": {
+        "A": 200,
+        "B": 200,
+        "C": 200,
+        "D": 200
+      },
+      "weights_present": false
+    }
+  ],
+  "source": "/tmp/artem_iclr/outputs/imported/q8b_bf16_mb16_pb32",
+  "status": "raw_results_and_receipts_verified",
+  "unobserved_old_cells": [
+    {
+      "budget_mode": "examples",
+      "depth3_only": false,
+      "method": "ce",
+      "replay_fraction": 0.0,
+      "supervision": "trace"
+    },
+    {
+      "budget_mode": "examples",
+      "depth3_only": false,
+      "method": "ce",
+      "replay_fraction": 0.1,
+      "supervision": "trace"
+    },
+    {
+      "budget_mode": "examples",
+      "depth3_only": false,
+      "method": "ce",
+      "replay_fraction": 0.4,
+      "supervision": "trace"
+    },
+    {
+      "budget_mode": "examples",
+      "depth3_only": false,
+      "method": "ce",
+      "replay_fraction": 0.2,
+      "supervision": "program"
+    },
+    {
+      "budget_mode": "target_tokens",
+      "depth3_only": false,
+      "method": "ce",
+      "replay_fraction": 0.2,
+      "supervision": "program"
+    },
+    {
+      "budget_mode": "examples",
+      "depth3_only": true,
+      "method": "ce",
+      "replay_fraction": 0.0,
+      "supervision": "program"
+    },
+    {
+      "budget_mode": "examples",
+      "depth3_only": true,
+      "method": "single_norm",
+      "replay_fraction": 0.0,
+      "supervision": "program"
+    },
+    {
+      "budget_mode": "examples",
+      "depth3_only": true,
+      "method": "set_mass",
+      "replay_fraction": 0.0,
+      "supervision": "program"
+    }
+  ],
+  "weights_verified": false
+}

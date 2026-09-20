@@ -1,0 +1,177 @@
+{
+  "calibration_alpha": 1,
+  "calibration_depth": 3,
+  "calibration_family": "A",
+  "data_code_sha256": "2872db753abbcb1491176aa7cb95a9f6d5c41076255cc4bafca5e6bb4371676b",
+  "datasets": {
+    "mask1": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "SC2",
+            "REV"
+          ],
+          [
+            "SC2",
+            "SC2"
+          ],
+          [
+            "SH1",
+            "SC2"
+          ]
+        ]
+      },
+      "manifest_sha256": "9354763f24a07acc7a12310159cd2f3eea64e3302a652ecbe9af4870d6ba8851"
+    },
+    "mask2": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "REV"
+          ],
+          [
+            "SH1",
+            "REV"
+          ],
+          [
+            "SH1",
+            "SC2"
+          ]
+        ]
+      },
+      "manifest_sha256": "3e4167ad71dec7926616fad7268cdb421d6e5992753c8348e3c69d49e6bba2af"
+    },
+    "mask3": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "REV",
+            "SC2"
+          ],
+          [
+            "REV",
+            "SH1"
+          ],
+          [
+            "SH1",
+            "REV"
+          ]
+        ]
+      },
+      "manifest_sha256": "89d8e9d0f33b00b5f83e89d30d08440b0d15729df67fcffa2dedec2b1db3a343"
+    },
+    "mask4": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "REV"
+          ],
+          [
+            "SC2",
+            "AX1"
+          ],
+          [
+            "SH1",
+            "REV"
+          ]
+        ]
+      },
+      "manifest_sha256": "867f2c9162251c52980b41e656447bb38e0e24722d96f38170ae193efbd12ddb"
+    },
+    "original": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "SH1"
+          ],
+          [
+            "AC1",
+            "REV"
+          ],
+          [
+            "SC2",
+            "AX1"
+          ]
+        ]
+      },
+      "manifest_sha256": "46da8e7a77e05679a8f230b31822a16bf9ad92438346b485f4ca2ae458fef70a"
+    },
+    "position": {
+      "constraints": {
+        "heldout_motifs": [],
+        "heldout_positions": [
+          [
+            0,
+            "SH1",
+            "SC2"
+          ]
+        ]
+      },
+      "manifest_sha256": "16d1eab4f6b483b8dfaee5f93e7d6ac50d3e96730d907600c2b0d77a8d168216"
+    },
+    "triple": {
+      "constraints": {
+        "heldout_motifs": [],
+        "heldout_triples": [
+          [
+            "SH1",
+            "SC2",
+            "REV"
+          ]
+        ]
+      },
+      "manifest_sha256": "b75d8f4932531c96045790292493165421d74e914b3e5429a257ad91c0c57364"
+    },
+    "witness": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "SH1"
+          ],
+          [
+            "AC1",
+            "REV"
+          ],
+          [
+            "SC2",
+            "AX1"
+          ]
+        ]
+      },
+      "manifest_sha256": "0e8207e1622c243c4b98801c3d76e26d9dfae8e0b7d5f4ac2349f9e986742e21"
+    }
+  },
+  "excluded_matched_training_shapes": [
+    [
+      5,
+      3
+    ]
+  ],
+  "mask_count": 4,
+  "mask_matching": {
+    "operation_counts": "within floor/ceil(3*n/5) in each field/degree stratum",
+    "program_support": "all available pairs represented in strata with n >= candidate programs",
+    "solution_counts": "60% one, 20% two, 20% three, rounded within field/degree strata"
+  },
+  "mask_size": 3,
+  "mask_training_seeds": [
+    0,
+    1
+  ],
+  "primary_metric": "Hit@32",
+  "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+  "reference_state_count": 45474,
+  "schema": "iclr.upgrade.protocol.v1",
+  "seed": 20260921,
+  "smoke": false,
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "witness_correct_train_count": 2
+}

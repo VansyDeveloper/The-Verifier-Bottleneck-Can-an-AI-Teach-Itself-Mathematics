@@ -1,0 +1,64 @@
+{
+  "analysis_code_sha256": "df6f400fe0d8252ef9fb1062c09a5e3a0184c54b39eef854f8d827a6b44cbc46",
+  "calibration": "A-only, alpha=1, five-fold crossfit for A, no B/C/D fitting",
+  "comparison_sha256": "b3416c8a45744fdcf7854ac50416cdc4cd794b93ce3d9809e076a623c536ff5e",
+  "files": {
+    "calibration_by_seed.csv": "37dfeab4ce12b6efe0c3ef45f0a5387197c73c122c31122aa72e2e7c4ad2b6cb",
+    "coefficients.json": "85342ddd6467a3c4241dbd83fbb2131810b61576ee547136bbed26a0296ef802",
+    "hitk.json": "c05b90024c01504d1dfacbd3294a27ead3b0eff1dc5be3533671d2b3858f82fe",
+    "task_metrics.csv": "5ee9335e94fafd95e487f0352672bd67de63ab436860c2b4779bd1f2275b1e5a"
+  },
+  "model_inference_repeated": false,
+  "probability_scope": "global distribution over enumerated leaves after score intervention; not local action policy",
+  "sources": [
+    {
+      "base_hash": "76010b40d4936ab02154f10f4162c85dd33bf466b3c9fc351136b21b06769387",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "988af53ad4f7809403b48c11268240d2984b4f49e606705682a9c670fe6ca303",
+      "path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/analysis/q06_bf16_mb16_pb32/raw/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed0/eval/rankings.jsonl",
+      "sha256": "adb0b95650b42a2e1fcb63c35a5f89f96f20ae0ee3beeafb5115b21f7ac4cdfa"
+    },
+    {
+      "base_hash": "76010b40d4936ab02154f10f4162c85dd33bf466b3c9fc351136b21b06769387",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "074b889f677c3bdccea13e2397aff9b8e89e1794a35ef764453ed90f8786da9c",
+      "path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/analysis/q06_bf16_mb16_pb32/raw/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed0/eval/rankings.jsonl",
+      "sha256": "d6336cc73223869352c5100e137a4b615f4bbb758021a724db3d02282455795c"
+    },
+    {
+      "base_hash": "76010b40d4936ab02154f10f4162c85dd33bf466b3c9fc351136b21b06769387",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "1cb69a4ee2c1ae3e4f53582774dde8c8c54a5afa8c913f74ba134245829917bc",
+      "path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/analysis/q06_bf16_mb16_pb32/raw/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed1/eval/rankings.jsonl",
+      "sha256": "4c1d0bdd21d699e60e4316fec78660368ac6d63870614df48cc9bfe261b3b1f8"
+    },
+    {
+      "base_hash": "76010b40d4936ab02154f10f4162c85dd33bf466b3c9fc351136b21b06769387",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "7465cb8de334a88ec9f73dc375a0d86a611840bd8fa4b20b63cbf2c94fc4b8a6",
+      "path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/analysis/q06_bf16_mb16_pb32/raw/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed1/eval/rankings.jsonl",
+      "sha256": "a26be57f1c3bbb0f71bcbdf76db1303948996db68324d781b4cc39e5827139c2"
+    },
+    {
+      "base_hash": "76010b40d4936ab02154f10f4162c85dd33bf466b3c9fc351136b21b06769387",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "d0ab2b3798e3b20da1c4ab05da329d744c3e3a99530d0d49af899cfe5d4310f6",
+      "path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/analysis/q06_bf16_mb16_pb32/raw/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed2/eval/rankings.jsonl",
+      "sha256": "28c9dd8378da7b1dfbd3a50048d060d13903817f820f15ab18265ed23357843c"
+    },
+    {
+      "base_hash": "76010b40d4936ab02154f10f4162c85dd33bf466b3c9fc351136b21b06769387",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "e285372be9ae92ff5770c9a8590c7f015b40ab8808c0b139fbd255f69252ba62",
+      "path": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/analysis/q06_bf16_mb16_pb32/raw/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed2/eval/rankings.jsonl",
+      "sha256": "8a0c5f912acddd8a4205bdaea5f537c420f2269eae2bde25254ee899c0c997d4"
+    }
+  ],
+  "status": "development_reanalysis"
+}

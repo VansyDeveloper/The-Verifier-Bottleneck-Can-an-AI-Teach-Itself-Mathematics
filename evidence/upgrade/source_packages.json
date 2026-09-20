@@ -1,0 +1,11 @@
+{
+  "q06_directory": "/home/temochka2005/The-Verifier-Bottleneck-Can-an-AI-Teach-Itself-Mathematics/analysis/q06_bf16_mb16_pb32/raw/q06_bf16_mb16_pb32",
+  "q8b_zip": {
+    "bytes": 74645102,
+    "models_included": false,
+    "name": "q8b_bf16_pb32_no_models_20260918_171232.zip",
+    "sha256": "76a5bc1279bd5322325c6bb447e48fbdb9f22e449e30125602827c7145f9eea4"
+  },
+  "raw_provenance": "previous_q06.json and previous_q8b.json contain individual run/receipt/config hashes",
+  "reference_reconstruction_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866"
+}

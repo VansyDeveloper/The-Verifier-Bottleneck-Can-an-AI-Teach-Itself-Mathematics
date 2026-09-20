@@ -1,0 +1,64 @@
+{
+  "analysis_code_sha256": "df6f400fe0d8252ef9fb1062c09a5e3a0184c54b39eef854f8d827a6b44cbc46",
+  "calibration": "A-only, alpha=1, five-fold crossfit for A, no B/C/D fitting",
+  "comparison_sha256": "e3ab5463c2a163479a18d31341d92678e7c37f027661e22b1a6479ab948ea3d8",
+  "files": {
+    "calibration_by_seed.csv": "ca066b90ca41f55d96020f6f5d66747d6e83c72205bd509ee0585909d37b9a48",
+    "coefficients.json": "50eb0c4888fec284cd5b4f04faa0af370ca208c5b99b8897736906bbdca4c9dd",
+    "hitk.json": "ebb32621b0b39127b12fd1b8d50427453ab8f073c8c0c73874922bb5cc7b52e6",
+    "task_metrics.csv": "83303f7c90d2355e8dd55298c177e37ebffd1dd5f68311299646104c3c49ab2a"
+  },
+  "model_inference_repeated": false,
+  "probability_scope": "global distribution over enumerated leaves after score intervention; not local action policy",
+  "sources": [
+    {
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "af3150176f305e87e92f4ec47968e3665aa6a4d7b074e74f0fdcc67a02c44564",
+      "path": "/tmp/artem_iclr/outputs/imported/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed0/eval/rankings.jsonl",
+      "sha256": "2df65ca3ae3f3246ac682fbe9c54e8ff61cccf92373916fe1843bd880286470c"
+    },
+    {
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "7e5e2700c5bd3a900e4dcca8763d4d487d7a14e6a97eccc439c7773b56ef5953",
+      "path": "/tmp/artem_iclr/outputs/imported/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed0/eval/rankings.jsonl",
+      "sha256": "72b3a250f2e046e7c171f2fb1f2cd5d18cfb34e40aee89764f190928b4f41db8"
+    },
+    {
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "cc6f98364f1da6f3a2aac19fe15b788796766eb00cda27686491c4f1d21cdcae",
+      "path": "/tmp/artem_iclr/outputs/imported/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed1/eval/rankings.jsonl",
+      "sha256": "dc6a8e8d719721b86bd6e909380c5142ea5660b6ea0c6385f2832c4015136fe2"
+    },
+    {
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "c29302c050c8c8ffd5b04e3c018628b29dd34766503d269fd5cafa149bd6c1f8",
+      "path": "/tmp/artem_iclr/outputs/imported/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed1/eval/rankings.jsonl",
+      "sha256": "4eed1b9d7298e88cca119ba08c03674e04f364d5b5f1a16e3f34573cd5d60d61"
+    },
+    {
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "5b190e41786e6d3a08567245013b3e7065a1dee8ed45b03dbaaf85201aeea291",
+      "path": "/tmp/artem_iclr/outputs/imported/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed2/eval/rankings.jsonl",
+      "sha256": "5ed24506a13680e6df8d1481c6e6c2575067d1d345c93637257afe4231144f89"
+    },
+    {
+      "base_hash": "3fa26494bb287ab357b816a76dced4e5b8523eb2f214979dab5713ff4284ec61",
+      "code_hash": "d27c6c18f3ef84a01e1fdebb999309fa7f8cc6289b7bc273c690fc7fb3c2b75b",
+      "data_hash": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+      "model_hash": "4e96ac6b74b11c8720745a71535a618bbf6df3281e5585dfb450ddb90e736155",
+      "path": "/tmp/artem_iclr/outputs/imported/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed2/eval/rankings.jsonl",
+      "sha256": "1c59590706403cafceeae239167dfa08fdf2c7556c8c76731bb60b5b187a28a4"
+    }
+  ],
+  "status": "development_reanalysis"
+}

@@ -11,15 +11,56 @@ import random
 import composition_core as core
 
 
+def constraint_hits(program, row):
+    pairs = {tuple(p) for p in row.get('heldout_motifs', core.HELDOUT_MOTIFS)}
+    triples = {tuple(p) for p in row.get('heldout_triples', [])}
+    positions = {tuple(p) for p in row.get('heldout_positions', [])}
+    return (sum(tuple(p) in pairs for p in zip(program, program[1:]))
+            + sum(tuple(p) in triples for p in zip(program, program[1:], program[2:]))
+            + sum((i, a, b) in positions for i, (a, b) in enumerate(zip(program, program[1:]))))
+
+
 def correct_programs(row):
     """Return the full correct set at the declared depth, never the two witnesses."""
     programs = [program for program in core.enumerate_programs(int(row["depth"]))
                 if core.verify_program(row["start"], row["target"], program, int(row["p"]))]
     if not programs:
         raise ValueError(f"task has no correct program: {row.get('task_id')}")
-    if str(row.get("family", "")).upper() == "TRAIN" and any(core.motif_count(p) for p in programs):
+    if str(row.get("family", "")).upper() == "TRAIN" and any(constraint_hits(p, row) for p in programs):
         raise ValueError(f"held motif in full train correct set: {row.get('task_id')}")
     return programs
+
+
+def assign_witnesses(examples, policy, seed):
+    """Change only correct PROGRAM labels; task identities and exposure order stay fixed."""
+    if policy not in ('fixed', 'uniform', 'balanced'):
+        raise ValueError(f'Unknown witness policy: {policy}')
+    if policy == 'fixed':
+        return examples
+    rng, counts, cache = random.Random(seed), Counter(), {}
+    result = []
+    for item in examples:
+        if item['kind'] != 'composition':
+            raise ValueError('Witness intervention requires PROGRAM-only composition tasks')
+        row = item['row']
+        if row['task_id'] not in cache:
+            cache[row['task_id']] = correct_programs(row)
+        candidates = list(cache[row['task_id']])
+        rng.shuffle(candidates)
+        if policy == 'uniform':
+            program = candidates[0]
+        else:
+            # ponytail: greedy reduction of pair-count imbalance, not a global optimum.
+            # Exact integer optimization is only needed if this intervention has no effect.
+            def cost(program):
+                added = Counter(zip(program, program[1:]))
+                return sum(2 * counts[pair] * n + n * n for pair, n in added.items())
+            program = min(candidates, key=cost)
+        counts.update(zip(program, program[1:]))
+        selected = {**row, 'witness': list(program), 'program': list(program),
+                    'states': [list(s) for s in core.trajectory(row['start'], program, row['p'])]}
+        result.append({**item, 'row': selected, 'answer': render_target(selected, 'program_only')})
+    return result
 
 
 def render_target(row, target_format):

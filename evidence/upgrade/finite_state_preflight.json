@@ -1,0 +1,78 @@
+{
+  "cells": [
+    {
+      "all_starts_enumerated": 625,
+      "degree": 3,
+      "excluded_from_all_matched_training": true,
+      "p": 5,
+      "remaining_states": 155,
+      "valid_tasks_by_solution_count": {
+        "mask1": {
+          "1": 73,
+          "2": 5,
+          "3": 1
+        },
+        "mask2": {
+          "1": 59,
+          "2": 5,
+          "3": 1
+        },
+        "mask3": {
+          "1": 75,
+          "2": 5,
+          "3": 1
+        },
+        "mask4": {
+          "1": 62,
+          "2": 5,
+          "3": 1
+        },
+        "original": {
+          "1": 74,
+          "2": 4
+        }
+      }
+    },
+    {
+      "all_starts_enumerated": 2197,
+      "degree": 2,
+      "excluded_from_all_matched_training": false,
+      "p": 13,
+      "remaining_states": 1067,
+      "valid_tasks_by_solution_count": {
+        "mask1": {
+          "1": 4241,
+          "2": 412,
+          "3": 512
+        },
+        "mask2": {
+          "1": 4798,
+          "2": 258,
+          "3": 469
+        },
+        "mask3": {
+          "1": 4423,
+          "2": 181,
+          "3": 592
+        },
+        "mask4": {
+          "1": 4882,
+          "2": 248,
+          "3": 468
+        },
+        "original": {
+          "1": 4215,
+          "2": 257,
+          "3": 478
+        }
+      }
+    }
+  ],
+  "excluded_training_shapes": [
+    [
+      5,
+      3
+    ]
+  ],
+  "scope": "exhaustive remaining-START feasibility before training quotas"
+}

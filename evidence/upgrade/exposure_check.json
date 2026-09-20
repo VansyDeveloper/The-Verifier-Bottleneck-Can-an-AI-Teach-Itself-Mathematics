@@ -1,0 +1,76 @@
+{
+  "checks": [
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "original",
+      "manifest_sha256": "46da8e7a77e05679a8f230b31822a16bf9ad92438346b485f4ca2ae458fef70a",
+      "seed": 0
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "original",
+      "manifest_sha256": "46da8e7a77e05679a8f230b31822a16bf9ad92438346b485f4ca2ae458fef70a",
+      "seed": 1
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask1",
+      "manifest_sha256": "9354763f24a07acc7a12310159cd2f3eea64e3302a652ecbe9af4870d6ba8851",
+      "seed": 0
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask1",
+      "manifest_sha256": "9354763f24a07acc7a12310159cd2f3eea64e3302a652ecbe9af4870d6ba8851",
+      "seed": 1
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask2",
+      "manifest_sha256": "3e4167ad71dec7926616fad7268cdb421d6e5992753c8348e3c69d49e6bba2af",
+      "seed": 0
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask2",
+      "manifest_sha256": "3e4167ad71dec7926616fad7268cdb421d6e5992753c8348e3c69d49e6bba2af",
+      "seed": 1
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask3",
+      "manifest_sha256": "89d8e9d0f33b00b5f83e89d30d08440b0d15729df67fcffa2dedec2b1db3a343",
+      "seed": 0
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask3",
+      "manifest_sha256": "89d8e9d0f33b00b5f83e89d30d08440b0d15729df67fcffa2dedec2b1db3a343",
+      "seed": 1
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask4",
+      "manifest_sha256": "867f2c9162251c52980b41e656447bb38e0e24722d96f38170ae193efbd12ddb",
+      "seed": 0
+    },
+    {
+      "atomic_exposures": 1250,
+      "composition_exposures": 5000,
+      "dataset": "mask4",
+      "manifest_sha256": "867f2c9162251c52980b41e656447bb38e0e24722d96f38170ae193efbd12ddb",
+      "seed": 1
+    }
+  ],
+  "scope": "each matched composition task appears once per epoch; all matched operation and solution-count marginals retained",
+  "status": "PASS"
+}
