@@ -1,0 +1,10 @@
+{
+  "archive_prefix": "outputs/shared_inputs_20260921",
+  "bytes": 10032611,
+  "files_verified": 139,
+  "name": "shared_inputs_20260921.tar.gz",
+  "new_protocol_sha256": "0a8d04bd017789b1f348796d3a8102c9297f8558be210ffffee72e9c793f5d4c",
+  "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+  "sha256": "4925a00724001c05e38a2333cd224e8ac93d43e099fcc878b7dff051afeed213",
+  "weights_included": false
+}

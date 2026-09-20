@@ -1,0 +1,117 @@
+{
+  "blocks": [
+    {
+      "evaluation_jobs": 14,
+      "experiment": "01_recheck_existing_models",
+      "jobs": 16,
+      "models": [
+        {
+          "name": "q06",
+          "required_previous_adapters": 6
+        },
+        {
+          "name": "q8b",
+          "required_previous_adapters": 6
+        }
+      ],
+      "queue_sha256": "acd3d7ae1a3c81e9ec4e495af55cda15bc09c591b1ac5c0fdeb8d1e0a955ae22",
+      "seed_distribution": {},
+      "trainings": 0
+    },
+    {
+      "evaluation_jobs": 16,
+      "experiment": "02_new_pair_masks",
+      "jobs": 34,
+      "models": [
+        {
+          "name": "q06",
+          "required_previous_adapters": 0
+        }
+      ],
+      "queue_sha256": "b591115df7f3f106d3d4507428e3c485b62c1b0778324c8e608f6c1f006a6f61",
+      "seed_distribution": {
+        "0": 8,
+        "1": 8
+      },
+      "trainings": 16
+    },
+    {
+      "evaluation_jobs": 8,
+      "experiment": "03_new_triples_and_positions",
+      "jobs": 18,
+      "models": [
+        {
+          "name": "q06",
+          "required_previous_adapters": 0
+        }
+      ],
+      "queue_sha256": "3e12cdf0a6b575bd7e72d10f825132ed595a5b0593f4b7efd553a4d3cb3202ed",
+      "seed_distribution": {
+        "0": 4,
+        "1": 4
+      },
+      "trainings": 8
+    },
+    {
+      "evaluation_jobs": 15,
+      "experiment": "04_correct_program_choice",
+      "jobs": 32,
+      "models": [
+        {
+          "name": "q06",
+          "required_previous_adapters": 0
+        }
+      ],
+      "queue_sha256": "035e70282bd2bf24c6496accc351cea7739f3d53fdd33998fee1ac936a06a4ca",
+      "seed_distribution": {
+        "0": 5,
+        "1": 5,
+        "2": 5
+      },
+      "trainings": 15
+    },
+    {
+      "evaluation_jobs": 9,
+      "experiment": "05_reward_gradient",
+      "jobs": 20,
+      "models": [
+        {
+          "name": "q06",
+          "required_previous_adapters": 1
+        }
+      ],
+      "queue_sha256": "90480bf774b18b17ebb3f1937ed409cd5b3f3ea7a47ea60853af05ee9ff86c9b",
+      "seed_distribution": {
+        "0": 4,
+        "1": 4
+      },
+      "trainings": 8
+    },
+    {
+      "evaluation_jobs": 13,
+      "experiment": "06_other_model_family",
+      "jobs": 28,
+      "models": [
+        {
+          "name": "q06",
+          "required_previous_adapters": 0
+        },
+        {
+          "name": "smol17",
+          "required_previous_adapters": 0
+        }
+      ],
+      "queue_sha256": "773d1c86f110cdb8d86a74878025ad9e6101d252f01fd064b0eebe4e15c7c222",
+      "seed_distribution": {
+        "0": 4,
+        "1": 4,
+        "2": 4
+      },
+      "trainings": 13
+    }
+  ],
+  "scope": "six independent blocks; DAG has no cycles; only required inherited weights; no historical retraining; shared prepared data",
+  "separate_block_overhead": "prepare/audit is repeated per computer; block05 reevaluates its initial SFT as a dependency",
+  "source_code_hash": "7f363abd264260011b88c6a8603ba6b08ec9e093e2df07d2253eac4cf1920e36",
+  "status": "PASS"
+}

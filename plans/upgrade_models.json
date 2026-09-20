@@ -1,0 +1,16 @@
+[
+  {
+    "name": "q06",
+    "model": "Qwen/Qwen3-0.6B",
+    "base": "outputs/atomic_06_bf16/checkpoint",
+    "previous": "outputs/q06_bf16_mb16_pb32",
+    "receipt": "evidence/upgrade/previous_q06.json"
+  },
+  {
+    "name": "q8b",
+    "model": "Qwen/Qwen3-8B",
+    "base": "outputs/atomic_8b_bf16/checkpoint",
+    "previous": "outputs/q8b_bf16_mb16_pb32",
+    "receipt": "evidence/upgrade/previous_q8b.json"
+  }
+]
