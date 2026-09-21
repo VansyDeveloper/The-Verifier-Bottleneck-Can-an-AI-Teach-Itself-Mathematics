@@ -1,0 +1,24 @@
+{
+  "adapter_hash": "855b3ae2247bbba0070d1503440a7e4e5832d4e2e13e75c064a2fdabfc6e9997",
+  "analysis_lock_sha256": null,
+  "arm": "balanced",
+  "base_hash": "af2786f64a83c092335d2f6c83fcea706581abda56a2ce8c95102ec6ec877a0b",
+  "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+  "data_hash": "36b120d654734287621e7f04cbf06adc6dec4435922ec9c57cb8106d73f2a9c4",
+  "data_status": "smoke",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "execution_tasks_per_family": 1,
+  "model": "outputs/qwen06_test_source",
+  "phase": "dev",
+  "prefix_batch": 1,
+  "prompt_version": "stage4_plan_v1",
+  "protocol": "target_alignment_v2",
+  "reliable_ops": [
+    "AC1",
+    "AX1",
+    "REV"
+  ],
+  "seed": 0,
+  "training_pool_sha256": "1b35fba36f244865e67f23e8a644fb631064a971668936ef0a0c45347dff1734"
+}

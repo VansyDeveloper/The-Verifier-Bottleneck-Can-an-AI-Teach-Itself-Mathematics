@@ -1,0 +1,249 @@
+{
+  "cases": {
+    "01_q06_dev": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/01_q06_dev",
+        "--model-names",
+        "q06"
+      ],
+      "jobs": 9,
+      "phase": "dev",
+      "queue_sha256": "15691eaf911e818dab0785d72f9c8b2fc826b5478b9e321f597dfdb11baa679a",
+      "training": []
+    },
+    "01_q06_final": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/01_q06_final",
+        "--model-names",
+        "q06",
+        "--phase",
+        "final",
+        "--analysis-lock",
+        "outputs/analysis_lock_feedback_v2.json"
+      ],
+      "jobs": 9,
+      "phase": "final",
+      "queue_sha256": "87eef6d93a701ee72ceff571cb1a2118204bfd32556fe2056ae760d7603c6703",
+      "training": []
+    },
+    "01_q8b_dev": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/01_q8b_dev",
+        "--model-names",
+        "q8b"
+      ],
+      "jobs": 9,
+      "phase": "dev",
+      "queue_sha256": "8017a779205a5575bc774353af4d2e06c94871da1fd186cfb9b013734fda852b",
+      "training": []
+    },
+    "01_q8b_final": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/01_q8b_final",
+        "--model-names",
+        "q8b",
+        "--phase",
+        "final",
+        "--analysis-lock",
+        "outputs/analysis_lock_feedback_v2.json"
+      ],
+      "jobs": 9,
+      "phase": "final",
+      "queue_sha256": "3af13573f3007d5a330f0063d58f563f06129bfd428dfa02dac64fcce8adb9e5",
+      "training": []
+    },
+    "02_pilot_mask1": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/02_pilot_mask1",
+        "--experiments",
+        "02_new_pair_masks",
+        "--stage",
+        "pilot",
+        "--masks",
+        "mask1"
+      ],
+      "jobs": 7,
+      "phase": "dev",
+      "queue_sha256": "fc348a86e8ab66663f9271ab94a8702a7ddff8c13dff20511844dfa129224c59",
+      "training": [
+        "q06_mask1_atomic_control_seed0",
+        "q06_mask1_composition_seed0"
+      ]
+    },
+    "02_pilot_mask2": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/02_pilot_mask2",
+        "--experiments",
+        "02_new_pair_masks",
+        "--stage",
+        "pilot",
+        "--masks",
+        "mask2"
+      ],
+      "jobs": 7,
+      "phase": "dev",
+      "queue_sha256": "867e39ca8c46aa5039f1c0587508ad4f6cb121b167510a1dfd2007d6d2e6faf4",
+      "training": [
+        "q06_mask2_atomic_control_seed0",
+        "q06_mask2_composition_seed0"
+      ]
+    },
+    "02_remaining_seed0": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/02_remaining_seed0",
+        "--experiments",
+        "02_new_pair_masks",
+        "--stage",
+        "remaining",
+        "--seeds",
+        "0"
+      ],
+      "jobs": 12,
+      "phase": "dev",
+      "queue_sha256": "2bebaae0dd18a4f8e25731e69df6941d89112fabfd18ededb59e009cff5d1303",
+      "training": [
+        "q06_mask3_atomic_control_seed0",
+        "q06_mask3_composition_seed0",
+        "q06_mask4_atomic_control_seed0",
+        "q06_mask4_composition_seed0"
+      ]
+    },
+    "02_remaining_seed1": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/02_remaining_seed1",
+        "--experiments",
+        "02_new_pair_masks",
+        "--stage",
+        "remaining",
+        "--seeds",
+        "1"
+      ],
+      "jobs": 22,
+      "phase": "dev",
+      "queue_sha256": "093dca8efd56588ce085b6b197d7978ef77c9eb702ed003b186241af028b4b05",
+      "training": [
+        "q06_mask1_atomic_control_seed1",
+        "q06_mask1_composition_seed1",
+        "q06_mask2_atomic_control_seed1",
+        "q06_mask2_composition_seed1",
+        "q06_mask3_atomic_control_seed1",
+        "q06_mask3_composition_seed1",
+        "q06_mask4_atomic_control_seed1",
+        "q06_mask4_composition_seed1"
+      ]
+    },
+    "04_witness_pilot": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/04_witness_pilot",
+        "--experiments",
+        "04_correct_program_choice",
+        "--stage",
+        "pilot"
+      ],
+      "jobs": 7,
+      "phase": "dev",
+      "queue_sha256": "73520cd691352fe7b0109bc5b7c39787cc9012c25fde5bf7cd4c27e8f6fed5f2",
+      "training": [
+        "q06_witness_fixed_seed0",
+        "q06_witness_balanced_seed0"
+      ]
+    },
+    "06_conditional": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "iclr.upgrade",
+        "plan",
+        "--inputs",
+        "outputs/shared_inputs_feedback_v2",
+        "--out",
+        "outputs/feedback_operator_plan_checks/06_conditional",
+        "--experiments",
+        "06_other_model_family",
+        "--stage",
+        "complete"
+      ],
+      "jobs": 23,
+      "phase": "dev",
+      "queue_sha256": "477011fb95887360d195468d416979ea59058c3ceb0459b8a0e0a8bce551bd23",
+      "training": [
+        "q06_original_atomic_control_seed0",
+        "q06_original_composition_seed0",
+        "q06_witness_fixed_seed0",
+        "q06_witness_balanced_seed0",
+        "smol17_atomic_init",
+        "smol17_original_atomic_control_seed0",
+        "smol17_original_composition_seed0",
+        "smol17_witness_fixed_seed0",
+        "smol17_witness_balanced_seed0"
+      ]
+    }
+  },
+  "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+  "inputs_sha256": "add0e9d733d0ff497e29c08c75305f98579bcb24cf8ae941941939ee7df393ca",
+  "scope": "actual README CLI plans on full frozen v2 data; no GPU jobs submitted; four disjoint server shards cover 16 mask continuations",
+  "status": "PASS"
+}

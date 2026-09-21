@@ -1,0 +1,157 @@
+{
+  "analysis_plan_sha256": "2b152eb241949cedcbe32c3fd5a683fa9caff80248d17edb1f65a3a96beebdb8",
+  "calibration_alpha": 1,
+  "calibration_depth": 3,
+  "calibration_family": "A",
+  "data_code_sha256": "7337a7dd269c3e9b191b33bbe3bc01df8e4298cdeeb2bd4c7d3f01c7fd887545",
+  "datasets": {
+    "mask1": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "SC2",
+            "REV"
+          ],
+          [
+            "SC2",
+            "SC2"
+          ],
+          [
+            "SH1",
+            "SC2"
+          ]
+        ]
+      },
+      "manifest_sha256": "c37dd08b791730893d5112db0322dda96a3e76d275a16e1d086e464bffc868d9"
+    },
+    "mask2": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "REV"
+          ],
+          [
+            "SH1",
+            "REV"
+          ],
+          [
+            "SH1",
+            "SC2"
+          ]
+        ]
+      },
+      "manifest_sha256": "ae2c2441bfa2f08151ef72ac3042575e11de1a895fd2cf1b46369181fea26b4b"
+    },
+    "mask3": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "REV",
+            "SC2"
+          ],
+          [
+            "REV",
+            "SH1"
+          ],
+          [
+            "SH1",
+            "REV"
+          ]
+        ]
+      },
+      "manifest_sha256": "461bfdff321eb66be901231ca115fae195214dbe6d24c1c146e6364ce5bf2db4"
+    },
+    "mask4": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "REV"
+          ],
+          [
+            "SC2",
+            "AX1"
+          ],
+          [
+            "SH1",
+            "REV"
+          ]
+        ]
+      },
+      "manifest_sha256": "028e060d7ebf3de1513622847a9b76eeee0247166beab50cff91ed9f1cbe915c"
+    },
+    "original": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "SH1"
+          ],
+          [
+            "AC1",
+            "REV"
+          ],
+          [
+            "SC2",
+            "AX1"
+          ]
+        ]
+      },
+      "manifest_sha256": "175be1feac55477f613bfd6e6f1e0e283935568d740e5f1e058ccba9134ce8d6"
+    },
+    "witness": {
+      "constraints": {
+        "heldout_motifs": [
+          [
+            "AX1",
+            "SH1"
+          ],
+          [
+            "AC1",
+            "REV"
+          ],
+          [
+            "SC2",
+            "AX1"
+          ]
+        ]
+      },
+      "manifest_sha256": "71bbf1d4f979ece1ba1add3c739b8abf302d45e1abc2e08e73fc6627aea36213"
+    }
+  },
+  "deferred": {
+    "03": "v1 triple/position non-identifying; redesign multiple held patterns and matched START panels before any training",
+    "05": "need a concrete gradient hypothesis and fixed-checkpoint numerical audit",
+    "06": "conditional on central contrast and one successful intervention"
+  },
+  "excluded_matched_training_shapes": [
+    [
+      5,
+      3
+    ]
+  ],
+  "mask_count": 4,
+  "mask_matching": {
+    "operation_counts": "within floor/ceil(3*n/5) in each field/degree stratum",
+    "program_support": "all available pairs represented in strata with n >= candidate programs",
+    "solution_counts": "60% one, 20% two, 20% three, rounded within field/degree strata"
+  },
+  "mask_size": 3,
+  "mask_training_seeds": [
+    0,
+    1
+  ],
+  "primary_metric": "local prior-invariant pair target alignment; composition minus atomic_control; equal B/D",
+  "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+  "reference_state_count": 45474,
+  "schema": "iclr.upgrade.protocol.v2",
+  "seed": 20260922,
+  "smoke": false,
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "witness_quotas": "equal minimum-depth affine equivalence families per field/degree; balance first witness operations within those quotas; >=2 solutions; fixed pool for both arms"
+}

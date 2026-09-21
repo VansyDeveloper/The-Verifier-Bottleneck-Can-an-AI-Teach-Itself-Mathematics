@@ -1,0 +1,127 @@
+{
+  "model_inference_repeated": false,
+  "rows": [
+    {
+      "control": "own_target",
+      "family": "A",
+      "hit32": 0.9116666666666666,
+      "method": "raw"
+    },
+    {
+      "control": "own_target",
+      "family": "A",
+      "hit32": 0.8566666666666668,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "A",
+      "hit32": 0.06833333333333333,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "A",
+      "hit32": 0.0,
+      "method": "bigram"
+    },
+    {
+      "control": "task_blind",
+      "family": "A",
+      "hit32": 0.0,
+      "method": "train_unseen_first"
+    },
+    {
+      "control": "own_target",
+      "family": "B",
+      "hit32": 0.08333333333333333,
+      "method": "raw"
+    },
+    {
+      "control": "own_target",
+      "family": "B",
+      "hit32": 0.5833333333333334,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "B",
+      "hit32": 0.645,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "B",
+      "hit32": 0.7216666666666667,
+      "method": "bigram"
+    },
+    {
+      "control": "task_blind",
+      "family": "B",
+      "hit32": 0.6956521739130433,
+      "method": "train_unseen_first"
+    },
+    {
+      "control": "own_target",
+      "family": "C",
+      "hit32": 0.87,
+      "method": "raw"
+    },
+    {
+      "control": "own_target",
+      "family": "C",
+      "hit32": 0.7983333333333333,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "C",
+      "hit32": 0.06666666666666667,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "C",
+      "hit32": 0.0,
+      "method": "bigram"
+    },
+    {
+      "control": "task_blind",
+      "family": "C",
+      "hit32": 0.0,
+      "method": "train_unseen_first"
+    },
+    {
+      "control": "own_target",
+      "family": "D",
+      "hit32": 0.07500000000000001,
+      "method": "raw"
+    },
+    {
+      "control": "own_target",
+      "family": "D",
+      "hit32": 0.5750000000000001,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "D",
+      "hit32": 0.68,
+      "method": "full"
+    },
+    {
+      "control": "minus_bias_only",
+      "family": "D",
+      "hit32": 0.7283333333333334,
+      "method": "bigram"
+    },
+    {
+      "control": "task_blind",
+      "family": "D",
+      "hit32": 0.696734299516908,
+      "method": "train_unseen_first"
+    }
+  ],
+  "status": "development_reanalysis",
+  "training_pool_sha256": "ad6ceb9a0f4483c1f7bb23f53190d49e4e5683fdec482802c1c6cb1d7898be87"
+}

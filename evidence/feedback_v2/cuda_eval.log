@@ -1,0 +1,11 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Scored dev_A.jsonl: 5 evaluation tasks
+Scored dev_B.jsonl: 10 evaluation tasks
+Scored dev_C.jsonl: 15 evaluation tasks
+Scored dev_D.jsonl: 20 evaluation tasks
+Scored dev_panel_A.jsonl: 28 evaluation tasks
+Scored dev_panel_B.jsonl: 36 evaluation tasks
+Scored dev_panel_C.jsonl: 44 evaluation tasks
+Scored dev_panel_D.jsonl: 52 evaluation tasks
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Complete: outputs/feedback_cuda_prefix_eval

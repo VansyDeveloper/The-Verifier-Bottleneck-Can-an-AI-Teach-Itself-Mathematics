@@ -1,0 +1,51 @@
+{
+  "all_target_tokens": 16,
+  "ce_components": {
+    "apply": {
+      "loss_sum": 0.0,
+      "tokens": 0
+    },
+    "eos": {
+      "loss_sum": 55.07173824310303,
+      "tokens": 4
+    },
+    "operation": {
+      "loss_sum": 62.6943736076355,
+      "tokens": 12
+    },
+    "trace": {
+      "loss_sum": 0.0,
+      "tokens": 0
+    }
+  },
+  "composition_exposures": 4,
+  "composition_operation_counts": {
+    "AC1": 6,
+    "AX1": 3,
+    "SC2": 2,
+    "SH1": 1
+  },
+  "composition_pair_counts": {
+    "AC1>AC1": 1,
+    "AC1>AX1": 2,
+    "AC1>SC2": 1,
+    "AX1>AC1": 1,
+    "AX1>AX1": 1,
+    "SC2>AC1": 1,
+    "SH1>SC2": 1
+  },
+  "composition_target_tokens": 16,
+  "diagnostics_version": 1,
+  "example_exposures": 4,
+  "loss_normalization": "supervised_tokens_per_update",
+  "masked_target_tokens": 0,
+  "measurement_scope": "training_and_midpoint_evaluation",
+  "optimizer_impl": "adamw_fused",
+  "optimizer_steps": 2,
+  "peak_memory_bytes": 1577762816,
+  "prompt_tokens": 302,
+  "set_token_counters": null,
+  "total_forward_tokens": 318,
+  "unique_tasks": 4,
+  "wall_seconds": 47.02221511300013
+}

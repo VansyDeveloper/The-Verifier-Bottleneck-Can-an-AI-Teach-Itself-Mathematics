@@ -1,0 +1,10 @@
+{
+  "nodes_per_task": {
+    "depth3": 31,
+    "depth4": 156
+  },
+  "offline_controls_require_new_inference": false,
+  "phase": "dev",
+  "prefix_nodes": 1767,
+  "tasks_scored": 57
+}

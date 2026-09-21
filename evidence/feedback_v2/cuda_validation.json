@@ -1,0 +1,130 @@
+{
+  "checks": {
+    "evaluation": {
+      "binding": {
+        "adapter_hash": "855b3ae2247bbba0070d1503440a7e4e5832d4e2e13e75c064a2fdabfc6e9997",
+        "analysis_lock_sha256": null,
+        "arm": "balanced",
+        "base_hash": "af2786f64a83c092335d2f6c83fcea706581abda56a2ce8c95102ec6ec877a0b",
+        "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+        "data_hash": "36b120d654734287621e7f04cbf06adc6dec4435922ec9c57cb8106d73f2a9c4",
+        "data_status": "smoke",
+        "device": "cuda",
+        "dtype": "bfloat16",
+        "execution_tasks_per_family": 1,
+        "model": "outputs/qwen06_test_source",
+        "phase": "dev",
+        "prefix_batch": 1,
+        "prompt_version": "stage4_plan_v1",
+        "protocol": "target_alignment_v2",
+        "reliable_ops": [
+          "AC1",
+          "AX1",
+          "REV"
+        ],
+        "seed": 0,
+        "training_pool_sha256": "1b35fba36f244865e67f23e8a644fb631064a971668936ef0a0c45347dff1734"
+      },
+      "panels": 8,
+      "prefix_tasks": 57,
+      "receipt_sha256": "0d2fb669e3988a0b8d6733772b96cb41fc4c5928c3f991b101b6ea6347c2c346",
+      "source": "outputs/feedback_cuda_prefix_eval",
+      "status": "PASS",
+      "tasks": 52
+    },
+    "train": {
+      "binding": {
+        "base_hash": "af2786f64a83c092335d2f6c83fcea706581abda56a2ce8c95102ec6ec877a0b",
+        "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+        "config": {
+          "base": "outputs/upgrade_real_atomic_one_step/checkpoint",
+          "budget_mode": "examples",
+          "data": "outputs/feedback_v2_smoke/witness",
+          "depth3_only": true,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 2,
+          "epochs": 1,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.0,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 1,
+          "model": "outputs/qwen06_test_source",
+          "num_examples": 4,
+          "output": "outputs/feedback_cuda_witness_balanced",
+          "prefix_batch": 1,
+          "replay_fraction": 0.0,
+          "seed": 0,
+          "supervision": "program",
+          "witness_policy": "balanced"
+        },
+        "data_hash": "36b120d654734287621e7f04cbf06adc6dec4435922ec9c57cb8106d73f2a9c4"
+      },
+      "budget": {
+        "all_target_tokens": 16,
+        "ce_components": {
+          "apply": {
+            "loss_sum": 0.0,
+            "tokens": 0
+          },
+          "eos": {
+            "loss_sum": 55.07173824310303,
+            "tokens": 4
+          },
+          "operation": {
+            "loss_sum": 62.6943736076355,
+            "tokens": 12
+          },
+          "trace": {
+            "loss_sum": 0.0,
+            "tokens": 0
+          }
+        },
+        "composition_exposures": 4,
+        "composition_operation_counts": {
+          "AC1": 6,
+          "AX1": 3,
+          "SC2": 2,
+          "SH1": 1
+        },
+        "composition_pair_counts": {
+          "AC1>AC1": 1,
+          "AC1>AX1": 2,
+          "AC1>SC2": 1,
+          "AX1>AC1": 1,
+          "AX1>AX1": 1,
+          "SC2>AC1": 1,
+          "SH1>SC2": 1
+        },
+        "composition_target_tokens": 16,
+        "diagnostics_version": 1,
+        "example_exposures": 4,
+        "loss_normalization": "supervised_tokens_per_update",
+        "masked_target_tokens": 0,
+        "measurement_scope": "training_and_midpoint_evaluation",
+        "optimizer_impl": "adamw_fused",
+        "optimizer_steps": 2,
+        "peak_memory_bytes": 1577762816,
+        "prompt_tokens": 302,
+        "set_token_counters": null,
+        "total_forward_tokens": 318,
+        "unique_tasks": 4,
+        "wall_seconds": 47.02221511300013
+      },
+      "receipt_sha256": "79fb5432aa4f03786aebf2bb4f6bc3f2511a1bccbadcaeffc105002ec859522f",
+      "reload": {
+        "max_absolute_difference": 0.0,
+        "merge_max_absolute_difference": null,
+        "tolerance": 0.1
+      },
+      "source": "outputs/feedback_cuda_witness_balanced",
+      "status": "PASS"
+    }
+  },
+  "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+  "scope": "technical smoke only; real Qwen3-0.6B on RTX 3050 Ti 4 GiB, outside sandbox; not an A100 scientific run",
+  "status": "PASS"
+}

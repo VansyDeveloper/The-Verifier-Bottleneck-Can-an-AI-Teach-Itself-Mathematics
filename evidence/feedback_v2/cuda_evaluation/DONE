@@ -1,0 +1,47 @@
+{
+  "binding": {
+    "adapter_hash": "855b3ae2247bbba0070d1503440a7e4e5832d4e2e13e75c064a2fdabfc6e9997",
+    "analysis_lock_sha256": null,
+    "arm": "balanced",
+    "base_hash": "af2786f64a83c092335d2f6c83fcea706581abda56a2ce8c95102ec6ec877a0b",
+    "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+    "data_hash": "36b120d654734287621e7f04cbf06adc6dec4435922ec9c57cb8106d73f2a9c4",
+    "data_status": "smoke",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "execution_tasks_per_family": 1,
+    "model": "outputs/qwen06_test_source",
+    "phase": "dev",
+    "prefix_batch": 1,
+    "prompt_version": "stage4_plan_v1",
+    "protocol": "target_alignment_v2",
+    "reliable_ops": [
+      "AC1",
+      "AX1",
+      "REV"
+    ],
+    "seed": 0,
+    "training_pool_sha256": "1b35fba36f244865e67f23e8a644fb631064a971668936ef0a0c45347dff1734"
+  },
+  "files": {
+    "atomic_plan.jsonl": "500d6de728760815abf11cb85d867dc1bc16d77a4d85c1daa552bbf6e00c23a2",
+    "binding.json": "d67764d6e772ffe836dddde4cfe676f8f043e6882b93afbe076012994f80b838",
+    "calibration.json": "d6fd6ba728807f9bc0d264673bfc1816e8d1630ec7c8cfd85b35329e69f850ce",
+    "calibration_rankings.jsonl": "30b8110ca0cdacf59bfb90b8ec1d7f52e04c1f26e4bbb19ccc3040dd40fd768c",
+    "control_training_pool.jsonl": "1b35fba36f244865e67f23e8a644fb631064a971668936ef0a0c45347dff1734",
+    "environment.json": "01bc6562831e9a18d22e80e46a1e7e73f58a43df617e45d266fad04e598fd043",
+    "equal_family_mixture.json": "2ad5123eb1a013bc1c12071c4946f83f1270e4886cab25d8815b1566c3429f7c",
+    "execution.jsonl": "89e5e3b2cc2e35132e5f5449eb4501f8434a12453521ce0df84e9ee396d03998",
+    "execution_summary.json": "94c2bd5737a78078a8e5df2b49deed4aaa166582c0c6356d291ea8e27cf82181",
+    "hitk.json": "af4ec4f4cc252470222cbe6969ceee79f41535cfbdbda41150aa92aa62063021",
+    "inference_budget.json": "de50039c1e5a2ec2e8e5c4625a9d1353c7c697e92f177e087955b25959fce447",
+    "own_target_advantage.csv": "55b366f24fce7781c89383a424e3c75cf95a6d61dc85242e59b25648f76d43d9",
+    "prefixes.jsonl": "d41f0a6bc8990fac49d8bb70b11fb400d9b9f4d82ec21f852549c1b819e6a385",
+    "rankings.jsonl": "346ec6774ba5b4671deafb7a178e534c620aeac7ef481193ae0d87c0535b0d44",
+    "reliable_ops_stratum.json": "b5a7c31aab9f6c345155448922168eb23e82db58e1ccc7dfe1542c99a6c4332c",
+    "summary.csv": "e686403aae7afc3b6aa64969ae0ee116b4b8c6faf6b003c27401ea85fb44635b",
+    "target_alignment.json": "814e3c1f3961ed95aa8f7768da41066eba9f6ca5b1084dba1d15bee632dec42f",
+    "task_metrics.csv": "58d233ed15798ef9e2a4cafd03a5692f9439e766d4c83af093ad9713b795770e",
+    "tokenizer.json": "35d43c8cd4e113ab4296b1471b0e0768671ffd1edbd11687092f1c8b400fbdfb"
+  }
+}

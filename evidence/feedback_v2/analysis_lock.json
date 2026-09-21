@@ -1,0 +1,19 @@
+{
+  "analysis_plan_sha256": "2b152eb241949cedcbe32c3fd5a683fa9caff80248d17edb1f65a3a96beebdb8",
+  "checkpoint_rule": "fixed final training checkpoint; final evaluation never retrains or selects checkpoints",
+  "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+  "dataset_hashes": [
+    "c37dd08b791730893d5112db0322dda96a3e76d275a16e1d086e464bffc868d9",
+    "ae2c2441bfa2f08151ef72ac3042575e11de1a895fd2cf1b46369181fea26b4b",
+    "461bfdff321eb66be901231ca115fae195214dbe6d24c1c146e6364ce5bf2db4",
+    "028e060d7ebf3de1513622847a9b76eeee0247166beab50cff91ed9f1cbe915c",
+    "175be1feac55477f613bfd6e6f1e0e283935568d740e5f1e058ccba9134ce8d6",
+    "71bbf1d4f979ece1ba1add3c739b8abf302d45e1abc2e08e73fc6627aea36213"
+  ],
+  "history_receipts": {
+    "q06": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+    "q8b": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6"
+  },
+  "protocol_sha256": "add0e9d733d0ff497e29c08c75305f98579bcb24cf8ae941941939ee7df393ca",
+  "schema": "iclr.analysis.lock.v1"
+}

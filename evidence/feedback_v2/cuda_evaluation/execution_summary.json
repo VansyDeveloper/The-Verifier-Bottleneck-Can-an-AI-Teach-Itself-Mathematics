@@ -1,0 +1,192 @@
+{
+  "atomic_plan": {
+    "accounting": {
+      "input_tokens": 1690,
+      "model_forward_passes": 25,
+      "prompt_sequences": 25
+    },
+    "by_operation": {
+      "AC1": 1.0,
+      "AX1": 0.0,
+      "REV": 0.0,
+      "SC2": 0.0,
+      "SH1": 0.0
+    },
+    "overall": 0.2
+  },
+  "atomic_split": "dev_atomic",
+  "cells": [
+    {
+      "exact_correct": 0,
+      "kind": "atomic",
+      "n": 5,
+      "operation": "AX1",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "atomic",
+      "n": 5,
+      "operation": "AC1",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "atomic",
+      "n": 5,
+      "operation": "REV",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "atomic",
+      "n": 5,
+      "operation": "SH1",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "atomic",
+      "n": 5,
+      "operation": "SC2",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "program",
+      "n": 6,
+      "operation": "multi",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "true_intermediate",
+      "n": 3,
+      "operation": "AC1",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "true_intermediate",
+      "n": 4,
+      "operation": "SH1",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "true_intermediate",
+      "n": 3,
+      "operation": "SC2",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "true_intermediate",
+      "n": 5,
+      "operation": "AX1",
+      "parsed": 0,
+      "semantic_correct": 0
+    },
+    {
+      "exact_correct": 0,
+      "kind": "true_intermediate",
+      "n": 1,
+      "operation": "REV",
+      "parsed": 0,
+      "semantic_correct": 0
+    }
+  ],
+  "competence": [
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "atomic",
+      "n": 5,
+      "operation": "SH1",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "atomic",
+      "n": 5,
+      "operation": "SC2",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "atomic",
+      "n": 5,
+      "operation": "REV",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "atomic",
+      "n": 5,
+      "operation": "AC1",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "atomic",
+      "n": 5,
+      "operation": "AX1",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "true_intermediate",
+      "n": 4,
+      "operation": "SH1",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "true_intermediate",
+      "n": 3,
+      "operation": "SC2",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "true_intermediate",
+      "n": 1,
+      "operation": "REV",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "true_intermediate",
+      "n": 3,
+      "operation": "AC1",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    },
+    {
+      "criterion": "at least 20 cases and semantic accuracy >= 0.90; fixed before composition training",
+      "kind": "true_intermediate",
+      "n": 5,
+      "operation": "AX1",
+      "semantic_accuracy": 0.0,
+      "status": "fail_or_insufficient"
+    }
+  ],
+  "interpretation": "A continuation cannot establish pre-composition competence; use the matching baseline report. Failure limits claims to program distributions.",
+  "phase": "dev"
+}

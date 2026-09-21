@@ -1,0 +1,14 @@
+{
+  "cuda": "12.4",
+  "git_commit": "d976b30a158e219fdd99a6f2d96ed5f4631b664d",
+  "git_status": " M README.md\n M iclr/calibration.py\n M iclr/upgrade.py\n M iclr/upgrade_audit.py\n M iclr/upgrade_data.py\n M iclr/upgrade_evaluate.py\n M plans/GOAL_TO_ICLR.md\n M tests/test_calibration.py\n M tests/test_upgrade_evaluate.py\n M tests/test_upgrade_queue.py\n?? evidence/feedback_v2/\n?? iclr/upgrade_analysis.py\n?? plans/FEEDBACK_21SEPT_RU.md\n?? plans/source/21sept_iclr_feedback/\n?? plans/upgrade_analysis_plan.json\n",
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "packages": {
+    "numpy": "2.4.6",
+    "peft": "0.19.1",
+    "scipy": "1.17.1",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.1"
+  },
+  "python": "3.11.13"
+}

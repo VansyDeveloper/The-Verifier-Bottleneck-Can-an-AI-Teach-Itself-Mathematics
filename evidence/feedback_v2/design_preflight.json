@@ -1,0 +1,691 @@
+{
+  "counts_only_no_model_scores": true,
+  "datasets": {
+    "mask1": {
+      "dev_A": {
+        "panels": 0,
+        "program_union": 82,
+        "reliable_ops_eligible": 51,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_B": {
+        "panels": 0,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "dev_C": {
+        "panels": 0,
+        "program_union": 82,
+        "reliable_ops_eligible": 47,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_D": {
+        "panels": 0,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "dev_panel_A": {
+        "panels": 50,
+        "program_union": 47,
+        "reliable_ops_eligible": 54,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_B": {
+        "panels": 50,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "dev_panel_C": {
+        "panels": 50,
+        "program_union": 47,
+        "reliable_ops_eligible": 52,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_D": {
+        "panels": 50,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_A": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 49,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_B": {
+        "panels": 0,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_C": {
+        "panels": 0,
+        "program_union": 79,
+        "reliable_ops_eligible": 42,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_D": {
+        "panels": 0,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_panel_A": {
+        "panels": 50,
+        "program_union": 44,
+        "reliable_ops_eligible": 41,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_B": {
+        "panels": 50,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_panel_C": {
+        "panels": 50,
+        "program_union": 47,
+        "reliable_ops_eligible": 43,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_D": {
+        "panels": 50,
+        "program_union": 15,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      }
+    },
+    "mask2": {
+      "dev_A": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 41,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_B": {
+        "panels": 0,
+        "program_union": 23,
+        "reliable_ops_eligible": 38,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_C": {
+        "panels": 0,
+        "program_union": 79,
+        "reliable_ops_eligible": 45,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_D": {
+        "panels": 0,
+        "program_union": 23,
+        "reliable_ops_eligible": 37,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_A": {
+        "panels": 50,
+        "program_union": 43,
+        "reliable_ops_eligible": 35,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_B": {
+        "panels": 50,
+        "program_union": 23,
+        "reliable_ops_eligible": 40,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_C": {
+        "panels": 50,
+        "program_union": 43,
+        "reliable_ops_eligible": 39,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_D": {
+        "panels": 50,
+        "program_union": 23,
+        "reliable_ops_eligible": 36,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_A": {
+        "panels": 0,
+        "program_union": 81,
+        "reliable_ops_eligible": 36,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_B": {
+        "panels": 0,
+        "program_union": 23,
+        "reliable_ops_eligible": 41,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_C": {
+        "panels": 0,
+        "program_union": 80,
+        "reliable_ops_eligible": 42,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_D": {
+        "panels": 0,
+        "program_union": 23,
+        "reliable_ops_eligible": 35,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_A": {
+        "panels": 50,
+        "program_union": 43,
+        "reliable_ops_eligible": 47,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_B": {
+        "panels": 50,
+        "program_union": 23,
+        "reliable_ops_eligible": 34,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_C": {
+        "panels": 50,
+        "program_union": 43,
+        "reliable_ops_eligible": 35,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_D": {
+        "panels": 50,
+        "program_union": 23,
+        "reliable_ops_eligible": 28,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      }
+    },
+    "mask3": {
+      "dev_A": {
+        "panels": 0,
+        "program_union": 83,
+        "reliable_ops_eligible": 49,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_B": {
+        "panels": 0,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "dev_C": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 53,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_D": {
+        "panels": 0,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "dev_panel_A": {
+        "panels": 50,
+        "program_union": 45,
+        "reliable_ops_eligible": 55,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_B": {
+        "panels": 50,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "dev_panel_C": {
+        "panels": 50,
+        "program_union": 45,
+        "reliable_ops_eligible": 41,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_D": {
+        "panels": 50,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_A": {
+        "panels": 0,
+        "program_union": 83,
+        "reliable_ops_eligible": 70,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_B": {
+        "panels": 0,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_C": {
+        "panels": 0,
+        "program_union": 83,
+        "reliable_ops_eligible": 46,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_D": {
+        "panels": 0,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_panel_A": {
+        "panels": 50,
+        "program_union": 45,
+        "reliable_ops_eligible": 53,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_B": {
+        "panels": 50,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      },
+      "final_panel_C": {
+        "panels": 50,
+        "program_union": 45,
+        "reliable_ops_eligible": 52,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_D": {
+        "panels": 50,
+        "program_union": 18,
+        "reliable_ops_eligible": 0,
+        "reliable_ops_status": "empty",
+        "tasks": 200
+      }
+    },
+    "mask4": {
+      "dev_A": {
+        "panels": 0,
+        "program_union": 79,
+        "reliable_ops_eligible": 42,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_B": {
+        "panels": 0,
+        "program_union": 21,
+        "reliable_ops_eligible": 38,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_C": {
+        "panels": 0,
+        "program_union": 81,
+        "reliable_ops_eligible": 40,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_D": {
+        "panels": 0,
+        "program_union": 21,
+        "reliable_ops_eligible": 38,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_A": {
+        "panels": 50,
+        "program_union": 43,
+        "reliable_ops_eligible": 37,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_B": {
+        "panels": 50,
+        "program_union": 21,
+        "reliable_ops_eligible": 44,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_C": {
+        "panels": 50,
+        "program_union": 43,
+        "reliable_ops_eligible": 29,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_D": {
+        "panels": 50,
+        "program_union": 21,
+        "reliable_ops_eligible": 46,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_A": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 42,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_B": {
+        "panels": 0,
+        "program_union": 21,
+        "reliable_ops_eligible": 46,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_C": {
+        "panels": 0,
+        "program_union": 82,
+        "reliable_ops_eligible": 33,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_D": {
+        "panels": 0,
+        "program_union": 21,
+        "reliable_ops_eligible": 35,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_A": {
+        "panels": 50,
+        "program_union": 43,
+        "reliable_ops_eligible": 34,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_B": {
+        "panels": 50,
+        "program_union": 21,
+        "reliable_ops_eligible": 33,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_C": {
+        "panels": 50,
+        "program_union": 42,
+        "reliable_ops_eligible": 41,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_D": {
+        "panels": 50,
+        "program_union": 21,
+        "reliable_ops_eligible": 45,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      }
+    },
+    "original": {
+      "dev_A": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 38,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_B": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 45,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_C": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 40,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_D": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 46,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_A": {
+        "panels": 50,
+        "program_union": 45,
+        "reliable_ops_eligible": 41,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_B": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 43,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_C": {
+        "panels": 50,
+        "program_union": 46,
+        "reliable_ops_eligible": 33,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_D": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 37,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_A": {
+        "panels": 0,
+        "program_union": 70,
+        "reliable_ops_eligible": 32,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_B": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 39,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_C": {
+        "panels": 0,
+        "program_union": 76,
+        "reliable_ops_eligible": 35,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_D": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 41,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_A": {
+        "panels": 50,
+        "program_union": 46,
+        "reliable_ops_eligible": 32,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_B": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 44,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_C": {
+        "panels": 50,
+        "program_union": 44,
+        "reliable_ops_eligible": 26,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_D": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 52,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      }
+    },
+    "witness": {
+      "dev_A": {
+        "panels": 0,
+        "program_union": 79,
+        "reliable_ops_eligible": 33,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_B": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 44,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_C": {
+        "panels": 0,
+        "program_union": 77,
+        "reliable_ops_eligible": 31,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_D": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 30,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_A": {
+        "panels": 50,
+        "program_union": 45,
+        "reliable_ops_eligible": 37,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_B": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 34,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_C": {
+        "panels": 50,
+        "program_union": 46,
+        "reliable_ops_eligible": 35,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "dev_panel_D": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 47,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_A": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 29,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_B": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 43,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_C": {
+        "panels": 0,
+        "program_union": 78,
+        "reliable_ops_eligible": 27,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_D": {
+        "panels": 0,
+        "program_union": 19,
+        "reliable_ops_eligible": 42,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_A": {
+        "panels": 50,
+        "program_union": 46,
+        "reliable_ops_eligible": 33,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_B": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 42,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_C": {
+        "panels": 50,
+        "program_union": 46,
+        "reliable_ops_eligible": 34,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      },
+      "final_panel_D": {
+        "panels": 50,
+        "program_union": 19,
+        "reliable_ops_eligible": 32,
+        "reliable_ops_status": "nonempty",
+        "tasks": 200
+      }
+    }
+  },
+  "protocol_sha256": "add0e9d733d0ff497e29c08c75305f98579bcb24cf8ae941941939ee7df393ca",
+  "status": "PASS"
+}

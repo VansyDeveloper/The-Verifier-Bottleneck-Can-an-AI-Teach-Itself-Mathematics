@@ -1,0 +1,2688 @@
+{
+  "datasets": {
+    "mask1": {
+      "counts": {
+        "calibration_A.jsonl": 200,
+        "dev_A.jsonl": 200,
+        "dev_B.jsonl": 200,
+        "dev_C.jsonl": 200,
+        "dev_D.jsonl": 200,
+        "dev_atomic.jsonl": 1000,
+        "dev_panel_A.jsonl": 200,
+        "dev_panel_B.jsonl": 200,
+        "dev_panel_C.jsonl": 200,
+        "dev_panel_D.jsonl": 200,
+        "final_A.jsonl": 200,
+        "final_B.jsonl": 200,
+        "final_C.jsonl": 200,
+        "final_D.jsonl": 200,
+        "final_atomic.jsonl": 1000,
+        "final_panel_A.jsonl": 200,
+        "final_panel_B.jsonl": 200,
+        "final_panel_C.jsonl": 200,
+        "final_panel_D.jsonl": 200,
+        "programs_checked": 1060000,
+        "reused_atomic_train": 5000,
+        "train.jsonl": 5000
+      },
+      "new_states": 39052,
+      "operation_counts_by_shape": {
+        "13:2": {
+          "AC1": 10,
+          "AX1": 10,
+          "REV": 9,
+          "SC2": 9,
+          "SH1": 10
+        },
+        "13:3": {
+          "AC1": 43,
+          "AX1": 44,
+          "REV": 43,
+          "SC2": 43,
+          "SH1": 43
+        },
+        "13:4": {
+          "AC1": 156,
+          "AX1": 156,
+          "REV": 155,
+          "SC2": 155,
+          "SH1": 155
+        },
+        "19:2": {
+          "AC1": 22,
+          "AX1": 22,
+          "REV": 21,
+          "SC2": 21,
+          "SH1": 22
+        },
+        "19:3": {
+          "AC1": 93,
+          "AX1": 93,
+          "REV": 92,
+          "SC2": 92,
+          "SH1": 92
+        },
+        "19:4": {
+          "AC1": 401,
+          "AX1": 401,
+          "REV": 401,
+          "SC2": 400,
+          "SH1": 401
+        },
+        "23:2": {
+          "AC1": 29,
+          "AX1": 28,
+          "REV": 28,
+          "SC2": 28,
+          "SH1": 28
+        },
+        "23:3": {
+          "AC1": 135,
+          "AX1": 135,
+          "REV": 135,
+          "SC2": 135,
+          "SH1": 135
+        },
+        "23:4": {
+          "AC1": 646,
+          "AX1": 647,
+          "REV": 646,
+          "SC2": 646,
+          "SH1": 646
+        },
+        "29:2": {
+          "AC1": 40,
+          "AX1": 41,
+          "REV": 40,
+          "SC2": 40,
+          "SH1": 40
+        },
+        "29:3": {
+          "AC1": 215,
+          "AX1": 215,
+          "REV": 215,
+          "SC2": 214,
+          "SH1": 215
+        },
+        "29:4": {
+          "AC1": 1154,
+          "AX1": 1154,
+          "REV": 1154,
+          "SC2": 1153,
+          "SH1": 1154
+        },
+        "5:4": {
+          "AC1": 14,
+          "AX1": 15,
+          "REV": 14,
+          "SC2": 14,
+          "SH1": 15
+        },
+        "7:3": {
+          "AC1": 11,
+          "AX1": 11,
+          "REV": 11,
+          "SC2": 10,
+          "SH1": 11
+        },
+        "7:4": {
+          "AC1": 34,
+          "AX1": 34,
+          "REV": 34,
+          "SC2": 33,
+          "SH1": 33
+        }
+      },
+      "panels": 400,
+      "solution_support": {
+        "calibration_A.jsonl": {
+          "correct_program_union": 83,
+          "tasks": 200,
+          "unique_solutions": 158
+        },
+        "dev_A.jsonl": {
+          "correct_program_union": 82,
+          "tasks": 200,
+          "unique_solutions": 150
+        },
+        "dev_B.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_C.jsonl": {
+          "correct_program_union": 82,
+          "tasks": 200,
+          "unique_solutions": 163
+        },
+        "dev_D.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_A.jsonl": {
+          "correct_program_union": 47,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_B.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_C.jsonl": {
+          "correct_program_union": 47,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_D.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_A.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 158
+        },
+        "final_B.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_C.jsonl": {
+          "correct_program_union": 79,
+          "tasks": 200,
+          "unique_solutions": 154
+        },
+        "final_D.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_A.jsonl": {
+          "correct_program_union": 44,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_B.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_C.jsonl": {
+          "correct_program_union": 47,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_D.jsonl": {
+          "correct_program_union": 15,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "train.jsonl": {
+          "correct_program_union": 81,
+          "tasks": 5000,
+          "unique_solutions": 3000
+        }
+      },
+      "training_distribution": {
+        "exposures": 5000,
+        "pair_count_square": 5285920,
+        "pairs": {
+          "AC1>AC1": 304,
+          "AC1>AX1": 239,
+          "AC1>REV": 487,
+          "AC1>SC2": 477,
+          "AC1>SH1": 345,
+          "AX1>AC1": 242,
+          "AX1>AX1": 242,
+          "AX1>REV": 514,
+          "AX1>SC2": 824,
+          "AX1>SH1": 391,
+          "REV>AC1": 587,
+          "REV>AX1": 459,
+          "REV>SC2": 660,
+          "REV>SH1": 425,
+          "SC2>AC1": 641,
+          "SC2>AX1": 763,
+          "SC2>SH1": 461,
+          "SH1>AC1": 387,
+          "SH1>AX1": 442,
+          "SH1>REV": 580,
+          "SH1>SH1": 530
+        },
+        "positions": {
+          "0": {
+            "AC1": 842,
+            "AX1": 861,
+            "REV": 1417,
+            "SC2": 1032,
+            "SH1": 848
+          },
+          "1": {
+            "AC1": 1010,
+            "AX1": 1352,
+            "REV": 714,
+            "SC2": 833,
+            "SH1": 1091
+          },
+          "2": {
+            "AC1": 1151,
+            "AX1": 793,
+            "REV": 867,
+            "SC2": 1128,
+            "SH1": 1061
+          }
+        },
+        "program_counts": {
+          "AC1 AC1 AC1": 6,
+          "AC1 AC1 REV": 61,
+          "AC1 AC1 SC2": 62,
+          "AC1 AC1 SH1": 6,
+          "AC1 AX1 AC1": 1,
+          "AC1 AX1 REV": 60,
+          "AC1 AX1 SC2": 57,
+          "AC1 REV AC1": 60,
+          "AC1 REV AX1": 55,
+          "AC1 REV SC2": 65,
+          "AC1 REV SH1": 61,
+          "AC1 SC2 AC1": 61,
+          "AC1 SC2 AX1": 62,
+          "AC1 SC2 SH1": 60,
+          "AC1 SH1 AC1": 51,
+          "AC1 SH1 REV": 60,
+          "AC1 SH1 SH1": 54,
+          "AX1 AC1 REV": 60,
+          "AX1 AC1 SC2": 60,
+          "AX1 AC1 SH1": 1,
+          "AX1 AX1 AX1": 6,
+          "AX1 AX1 REV": 52,
+          "AX1 AX1 SC2": 62,
+          "AX1 AX1 SH1": 37,
+          "AX1 REV AC1": 53,
+          "AX1 REV AX1": 51,
+          "AX1 REV SC2": 62,
+          "AX1 REV SH1": 59,
+          "AX1 SC2 AC1": 61,
+          "AX1 SC2 AX1": 62,
+          "AX1 SC2 SH1": 61,
+          "AX1 SH1 AC1": 3,
+          "AX1 SH1 AX1": 52,
+          "AX1 SH1 REV": 62,
+          "AX1 SH1 SH1": 57,
+          "REV AC1 AC1": 59,
+          "REV AC1 AX1": 60,
+          "REV AC1 REV": 62,
+          "REV AC1 SC2": 172,
+          "REV AC1 SH1": 59,
+          "REV AX1 AC1": 59,
+          "REV AX1 AX1": 53,
+          "REV AX1 REV": 58,
+          "REV AX1 SC2": 63,
+          "REV AX1 SH1": 61,
+          "REV SC2 AC1": 336,
+          "REV SC2 AX1": 62,
+          "REV SC2 SH1": 68,
+          "REV SH1 AC1": 59,
+          "REV SH1 AX1": 61,
+          "REV SH1 REV": 63,
+          "REV SH1 SH1": 62,
+          "SC2 AC1 AC1": 61,
+          "SC2 AC1 AX1": 61,
+          "SC2 AC1 SH1": 61,
+          "SC2 AX1 AC1": 61,
+          "SC2 AX1 REV": 59,
+          "SC2 AX1 SC2": 395,
+          "SC2 AX1 SH1": 62,
+          "SC2 SH1 AC1": 60,
+          "SC2 SH1 AX1": 64,
+          "SC2 SH1 REV": 87,
+          "SC2 SH1 SH1": 61,
+          "SH1 AC1 AC1": 43,
+          "SH1 AC1 REV": 63,
+          "SH1 AC1 SH1": 53,
+          "SH1 AX1 AX1": 26,
+          "SH1 AX1 REV": 60,
+          "SH1 AX1 SC2": 63,
+          "SH1 AX1 SH1": 57,
+          "SH1 REV AC1": 62,
+          "SH1 REV AX1": 59,
+          "SH1 REV SC2": 67,
+          "SH1 REV SH1": 60,
+          "SH1 SH1 AC1": 55,
+          "SH1 SH1 AX1": 59,
+          "SH1 SH1 REV": 60,
+          "SH1 SH1 SH1": 61
+        },
+        "program_entropy": 4.140444116626498,
+        "program_union": 78,
+        "unigrams": {
+          "AC1": 3003,
+          "AX1": 3006,
+          "REV": 2998,
+          "SC2": 2993,
+          "SH1": 3000
+        }
+      },
+      "training_strata": {
+        "13:2:1": 10,
+        "13:2:2": 3,
+        "13:2:3": 3,
+        "13:3:1": 43,
+        "13:3:2": 14,
+        "13:3:3": 15,
+        "13:4:1": 155,
+        "13:4:2": 52,
+        "13:4:3": 52,
+        "19:2:1": 22,
+        "19:2:2": 7,
+        "19:2:3": 7,
+        "19:3:1": 92,
+        "19:3:2": 31,
+        "19:3:3": 31,
+        "19:4:1": 401,
+        "19:4:2": 134,
+        "19:4:3": 133,
+        "23:2:1": 28,
+        "23:2:2": 9,
+        "23:2:3": 10,
+        "23:3:1": 135,
+        "23:3:2": 45,
+        "23:3:3": 45,
+        "23:4:1": 646,
+        "23:4:2": 215,
+        "23:4:3": 216,
+        "29:2:1": 40,
+        "29:2:2": 13,
+        "29:2:3": 14,
+        "29:3:1": 215,
+        "29:3:2": 72,
+        "29:3:3": 71,
+        "29:4:1": 1154,
+        "29:4:2": 385,
+        "29:4:3": 384,
+        "5:4:1": 14,
+        "5:4:2": 5,
+        "5:4:3": 5,
+        "7:3:1": 11,
+        "7:3:2": 4,
+        "7:3:3": 3,
+        "7:4:1": 34,
+        "7:4:2": 11,
+        "7:4:3": 11
+      }
+    },
+    "mask2": {
+      "counts": {
+        "calibration_A.jsonl": 200,
+        "dev_A.jsonl": 200,
+        "dev_B.jsonl": 200,
+        "dev_C.jsonl": 200,
+        "dev_D.jsonl": 200,
+        "dev_atomic.jsonl": 1000,
+        "dev_panel_A.jsonl": 200,
+        "dev_panel_B.jsonl": 200,
+        "dev_panel_C.jsonl": 200,
+        "dev_panel_D.jsonl": 200,
+        "final_A.jsonl": 200,
+        "final_B.jsonl": 200,
+        "final_C.jsonl": 200,
+        "final_D.jsonl": 200,
+        "final_atomic.jsonl": 1000,
+        "final_panel_A.jsonl": 200,
+        "final_panel_B.jsonl": 200,
+        "final_panel_C.jsonl": 200,
+        "final_panel_D.jsonl": 200,
+        "programs_checked": 1060000,
+        "reused_atomic_train": 5000,
+        "train.jsonl": 5000
+      },
+      "new_states": 39136,
+      "operation_counts_by_shape": {
+        "13:2": {
+          "AC1": 10,
+          "AX1": 9,
+          "REV": 9,
+          "SC2": 10,
+          "SH1": 10
+        },
+        "13:3": {
+          "AC1": 43,
+          "AX1": 43,
+          "REV": 43,
+          "SC2": 43,
+          "SH1": 44
+        },
+        "13:4": {
+          "AC1": 156,
+          "AX1": 155,
+          "REV": 155,
+          "SC2": 156,
+          "SH1": 155
+        },
+        "19:2": {
+          "AC1": 22,
+          "AX1": 21,
+          "REV": 21,
+          "SC2": 22,
+          "SH1": 22
+        },
+        "19:3": {
+          "AC1": 93,
+          "AX1": 92,
+          "REV": 92,
+          "SC2": 93,
+          "SH1": 92
+        },
+        "19:4": {
+          "AC1": 401,
+          "AX1": 401,
+          "REV": 400,
+          "SC2": 401,
+          "SH1": 401
+        },
+        "23:2": {
+          "AC1": 29,
+          "AX1": 28,
+          "REV": 28,
+          "SC2": 28,
+          "SH1": 28
+        },
+        "23:3": {
+          "AC1": 135,
+          "AX1": 135,
+          "REV": 135,
+          "SC2": 135,
+          "SH1": 135
+        },
+        "23:4": {
+          "AC1": 646,
+          "AX1": 646,
+          "REV": 646,
+          "SC2": 647,
+          "SH1": 646
+        },
+        "29:2": {
+          "AC1": 40,
+          "AX1": 40,
+          "REV": 40,
+          "SC2": 40,
+          "SH1": 41
+        },
+        "29:3": {
+          "AC1": 215,
+          "AX1": 215,
+          "REV": 214,
+          "SC2": 215,
+          "SH1": 215
+        },
+        "29:4": {
+          "AC1": 1154,
+          "AX1": 1153,
+          "REV": 1154,
+          "SC2": 1154,
+          "SH1": 1154
+        },
+        "5:4": {
+          "AC1": 15,
+          "AX1": 14,
+          "REV": 14,
+          "SC2": 15,
+          "SH1": 14
+        },
+        "7:3": {
+          "AC1": 11,
+          "AX1": 11,
+          "REV": 11,
+          "SC2": 10,
+          "SH1": 11
+        },
+        "7:4": {
+          "AC1": 34,
+          "AX1": 34,
+          "REV": 33,
+          "SC2": 34,
+          "SH1": 33
+        }
+      },
+      "panels": 400,
+      "solution_support": {
+        "calibration_A.jsonl": {
+          "correct_program_union": 79,
+          "tasks": 200,
+          "unique_solutions": 158
+        },
+        "dev_A.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 149
+        },
+        "dev_B.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_C.jsonl": {
+          "correct_program_union": 79,
+          "tasks": 200,
+          "unique_solutions": 151
+        },
+        "dev_D.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_A.jsonl": {
+          "correct_program_union": 43,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_B.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_C.jsonl": {
+          "correct_program_union": 43,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_D.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_A.jsonl": {
+          "correct_program_union": 81,
+          "tasks": 200,
+          "unique_solutions": 151
+        },
+        "final_B.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 199
+        },
+        "final_C.jsonl": {
+          "correct_program_union": 80,
+          "tasks": 200,
+          "unique_solutions": 161
+        },
+        "final_D.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_A.jsonl": {
+          "correct_program_union": 43,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_B.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_C.jsonl": {
+          "correct_program_union": 43,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_D.jsonl": {
+          "correct_program_union": 23,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "train.jsonl": {
+          "correct_program_union": 81,
+          "tasks": 5000,
+          "unique_solutions": 3000
+        }
+      },
+      "training_distribution": {
+        "exposures": 5000,
+        "pair_count_square": 5129518,
+        "pairs": {
+          "AC1>AC1": 276,
+          "AC1>AX1": 382,
+          "AC1>REV": 469,
+          "AC1>SC2": 243,
+          "AC1>SH1": 466,
+          "AX1>AC1": 346,
+          "AX1>AX1": 488,
+          "AX1>SC2": 613,
+          "AX1>SH1": 523,
+          "REV>AC1": 606,
+          "REV>AX1": 401,
+          "REV>SC2": 659,
+          "REV>SH1": 660,
+          "SC2>AC1": 302,
+          "SC2>AX1": 398,
+          "SC2>REV": 726,
+          "SC2>SC2": 435,
+          "SC2>SH1": 399,
+          "SH1>AC1": 644,
+          "SH1>AX1": 453,
+          "SH1>SH1": 511
+        },
+        "positions": {
+          "0": {
+            "AC1": 830,
+            "AX1": 875,
+            "REV": 1800,
+            "SC2": 1053,
+            "SH1": 442
+          },
+          "1": {
+            "AC1": 1006,
+            "AX1": 1095,
+            "REV": 526,
+            "SC2": 1207,
+            "SH1": 1166
+          },
+          "2": {
+            "AC1": 1168,
+            "AX1": 1027,
+            "REV": 669,
+            "SC2": 743,
+            "SH1": 1393
+          }
+        },
+        "program_counts": {
+          "AC1 AC1 AC1": 54,
+          "AC1 AC1 AX1": 21,
+          "AC1 AC1 REV": 65,
+          "AC1 AC1 SC2": 1,
+          "AC1 AC1 SH1": 9,
+          "AC1 AX1 AC1": 42,
+          "AC1 AX1 AX1": 56,
+          "AC1 AX1 SC2": 52,
+          "AC1 AX1 SH1": 60,
+          "AC1 REV AC1": 67,
+          "AC1 REV AX1": 64,
+          "AC1 REV SC2": 66,
+          "AC1 REV SH1": 67,
+          "AC1 SC2 AC1": 1,
+          "AC1 SC2 AX1": 11,
+          "AC1 SC2 REV": 71,
+          "AC1 SC2 SC2": 1,
+          "AC1 SC2 SH1": 31,
+          "AC1 SH1 AC1": 35,
+          "AC1 SH1 SH1": 56,
+          "AX1 AC1 AC1": 4,
+          "AX1 AC1 AX1": 30,
+          "AX1 AC1 SC2": 44,
+          "AX1 AC1 SH1": 57,
+          "AX1 AX1 AC1": 46,
+          "AX1 AX1 AX1": 65,
+          "AX1 AX1 SC2": 61,
+          "AX1 AX1 SH1": 65,
+          "AX1 SC2 AC1": 44,
+          "AX1 SC2 AX1": 79,
+          "AX1 SC2 REV": 67,
+          "AX1 SC2 SC2": 59,
+          "AX1 SC2 SH1": 64,
+          "AX1 SH1 AC1": 59,
+          "AX1 SH1 AX1": 64,
+          "AX1 SH1 SH1": 67,
+          "REV AC1 AC1": 64,
+          "REV AC1 AX1": 65,
+          "REV AC1 REV": 72,
+          "REV AC1 SC2": 75,
+          "REV AC1 SH1": 197,
+          "REV AX1 AC1": 65,
+          "REV AX1 AX1": 65,
+          "REV AX1 SC2": 63,
+          "REV AX1 SH1": 81,
+          "REV SC2 AC1": 66,
+          "REV SC2 AX1": 67,
+          "REV SC2 REV": 261,
+          "REV SC2 SC2": 64,
+          "REV SC2 SH1": 69,
+          "REV SH1 AC1": 391,
+          "REV SH1 AX1": 66,
+          "REV SH1 SH1": 69,
+          "SC2 AC1 AC1": 1,
+          "SC2 AC1 AX1": 56,
+          "SC2 AC1 REV": 68,
+          "SC2 AC1 SC2": 8,
+          "SC2 AC1 SH1": 55,
+          "SC2 AX1 AC1": 58,
+          "SC2 AX1 SC2": 61,
+          "SC2 AX1 SH1": 62,
+          "SC2 REV AC1": 66,
+          "SC2 REV AX1": 63,
+          "SC2 REV SC2": 66,
+          "SC2 REV SH1": 67,
+          "SC2 SC2 AC1": 3,
+          "SC2 SC2 AX1": 60,
+          "SC2 SC2 REV": 65,
+          "SC2 SC2 SC2": 59,
+          "SC2 SC2 SH1": 65,
+          "SC2 SH1 AC1": 43,
+          "SC2 SH1 AX1": 64,
+          "SC2 SH1 SH1": 63,
+          "SH1 AC1 AC1": 3,
+          "SH1 AC1 SH1": 57,
+          "SH1 AX1 AX1": 65,
+          "SH1 AX1 SC2": 63,
+          "SH1 AX1 SH1": 65,
+          "SH1 SH1 AC1": 56,
+          "SH1 SH1 AX1": 66,
+          "SH1 SH1 SH1": 67
+        },
+        "program_entropy": 4.151467178905314,
+        "program_union": 81,
+        "unigrams": {
+          "AC1": 3004,
+          "AX1": 2997,
+          "REV": 2995,
+          "SC2": 3003,
+          "SH1": 3001
+        }
+      },
+      "training_strata": {
+        "13:2:1": 10,
+        "13:2:2": 3,
+        "13:2:3": 3,
+        "13:3:1": 43,
+        "13:3:2": 14,
+        "13:3:3": 15,
+        "13:4:1": 155,
+        "13:4:2": 52,
+        "13:4:3": 52,
+        "19:2:1": 22,
+        "19:2:2": 7,
+        "19:2:3": 7,
+        "19:3:1": 92,
+        "19:3:2": 31,
+        "19:3:3": 31,
+        "19:4:1": 401,
+        "19:4:2": 134,
+        "19:4:3": 133,
+        "23:2:1": 28,
+        "23:2:2": 9,
+        "23:2:3": 10,
+        "23:3:1": 135,
+        "23:3:2": 45,
+        "23:3:3": 45,
+        "23:4:1": 646,
+        "23:4:2": 215,
+        "23:4:3": 216,
+        "29:2:1": 40,
+        "29:2:2": 13,
+        "29:2:3": 14,
+        "29:3:1": 215,
+        "29:3:2": 72,
+        "29:3:3": 71,
+        "29:4:1": 1154,
+        "29:4:2": 385,
+        "29:4:3": 384,
+        "5:4:1": 14,
+        "5:4:2": 5,
+        "5:4:3": 5,
+        "7:3:1": 11,
+        "7:3:2": 4,
+        "7:3:3": 3,
+        "7:4:1": 34,
+        "7:4:2": 11,
+        "7:4:3": 11
+      }
+    },
+    "mask3": {
+      "counts": {
+        "calibration_A.jsonl": 200,
+        "dev_A.jsonl": 200,
+        "dev_B.jsonl": 200,
+        "dev_C.jsonl": 200,
+        "dev_D.jsonl": 200,
+        "dev_atomic.jsonl": 1000,
+        "dev_panel_A.jsonl": 200,
+        "dev_panel_B.jsonl": 200,
+        "dev_panel_C.jsonl": 200,
+        "dev_panel_D.jsonl": 200,
+        "final_A.jsonl": 200,
+        "final_B.jsonl": 200,
+        "final_C.jsonl": 200,
+        "final_D.jsonl": 200,
+        "final_atomic.jsonl": 1000,
+        "final_panel_A.jsonl": 200,
+        "final_panel_B.jsonl": 200,
+        "final_panel_C.jsonl": 200,
+        "final_panel_D.jsonl": 200,
+        "programs_checked": 1060000,
+        "reused_atomic_train": 5000,
+        "train.jsonl": 5000
+      },
+      "new_states": 39256,
+      "operation_counts_by_shape": {
+        "13:2": {
+          "AC1": 10,
+          "AX1": 9,
+          "REV": 9,
+          "SC2": 10,
+          "SH1": 10
+        },
+        "13:3": {
+          "AC1": 43,
+          "AX1": 43,
+          "REV": 43,
+          "SC2": 43,
+          "SH1": 44
+        },
+        "13:4": {
+          "AC1": 156,
+          "AX1": 156,
+          "REV": 155,
+          "SC2": 155,
+          "SH1": 155
+        },
+        "19:2": {
+          "AC1": 21,
+          "AX1": 22,
+          "REV": 21,
+          "SC2": 22,
+          "SH1": 22
+        },
+        "19:3": {
+          "AC1": 93,
+          "AX1": 93,
+          "REV": 92,
+          "SC2": 92,
+          "SH1": 92
+        },
+        "19:4": {
+          "AC1": 401,
+          "AX1": 401,
+          "REV": 400,
+          "SC2": 401,
+          "SH1": 401
+        },
+        "23:2": {
+          "AC1": 28,
+          "AX1": 29,
+          "REV": 28,
+          "SC2": 28,
+          "SH1": 28
+        },
+        "23:3": {
+          "AC1": 135,
+          "AX1": 135,
+          "REV": 135,
+          "SC2": 135,
+          "SH1": 135
+        },
+        "23:4": {
+          "AC1": 646,
+          "AX1": 647,
+          "REV": 646,
+          "SC2": 646,
+          "SH1": 646
+        },
+        "29:2": {
+          "AC1": 41,
+          "AX1": 40,
+          "REV": 40,
+          "SC2": 40,
+          "SH1": 40
+        },
+        "29:3": {
+          "AC1": 215,
+          "AX1": 215,
+          "REV": 214,
+          "SC2": 215,
+          "SH1": 215
+        },
+        "29:4": {
+          "AC1": 1154,
+          "AX1": 1154,
+          "REV": 1154,
+          "SC2": 1154,
+          "SH1": 1153
+        },
+        "5:4": {
+          "AC1": 15,
+          "AX1": 15,
+          "REV": 14,
+          "SC2": 14,
+          "SH1": 14
+        },
+        "7:3": {
+          "AC1": 11,
+          "AX1": 11,
+          "REV": 10,
+          "SC2": 11,
+          "SH1": 11
+        },
+        "7:4": {
+          "AC1": 34,
+          "AX1": 34,
+          "REV": 33,
+          "SC2": 34,
+          "SH1": 33
+        }
+      },
+      "panels": 400,
+      "solution_support": {
+        "calibration_A.jsonl": {
+          "correct_program_union": 81,
+          "tasks": 200,
+          "unique_solutions": 148
+        },
+        "dev_A.jsonl": {
+          "correct_program_union": 83,
+          "tasks": 200,
+          "unique_solutions": 153
+        },
+        "dev_B.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_C.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 149
+        },
+        "dev_D.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_A.jsonl": {
+          "correct_program_union": 45,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_B.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_C.jsonl": {
+          "correct_program_union": 45,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_D.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_A.jsonl": {
+          "correct_program_union": 83,
+          "tasks": 200,
+          "unique_solutions": 147
+        },
+        "final_B.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 199
+        },
+        "final_C.jsonl": {
+          "correct_program_union": 83,
+          "tasks": 200,
+          "unique_solutions": 151
+        },
+        "final_D.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_A.jsonl": {
+          "correct_program_union": 45,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_B.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_C.jsonl": {
+          "correct_program_union": 45,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_D.jsonl": {
+          "correct_program_union": 18,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "train.jsonl": {
+          "correct_program_union": 81,
+          "tasks": 5000,
+          "unique_solutions": 3000
+        }
+      },
+      "training_distribution": {
+        "exposures": 5000,
+        "pair_count_square": 5243904,
+        "pairs": {
+          "AC1>AC1": 374,
+          "AC1>AX1": 239,
+          "AC1>REV": 680,
+          "AC1>SC2": 544,
+          "AC1>SH1": 409,
+          "AX1>AC1": 231,
+          "AX1>AX1": 341,
+          "AX1>REV": 737,
+          "AX1>SC2": 388,
+          "AX1>SH1": 545,
+          "REV>AC1": 454,
+          "REV>AX1": 824,
+          "SC2>AC1": 459,
+          "SC2>AX1": 319,
+          "SC2>REV": 666,
+          "SC2>SC2": 406,
+          "SC2>SH1": 488,
+          "SH1>AC1": 410,
+          "SH1>AX1": 422,
+          "SH1>SC2": 484,
+          "SH1>SH1": 580
+        },
+        "positions": {
+          "0": {
+            "AC1": 1075,
+            "AX1": 859,
+            "REV": 911,
+            "SC2": 1178,
+            "SH1": 977
+          },
+          "1": {
+            "AC1": 1171,
+            "AX1": 1383,
+            "REV": 367,
+            "SC2": 1160,
+            "SH1": 919
+          },
+          "2": {
+            "AC1": 757,
+            "AX1": 762,
+            "REV": 1716,
+            "SC2": 662,
+            "SH1": 1103
+          }
+        },
+        "program_counts": {
+          "AC1 AC1 AC1": 46,
+          "AC1 AC1 REV": 63,
+          "AC1 AC1 SC2": 37,
+          "AC1 AC1 SH1": 59,
+          "AC1 AX1 AC1": 8,
+          "AC1 AX1 AX1": 5,
+          "AC1 AX1 REV": 64,
+          "AC1 AX1 SH1": 59,
+          "AC1 REV AC1": 60,
+          "AC1 REV AX1": 60,
+          "AC1 SC2 AC1": 2,
+          "AC1 SC2 AX1": 3,
+          "AC1 SC2 REV": 352,
+          "AC1 SC2 SC2": 22,
+          "AC1 SC2 SH1": 58,
+          "AC1 SH1 AC1": 60,
+          "AC1 SH1 SC2": 57,
+          "AC1 SH1 SH1": 60,
+          "AX1 AC1 AC1": 1,
+          "AX1 AC1 AX1": 1,
+          "AX1 AC1 REV": 67,
+          "AX1 AC1 SH1": 57,
+          "AX1 AX1 AX1": 34,
+          "AX1 AX1 REV": 60,
+          "AX1 AX1 SC2": 27,
+          "AX1 AX1 SH1": 61,
+          "AX1 REV AC1": 61,
+          "AX1 REV AX1": 60,
+          "AX1 SC2 AX1": 19,
+          "AX1 SC2 REV": 61,
+          "AX1 SC2 SC2": 49,
+          "AX1 SC2 SH1": 61,
+          "AX1 SH1 AC1": 57,
+          "AX1 SH1 AX1": 60,
+          "AX1 SH1 SC2": 61,
+          "AX1 SH1 SH1": 62,
+          "REV AC1 AC1": 62,
+          "REV AC1 AX1": 102,
+          "REV AC1 REV": 107,
+          "REV AX1 AC1": 92,
+          "REV AX1 AX1": 61,
+          "REV AX1 REV": 367,
+          "REV AX1 SC2": 58,
+          "REV AX1 SH1": 62,
+          "SC2 AC1 AC1": 1,
+          "SC2 AC1 REV": 323,
+          "SC2 AC1 SC2": 13,
+          "SC2 AC1 SH1": 58,
+          "SC2 AX1 AC1": 5,
+          "SC2 AX1 REV": 65,
+          "SC2 AX1 SC2": 54,
+          "SC2 AX1 SH1": 61,
+          "SC2 REV AC1": 62,
+          "SC2 REV AX1": 64,
+          "SC2 SC2 AC1": 6,
+          "SC2 SC2 AX1": 51,
+          "SC2 SC2 REV": 62,
+          "SC2 SC2 SC2": 47,
+          "SC2 SC2 SH1": 62,
+          "SC2 SH1 AC1": 60,
+          "SC2 SH1 AX1": 60,
+          "SC2 SH1 SC2": 61,
+          "SC2 SH1 SH1": 63,
+          "SH1 AC1 AC1": 59,
+          "SH1 AC1 SC2": 57,
+          "SH1 AC1 SH1": 58,
+          "SH1 AX1 AX1": 59,
+          "SH1 AX1 REV": 60,
+          "SH1 AX1 SC2": 59,
+          "SH1 AX1 SH1": 62,
+          "SH1 SC2 AC1": 56,
+          "SH1 SC2 AX1": 61,
+          "SH1 SC2 REV": 65,
+          "SH1 SC2 SC2": 60,
+          "SH1 SC2 SH1": 63,
+          "SH1 SH1 AC1": 59,
+          "SH1 SH1 AX1": 62,
+          "SH1 SH1 SH1": 137
+        },
+        "program_entropy": 4.047283207896361,
+        "program_union": 78,
+        "unigrams": {
+          "AC1": 3003,
+          "AX1": 3004,
+          "REV": 2994,
+          "SC2": 3000,
+          "SH1": 2999
+        }
+      },
+      "training_strata": {
+        "13:2:1": 10,
+        "13:2:2": 3,
+        "13:2:3": 3,
+        "13:3:1": 43,
+        "13:3:2": 14,
+        "13:3:3": 15,
+        "13:4:1": 155,
+        "13:4:2": 52,
+        "13:4:3": 52,
+        "19:2:1": 22,
+        "19:2:2": 7,
+        "19:2:3": 7,
+        "19:3:1": 92,
+        "19:3:2": 31,
+        "19:3:3": 31,
+        "19:4:1": 401,
+        "19:4:2": 134,
+        "19:4:3": 133,
+        "23:2:1": 28,
+        "23:2:2": 9,
+        "23:2:3": 10,
+        "23:3:1": 135,
+        "23:3:2": 45,
+        "23:3:3": 45,
+        "23:4:1": 646,
+        "23:4:2": 215,
+        "23:4:3": 216,
+        "29:2:1": 40,
+        "29:2:2": 13,
+        "29:2:3": 14,
+        "29:3:1": 215,
+        "29:3:2": 72,
+        "29:3:3": 71,
+        "29:4:1": 1154,
+        "29:4:2": 385,
+        "29:4:3": 384,
+        "5:4:1": 14,
+        "5:4:2": 5,
+        "5:4:3": 5,
+        "7:3:1": 11,
+        "7:3:2": 4,
+        "7:3:3": 3,
+        "7:4:1": 34,
+        "7:4:2": 11,
+        "7:4:3": 11
+      }
+    },
+    "mask4": {
+      "counts": {
+        "calibration_A.jsonl": 200,
+        "dev_A.jsonl": 200,
+        "dev_B.jsonl": 200,
+        "dev_C.jsonl": 200,
+        "dev_D.jsonl": 200,
+        "dev_atomic.jsonl": 1000,
+        "dev_panel_A.jsonl": 200,
+        "dev_panel_B.jsonl": 200,
+        "dev_panel_C.jsonl": 200,
+        "dev_panel_D.jsonl": 200,
+        "final_A.jsonl": 200,
+        "final_B.jsonl": 200,
+        "final_C.jsonl": 200,
+        "final_D.jsonl": 200,
+        "final_atomic.jsonl": 1000,
+        "final_panel_A.jsonl": 200,
+        "final_panel_B.jsonl": 200,
+        "final_panel_C.jsonl": 200,
+        "final_panel_D.jsonl": 200,
+        "programs_checked": 1060000,
+        "reused_atomic_train": 5000,
+        "train.jsonl": 5000
+      },
+      "new_states": 39252,
+      "operation_counts_by_shape": {
+        "13:2": {
+          "AC1": 9,
+          "AX1": 10,
+          "REV": 9,
+          "SC2": 10,
+          "SH1": 10
+        },
+        "13:3": {
+          "AC1": 43,
+          "AX1": 43,
+          "REV": 43,
+          "SC2": 44,
+          "SH1": 43
+        },
+        "13:4": {
+          "AC1": 156,
+          "AX1": 155,
+          "REV": 155,
+          "SC2": 156,
+          "SH1": 155
+        },
+        "19:2": {
+          "AC1": 22,
+          "AX1": 22,
+          "REV": 21,
+          "SC2": 21,
+          "SH1": 22
+        },
+        "19:3": {
+          "AC1": 93,
+          "AX1": 92,
+          "REV": 92,
+          "SC2": 93,
+          "SH1": 92
+        },
+        "19:4": {
+          "AC1": 401,
+          "AX1": 401,
+          "REV": 400,
+          "SC2": 401,
+          "SH1": 401
+        },
+        "23:2": {
+          "AC1": 28,
+          "AX1": 28,
+          "REV": 28,
+          "SC2": 28,
+          "SH1": 29
+        },
+        "23:3": {
+          "AC1": 135,
+          "AX1": 135,
+          "REV": 135,
+          "SC2": 135,
+          "SH1": 135
+        },
+        "23:4": {
+          "AC1": 647,
+          "AX1": 646,
+          "REV": 646,
+          "SC2": 646,
+          "SH1": 646
+        },
+        "29:2": {
+          "AC1": 41,
+          "AX1": 40,
+          "REV": 40,
+          "SC2": 40,
+          "SH1": 40
+        },
+        "29:3": {
+          "AC1": 215,
+          "AX1": 215,
+          "REV": 215,
+          "SC2": 215,
+          "SH1": 214
+        },
+        "29:4": {
+          "AC1": 1154,
+          "AX1": 1154,
+          "REV": 1153,
+          "SC2": 1154,
+          "SH1": 1154
+        },
+        "5:4": {
+          "AC1": 14,
+          "AX1": 14,
+          "REV": 14,
+          "SC2": 15,
+          "SH1": 15
+        },
+        "7:3": {
+          "AC1": 11,
+          "AX1": 11,
+          "REV": 10,
+          "SC2": 11,
+          "SH1": 11
+        },
+        "7:4": {
+          "AC1": 34,
+          "AX1": 34,
+          "REV": 33,
+          "SC2": 34,
+          "SH1": 33
+        }
+      },
+      "panels": 400,
+      "solution_support": {
+        "calibration_A.jsonl": {
+          "correct_program_union": 81,
+          "tasks": 200,
+          "unique_solutions": 153
+        },
+        "dev_A.jsonl": {
+          "correct_program_union": 79,
+          "tasks": 200,
+          "unique_solutions": 161
+        },
+        "dev_B.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_C.jsonl": {
+          "correct_program_union": 81,
+          "tasks": 200,
+          "unique_solutions": 150
+        },
+        "dev_D.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 199
+        },
+        "dev_panel_A.jsonl": {
+          "correct_program_union": 43,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_B.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_C.jsonl": {
+          "correct_program_union": 43,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_D.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_A.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 137
+        },
+        "final_B.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 199
+        },
+        "final_C.jsonl": {
+          "correct_program_union": 82,
+          "tasks": 200,
+          "unique_solutions": 147
+        },
+        "final_D.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 198
+        },
+        "final_panel_A.jsonl": {
+          "correct_program_union": 43,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_B.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_C.jsonl": {
+          "correct_program_union": 42,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_D.jsonl": {
+          "correct_program_union": 21,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "train.jsonl": {
+          "correct_program_union": 82,
+          "tasks": 5000,
+          "unique_solutions": 3000
+        }
+      },
+      "training_distribution": {
+        "exposures": 5000,
+        "pair_count_square": 5104590,
+        "pairs": {
+          "AC1>AC1": 273,
+          "AC1>AX1": 594,
+          "AC1>REV": 525,
+          "AC1>SC2": 295,
+          "AC1>SH1": 325,
+          "AX1>AC1": 428,
+          "AX1>AX1": 509,
+          "AX1>SC2": 471,
+          "AX1>SH1": 528,
+          "REV>AC1": 840,
+          "REV>AX1": 528,
+          "REV>SC2": 498,
+          "REV>SH1": 432,
+          "SC2>AC1": 326,
+          "SC2>REV": 690,
+          "SC2>SC2": 454,
+          "SC2>SH1": 544,
+          "SH1>AC1": 371,
+          "SH1>AX1": 447,
+          "SH1>SC2": 453,
+          "SH1>SH1": 469
+        },
+        "positions": {
+          "0": {
+            "AC1": 765,
+            "AX1": 922,
+            "REV": 1779,
+            "SC2": 832,
+            "SH1": 702
+          },
+          "1": {
+            "AC1": 1247,
+            "AX1": 1014,
+            "REV": 519,
+            "SC2": 1182,
+            "SH1": 1038
+          },
+          "2": {
+            "AC1": 991,
+            "AX1": 1064,
+            "REV": 696,
+            "SC2": 989,
+            "SH1": 1260
+          }
+        },
+        "program_counts": {
+          "AC1 AC1 AC1": 55,
+          "AC1 AC1 AX1": 7,
+          "AC1 AC1 REV": 64,
+          "AC1 AC1 SC2": 2,
+          "AC1 AC1 SH1": 3,
+          "AC1 AX1 AC1": 14,
+          "AC1 AX1 AX1": 59,
+          "AC1 AX1 SC2": 34,
+          "AC1 AX1 SH1": 60,
+          "AC1 REV AC1": 63,
+          "AC1 REV AX1": 63,
+          "AC1 REV SC2": 65,
+          "AC1 REV SH1": 67,
+          "AC1 SC2 AC1": 3,
+          "AC1 SC2 REV": 69,
+          "AC1 SC2 SC2": 3,
+          "AC1 SC2 SH1": 56,
+          "AC1 SH1 AC1": 5,
+          "AC1 SH1 SC2": 41,
+          "AC1 SH1 SH1": 32,
+          "AX1 AC1 AC1": 10,
+          "AX1 AC1 AX1": 58,
+          "AX1 AC1 SC2": 49,
+          "AX1 AC1 SH1": 58,
+          "AX1 AX1 AC1": 57,
+          "AX1 AX1 AX1": 67,
+          "AX1 AX1 SC2": 65,
+          "AX1 AX1 SH1": 65,
+          "AX1 SC2 AC1": 53,
+          "AX1 SC2 REV": 69,
+          "AX1 SC2 SC2": 59,
+          "AX1 SC2 SH1": 66,
+          "AX1 SH1 AC1": 56,
+          "AX1 SH1 AX1": 64,
+          "AX1 SH1 SC2": 63,
+          "AX1 SH1 SH1": 63,
+          "REV AC1 AC1": 66,
+          "REV AC1 AX1": 362,
+          "REV AC1 REV": 136,
+          "REV AC1 SC2": 71,
+          "REV AC1 SH1": 75,
+          "REV AX1 AC1": 182,
+          "REV AX1 AX1": 65,
+          "REV AX1 SC2": 63,
+          "REV AX1 SH1": 92,
+          "REV SC2 AC1": 75,
+          "REV SC2 REV": 160,
+          "REV SC2 SC2": 66,
+          "REV SC2 SH1": 68,
+          "REV SH1 AC1": 98,
+          "REV SH1 AX1": 66,
+          "REV SH1 SC2": 65,
+          "REV SH1 SH1": 69,
+          "SC2 AC1 AC1": 1,
+          "SC2 AC1 REV": 67,
+          "SC2 AC1 SC2": 6,
+          "SC2 AC1 SH1": 53,
+          "SC2 REV AC1": 67,
+          "SC2 REV AX1": 63,
+          "SC2 REV SC2": 64,
+          "SC2 REV SH1": 67,
+          "SC2 SC2 AC1": 27,
+          "SC2 SC2 REV": 65,
+          "SC2 SC2 SC2": 58,
+          "SC2 SC2 SH1": 60,
+          "SC2 SH1 AC1": 54,
+          "SC2 SH1 AX1": 61,
+          "SC2 SH1 SC2": 59,
+          "SC2 SH1 SH1": 60,
+          "SH1 AC1 AC1": 10,
+          "SH1 AC1 SC2": 36,
+          "SH1 AC1 SH1": 58,
+          "SH1 AX1 AX1": 64,
+          "SH1 AX1 SC2": 62,
+          "SH1 AX1 SH1": 65,
+          "SH1 SC2 AC1": 41,
+          "SH1 SC2 REV": 66,
+          "SH1 SC2 SC2": 58,
+          "SH1 SC2 SH1": 60,
+          "SH1 SH1 AC1": 54,
+          "SH1 SH1 AX1": 65,
+          "SH1 SH1 SH1": 63
+        },
+        "program_entropy": 4.196137775741192,
+        "program_union": 82,
+        "unigrams": {
+          "AC1": 3003,
+          "AX1": 3000,
+          "REV": 2994,
+          "SC2": 3003,
+          "SH1": 3000
+        }
+      },
+      "training_strata": {
+        "13:2:1": 10,
+        "13:2:2": 3,
+        "13:2:3": 3,
+        "13:3:1": 43,
+        "13:3:2": 14,
+        "13:3:3": 15,
+        "13:4:1": 155,
+        "13:4:2": 52,
+        "13:4:3": 52,
+        "19:2:1": 22,
+        "19:2:2": 7,
+        "19:2:3": 7,
+        "19:3:1": 92,
+        "19:3:2": 31,
+        "19:3:3": 31,
+        "19:4:1": 401,
+        "19:4:2": 134,
+        "19:4:3": 133,
+        "23:2:1": 28,
+        "23:2:2": 9,
+        "23:2:3": 10,
+        "23:3:1": 135,
+        "23:3:2": 45,
+        "23:3:3": 45,
+        "23:4:1": 646,
+        "23:4:2": 215,
+        "23:4:3": 216,
+        "29:2:1": 40,
+        "29:2:2": 13,
+        "29:2:3": 14,
+        "29:3:1": 215,
+        "29:3:2": 72,
+        "29:3:3": 71,
+        "29:4:1": 1154,
+        "29:4:2": 385,
+        "29:4:3": 384,
+        "5:4:1": 14,
+        "5:4:2": 5,
+        "5:4:3": 5,
+        "7:3:1": 11,
+        "7:3:2": 4,
+        "7:3:3": 3,
+        "7:4:1": 34,
+        "7:4:2": 11,
+        "7:4:3": 11
+      }
+    },
+    "original": {
+      "counts": {
+        "calibration_A.jsonl": 200,
+        "dev4_A.jsonl": 200,
+        "dev4_B.jsonl": 200,
+        "dev4_C.jsonl": 200,
+        "dev4_D.jsonl": 200,
+        "dev_A.jsonl": 200,
+        "dev_B.jsonl": 200,
+        "dev_C.jsonl": 200,
+        "dev_D.jsonl": 200,
+        "dev_atomic.jsonl": 1000,
+        "dev_panel_A.jsonl": 200,
+        "dev_panel_B.jsonl": 200,
+        "dev_panel_C.jsonl": 200,
+        "dev_panel_D.jsonl": 200,
+        "final4_A.jsonl": 200,
+        "final4_B.jsonl": 200,
+        "final4_C.jsonl": 200,
+        "final4_D.jsonl": 200,
+        "final_A.jsonl": 200,
+        "final_B.jsonl": 200,
+        "final_C.jsonl": 200,
+        "final_D.jsonl": 200,
+        "final_atomic.jsonl": 1000,
+        "final_panel_A.jsonl": 200,
+        "final_panel_B.jsonl": 200,
+        "final_panel_C.jsonl": 200,
+        "final_panel_D.jsonl": 200,
+        "programs_checked": 2060000,
+        "reused_atomic_train": 5000,
+        "train.jsonl": 5000
+      },
+      "new_states": 47645,
+      "operation_counts_by_shape": {
+        "13:2": {
+          "AC1": 9,
+          "AX1": 10,
+          "REV": 9,
+          "SC2": 10,
+          "SH1": 10
+        },
+        "13:3": {
+          "AC1": 43,
+          "AX1": 43,
+          "REV": 44,
+          "SC2": 43,
+          "SH1": 43
+        },
+        "13:4": {
+          "AC1": 155,
+          "AX1": 156,
+          "REV": 156,
+          "SC2": 155,
+          "SH1": 155
+        },
+        "19:2": {
+          "AC1": 22,
+          "AX1": 21,
+          "REV": 22,
+          "SC2": 21,
+          "SH1": 22
+        },
+        "19:3": {
+          "AC1": 92,
+          "AX1": 92,
+          "REV": 93,
+          "SC2": 93,
+          "SH1": 92
+        },
+        "19:4": {
+          "AC1": 401,
+          "AX1": 400,
+          "REV": 401,
+          "SC2": 401,
+          "SH1": 401
+        },
+        "23:2": {
+          "AC1": 28,
+          "AX1": 28,
+          "REV": 28,
+          "SC2": 28,
+          "SH1": 29
+        },
+        "23:3": {
+          "AC1": 135,
+          "AX1": 135,
+          "REV": 135,
+          "SC2": 135,
+          "SH1": 135
+        },
+        "23:4": {
+          "AC1": 646,
+          "AX1": 646,
+          "REV": 647,
+          "SC2": 646,
+          "SH1": 646
+        },
+        "29:2": {
+          "AC1": 40,
+          "AX1": 40,
+          "REV": 40,
+          "SC2": 40,
+          "SH1": 41
+        },
+        "29:3": {
+          "AC1": 215,
+          "AX1": 215,
+          "REV": 215,
+          "SC2": 215,
+          "SH1": 214
+        },
+        "29:4": {
+          "AC1": 1154,
+          "AX1": 1154,
+          "REV": 1154,
+          "SC2": 1153,
+          "SH1": 1154
+        },
+        "5:4": {
+          "AC1": 15,
+          "AX1": 14,
+          "REV": 15,
+          "SC2": 14,
+          "SH1": 14
+        },
+        "7:3": {
+          "AC1": 11,
+          "AX1": 11,
+          "REV": 11,
+          "SC2": 10,
+          "SH1": 11
+        },
+        "7:4": {
+          "AC1": 33,
+          "AX1": 33,
+          "REV": 34,
+          "SC2": 34,
+          "SH1": 34
+        }
+      },
+      "panels": 400,
+      "solution_support": {
+        "calibration_A.jsonl": {
+          "correct_program_union": 73,
+          "tasks": 200,
+          "unique_solutions": 166
+        },
+        "dev_A.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 160
+        },
+        "dev_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_C.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 161
+        },
+        "dev_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_A.jsonl": {
+          "correct_program_union": 45,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_C.jsonl": {
+          "correct_program_union": 46,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_A.jsonl": {
+          "correct_program_union": 70,
+          "tasks": 200,
+          "unique_solutions": 169
+        },
+        "final_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_C.jsonl": {
+          "correct_program_union": 76,
+          "tasks": 200,
+          "unique_solutions": 164
+        },
+        "final_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_A.jsonl": {
+          "correct_program_union": 46,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_C.jsonl": {
+          "correct_program_union": 44,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "train.jsonl": {
+          "correct_program_union": 79,
+          "tasks": 5000,
+          "unique_solutions": 3000
+        }
+      },
+      "training_distribution": {
+        "exposures": 5000,
+        "pair_count_square": 5062166,
+        "pairs": {
+          "AC1>AC1": 526,
+          "AC1>AX1": 487,
+          "AC1>SC2": 254,
+          "AC1>SH1": 379,
+          "AX1>AC1": 569,
+          "AX1>AX1": 500,
+          "AX1>REV": 415,
+          "AX1>SC2": 487,
+          "REV>AC1": 742,
+          "REV>AX1": 710,
+          "REV>SC2": 442,
+          "REV>SH1": 508,
+          "SC2>AC1": 310,
+          "SC2>REV": 502,
+          "SC2>SC2": 542,
+          "SC2>SH1": 604,
+          "SH1>AC1": 280,
+          "SH1>AX1": 406,
+          "SH1>REV": 442,
+          "SH1>SC2": 408,
+          "SH1>SH1": 487
+        },
+        "positions": {
+          "0": {
+            "AC1": 572,
+            "AX1": 895,
+            "REV": 1645,
+            "SC2": 865,
+            "SH1": 1023
+          },
+          "1": {
+            "AC1": 1074,
+            "AX1": 1076,
+            "REV": 757,
+            "SC2": 1093,
+            "SH1": 1000
+          },
+          "2": {
+            "AC1": 1353,
+            "AX1": 1027,
+            "REV": 602,
+            "SC2": 1040,
+            "SH1": 978
+          }
+        },
+        "program_counts": {
+          "AC1 AC1 AC1": 93,
+          "AC1 AC1 AX1": 60,
+          "AC1 AC1 SC2": 28,
+          "AC1 AC1 SH1": 38,
+          "AC1 AX1 AC1": 34,
+          "AC1 AX1 AX1": 14,
+          "AC1 AX1 SC2": 34,
+          "AC1 SC2 AC1": 53,
+          "AC1 SC2 SC2": 51,
+          "AC1 SC2 SH1": 27,
+          "AC1 SH1 AC1": 57,
+          "AC1 SH1 SC2": 55,
+          "AC1 SH1 SH1": 28,
+          "AX1 AC1 AC1": 59,
+          "AX1 AC1 AX1": 60,
+          "AX1 AC1 SC2": 4,
+          "AX1 AX1 AC1": 48,
+          "AX1 AX1 AX1": 86,
+          "AX1 AX1 REV": 64,
+          "AX1 AX1 SC2": 70,
+          "AX1 REV AC1": 64,
+          "AX1 REV AX1": 64,
+          "AX1 REV SC2": 64,
+          "AX1 REV SH1": 60,
+          "AX1 SC2 AC1": 51,
+          "AX1 SC2 REV": 66,
+          "AX1 SC2 SC2": 68,
+          "AX1 SC2 SH1": 67,
+          "REV AC1 AC1": 66,
+          "REV AC1 AX1": 285,
+          "REV AC1 SC2": 77,
+          "REV AC1 SH1": 121,
+          "REV AX1 AC1": 364,
+          "REV AX1 AX1": 63,
+          "REV AX1 REV": 30,
+          "REV AX1 SC2": 64,
+          "REV SC2 AC1": 70,
+          "REV SC2 REV": 60,
+          "REV SC2 SC2": 62,
+          "REV SC2 SH1": 63,
+          "REV SH1 AC1": 67,
+          "REV SH1 AX1": 65,
+          "REV SH1 REV": 60,
+          "REV SH1 SC2": 64,
+          "REV SH1 SH1": 64,
+          "SC2 AC1 AC1": 31,
+          "SC2 AC1 SC2": 11,
+          "SC2 AC1 SH1": 53,
+          "SC2 REV AC1": 64,
+          "SC2 REV AX1": 61,
+          "SC2 REV SC2": 60,
+          "SC2 REV SH1": 64,
+          "SC2 SC2 AC1": 13,
+          "SC2 SC2 REV": 63,
+          "SC2 SC2 SC2": 65,
+          "SC2 SC2 SH1": 90,
+          "SC2 SH1 AC1": 27,
+          "SC2 SH1 AX1": 68,
+          "SC2 SH1 REV": 64,
+          "SC2 SH1 SC2": 65,
+          "SC2 SH1 SH1": 66,
+          "SH1 AC1 AC1": 58,
+          "SH1 AC1 SC2": 3,
+          "SH1 AC1 SH1": 27,
+          "SH1 AX1 AX1": 69,
+          "SH1 AX1 REV": 69,
+          "SH1 AX1 SC2": 67,
+          "SH1 REV AC1": 65,
+          "SH1 REV AX1": 64,
+          "SH1 REV SC2": 63,
+          "SH1 REV SH1": 64,
+          "SH1 SC2 AC1": 28,
+          "SH1 SC2 REV": 64,
+          "SH1 SC2 SC2": 65,
+          "SH1 SC2 SH1": 67,
+          "SH1 SH1 AC1": 41,
+          "SH1 SH1 AX1": 68,
+          "SH1 SH1 REV": 62,
+          "SH1 SH1 SH1": 79
+        },
+        "program_entropy": 4.187878875019232,
+        "program_union": 79,
+        "unigrams": {
+          "AC1": 2999,
+          "AX1": 2998,
+          "REV": 3004,
+          "SC2": 2998,
+          "SH1": 3001
+        }
+      },
+      "training_strata": {
+        "13:2:1": 10,
+        "13:2:2": 3,
+        "13:2:3": 3,
+        "13:3:1": 43,
+        "13:3:2": 14,
+        "13:3:3": 15,
+        "13:4:1": 155,
+        "13:4:2": 52,
+        "13:4:3": 52,
+        "19:2:1": 22,
+        "19:2:2": 7,
+        "19:2:3": 7,
+        "19:3:1": 92,
+        "19:3:2": 31,
+        "19:3:3": 31,
+        "19:4:1": 401,
+        "19:4:2": 134,
+        "19:4:3": 133,
+        "23:2:1": 28,
+        "23:2:2": 9,
+        "23:2:3": 10,
+        "23:3:1": 135,
+        "23:3:2": 45,
+        "23:3:3": 45,
+        "23:4:1": 646,
+        "23:4:2": 215,
+        "23:4:3": 216,
+        "29:2:1": 40,
+        "29:2:2": 13,
+        "29:2:3": 14,
+        "29:3:1": 215,
+        "29:3:2": 72,
+        "29:3:3": 71,
+        "29:4:1": 1154,
+        "29:4:2": 385,
+        "29:4:3": 384,
+        "5:4:1": 14,
+        "5:4:2": 5,
+        "5:4:3": 5,
+        "7:3:1": 11,
+        "7:3:2": 4,
+        "7:3:3": 3,
+        "7:4:1": 34,
+        "7:4:2": 11,
+        "7:4:3": 11
+      }
+    },
+    "witness": {
+      "counts": {
+        "calibration_A.jsonl": 200,
+        "dev_A.jsonl": 200,
+        "dev_B.jsonl": 200,
+        "dev_C.jsonl": 200,
+        "dev_D.jsonl": 200,
+        "dev_atomic.jsonl": 1000,
+        "dev_panel_A.jsonl": 200,
+        "dev_panel_B.jsonl": 200,
+        "dev_panel_C.jsonl": 200,
+        "dev_panel_D.jsonl": 200,
+        "final_A.jsonl": 200,
+        "final_B.jsonl": 200,
+        "final_C.jsonl": 200,
+        "final_D.jsonl": 200,
+        "final_atomic.jsonl": 1000,
+        "final_panel_A.jsonl": 200,
+        "final_panel_B.jsonl": 200,
+        "final_panel_C.jsonl": 200,
+        "final_panel_D.jsonl": 200,
+        "programs_checked": 1060000,
+        "reused_atomic_train": 5000,
+        "train.jsonl": 5000
+      },
+      "manipulation_check": {
+        "arms": {
+          "balanced": {
+            "exposures": 10000,
+            "pair_count_square": 27611092,
+            "pairs": {
+              "AC1>AC1": 1768,
+              "AC1>AX1": 1767,
+              "AC1>SC2": 1770,
+              "AC1>SH1": 1766,
+              "AX1>AC1": 1768,
+              "AX1>AX1": 830,
+              "AX1>REV": 90,
+              "AX1>SC2": 830,
+              "REV>AC1": 632,
+              "REV>AX1": 631,
+              "REV>SC2": 628,
+              "REV>SH1": 629,
+              "SC2>AC1": 1770,
+              "SC2>REV": 12,
+              "SC2>SC2": 832,
+              "SC2>SH1": 828,
+              "SH1>AC1": 1769,
+              "SH1>AX1": 24,
+              "SH1>SC2": 832,
+              "SH1>SH1": 824
+            },
+            "positions": {
+              "0": {
+                "AC1": 4693,
+                "AX1": 978,
+                "REV": 2454,
+                "SC2": 934,
+                "SH1": 941
+              },
+              "1": {
+                "AC1": 2378,
+                "AX1": 2540,
+                "REV": 66,
+                "SC2": 2508,
+                "SH1": 2508
+              },
+              "2": {
+                "AC1": 5329,
+                "AX1": 712,
+                "REV": 36,
+                "SC2": 2384,
+                "SH1": 1539
+              }
+            },
+            "program_counts": {
+              "AC1 AC1 AX1": 169,
+              "AC1 AC1 SC2": 447,
+              "AC1 AC1 SH1": 411,
+              "AC1 AX1 AC1": 427,
+              "AC1 AX1 AX1": 326,
+              "AC1 AX1 SC2": 652,
+              "AC1 SC2 AC1": 132,
+              "AC1 SC2 SC2": 522,
+              "AC1 SC2 SH1": 449,
+              "AC1 SH1 AC1": 159,
+              "AC1 SH1 SC2": 521,
+              "AC1 SH1 SH1": 478,
+              "AX1 AC1 AC1": 232,
+              "AX1 AX1 AC1": 502,
+              "AX1 AX1 REV": 2,
+              "AX1 REV AC1": 22,
+              "AX1 REV AX1": 22,
+              "AX1 REV SC2": 20,
+              "AX1 SC2 AC1": 174,
+              "AX1 SC2 REV": 2,
+              "AX1 SC2 SC2": 2,
+              "REV AC1 AX1": 193,
+              "REV AC1 SC2": 220,
+              "REV AC1 SH1": 197,
+              "REV AX1 AC1": 607,
+              "REV SC2 AC1": 604,
+              "REV SC2 REV": 4,
+              "REV SH1 AC1": 629,
+              "SC2 AC1 AC1": 247,
+              "SC2 REV AX1": 2,
+              "SC2 SC2 AC1": 302,
+              "SC2 SC2 REV": 4,
+              "SC2 SC2 SH1": 2,
+              "SC2 SH1 AC1": 375,
+              "SC2 SH1 SH1": 2,
+              "SH1 AC1 AC1": 262,
+              "SH1 AX1 REV": 24,
+              "SH1 SC2 AC1": 311,
+              "SH1 SH1 AC1": 344
+            },
+            "program_entropy": 3.247987152222068,
+            "program_union": 39,
+            "unigrams": {
+              "AC1": 12400,
+              "AX1": 4230,
+              "REV": 2556,
+              "SC2": 5826,
+              "SH1": 4988
+            }
+          },
+          "fixed": {
+            "exposures": 10000,
+            "pair_count_square": 34351136,
+            "pairs": {
+              "AC1>AC1": 2058,
+              "AC1>AX1": 1418,
+              "AC1>SC2": 1962,
+              "AC1>SH1": 1714,
+              "AX1>AC1": 2046,
+              "AX1>AX1": 486,
+              "AX1>REV": 52,
+              "AX1>SC2": 512,
+              "REV>AC1": 1252,
+              "REV>AX1": 430,
+              "REV>SC2": 402,
+              "REV>SH1": 444,
+              "SC2>AC1": 2830,
+              "SC2>REV": 6,
+              "SC2>SC2": 570,
+              "SC2>SH1": 400,
+              "SH1>AC1": 2338,
+              "SH1>AX1": 12,
+              "SH1>REV": 12,
+              "SH1>SC2": 500,
+              "SH1>SH1": 556
+            },
+            "positions": {
+              "0": {
+                "AC1": 1890,
+                "AX1": 1882,
+                "REV": 2480,
+                "SC2": 1872,
+                "SH1": 1876
+              },
+              "1": {
+                "AC1": 5262,
+                "AX1": 1214,
+                "REV": 48,
+                "SC2": 1934,
+                "SH1": 1542
+              },
+              "2": {
+                "AC1": 5262,
+                "AX1": 1132,
+                "REV": 22,
+                "SC2": 2012,
+                "SH1": 1572
+              }
+            },
+            "program_counts": {
+              "AC1 AC1 AX1": 192,
+              "AC1 AC1 SC2": 126,
+              "AC1 AC1 SH1": 148,
+              "AC1 AX1 AC1": 164,
+              "AC1 AX1 AX1": 136,
+              "AC1 AX1 SC2": 152,
+              "AC1 SC2 AC1": 154,
+              "AC1 SC2 SC2": 224,
+              "AC1 SC2 SH1": 106,
+              "AC1 SH1 AC1": 112,
+              "AC1 SH1 SC2": 136,
+              "AC1 SH1 SH1": 240,
+              "AX1 AC1 AC1": 472,
+              "AX1 AC1 AX1": 358,
+              "AX1 AC1 SC2": 322,
+              "AX1 AX1 AC1": 336,
+              "AX1 AX1 REV": 4,
+              "AX1 REV AC1": 14,
+              "AX1 REV AX1": 8,
+              "AX1 REV SC2": 14,
+              "AX1 SC2 AC1": 354,
+              "REV AC1 AX1": 416,
+              "REV AC1 SC2": 436,
+              "REV AC1 SH1": 386,
+              "REV AX1 AC1": 394,
+              "REV AX1 AX1": 10,
+              "REV AX1 SC2": 6,
+              "REV SC2 AC1": 386,
+              "REV SC2 REV": 2,
+              "REV SH1 AC1": 444,
+              "SC2 AC1 AC1": 548,
+              "SC2 AC1 SC2": 262,
+              "SC2 AC1 SH1": 424,
+              "SC2 SC2 AC1": 338,
+              "SC2 SC2 REV": 4,
+              "SC2 SC2 SC2": 2,
+              "SC2 SH1 AC1": 294,
+              "SH1 AC1 AC1": 572,
+              "SH1 AC1 SC2": 332,
+              "SH1 AC1 SH1": 268,
+              "SH1 AX1 REV": 12,
+              "SH1 REV AX1": 12,
+              "SH1 SC2 AC1": 364,
+              "SH1 SH1 AC1": 316
+            },
+            "program_entropy": 3.4422367903292277,
+            "program_union": 44,
+            "unigrams": {
+              "AC1": 12414,
+              "AX1": 4228,
+              "REV": 2550,
+              "SC2": 5818,
+              "SH1": 4990
+            }
+          }
+        },
+        "checks": {
+          "actual_labels_changed": true,
+          "at_least_ten_semantic_families": true,
+          "balanced_reduces_pair_square": true,
+          "largest_correct_set_at_most_20_percent": true,
+          "unavoidable_REV_at_most_half": true
+        },
+        "epochs": 2,
+        "equivalence_kinds": {
+          "global_affine": 4987,
+          "start_specific_collision": 13
+        },
+        "interpretation": "pair imbalance intervention, not maximum program diversity",
+        "largest_correct_set_share": 0.0832,
+        "seed": 0,
+        "semantic_families": 26,
+        "status": "PASS",
+        "unavoidable_first_REV_share": 0.245
+      },
+      "new_states": 44962,
+      "operation_counts_by_shape": {
+        "13:2": {
+          "AC1": 15,
+          "AX1": 10,
+          "REV": 7,
+          "SC2": 8,
+          "SH1": 8
+        },
+        "13:3": {
+          "AC1": 90,
+          "AX1": 30,
+          "REV": 18,
+          "SC2": 42,
+          "SH1": 36
+        },
+        "13:4": {
+          "AC1": 323,
+          "AX1": 108,
+          "REV": 64,
+          "SC2": 152,
+          "SH1": 130
+        },
+        "19:2": {
+          "AC1": 37,
+          "AX1": 20,
+          "REV": 14,
+          "SC2": 19,
+          "SH1": 18
+        },
+        "19:3": {
+          "AC1": 192,
+          "AX1": 64,
+          "REV": 38,
+          "SC2": 91,
+          "SH1": 77
+        },
+        "19:4": {
+          "AC1": 836,
+          "AX1": 278,
+          "REV": 166,
+          "SC2": 389,
+          "SH1": 335
+        },
+        "23:2": {
+          "AC1": 47,
+          "AX1": 29,
+          "REV": 19,
+          "SC2": 25,
+          "SH1": 21
+        },
+        "23:3": {
+          "AC1": 282,
+          "AX1": 92,
+          "REV": 57,
+          "SC2": 130,
+          "SH1": 114
+        },
+        "23:4": {
+          "AC1": 1347,
+          "AX1": 450,
+          "REV": 269,
+          "SC2": 626,
+          "SH1": 539
+        },
+        "29:2": {
+          "AC1": 68,
+          "AX1": 41,
+          "REV": 26,
+          "SC2": 35,
+          "SH1": 31
+        },
+        "29:3": {
+          "AC1": 448,
+          "AX1": 150,
+          "REV": 90,
+          "SC2": 207,
+          "SH1": 179
+        },
+        "29:4": {
+          "AC1": 2404,
+          "AX1": 804,
+          "REV": 480,
+          "SC2": 1121,
+          "SH1": 960
+        },
+        "5:4": {
+          "AC1": 25,
+          "AX1": 8,
+          "REV": 9,
+          "SC2": 20,
+          "SH1": 10
+        },
+        "7:3": {
+          "AC1": 22,
+          "AX1": 7,
+          "REV": 5,
+          "SC2": 12,
+          "SH1": 8
+        },
+        "7:4": {
+          "AC1": 71,
+          "AX1": 23,
+          "REV": 13,
+          "SC2": 32,
+          "SH1": 29
+        }
+      },
+      "panels": 400,
+      "solution_support": {
+        "calibration_A.jsonl": {
+          "correct_program_union": 79,
+          "tasks": 200,
+          "unique_solutions": 158
+        },
+        "dev_A.jsonl": {
+          "correct_program_union": 79,
+          "tasks": 200,
+          "unique_solutions": 158
+        },
+        "dev_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_C.jsonl": {
+          "correct_program_union": 77,
+          "tasks": 200,
+          "unique_solutions": 160
+        },
+        "dev_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_A.jsonl": {
+          "correct_program_union": 45,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_C.jsonl": {
+          "correct_program_union": 46,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "dev_panel_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_A.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 142
+        },
+        "final_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_C.jsonl": {
+          "correct_program_union": 78,
+          "tasks": 200,
+          "unique_solutions": 157
+        },
+        "final_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_A.jsonl": {
+          "correct_program_union": 46,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_B.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_C.jsonl": {
+          "correct_program_union": 46,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "final_panel_D.jsonl": {
+          "correct_program_union": 19,
+          "tasks": 200,
+          "unique_solutions": 200
+        },
+        "train.jsonl": {
+          "correct_program_union": 52,
+          "tasks": 5000,
+          "unique_solutions": 0
+        }
+      },
+      "training_distribution": {
+        "exposures": 5000,
+        "pair_count_square": 8587784,
+        "pairs": {
+          "AC1>AC1": 1029,
+          "AC1>AX1": 709,
+          "AC1>SC2": 981,
+          "AC1>SH1": 857,
+          "AX1>AC1": 1023,
+          "AX1>AX1": 243,
+          "AX1>REV": 26,
+          "AX1>SC2": 256,
+          "REV>AC1": 626,
+          "REV>AX1": 215,
+          "REV>SC2": 201,
+          "REV>SH1": 222,
+          "SC2>AC1": 1415,
+          "SC2>REV": 3,
+          "SC2>SC2": 285,
+          "SC2>SH1": 200,
+          "SH1>AC1": 1169,
+          "SH1>AX1": 6,
+          "SH1>REV": 6,
+          "SH1>SC2": 250,
+          "SH1>SH1": 278
+        },
+        "positions": {
+          "0": {
+            "AC1": 945,
+            "AX1": 941,
+            "REV": 1240,
+            "SC2": 936,
+            "SH1": 938
+          },
+          "1": {
+            "AC1": 2631,
+            "AX1": 607,
+            "REV": 24,
+            "SC2": 967,
+            "SH1": 771
+          },
+          "2": {
+            "AC1": 2631,
+            "AX1": 566,
+            "REV": 11,
+            "SC2": 1006,
+            "SH1": 786
+          }
+        },
+        "program_counts": {
+          "AC1 AC1 AX1": 96,
+          "AC1 AC1 SC2": 63,
+          "AC1 AC1 SH1": 74,
+          "AC1 AX1 AC1": 82,
+          "AC1 AX1 AX1": 68,
+          "AC1 AX1 SC2": 76,
+          "AC1 SC2 AC1": 77,
+          "AC1 SC2 SC2": 112,
+          "AC1 SC2 SH1": 53,
+          "AC1 SH1 AC1": 56,
+          "AC1 SH1 SC2": 68,
+          "AC1 SH1 SH1": 120,
+          "AX1 AC1 AC1": 236,
+          "AX1 AC1 AX1": 179,
+          "AX1 AC1 SC2": 161,
+          "AX1 AX1 AC1": 168,
+          "AX1 AX1 REV": 2,
+          "AX1 REV AC1": 7,
+          "AX1 REV AX1": 4,
+          "AX1 REV SC2": 7,
+          "AX1 SC2 AC1": 177,
+          "REV AC1 AX1": 208,
+          "REV AC1 SC2": 218,
+          "REV AC1 SH1": 193,
+          "REV AX1 AC1": 197,
+          "REV AX1 AX1": 5,
+          "REV AX1 SC2": 3,
+          "REV SC2 AC1": 193,
+          "REV SC2 REV": 1,
+          "REV SH1 AC1": 222,
+          "SC2 AC1 AC1": 274,
+          "SC2 AC1 SC2": 131,
+          "SC2 AC1 SH1": 212,
+          "SC2 SC2 AC1": 169,
+          "SC2 SC2 REV": 2,
+          "SC2 SC2 SC2": 1,
+          "SC2 SH1 AC1": 147,
+          "SH1 AC1 AC1": 286,
+          "SH1 AC1 SC2": 166,
+          "SH1 AC1 SH1": 134,
+          "SH1 AX1 REV": 6,
+          "SH1 REV AX1": 6,
+          "SH1 SC2 AC1": 182,
+          "SH1 SH1 AC1": 158
+        },
+        "program_entropy": 3.4422367903292277,
+        "program_union": 44,
+        "unigrams": {
+          "AC1": 6207,
+          "AX1": 2114,
+          "REV": 1275,
+          "SC2": 2909,
+          "SH1": 2495
+        }
+      },
+      "training_strata": {
+        "13:2:2": 5,
+        "13:2:3": 11,
+        "13:3:2": 18,
+        "13:3:3": 53,
+        "13:3:4": 1,
+        "13:4:2": 64,
+        "13:4:3": 194,
+        "13:4:7": 1,
+        "19:2:2": 10,
+        "19:2:3": 26,
+        "19:3:2": 38,
+        "19:3:3": 116,
+        "19:4:2": 166,
+        "19:4:3": 502,
+        "23:2:2": 10,
+        "23:2:3": 37,
+        "23:3:2": 57,
+        "23:3:3": 168,
+        "23:4:2": 268,
+        "23:4:3": 809,
+        "29:2:2": 16,
+        "29:2:3": 48,
+        "29:2:4": 1,
+        "29:2:5": 1,
+        "29:2:6": 1,
+        "29:3:2": 90,
+        "29:3:3": 268,
+        "29:4:2": 480,
+        "29:4:3": 1443,
+        "5:4:2": 8,
+        "5:4:3": 14,
+        "5:4:4": 2,
+        "7:3:2": 4,
+        "7:3:3": 12,
+        "7:3:4": 1,
+        "7:3:6": 1,
+        "7:4:2": 13,
+        "7:4:3": 43
+      }
+    }
+  },
+  "protocol_sha256": "add0e9d733d0ff497e29c08c75305f98579bcb24cf8ae941941939ee7df393ca",
+  "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+  "scope": "full interpreter enumeration, minimum depths, all-correct-set states, inherited/split exclusions, matched training strata and operation counts",
+  "smoke": false,
+  "status": "PASS"
+}

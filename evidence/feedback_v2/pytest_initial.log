@@ -1,0 +1,52 @@
+..................................F...                     [100%]
+=================================== FAILURES ===================================
+______ test_final_reuses_exact_completed_cells_and_rejects_wrong_training ______
+
+tmp_path = PosixPath('/tmp/pytest-of-temochka2005/pytest-17/test_final_reuses_exact_comple0')
+prepared = PosixPath('/tmp/pytest-of-temochka2005/pytest-17/test_final_reuses_exact_comple0/prepared')
+
+    def test_final_reuses_exact_completed_cells_and_rejects_wrong_training(tmp_path, prepared):
+        history = json.loads(Path('evidence/upgrade/previous_q06.json').read_text())
+        proto = json.loads((prepared / 'protocol.json').read_text())
+        proto['datasets'] = {'mask1': {'manifest_sha256': 'mask-one'}}
+        write_json(prepared / 'protocol.json', proto)
+        lock = tmp_path / 'analysis.lock.json'
+        write_json(lock, {'code_hash': code_hash(), 'protocol_sha256': file_hash(prepared / 'protocol.json'),
+            'history_receipts': {'q06': file_hash('evidence/upgrade/previous_q06.json')}})
+        source = tmp_path / 'completed_dev'
+        for arm in ('atomic_control', 'composition'):
+            root = source / f'experiments/02_new_pair_masks/training/q06_mask1_{arm}_seed0'
+            adapter = root / 'adapter'
+            adapter.mkdir(parents=True)
+            (adapter / 'model.safetensors').write_bytes(b'test payload')
+            write_json(root / 'DONE', {'payload_hash': tree_hash(adapter), 'files': {}, 'binding': {
+                'code_hash': code_hash(), 'data_hash': 'mask-one', 'base_hash': history['runs'][0]['base_hash'],
+                'config': {'model': 'Qwen/Qwen3-0.6B', 'seed': 0, 'epochs': 2, 'num_examples': 6250,
+                           'supervision': 'trace', 'witness_policy': 'fixed', 'replay_fraction': 1. if arm == 'atomic_control' else .2}}})
+        def args(out):
+            return plan_args(out, prepared, experiments=['02_new_pair_masks'], masks=['mask1'],
+                             phase='final', analysis_lock=str(lock), trained_from=str(source))
+>       plan(args(tmp_path / 'final'))
+
+tests/test_upgrade_queue.py:155:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+iclr/upgrade.py:178: in plan
+    receipt = verify_receipt(original)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = PosixPath('/tmp/pytest-of-temochka2005/pytest-17/test_final_reuses_exact_comple0/completed_dev/experiments/02_new_pair_masks/training/q06_mask1_atomic_control_seed0')
+name = 'DONE'
+
+    def verify_receipt(directory, name='DONE'):
+        directory = Path(directory).resolve()
+        receipt = json.loads((directory / name).read_text())
+        files = receipt.get('files')
+        if not isinstance(files, dict) or not files:
+>           raise ValueError(f'Completion receipt has no file hashes: {directory}')
+E           ValueError: Completion receipt has no file hashes: /tmp/pytest-of-temochka2005/pytest-17/test_final_reuses_exact_comple0/completed_dev/experiments/02_new_pair_masks/training/q06_mask1_atomic_control_seed0
+
+iclr/common.py:39: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_upgrade_queue.py::test_final_reuses_exact_completed_cells_and_rejects_wrong_training
+1 failed, 37 passed, 14 subtests passed in 47.15s

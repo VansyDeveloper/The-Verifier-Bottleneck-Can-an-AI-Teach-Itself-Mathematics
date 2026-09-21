@@ -1,32 +1,33 @@
-# Эксперименты Артёма к ICLR
+# Эксперименты Артёма к ICLR — после review 21 сентября
 
-**Прежние запуски из ветки `artem_iclr` уже выполнены. Повторно запускать
-старую очередь и заново обучать прежние atomic checkpoint не нужно.**
-Эта версия добавляет новые проверки и обучения из
-[goal_to_iclr.md](plans/source/goal_to_iclr.md).
+**Прежние Qwen3-0.6B и Qwen3-8B уже обучены. Старую очередь из
+`artem_iclr` и прежние atomic/SFT обучения повторять не нужно.**
+Сейчас приоритет — проверить, отличает ли модель TARGET, когда общий
+рейтинг программ уже не может объяснить результат.
 
-## Что уже получено
-
-| Прежняя серия | Зачем она нужна | Подтверждённые результаты |
+| Уже выполненная серия | Зачем она нужна | Что сохранено |
 |---|---|---|
-| Qwen3-0.6B | Основная парная проверка atomic control / composition | Две ветки × seed 0/1/2; raw, midpoint/final, конфиги и квитанции |
-| Qwen3-8B | Проверка того же контраста при большем размере Qwen | Две ветки × seed 0/1/2; согласованные raw/summary/CSV внутри ZIP |
+| Qwen3-0.6B | Основной парный контраст atomic control / composition | Обе ветки × seed 0/1/2, midpoint/final, raw, конфиги и квитанции |
+| Qwen3-8B | Тот же контраст при большем размере Qwen | Обе ветки × seed 0/1/2; согласованные raw/summary внутри исходного ZIP |
 
-По сохранённому dev воспроизведена A-only калибровка. Hit@32 на B у SFT:
-0.6B — 7,83% → 56,00%; 8B — 8,33% → 58,33%. Atomic control после такой же
-поправки: 44,00% и 33,83%. Это пересчёт ранжирования, без обучения и inference.
-Внешний отдельный CSV 8B отличается от raw в 18 значениях; отчёт сохраняет
-расхождения. [Проверенные файлы и границы свидетельств](evidence/upgrade/README.md).
+Высокий Hit@32 после калибровки сам по себе **не подтверждает восстановление
+композиционного умения**. На старом B у SFT full-калибровка даёт 56,00% / 58,33%,
+а рейтинг `−bias-only`, не читающий задачу, — 66,50% / 64,50% для 0.6B / 8B.
+Для unseen-first контроль на B составляет около 69,57%. Это результат
+ранжирования без возвращения, не IID pass@32. Новая основная метрика —
+различение четырёх TARGET при одном START: парный контраст сокращает общий
+приоритет программы и общий сдвиг score промпта.
 
-Новая оценка прежних checkpoint нужна для **новых закрытых задач и реальных
-вероятностей на префиксах** — этого нет в прежних результатах. Новые полные
-GPU-запуски пока не выполнены. Остальные старые команды сохранены только
-в [архивной инструкции](plans/LEGACY_COMMANDS.md); новая очередь их не запускает.
+[Ответ на review и границы выводов](plans/FEEDBACK_21SEPT_RU.md).
+[Зафиксированный план анализа](plans/upgrade_analysis_plan.json).
+Исходный review сохранён [без изменений](plans/source/21sept_iclr_feedback/short_feedback.md).
+Версия `d976b30` остаётся в истории; её наборы данных не перезаписываются.
 
-## Подготовить компьютер
+## Подготовить сервер
 
-Нужны Linux, Git, uv, Python 3.11 и CUDA GPU. Ожидаются A100; фактические карты
-проверяет оператор. После публикации этой версии ветки:
+Нужны Linux, Git, uv, Python 3.11 и CUDA. Целевые удалённые серверы — с A100;
+проверьте фактическую карту и свободную память. Адрес/SSH сервера не задан
+в репозитории: используется сервер оператора с сохранёнными весами.
 
 ```bash
 git switch artem_iclr
@@ -36,168 +37,225 @@ nvidia-smi --query-gpu=index,name,memory.total,memory.free --format=csv
 uv run python -m pytest -q
 ```
 
-Пути задаются в [plans/upgrade_models.json](plans/upgrade_models.json),
-относительно корня checkout. При необходимости используйте копию профиля
-с другими путями через `--models path/to/models.json`.
-
-| Модель | Уже обученный atomic checkpoint | Прежние continuation adapter |
+| Размер | Прежний atomic checkpoint | Прежние SFT/atomic-control adapter |
 |---|---|---|
 | 0.6B | `outputs/atomic_06_bf16/checkpoint` | Шесть `*/adapter` в `outputs/q06_bf16_mb16_pb32` |
 | 8B | `outputs/atomic_8b_bf16/checkpoint` | Шесть `*/adapter` в `outputs/q8b_bf16_mb16_pb32` |
 
-Это исторические пути на `/workspace/verifier-bottleneck`, а не подтверждение
-текущего размещения. ZIP `no_models` весов не содержит. Код проверяет хеши
-только тех weights, которые нужны выбранному блоку. Для блоков 02–04 нужен
-только atomic 0.6B; прежние adapters и 8B для них не нужны.
+Исторический корень — `/workspace/verifier-bottleneck`; это не подтверждение
+текущего размещения. При других путях скопируйте
+[профиль](plans/upgrade_models.json), измените `base`/`previous` и добавьте
+`--models path/to/models.json` к командам. ZIP `no_models` весов не содержит.
+Хеши обязательны: другой checkpoint не будет молча принят за прежний.
+Блокам 02/04 нужен только atomic 0.6B; прежние adapters им не нужны.
 
-## Один общий набор данных для всех компьютеров
+## Один общий набор данных на все компьютеры
 
-Один раз на машине, где сохранился прежний `outputs/data`:
+Используйте переданный вместе с review `shared_inputs_feedback_v2.tar.gz`.
+Распакуйте его **из корня checkout** на каждом сервере:
 
 ```bash
-mkdir -p outputs/shared_inputs_20260921
-cp -a outputs/data outputs/shared_inputs_20260921/reference_data
+tar -xzf shared_inputs_feedback_v2.tar.gz
+```
+
+Получится `outputs/shared_inputs_feedback_v2/{reference_data,new_tasks,data_audit}`.
+Если нужно подготовить набор самостоятельно, сделайте это **один раз**:
+
+```bash
+mkdir -p outputs/shared_inputs_feedback_v2
+cp -a outputs/data outputs/shared_inputs_feedback_v2/reference_data
 uv run python -m iclr.upgrade_data \
-  --reference outputs/shared_inputs_20260921/reference_data \
-  --out outputs/shared_inputs_20260921/new_tasks
-tar -czf outputs/shared_inputs_20260921.tar.gz outputs/shared_inputs_20260921
+  --reference outputs/shared_inputs_feedback_v2/reference_data \
+  --out outputs/shared_inputs_feedback_v2/new_tasks
+uv run python -m iclr.upgrade_audit \
+  --reference outputs/shared_inputs_feedback_v2/reference_data \
+  --data outputs/shared_inputs_feedback_v2/new_tasks \
+  --out outputs/shared_inputs_feedback_v2/data_audit
+tar -czf shared_inputs_feedback_v2.tar.gz outputs/shared_inputs_feedback_v2
 ```
 
-Скопируйте этот TAR на остальные компьютеры и распакуйте из корня checkout:
-
-```bash
-tar -xzf shared_inputs_20260921.tar.gz
-```
-
-Все компьютеры должны использовать **одни и те же файлы**. Один seed
-генератора не гарантирует побайтное совпадение MILP на разных машинах.
-Каждый запуск копирует общий набор в свою рабочую папку, проверяет хеши
-и выполняет полный аудит до inference. В общий TAR веса не входят.
-
-Если прежнего `outputs/data` нет, его можно восстановить командой
+При отсутствии прежнего `outputs/data` восстановите его командой
 `uv run python -m iclr.data --out outputs/data`. Ожидаемый SHA-256 manifest:
 `8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866`.
-Это подготовка исходных задач, не повтор прежнего обучения.
+Это генерация задач, не повтор обучения. Не запускайте независимую генерацию
+новых задач на каждой машине: MILP с одним seed не гарантирует одинаковые
+байты в разных окружениях. Каждый сервер получает один и тот же TAR.
+Новый код отклоняет прежний протокол v1.
 
-## Выбрать и запустить нужный блок
+## Что запускать сейчас
 
-| ID для `--experiments` | Что будет сделано | Новых обучений | Необходимые веса |
-|---|---|---:|---|
-| `01_recheck_existing_models` | Новая closed A-only оценка старых моделей, TARGET-контроль, full/local/format, глубина 4, исполнение | 0 | Atomic + шесть adapters каждого размера |
-| `02_new_pair_masks` | Четыре допустимые маски, две ветки, seed 0/1 | 16 | Atomic 0.6B |
-| `03_new_triples_and_positions` | Новая тройка и новая позиция пары, две ветки, seed 0/1 | 8 | Atomic 0.6B |
-| `04_correct_program_choice` | Fixed/uniform/balanced witness, normalized-single, MML; seed 0/1/2 | 15 | Atomic 0.6B |
-| `05_reward_gradient` | Exact/sampled reward: четыре SGD pilot, четыре AdamW runs, новая оценка исходного SFT | 8 | Atomic 0.6B + прежний composition adapter seed 0 |
-| `06_other_model_family` | SmolLM2-1.7B atomic init, шесть continuation; шесть сопоставимых Qwen0.6 continuation | 13 | Atomic 0.6B; Smol скачивается по закреплённой revision |
+| Блок | Команда/этап | Новых обучений |
+|---|---|---:|
+| 01 | Старые checkpoint 0.6B: новые dev-панели, затем тот же анализ 8B | **0** |
+| 02 pilot | mask1/2 × atomic_control/composition × seed0, после анализа 01 | **4** |
+| 02 remaining | mask3/4 seed0 и все четыре маски seed1, после интерпретации pilot | **12** |
+| 04 pilot | Новый witness-пул, fixed/balanced × seed0 | **2** |
+| 03 | Старые triple/position не различают условный выбор; запуск отключён до нового дизайна | **0** |
+| 05 | Отложен до гипотезы о градиенте и численной проверки; автоматический pilot → full удалён | **0** |
+| 06 | Условная репликация: центральная пара и fixed/balanced на Qwen/SmolLM2, seed0, одна новая Smol atomic init | **9**, только явно |
 
-Основные блоки 01–04 дают 94 задания / 39 обучений. Все шесть вместе:
-137 заданий / 60 обучений. Остальные задания — подготовка, аудит и оценки.
-Сначала разумно выполнить 01–04. 05 — условный reward-контроль; 06 —
-долгосрочная внешняя репликация из исходного плана.
-
-Пример: запустить блок 02 на двух свободных GPU:
-
-```bash
-uv run python -m iclr.upgrade start \
-  --experiments 02_new_pair_masks \
-  --inputs outputs/shared_inputs_20260921 \
-  --out outputs/02_new_pair_masks --gpus 0 1
-```
-
-Для другого блока замените ID и имя `--out` по таблице. Можно перечислить
-несколько ID после `--experiments`. Один процесс занимает одну GPU;
-подставляйте реально свободные индексы. Чтобы только проверить состав,
-замените `start` на `plan` и уберите `--gpus`. Очередь и конфиги сохранятся.
-
-Все основные блоки на одном компьютере:
+**Команда по умолчанию запускает только 01 на 0.6B, в фазе dev.**
+Очередь из 39/60 обучений больше не является планом запуска.
+Сначала выполните на сервере с нужными старыми весами:
 
 ```bash
 uv run python -m iclr.upgrade start \
-  --inputs outputs/shared_inputs_20260921 \
-  --out outputs/01_to_04_main_experiments --gpus 0 1 2 3
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --model-names q06 --out outputs/01_old_q06_dev --gpus 0 1
 ```
 
-Для добавления 05/06 используйте `--include-grpo --include-external`.
-Новый состав, код или batch требуют нового `--out`. По умолчанию BF16,
-`prefix-batch=32`; для меньшей памяти задайте `--prefix-batch 8` при старте.
-Рекомендуется запускать диспетчер в tmux.
-
-## Разнести работу между компьютерами
-
-Самый простой вариант: разные блоки на разных компьютерах с тем же общим
-набором данных и нужными весами. Например, компьютер A — блок 01; B — 02;
-C — 03 и 04. Внутри машины `--gpus` включает параллельность по картам.
-
-Блоки 01–04 также можно разделить по seed, сохраняя обе сравниваемые ветки
-на каждой машине. Для масок:
+После анализа 0.6B тот же набор и правила для 8B:
 
 ```bash
-# Компьютер A: все четыре маски, обе ветки, seed 0.
 uv run python -m iclr.upgrade start \
-  --experiments 02_new_pair_masks --seeds 0 \
-  --inputs outputs/shared_inputs_20260921 \
-  --out outputs/02_new_pair_masks_seed0 --gpus 0 1
-
-# Компьютер B: те же четыре маски, обе ветки, seed 1.
-uv run python -m iclr.upgrade start \
-  --experiments 02_new_pair_masks --seeds 1 \
-  --inputs outputs/shared_inputs_20260921 \
-  --out outputs/02_new_pair_masks_seed1 --gpus 0 1
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --model-names q8b --out outputs/01_old_q8b_dev --gpus 0 1
 ```
 
-Не назначайте одну и ту же пару `(блок, seed)` двум компьютерам.
-Блоки 05 и 06 распределяются **целиком**: у 05 общий допуск после всех pilot,
-у 06 общий новый atomic checkpoint. Внутри них несколько GPU работают
-параллельно после зависимостей. Код отклоняет неполный набор seed для 05/06.
-Разные компьютеры не должны писать в одну папку очереди.
+Один процесс занимает одну GPU. Укажите реально свободные индексы; при одной
+A100 используйте `--gpus 0`. Диспетчер удобно держать в tmux. По умолчанию
+BF16, prefix batch 32; при нехватке памяти задайте `--prefix-batch 8` в новой
+папке очереди. Чтобы проверить состав без запуска, замените `start` на `plan`
+и уберите `--gpus`. `queue.json` содержит все задания и зависимости.
 
-`status.json` показывает состояние каждого задания, GPU/PID и причину сбоя;
-`logs/<job>.log` содержит вывод. Для продолжения существующей очереди:
+## Пилот на отдельных серверах A100
+
+После содержательного разбора блока 01 можно одновременно поставить две
+маски на разные серверы. В каждой очереди остаются обе сравниваемые ветки:
+
+```bash
+# Сервер A: mask1, две ветки, seed0.
+uv run python -m iclr.upgrade start \
+  --experiments 02_new_pair_masks --stage pilot --masks mask1 \
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --out outputs/02_pilot_mask1_seed0_dev --gpus 0
+
+# Сервер B: mask2, две ветки, seed0.
+uv run python -m iclr.upgrade start \
+  --experiments 02_new_pair_masks --stage pilot --masks mask2 \
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --out outputs/02_pilot_mask2_seed0_dev --gpus 0
+```
+
+Без `--masks` pilot включает обе маски. После интерпретации pilot:
+
+```bash
+# Сервер A: только недостающие mask3/4, seed0.
+uv run python -m iclr.upgrade start \
+  --experiments 02_new_pair_masks --stage remaining --seeds 0 \
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --out outputs/02_remaining_seed0_dev --gpus 0 1
+
+# Сервер B: все четыре маски, seed1.
+uv run python -m iclr.upgrade start \
+  --experiments 02_new_pair_masks --stage remaining --seeds 1 \
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --out outputs/02_remaining_seed1_dev --gpus 0 1
+```
+
+Pilot и remaining не повторяют обучающие ячейки. Не назначайте одну ячейку
+`(модель, dataset, arm, seed, phase)` двум машинам и не пишите с разных
+машин в одну папку очереди. Повтор baseline при отдельной очереди нужен
+для привязки к её данным; это только оценка, без обучения.
+
+Исправленное вмешательство после проверки основного контраста:
+
+```bash
+uv run python -m iclr.upgrade start \
+  --experiments 04_correct_program_choice --stage pilot \
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --out outputs/04_fixed_vs_balanced_seed0_dev --gpus 0 1
+```
+
+CPU-аудит проверяет весь witness-пул и фактический эффект выбора меток за
+две эпохи до GPU. Перед новым обучением очередь оценивает atomic baseline
+на тех же данных. Если атомарное исполнение не проходит критерий, результаты
+остаются диагностикой распределения программ; утверждать композицию уже
+надёжно освоенных навыков нельзя.
+
+Блок 06 запускается отдельно и только после выбора центрального эффекта и
+вмешательства: `--experiments 06_other_model_family --stage complete`.
+Держите его на одном сервере/в одной очереди с несколькими GPU: используется
+общий новый Smol atomic checkpoint. Это 9 обучений, не прежняя широкая сетка.
+
+## Final и продолжение очереди
+
+Dev-команды не открывают final. До окончательной оценки один раз сохраните
+замок анализа и скопируйте его с общими данными на другие компьютеры:
+
+```bash
+uv run python -m iclr.upgrade freeze-analysis \
+  --inputs outputs/shared_inputs_feedback_v2 \
+  --out outputs/analysis_lock_feedback_v2.json
+```
+
+Он фиксирует scorer, contrast и правило checkpoint через хеш плана, код,
+данные и квитанции старых моделей. Поправки обучаются только на отдельном A,
+alpha=1. Итоговая проверка старой 0.6B:
+
+```bash
+uv run python -m iclr.upgrade start \
+  --inputs outputs/shared_inputs_feedback_v2 --model-names q06 \
+  --phase final --analysis-lock outputs/analysis_lock_feedback_v2.json \
+  --out outputs/01_old_q06_final --gpus 0 1
+```
+
+Для final новых обучений повторите селекторы соответствующей dev-очереди,
+добавьте `--phase final --analysis-lock outputs/analysis_lock_feedback_v2.json
+--trained-from outputs/ИМЯ_DEV_ОЧЕРЕДИ` и укажите новый `--out`.
+**Final использует готовый финальный adapter, не запускает обучение повторно.**
+Midpoint не выбирается по лучшему B/D. После изменения кода/плана нужен новый
+протокол; нельзя подменять файлы в готовой очереди.
+
+Для возобновления используйте ту же версию кода:
 
 ```bash
 uv run python -m iclr.upgrade run \
-  --queue outputs/02_new_pair_masks/queue.json --gpus 0 1
+  --queue outputs/01_old_q06_dev/queue.json --gpus 0 1
 ```
 
-Готовые результаты проверяются по хешам; живые процессы не дублируются.
-После устранения причины сбоя добавьте `--retry-failed`. Без TRAINED
-незавершённое обучение повторяется с исходных весов; после TRAINED
-восстанавливается оценка. Частичная генерация данных не перезаписывается:
-сохраните её и выберите новый `--out`.
+Готовые результаты проверяются по хешам, живые процессы не дублируются.
+Причина сбоя — в `status.json` и `logs/<job>.log`; после исправления добавьте
+`--retry-failed`. Без TRAINED прерванное обучение начинается с исходных весов;
+после TRAINED продолжается оценка. Частичные данные сохраняются, новый
+набор создаётся в новом каталоге.
 
 ## Что отправить Артёму
 
-После успешного `start` или `run` автоматически появляются:
+После `start`/`run` автоматически создаются:
 
 ```text
-outputs/send_to_artem_exp_02_new_pair_masks_ДАТА_ВРЕМЯ/
-outputs/send_to_artem_exp_02_new_pair_masks_ДАТА_ВРЕМЯ.zip
+outputs/send_to_artem_exp_ИМЯ_ОЧЕРЕДИ_ДАТА_ВРЕМЯ/
+outputs/send_to_artem_exp_ИМЯ_ОЧЕРЕДИ_ДАТА_ВРЕМЯ.zip
 ```
 
-**Отправьте ZIP целиком. В нём нет весов моделей.** Папка содержит ту же
-выборку файлов в распакованном виде. В ней есть `START_HERE_RU.md`, общая
-сводка, результаты каждой задачи, сырые score/префиксы/ответы, калибровка,
-все данные, бюджеты, configs, логи, квитанции и снимок кода. Каталоги
-`results/experiments/01_…`–`06_…` называются так же, как блоки в таблице.
-
-Чтобы собрать посылку повторно или отдельно от запуска:
-
-```bash
-uv run python -m iclr.upgrade send --out outputs/02_new_pair_masks
-```
-
-Для явно неполных результатов после остановки очереди добавьте
-`--allow-incomplete`; посылка будет помечена `partial`. Во время живых
-запусков экспорт запрещён. ZIP проверяется по SHA-256 каждого файла;
-проверить после скачивания можно без CUDA и весов:
+**Отправьте ZIP целиком; веса исключены.** В нём сводки, target alignment,
+все score и префиксы, три подмены TARGET, static controls, исходные задачи,
+результаты исполнения, конфиги, бюджеты, логи, квитанции и код с протоколом.
+Начните с `START_HERE_RU.md`, `results/analysis/runs.csv`, затем
+`results/experiments/<block>/evaluations/<run>/target_alignment.json`.
+Не объединяйте разные data hash, фазы, маски или scorer как независимые повторы.
 
 ```bash
+uv run python -m iclr.upgrade send --out outputs/01_old_q06_dev
 python -m iclr.upgrade verify-bundle --archive send_to_artem_exp_....zip
 ```
 
-[Полный протокол, все пункты G0–G12 и состав результатов](plans/GOAL_TO_ICLR.md).
-[Локальные проверки на tiny и настоящей Qwen0.6](evidence/upgrade/README.md).
+Для остановленной неполной очереди `send --allow-incomplete` делает явно
+помеченную partial-посылку. Проверка ZIP работает без весов и CUDA.
+Новые контроли из сохранённых rankings можно пересчитать на CPU:
 
-Локальная рабочая копия ветки: `/tmp/artem_iclr`. Открыть в VS Code:
-`code -n /tmp/artem_iclr`. Она уже закреплена за этой worktree; Git не позволяет
-checkout той же ветки во второй рабочей копии одновременно.
+```bash
+uv run python -m iclr.upgrade_analysis rescore \
+  --source outputs/01_old_q06_dev/experiments/01_recheck_existing_models/evaluations/q06_previous_composition_seed0 \
+  --data outputs/01_old_q06_dev/data/original --out outputs/reanalysis_q06_seed0
+```
+
+`iclr.upgrade_analysis compare --alignment <atomic JSON> <composition JSON>
+--out <contrast.json>` считает парный START-bootstrap основного контраста;
+можно передать все три пары seed одной модели/маски/фазы. Для witness
+добавьте `--treatment balanced --control fixed`. На d3 требуется 31 префикс,
+на d4 — 156; новые аналитические контроли не требуют повторного inference.
+
+[Проверки этой версии](evidence/feedback_v2/README.md).
+[Архивный план до review](plans/GOAL_TO_ICLR.md) сохранён для истории.

@@ -1,0 +1,879 @@
+{
+  "binding": {
+    "adapter_hash": "855b3ae2247bbba0070d1503440a7e4e5832d4e2e13e75c064a2fdabfc6e9997",
+    "analysis_lock_sha256": null,
+    "arm": "balanced",
+    "base_hash": "af2786f64a83c092335d2f6c83fcea706581abda56a2ce8c95102ec6ec877a0b",
+    "code_hash": "602a4688e2e30347338fc2814db2445579a1a3da439cc6a983a8231f3095cd27",
+    "data_hash": "36b120d654734287621e7f04cbf06adc6dec4435922ec9c57cb8106d73f2a9c4",
+    "data_status": "smoke",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "execution_tasks_per_family": 1,
+    "model": "outputs/qwen06_test_source",
+    "phase": "dev",
+    "prefix_batch": 1,
+    "prompt_version": "stage4_plan_v1",
+    "protocol": "target_alignment_v2",
+    "reliable_ops": [
+      "AC1",
+      "AX1",
+      "REV"
+    ],
+    "seed": 0,
+    "training_pool_sha256": "1b35fba36f244865e67f23e8a644fb631064a971668936ef0a0c45347dff1734"
+  },
+  "invariance": "all column program priors and row prompt offsets cancel; do not count corrections as replications",
+  "primary": "local_score pair_accuracy_tie_half; composition minus atomic_control; equal B/D",
+  "scores": {
+    "format_score": {
+      "eligible": 8,
+      "panels": [
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.09252635380134322,
+          "cycle_contrasts": [
+            0.029888013356808685,
+            0.25297668108625526,
+            0.283910006810034,
+            -0.08393349240170522,
+            -0.02140333149193907,
+            -0.01728377183531471
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_C",
+          "family": "C",
+          "maximizers": 1,
+          "p": 17,
+          "pair_accuracy_tie_half": 0.5,
+          "panel_id": "3a0401c7a09f22940c158b2f",
+          "score_key": "format_score",
+          "start": [
+            3,
+            16,
+            1,
+            10,
+            3
+          ],
+          "task_ids": [
+            "s4c-bb98c834d076529f45297be0",
+            "s4c-d29498c2341418b6abc39076",
+            "s4c-f7a53a994ff8c74b6c85792e",
+            "s4c-fbe93ddcbfe4777e6df6aaa5"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.015091009542832268,
+          "cycle_contrasts": [
+            0.016844810520392883,
+            0.11663474117595385,
+            0.0,
+            0.3582950290567499,
+            -0.015091009542832268,
+            0.2615743861246713
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_C",
+          "family": "C",
+          "maximizers": 2,
+          "p": 11,
+          "pair_accuracy_tie_half": 0.75,
+          "panel_id": "3c7c4001b887ff335d988d18",
+          "score_key": "format_score",
+          "start": [
+            10,
+            5,
+            6,
+            1,
+            2
+          ],
+          "task_ids": [
+            "s4c-18a389604cf8c5710441dc86",
+            "s4c-5062b4687ca79638900f26b5",
+            "s4c-50ec490fb078e400d9ed2849",
+            "s4c-54510e949c9ff973b9ed06ed"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.2716373790058615,
+          "cycle_contrasts": [
+            -0.08688469028425061,
+            -0.04173205272611824,
+            -0.14549337130627293,
+            -0.04708486216232188,
+            -0.16529345629908043,
+            -0.07754182324995185
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_A",
+          "family": "A",
+          "maximizers": 1,
+          "p": 23,
+          "pair_accuracy_tie_half": 0.0,
+          "panel_id": "4992a801e659e83d28ab0502",
+          "score_key": "format_score",
+          "start": [
+            16,
+            7,
+            7,
+            1,
+            0
+          ],
+          "task_ids": [
+            "s4c-33bcc977dc9cc2febf86c367",
+            "s4c-833c517f5618cd51a3381d43",
+            "s4c-dce2ed907a4e79d0731c3a1c",
+            "s4c-e6e8877526b93aae62db29d8"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.09242792708231384,
+          "cycle_contrasts": [
+            0.3288109394159804,
+            0.0,
+            0.11023958402055811,
+            -0.07311703805345715,
+            -0.07202324861250453,
+            -0.02555889310851711
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_A",
+          "family": "A",
+          "maximizers": 2,
+          "p": 29,
+          "pair_accuracy_tie_half": 0.4166666666666667,
+          "panel_id": "7043f5740b21ae68aba68ed0",
+          "score_key": "format_score",
+          "start": [
+            24,
+            11,
+            15,
+            23,
+            9
+          ],
+          "task_ids": [
+            "s4c-7aa8d80de41c2f2ba65cb031",
+            "s4c-884fd80c3fe5e9929d580c1a",
+            "s4c-9f28cc6d64cae1f81ef8485b",
+            "s4c-c29d346390bdde862c4546f4"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.06924307460078971,
+          "cycle_contrasts": [
+            0.005491182784656878,
+            -0.06653657266587132,
+            -0.02517407502117841,
+            0.0,
+            0.05068143642641676,
+            -0.011214359016237907
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_D",
+          "family": "D",
+          "maximizers": 2,
+          "p": 17,
+          "pair_accuracy_tie_half": 0.4166666666666667,
+          "panel_id": "84cdedb5dfea8065c04919bf",
+          "score_key": "format_score",
+          "start": [
+            0,
+            8,
+            1,
+            9,
+            3
+          ],
+          "task_ids": [
+            "s4c-05eb41504d3a9826f27655c5",
+            "s4c-cdd526082dddf6c1976ebea6",
+            "s4c-cf85c0f58a026a154923b45e",
+            "s4c-d10f864280284a6e58df2f6b"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.17005773825585102,
+          "cycle_contrasts": [
+            0.0,
+            0.0,
+            -0.17005773825585102,
+            0.0,
+            -0.13057944384271458,
+            -0.15211354465315097
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_B",
+          "family": "B",
+          "maximizers": 6,
+          "p": 29,
+          "pair_accuracy_tie_half": 0.25,
+          "panel_id": "93722b37996a2476610a16ae",
+          "score_key": "format_score",
+          "start": [
+            2,
+            18,
+            11,
+            12,
+            10
+          ],
+          "task_ids": [
+            "s4c-0179338619c67058c4117e47",
+            "s4c-155405a9bcf97b7ca962ca2c",
+            "s4c-69c1465fbba11c1dfd310fb6",
+            "s4c-71a489ba6143a7b9bb2ab7c0"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.03746006704037619,
+          "cycle_contrasts": [
+            0.03920125540749453,
+            -0.015444222557427167,
+            -0.03648161812219719,
+            0.0728243463929239,
+            -0.012542316556123367,
+            0.019637477019081473
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_D",
+          "family": "D",
+          "maximizers": 1,
+          "p": 11,
+          "pair_accuracy_tie_half": 0.5,
+          "panel_id": "df5e7e1bc7e3036e1869ac7c",
+          "score_key": "format_score",
+          "start": [
+            6,
+            7,
+            5,
+            3,
+            8
+          ],
+          "task_ids": [
+            "s4c-2e11f72fabf9a7b7a6f33f26",
+            "s4c-318c5654b3e6d8aeec49248b",
+            "s4c-7239f47753af55041cf7e645",
+            "s4c-7b73dad1f9c157b83320ee87"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.12115142866004369,
+          "cycle_contrasts": [
+            -0.12115142866004369,
+            -0.027080579983620012,
+            0.01271119285143385,
+            0.0,
+            -0.04469273931942297,
+            0.013511628140149057
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_B",
+          "family": "B",
+          "maximizers": 2,
+          "p": 23,
+          "pair_accuracy_tie_half": 0.4166666666666667,
+          "panel_id": "f19c8ba41a227976c61930d4",
+          "score_key": "format_score",
+          "start": [
+            7,
+            1,
+            7,
+            17,
+            10
+          ],
+          "task_ids": [
+            "s4c-042d83b672074ad462b7339b",
+            "s4c-265172899e11a45faa197d93",
+            "s4c-59b1b414ba9c21d066f75e12",
+            "s4c-6e8deed4968be7c8688bcc8f"
+          ],
+          "tie_tolerance": 1e-08
+        }
+      ],
+      "skipped": [],
+      "static_prior_chance": {
+        "assignment_credit": 0.041666666666666664,
+        "pair_accuracy_tie_half": 0.5
+      },
+      "total": 8
+    },
+    "local_score": {
+      "eligible": 8,
+      "panels": [
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.3066329961629357,
+          "cycle_contrasts": [
+            0.05569042826306436,
+            0.1982061611683843,
+            -0.046539992619361925,
+            0.10000385830746694,
+            -0.14084718730688905,
+            0.27148208459471235
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_C",
+          "family": "C",
+          "maximizers": 1,
+          "p": 17,
+          "pair_accuracy_tie_half": 0.6666666666666666,
+          "panel_id": "3a0401c7a09f22940c158b2f",
+          "score_key": "local_score",
+          "start": [
+            3,
+            16,
+            1,
+            10,
+            3
+          ],
+          "task_ids": [
+            "s4c-bb98c834d076529f45297be0",
+            "s4c-d29498c2341418b6abc39076",
+            "s4c-f7a53a994ff8c74b6c85792e",
+            "s4c-fbe93ddcbfe4777e6df6aaa5"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.11292518650371441,
+          "cycle_contrasts": [
+            0.03673642727257498,
+            -0.11292518650371441,
+            0.1875,
+            -0.017197197330675706,
+            0.23590237657774438,
+            0.1039315476369227
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_C",
+          "family": "C",
+          "maximizers": 1,
+          "p": 11,
+          "pair_accuracy_tie_half": 0.6666666666666666,
+          "panel_id": "3c7c4001b887ff335d988d18",
+          "score_key": "local_score",
+          "start": [
+            10,
+            5,
+            6,
+            1,
+            2
+          ],
+          "task_ids": [
+            "s4c-18a389604cf8c5710441dc86",
+            "s4c-5062b4687ca79638900f26b5",
+            "s4c-50ec490fb078e400d9ed2849",
+            "s4c-54510e949c9ff973b9ed06ed"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.03927511555984431,
+          "cycle_contrasts": [
+            0.32188816165876144,
+            0.2691242493813917,
+            0.1723884175404029,
+            -0.03927511555984431,
+            0.41161823390223073,
+            0.5878930042802253
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_A",
+          "family": "A",
+          "maximizers": 1,
+          "p": 23,
+          "pair_accuracy_tie_half": 0.8333333333333334,
+          "panel_id": "4992a801e659e83d28ab0502",
+          "score_key": "local_score",
+          "start": [
+            16,
+            7,
+            7,
+            1,
+            0
+          ],
+          "task_ids": [
+            "s4c-33bcc977dc9cc2febf86c367",
+            "s4c-833c517f5618cd51a3381d43",
+            "s4c-dce2ed907a4e79d0731c3a1c",
+            "s4c-e6e8877526b93aae62db29d8"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.35839534722237865,
+          "cycle_contrasts": [
+            -0.35839534722237865,
+            -0.1249997615814209,
+            0.00018111986738134078,
+            0.11962463502305987,
+            0.03618988984785698,
+            0.24755043210998284
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_A",
+          "family": "A",
+          "maximizers": 1,
+          "p": 29,
+          "pair_accuracy_tie_half": 0.6666666666666666,
+          "panel_id": "7043f5740b21ae68aba68ed0",
+          "score_key": "local_score",
+          "start": [
+            24,
+            11,
+            15,
+            23,
+            9
+          ],
+          "task_ids": [
+            "s4c-7aa8d80de41c2f2ba65cb031",
+            "s4c-884fd80c3fe5e9929d580c1a",
+            "s4c-9f28cc6d64cae1f81ef8485b",
+            "s4c-c29d346390bdde862c4546f4"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.21850449477252276,
+          "cycle_contrasts": [
+            -0.08901326415977984,
+            0.1954533130833509,
+            -0.09350449477252276,
+            -0.125,
+            0.14480105602048177,
+            0.3944719865034205
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_D",
+          "family": "D",
+          "maximizers": 1,
+          "p": 17,
+          "pair_accuracy_tie_half": 0.5,
+          "panel_id": "84cdedb5dfea8065c04919bf",
+          "score_key": "local_score",
+          "start": [
+            0,
+            8,
+            1,
+            9,
+            3
+          ],
+          "task_ids": [
+            "s4c-05eb41504d3a9826f27655c5",
+            "s4c-cdd526082dddf6c1976ebea6",
+            "s4c-cf85c0f58a026a154923b45e",
+            "s4c-d10f864280284a6e58df2f6b"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.27175501542151626,
+          "cycle_contrasts": [
+            -0.0625,
+            0.0,
+            -0.27175501542151626,
+            0.0625,
+            -0.09332039746588094,
+            -0.18907631664445557
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_B",
+          "family": "B",
+          "maximizers": 1,
+          "p": 29,
+          "pair_accuracy_tie_half": 0.25,
+          "panel_id": "93722b37996a2476610a16ae",
+          "score_key": "local_score",
+          "start": [
+            2,
+            18,
+            11,
+            12,
+            10
+          ],
+          "task_ids": [
+            "s4c-0179338619c67058c4117e47",
+            "s4c-155405a9bcf97b7ca962ca2c",
+            "s4c-69c1465fbba11c1dfd310fb6",
+            "s4c-71a489ba6143a7b9bb2ab7c0"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.25218378242808104,
+          "cycle_contrasts": [
+            -0.05006527480141543,
+            0.07776087867009984,
+            0.09161972923669914,
+            -0.25218378242808104,
+            -0.10581844127163542,
+            0.122401583573569
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_D",
+          "family": "D",
+          "maximizers": 1,
+          "p": 11,
+          "pair_accuracy_tie_half": 0.5,
+          "panel_id": "df5e7e1bc7e3036e1869ac7c",
+          "score_key": "local_score",
+          "start": [
+            6,
+            7,
+            5,
+            3,
+            8
+          ],
+          "task_ids": [
+            "s4c-2e11f72fabf9a7b7a6f33f26",
+            "s4c-318c5654b3e6d8aeec49248b",
+            "s4c-7239f47753af55041cf7e645",
+            "s4c-7b73dad1f9c157b83320ee87"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.3826954103264395,
+          "cycle_contrasts": [
+            -0.015054959813468827,
+            -0.16113205314931456,
+            -0.2152949826768733,
+            -4.76837158203125e-07,
+            -0.03926302545108662,
+            0.059510499011338425
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_B",
+          "family": "B",
+          "maximizers": 1,
+          "p": 23,
+          "pair_accuracy_tie_half": 0.16666666666666666,
+          "panel_id": "f19c8ba41a227976c61930d4",
+          "score_key": "local_score",
+          "start": [
+            7,
+            1,
+            7,
+            17,
+            10
+          ],
+          "task_ids": [
+            "s4c-042d83b672074ad462b7339b",
+            "s4c-265172899e11a45faa197d93",
+            "s4c-59b1b414ba9c21d066f75e12",
+            "s4c-6e8deed4968be7c8688bcc8f"
+          ],
+          "tie_tolerance": 1e-08
+        }
+      ],
+      "skipped": [],
+      "static_prior_chance": {
+        "assignment_credit": 0.041666666666666664,
+        "pair_accuracy_tie_half": 0.5
+      },
+      "total": 8
+    },
+    "score": {
+      "eligible": 8,
+      "panels": [
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.22691059112548828,
+          "cycle_contrasts": [
+            0.08557844161987305,
+            0.45118284225463867,
+            0.23737001419067383,
+            0.01607036590576172,
+            -0.16225051879882812,
+            0.2541983127593994
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_C",
+          "family": "C",
+          "maximizers": 1,
+          "p": 17,
+          "pair_accuracy_tie_half": 0.8333333333333334,
+          "panel_id": "3a0401c7a09f22940c158b2f",
+          "score_key": "score",
+          "start": [
+            3,
+            16,
+            1,
+            10,
+            3
+          ],
+          "task_ids": [
+            "s4c-bb98c834d076529f45297be0",
+            "s4c-d29498c2341418b6abc39076",
+            "s4c-f7a53a994ff8c74b6c85792e",
+            "s4c-fbe93ddcbfe4777e6df6aaa5"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 1.0,
+          "assignment_margin": 0.003709554672241211,
+          "cycle_contrasts": [
+            0.05358123779296875,
+            0.003709554672241211,
+            0.1875,
+            0.3410978317260742,
+            0.2208113670349121,
+            0.3655059337615967
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_C",
+          "family": "C",
+          "maximizers": 1,
+          "p": 11,
+          "pair_accuracy_tie_half": 1.0,
+          "panel_id": "3c7c4001b887ff335d988d18",
+          "score_key": "score",
+          "start": [
+            10,
+            5,
+            6,
+            1,
+            2
+          ],
+          "task_ids": [
+            "s4c-18a389604cf8c5710441dc86",
+            "s4c-5062b4687ca79638900f26b5",
+            "s4c-50ec490fb078e400d9ed2849",
+            "s4c-54510e949c9ff973b9ed06ed"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.11403131484985352,
+          "cycle_contrasts": [
+            0.23500347137451172,
+            0.22739219665527344,
+            0.02689504623413086,
+            -0.08635997772216797,
+            0.24632477760314941,
+            0.5103511810302734
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_A",
+          "family": "A",
+          "maximizers": 1,
+          "p": 23,
+          "pair_accuracy_tie_half": 0.8333333333333334,
+          "panel_id": "4992a801e659e83d28ab0502",
+          "score_key": "score",
+          "start": [
+            16,
+            7,
+            7,
+            1,
+            0
+          ],
+          "task_ids": [
+            "s4c-33bcc977dc9cc2febf86c367",
+            "s4c-833c517f5618cd51a3381d43",
+            "s4c-dce2ed907a4e79d0731c3a1c",
+            "s4c-e6e8877526b93aae62db29d8"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.16083312034606934,
+          "cycle_contrasts": [
+            -0.029584407806396484,
+            -0.1249997615814209,
+            0.11042070388793945,
+            0.04650759696960449,
+            -0.03583335876464844,
+            0.22199153900146484
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_A",
+          "family": "A",
+          "maximizers": 1,
+          "p": 29,
+          "pair_accuracy_tie_half": 0.5,
+          "panel_id": "7043f5740b21ae68aba68ed0",
+          "score_key": "score",
+          "start": [
+            24,
+            11,
+            15,
+            23,
+            9
+          ],
+          "task_ids": [
+            "s4c-7aa8d80de41c2f2ba65cb031",
+            "s4c-884fd80c3fe5e9929d580c1a",
+            "s4c-9f28cc6d64cae1f81ef8485b",
+            "s4c-c29d346390bdde862c4546f4"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.24367856979370117,
+          "cycle_contrasts": [
+            -0.08352208137512207,
+            0.12891674041748047,
+            -0.11867856979370117,
+            -0.125,
+            0.19548249244689941,
+            0.3832576274871826
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_D",
+          "family": "D",
+          "maximizers": 1,
+          "p": 17,
+          "pair_accuracy_tie_half": 0.5,
+          "panel_id": "84cdedb5dfea8065c04919bf",
+          "score_key": "score",
+          "start": [
+            0,
+            8,
+            1,
+            9,
+            3
+          ],
+          "task_ids": [
+            "s4c-05eb41504d3a9826f27655c5",
+            "s4c-cdd526082dddf6c1976ebea6",
+            "s4c-cf85c0f58a026a154923b45e",
+            "s4c-d10f864280284a6e58df2f6b"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.44181275367736816,
+          "cycle_contrasts": [
+            -0.0625,
+            0.0,
+            -0.44181275367736816,
+            0.0625,
+            -0.22389984130859375,
+            -0.3411898612976074
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_B",
+          "family": "B",
+          "maximizers": 1,
+          "p": 29,
+          "pair_accuracy_tie_half": 0.25,
+          "panel_id": "93722b37996a2476610a16ae",
+          "score_key": "score",
+          "start": [
+            2,
+            18,
+            11,
+            12,
+            10
+          ],
+          "task_ids": [
+            "s4c-0179338619c67058c4117e47",
+            "s4c-155405a9bcf97b7ca962ca2c",
+            "s4c-69c1465fbba11c1dfd310fb6",
+            "s4c-71a489ba6143a7b9bb2ab7c0"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.22341370582580566,
+          "cycle_contrasts": [
+            -0.010864019393920898,
+            0.0623166561126709,
+            0.05513811111450195,
+            -0.17935943603515625,
+            -0.11836075782775879,
+            0.14203906059265137
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_D",
+          "family": "D",
+          "maximizers": 1,
+          "p": 11,
+          "pair_accuracy_tie_half": 0.5,
+          "panel_id": "df5e7e1bc7e3036e1869ac7c",
+          "score_key": "score",
+          "start": [
+            6,
+            7,
+            5,
+            3,
+            8
+          ],
+          "task_ids": [
+            "s4c-2e11f72fabf9a7b7a6f33f26",
+            "s4c-318c5654b3e6d8aeec49248b",
+            "s4c-7239f47753af55041cf7e645",
+            "s4c-7b73dad1f9c157b83320ee87"
+          ],
+          "tie_tolerance": 1e-08
+        },
+        {
+          "assignment_credit": 0.0,
+          "assignment_margin": -0.4817681312561035,
+          "cycle_contrasts": [
+            -0.13620638847351074,
+            -0.18821263313293457,
+            -0.20258378982543945,
+            -4.76837158203125e-07,
+            -0.08395576477050781,
+            0.07302212715148926
+          ],
+          "depth": 3,
+          "evaluation_set": "dev_panel_B",
+          "family": "B",
+          "maximizers": 1,
+          "p": 23,
+          "pair_accuracy_tie_half": 0.16666666666666666,
+          "panel_id": "f19c8ba41a227976c61930d4",
+          "score_key": "score",
+          "start": [
+            7,
+            1,
+            7,
+            17,
+            10
+          ],
+          "task_ids": [
+            "s4c-042d83b672074ad462b7339b",
+            "s4c-265172899e11a45faa197d93",
+            "s4c-59b1b414ba9c21d066f75e12",
+            "s4c-6e8deed4968be7c8688bcc8f"
+          ],
+          "tie_tolerance": 1e-08
+        }
+      ],
+      "skipped": [],
+      "static_prior_chance": {
+        "assignment_credit": 0.041666666666666664,
+        "pair_accuracy_tie_half": 0.5
+      },
+      "total": 8
+    }
+  }
+}
