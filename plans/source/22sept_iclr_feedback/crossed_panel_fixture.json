@@ -1,0 +1,146 @@
+{
+  "p": 5,
+  "degree": 2,
+  "starts": [
+    [
+      0,
+      4,
+      3
+    ],
+    [
+      1,
+      0,
+      2
+    ]
+  ],
+  "targets": [
+    [
+      3,
+      2,
+      3
+    ],
+    [
+      4,
+      1,
+      2
+    ]
+  ],
+  "program_A": [
+    "AX1",
+    "SH1",
+    "AX1"
+  ],
+  "program_B": [
+    "SC2",
+    "SH1",
+    "SH1"
+  ],
+  "assignment": [
+    [
+      "A",
+      "B"
+    ],
+    [
+      "B",
+      "A"
+    ]
+  ],
+  "unique_solution_at_depth": 3,
+  "shortest_depth": 3,
+  "trajectories": [
+    [
+      [
+        [
+          0,
+          4,
+          3
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          3,
+          1,
+          3
+        ],
+        [
+          3,
+          2,
+          3
+        ]
+      ],
+      [
+        [
+          0,
+          4,
+          3
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          4,
+          1,
+          2
+        ]
+      ]
+    ],
+    [
+      [
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          4,
+          1,
+          3
+        ],
+        [
+          3,
+          2,
+          3
+        ]
+      ],
+      [
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          4,
+          0,
+          2
+        ],
+        [
+          4,
+          1,
+          2
+        ]
+      ]
+    ]
+  ],
+  "verification": "PASS: all four cells have unique shortest length-three solutions; program Hamming distance >= 2",
+  "scope": "Illustrative feasibility only; not a frozen dataset, heldout split, or model result."
+}

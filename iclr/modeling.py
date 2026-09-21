@@ -130,26 +130,43 @@ def ce_sum(model, batch, accounting=None):
 
 
 def program_scores(model, tokenizer, token_ids, row, batch_size=8, accounting=None,
-                   normalization='full', prefix_logprobs=None):
+                   normalization='full', prefix_logprobs=None, *, programs=None,
+                   prompt_builder=None, action_head=None, ablate_state=False, prefix_tensors=None):
     """Differentiable equivalent of the frozen Stage4 full-vocabulary scorer."""
     if normalization not in ('full', 'local') or batch_size < 1:
         raise ValueError('Expected full/local normalization and a positive prefix batch')
     device = next(model.parameters()).device
+    programs = tuple(core.enumerate_programs(row['depth'])) if programs is None else tuple(map(tuple, programs))
+    if not programs or any(len(p) != row['depth'] or any(op not in core.OPS for op in p) for p in programs):
+        raise ValueError('Expected legal programs of the declared depth')
+    needed = {p[:i] for p in programs for i in range(1, row['depth'] + 1)}
     scores = {(): torch.zeros((), device=device)}
     for _ in range(int(row['depth'])):
         prefixes = sorted(scores)
         next_scores = {}
         for start in range(0, len(prefixes), batch_size):
             chunk = prefixes[start:start + batch_size]
-            texts = [core.plan_prompt(row) + (' ' + core.program_answer(p) if p else '') for p in chunk]
+            texts = [prompt_builder(row, p) if prompt_builder else
+                     core.plan_prompt(row) + (' ' + core.program_answer(p) if p else '') for p in chunk]
             encoded = tokenizer(texts, return_tensors='pt', padding=True, add_special_tokens=False).to(device)
             if accounting is not None:
                 accounting['total_forward_tokens'] += encoded.input_ids.numel()
                 accounting['prefix_sequences'] += len(chunk)
             positions = (encoded.attention_mask.cumsum(-1) - 1).clamp(min=0)
-            logits = model(**encoded, position_ids=positions, logits_to_keep=1).logits[:, -1].float()
+            output = model(**encoded, position_ids=positions, logits_to_keep=1,
+                           **({'output_hidden_states': True} if action_head is not None else {}))
+            logits = output.logits[:, -1].float()
+            representations = None
+            if action_head is not None:
+                representations, adjustment = action_head(output.hidden_states[-1][:, -1], ablate=ablate_state)
+                logits = logits.clone()
+                logits[:, [token_ids[op] for op in core.OPS]] += adjustment
             logprobs = logits.log_softmax(-1)
             action_logprobs = logprobs[:, [token_ids[op] for op in core.OPS]]
+            if prefix_tensors is not None:
+                prefix_tensors.extend({'prefix': prefix, 'full': values,
+                    'representation': representations[i] if representations is not None else None}
+                    for i, (prefix, values) in enumerate(zip(chunk, action_logprobs)))
             if prefix_logprobs is not None:
                 prefix_logprobs.extend({'prefix': list(prefix), 'full_action_logprobs': values}
                                       for prefix, values in zip(chunk, action_logprobs.detach().cpu().tolist()))
@@ -157,9 +174,10 @@ def program_scores(model, tokenizer, token_ids, row, batch_size=8, accounting=No
                 action_logprobs = action_logprobs.log_softmax(-1)
             for i, prefix in enumerate(chunk):
                 for j, op in enumerate(core.OPS):
-                    next_scores[prefix + (op,)] = scores[prefix] + action_logprobs[i, j]
+                    if prefix + (op,) in needed:
+                        next_scores[prefix + (op,)] = scores[prefix] + action_logprobs[i, j]
         scores = next_scores
-    return torch.stack([scores[p] for p in core.enumerate_programs(row['depth'])])
+    return torch.stack([scores[p] for p in programs])
 
 
 def set_loss(scores, correct_mask, witness_index, method):

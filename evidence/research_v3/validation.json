@@ -1,0 +1,611 @@
+{
+  "conditional_unit_training_gate": "admission mocked only to exercise all branches; actual insufficient-data gate rejection verified separately",
+  "cuda_unit_training": {
+    "ce": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": false,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20244480,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "supervised_operation_tokens": 12,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_label_queries": 4,
+        "training_panels": "train_four.jsonl",
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.627417316994979
+      },
+      "receipt_sha256": "4fc021ddb7531609eb9b0424f097913bd68699a54adba0d2a20d5526b221e391",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "ce_cf_entropy": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": false,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20242944,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "supervised_operation_tokens": 12,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_label_queries": 4,
+        "training_panels": "train_four.jsonl",
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.404949300995213
+      },
+      "receipt_sha256": "13b6640ee567786f7ad8fa3489e0817a23ed7361eb7fce8e2ad7104e58dd7e96",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "crossed_ce_cf": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": false,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 19791872,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "supervised_operation_tokens": 12,
+        "temperature": 1,
+        "total_forward_tokens": 5304,
+        "training_label_queries": 4,
+        "training_panels": "train_crossed.jsonl",
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.50099911900179
+      },
+      "receipt_sha256": "b70fdedb936b2a386426fbf3a05bdd0156bdd6e48c29e3924a7b67a08ea5df18",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "exact_entropy": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "diagnostic_reward_labels": 500,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": true,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20241408,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_panels": "train_four.jsonl",
+        "verifier_queries": 500,
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.34726723001222126
+      },
+      "receipt_sha256": "c476e38cfc33fa599826cdb9a4686ede5000b5a852714116dca4789ddee1e000",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "sampled_entropy": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "diagnostic_reward_labels": 500,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": true,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20241408,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_panels": "train_four.jsonl",
+        "verifier_queries": 113,
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.3740623939957004
+      },
+      "receipt_sha256": "d420dd84d4680149d070d9bd7104d6d5497ba54e97bfe64dfce98ab809ea5308",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "sigreg": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": false,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20755456,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "supervised_operation_tokens": 12,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_label_queries": 4,
+        "training_panels": "train_four.jsonl",
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.3618345249997219
+      },
+      "receipt_sha256": "f1f6d7aec15bf79bde2c2773d68dca876d32749fab164dcbd5ab982a72c1e788",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "state": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": false,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20725760,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "supervised_operation_tokens": 12,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_label_queries": 4,
+        "training_panels": "train_four.jsonl",
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.364096925011836
+      },
+      "receipt_sha256": "00aeef4c36d1e463218f922665dccfca0de573899a25e460cb6b81eef9ff758f",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "state_ce": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": false,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20577280,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "supervised_operation_tokens": 12,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_label_queries": 4,
+        "training_panels": "train_four.jsonl",
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.43318030099908356
+      },
+      "receipt_sha256": "34e5f3d4261c24d174db73e76e05e8ebc1e177c34ea1b5017c6fec1d5547daf1",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    },
+    "state_sigreg": {
+      "budget": {
+        "ce": "mean full-vocabulary operation-token NLL; fixed-length program, no EOS target",
+        "clip_norm": 1,
+        "continuation_seed": 0,
+        "dropout": 0,
+        "exact_is_diagnostic_oracle": false,
+        "example_exposures": 4,
+        "initial_adapter_hash": null,
+        "initialization_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+        "kl_beta": 0,
+        "max_training_depth": 3,
+        "optimizer": "AdamW, zero initial moments",
+        "optimizer_steps": 1,
+        "peak_memory_bytes": 20902400,
+        "policy": "local_prefix_v1",
+        "prefix_sequences": 124,
+        "runtime_verifier_calls": 0,
+        "supervised_operation_tokens": 12,
+        "temperature": 1,
+        "total_forward_tokens": 6296,
+        "training_label_queries": 4,
+        "training_panels": "train_four.jsonl",
+        "verifier_scope": "objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit",
+        "wall_seconds": 0.36687309700937476
+      },
+      "receipt_sha256": "8602e1655846e70daee15ce9e73070ab7cb943ea340088667328543d729ffa6f",
+      "reload": {
+        "maximum_error": 0.0,
+        "tolerance": 0.1
+      }
+    }
+  },
+  "data_smoke": {
+    "research_dsl_smoke": {
+      "audit_sha256": "904f876d9b233693689ba6d570b45c527028415d8f2f8b7957becb87a2533b78",
+      "audit_status": "PASS",
+      "datasets": {
+        "listdsl": "661ed4c05a836a52b8e5422d12ab103d0029932077df8acfa79bc061ab6479af"
+      },
+      "protocol_sha256": "ae07e2a3d909884c879a200aa839e62e76012946c71659d96b684008c3c468dc",
+      "smoke": true
+    },
+    "research_v3_smoke_final": {
+      "audit_sha256": "adf97b5473b772664c79287d892636656dc220bb97fe4cbc64784854c53f234b",
+      "audit_status": "PASS",
+      "datasets": {
+        "mask1": "c4460b1815d7495cd3edcbfa45d1bece77a937bf06dd71e0fac48bd6071390af",
+        "mask2": "57a035606d5b1011a046a4e85b45b3e3c11cd145f6c3955401cfc732c05b9d84",
+        "original": "a05ca731999b612f5cfa7d3dc26be0f148aeba7d29533fd159432b9191252f34"
+      },
+      "protocol_sha256": "25481710023c9dc0aa921125362f1d60227563b0ddf2811a6aef4ad8e49482e0",
+      "smoke": true
+    }
+  },
+  "evidence_files": {
+    "cpu_tests.log": "1c874e3e437f83cabdc4d7f7bbab2e99c657e0386c6cb5095e5195565d603d4b",
+    "cuda_tests.log": "43bffcca7a79ac4899c70e7a223b2d6447938c051a27b0df9474f8a8c77e5848",
+    "gates_cuda.json": "b6f2ebe6eedb66c6a8391251abb5684e71e73cfb35dad87df8c11eee70b3f1ac",
+    "gpu_environment.json": "213e8ec274b476251df9d1daeecd7fbcc17448810e0a11cabcbf0c8c34aeec54",
+    "gradient_cuda.json": "6ff9b901c390ac80a8aad4cfcf8f91efcd09f50927c1b71964b747b43067be76",
+    "queue_cuda.log": "39d0900a6dbcf810ce5ebf6abe3eaa81d61ec737e796bdfdec7ace5c719b94e7"
+  },
+  "gpu_queues": {
+    "research_gpu_external": {
+      "archive": "send_to_artem_exp_research_gpu_external_20260921_221606_446271.zip",
+      "archive_sha256": "cba1d906b40b96eb81d4654835025c6d7857f623f078f96aa139f5fc6214649f",
+      "archive_verified": true,
+      "historical_scope": "Earlier smoke before deterministic training mode, export and provenance refinements; source hash retained explicitly.",
+      "jobs": {
+        "inputs": {
+          "kind": "data",
+          "receipt_sha256": "ae07e2a3d909884c879a200aa839e62e76012946c71659d96b684008c3c468dc",
+          "slot": "cpu"
+        },
+        "tiny_listdsl_ce_cf_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "47a0ecffe20e8139ab19523b69b4e471fbf34123f5ddb149a87c0c0209821c51",
+          "slot": "0"
+        },
+        "tiny_listdsl_ce_cf_seed0_train": {
+          "kind": "train",
+          "receipt_sha256": "9845d406a2af45487ffc8b46ff8b60efdecd6febb5d37e89245b2d35abb55e52",
+          "slot": "0"
+        },
+        "tiny_listdsl_ce_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "1e07bdfdd580f96d6c1d4be1b1a322bb1e37a6cde2ac2ad6d30d5f79e9c9372c",
+          "slot": "0"
+        },
+        "tiny_listdsl_ce_seed0_train": {
+          "kind": "train",
+          "receipt_sha256": "3a3d7cb0cd1af5bfab200d123a396e542bdc939031f28df74ce9f8b046ecc561",
+          "slot": "0"
+        },
+        "tiny_listdsl_initial": {
+          "kind": "receipt",
+          "receipt_sha256": "2bac44312a685d95479247fdb653b9d31cbcffa0bd76c70e9788de33b4b58c75",
+          "slot": "0"
+        }
+      },
+      "matches_final_source": false,
+      "queue_sha256": "36804119f19cf7c81546a377c8837acd9257c06ec6e0c9f1f4a34893b3b8c3d2",
+      "source_code_hash": "54bcb7392548853210a9c7eeff1fc650af734ead5e7dc189d24eb59e959e6f05",
+      "training_jobs": 2
+    },
+    "research_gpu_final": {
+      "archive": "send_to_artem_exp_research_gpu_final_20260921_221519_772000.zip",
+      "archive_sha256": "1cc88548c6226b5f63177c9615846a6a7048ee5dfb286d4f39dc39f4a19ba425",
+      "archive_verified": true,
+      "historical_scope": "Earlier smoke before deterministic training mode, export and provenance refinements; source hash retained explicitly.",
+      "jobs": {
+        "inputs": {
+          "kind": "data",
+          "receipt_sha256": "25481710023c9dc0aa921125362f1d60227563b0ddf2811a6aef4ad8e49482e0",
+          "slot": "cpu"
+        },
+        "tiny_mask1_ce_cf_entropy_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "c801b4438f2b54d532d301ab3a783e8be48d30f895ea6f943c0be241d9e08590",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_cf_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "7757c1fdefb6f07b94dc68116b82b63912ea248c8ece7adcb5f0ac24b4320bf9",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_entropy_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "4ad1b6ff3bc466dd5b2eac88d4071e92ebb968bb85c356b623f6e0b63510853e",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "52a07f5c9ff9609ac3ddc797f36e09c6969efda243bc1288ddd31af22028320e",
+          "slot": "0"
+        },
+        "tiny_mask1_initial": {
+          "kind": "receipt",
+          "receipt_sha256": "417c03a4acfb3f82acd354d293dab5dfb946d3eef3834da312661f7fd87bc5b7",
+          "slot": "0"
+        }
+      },
+      "matches_final_source": false,
+      "queue_sha256": "ae9c31a196dbb88c7941e2e3ffa327133bc45cc29bd79406eb2362f0cda5f36b",
+      "source_code_hash": "54bcb7392548853210a9c7eeff1fc650af734ead5e7dc189d24eb59e959e6f05",
+      "training_jobs": 0
+    },
+    "research_release_queue": {
+      "archive": "send_to_artem_exp_research_release_queue_20260921_222257_177387.zip",
+      "archive_sha256": "fae1dc29f4635d14ec8f45e7f5413109f184ef6f910d4ff3b1358c06f23fe75b",
+      "archive_verified": true,
+      "historical_scope": null,
+      "jobs": {
+        "inputs": {
+          "kind": "data",
+          "receipt_sha256": "25481710023c9dc0aa921125362f1d60227563b0ddf2811a6aef4ad8e49482e0",
+          "slot": "cpu"
+        },
+        "tiny_mask1_ce_cf_entropy_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "a11e8c6315e92f6f9227cf24651c68a97d76fac68aa8ad02e75c06d169c350e9",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_cf_entropy_seed0_train": {
+          "kind": "train",
+          "receipt_sha256": "8312d2b221df9ccd916cd0e62ce67aa1770ec1ea721aded1642b0cc14abcaa46",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_cf_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "c3a0c23b39a3df25db7ff0b1daf232751f2eb6dbde46b50e013e0fabebee9b10",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_cf_seed0_train": {
+          "kind": "train",
+          "receipt_sha256": "2bb30d2d368a0f8a1829904d703acde40143f2c78c2e1fb9f9efd03a46e4888b",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_entropy_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "8514259510e20820e0a7c27070c080f1982ac9553c4ed960f4a754a4b7a4105a",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_entropy_seed0_train": {
+          "kind": "train",
+          "receipt_sha256": "f9bf1591e1ecbb60666b8d3a94fd58a9189dd28ebcffb2339b225817480a881b",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_seed0_eval": {
+          "kind": "receipt",
+          "receipt_sha256": "48abf02bf0b6738fff6d11eddc56722f1a157f2027609172f05ceab9a495b589",
+          "slot": "0"
+        },
+        "tiny_mask1_ce_seed0_train": {
+          "kind": "train",
+          "receipt_sha256": "587a174a88a0200e81dc78e0df16f21fa54d401184092bb61bbaa4c3258796c7",
+          "slot": "0"
+        },
+        "tiny_mask1_initial": {
+          "kind": "receipt",
+          "receipt_sha256": "b23073c0fe1b342342fe73091711faaa01a86539c3a60c0e99e5c93ab876afff",
+          "slot": "0"
+        }
+      },
+      "matches_final_source": true,
+      "queue_sha256": "2d6e049dcffce7cecba548d010c4ad6df108fd39b5b800a0cb18c989a5eb9d81",
+      "source_code_hash": "9d7eb6a29b16975b1f56d54ec586ea6fe344fa13811c23a33819bfc9f9e3a35e",
+      "training_jobs": 4
+    }
+  },
+  "limits": [
+    "No full model training/evaluation launched locally.",
+    "A100 and full Qwen3-0.6B/8B workloads not tested in this change.",
+    "Tiny CUDA success does not establish full-model VRAM use, throughput or scientific improvement.",
+    "Confirmation and second-domain default real-model commands were planned, not executed."
+  ],
+  "model": {
+    "config": {
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0.0,
+      "dtype": "float32",
+      "eos_token_id": 2,
+      "head_dim": 8,
+      "hidden_act": "silu",
+      "hidden_size": 32,
+      "initializer_range": 0.02,
+      "intermediate_size": 64,
+      "layer_types": [
+        "full_attention"
+      ],
+      "max_position_embeddings": 1024,
+      "max_window_layers": 28,
+      "model_type": "qwen3",
+      "num_attention_heads": 4,
+      "num_hidden_layers": 1,
+      "num_key_value_heads": 2,
+      "pad_token_id": 1,
+      "rms_norm_eps": 1e-06,
+      "rope_scaling": null,
+      "rope_theta": 10000.0,
+      "sliding_window": null,
+      "tie_word_embeddings": true,
+      "transformers_version": "4.57.1",
+      "use_cache": false,
+      "use_sliding_window": false,
+      "vocab_size": 64
+    },
+    "description": "random one-layer Qwen3 for smoke, not trained Qwen3-0.6B or Qwen3-8B"
+  },
+  "parent_commit": "1566f5db28f21f4d9a32b5773f4f6278b9855aa6",
+  "plan_only_checks": {
+    "Q1": {
+      "all_workers": "cuda/bfloat16",
+      "executed": false,
+      "jobs": 15,
+      "training_jobs": 0
+    },
+    "Q2": {
+      "all_workers": "cuda/bfloat16",
+      "executed": false,
+      "jobs": 2,
+      "pilot_without_gate_rejected": true,
+      "training_jobs": 0
+    },
+    "Q3": {
+      "all_workers": "cuda/bfloat16",
+      "executed": false,
+      "jobs": 10,
+      "training_jobs": 4
+    },
+    "Q3_final": {
+      "executed": false,
+      "jobs": 6,
+      "training_jobs": 0
+    },
+    "Q4": {
+      "all_workers": "cuda/bfloat16",
+      "executed": false,
+      "jobs": 2,
+      "pilot_without_gate_rejected": true,
+      "training_jobs": 0
+    },
+    "confirm": {
+      "executed": false,
+      "jobs": 27,
+      "training_jobs": 12
+    },
+    "external": {
+      "executed": false,
+      "jobs": 6,
+      "training_jobs": 2
+    },
+    "paired_analysis": {
+      "scientific_result": false,
+      "sha256": "b19dc3ba51ddd871169e084ab170d23764fe159244005a1f4d57e841b0b1488d",
+      "status": "PASS"
+    }
+  },
+  "preservation": {
+    "evidence/feedback_v2/analysis_lock.json": {
+      "sha256": "d407d8dbba610cc1ccffe174488c780791723a16afc95be09e4ab34128bf42f6",
+      "unchanged_from_parent_commit": true
+    },
+    "plans/source/22sept_iclr_feedback/RESEARCH_PLAN_RU.md": {
+      "byte_identical_to_user_source": true,
+      "sha256": "58e1faffc91a2a14c738ea70a801b21b74a67b8fb67942736aed2a3e7f9d81c1"
+    },
+    "plans/source/22sept_iclr_feedback/archive_status_21sept.md": {
+      "byte_identical_to_user_source": true,
+      "sha256": "887c39e0de49a13ed913e088df723793548bf04e97cafa7d1d9ea2665bd9f514"
+    },
+    "plans/source/22sept_iclr_feedback/archive_support_summary.json": {
+      "byte_identical_to_user_source": true,
+      "sha256": "64ea06b237f43ab18e8fa935226753e8458254b1e6f6f5033e049b7a9311676f"
+    },
+    "plans/source/22sept_iclr_feedback/crossed_panel_fixture.json": {
+      "byte_identical_to_user_source": true,
+      "sha256": "45428a9d47ce38664e89b85a20708990d04c5977c93ac86c5b227af9ba10a721"
+    },
+    "plans/source/22sept_iclr_feedback/short_feedback.md": {
+      "byte_identical_to_user_source": true,
+      "sha256": "7cc55c9fbca33ee22b21356d1b3c5adc1e715cc5293423b62300873787feccec"
+    },
+    "plans/upgrade_analysis_plan.json": {
+      "sha256": "2b152eb241949cedcbe32c3fd5a683fa9caff80248d17edb1f65a3a96beebdb8",
+      "unchanged_from_parent_commit": true
+    }
+  },
+  "recorded_at_utc": "2026-09-21T22:27:53.987522+00:00",
+  "research_plan_sha256": "561b01b346626b6da13adbc063e0642e0ea6c6e7e6ff3c1f0afcf0301131b016",
+  "scope": "technical smoke only; no full model experiment or scientific result",
+  "source_code_hash": "9d7eb6a29b16975b1f56d54ec586ea6fe344fa13811c23a33819bfc9f9e3a35e",
+  "tests": {
+    "cpu": {
+      "command": "OMP_NUM_THREADS=1 uv run python -m pytest -q",
+      "result": "46 passed, 14 subtests passed"
+    },
+    "cuda": {
+      "command": "ICLR_SMOKE_DEVICE=cuda OMP_NUM_THREADS=1 uv run python -m pytest -q tests/test_research_runtime.py",
+      "outside_sandbox": true,
+      "precisions": [
+        "float32",
+        "bfloat16"
+      ],
+      "result": "4 passed"
+    }
+  }
+}

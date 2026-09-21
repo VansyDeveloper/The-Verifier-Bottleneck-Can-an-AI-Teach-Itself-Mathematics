@@ -1,0 +1,19 @@
+{
+  "schema": "iclr.research.analysis.v3",
+  "source": "plans/source/22sept_iclr_feedback/RESEARCH_PLAN_RU.md",
+  "primary": {"metric": "local_pair_accuracy_tie_half", "contrast": "ce_cf minus ce", "families": {"B": 0.5, "D": 0.5}, "depth": 3, "checkpoint": "fixed final continuation checkpoint", "correction": "none"},
+  "screening": {"dataset": "mask1", "seed": 0, "epochs": 2, "panel_batch": 1, "learning_rate": 0.0001, "cf_weight": 0.1, "tau": 1.0, "entropy_weight": 0.01, "state_weight": 0.1, "sigreg_weight": 0.01, "state_dimension": 32, "tune_on": "dev only"},
+  "queues": {
+    "Q1": "existing 0.6B/8B checkpoints: crossed panels, ordinary tasks, four-TARGET alignment and entropy diagnostics; no training",
+    "Q2": "frozen SFT checkpoint: exact/MC gradient noise, isolated Adam steps and dev Taylor response in FP32/BF16; then sampled/exact x entropy after numerical gate",
+    "Q3": "ce, ce_entropy, ce_cf, ce_cf_entropy; identical task panels, seed, exposure order, operation-token CE and prefix scorer",
+    "Q4": "plain/state/token-control inference on chosen prefixes; state/SIGReg factorial only after a positive paired dev signal"
+  },
+  "secondary": ["crossed interaction I", "crossed per-cell A/B accuracy and four-cell joint accuracy", "raw H1/H8 and correct-set mass over all candidates", "entropy correct/incorrect decomposition", "entropy affine function/program decomposition", "positive post-hoc program-score temperatures 0.5/1/2", "greedy constrained and unconstrained program execution", "atomic PLAN/APPLY retention", "state prediction and causal projection ablation"],
+  "policy": {"primary": "local prefix renormalization, temperature 1", "secondary": "full-vocabulary program score with global leaf softmax; never pooled with local policy", "reward": "binary population-standard-deviation advantages, G=32, KL=0; exact expectation before Adam/clipping"},
+  "data": {"crossed_train_gate": "requested panel count AND >=8 distinct programs; otherwise train four-TARGET assignment loss", "exclusion": "all correct-trajectory states and task identities disjoint from inherited data and across new panels/splits", "length": "new atomic-start continuations train only depth<=3; historical SFT has already seen depth4"},
+  "gates": {"reward": "exact kernel enumeration; Monte Carlo mean within 4 estimated standard errors; finite isolated FP32/BF16 updates and small-step dev Taylor checks", "state": "paired dev gain of true-current-state over BOTH plain and token-matched control, positive lower 95% panel bootstrap bound", "confirmation": "explicit dev selection artifact; exactly baseline plus one selected method, masks1/2 and paired seeds0/1/2", "external": "explicit dev selection artifact; baseline plus selected method on a named small nonlinear DSL, not RobustFill/DeepCoder"},
+  "statistics": {"bootstrap": 2000, "unit": "panel with shared START(s), paired arms; average continuation seeds first", "masks": "report separately and equal mean; tasks do not replace independent masks", "initialization": "shared inherited atomic checkpoint; continuation seeds are not independent full training replications"},
+  "final": "new immutable v3 lock binds plan/code/data/selected method and completed dev training cells; final only evaluates saved final adapters",
+  "sigreg": {"source": "https://arxiv.org/html/2511.08544v1#S4", "definition": "random unit projections and Gaussian-weighted empirical-characteristic-function distance to N(0,1)", "slices": 256, "quadrature": "17 trapezoid points on [-5,5]", "duplicates": "one mean representation per exact (field, dimension, state) within batch", "interpretation": "regularization of compact state projection; no imported LeJEPA guarantees"}
+}

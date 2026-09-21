@@ -1,0 +1,78 @@
+{
+  "source": "evidence/feedback_v2/full_data_audit.json",
+  "scope": "Read from the saved audit; this does not rerun or replace the full dataset audit.",
+  "support": {
+    "mask1": {
+      "dev_B.jsonl": {
+        "correct_program_union": 15,
+        "tasks": 200,
+        "unique_solutions": 200
+      },
+      "dev_D.jsonl": {
+        "correct_program_union": 15,
+        "tasks": 200,
+        "unique_solutions": 200
+      }
+    },
+    "mask2": {
+      "dev_B.jsonl": {
+        "correct_program_union": 23,
+        "tasks": 200,
+        "unique_solutions": 200
+      },
+      "dev_D.jsonl": {
+        "correct_program_union": 23,
+        "tasks": 200,
+        "unique_solutions": 200
+      }
+    },
+    "mask3": {
+      "dev_B.jsonl": {
+        "correct_program_union": 18,
+        "tasks": 200,
+        "unique_solutions": 200
+      },
+      "dev_D.jsonl": {
+        "correct_program_union": 18,
+        "tasks": 200,
+        "unique_solutions": 200
+      }
+    },
+    "mask4": {
+      "dev_B.jsonl": {
+        "correct_program_union": 21,
+        "tasks": 200,
+        "unique_solutions": 200
+      },
+      "dev_D.jsonl": {
+        "correct_program_union": 21,
+        "tasks": 200,
+        "unique_solutions": 199
+      }
+    },
+    "original": {
+      "dev_B.jsonl": {
+        "correct_program_union": 19,
+        "tasks": 200,
+        "unique_solutions": 200
+      },
+      "dev_D.jsonl": {
+        "correct_program_union": 19,
+        "tasks": 200,
+        "unique_solutions": 200
+      }
+    },
+    "witness": {
+      "dev_B.jsonl": {
+        "correct_program_union": 19,
+        "tasks": 200,
+        "unique_solutions": 200
+      },
+      "dev_D.jsonl": {
+        "correct_program_union": 19,
+        "tasks": 200,
+        "unique_solutions": 200
+      }
+    }
+  }
+}

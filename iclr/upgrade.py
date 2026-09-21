@@ -276,12 +276,17 @@ def run_queue(args):
         raise ValueError('Code changed after planning; prepare a new queue directory')
     if queue.get('analysis_plan_sha256') and queue['analysis_plan_sha256'] != file_hash(ROOT / 'plans/upgrade_analysis_plan.json'):
         raise ValueError('Analysis plan changed after planning; preserve this queue and prepare a new protocol')
+    if queue.get('research_plan_sha256') and queue['research_plan_sha256'] != file_hash(ROOT / 'plans/research_v3.json'):
+        raise ValueError('V3 analysis plan changed after planning; choose a new protocol')
     if len(set(args.gpus)) != len(args.gpus) or not args.gpus:
         raise ValueError('Specify distinct GPU indices; one process will occupy each GPU')
     if args.cpu_threads < 1:
         raise ValueError('Positive CPU thread count required')
     if queue.get('reference_hash') and file_hash(Path(queue['reference']) / 'manifest.json') != queue['reference_hash']:
         raise ValueError('Reference dataset differs from the inherited training data')
+    for job in queue['jobs']:
+        if job.get('config_sha256') and file_hash(job['config_path']) != job['config_sha256']:
+            raise ValueError('Job configuration changed after planning; create a new queue')
     for model in queue['models']:
         if not model.get('receipt'):
             continue
@@ -357,6 +362,8 @@ def run_queue(args):
                 if not free:
                     continue
                 slot = free[0]
+                if job.get('config_sha256') and file_hash(job['config_path']) != job['config_sha256']:
+                    raise ValueError('Job configuration changed while the queue was running')
                 env = {**os.environ, 'PYTHONUNBUFFERED': '1', 'OMP_NUM_THREADS': str(args.cpu_threads)}
                 if slot != 'cpu':
                     env['CUDA_VISIBLE_DEVICES'] = slot
@@ -434,7 +441,7 @@ def bundle(args):
     source = [*(ROOT / 'iclr').glob('*.py'), *(ROOT / 'legacy').glob('*.py'),
               ROOT / 'uv.lock', ROOT / 'pyproject.toml', ROOT / 'README.md',
               *(ROOT / 'plans').rglob('*'), *(ROOT / 'evidence/upgrade').rglob('*'),
-              *(ROOT / 'evidence/feedback_v2').rglob('*')]
+              *(ROOT / 'evidence/feedback_v2').rglob('*'), *(ROOT / 'evidence/research_v3').rglob('*')]
     source = [p for p in source if p.is_file()]
     files.extend((p, 'code/' + p.relative_to(ROOT).as_posix()) for p in source)
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -454,7 +461,8 @@ def bundle(args):
             'Веса моделей ' + ('включены.' if args.include_models else 'исключены; для анализа они не нужны.') + '\n'
             'Полнота и SHA-256 каждого файла: EXPORT_MANIFEST.json.\n'
             'Не усредняйте разные data_hash, evaluation_set и target_control.\n\n' +
-            '\n'.join(f'- {name}: {EXPERIMENTS[name]}' for name in queue.get('experiments', [])) + '\n')
+            '\n'.join(f'- {name}: {queue.get("scope", {}).get(name, EXPERIMENTS.get(name, name))}'
+                      for name in queue.get('experiments', [])) + '\n')
         payload = guide.encode()
         archive.writestr('START_HERE_RU.md', payload)
         manifest.append({'path': 'START_HERE_RU.md', 'sha256': hashlib.sha256(payload).hexdigest(), 'bytes': len(payload)})
@@ -507,6 +515,15 @@ def collect(args):
                         'experiment': job.get('experiment'),
                         **{key: binding[key] for key in ('data_hash', 'base_hash', 'adapter_hash')}}
                         for item in csv.DictReader(stream))
+            elif (directory / 'summary.json').is_file() and (directory / 'binding.json').is_file():
+                binding = json.loads((directory / 'binding.json').read_text())
+                result = json.loads((directory / 'summary.json').read_text())
+                if binding.get('kind') == 'evaluate':
+                    summaries.extend({**item, 'job': job['id'], 'result': row['result'],
+                        'experiment': job.get('experiment'), 'seed': binding['config']['seed'],
+                        'arm': binding['config']['arm'],
+                        **{key: binding[key] for key in ('data_hash', 'base_hash', 'adapter_hash')}}
+                        for item in result['metrics'])
         index.append(row)
     for name, rows in (('runs.csv', index), ('summary.csv', summaries)):
         path = root / 'analysis' / name

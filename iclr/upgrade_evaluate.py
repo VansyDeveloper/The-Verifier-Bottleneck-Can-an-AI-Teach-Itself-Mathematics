@@ -78,13 +78,13 @@ def execution_tasks(rows, per_family=50):
     return list(tasks.values())
 
 
-def execute_programs(model, tokenizer, rows, batch_size):
+def execute_programs(model, tokenizer, rows, batch_size, prompt_builder=None):
     device = next(model.parameters()).device
     result = []
     with torch.inference_mode():
         for offset in range(0, len(rows), batch_size):
             chunk = rows[offset:offset + batch_size]
-            encoded = tokenizer([core.apply_prompt(row) for row in chunk], return_tensors='pt',
+            encoded = tokenizer([(prompt_builder or core.apply_prompt)(row) for row in chunk], return_tensors='pt',
                                 padding=True, add_special_tokens=False).to(device)
             tokens = model.generate(**encoded, do_sample=False, max_new_tokens=64,
                                     pad_token_id=tokenizer.pad_token_id, eos_token_id=tokenizer.eos_token_id)

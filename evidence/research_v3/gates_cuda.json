@@ -1,0 +1,60 @@
+{
+  "reward": {
+    "dtypes": [
+      "float32",
+      "bfloat16"
+    ],
+    "kind": "reward",
+    "minimum_train_tasks": 4,
+    "numerical_checks": true,
+    "pass": false,
+    "scientific_gpu_gate": true
+  },
+  "state": {
+    "checks": [
+      {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "control": "plain",
+        "family": "B",
+        "gain": 0.0,
+        "panels": 1
+      },
+      {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "control": "token_control",
+        "family": "B",
+        "gain": 0.0,
+        "panels": 1
+      },
+      {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "control": "plain",
+        "family": "D",
+        "gain": 0.0,
+        "panels": 1
+      },
+      {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "control": "token_control",
+        "family": "D",
+        "gain": 0.0,
+        "panels": 1
+      }
+    ],
+    "criterion": ">=8 dev panels per B/D and positive paired CI against both controls",
+    "kind": "state",
+    "pass": false
+  }
+}
