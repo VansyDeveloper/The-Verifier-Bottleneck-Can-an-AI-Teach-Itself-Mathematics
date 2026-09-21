@@ -1,0 +1,130 @@
+[
+  {
+    "dataset": "reference_data",
+    "family": "B",
+    "split": "dev",
+    "unseen_program_count": 46,
+    "expected_hit32_unseen_first": 0.6956521739130435,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "reference_data",
+    "family": "D",
+    "split": "dev",
+    "unseen_program_count": 46,
+    "expected_hit32_unseen_first": 0.6967342995169082,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/original",
+    "family": "B",
+    "split": "final",
+    "unseen_program_count": 46,
+    "expected_hit32_unseen_first": 0.6956521739130435,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/original",
+    "family": "D",
+    "split": "final",
+    "unseen_program_count": 46,
+    "expected_hit32_unseen_first": 0.697816425120773,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask1",
+    "family": "B",
+    "split": "final",
+    "unseen_program_count": 45,
+    "expected_hit32_unseen_first": 0.7111111111111111,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask1",
+    "family": "D",
+    "split": "final",
+    "unseen_program_count": 45,
+    "expected_hit32_unseen_first": 0.7121616161616161,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask2",
+    "family": "B",
+    "split": "final",
+    "unseen_program_count": 45,
+    "expected_hit32_unseen_first": 0.7111111111111111,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask2",
+    "family": "D",
+    "split": "final",
+    "unseen_program_count": 45,
+    "expected_hit32_unseen_first": 0.7111111111111111,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask3",
+    "family": "B",
+    "split": "final",
+    "unseen_program_count": 46,
+    "expected_hit32_unseen_first": 0.6956521739130435,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask3",
+    "family": "D",
+    "split": "final",
+    "unseen_program_count": 46,
+    "expected_hit32_unseen_first": 0.6956521739130435,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask4",
+    "family": "B",
+    "split": "final",
+    "unseen_program_count": 43,
+    "expected_hit32_unseen_first": 0.7451605758582502,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/mask4",
+    "family": "D",
+    "split": "final",
+    "unseen_program_count": 43,
+    "expected_hit32_unseen_first": 0.7451605758582502,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/triple",
+    "family": "B",
+    "split": "final",
+    "unseen_program_count": 15,
+    "expected_hit32_unseen_first": 1.0,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/triple",
+    "family": "D",
+    "split": "final",
+    "unseen_program_count": 15,
+    "expected_hit32_unseen_first": 1.0,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/position",
+    "family": "B",
+    "split": "final",
+    "unseen_program_count": 21,
+    "expected_hit32_unseen_first": 1.0,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  },
+  {
+    "dataset": "new_tasks/position",
+    "family": "D",
+    "split": "final",
+    "unseen_program_count": 21,
+    "expected_hit32_unseen_first": 1.0,
+    "information": "depth-three witnesses in the supplied training pool only; no LM, START/TARGET or B/D labels for ranking; expectation over uniformly random ties"
+  }
+]

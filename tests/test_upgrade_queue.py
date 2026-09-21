@@ -5,53 +5,71 @@ from pathlib import Path
 
 import pytest
 
-from iclr.common import code_hash, file_hash, write_json
+from iclr.common import code_hash, file_hash, tree_hash, write_json
 from iclr.upgrade import EXPERIMENTS, bundle, plan, run_queue, send_results, verify_bundle
 
 
-def test_full_plan_has_paired_cells_and_external_initialization(tmp_path):
-    plan(argparse.Namespace(out=str(tmp_path), models='plans/upgrade_models.json', reference='outputs/data',
-        smoke=False, include_grpo=True, include_external=True, device='cuda', dtype='bfloat16', prefix_batch=32))
-    jobs = json.loads((tmp_path / 'queue.json').read_text())['jobs']
-    by_id = {job['id']: job for job in jobs}
-    assert len(by_id) == len(jobs) == 137
-    assert sum(j['kind'] in ('train', 'init') for j in jobs) == 60
-    assert sum(j['kind'] == 'train' and j['id'].startswith('q06_mask') for j in jobs) == 16
-    for job in jobs:
-        assert set(job['depends_on']) <= by_id.keys()
-    assert by_id['smol17_baseline']['depends_on'] == ['smol17_atomic_init']
-    for method in ('sampled', 'exact'):
-        assert len(by_id[f'q06_reward_full_{method}_seed0']['depends_on']) == 7
-    for model in ('q06', 'smol17'):
-        assert sum(j['kind'] == 'train' and j['id'].startswith(model + '_original_') for j in jobs) == 6
-    config = json.loads(Path(by_id['smol17_atomic_init']['argv'][-1]).read_text())
-    assert config['initialize'] and len(config['revision']) == 40
-    for job in jobs:
-        if job['kind'] == 'train' and job['argv'][1] == 'iclr.train':
-            config = json.loads(Path(job['argv'][-1]).read_text())
-            assert config['num_examples'] == (5000 if '_witness_' in job['id'] else 6250)
+def plan_args(out, prepared, **extra):
+    return argparse.Namespace(out=str(out), models='plans/upgrade_models.json', reference='outputs/data',
+        prepared_data=str(prepared), smoke=False, include_grpo=False, include_external=False,
+        device='cuda', dtype='bfloat16', prefix_batch=32, **extra)
 
 
-def test_experiment_and_seed_shards_keep_pairs_and_require_only_used_weights(tmp_path):
+@pytest.fixture
+def prepared(tmp_path):
+    directory = tmp_path / 'prepared'
+    directory.mkdir()
+    write_json(directory / 'protocol.json', {'schema': 'iclr.upgrade.protocol.v2', 'smoke': False,
+        'analysis_plan_sha256': file_hash('plans/upgrade_analysis_plan.json'),
+        'reference_manifest_sha256': json.loads(Path('evidence/upgrade/previous_q06.json').read_text())['runs'][0]['data_hash']})
+    return directory
+
+
+def test_default_is_old_q06_evaluation_and_deferred_blocks_cannot_start(tmp_path, prepared):
+    plan(plan_args(tmp_path / 'default', prepared))
+    queue = json.loads((tmp_path / 'default/queue.json').read_text())
+    assert len(queue['jobs']) == 9 and all(j['kind'] not in ('train', 'init') for j in queue['jobs'])
+    assert [m['name'] for m in queue['models']] == ['q06']
+    assert all('--phase' not in j['argv'] or j['argv'][j['argv'].index('--phase') + 1] == 'dev' for j in queue['jobs'])
+    for experiment in (list(EXPERIMENTS)[2], list(EXPERIMENTS)[4]):
+        with pytest.raises(ValueError, match='retired|deferred'):
+            plan(plan_args(tmp_path / experiment, prepared, experiments=[experiment]))
+    with pytest.raises(ValueError, match='analysis-lock'):
+        plan(plan_args(tmp_path / 'final', prepared, phase='final'))
+
+
+def test_disjoint_pilot_remaining_and_multi_server_mask_shards(tmp_path, prepared):
     memberships = []
-    for seed in (0, 1):
-        out = tmp_path / f'computer_{seed}'
-        plan(argparse.Namespace(out=str(out), models='plans/upgrade_models.json', reference='outputs/data',
-            smoke=False, include_grpo=False, include_external=False, device='cuda', dtype='bfloat16', prefix_batch=32,
-            experiments=['02_new_pair_masks'], seeds=[seed]))
+    for stage, count in (('pilot', 4), ('remaining', 12)):
+        out = tmp_path / stage
+        plan(plan_args(out, prepared, experiments=['02_new_pair_masks'], stage=stage))
         queue = json.loads((out / 'queue.json').read_text())
-        assert len(queue['jobs']) == 18  # eight paired trainings, eight evaluations, preparation/audit
-        assert [m['name'] for m in queue['models']] == ['q06']
+        trains = [j for j in queue['jobs'] if j['kind'] == 'train']
+        assert len(trains) == count
         assert queue['models'][0]['required_adapters'] == []
-        trains = [job for job in queue['jobs'] if job['kind'] == 'train']
-        assert len(trains) == 8 and all(job['seed'] == seed for job in trains)
-        assert len(list((out / 'configs').glob('*.json'))) == 8
-        memberships.append({j['id'] for j in queue['jobs'] if j['resource'] == 'gpu'})
-        assert all('/experiments/02_new_pair_masks/' in j['result'] for j in trains)
-    assert not memberships[0] & memberships[1]
-    for experiment in list(EXPERIMENTS)[4:]:
-        with pytest.raises(ValueError, match='Keep experiments'):
-            plan(argparse.Namespace(experiments=[experiment], seeds=[0], include_grpo=False, include_external=False))
+        assert all(len(j['depends_on']) == 1 and '_baseline_' in j['depends_on'][0] for j in trains)
+        for job in trains:
+            config = json.loads(Path(job['argv'][-1]).read_text())
+            assert config['num_examples'] == 6250
+            other = job['id'].replace('atomic_control', 'composition') if 'atomic_control' in job['id'] else job['id'].replace('composition', 'atomic_control')
+            assert other in {j['id'] for j in trains}
+        memberships.append({j['id'] for j in trains})
+    assert not memberships[0] & memberships[1] and len(set.union(*memberships)) == 16
+    shards = []
+    for mask in ('mask1', 'mask2'):
+        out = tmp_path / mask
+        plan(plan_args(out, prepared, experiments=['02_new_pair_masks'], masks=[mask]))
+        jobs = json.loads((out / 'queue.json').read_text())['jobs']
+        assert sum(j['kind'] == 'train' for j in jobs) == 2
+        shards.append({j['id'] for j in jobs if j['resource'] == 'gpu'})
+    assert not shards[0] & shards[1]
+    plan(plan_args(tmp_path / 'witness', prepared, experiments=['04_correct_program_choice']))
+    jobs = json.loads((tmp_path / 'witness/queue.json').read_text())['jobs']
+    assert {j['id'] for j in jobs if j['kind'] == 'train'} == {'q06_witness_fixed_seed0', 'q06_witness_balanced_seed0'}
+    plan(plan_args(tmp_path / 'external', prepared, experiments=['06_other_model_family'], stage='complete'))
+    jobs = json.loads((tmp_path / 'external/queue.json').read_text())['jobs']
+    assert sum(j['kind'] in ('train', 'init') for j in jobs) == 9
+    assert all('_seed1' not in j['id'] and '_seed2' not in j['id'] for j in jobs)
 
 
 def test_queue_dependencies_resume_and_verified_export(tmp_path):
@@ -111,3 +129,37 @@ write_json(out / "DONE", {"files": {p.name: file_hash(p) for p in out.glob("*.js
             target.writestr(entry.filename, b'changed' if entry.filename == 'results/b/result.json' else source.read(entry))
     with pytest.raises(ValueError, match='failed verification'):
         verify_bundle(argparse.Namespace(archive=str(changed)))
+
+
+def test_final_reuses_exact_completed_cells_and_rejects_wrong_training(tmp_path, prepared):
+    history = json.loads(Path('evidence/upgrade/previous_q06.json').read_text())
+    proto = json.loads((prepared / 'protocol.json').read_text())
+    proto['datasets'] = {'mask1': {'manifest_sha256': 'mask-one'}}
+    write_json(prepared / 'protocol.json', proto)
+    lock = tmp_path / 'analysis.lock.json'
+    write_json(lock, {'code_hash': code_hash(), 'protocol_sha256': file_hash(prepared / 'protocol.json'),
+        'history_receipts': {'q06': file_hash('evidence/upgrade/previous_q06.json')}})
+    source = tmp_path / 'completed_dev'
+    for arm in ('atomic_control', 'composition'):
+        root = source / f'experiments/02_new_pair_masks/training/q06_mask1_{arm}_seed0'
+        adapter = root / 'adapter'
+        adapter.mkdir(parents=True)
+        (adapter / 'model.safetensors').write_bytes(b'test payload')
+        write_json(root / 'DONE', {'payload_hash': tree_hash(adapter),
+            'files': {'adapter/model.safetensors': file_hash(adapter / 'model.safetensors')}, 'binding': {
+            'code_hash': code_hash(), 'data_hash': 'mask-one', 'base_hash': history['runs'][0]['base_hash'],
+            'config': {'model': 'Qwen/Qwen3-0.6B', 'seed': 0, 'epochs': 2, 'num_examples': 6250,
+                       'supervision': 'trace', 'witness_policy': 'fixed', 'replay_fraction': 1. if arm == 'atomic_control' else .2}}})
+    def args(out):
+        return plan_args(out, prepared, experiments=['02_new_pair_masks'], masks=['mask1'],
+                         phase='final', analysis_lock=str(lock), trained_from=str(source))
+    plan(args(tmp_path / 'final'))
+    jobs = json.loads((tmp_path / 'final/queue.json').read_text())['jobs']
+    assert all(j['kind'] not in ('train', 'init') for j in jobs)
+    evaluations = [j for j in jobs if j['id'].endswith('_closed')]
+    assert len(evaluations) == 2 and all(str(source) in ' '.join(j['argv']) for j in evaluations)
+    wrong = source / 'experiments/02_new_pair_masks/training/q06_mask1_composition_seed0/DONE'
+    receipt = json.loads(wrong.read_text()); receipt['binding']['config']['seed'] = 1
+    write_json(wrong, receipt)
+    with pytest.raises(ValueError, match='training cell'):
+        plan(args(tmp_path / 'wrong'))

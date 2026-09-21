@@ -22,10 +22,10 @@ from .run import write_config
 EXPERIMENTS = {
     '01_recheck_existing_models': 'Новая проверка уже обученных Qwen0.6 и Qwen8B',
     '02_new_pair_masks': 'Четыре новые маски исключённых пар',
-    '03_new_triples_and_positions': 'Новая тройка и знакомая пара на новой позиции',
-    '04_correct_program_choice': 'Выбор правильного свидетеля и MML',
-    '05_reward_gradient': 'Сэмплированный и точный reward-градиент',
-    '06_other_model_family': 'Другая модельная семья с парным контролем Qwen',
+    '03_new_triples_and_positions': 'Отложено: тройки и позиции требуют нового дизайна',
+    '04_correct_program_choice': 'Пересобранный witness-пул: fixed против balanced',
+    '05_reward_gradient': 'Отложено: гипотеза о градиенте и численная проверка',
+    '06_other_model_family': 'Условно: центральный контраст и одно вмешательство на SmolLM2',
 }
 
 
@@ -37,193 +37,208 @@ def experiment_of(name):
 
 
 def plan(args):
-    if getattr(args, 'inputs', None):
-        if getattr(args, 'prepared_data', None) or args.reference != 'outputs/data':
-            raise ValueError('Use --inputs or separate --reference/--prepared-data paths, not both')
-        args.reference = str(Path(args.inputs) / 'reference_data')
-        args.prepared_data = str(Path(args.inputs) / 'new_tasks')
-    experiments = list(getattr(args, 'experiments', None) or list(EXPERIMENTS)[:4])
-    experiments += ([list(EXPERIMENTS)[4]] if args.include_grpo else []) + ([list(EXPERIMENTS)[5]] if args.include_external else [])
+    experiments = list(getattr(args, 'experiments', None) or [list(EXPERIMENTS)[0]])
+    if getattr(args, 'include_grpo', False) or list(EXPERIMENTS)[4] in experiments:
+        raise ValueError('Block 05 deferred: fixed-checkpoint gradient hypothesis and numerical audit required; no automatic pilot-to-full gate')
+    if list(EXPERIMENTS)[2] in experiments:
+        raise ValueError('Block 03 retired: v1 triple/position admit static answers; redesign required before training')
+    if getattr(args, 'include_external', False):
+        experiments.append(list(EXPERIMENTS)[5])
     experiments = list(dict.fromkeys(experiments))
-    include_grpo = list(EXPERIMENTS)[4] in experiments
-    include_external = list(EXPERIMENTS)[5] in experiments
-    seeds = getattr(args, 'seeds', [0, 1, 2])
-    if ((include_grpo and not {0, 1} <= set(seeds)) or
-            (include_external and set(seeds) != {0, 1, 2})):
-        raise ValueError('Keep experiments 05 and 06 whole on one computer; they share pilot gates or a fresh atomic initialization')
+    stage = getattr(args, 'stage', 'pilot')
+    phase = getattr(args, 'phase', 'dev')
+    analysis_lock = getattr(args, 'analysis_lock', None)
+    trained_from = getattr(args, 'trained_from', None)
+    external = list(EXPERIMENTS)[5] in experiments
+    if external and stage != 'complete':
+        raise ValueError('Block 06 is conditional; select --stage complete after interpreting 01 and 04')
+    if phase == 'final' and not analysis_lock:
+        raise ValueError('Final requires --analysis-lock; dev is the default')
+    inputs = getattr(args, 'inputs', None)
+    reference = str(Path(inputs) / 'reference_data') if inputs else args.reference
+    prepared = str(Path(inputs) / 'new_tasks') if inputs else getattr(args, 'prepared_data', None)
+    if not prepared:
+        raise ValueError('Use --inputs with one shared v2 dataset on every server; prepare it once before planning')
+    protocol = json.loads((Path(prepared) / 'protocol.json').read_text())
+    if protocol['schema'] != 'iclr.upgrade.protocol.v2' or protocol['smoke'] != args.smoke:
+        raise ValueError('Need v2 prepared data with matching smoke/full status')
+    if protocol['analysis_plan_sha256'] != file_hash(ROOT / 'plans/upgrade_analysis_plan.json'):
+        raise ValueError('Prepared data belong to a different analysis plan')
+    if phase == 'final':
+        lock = json.loads(Path(analysis_lock).read_text())
+        if lock['code_hash'] != code_hash() or lock['protocol_sha256'] != file_hash(Path(prepared) / 'protocol.json'):
+            raise ValueError('Final lock differs from this code or prepared dataset')
+    selected_models = getattr(args, 'model_names', None) or ['q06']
+    models = [m for m in json.loads(Path(args.models).read_text()) if m['name'] in selected_models]
+    if {m['name'] for m in models} != set(selected_models):
+        raise ValueError('Selected model profile is missing')
+    if any(e != list(EXPERIMENTS)[0] for e in experiments) and selected_models != ['q06']:
+        raise ValueError('New structural/witness blocks use q06; q8b is an existing-checkpoint replication')
     output = Path(args.out)
     output.mkdir(parents=True, exist_ok=True)
-    models = json.loads(Path(args.models).read_text())
-    if any(e != list(EXPERIMENTS)[0] for e in experiments) and not any(m['name'] == 'q06' for m in models):
-        raise ValueError('The selected new training blocks require the q06 inherited model profile')
-    if include_external:
-        external = json.loads((ROOT / 'evidence/upgrade/external_model.json').read_text())
-        models.append({'name': 'smol17', 'model': external['model'], 'revision': external['revision'],
+    if external:
+        source = json.loads((ROOT / 'evidence/upgrade/external_model.json').read_text())
+        models.append({'name': 'smol17', 'model': source['model'], 'revision': source['revision'],
                        'base': str(output / 'experiments/06_other_model_family/atomic_initialization/checkpoint')})
-    jobs, configs = [], {}
-    def add(name, module, arguments, result, kind='receipt', dependencies=(), resource='gpu'):
-        seed = re.search(r'_seed(\d+)(?:_closed)?$', name)
-        jobs.append({'id': name, 'argv': ['-m', module, *map(str, arguments)],
-                     'result': str(result), 'kind': kind, 'depends_on': list(dependencies), 'resource': resource,
-                     'experiment': experiment_of(name), 'seed': int(seed[1]) if seed else None,
-                     'priority': 0 if resource == 'cpu' else 6 if name.startswith('smol17_') or '_original_' in name
-                     else 1 if '_previous_' in name or name.endswith('_baseline')
-                     else 5 if '_reward_' in name else 4 if '_witness_' in name
-                     else 3 if '_triple_' in name or '_position_' in name else 2})
+        if phase == 'final':
+            if not trained_from:
+                raise ValueError('Final of 06 requires --trained-from pointing to its completed dev queue')
+            models[-1]['base'] = str(Path(trained_from) / 'experiments/06_other_model_family/atomic_initialization/checkpoint')
+    jobs = []
     data = output / 'data'
-    if getattr(args, 'prepared_data', None):
-        protocol = Path(args.prepared_data) / 'protocol.json'
-        if json.loads(protocol.read_text())['smoke'] != args.smoke:
-            raise ValueError('Prepared data smoke/full status differs from the requested queue')
-        add('prepare_data', 'iclr.upgrade', ['import-data', '--source', args.prepared_data,
-            '--reference', args.reference, '--out', data, '--expected-protocol-hash', file_hash(protocol)],
-            data, 'data', resource='cpu')
-    else:
-        add('prepare_data', 'iclr.upgrade_data', ['--reference', args.reference, '--out', data,
-            *(['--smoke'] if args.smoke else [])], data, 'data', resource='cpu')
-    add('audit_data', 'iclr.upgrade_audit', ['--reference', args.reference, '--data', data,
-        '--out', output / 'data_audit'], output / 'data_audit', dependencies=['prepare_data'], resource='cpu')
-    if include_grpo:
-        add('reward_gradient_check', 'iclr.reward_control', ['--check', '--out', output / 'reward_gradient_check'],
-            output / 'reward_gradient_check', resource='cpu')
+    def add(name, module, arguments, result, kind='receipt', dependencies=(), resource='gpu', experiment=None, seed=None):
+        jobs.append({'id': name, 'argv': ['-m', module, *map(str, arguments)], 'result': str(result),
+            'kind': kind, 'depends_on': list(dependencies), 'resource': resource,
+            'experiment': experiment or experiment_of(name), 'seed': seed, 'priority': 0 if resource == 'cpu' else 1})
+    add('prepare_data', 'iclr.upgrade', ['import-data', '--source', prepared, '--reference', reference,
+        '--out', data, '--expected-protocol-hash', file_hash(Path(prepared) / 'protocol.json')], data, 'data', resource='cpu')
+    add('audit_data', 'iclr.upgrade_audit', ['--reference', reference, '--data', data, '--out', output / 'data_audit'],
+        output / 'data_audit', dependencies=['prepare_data'], resource='cpu')
+    seeds = getattr(args, 'seeds', None)
+    masks = getattr(args, 'masks', None) or ['mask1', 'mask2', 'mask3', 'mask4']
+    reference_hashes = set()
     for model in models:
         history = json.loads(Path(model['receipt']).read_text()) if model.get('receipt') else {'runs': []}
+        if phase == 'final' and model.get('receipt') and lock['history_receipts'].get(model['name']) != file_hash(model['receipt']):
+            raise ValueError('Historical checkpoint receipts changed after the analysis was locked')
         base_hash = history['runs'][0]['base_hash'] if history['runs'] else None
+        reference_hashes.update(r['data_hash'] for r in history['runs'])
+        model['required_adapters'] = []
         base_dependencies = ['audit_data']
-        if not history['runs']:
+        if not history['runs'] and phase == 'dev':
             name = model['name'] + '_atomic_init'
             directory = Path(model['base']).parent
             config = {'initialize': True, 'model': model['model'], 'revision': model['revision'],
                 'data': str(data / 'original'), 'output': str(directory), 'seed': 0,
-                'replay_fraction': 1., 'epochs': 1 if args.smoke else 2,
-                'num_examples': 4 if args.smoke else 10000,
+                'replay_fraction': 1., 'epochs': 1 if args.smoke else 2, 'num_examples': 4 if args.smoke else 10000,
                 'effective_batch': 4 if args.smoke else 64, 'micro_batch': 1 if args.smoke else 16,
                 'prefix_batch': args.prefix_batch, 'device': args.device, 'dtype': args.dtype}
             path = output / 'configs' / (name + '.json')
-            configs[path] = config
-            add(name, 'iclr.train', ['--config', path], directory, 'init', base_dependencies)
+            write_config(path, config)
+            add(name, 'iclr.train', ['--config', path], directory, 'init', base_dependencies, experiment=list(EXPERIMENTS)[5])
             base_dependencies = [name]
-        def evaluate(name, dataset, arm, seed, adapter=None, adapter_hash=None, dependencies=None):
-            directory = output / 'experiments' / experiment_of(name) / 'evaluations' / name
+        def evaluate(name, dataset, arm, seed, experiment, adapter=None, adapter_hash=None, dependencies=None, historical=False):
+            directory = output / 'experiments' / experiment / 'evaluations' / name
             arguments = ['--model', model['model'], '--base', model['base'], '--data', data / dataset,
-                '--out', directory, '--seed', seed, '--arm', arm,
+                '--out', directory, '--seed', seed, '--arm', arm, '--phase', phase,
                 '--device', args.device, '--dtype', args.dtype, '--prefix-batch', args.prefix_batch]
+            if historical:
+                arguments += ['--training-pool', Path(reference) / 'train.jsonl']
             if base_hash:
                 arguments += ['--expected-base-hash', base_hash]
             if adapter:
                 arguments += ['--adapter', adapter]
             if adapter_hash:
                 arguments += ['--expected-adapter-hash', adapter_hash]
+            if analysis_lock:
+                arguments += ['--analysis-lock', analysis_lock]
             if args.smoke:
                 arguments += ['--execution-tasks-per-family', 1]
             add(name, 'iclr.upgrade_evaluate', arguments, directory,
-                dependencies=base_dependencies if dependencies is None else dependencies)
-        evaluate(model['name'] + '_baseline', 'original', 'baseline', -1)
-        for previous in history['runs']:
-            name = f"{model['name']}_previous_{previous['arm']}_seed{previous['seed']}"
-            adapter = Path(model['previous']) / previous['run'] / 'adapter'
-            evaluate(name, 'original', previous['arm'], previous['seed'], adapter, previous['adapter_hash'])
-        # The source plan prioritizes the structural experiment on one size:
-        # four masks x two seeds x two arms, before another model-size sweep.
-        if model['name'] not in ('q06', 'smol17'):
-            continue
+                dependencies=base_dependencies if dependencies is None else dependencies, experiment=experiment, seed=seed)
+        if list(EXPERIMENTS)[0] in experiments and history['runs']:
+            experiment = list(EXPERIMENTS)[0]
+            evaluate(model['name'] + '_baseline', 'original', 'baseline', -1, experiment, historical=True)
+            for previous in history['runs']:
+                if seeds is not None and previous['seed'] not in seeds:
+                    continue
+                adapter = Path(model['previous']) / previous['run'] / 'adapter'
+                model['required_adapters'].append(str(adapter))
+                evaluate(f"{model['name']}_previous_{previous['arm']}_seed{previous['seed']}", 'original',
+                    previous['arm'], previous['seed'], experiment, adapter, previous['adapter_hash'], historical=True)
         cells = []
-        for dataset in (('mask1', 'mask2', 'mask3', 'mask4', 'triple', 'position') if model['name'] == 'q06' else ()):
-            for seed in (0, 1):
-                for arm, replay, budget in (('atomic_control', 1., 'target_tokens'), ('composition', .2, 'examples')):
-                    cells.append((dataset, arm, seed, {'replay_fraction': replay, 'budget_mode': budget, 'supervision': 'trace'}))
-        if include_external:
-            for seed in (0, 1, 2):
-                for arm, replay, budget in (('atomic_control', 1., 'target_tokens'), ('composition', .2, 'examples')):
-                    cells.append(('original', arm, seed, {'replay_fraction': replay, 'budget_mode': budget, 'supervision': 'trace'}))
-        for seed in ((0, 1, 2) if model['name'] == 'q06' else ()):
-            for arm, method, witness in (('fixed', 'ce', 'fixed'), ('uniform', 'ce', 'uniform'),
-                                         ('balanced', 'ce', 'balanced'), ('single_norm', 'single_norm', 'fixed'),
-                                         ('mml', 'set_mass', 'fixed')):
-                cells.append(('witness', arm, seed, {'method': method, 'witness_policy': witness,
-                    'supervision': 'program', 'depth3_only': True, 'replay_fraction': 0.,
-                    'lora_dropout': 0., 'budget_mode': 'examples'}))
-        for dataset, arm, seed, cell in cells:
+        if list(EXPERIMENTS)[1] in experiments:
+            for mask in masks:
+                for seed in (0, 1):
+                    pilot = mask in ('mask1', 'mask2') and seed == 0
+                    if stage == 'pilot' and not pilot or stage == 'remaining' and pilot:
+                        continue
+                    for arm in ('atomic_control', 'composition'):
+                        cells.append((mask, arm, seed, list(EXPERIMENTS)[1]))
+        if list(EXPERIMENTS)[3] in experiments:
+            for seed in ([0] if stage == 'pilot' else [1, 2] if stage == 'remaining' else [0, 1, 2]):
+                cells.extend(('witness', arm, seed, list(EXPERIMENTS)[3]) for arm in ('fixed', 'balanced'))
+        if external:
+            cells.extend((dataset, arm, 0, list(EXPERIMENTS)[5]) for dataset, arms in
+                         (('original', ('atomic_control', 'composition')), ('witness', ('fixed', 'balanced'))) for arm in arms)
+        baselines = {}
+        for dataset, arm, seed, experiment in cells:
+            if seeds is not None and seed not in seeds:
+                continue
+            if (dataset, experiment) not in baselines:
+                baseline = f"{model['name']}_{dataset}_baseline_{experiment[:2]}"
+                evaluate(baseline, dataset, 'baseline', -1, experiment)
+                baselines[dataset, experiment] = baseline
             name = f"{model['name']}_{dataset}_{arm}_seed{seed}"
-            directory = output / 'experiments' / experiment_of(name) / 'training' / name
+            directory = output / 'experiments' / experiment / 'training' / name
+            if phase == 'final':
+                if not trained_from:
+                    raise ValueError('Final must reuse trained checkpoints: --trained-from DEV_QUEUE_DIRECTORY')
+                original = Path(trained_from) / directory.relative_to(output)
+                receipt = verify_receipt(original)
+                config = receipt['binding']['config']
+                expected = {'model': model['model'], 'seed': seed, 'epochs': 1 if args.smoke else 2,
+                    'num_examples': 4 if args.smoke else 5000 if dataset == 'witness' else 6250,
+                    'supervision': 'program' if dataset == 'witness' else 'trace',
+                    'witness_policy': arm if dataset == 'witness' else 'fixed',
+                    'replay_fraction': 0. if dataset == 'witness' else 1. if arm == 'atomic_control' else .2}
+                if (any(config[k] != v for k, v in expected.items()) or receipt['binding']['code_hash'] != code_hash()
+                        or receipt['binding']['data_hash'] != protocol['datasets'][dataset]['manifest_sha256']
+                        or base_hash and receipt['binding']['base_hash'] != base_hash):
+                    raise ValueError('Final checkpoint does not match the predeclared training cell')
+                adapter = original / 'adapter'
+                if receipt['payload_hash'] != tree_hash(adapter):
+                    raise ValueError('Previously trained adapter changed')
+                evaluate(name + '_closed', dataset, arm, seed, experiment, adapter, receipt['payload_hash'])
+                continue
+            witness = dataset == 'witness'
             config = {'model': model['model'], 'base': model['base'], 'data': str(data / dataset),
                 'output': str(directory), 'seed': seed, 'epochs': 1 if args.smoke else 2,
-                # Cover every matched composition task once, plus 20% atomic replay.
-                # A 5000-exposure mixture would discard 1000 tasks and their matched marginals.
-                'num_examples': 5000 if dataset == 'witness' else 6250,
+                'num_examples': 4 if args.smoke else 5000 if witness else 6250,
                 'effective_batch': 4 if args.smoke else 64, 'micro_batch': 1 if args.smoke else 16,
-                'prefix_batch': args.prefix_batch, 'device': args.device, 'dtype': args.dtype,
-                'learning_rate': 1e-4, **cell}
-            if args.smoke:
-                config['num_examples'] = 4
+                'prefix_batch': args.prefix_batch, 'device': args.device, 'dtype': args.dtype, 'learning_rate': 1e-4,
+                'replay_fraction': 0. if witness else 1. if arm == 'atomic_control' else .2,
+                'budget_mode': 'target_tokens' if arm == 'atomic_control' else 'examples',
+                'supervision': 'program' if witness else 'trace'}
+            if witness:
+                config.update(method='ce', witness_policy=arm, depth3_only=True, lora_dropout=0.)
             path = output / 'configs' / (name + '.json')
-            configs[path] = config
-            add(name, 'iclr.train', ['--config', path], directory, 'train', base_dependencies)
-            evaluate(name + '_closed', dataset, arm, seed, directory / 'adapter', dependencies=(name,))
-        if include_grpo and model['name'] == 'q06':
-            initial = next(r for r in history['runs'] if r['arm'] == 'composition' and r['seed'] == 0)
-            initial_adapter = Path(model['previous']) / initial['run'] / 'adapter'
-            pilots = [f"{model['name']}_reward_pilot_{method}_seed{seed}"
-                      for method in ('sampled', 'exact') for seed in (0, 1)]
-            for phase, optimizer, steps, rate in (('pilot', 'sgd', 4, 1e-5), ('full', 'adamw', 158, 1e-4)):
-                for method in ('sampled', 'exact'):
-                    for seed in (0, 1):
-                        name = f"{model['name']}_reward_{phase}_{method}_seed{seed}"
-                        directory = output / 'experiments' / experiment_of(name) / 'training' / name
-                        config = {'base': model['base'], 'adapter': str(initial_adapter),
-                            'expected_base_hash': base_hash, 'expected_adapter_hash': initial['adapter_hash'],
-                            'data': str(data / 'original'), 'output': str(directory), 'method': method,
-                            'seed': seed, 'optimizer': optimizer, 'steps': 2 if args.smoke else steps,
-                            'learning_rate': rate, 'device': args.device, 'dtype': args.dtype,
-                            'group_size': 32, 'prefix_batch': args.prefix_batch}
-                        path = output / 'configs' / (name + '.json')
-                        configs[path] = config
-                        dependencies = ['audit_data', 'reward_gradient_check', f"{model['name']}_previous_composition_seed0"]
-                        if phase == 'full':
-                            dependencies += pilots
-                        add(name, 'iclr.reward_control', ['--config', path], directory, 'train', dependencies)
-                        evaluate(name + '_closed', 'original', f'reward_{phase}_{method}', seed,
-                                 directory / 'adapter', dependencies=(name,))
-    by_id = {job['id']: job for job in jobs}
-    selected = {job['id'] for job in jobs if job['resource'] == 'gpu' and job['experiment'] in experiments
-                and (job['seed'] is None or job['seed'] in seeds)}
-    if not selected:
-        raise ValueError('No jobs match the requested experiments and seeds')
-    pending = list(selected)
-    while pending:
-        for dependency in by_id[pending.pop()]['depends_on']:
-            if dependency not in selected:
-                selected.add(dependency)
-                pending.append(dependency)
-    jobs = [job for job in jobs if job['id'] in selected]
-    referenced_paths = set()
-    for job in jobs:
-        referenced_paths.update(job['argv'])
-        path = Path(job['argv'][-1])
-        if path in configs:
-            write_config(path, configs[path])
-            referenced_paths.update(value for value in configs[path].values() if isinstance(value, str))
-    models = [m for m in models if any(j['id'].startswith(m['name'] + '_') for j in jobs)]
-    reference_hashes = set()
-    for model in models:
-        if model.get('receipt'):
-            history = json.loads(Path(model['receipt']).read_text())
-            reference_hashes.update(r['data_hash'] for r in history['runs'])
-            model['required_adapters'] = [str(Path(model['previous']) / r['run'] / 'adapter')
-                for r in history['runs'] if str(Path(model['previous']) / r['run'] / 'adapter') in referenced_paths]
-    if len(reference_hashes) != 1:
-        raise ValueError('Inherited models need the same verified reference dataset')
-    queue = {'schema': 'iclr.upgrade.queue.v2', 'source_code_hash': code_hash(), 'smoke': args.smoke,
-             'experiments': experiments, 'seeds': seeds, 'reference_hash': reference_hashes.pop(),
-             'models': models, 'reference': args.reference, 'jobs': sorted(jobs, key=lambda j: j['priority']),
-             'scope': {e: EXPERIMENTS[e] for e in experiments},
-             'external_replication': 'SmolLM2-1.7B and matched fresh Qwen0.6 continuations' if include_external
-             else 'G11 requires --include-external; long-horizon item in the source plan'}
+            write_config(path, config)
+            add(name, 'iclr.train', ['--config', path], directory, 'train',
+                [baselines[dataset, experiment]], experiment=experiment, seed=seed)
+            evaluate(name + '_closed', dataset, arm, seed, experiment, directory / 'adapter', dependencies=[name])
+    if len(reference_hashes) != 1 or reference_hashes != {protocol['reference_manifest_sha256']}:
+        raise ValueError('Inherited model/data reference hashes differ')
+    if len({j['id'] for j in jobs}) != len(jobs):
+        raise ValueError('Overlapping cells: run external replication in a separate queue')
+    if len(jobs) == 2:
+        raise ValueError('No experiment cells selected by stage/seeds/masks')
+    queue = {'schema': 'iclr.upgrade.queue.v3', 'source_code_hash': code_hash(), 'smoke': args.smoke,
+        'phase': phase, 'stage': stage, 'experiments': experiments, 'seeds': seeds, 'masks': masks,
+        'reference_hash': reference_hashes.pop(), 'models': models, 'reference': reference, 'jobs': jobs,
+        'analysis_plan_sha256': protocol['analysis_plan_sha256'], 'scope': {e: EXPERIMENTS[e] for e in experiments}}
     write_config(output / 'queue.json', queue)
-    write_json(output / 'status.json', {'queue_sha256': file_hash(output / 'queue.json'), 'jobs': {
-        job['id']: {'status': 'planned'} for job in jobs}}) if not (output / 'status.json').exists() else None
-    print(json.dumps({'queue': str(output / 'queue.json'), 'jobs': len(jobs),
+    if not (output / 'status.json').exists():
+        write_json(output / 'status.json', {'queue_sha256': file_hash(output / 'queue.json'),
+            'jobs': {job['id']: {'status': 'planned'} for job in jobs}})
+    print(json.dumps({'queue': str(output / 'queue.json'), 'phase': phase, 'stage': stage, 'jobs': len(jobs),
                       'training_jobs': sum(j['kind'] in ('train', 'init') for j in jobs), 'executed': False}))
+
+
+def freeze_analysis(args):
+    protocol_path = Path(args.inputs) / 'new_tasks/protocol.json'
+    protocol = json.loads(protocol_path.read_text())
+    if protocol['schema'] != 'iclr.upgrade.protocol.v2':
+        raise ValueError('Only v2 data can be frozen for the revised final analysis')
+    plan_hash = file_hash(ROOT / 'plans/upgrade_analysis_plan.json')
+    if protocol['analysis_plan_sha256'] != plan_hash:
+        raise ValueError('Data and analysis plan differ')
+    verify_job({'kind': 'data', 'result': str(protocol_path.parent)})
+    write_config(Path(args.out), {'schema': 'iclr.analysis.lock.v1', 'code_hash': code_hash(),
+        'analysis_plan_sha256': plan_hash, 'protocol_sha256': file_hash(protocol_path),
+        'dataset_hashes': [r['manifest_sha256'] for r in protocol['datasets'].values()],
+        'history_receipts': {m['name']: file_hash(m['receipt']) for m in json.loads(Path(args.models).read_text()) if m.get('receipt')},
+        'checkpoint_rule': 'fixed final training checkpoint; final evaluation never retrains or selects checkpoints'})
 
 
 def identity(pid):
@@ -259,6 +274,8 @@ def run_queue(args):
     queue = json.loads(path.read_text())
     if queue['source_code_hash'] != code_hash():
         raise ValueError('Code changed after planning; prepare a new queue directory')
+    if queue.get('analysis_plan_sha256') and queue['analysis_plan_sha256'] != file_hash(ROOT / 'plans/upgrade_analysis_plan.json'):
+        raise ValueError('Analysis plan changed after planning; preserve this queue and prepare a new protocol')
     if len(set(args.gpus)) != len(args.gpus) or not args.gpus:
         raise ValueError('Specify distinct GPU indices; one process will occupy each GPU')
     if args.cpu_threads < 1:
@@ -416,8 +433,8 @@ def bundle(args):
                      for name in ['manifest.json', *manifest['files']])
     source = [*(ROOT / 'iclr').glob('*.py'), *(ROOT / 'legacy').glob('*.py'),
               ROOT / 'uv.lock', ROOT / 'pyproject.toml', ROOT / 'README.md',
-              *(ROOT / 'plans').glob('*.json'), ROOT / 'plans/GOAL_TO_ICLR.md',
-              ROOT / 'plans/source/goal_to_iclr.md', *(ROOT / 'evidence/upgrade').rglob('*')]
+              *(ROOT / 'plans').rglob('*'), *(ROOT / 'evidence/upgrade').rglob('*'),
+              *(ROOT / 'evidence/feedback_v2').rglob('*')]
     source = [p for p in source if p.is_file()]
     files.extend((p, 'code/' + p.relative_to(ROOT).as_posix()) for p in source)
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -477,6 +494,7 @@ def collect(args):
         directory = Path(job['result']).resolve()
         row = {'job': job['id'], 'kind': job['kind'], 'status': state['jobs'][job['id']]['status'],
                'experiment': job.get('experiment'), 'seed': job.get('seed'),
+               'phase': json.loads(queue_path.read_text()).get('phase'),
                'result': directory.relative_to(root).as_posix()}
         if row['status'] == 'done':
             row['receipt_sha256'] = verify_job(job)
@@ -525,18 +543,24 @@ def main():
     for name, function in (('plan', plan), ('start', start)):
         p = sub.add_parser(name)
         p.add_argument('--models', default='plans/upgrade_models.json')
+        p.add_argument('--model-names', nargs='+', choices=['q06', 'q8b'], default=['q06'])
         p.add_argument('--inputs', help='shared folder containing reference_data and new_tasks')
         p.add_argument('--reference', default='outputs/data')
         p.add_argument('--prepared-data', help='shared frozen data copied identically to each computer')
         p.add_argument('--experiments', nargs='+', choices=EXPERIMENTS)
-        p.add_argument('--seeds', nargs='+', type=int, choices=(0, 1, 2), default=[0, 1, 2])
+        p.add_argument('--seeds', nargs='+', type=int, choices=(0, 1, 2))
+        p.add_argument('--masks', nargs='+', choices=['mask1', 'mask2', 'mask3', 'mask4'])
+        p.add_argument('--stage', choices=['pilot', 'remaining', 'complete'], default='pilot')
+        p.add_argument('--phase', choices=['dev', 'final'], default='dev')
+        p.add_argument('--analysis-lock')
+        p.add_argument('--trained-from', help='completed dev queue to reuse adapters for final, without retraining')
         p.add_argument('--out', required=True)
         p.add_argument('--device', choices=['cuda', 'cpu'], default='cuda')
         p.add_argument('--dtype', choices=['bfloat16', 'float32'], default='bfloat16')
         p.add_argument('--prefix-batch', type=int, default=32)
         p.add_argument('--smoke', action='store_true')
-        p.add_argument('--include-grpo', action='store_true', help='add exact-gradient check, paired SGD pilots and matched AdamW runs')
-        p.add_argument('--include-external', action='store_true', help='add pinned SmolLM2-1.7B with matched fresh Qwen0.6 continuations')
+        p.add_argument('--include-grpo', action='store_true', help='retired: rejected until a gradient hypothesis and numerical audit exist')
+        p.add_argument('--include-external', action='store_true', help='conditional central contrast and fixed/balanced on pinned SmolLM2; requires --stage complete')
         if name == 'start':
             p.add_argument('--gpus', nargs='+', required=True)
             p.add_argument('--cpu-threads', type=int, default=4)
@@ -548,6 +572,11 @@ def main():
     r.add_argument('--cpu-threads', type=int, default=4)
     r.add_argument('--retry-failed', action='store_true')
     r.set_defaults(function=run_queue, send_on_complete=True)
+    f = sub.add_parser('freeze-analysis', help='freeze the predeclared analysis and v2 data before final')
+    f.add_argument('--inputs', required=True)
+    f.add_argument('--out', required=True)
+    f.add_argument('--models', default='plans/upgrade_models.json')
+    f.set_defaults(function=freeze_analysis)
     s = sub.add_parser('send', help='create send_to_artem_exp folder and ZIP without model weights')
     s.add_argument('--out', required=True)
     s.add_argument('--destination')

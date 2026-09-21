@@ -145,9 +145,33 @@ def matched_program_schedule(spec, p, degree, count, seed, available=None):
     return schedule
 
 
+def witness_schedule(spec, p, degree, count, seed, available=None):
+    classes = defaultdict(list)
+    shorter = {s for d in range(3) for s in signatures(p, degree, d).values()}
+    for program, signature in signatures(p, degree, 3).items():
+        classes[signature].append(program)
+    eligible = [programs for signature, programs in classes.items() if signature not in shorter
+                and len(programs) >= 2 and all(constraint_hits(program, spec) == 0 for program in programs)]
+    if available is not None:
+        available_programs = {program for program, _ in available}
+        eligible = [[program for program in programs if program in available_programs] for programs in eligible]
+        eligible = [programs for programs in eligible if programs]
+    if not eligible:
+        raise ValueError('No multi-solution semantic families for witness quotas')
+    rng, first, schedule = random.Random(seed), Counter(), []
+    rng.shuffle(eligible)
+    for i in range(count):
+        programs = eligible[i % len(eligible)]
+        witness = min(rng.sample(programs, len(programs)), key=lambda p: first[p[0]])
+        first[witness[0]] += 1
+        schedule.append((witness, None))
+    rng.shuffle(schedule)
+    return schedule
+
+
 def generate_rows(name, count, spec, registry, seed, *, family='A', depth=3,
                   panel_targets=1, correct_count=None, required_pairs=(), required_positions=(), matched_training=False,
-                  excluded_shapes=(), available_programs=None):
+                  excluded_shapes=(), available_programs=None, witness_quotas=False):
     if count < 1 or count % panel_targets:
         raise ValueError('Positive task count divisible by panel size required')
     rng, rows = random.Random(seed), []
@@ -173,6 +197,10 @@ def generate_rows(name, count, spec, registry, seed, *, family='A', depth=3,
     program_schedules = {shape: matched_program_schedule(spec, *shape, int(quota), seed + i,
                          available=available_programs.get(shape) if available_programs else None)
                          for i, (shape, quota) in enumerate(zip(shapes, quotas)) if quota} if matched_training else {}
+    if witness_quotas:
+        program_schedules = {shape: witness_schedule(spec, *shape, int(quota), seed + i,
+                             available=available_programs.get(shape) if available_programs else None)
+                             for i, (shape, quota) in enumerate(zip(shapes, quotas)) if quota}
     shape_cursors = Counter()
     wanted = 1 if family in ('B', 'D') else 0
     attempts, attempts_for_slot = 0, 0
@@ -180,14 +208,15 @@ def generate_rows(name, count, spec, registry, seed, *, family='A', depth=3,
         attempts += 1
         attempts_for_slot += 1
         if attempts_for_slot > 10000 or attempts > count * 2000:
-            raise RuntimeError(f'Exhausted strict generation for {name}: {len(rows)}/{count}')
+            raise RuntimeError(f'Exhausted strict generation for {name}: {len(rows)}/{count}, shape={p, degree}, planned={planned}')
         p, degree = schedule[len(rows) // panel_targets]
         start = [rng.randrange(p) for _ in range(degree + 1)]
         shorter = {target for d in range(depth) for target in reachable(start, p, d)}
-        planned = program_schedules[p, degree][shape_cursors[p, degree]] if matched_training else None
+        planned = program_schedules[p, degree][shape_cursors[p, degree]] if program_schedules else None
         candidates = [(target, programs) for target, programs in reachable(start, p, depth).items()
                       if target not in shorter and (correct_count is None or len(programs) == correct_count)
-                      and (planned is None or planned[0] in programs and len(programs) == planned[1])
+                      and (planned is None or planned[0] in programs and (planned[1] is None or len(programs) == planned[1]))
+                      and (not witness_quotas or len(programs) >= 2)
                       and {constraint_hits(program, spec) for program in programs} == {wanted}]
         rng.shuffle(candidates)
         def eligible_witness(program):
@@ -221,6 +250,13 @@ def generate_rows(name, count, spec, registry, seed, *, family='A', depth=3,
                 'correct_count': len(programs), 'shortest_depth': depth,
                 'shortest_solution_count': len(programs),
                 'correct_programs': [list(p) for p in programs]})
+            if witness_quotas:
+                maps = signatures(p, degree, depth)
+                groups = defaultdict(list)
+                for program in programs:
+                    groups[maps[program]].append(list(program))
+                selected[-1]['equivalence_groups'] = list(groups.values())
+                selected[-1]['equivalence_kind'] = 'global_affine' if len(groups) == 1 else 'start_specific_collision'
             states.update(trajectory_states)
             if len(selected) == panel_targets:
                 break
@@ -289,7 +325,7 @@ def preflight_small_strata(registry, specs):
     return excluded, available, evidence
 
 
-def prepare(out, reference, *, seed=20260921, size=5000, eval_size=200, panels=50, smoke=False):
+def prepare(out, reference, *, seed=20260922, size=5000, eval_size=200, panels=50, smoke=False):
     out, reference = Path(out), Path(reference)
     if out.exists() and any(out.iterdir()):
         raise FileExistsError(f'Refusing to overwrite a frozen data directory: {out}')
@@ -301,10 +337,9 @@ def prepare(out, reference, *, seed=20260921, size=5000, eval_size=200, panels=5
     reference_states = len(inherited.states)
     out.mkdir(parents=True, exist_ok=True)
     specs = {'original': {'heldout_motifs': [list(p) for p in core.HELDOUT_MOTIFS]},
-             **{f'mask{i + 1}': s for i, s in enumerate(choose_masks(seed))},
-             'witness': {'heldout_motifs': [list(p) for p in core.HELDOUT_MOTIFS]},
-             'triple': {'heldout_motifs': [], 'heldout_triples': [['SH1', 'SC2', 'REV']]},
-             'position': {'heldout_motifs': [], 'heldout_positions': [[0, 'SH1', 'SC2']]}}
+             # Keep the four masks selected before seeing model outcomes; draw fresh tasks.
+             **{f'mask{i + 1}': s for i, s in enumerate(choose_masks(20260921))},
+             'witness': {'heldout_motifs': [list(p) for p in core.HELDOUT_MOTIFS]}}
     matched_specs = {k: v for k, v in specs.items() if k == 'original' or k.startswith('mask')}
     excluded_shapes, available, strata_evidence = preflight_small_strata(inherited, matched_specs)
     write_json(out / 'finite_state_preflight.json', {'scope': 'exhaustive remaining-START feasibility before training quotas',
@@ -332,30 +367,26 @@ def prepare(out, reference, *, seed=20260921, size=5000, eval_size=200, panels=5
             rows_by_name[split] = rows
         local_seed = seed + 100 * i
         save('train', generate_rows('train', size, spec, registry, local_seed, family='TRAIN',
-             correct_count=2 if name == 'witness' else None,
-             matched_training=name not in ('witness', 'triple', 'position'),
-             excluded_shapes=excluded_shapes if name in matched_specs else (),
-             available_programs=available.get(name),
-             required_pairs=[('SH1', 'SC2'), ('SC2', 'REV')] if name == 'triple' else (),
-             required_positions=[(1, 'SH1', 'SC2')] if name == 'position' else ()))
+             witness_quotas=name == 'witness', matched_training=name != 'witness',
+             excluded_shapes=excluded_shapes,
+             available_programs=available.get(name, available['original'])))
         save('atomic_train', read_jsonl(reference / 'atomic_train.jsonl'))
         for j, family in enumerate('ABCD'):
             save(f'dev_{family}', generate_rows(f'dev_{family}', eval_size, spec, registry, local_seed + j + 1, family=family))
             save(f'final_{family}', generate_rows(f'final_{family}', eval_size, spec, registry, local_seed + j + 11, family=family))
             if name == 'original':
-                save(f'final4_{family}', generate_rows(f'final4_{family}', eval_size, spec, registry, local_seed + j + 21, family=family, depth=4))
-                save(f'panel_{family}', generate_rows(f'panel_{family}', panels * 4, spec, registry,
-                     local_seed + j + 31, family=family, panel_targets=4))
+                for phase, offset in (('dev', 21), ('final', 31)):
+                    save(f'{phase}4_{family}', generate_rows(f'{phase}4_{family}', eval_size, spec, registry,
+                         local_seed + j + offset, family=family, depth=4))
+            for phase, offset in (('dev', 61), ('final', 71)):
+                save(f'{phase}_panel_{family}', generate_rows(f'{phase}_panel_{family}', panels * 4, spec, registry,
+                     local_seed + j + offset, family=family, panel_targets=4, correct_count=1))
         # A used for calibration is independent of both checkpoint-selection dev and final.
         save('calibration_A', generate_rows('calibration_A', eval_size, spec, registry, local_seed + 41))
         for j, phase in enumerate(('dev', 'final')):
             save(phase + '_atomic', _atomic_split(phase + '_atomic', eval_size, local_seed + 50 + j, registry))
         observed_pairs = {pair for row in rows_by_name['train'] for pair in zip(row['witness'], row['witness'][1:])}
-        if name == 'triple' and not {('SH1', 'SC2'), ('SC2', 'REV')} <= observed_pairs:
-            raise ValueError('Held triple has a constituent pair absent from training')
-        if name == 'position' and not any(row['witness'][1:] == ['SH1', 'SC2'] for row in rows_by_name['train']):
-            raise ValueError('Held positional pair never occurs at the other position in training')
-        manifest = {'schema': 'iclr.upgrade.data.v1', 'status': 'smoke' if smoke else 'frozen_new_evaluation',
+        manifest = {'schema': 'iclr.upgrade.data.v2', 'status': 'smoke' if smoke else 'frozen_new_evaluation',
             'config': {'size': size, 'eval_size': eval_size, 'panels': panels, 'seed': local_seed},
             'constraints': spec, 'files': files, 'reference_data_sha256': file_hash(reference / 'manifest.json'),
             'state_exclusion': 'within each mask: all correct trajectories; shared states permitted only inside a matched-START panel; inherited atomic training reused',
@@ -363,10 +394,16 @@ def prepare(out, reference, *, seed=20260921, size=5000, eval_size=200, panels=5
         write_json(directory / 'manifest.json', manifest)
         manifests[name] = {'manifest_sha256': file_hash(directory / 'manifest.json'), 'constraints': spec}
         print(f'Prepared {name}: {sum(f["rows"] for f in files.values())} tasks', flush=True)
-    write_json(out / 'protocol.json', {'schema': 'iclr.upgrade.protocol.v1', 'seed': seed, 'smoke': smoke,
-        'primary_metric': 'Hit@32', 'calibration_alpha': 1, 'calibration_depth': 3,
+    write_json(out / 'protocol.json', {'schema': 'iclr.upgrade.protocol.v2', 'seed': seed, 'smoke': smoke,
+        'primary_metric': 'local prior-invariant pair target alignment; composition minus atomic_control; equal B/D',
+        'analysis_plan_sha256': file_hash(Path(__file__).resolve().parents[1] / 'plans/upgrade_analysis_plan.json'),
+        'calibration_alpha': 1, 'calibration_depth': 3,
         'calibration_family': 'A', 'training_seeds': [0, 1, 2], 'mask_training_seeds': [0, 1],
-        'mask_count': 4, 'mask_size': 3, 'witness_correct_train_count': 2,
+        'mask_count': 4, 'mask_size': 3,
+        'witness_quotas': 'equal minimum-depth affine equivalence families per field/degree; balance first witness operations within those quotas; >=2 solutions; fixed pool for both arms',
+        'deferred': {'03': 'v1 triple/position non-identifying; redesign multiple held patterns and matched START panels before any training',
+                     '05': 'need a concrete gradient hypothesis and fixed-checkpoint numerical audit',
+                     '06': 'conditional on central contrast and one successful intervention'},
         'mask_matching': {'solution_counts': '60% one, 20% two, 20% three, rounded within field/degree strata',
                           'operation_counts': 'within floor/ceil(3*n/5) in each field/degree stratum',
                           'program_support': 'all available pairs represented in strata with n >= candidate programs'},
@@ -380,7 +417,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', required=True, type=Path)
     parser.add_argument('--reference', required=True, type=Path, help='original outputs/data, including atomic train')
-    parser.add_argument('--seed', type=int, default=20260921)
+    parser.add_argument('--seed', type=int, default=20260922)
     parser.add_argument('--size', type=int, default=5000)
     parser.add_argument('--eval-size', type=int, default=200)
     parser.add_argument('--panels', type=int, default=50)

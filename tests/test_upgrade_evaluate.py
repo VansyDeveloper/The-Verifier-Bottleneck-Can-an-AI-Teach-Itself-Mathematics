@@ -1,11 +1,12 @@
 import argparse
 import json
+from pathlib import Path
 
 import pytest
 import torch
 from transformers import LlamaConfig, LlamaForCausalLM
 
-from iclr.common import file_hash, verify_receipt
+from iclr.common import code_hash, file_hash, read_jsonl, verify_receipt, write_json
 from iclr.data import generate
 from iclr.modeling import load
 from iclr.smoke import create_tiny_model
@@ -14,6 +15,7 @@ from iclr.upgrade_evaluate import run
 from iclr.upgrade_audit import audit
 from iclr.train import run as train
 from iclr.upgrade import import_data
+from iclr.upgrade_analysis import compare, reanalyze
 
 
 def test_closed_prefix_evaluation_execution_and_receipt(tmp_path):
@@ -42,6 +44,8 @@ def test_closed_prefix_evaluation_execution_and_receipt(tmp_path):
     run(args)
     receipt = verify_receipt(out)
     assert receipt['binding']['data_status'] == 'smoke'
+    assert receipt['binding']['phase'] == 'dev'
+    assert all(r['split'].startswith('dev') for r in read_jsonl(out / 'rankings.jsonl'))
     summaries = json.loads((out / 'hitk.json').read_text())
     assert {r['score_key'] for r in summaries} == {'score', 'local_score', 'format_score'}
     assert any(r['target_control'] == 'wrong_target' for r in summaries)
@@ -49,12 +53,42 @@ def test_closed_prefix_evaluation_execution_and_receipt(tmp_path):
     assert not any(r['depth'] == 4 and r['method'] == 'full' for r in summaries)
     cells = json.loads((out / 'execution_summary.json').read_text())['cells']
     assert {c['kind'] for c in cells} == {'atomic', 'program', 'true_intermediate'}
+    align = json.loads((out / 'target_alignment.json').read_text())
+    assert all(v['eligible'] == 8 and not v['skipped'] for v in align['scores'].values())
     run(args)
     assert verify_receipt(out) == receipt
     with (out / 'prefixes.jsonl').open('a') as stream:
         stream.write('{}\n')
     with pytest.raises(ValueError, match='missing or changed'):
         run(args)
+    args.out, args.phase = str(tmp_path / 'final_eval'), 'final'
+    with pytest.raises(ValueError, match='analysis-lock'):
+        run(args)
+    lock = tmp_path / 'lock.json'
+    write_json(lock, {'code_hash': code_hash(), 'dataset_hashes': [receipt['binding']['data_hash']],
+                      'analysis_plan_sha256': file_hash('plans/upgrade_analysis_plan.json')})
+    args.analysis_lock = str(lock)
+    run(args)
+    final = verify_receipt(args.out)
+    assert final['binding']['phase'] == 'final'
+    assert all(r['split'].startswith('final') for r in read_jsonl(Path(args.out) / 'rankings.jsonl'))
+    expected_ids = {r['task_id'] for r in read_jsonl(data / 'original/final_atomic.jsonl')}
+    actual_ids = {r['task_id'] for r in read_jsonl(Path(args.out) / 'execution.jsonl') if r['kind'] == 'atomic'}
+    assert actual_ids == expected_ids
+    rescored = tmp_path / 'offline_analysis'
+    reanalyze(argparse.Namespace(source=args.out, data=str(data / 'original'), out=str(rescored)))
+    assert json.loads((rescored / 'DONE').read_text())['model_inference_repeated'] is False
+    result = json.loads((rescored / 'target_alignment.json').read_text())
+    files = []
+    for arm in ('composition', 'atomic_control'):
+        result['binding']['arm'] = arm
+        path = tmp_path / (arm + '.json')
+        write_json(path, result)
+        files.append(str(path))
+    contrast = tmp_path / 'contrast.json'
+    compare(argparse.Namespace(alignment=files, treatment='composition', control='atomic_control', out=str(contrast)))
+    assert json.loads(contrast.read_text())['estimate'] == 0
+    assert json.loads(contrast.read_text())['ci95_start_bootstrap'] == [0, 0]
 
 
 def test_llama_family_atomic_initialization_and_continuation(tmp_path):

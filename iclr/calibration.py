@@ -1,10 +1,11 @@
 """A-only score calibration. No checkpoint loading and no fitted alpha."""
 
 import argparse
-from collections import defaultdict
+from collections import Counter, defaultdict
 import csv
 from functools import lru_cache
 import json
+import math
 from pathlib import Path
 
 import numpy as np
@@ -12,7 +13,7 @@ import numpy as np
 import composition_core as core
 from .common import file_hash, read_jsonl, write_json
 
-METHODS = ('raw', 'unigram', 'bigram', 'full')
+METHODS = ('raw', 'unigram', 'positional', 'bigram', 'positional_bigram', 'full')
 KS = (1, 8, 16, 32, 64, 100, 125)
 
 
@@ -28,6 +29,15 @@ def features(programs, pairs=True):
             for a, b in zip(program, program[1:]):
                 result[i, 6 + 5 * ops.index(a) + ops.index(b)] += 1
     return result
+
+
+def design(programs, method):
+    if method in ('unigram', 'bigram'):
+        return features(programs, method == 'bigram')
+    positions = np.array([[int(op == wanted) for op in program for wanted in core.OPS]
+                          for program in programs])
+    return np.column_stack([np.ones(len(programs)), positions,
+                            features(programs)[:, 6:]]) if method == 'positional_bigram' else np.column_stack([np.ones(len(programs)), positions])
 
 
 @lru_cache(maxsize=8192)
@@ -68,12 +78,12 @@ def fit_bias(rows, score_key='score'):
     means = np.mean([unpack(row, score_key)[0] for row in rows], axis=0)
     result = {'task_ids': sorted(r['task_id'] for r in rows), 'score_key': score_key,
               'alpha': 1, 'training_depth': 3, 'full': means.tolist()}
-    for name, pairs in (('unigram', False), ('bigram', True)):
-        design = features(programs, pairs)
-        weights, _, rank, singular = np.linalg.lstsq(design, means, rcond=None)
+    for name in ('unigram', 'bigram', 'positional', 'positional_bigram'):
+        matrix = design(programs, name)
+        weights, _, rank, singular = np.linalg.lstsq(matrix, means, rcond=None)
         result[name] = {'weights': weights.tolist(), 'rank': int(rank),
                         'singular_values': singular.tolist(),
-                        'rmse': float(np.sqrt(np.mean((design @ weights - means) ** 2)))}
+                        'rmse': float(np.sqrt(np.mean((matrix @ weights - means) ** 2)))}
     return result
 
 
@@ -85,12 +95,14 @@ def bias_vector(fit, method, depth):
         if depth != fit['training_depth']:
             raise ValueError('A per-program table cannot transfer to another depth')
         return np.asarray(fit['full'])
-    if method not in ('unigram', 'bigram'):
+    if method not in ('unigram', 'bigram', 'positional', 'positional_bigram'):
         raise ValueError(f'Unknown calibration: {method}')
-    return features(programs, method == 'bigram') @ np.asarray(fit[method]['weights'])
+    if method.startswith('positional') and depth != fit['training_depth']:
+        raise ValueError('A positional fit cannot transfer to another depth')
+    return design(programs, method) @ np.asarray(fit[method]['weights'])
 
 
-def score_metrics(scores, mask):
+def score_metrics(scores, mask, *, random_ties=False):
     # Canonical lexical tie break matches the frozen evaluator.
     order = np.argsort(-scores, kind='stable')
     rank = int(np.flatnonzero(mask[order])[0]) + 1
@@ -99,14 +111,32 @@ def score_metrics(scores, mask):
     mass = float(np.clip(q[mask].sum(), 0, 1))
     cq = q[mask] / mass if mass else np.zeros(mask.sum())
     entropy = float(-np.sum(cq[cq > 0] * np.log(cq[cq > 0])))
-    return {'best_rank': rank, 'correct_count': int(mask.sum()), 'correct_mass': mass,
-            'mrr': 1 / rank, 'correct_conditional_entropy': entropy,
-            **{f'hit@{k}': int(rank <= k) for k in KS},
+    above, tied, successes = rank - 1, 1, 1
+    if random_ties:
+        threshold = scores[mask].max()
+        above = int(np.sum(scores > threshold))
+        tied = int(np.sum(scores == threshold))
+        successes = int(np.sum(mask & (scores == threshold)))
+    # Exact expectation over a uniformly random *fixed ordering* within ties.
+    # This is sampling without replacement, not IID pass@K.
+    weights = [math.comb(tied - j, successes - 1) / math.comb(tied, successes)
+               for j in range(1, tied - successes + 2)]
+    return {'best_rank': above + (tied + 1) / (successes + 1),
+            'tie_above': above, 'tie_size': tied, 'tie_correct': successes,
+            'tie_rule': 'expected_uniform_order' if random_ties else 'canonical_lexical',
+            'correct_count': int(mask.sum()), 'correct_mass': mass,
+            'mrr': sum(w / (above + j) for j, w in enumerate(weights, 1)), 'correct_conditional_entropy': entropy,
+            **{f'hit@{k}': tie_hit(above, tied, successes, k) for k in KS},
             **{f'iid_pass@{k}': float(-np.expm1(k * np.log1p(-mass))) if mass < 1 else 1.
                for k in KS}}
 
 
-def calibrated_rows(calibration, evaluation, *, crossfit=False, score_key='score'):
+def tie_hit(above, tied, successes, k):
+    take = min(tied, max(0, k - above))
+    return 1 - math.comb(tied - successes, take) / math.comb(tied, take)
+
+
+def calibrated_rows(calibration, evaluation, *, crossfit=False, score_key='score', training=()):
     """Closed evaluation uses disjoint A; archived A uses fixed five-fold crossfit."""
     fit = fit_bias(calibration, score_key)
     cal_ids = set(fit['task_ids'])
@@ -131,51 +161,66 @@ def calibrated_rows(calibration, evaluation, *, crossfit=False, score_key='score
             raise ValueError(f'Invalid matched START panel: {panel}')
         if len({tuple(r['target']) for r in rows}) != len(rows):
             raise ValueError(f'Duplicate TARGET in panel: {panel}')
-        wrong_target.update({r['task_id']: rows[(i + 1) % len(rows)] for i, r in enumerate(rows)})
+        wrong_target.update({r['task_id']: [donor for donor in rows if donor['task_id'] != r['task_id']]
+                             for r in rows})
+    frequencies = Counter(tuple(r['witness']) for r in training)
     for row in evaluation:
         scores, mask = unpack(row, score_key)
         selected_fit = folds[fold_by_id[row['task_id']]] if row['task_id'] in cal_ids and crossfit else fit
-        variants = {'own_target': scores}
+        variants = [('own_target', '', scores)]
         if row['task_id'] in wrong_target:
-            variants['wrong_target'] = unpack(wrong_target[row['task_id']], score_key)[0]
-        for target_control, values in variants.items():
-            for method in METHODS:
-                if method == 'full' and row['depth'] != 3:
-                    continue
-                corrected = values - bias_vector(selected_fit, method, row['depth'])
-                output.append({'task_id': row['task_id'], 'family': family(row), 'depth': row['depth'],
+            variants += [('wrong_target', donor['task_id'], unpack(donor, score_key)[0])
+                         for donor in wrong_target[row['task_id']]]
+        methods = METHODS if row['depth'] == 3 else ('raw', 'unigram', 'bigram')
+        def record(method, target_control, donor, values, random_ties=False):
+            output.append({'task_id': row['task_id'], 'family': family(row), 'depth': row['depth'],
                                'evaluation_set': row['split'],
                                'p': row['p'], 'degree': len(row['start']) - 1,
                                'panel_id': row.get('panel_id'), 'method': method, 'score_key': score_key,
-                               'target_control': target_control, **score_metrics(corrected, mask)})
+                               'target_control': target_control, 'donor_task_id': donor,
+                               **score_metrics(values, mask, random_ties=random_ties)})
+        for method in methods:
+            bias = bias_vector(selected_fit, method, row['depth'])
+            for control, donor, values in variants:
+                record(method, control, donor, values - bias)
+            if method != 'raw':
+                record(method, 'minus_bias_only', '', -bias)
+                record(method, 'shuffled_program_bias', '', scores - np.random.default_rng(20260921).permutation(bias))
+        if training:
+            programs = sorted(core.enumerate_programs(row['depth']))
+            counts = np.array([frequencies[p] for p in programs])
+            for method, values in (('train_frequency', np.log1p(counts)),
+                                   ('train_antifrequency', -np.log1p(counts)),
+                                   ('train_unseen_first', -(counts > 0).astype(float))):
+                record(method, 'task_blind', '', values, random_ties=True)
     return output, {'all_A': fit, 'crossfit': folds}
 
 
 def write_csv(path, rows):
     with Path(path).open('w', newline='') as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(stream, fieldnames=list(dict.fromkeys(k for r in rows for k in r)))
         writer.writeheader()
         writer.writerows(rows)
 
 
 def summarize(rows):
     groups = defaultdict(list)
-    keys = ('model', 'seed', 'arm', 'evaluation_set', 'family', 'depth', 'score_key', 'method', 'target_control')
+    keys = ('model', 'seed', 'arm', 'phase', 'evaluation_set', 'family', 'depth', 'score_key', 'method', 'target_control')
     for row in rows:
         groups[tuple(row.get(k) for k in keys)].append(row)
     result = []
     for values, cell in groups.items():
-        summary = {**dict(zip(keys, values)), 'tasks': len(cell)}
+        summary = {**dict(zip(keys, values)), 'tasks': len({r['task_id'] for r in cell}), 'rows': len(cell)}
         for metric in ('mrr', 'correct_mass', *(f'hit@{k}' for k in KS), *(f'iid_pass@{k}' for k in KS)):
             summary[metric] = float(np.mean([r[metric] for r in cell]))
         # Full H(K), not just selected K. Each task contributes once.
-        summary['hitk'] = [float(np.mean([r['best_rank'] <= k for r in cell]))
+        summary['hitk'] = [float(np.mean([tie_hit(r['tie_above'], r['tie_size'], r['tie_correct'], k) for r in cell]))
                            for k in range(1, 5 ** cell[0]['depth'] + 1)]
         result.append(summary)
     return result
 
 
-def archive_analysis(comparison, out):
+def archive_analysis(comparison, out, training=()):
     comparison, out = Path(comparison), Path(out)
     if out.exists() and any(out.iterdir()):
         raise FileExistsError(f'Refusing to overwrite analysis: {out}')
@@ -195,7 +240,7 @@ def archive_analysis(comparison, out):
             raise ValueError('Arms/seeds evaluate different tasks')
         identity = current
         config = json.loads((metrics.parent.parent / 'config.resolved.json').read_text())['config']
-        result, fit = calibrated_rows([r for r in rows if family(r) == 'A'], rows, crossfit=True)
+        result, fit = calibrated_rows([r for r in rows if family(r) == 'A'], rows, crossfit=True, training=training)
         all_rows.extend({**r, **{k: entry[k] for k in ('arm', 'seed')}, 'model': config['model']} for r in result)
         fits[f"{entry['arm']}_seed{entry['seed']}"] = fit
         sources.append({'path': str(ranking.resolve()), 'sha256': file_hash(ranking),
@@ -219,8 +264,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--comparison', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--train', type=Path, required=True, help='original training pool, never evaluation labels')
     args = parser.parse_args()
-    summaries = archive_analysis(args.comparison, args.out)
+    summaries = archive_analysis(args.comparison, args.out, read_jsonl(args.train))
     print(json.dumps({'out': str(args.out), 'cells': len(summaries), 'status': 'development_reanalysis'}))
 
 

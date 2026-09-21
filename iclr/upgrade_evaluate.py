@@ -13,11 +13,10 @@ import torch
 
 import composition_core as core
 import composition_eval as legacy
-from .calibration import calibrated_rows, family, fit_bias, summarize, write_csv
+from .calibration import family, fit_bias
 from .common import code_hash, environment, file_hash, read_jsonl, tree_hash, verify_data, verify_receipt, write_json
 from .modeling import PROMPT_VERSION, load, program_scores
-
-SCORE_KEYS = ('score', 'local_score', 'format_score')
+from .upgrade_analysis import SCORE_KEYS, analyze
 
 
 def from_prefixes(row, prefixes):
@@ -107,12 +106,27 @@ def execute_programs(model, tokenizer, rows, batch_size):
 def run(args):
     out = Path(args.out)
     manifest = verify_data(args.data)
+    phase = getattr(args, 'phase', 'dev')
+    if not all(f'{phase}_panel_{family}.jsonl' in manifest['files'] for family in 'ABCD'):
+        raise ValueError('Phase has no complete target panels; use v2 prepared inputs')
+    training_pool = Path(getattr(args, 'training_pool', None) or Path(args.data) / 'train.jsonl')
+    lock_path = getattr(args, 'analysis_lock', None)
+    if phase == 'final':
+        if not lock_path:
+            raise ValueError('Final evaluation requires --analysis-lock; freeze the analysis before opening final')
+        lock = json.loads(Path(lock_path).read_text())
+        if (lock['code_hash'] != code_hash() or
+                file_hash(Path(args.data) / 'manifest.json') not in lock['dataset_hashes'] or
+                lock['analysis_plan_sha256'] != file_hash(Path(__file__).resolve().parents[1] / 'plans/upgrade_analysis_plan.json')):
+            raise ValueError('Final analysis lock differs from code, data or predeclared analysis')
     binding = {'base_hash': tree_hash(args.base), 'adapter_hash': tree_hash(args.adapter) if args.adapter else None,
                'data_hash': file_hash(Path(args.data) / 'manifest.json'), 'code_hash': code_hash(),
                'model': args.model, 'seed': args.seed, 'arm': args.arm, 'dtype': args.dtype,
                'prefix_batch': args.prefix_batch, 'device': args.device,
                'execution_tasks_per_family': args.execution_tasks_per_family,
-               'reliable_ops': args.reliable_ops, 'protocol': 'full_local_format_prefix_v1',
+               'reliable_ops': args.reliable_ops, 'protocol': 'target_alignment_v2', 'phase': phase,
+               'analysis_lock_sha256': file_hash(lock_path) if lock_path else None,
+               'training_pool_sha256': file_hash(training_pool),
                'prompt_version': PROMPT_VERSION, 'data_status': manifest['status']}
     for key in ('base_hash', 'adapter_hash'):
         expected = getattr(args, 'expected_' + key)
@@ -127,6 +141,8 @@ def run(args):
     if (out / 'binding.json').exists() and json.loads((out / 'binding.json').read_text()) != binding:
         raise ValueError('Partial evaluation has different inputs; choose a new output')
     write_json(out / 'binding.json', binding)
+    if lock_path:
+        write_json(out / 'analysis_lock.json', json.loads(Path(lock_path).read_text()))
     write_json(out / 'environment.json', environment())
     try:
         model, tokenizer, ids = load(args.base, adapter=args.adapter, device=args.device, dtype=args.dtype)
@@ -152,26 +168,21 @@ def run(args):
             legacy.write_jsonl(out / 'calibration_rankings.jsonl', calibration)
             write_json(out / 'calibration.json', {key: fit_bias(calibration, key) for key in SCORE_KEYS})
             # Freeze the A-only correction before scoring any final or counterfactual target.
-            for pattern in ('final_[ABCD].jsonl', 'final4_[ABCD].jsonl', 'panel_[ABCD].jsonl'):
+            for pattern in (f'{phase}_[ABCD].jsonl', f'{phase}4_[ABCD].jsonl', f'{phase}_panel_[ABCD].jsonl'):
                 for path in sorted(Path(args.data).glob(pattern)):
                     rows.extend(score(read_jsonl(path)))
                     print(f'Scored {path.name}: {len(rows)} evaluation tasks', flush=True)
         (out / 'prefixes.jsonl.partial').replace(out / 'prefixes.jsonl')
         legacy.write_jsonl(out / 'rankings.jsonl', rows)
-        metrics = []
-        for key in SCORE_KEYS:
-            computed, _ = calibrated_rows(calibration, rows, score_key=key)
-            metrics.extend({**r, 'model': args.model, 'seed': args.seed, 'arm': args.arm} for r in computed)
-        write_csv(out / 'task_metrics.csv', metrics)
-        summary = summarize(metrics)
-        write_json(out / 'hitk.json', summary)
-        write_csv(out / 'summary.csv', [{k: v for k, v in r.items() if k != 'hitk'} for r in summary])
-        eligible = {r['task_id'] for r in rows if all(set(x['program']) <= set(args.reliable_ops) for x in r['ranking'] if x['correct'])}
-        write_json(out / 'reliable_ops_stratum.json', {'selection': 'predeclared candidate operations from historical Qwen atomic APPLY, shared across arms and families',
-                   'interpretation': 'reliability must be checked against the current atomic and true-intermediate execution results',
-                   'operations': args.reliable_ops, 'task_ids': sorted(eligible),
-                   'summary': summarize([r for r in metrics if r['task_id'] in eligible])})
-        atomic = read_jsonl(Path(args.data) / 'dev_atomic.jsonl')
+        if not rows or not any(r.get('panel_id') for r in rows):
+            raise ValueError('Phase has no target panels; use the v2 prepared inputs')
+        training = read_jsonl(training_pool)
+        legacy.write_jsonl(out / 'control_training_pool.jsonl', training)
+        analyze(calibration, rows, training, out, binding, args.reliable_ops)
+        write_json(out / 'inference_budget.json', {'phase': phase,
+            'tasks_scored': len(calibration) + len(rows), 'prefix_nodes': sum((5 ** r['depth'] - 1) // 4 for r in [*calibration, *rows]),
+            'nodes_per_task': {'depth3': 31, 'depth4': 156}, 'offline_controls_require_new_inference': False})
+        atomic = read_jsonl(Path(args.data) / f'{phase}_atomic.jsonl')
         with torch.inference_mode():
             plan, plan_rows = legacy.atomic_plan_metrics(model, tokenizer, ids, atomic, args.prefix_batch)
         apply_rows = execute_programs(model, tokenizer, [{**r, 'kind': 'atomic', 'program': r['witness']} for r in atomic], min(args.prefix_batch, 8))
@@ -181,7 +192,18 @@ def run(args):
         cells = defaultdict(list)
         for row in [*apply_rows, *intermediate]:
             cells[row['kind'], row['program'][0] if len(row['program']) == 1 else 'multi'].append(row)
-        write_json(out / 'execution_summary.json', {'atomic_plan': plan, 'cells': [
+        competence = []
+        for kind in ('atomic', 'true_intermediate'):
+            for op in core.OPS:
+                cell = cells[kind, op]
+                n = len(cell)
+                accuracy = sum(r['semantic_correct'] for r in cell) / n if n else None
+                competence.append({'kind': kind, 'operation': op, 'n': n, 'semantic_accuracy': accuracy,
+                    'status': 'empty' if not n else 'pass' if n >= 20 and accuracy >= .9 else 'fail_or_insufficient',
+                    'criterion': 'at least 20 cases and semantic accuracy >= 0.90; fixed before composition training'})
+        write_json(out / 'execution_summary.json', {'phase': phase, 'atomic_split': f'{phase}_atomic',
+            'atomic_plan': plan, 'competence': competence,
+            'interpretation': 'A continuation cannot establish pre-composition competence; use the matching baseline report. Failure limits claims to program distributions.', 'cells': [
             {'kind': kind, 'operation': op, 'n': len(cell),
              'parsed': sum(r['parse_ok'] for r in cell),
              'semantic_correct': sum(r['semantic_correct'] for r in cell),
@@ -211,6 +233,9 @@ def main():
     parser.add_argument('--expected-adapter-hash')
     parser.add_argument('--execution-tasks-per-family', type=int, default=50)
     parser.add_argument('--reliable-ops', nargs='+', choices=core.OPS, default=['AC1', 'AX1', 'REV'])
+    parser.add_argument('--phase', choices=['dev', 'final'], default='dev')
+    parser.add_argument('--analysis-lock')
+    parser.add_argument('--training-pool', help='historical training pool for old checkpoints; default: current dataset train')
     args = parser.parse_args()
     if args.prefix_batch < 1 or args.execution_tasks_per_family < 1:
         parser.error('Positive batch and execution panel sizes required')
