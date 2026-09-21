@@ -34,14 +34,15 @@ uv run python -m iclr.research_data \
 tar -czf shared_inputs_v3.tar.gz outputs/shared_inputs_v3
 ```
 
-Скопируйте этот TAR на все машины и распакуйте из корня репозитория.
+На каждой машине из корня репозитория: `tar -xzf shared_inputs_v3.tar.gz`.
 Если v2 отсутствует, [команды восстановления данных](plans/RUN_V3_RU.md#данные).
 Старые результаты и analysis lock v2 сохраняются.
 
 ## Запуск на GPU
 
-Ниже четыре независимые команды для отдельных машин с GPU `0`.
-На одной машине назначьте разные свободные индексы через `--gpus`.
+**Одна GPU:** выполните весь блок последовательно. **Разные машины:** по одной
+команде на машину. **Две GPU:** Q1/Q3 на `--gpus 0`, Q2/Q4 на `--gpus 1`,
+сначала Q1+Q2 в двух терминалах, затем Q3+Q4.
 
 ```bash
 uv run python -m iclr.research start --queue-name Q1 --model-names q06 q8b --inputs outputs/shared_inputs_v3 --out outputs/Q1_dev --gpus 0
@@ -55,8 +56,10 @@ uv run python -m iclr.research start --queue-name Q4 --inputs outputs/shared_inp
 Возобновление: `uv run python -m iclr.research run --queue outputs/Q3_dev/queue.json --gpus 0`.
 Причины ошибок — в `status.json` и `logs/`; повтор после исправления — `--retry-failed`.
 
-По завершении отправьте `outputs/send_to_artem_exp_*.zip`: данные, оценки,
-конфиги и логи включены, веса исключены.
+Каждая очередь сама создаёт **папку и ZIP** `outputs/send_to_artem_exp_*`.
+Отправьте ZIP всех завершённых очередей: внутри данные, сырые оценки, сводки,
+конфиги, логи, dev-решения, допуски и locks; **весов нет**.
+В архиве начните с `START_HERE_RU.md`; полнота и хеши — `EXPORT_MANIFEST.json`.
 
 [Следующие этапы, final, второй домен и сравнение результатов](plans/RUN_V3_RU.md).
 [Что проверено и границы smoke](evidence/research_v3/README.md).

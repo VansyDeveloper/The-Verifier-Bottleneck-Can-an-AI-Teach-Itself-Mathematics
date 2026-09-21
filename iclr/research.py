@@ -198,6 +198,9 @@ def plan(args):
         'phase': args.phase, 'stage': args.stage, 'smoke': args.smoke, 'experiments': [args.queue_name],
         'scope': {args.queue_name: SCOPES[args.queue_name]}, 'protocol_hash': file_hash(Path(args.inputs) / 'protocol.json')}
     queue['selection_hash'] = file_hash(args.selection) if args.selection else None
+    queue['selection_path'] = str(Path(args.selection).resolve()) if args.selection else None
+    queue['analysis_lock_path'] = str(Path(args.analysis_lock).resolve()) if args.analysis_lock else None
+    queue['analysis_lock_sha256'] = file_hash(args.analysis_lock) if args.analysis_lock else None
     write_config(out / 'queue.json', queue)
     if not (out / 'status.json').exists():
         write_json(out / 'status.json', {'queue_sha256': file_hash(out / 'queue.json'),
@@ -233,7 +236,8 @@ def select(args):
         raise ValueError('Missing completed paired training cells')
     model, base_hash, adapter_hash, dtype = initializations.pop()
     write_config(Path(args.out), {'schema': 'iclr.research.selection.v3', 'family': family, 'arms': arms,
-        'settings': settings, 'source_queue_sha256': file_hash(source), 'source_receipts': hashes,
+        'settings': settings, 'source_queue': str(source.resolve()),
+        'source_queue_sha256': file_hash(source), 'source_receipts': hashes,
         'initialization': {'model': model, 'base_hash': base_hash, 'adapter_hash': adapter_hash, 'dtype': dtype},
         'code_hash': code_hash(), 'plan_hash': file_hash(ROOT / 'plans/research_v3.json'),
         'reason': args.reason, 'scope': 'dev choice; final outcomes were not opened'})

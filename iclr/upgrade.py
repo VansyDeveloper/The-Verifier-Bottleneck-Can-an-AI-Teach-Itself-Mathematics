@@ -415,6 +415,71 @@ def import_data(args):
     temporary.rename(target)
 
 
+def export_provenance(root):
+    """Include v3 dev decisions, gates and training records referenced outside the queue."""
+    pending = [('queue', root / 'queue.json', None)]
+    seen, sources = set(), {root}
+    references = {}
+    while pending:
+        kind, path, expected = pending.pop()
+        path = Path(path).resolve()
+        digest = file_hash(path / 'DONE' if kind == 'receipt' else path)
+        if expected and digest != expected:
+            raise ValueError(f'Export dependency changed: {path}')
+        if path in seen:
+            continue
+        seen.add(path)
+        references[str(path)] = {'kind': kind, 'sha256': digest}
+        sources.add(path.parent if kind == 'queue' else path)
+        if kind == 'receipt':
+            verify_receipt(path)
+            continue
+        value = json.loads(path.read_text())
+        if kind == 'selection':
+            pending.append(('queue', value['source_queue'], value['source_queue_sha256']))
+        elif kind == 'lock':
+            pending.extend(('queue', p, h) for p, h in value['queues'].items())
+        else:
+            if path.parent != root:
+                state = json.loads(path.with_name('status.json').read_text())
+                if any(r['status'] != 'done' for r in state['jobs'].values()):
+                    raise ValueError('Referenced dev queue is incomplete')
+                collect(argparse.Namespace(out=str(path.parent)))
+            for key, label, hash_key in (('selection_path', 'selection', 'selection_hash'),
+                                         ('analysis_lock_path', 'lock', 'analysis_lock_sha256')):
+                if value.get(key):
+                    pending.append((label, value[key], value[hash_key]))
+            for job in value['jobs']:
+                if not job.get('config_path') or not (Path(job['result']) / 'DONE').is_file():
+                    continue
+                if file_hash(job['config_path']) != job['config_sha256']:
+                    raise ValueError('Exported job config changed')
+                cfg = json.loads(Path(job['config_path']).read_text())
+                binding = verify_receipt(job['result'])['binding']
+                for key, label, hash_key in (('gate', 'receipt', 'gate_receipt_hash'),
+                    ('training_receipt', 'receipt', 'training_receipt_hash'),
+                    ('analysis_lock', 'lock', 'analysis_lock_hash')):
+                    if cfg.get(key):
+                        pending.append((label, cfg[key], binding[hash_key]))
+    locations = {root: 'results'}
+    files = []
+    for path in sorted(sources, key=lambda p: (len(p.parts), str(p))):
+        if any(path.is_relative_to(parent) for parent in locations):
+            continue
+        destination = f'dependencies/{len(locations):02d}_{path.name}'
+        locations[path] = destination
+        if path.is_dir():
+            files.extend((p, destination + '/' + p.relative_to(path).as_posix())
+                         for p in sorted(path.rglob('*')) if p.is_file())
+        else:
+            files.append((path, destination))
+    for source, entry in references.items():
+        path = Path(source)
+        parent = next(p for p in locations if path.is_relative_to(p))
+        entry['archive_path'] = locations[parent] + (('/' + path.relative_to(parent).as_posix()) if path != parent else '')
+    return files, references
+
+
 def bundle(args):
     root, target = Path(args.out).resolve(), Path(args.archive).resolve()
     if target.is_relative_to(root) or target.exists():
@@ -428,8 +493,12 @@ def bundle(args):
     if not args.allow_incomplete and any(r['status'] != 'done' for r in state['jobs'].values()):
         raise ValueError('Incomplete queue; use --allow-incomplete only for an explicitly partial export')
     collect(argparse.Namespace(out=str(root)))
-    files = [(p, 'results/' + p.relative_to(root).as_posix()) for p in sorted(root.rglob('*'))
-             if p.is_file() and p.name != '.queue.lock' and
+    files = [(p, 'results/' + p.relative_to(root).as_posix()) for p in sorted(root.rglob('*')) if p.is_file()]
+    dependencies = {}
+    if queue.get('schema') == 'iclr.research.queue.v3':
+        extra, dependencies = export_provenance(root)
+        files.extend(extra)
+    files = [(p, name) for p, name in files if p.name != '.queue.lock' and
              (args.include_models or p.suffix not in ('.safetensors', '.bin', '.pt', '.pth', '.ckpt'))]
     if queue.get('reference'):
         reference = Path(queue['reference'])
@@ -456,16 +525,20 @@ def bundle(args):
             manifest.append({'path': name, 'sha256': digest, 'bytes': path.stat().st_size})
         guide = ('# Результаты для Артёма\n\n'
             'Начните с results/analysis/summary.csv и results/analysis/runs.csv.\n'
-            'В results/experiments/ лежат оценки и обучение по смысловым блокам.\n'
+            'В runs.csv указаны пути к оценкам и обучению.\n'
             'Сырые ответы, score, префиксы, calibration, данные, конфиги и логи включены.\n'
             'Веса моделей ' + ('включены.' if args.include_models else 'исключены; для анализа они не нужны.') + '\n'
             'Полнота и SHA-256 каждого файла: EXPORT_MANIFEST.json.\n'
+            'Внешние dev-очереди, допуски и analysis locks: dependencies/ и DEPENDENCIES.json.\n'
             'Не усредняйте разные data_hash, evaluation_set и target_control.\n\n' +
             '\n'.join(f'- {name}: {queue.get("scope", {}).get(name, EXPERIMENTS.get(name, name))}'
                       for name in queue.get('experiments', [])) + '\n')
         payload = guide.encode()
         archive.writestr('START_HERE_RU.md', payload)
         manifest.append({'path': 'START_HERE_RU.md', 'sha256': hashlib.sha256(payload).hexdigest(), 'bytes': len(payload)})
+        payload = json.dumps(dependencies, indent=2).encode()
+        archive.writestr('DEPENDENCIES.json', payload)
+        manifest.append({'path': 'DEPENDENCIES.json', 'sha256': hashlib.sha256(payload).hexdigest(), 'bytes': len(payload)})
         archive.writestr('EXPORT_MANIFEST.json', json.dumps({'includes_weights': args.include_models,
             'status': 'complete' if all(r['status'] == 'done' for r in state['jobs'].values()) else 'partial',
             'source_code_hash': code_hash(), 'files': manifest}, indent=2))

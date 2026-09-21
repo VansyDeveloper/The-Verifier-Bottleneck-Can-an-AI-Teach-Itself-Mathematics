@@ -131,6 +131,55 @@ write_json(out / "DONE", {"files": {p.name: file_hash(p) for p in out.glob("*.js
         verify_bundle(argparse.Namespace(archive=str(changed)))
 
 
+def test_v3_export_includes_external_decisions_and_training_without_weights(tmp_path):
+    prior, final = tmp_path / 'dev', tmp_path / 'final'
+    prior.mkdir(); final.mkdir()
+    (prior / 'rankings.jsonl').write_text('{"scores": [1, 2]}\n')
+    write_json(prior / 'queue.json', {'jobs': [], 'models': [], 'source_code_hash': code_hash()})
+    write_json(prior / 'status.json', {'jobs': {}, 'queue_sha256': file_hash(prior / 'queue.json')})
+    selection, lock = tmp_path / 'selection.json', tmp_path / 'lock.json'
+    write_json(selection, {'source_queue': str(prior / 'queue.json'),
+                          'source_queue_sha256': file_hash(prior / 'queue.json')})
+    write_json(lock, {'queues': {str(prior / 'queue.json'): file_hash(prior / 'queue.json')}})
+    train, gate = prior / 'training', tmp_path / 'gate'
+    for directory in (train, gate):
+        directory.mkdir()
+        write_json(directory / 'budget.json', {'tokens': 8})
+        write_json(directory / 'DONE', {'files': {'budget.json': file_hash(directory / 'budget.json')}})
+        for suffix in ('.safetensors', '.bin', '.pt', '.pth', '.ckpt'):
+            (directory / ('weights' + suffix)).write_bytes(b'omit')
+    result, config = final / 'evaluation', final / 'config.json'
+    result.mkdir()
+    write_json(config, {'training_receipt': str(train), 'gate': str(gate), 'analysis_lock': str(lock)})
+    binding = {'training_receipt_hash': file_hash(train / 'DONE'), 'gate_receipt_hash': file_hash(gate / 'DONE'),
+               'analysis_lock_hash': file_hash(lock)}
+    write_json(result / 'binding.json', binding)
+    write_json(result / 'DONE', {'binding': binding, 'files': {'binding.json': file_hash(result / 'binding.json')}})
+    job = {'id': 'eval', 'kind': 'receipt', 'result': str(result), 'config_path': str(config),
+           'config_sha256': file_hash(config)}
+    write_json(final / 'queue.json', {'schema': 'iclr.research.queue.v3', 'source_code_hash': code_hash(),
+        'jobs': [job], 'selection_path': str(selection), 'selection_hash': file_hash(selection),
+        'analysis_lock_path': str(lock), 'analysis_lock_sha256': file_hash(lock)})
+    write_json(final / 'status.json', {'queue_sha256': file_hash(final / 'queue.json'),
+        'jobs': {'eval': {'status': 'done', 'receipt_sha256': file_hash(result / 'DONE')}}})
+    destination = tmp_path / 'send_to_artem_exp_final'
+    send_results(argparse.Namespace(out=str(final), destination=str(destination), allow_incomplete=False))
+    references = json.loads((destination / 'DEPENDENCIES.json').read_text())
+    for source in (selection, lock, train, gate, prior / 'queue.json'):
+        exported = destination / references[str(source)]['archive_path']
+        assert exported.exists()
+        if source.is_file():
+            assert exported.read_bytes() == source.read_bytes()
+    archived_dev = destination / references[str(prior / 'queue.json')]['archive_path']
+    assert archived_dev.with_name('rankings.jsonl').read_bytes() == (prior / 'rankings.jsonl').read_bytes()
+    assert not any(p.suffix in ('.safetensors', '.bin', '.pt', '.pth', '.ckpt') for p in destination.rglob('*'))
+    verify_bundle(argparse.Namespace(archive=str(destination.with_suffix('.zip'))))
+    lock.write_text('{}')
+    with pytest.raises(ValueError, match='Export dependency changed'):
+        bundle(argparse.Namespace(out=str(final), archive=str(tmp_path / 'changed.zip'),
+                                  include_models=False, allow_incomplete=False))
+
+
 def test_final_reuses_exact_completed_cells_and_rejects_wrong_training(tmp_path, prepared):
     history = json.loads(Path('evidence/upgrade/previous_q06.json').read_text())
     proto = json.loads((prepared / 'protocol.json').read_text())

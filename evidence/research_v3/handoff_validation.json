@@ -1,0 +1,116 @@
+{
+  "downloaded_paired_analysis_without_weights": "PASS",
+  "earlier_fp32_bf16_unit_tests": "validation.json; its source hash intentionally retained",
+  "export_test": "External dev/selection/lock/training/gate dependencies, all weight suffixes, tampering rejection",
+  "gpu": {
+    "dtype": "bfloat16",
+    "model": "random tiny Qwen3, one layer, hidden size 32",
+    "outside_sandbox": true,
+    "scientific_result": false
+  },
+  "logs": {
+    "export_tests.log": "38220f80e740634432e83c7e24da1126eaa7f79f3ee92d7c43f4471ada3a59d2",
+    "handoff_final_cuda.log": "8838bc44eaaa10bb60f55bdbf4d282bb007d99b34c890c052e0ee7232c2e7b05",
+    "handoff_queue_cuda.log": "6878871c025e7e135c8b71328dda3915a9f4f07a15b11ff6f2f352104608bfa6",
+    "handoff_tests.log": "4e95d6f48693abb2e3562d97355cbe6fbc84a319e44ef8270bb6be56745f2586"
+  },
+  "numerical_workers_unchanged_from_commit": "48861f0c3433ca91f525e7ab8db0f218048d62c8",
+  "queues": {
+    "research_handoff_final": {
+      "all_result_files_included_except_weights": true,
+      "archive": "send_to_artem_exp_research_handoff_final_20260921_223943_829857.zip",
+      "archive_sha256": "f4a45ce72dcc327e82c2bd1eea1837983fb3798687fd8513a3084aed2dbb4657",
+      "files": 558,
+      "folder_equals_zip": true,
+      "jobs": 6,
+      "queue_sha256": "cc060dca24024425f408b4e86017997b13504fb5bdbc2f840ccdb7b3aff585f5",
+      "references": {
+        "/tmp/artem_iclr/outputs/research_handoff_checks/analysis_lock.json": {
+          "archive_path": "dependencies/02_analysis_lock.json",
+          "kind": "lock",
+          "sha256": "a7188784bd821df23fd7fd42bb9e6272b4c72379a16bb8ed3ca87570a2ce3831"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_final/queue.json": {
+          "archive_path": "results/queue.json",
+          "kind": "queue",
+          "sha256": "cc060dca24024425f408b4e86017997b13504fb5bdbc2f840ccdb7b3aff585f5"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/queue.json": {
+          "archive_path": "dependencies/01_research_handoff_queue/queue.json",
+          "kind": "queue",
+          "sha256": "63d369f46bc12bdc024125af11b6b3060a0919d257d3b58d56622bb9e24383d7"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_cf_entropy_seed0": {
+          "archive_path": "dependencies/01_research_handoff_queue/training/tiny_mask1_ce_cf_entropy_seed0",
+          "kind": "receipt",
+          "sha256": "3edb481dcada8fbf2a162be0fe5a8b7555e7e8a37bc2447751cc8e3117aa4387"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_cf_seed0": {
+          "archive_path": "dependencies/01_research_handoff_queue/training/tiny_mask1_ce_cf_seed0",
+          "kind": "receipt",
+          "sha256": "4132ceeff9c8f34d0f8480f5e2c7a001d00c1e0fb2b5b4bfae679d61630a0e73"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_entropy_seed0": {
+          "archive_path": "dependencies/01_research_handoff_queue/training/tiny_mask1_ce_entropy_seed0",
+          "kind": "receipt",
+          "sha256": "b0fede10fdfb8ff98371e709e5c0399dade75cd0f0c53cf7edba7307bddcaaec"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_seed0": {
+          "archive_path": "dependencies/01_research_handoff_queue/training/tiny_mask1_ce_seed0",
+          "kind": "receipt",
+          "sha256": "202ae76d12ba24af641b5b1f7c53d87c7691a9cf39a42a9db9143cc9f3f31208"
+        }
+      },
+      "source_code_hash": "21b8c09ccd661802265ccb16ee05e79ee8bcb11153feb2c2e5d6a313e15c5528",
+      "training_jobs": 0
+    },
+    "research_handoff_queue": {
+      "all_result_files_included_except_weights": true,
+      "archive": "send_to_artem_exp_research_handoff_queue_20260921_223822_474634.zip",
+      "archive_sha256": "d15e3911c6ec4f8b27ba4a67ffb4b4128f5808cb66943e134e4fd0c3bf44efcf",
+      "files": 370,
+      "folder_equals_zip": true,
+      "jobs": 10,
+      "queue_sha256": "63d369f46bc12bdc024125af11b6b3060a0919d257d3b58d56622bb9e24383d7",
+      "references": {
+        "/tmp/artem_iclr/outputs/research_handoff_queue/queue.json": {
+          "archive_path": "results/queue.json",
+          "kind": "queue",
+          "sha256": "63d369f46bc12bdc024125af11b6b3060a0919d257d3b58d56622bb9e24383d7"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_cf_entropy_seed0": {
+          "archive_path": "results/training/tiny_mask1_ce_cf_entropy_seed0",
+          "kind": "receipt",
+          "sha256": "3edb481dcada8fbf2a162be0fe5a8b7555e7e8a37bc2447751cc8e3117aa4387"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_cf_seed0": {
+          "archive_path": "results/training/tiny_mask1_ce_cf_seed0",
+          "kind": "receipt",
+          "sha256": "4132ceeff9c8f34d0f8480f5e2c7a001d00c1e0fb2b5b4bfae679d61630a0e73"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_entropy_seed0": {
+          "archive_path": "results/training/tiny_mask1_ce_entropy_seed0",
+          "kind": "receipt",
+          "sha256": "b0fede10fdfb8ff98371e709e5c0399dade75cd0f0c53cf7edba7307bddcaaec"
+        },
+        "/tmp/artem_iclr/outputs/research_handoff_queue/training/tiny_mask1_ce_seed0": {
+          "archive_path": "results/training/tiny_mask1_ce_seed0",
+          "kind": "receipt",
+          "sha256": "202ae76d12ba24af641b5b1f7c53d87c7691a9cf39a42a9db9143cc9f3f31208"
+        }
+      },
+      "source_code_hash": "21b8c09ccd661802265ccb16ee05e79ee8bcb11153feb2c2e5d6a313e15c5528",
+      "training_jobs": 4
+    }
+  },
+  "recorded_at_utc": "2026-09-21T22:40:57.714609+00:00",
+  "selection_checks": {
+    "confirm_and_external_executed": false,
+    "final_training_jobs": 0,
+    "selection_inherited_by_confirm_and_external": true,
+    "selection_source_queue_bound": true,
+    "source_code_hash": "21b8c09ccd661802265ccb16ee05e79ee8bcb11153feb2c2e5d6a313e15c5528"
+  },
+  "source_code_hash": "21b8c09ccd661802265ccb16ee05e79ee8bcb11153feb2c2e5d6a313e15c5528",
+  "tests": "47 passed, 14 subtests passed"
+}

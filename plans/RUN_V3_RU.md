@@ -162,5 +162,10 @@ uv run python -m iclr.research send --out outputs/Q3_dev
 uv run python -m iclr.research verify-bundle --archive outputs/send_to_artem_exp_ИМЯ.zip
 ```
 
+Внешние dev-очереди, решения о выборе метода, analysis locks, диагностические
+допуски и записи обучения автоматически включаются в `dependencies/`.
+`DEPENDENCIES.json` связывает исходные пути с путями внутри архива. Хеши
+исходных квитанций сохраняются; файлы весов, включая state projection, исключены.
+
 Для частичных результатов: `send --allow-incomplete` после обновления статуса
 через `run`. Копирование ZIP не отправляет его кому-либо автоматически.
