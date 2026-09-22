@@ -8,7 +8,7 @@ import shutil
 from .common import ROOT, code_hash, file_hash, tree_hash, verify_data, verify_receipt, write_json
 from .run import write_config
 from .upgrade import run_queue, send_results, verify_bundle, verify_job
-from .research_io import exposure_ledger
+from .research_io import exposure_ledger, plan_path
 
 SCOPES = {
     'Q1': 'Existing checkpoints: crossed and ordinary conditional evaluation',
@@ -18,6 +18,8 @@ SCOPES = {
     'confirm': 'Two selected conditions x two masks x three paired continuation seeds',
     'external': 'Selected pair on a small nonlinear DSL; not a published benchmark',
     'budget': 'Selected supervised pair at one prespecified dev budget, same initialization',
+    'stability': 'V5: bounded four-condition CE retention screening, mask1 seed0',
+    'matched': 'V5: CE/CF on one admitted retention/progress recipe',
 }
 ARMS = {'Q2': ['sampled', 'sampled_entropy', 'exact', 'exact_entropy'],
         'Q3': ['ce', 'ce_entropy', 'ce_cf', 'ce_cf_entropy'],
@@ -57,6 +59,18 @@ def import_inputs(args):
 
 
 def plan(args):
+    version = getattr(args, 'plan', None) or ('v5' if args.queue_name in ('stability', 'matched') else 'v4')
+    active_plan = plan_path(version)
+    plan_hash = file_hash(active_plan)
+    spec = json.loads(active_plan.read_text())
+    if args.queue_name in ('stability', 'matched') and (version != 'v5' or args.phase != 'dev' or args.mask not in (None, 'mask1')):
+        raise ValueError('Stability/matched screening uses v5 dev mask1 only')
+    if version == 'v5' and args.queue_name not in ('stability', 'matched', 'confirm', 'Q1', 'Q2'):
+        raise ValueError('Use the bounded stability -> matched -> confirm path for v5')
+    stable = None
+    if args.queue_name == 'matched':
+        from .research_stability import verify_selection
+        stable = verify_selection(getattr(args, 'stability_selection', None), plan_hash)
     protocol = verify_inputs(args.inputs)
     if protocol['smoke'] != args.smoke:
         raise ValueError('Use matching --smoke and input status')
@@ -83,13 +97,15 @@ def plan(args):
         if not args.selection:
             raise ValueError('Confirmation/external replication needs an explicit dev --selection')
         selection = json.loads(Path(args.selection).read_text())
-        if selection['code_hash'] != code_hash() or selection['plan_hash'] != file_hash(ROOT / 'plans/research_v4.json'):
+        if selection['code_hash'] != code_hash() or selection['plan_hash'] != plan_hash:
             raise ValueError('Dev selection belongs to different code/plan')
         if args.phase == 'final':
             lock = json.loads(Path(args.analysis_lock).read_text())
             if file_hash(args.selection) not in lock['selection_hashes']:
                 raise ValueError('Final selection differs from the frozen dev choice')
-    family = selection['family'] if selection else args.queue_name
+    family = selection['family'] if selection else 'Q3' if args.queue_name in ('stability', 'matched') else args.queue_name
+    if args.queue_name in ('stability', 'matched') and tuning:
+        raise ValueError('Bounded screening uses the declared v5 settings or an admitted stability selection')
     if args.queue_name == 'budget' and (args.phase != 'dev' or family not in ('Q3', 'Q4')
             or set(tuning) != {'epochs'} or args.epochs not in (1, 2, 4)):
         raise ValueError('Budget curve: selected supervised pair, dev only, --epochs 1, 2 or 4; no other tuning')
@@ -116,8 +132,12 @@ def plan(args):
                 or selection['initialization']['dtype'] != args.dtype):
             raise ValueError('Dev-selected method must retain its model, initialization, and precision')
         model['required_adapters'] = []
-        common = dict(base=model['base'], model=model['model'], device=args.device, dtype=args.dtype,
+        common = dict(base=model['base'], model=model['model'], device=args.device, dtype=args.dtype, plan=version,
                       prefix_batch=args.prefix_batch, expected_base_hash=base_hash, seed=0)
+        if model.get('base_training_receipt'):
+            common['base_training_receipt'] = model['base_training_receipt']
+        if stable and (stable['base_hash'] != (base_hash or tree_hash(model['base'])) or stable['dtype'] != args.dtype):
+            raise ValueError('Matched methods must retain the admitted base and precision')
         if args.queue_name == 'Q1':
             runs = [('baseline', None, None, -1)] + [(r['arm'], str(Path(model['previous']) / r['run'] / 'adapter'),
                        r['adapter_hash'], r['seed']) for r in history['runs']]
@@ -149,6 +169,21 @@ def plan(args):
             if mask not in protocol['datasets']:
                 raise ValueError(f'Missing dataset {mask}')
             source = {**common, 'data': str(data / mask)}
+            if version == 'v5' and family == 'Q3':
+                if not getattr(args, 'amendments', None):
+                    raise ValueError('V5 needs --amendments with frozen per-mask replay/monitor manifests')
+                from .research_data import verify_amendment
+                amendment = Path(args.amendments).resolve() / mask / 'manifest.json'
+                verify_amendment(amendment, Path(args.inputs) / mask, plan_hash)
+                source['amendment'] = str(amendment)
+                if stable and file_hash(amendment) != stable['amendment_hash']:
+                    raise ValueError('Matched methods require the identical admitted replay manifest')
+                if not args.smoke:
+                    from .common import read_jsonl
+                    from .research_data import check_panels
+                    parent = verify_data(Path(args.inputs) / mask)
+                    if (parent.get('status') == 'smoke' or len(check_panels(read_jsonl(Path(args.inputs) / mask / parent['training_panels']))) != spec['stability']['panels']):
+                        raise ValueError('V5 screening requires exactly 64 frozen composition panels')
             gate, dependencies = args.gate, ['inputs']
             if reward and mask not in ('original', 'listdsl'):
                 receipt_path = model.get('reward_initializations', {}).get(mask)
@@ -208,7 +243,9 @@ def plan(args):
                 dependencies = [name]
                 if args.queue_name not in ('confirm', 'external', 'budget'):
                     continue
-            arms = selection['arms'] if selection else ARMS[family]
+            arms = (list(spec['stability']['conditions']) if args.queue_name == 'stability' else
+                    (ARMS['Q3'] if getattr(args, 'with_entropy', False) else ['ce', 'ce_cf']) if args.queue_name == 'matched'
+                    else selection['arms'] if selection else ARMS[family])
             baseline_name = f'{model["name"]}_{mask}_initial'
             baseline_config = {**source, 'arm': 'initial', 'seed': -1, 'phase': args.phase,
                 'analysis_lock': args.analysis_lock, 'output': str(out / 'evaluations' / baseline_name)}
@@ -220,11 +257,18 @@ def plan(args):
                 for arm in arms:
                     name = f'{model["name"]}_{mask}_{arm}_seed{seed}'
                     directory = out / 'training' / name
-                    settings = selection['settings'][arm] if selection else {}
-                    training = {**settings, **source, **tuning, 'output': str(directory), 'objective': arm, 'seed': seed,
+                    settings = (stable['settings'] if stable else spec['stability']['conditions'][arm]
+                                if args.queue_name == 'stability' else selection['settings'][arm] if selection else {})
+                    objective = 'ce' if args.queue_name == 'stability' else arm
+                    training = {**settings, **source, **tuning, 'output': str(directory), 'objective': objective, 'seed': seed,
                         'epochs': 1 if args.smoke else tuning.get('epochs', settings.get('epochs', 2)), 'gate': gate}
                     if args.smoke:
                         training['reward_steps'] = 1
+                    if version == 'v5' and family == 'Q3':
+                        training.update(max_steps=1 if args.smoke else settings.get('max_steps', spec['stability']['max_steps']),
+                            cf_weight=.1, tau=1., entropy_weight=.01, monitor=True, resume_from='latest')
+                        training['checkpoint_steps'] = sorted({0, training['max_steps'],
+                            *(s for s in spec['stability']['checkpoint_steps'] if s <= training['max_steps'])})
                     if args.phase == 'dev':
                         add(name + '_train', 'iclr.research_train', training, kind='train', depends=dependencies)
                         eval_dependencies = [name + '_train']
@@ -233,28 +277,34 @@ def plan(args):
                         directory = Path(args.trained_from) / 'training' / name
                         receipt = verify_receipt(directory)
                         bound = receipt['binding']
+                        from .research_train import DEFAULTS
+                        selected_keys = ('objective', 'seed', 'epochs', 'learning_rate', 'panel_batch', 'replay_weight',
+                                         'max_steps', 'cf_weight', 'tau', 'entropy_weight')
                         if (bound['code_hash'] != code_hash() or bound['data_hash'] != protocol['datasets'][mask]['manifest_sha256']
-                                or any(bound['config'][k] != training[k] for k in ('objective', 'seed', 'epochs'))
+                                or bound['plan_hash'] != plan_hash
+                                or any(bound['config'].get(k, DEFAULTS.get(k)) != training.get(k, DEFAULTS.get(k)) for k in selected_keys)
                                 or base_hash and bound['base_hash'] != base_hash
                                 or tree_hash(directory / 'adapter') != receipt['payload_hash']):
                             raise ValueError('Final checkpoint differs from the selected training cell')
                         adapter_hash, eval_dependencies = receipt['payload_hash'], ['inputs']
-                    evaluate = {**source, 'seed': seed, 'arm': arm, 'adapter': str(directory / 'adapter'),
+                    evaluate = {**source, 'seed': seed, 'arm': objective, 'condition': arm, 'adapter': str(directory / 'adapter'),
                         'training_receipt': str(directory),
                         'expected_adapter_hash': adapter_hash, 'phase': args.phase, 'analysis_lock': args.analysis_lock,
                         'output': str(out / 'evaluations' / name)}
                     if args.smoke:
                         evaluate['solve_per_family'] = 1
                     add(name + '_eval', 'iclr.research_evaluate', evaluate, depends=eval_dependencies)
-    queue = {'schema': 'iclr.research.queue.v4', 'source_code_hash': code_hash(),
-        'research_plan_path': 'plans/research_v4.json', 'family': family,
-        'research_plan_sha256': file_hash(ROOT / 'plans/research_v4.json'), 'models': models, 'jobs': jobs,
+    queue = {'schema': 'iclr.research.queue.' + version, 'source_code_hash': code_hash(),
+        'research_plan_path': str(active_plan.relative_to(ROOT)), 'family': family,
+        'research_plan_sha256': plan_hash, 'models': models, 'jobs': jobs,
         'phase': args.phase, 'stage': args.stage, 'smoke': args.smoke, 'experiments': [args.queue_name],
         'scope': {args.queue_name: SCOPES[args.queue_name]}, 'protocol_hash': file_hash(Path(args.inputs) / 'protocol.json')}
     queue['selection_hash'] = file_hash(args.selection) if args.selection else None
     queue['selection_path'] = str(Path(args.selection).resolve()) if args.selection else None
     queue['analysis_lock_path'] = str(Path(args.analysis_lock).resolve()) if args.analysis_lock else None
     queue['analysis_lock_sha256'] = file_hash(args.analysis_lock) if args.analysis_lock else None
+    queue['stability_selection_path'] = str(Path(args.stability_selection).resolve()) if stable else None
+    queue['stability_selection_hash'] = file_hash(args.stability_selection) if stable else None
     write_config(out / 'queue.json', queue)
     if not (out / 'status.json').exists():
         write_json(out / 'status.json', {'queue_sha256': file_hash(out / 'queue.json'),
@@ -266,10 +316,11 @@ def plan(args):
 def select(args):
     source = Path(args.queue)
     queue = json.loads(source.read_text())
-    if queue['source_code_hash'] != code_hash() or queue['research_plan_sha256'] != file_hash(ROOT / 'plans/research_v4.json'):
+    version = Path(queue['research_plan_path']).stem.removeprefix('research_')
+    if queue['source_code_hash'] != code_hash() or queue['research_plan_sha256'] != file_hash(plan_path(version)):
         raise ValueError('Select from dev results produced by this exact code/plan')
     family = queue.get('family', queue['experiments'][0])
-    if (queue['experiments'][0] not in (*ARMS, 'budget') or family not in ARMS
+    if (queue['experiments'][0] not in (*ARMS, 'budget', 'matched') or family not in ARMS
             or args.method not in ARMS[family] or args.method == ARMS[family][0] or queue['phase'] != 'dev'):
         raise ValueError('Select one non-baseline method from a completed dev pilot')
     arms = [ARMS[family][0], args.method]
@@ -284,27 +335,37 @@ def select(args):
                                      receipt['binding']['adapter_hash'], cfg['dtype']))
                 settings[cfg['objective']] = {k: v for k, v in cfg.items() if k not in
                     ('base', 'adapter', 'model', 'data', 'output', 'expected_base_hash', 'expected_adapter_hash',
-                     'gate', 'atomic_gate', 'initial_training_receipt')}
+                     'gate', 'atomic_gate', 'initial_training_receipt', 'amendment', 'base_training_receipt')}
                 dataset = Path(cfg['data']).name
                 hashes[job['id']] = file_hash(Path(job['result']) / 'DONE')
         elif job['kind'] == 'receipt':
             hashes[job['id']] = verify_job(job)
     if set(settings) != set(arms) or len(initializations) != 1:
         raise ValueError('Missing completed paired training cells')
+    if version == 'v5':
+        for key in ('max_steps', 'learning_rate', 'replay_weight', 'panel_batch', 'epochs'):
+            if len({settings[a][key] for a in arms}) != 1:
+                raise ValueError('Matched methods differ in recipe/budget')
     model, base_hash, adapter_hash, dtype = initializations.pop()
-    write_config(Path(args.out), {'schema': 'iclr.research.selection.v4', 'family': family, 'arms': arms,
+    write_config(Path(args.out), {'schema': 'iclr.research.selection.' + version, 'family': family, 'arms': arms,
         'settings': settings, 'dataset': dataset, 'source_queue': str(source.resolve()),
         'source_queue_sha256': file_hash(source), 'source_receipts': hashes,
         'initialization': {'model': model, 'base_hash': base_hash, 'adapter_hash': adapter_hash, 'dtype': dtype},
-        'code_hash': code_hash(), 'plan_hash': file_hash(ROOT / 'plans/research_v4.json'),
+        'code_hash': code_hash(), 'plan_hash': file_hash(plan_path(version)),
         'reason': args.reason, 'scope': 'dev choice; final outcomes were not opened'})
 
 
 def freeze(args):
     queues = [json.loads(Path(p).read_text()) for p in args.queues]
     checkpoints, datasets = set(), set()
+    versions = {q['research_plan_path'] for q in queues}
+    if len(versions) != 1:
+        raise ValueError('Cannot freeze different analysis plans together')
+    version = Path(next(iter(versions))).stem.removeprefix('research_')
     for queue in queues:
-        if queue['phase'] != 'dev' or queue['source_code_hash'] != code_hash():
+        if (queue['phase'] != 'dev' or queue['source_code_hash'] != code_hash()
+                or queue['research_plan_sha256'] != file_hash(plan_path(version))
+                or version == 'v5' and queue['experiments'] != ['confirm']):
             raise ValueError('Freeze completed dev queues from this code version')
         for job in queue['jobs']:
             verify_job(job)
@@ -315,8 +376,8 @@ def freeze(args):
                     datasets.add(binding['data_hash'])
     if not checkpoints:
         raise ValueError('No completed dev evaluations to freeze')
-    write_config(Path(args.out), {'schema': 'iclr.research.lock.v4', 'code_hash': code_hash(),
-        'plan_hash': file_hash(ROOT / 'plans/research_v4.json'), 'dataset_hashes': sorted(datasets),
+    write_config(Path(args.out), {'schema': 'iclr.research.lock.' + version, 'code_hash': code_hash(),
+        'plan_hash': file_hash(plan_path(version)), 'dataset_hashes': sorted(datasets),
         'checkpoints': sorted(checkpoints, key=str), 'queues': {p: file_hash(p) for p in args.queues},
         'selection_hashes': sorted({q['selection_hash'] for q in queues if q.get('selection_hash')}),
         'checkpoint_rule': 'fixed final saved adapter; no retraining and no final selection'})
@@ -328,6 +389,10 @@ def main():
     for action in ('plan', 'start'):
         p = sub.add_parser(action)
         p.add_argument('--queue-name', choices=SCOPES, required=True)
+        p.add_argument('--plan', choices=['v4', 'v5'])
+        p.add_argument('--amendments', help='Directory containing mask1/mask2 amendment manifests')
+        p.add_argument('--stability-selection', help='Admitted single recipe/step for the matched queue')
+        p.add_argument('--with-entropy', action='store_true', help='Matched queue only: complete CE/CF x H factorial')
         p.add_argument('--stage', choices=['screen', 'pilot'], default='screen')
         p.add_argument('--inputs', required=True)
         p.add_argument('--models', default='plans/upgrade_models.json')

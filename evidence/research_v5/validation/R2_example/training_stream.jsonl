@@ -1,0 +1,4 @@
+{"step": 0, "panel_id": "071f9e792037448a083762e0", "task_id": "s4c-10020aafb0e01dc58cab010d", "program": ["SC2", "SH1", "AX1"], "depth": 3, "kind": "four_target", "sampled_programs": null}
+{"step": 0, "panel_id": "071f9e792037448a083762e0", "task_id": "s4c-4388f32287e5f66d766a1ce0", "program": ["SC2", "SH1", "SH1"], "depth": 3, "kind": "four_target", "sampled_programs": null}
+{"step": 0, "panel_id": "071f9e792037448a083762e0", "task_id": "s4c-a22f783364b8b537315e7652", "program": ["REV", "AC1", "REV"], "depth": 3, "kind": "four_target", "sampled_programs": null}
+{"step": 0, "panel_id": "071f9e792037448a083762e0", "task_id": "s4c-4cb8feb7f062d20140374ca3", "program": ["AC1", "REV", "SH1"], "depth": 3, "kind": "four_target", "sampled_programs": null}

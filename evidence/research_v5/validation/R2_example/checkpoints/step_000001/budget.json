@@ -1,0 +1,20 @@
+{
+  "completed": false,
+  "cursor": {
+    "next_composition_step": 1,
+    "next_replay_step": 1
+  },
+  "example_exposures": 4,
+  "optimizer_steps": 1,
+  "planned_steps": 1,
+  "prefix_sequences": 124,
+  "replay_apply_examples": 1,
+  "replay_apply_tokens": 12,
+  "replay_examples": 2,
+  "replay_forward_tokens": 92,
+  "replay_plan_examples": 1,
+  "replay_plan_tokens": 2,
+  "supervised_operation_tokens": 12,
+  "total_forward_tokens": 6388,
+  "training_label_queries": 4
+}

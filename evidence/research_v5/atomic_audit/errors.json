@@ -1,0 +1,609 @@
+[
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      27,
+      4,
+      24,
+      24
+    ],
+    "operation": "SH1",
+    "p": 29,
+    "parsed": [
+      13,
+      11,
+      13,
+      24
+    ],
+    "prompt": "FIELD: 29\nDEGREE_CAP: 3\nSTART: [23, 28, 10, 24]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [13, 11, 13, 24]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      23,
+      28,
+      10,
+      24
+    ],
+    "task_id": "s4c-a00b6f1961f86ebddca3e52e"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      1,
+      16,
+      7,
+      16
+    ],
+    "operation": "SH1",
+    "p": 29,
+    "parsed": [
+      13,
+      11,
+      13,
+      16
+    ],
+    "prompt": "FIELD: 29\nDEGREE_CAP: 3\nSTART: [5, 21, 17, 16]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [13, 11, 13, 16]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      5,
+      21,
+      17,
+      16
+    ],
+    "task_id": "s4c-45715a649ed292ffdf85c147"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      11,
+      6,
+      0,
+      6,
+      11
+    ],
+    "operation": "SH1",
+    "p": 19,
+    "parsed": [
+      14,
+      14,
+      10,
+      16,
+      11
+    ],
+    "prompt": "FIELD: 19\nDEGREE_CAP: 4\nSTART: [10, 18, 10, 0, 11]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [14, 14, 10, 16, 11]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      10,
+      18,
+      10,
+      0,
+      11
+    ],
+    "task_id": "s4c-838c6f4757a34c318e47ed25"
+  },
+  {
+    "correct": false,
+    "degree": 2,
+    "expected": [
+      18,
+      11,
+      28
+    ],
+    "operation": "SH1",
+    "p": 29,
+    "parsed": [
+      13,
+      13,
+      28
+    ],
+    "prompt": "FIELD: 29\nDEGREE_CAP: 2\nSTART: [6, 13, 28]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [13, 13, 28]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      6,
+      13,
+      28
+    ],
+    "task_id": "s4c-6e8450ded91f7b0e28600e42"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      22,
+      14,
+      15,
+      24,
+      20
+    ],
+    "operation": "SH1",
+    "p": 29,
+    "parsed": [
+      13,
+      13,
+      13,
+      13,
+      20
+    ],
+    "prompt": "FIELD: 29\nDEGREE_CAP: 4\nSTART: [19, 5, 5, 2, 20]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [13, 13, 13, 13, 20]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      19,
+      5,
+      5,
+      2,
+      20
+    ],
+    "task_id": "s4c-d0e259b86af73ea8ec6ec63c"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      18,
+      9,
+      10,
+      14,
+      6
+    ],
+    "operation": "SC2",
+    "p": 19,
+    "parsed": [
+      18,
+      9,
+      11,
+      15,
+      15
+    ],
+    "prompt": "FIELD: 19\nDEGREE_CAP: 4\nSTART: [18, 14, 12, 16, 17]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [18, 9, 11, 15, 15]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      18,
+      14,
+      12,
+      16,
+      17
+    ],
+    "task_id": "s4c-a9db33e3ca8323fca85a5a29"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      12,
+      3,
+      2,
+      12
+    ],
+    "operation": "SH1",
+    "p": 13,
+    "parsed": [
+      10,
+      11,
+      10,
+      12
+    ],
+    "prompt": "FIELD: 13\nDEGREE_CAP: 3\nSTART: [12, 9, 5, 12]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [10, 11, 10, 12]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      12,
+      9,
+      5,
+      12
+    ],
+    "task_id": "s4c-42b670dd1ce86f9383d4d111"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      18,
+      5,
+      12,
+      1,
+      13
+    ],
+    "operation": "SH1",
+    "p": 23,
+    "parsed": [
+      11,
+      13,
+      11,
+      11,
+      13
+    ],
+    "prompt": "FIELD: 23\nDEGREE_CAP: 4\nSTART: [14, 1, 18, 18, 13]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [11, 13, 11, 11, 13]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      14,
+      1,
+      18,
+      18,
+      13
+    ],
+    "task_id": "s4c-466b0575d9e0241dc11cfd8b"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      6,
+      3,
+      3,
+      1,
+      5
+    ],
+    "operation": "SC2",
+    "p": 7,
+    "parsed": [
+      6,
+      3,
+      3,
+      1,
+      6
+    ],
+    "prompt": "FIELD: 7\nDEGREE_CAP: 4\nSTART: [6, 5, 6, 1, 6]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [6, 3, 3, 1, 6]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      6,
+      5,
+      6,
+      1,
+      6
+    ],
+    "task_id": "s4c-18f4480ef2230919b48f1364"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      9,
+      1,
+      8,
+      8,
+      8
+    ],
+    "operation": "SH1",
+    "p": 13,
+    "parsed": [
+      10,
+      11,
+      11,
+      10,
+      8
+    ],
+    "prompt": "FIELD: 13\nDEGREE_CAP: 4\nSTART: [3, 3, 6, 2, 8]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [10, 11, 11, 10, 8]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      3,
+      3,
+      6,
+      2,
+      8
+    ],
+    "task_id": "s4c-80911bf389f40282a6e44a8c"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      15,
+      1,
+      7,
+      0,
+      16
+    ],
+    "operation": "SC2",
+    "p": 19,
+    "parsed": [
+      15,
+      1,
+      18,
+      0,
+      16
+    ],
+    "prompt": "FIELD: 19\nDEGREE_CAP: 4\nSTART: [15, 10, 16, 0, 1]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [15, 1, 18, 0, 16]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      15,
+      10,
+      16,
+      0,
+      1
+    ],
+    "task_id": "s4c-f49d1f404737b2fc430bf65a"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      10,
+      7,
+      10,
+      3,
+      0
+    ],
+    "operation": "SH1",
+    "p": 23,
+    "parsed": [
+      11,
+      11,
+      1,
+      18,
+      0
+    ],
+    "prompt": "FIELD: 23\nDEGREE_CAP: 4\nSTART: [10, 19, 1, 3, 0]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [11, 11, 1, 18, 0]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      10,
+      19,
+      1,
+      3,
+      0
+    ],
+    "task_id": "s4c-3108ba6886e53b292be68247"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      4,
+      3,
+      1,
+      0
+    ],
+    "operation": "SH1",
+    "p": 13,
+    "parsed": [
+      10,
+      10,
+      1,
+      0
+    ],
+    "prompt": "FIELD: 13\nDEGREE_CAP: 3\nSTART: [2, 1, 1, 0]\nPROGRAM: <OP0>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [10, 10, 1, 0]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      2,
+      1,
+      1,
+      0
+    ],
+    "task_id": "s4c-68c2f8c248f11b6cd78e8f06"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      5,
+      13,
+      12,
+      18
+    ],
+    "operation": "SC2",
+    "p": 29,
+    "parsed": [
+      5,
+      13,
+      12,
+      25
+    ],
+    "prompt": "FIELD: 29\nDEGREE_CAP: 3\nSTART: [5, 21, 3, 24]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [5, 13, 12, 25]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      5,
+      21,
+      3,
+      24
+    ],
+    "task_id": "s4c-85eb068a273eec3c415e1ba0"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      2,
+      2,
+      4,
+      4
+    ],
+    "operation": "SC2",
+    "p": 7,
+    "parsed": [
+      2,
+      2,
+      4,
+      2
+    ],
+    "prompt": "FIELD: 7\nDEGREE_CAP: 3\nSTART: [2, 1, 1, 4]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [2, 2, 4, 2]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      2,
+      1,
+      1,
+      4
+    ],
+    "task_id": "s4c-d352f6ad8afb8d906a31f874"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      8,
+      3,
+      15,
+      4
+    ],
+    "operation": "SC2",
+    "p": 19,
+    "parsed": [
+      8,
+      3,
+      15,
+      1
+    ],
+    "prompt": "FIELD: 19\nDEGREE_CAP: 3\nSTART: [8, 11, 18, 10]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [8, 3, 15, 1]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      8,
+      11,
+      18,
+      10
+    ],
+    "task_id": "s4c-9e6ef776152941cd9908bf7b"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      14,
+      6,
+      18,
+      6,
+      17
+    ],
+    "operation": "SC2",
+    "p": 23,
+    "parsed": [
+      14,
+      6,
+      18,
+      11,
+      15
+    ],
+    "prompt": "FIELD: 23\nDEGREE_CAP: 4\nSTART: [14, 3, 16, 18, 14]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [14, 6, 18, 11, 15]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      14,
+      3,
+      16,
+      18,
+      14
+    ],
+    "task_id": "s4c-3d71297e7ae08a924475cb35"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      6,
+      7,
+      5,
+      2
+    ],
+    "operation": "SC2",
+    "p": 13,
+    "parsed": [
+      6,
+      7,
+      3,
+      11
+    ],
+    "prompt": "FIELD: 13\nDEGREE_CAP: 3\nSTART: [6, 10, 11, 10]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [6, 7, 3, 11]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      6,
+      10,
+      11,
+      10
+    ],
+    "task_id": "s4c-3267d8e220f297c0dbf6f5a2"
+  },
+  {
+    "correct": false,
+    "degree": 3,
+    "expected": [
+      25,
+      19,
+      10,
+      24
+    ],
+    "operation": "SC2",
+    "p": 29,
+    "parsed": [
+      25,
+      19,
+      11,
+      12
+    ],
+    "prompt": "FIELD: 29\nDEGREE_CAP: 3\nSTART: [25, 24, 17, 3]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [25, 19, 11, 12]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      25,
+      24,
+      17,
+      3
+    ],
+    "task_id": "s4c-2e6790850323c60a61196931"
+  },
+  {
+    "correct": false,
+    "degree": 4,
+    "expected": [
+      19,
+      27,
+      0,
+      0,
+      26
+    ],
+    "operation": "SC2",
+    "p": 29,
+    "parsed": [
+      19,
+      27,
+      0,
+      0,
+      25
+    ],
+    "prompt": "FIELD: 29\nDEGREE_CAP: 4\nSTART: [19, 28, 0, 0, 27]\nPROGRAM: <OP1>\nReturn exactly one line:\nRESULT:",
+    "raw_answer": " [19, 27, 0, 0, 25]",
+    "reversed_answer_matches": false,
+    "run": "q06_mask1_initial",
+    "start": [
+      19,
+      28,
+      0,
+      0,
+      27
+    ],
+    "task_id": "s4c-79f774172b08e6e0cf95f360"
+  }
+]

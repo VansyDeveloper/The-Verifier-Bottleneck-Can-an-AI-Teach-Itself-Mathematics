@@ -1,0 +1,18 @@
+{
+  "files": {
+    "feedback_Q1_Q3_20260923.zip": {
+      "bytes": 1612368,
+      "sha256": "2dd9bce0194f23a4d681d758c35ac4fc341ca7ec3dccb961a6c5889cddc0ce9d"
+    },
+    "shared_inputs_v4.tar.gz": {
+      "bytes": 4086404,
+      "sha256": "035a1fe3ecee130bd481bc37ba616a33a0b04afb9ba690efca983937b6f6d97c"
+    }
+  },
+  "input_origin": "byte-for-byte data directory from the original Q3 result ZIP; v4 protocol/data hashes verified",
+  "original_result_archives": {
+    "Q1": "fa8b5f7d295bd5d496a6bd8628bcc1653a73de3fc302e1a3cc9c15104f49a59d",
+    "Q3": "c04eacbbd070d5f0362bd022b911b7fa05dbfe301f915cba4905a43d2d060ed2"
+  },
+  "source_commit": "c37cfe083787f21af9a9aab0ef1d02c63cf603d3"
+}

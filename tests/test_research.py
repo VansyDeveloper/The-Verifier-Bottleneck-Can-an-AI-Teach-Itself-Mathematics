@@ -137,4 +137,6 @@ def test_comparison_pairs_seeds_and_rejects_domain_or_mask_pooling(tmp_path):
         compare(final, 'ce', 'ce_cf', out)
         rule = json.loads(out.read_text())['success_rule']
         assert rule['conditional_pattern'] and rule['ordinary_solving_pattern']
-        assert rule['supports_task_solving_claim'] is supported
+        assert rule['confirmation_scope_complete'] is supported
+        assert not rule['supports_task_solving_claim']  # Synthetic receipts have no training history.
+        assert not json.loads(out.read_text())['claim_eligibility']['never_seen_pairs']

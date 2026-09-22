@@ -1,0 +1,26 @@
+{"queue": "outputs/review_23sept/gpu_release/queue.json", "jobs": 10, "training_jobs": 4, "phase": "dev"}
+Started inputs slot cpu PID 2789416
+inputs done
+Started tiny_mask1_initial slot 0 PID 2789459
+tiny_mask1_initial done
+Started tiny_mask1_R0_seed0_train slot 0 PID 2789723
+tiny_mask1_R0_seed0_train done
+Started tiny_mask1_R0_seed0_eval slot 0 PID 2790095
+tiny_mask1_R0_seed0_eval done
+Started tiny_mask1_R1_seed0_train slot 0 PID 2790382
+tiny_mask1_R1_seed0_train done
+Started tiny_mask1_R1_seed0_eval slot 0 PID 2790669
+tiny_mask1_R1_seed0_eval done
+Started tiny_mask1_R2_seed0_train slot 0 PID 2790974
+tiny_mask1_R2_seed0_train done
+Started tiny_mask1_R2_seed0_eval slot 0 PID 2791205
+tiny_mask1_R2_seed0_eval done
+Started tiny_mask1_R3_seed0_train slot 0 PID 2791453
+tiny_mask1_R3_seed0_train done
+Started tiny_mask1_R3_seed0_eval slot 0 PID 2791678
+tiny_mask1_R3_seed0_eval done
+{"index": "/tmp/artem_iclr/outputs/review_23sept/gpu_release/analysis", "jobs": 10, "summary_rows": 480}
+{"archive": "/tmp/artem_iclr/outputs/review_23sept/send_to_artem_exp_gpu_release_20260922_222255_856711.zip.partial", "verified_files": 531, "status": "complete"}
+{"archive": "/tmp/artem_iclr/outputs/review_23sept/send_to_artem_exp_gpu_release_20260922_222255_856711.zip", "sha256": "e12c15aabd9b40e4b58f4c7fbc4ce0469801e7ab57db5f7ab326727419f0b4ff", "files": 531}
+ОТПРАВИТЬ АРТЁМУ: /tmp/artem_iclr/outputs/review_23sept/send_to_artem_exp_gpu_release_20260922_222255_856711.zip
+Папка с тем же содержимым: /tmp/artem_iclr/outputs/review_23sept/send_to_artem_exp_gpu_release_20260922_222255_856711

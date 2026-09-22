@@ -1,0 +1,7284 @@
+{
+  "parent_manifest": {
+    "config": {
+      "eval_size": 200,
+      "panels": 50,
+      "seed": 20260922,
+      "size": 5000
+    },
+    "constraints": {
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ]
+    },
+    "crossed_training_gate": {
+      "minimum_panels": 64,
+      "minimum_programs": 8,
+      "pass": true
+    },
+    "files": {
+      "atomic_train.jsonl": {
+        "rows": 5000,
+        "sha256": "9dddfc6c0cc942eb436e1ff3ad7ddcde867896502c26b978553a90c4a93ea6d2",
+        "strata": {
+          "13:2:1:1": 148,
+          "13:3:1:1": 359,
+          "13:4:1:1": 399,
+          "19:2:1:1": 248,
+          "19:3:1:1": 390,
+          "19:4:1:1": 414,
+          "23:2:1:1": 321,
+          "23:3:1:1": 412,
+          "23:4:1:1": 396,
+          "29:2:1:1": 328,
+          "29:3:1:1": 380,
+          "29:4:1:1": 392,
+          "5:2:1:1": 15,
+          "5:3:1:1": 68,
+          "5:4:1:1": 188,
+          "7:2:1:1": 42,
+          "7:3:1:1": 179,
+          "7:4:1:1": 321
+        }
+      },
+      "calibration_A.jsonl": {
+        "rows": 200,
+        "sha256": "a7aa5fa809a4aa3270543241171747476c0fbce2b5a4a996a7f36894f2264760",
+        "strata": {
+          "13:2:3:1": 1,
+          "13:3:3:1": 1,
+          "13:3:3:3": 2,
+          "13:4:3:1": 9,
+          "13:4:3:2": 1,
+          "19:2:3:1": 1,
+          "19:3:3:1": 5,
+          "19:3:3:3": 1,
+          "19:4:3:1": 21,
+          "19:4:3:2": 2,
+          "19:4:3:3": 4,
+          "23:2:3:1": 2,
+          "23:3:3:1": 8,
+          "23:3:3:3": 1,
+          "23:4:3:1": 35,
+          "23:4:3:2": 3,
+          "23:4:3:3": 5,
+          "29:2:3:1": 3,
+          "29:3:3:1": 11,
+          "29:3:3:3": 3,
+          "29:4:3:1": 66,
+          "29:4:3:2": 2,
+          "29:4:3:3": 9,
+          "5:4:3:1": 1,
+          "7:3:3:1": 1,
+          "7:4:3:1": 1,
+          "7:4:3:3": 1
+        }
+      },
+      "dev4_A.jsonl": {
+        "rows": 200,
+        "sha256": "dd1062de8c36b3d72fec66c9e829339652bb2f43ac5bb88f82339e901fe2f13b",
+        "strata": {
+          "13:2:4:1": 1,
+          "13:3:4:1": 3,
+          "13:4:4:1": 9,
+          "13:4:4:3": 1,
+          "19:2:4:1": 1,
+          "19:3:4:1": 5,
+          "19:3:4:3": 1,
+          "19:4:4:1": 23,
+          "19:4:4:2": 1,
+          "19:4:4:4": 1,
+          "19:4:4:6": 2,
+          "23:2:4:1": 2,
+          "23:3:4:1": 8,
+          "23:3:4:4": 1,
+          "23:4:4:1": 35,
+          "23:4:4:2": 3,
+          "23:4:4:3": 1,
+          "23:4:4:4": 4,
+          "29:2:4:1": 2,
+          "29:2:4:6": 1,
+          "29:3:4:1": 11,
+          "29:3:4:2": 1,
+          "29:3:4:3": 1,
+          "29:3:4:4": 1,
+          "29:4:4:1": 67,
+          "29:4:4:2": 2,
+          "29:4:4:3": 4,
+          "29:4:4:4": 3,
+          "29:4:4:6": 1,
+          "5:4:4:1": 1,
+          "7:3:4:1": 1,
+          "7:4:4:1": 2
+        }
+      },
+      "dev4_B.jsonl": {
+        "rows": 200,
+        "sha256": "1860ce2190e3e3a5cfedc6aec216a1ac0402e4134b7be5b1cdd005bf87283aa8",
+        "strata": {
+          "13:2:4:1": 1,
+          "13:3:4:1": 3,
+          "13:4:4:1": 9,
+          "13:4:4:2": 1,
+          "19:2:4:1": 1,
+          "19:3:4:1": 6,
+          "19:4:4:1": 23,
+          "19:4:4:2": 4,
+          "23:2:4:1": 2,
+          "23:3:4:1": 9,
+          "23:4:4:1": 43,
+          "29:2:4:1": 3,
+          "29:3:4:1": 13,
+          "29:3:4:2": 1,
+          "29:4:4:1": 74,
+          "29:4:4:2": 3,
+          "5:4:4:1": 1,
+          "7:3:4:1": 1,
+          "7:4:4:1": 2
+        }
+      },
+      "dev4_C.jsonl": {
+        "rows": 200,
+        "sha256": "5524bfee505a9c32f9dea27dfa0db02702244293d846922e2b78ac317aa79eb4",
+        "strata": {
+          "11:2:4:1": 3,
+          "11:3:4:1": 10,
+          "11:3:4:4": 2,
+          "11:4:4:1": 29,
+          "11:4:4:2": 2,
+          "11:4:4:4": 5,
+          "11:4:4:6": 2,
+          "17:2:4:1": 6,
+          "17:2:4:4": 1,
+          "17:3:4:1": 21,
+          "17:3:4:2": 1,
+          "17:3:4:3": 3,
+          "17:3:4:4": 1,
+          "17:3:4:6": 1,
+          "17:4:4:1": 82,
+          "17:4:4:2": 8,
+          "17:4:4:3": 11,
+          "17:4:4:4": 9,
+          "17:4:4:6": 3
+        }
+      },
+      "dev4_D.jsonl": {
+        "rows": 200,
+        "sha256": "7ff80f17ea37bab708a0a2d9edafb98c2dab2768f1bcb1960408f6d60414f6e3",
+        "strata": {
+          "11:2:4:1": 1,
+          "11:2:4:2": 2,
+          "11:3:4:1": 11,
+          "11:3:4:2": 1,
+          "11:4:4:1": 36,
+          "11:4:4:2": 2,
+          "17:2:4:1": 7,
+          "17:3:4:1": 24,
+          "17:3:4:2": 3,
+          "17:4:4:1": 110,
+          "17:4:4:2": 3
+        }
+      },
+      "dev_A.jsonl": {
+        "rows": 200,
+        "sha256": "aa5faa752a2944a7169103e8fc151fdb3522ebfe768446e20b359e2d998550cf",
+        "strata": {
+          "13:2:3:2": 1,
+          "13:3:3:1": 2,
+          "13:3:3:2": 1,
+          "13:4:3:1": 9,
+          "13:4:3:3": 1,
+          "19:2:3:1": 1,
+          "19:3:3:1": 6,
+          "19:4:3:1": 22,
+          "19:4:3:2": 1,
+          "19:4:3:3": 4,
+          "23:2:3:1": 2,
+          "23:3:3:1": 8,
+          "23:3:3:3": 1,
+          "23:4:3:1": 35,
+          "23:4:3:2": 1,
+          "23:4:3:3": 7,
+          "29:2:3:1": 3,
+          "29:3:3:1": 11,
+          "29:3:3:2": 1,
+          "29:3:3:3": 2,
+          "29:4:3:1": 58,
+          "29:4:3:2": 5,
+          "29:4:3:3": 14,
+          "5:4:3:1": 1,
+          "7:3:3:1": 1,
+          "7:4:3:1": 1,
+          "7:4:3:3": 1
+        }
+      },
+      "dev_B.jsonl": {
+        "rows": 200,
+        "sha256": "65364604b595de13407fdf0a8a4b2f690f132aacdf897ce6cb17d125dd8519df",
+        "strata": {
+          "13:2:3:1": 1,
+          "13:3:3:1": 3,
+          "13:4:3:1": 10,
+          "19:2:3:1": 1,
+          "19:3:3:1": 6,
+          "19:4:3:1": 27,
+          "23:2:3:1": 2,
+          "23:3:3:1": 9,
+          "23:4:3:1": 43,
+          "29:2:3:1": 3,
+          "29:3:3:1": 14,
+          "29:4:3:1": 77,
+          "5:4:3:1": 1,
+          "7:3:3:1": 1,
+          "7:4:3:1": 2
+        }
+      },
+      "dev_C.jsonl": {
+        "rows": 200,
+        "sha256": "13c3d52e00eb9516979ee2324b260eeb053bfd91b5662e6cb2c8cd72f9719431",
+        "strata": {
+          "11:2:3:1": 2,
+          "11:2:3:2": 1,
+          "11:3:3:1": 10,
+          "11:3:3:2": 1,
+          "11:3:3:3": 1,
+          "11:4:3:1": 30,
+          "11:4:3:2": 4,
+          "11:4:3:3": 4,
+          "17:2:3:1": 6,
+          "17:2:3:3": 1,
+          "17:3:3:1": 21,
+          "17:3:3:2": 1,
+          "17:3:3:3": 5,
+          "17:4:3:1": 92,
+          "17:4:3:2": 7,
+          "17:4:3:3": 14
+        }
+      },
+      "dev_D.jsonl": {
+        "rows": 200,
+        "sha256": "8bb9aa07c7a6861c93cdedab8877a44443639278e12ac836d50b413a09fb5e07",
+        "strata": {
+          "11:2:3:1": 3,
+          "11:3:3:1": 12,
+          "11:4:3:1": 38,
+          "17:2:3:1": 7,
+          "17:3:3:1": 27,
+          "17:4:3:1": 113
+        }
+      },
+      "dev_atomic.jsonl": {
+        "rows": 1000,
+        "sha256": "da184139c49fb874087c3e52d02a52dd8aabf6a3cd6ac1cea3b39748291c32f8",
+        "strata": {
+          "13:2:1:1": 19,
+          "13:3:1:1": 69,
+          "13:4:1:1": 93,
+          "19:2:1:1": 35,
+          "19:3:1:1": 74,
+          "19:4:1:1": 99,
+          "23:2:1:1": 47,
+          "23:3:1:1": 96,
+          "23:4:1:1": 110,
+          "29:2:1:1": 65,
+          "29:3:1:1": 98,
+          "29:4:1:1": 87,
+          "5:3:1:1": 5,
+          "5:4:1:1": 22,
+          "7:2:1:1": 2,
+          "7:3:1:1": 21,
+          "7:4:1:1": 58
+        }
+      },
+      "dev_crossed_A.jsonl": {
+        "rows": 64,
+        "sha256": "dadfa4205c064183ed8750cc2db00c770b6485095854f6f38501433cfda03365"
+      },
+      "dev_crossed_B.jsonl": {
+        "rows": 64,
+        "sha256": "da98f8ac1f016a0633bbcbddad3961deba42a34bcb9cdad0269d7d3f13bc1672"
+      },
+      "dev_crossed_C.jsonl": {
+        "rows": 64,
+        "sha256": "fc2d2a21dc7d2b7f8d0320b75a9c51d88d6cf0df8bceb32b51a5111aee15895a"
+      },
+      "dev_crossed_D.jsonl": {
+        "rows": 64,
+        "sha256": "af65379c4a36f4513afb17876e00e7b8c749a6f91df649334b4d88f374653ec2"
+      },
+      "dev_panel_A.jsonl": {
+        "rows": 200,
+        "sha256": "05fadddeb3ca0e3859f6507f86a877eb5b30d2e8da1a29a5606e756d666385c1",
+        "strata": {
+          "13:3:3:1": 4,
+          "13:4:3:1": 12,
+          "19:3:3:1": 4,
+          "19:4:3:1": 28,
+          "23:3:3:1": 8,
+          "23:4:3:1": 44,
+          "29:2:3:1": 4,
+          "29:3:3:1": 16,
+          "29:4:3:1": 76,
+          "7:4:3:1": 4
+        }
+      },
+      "dev_panel_B.jsonl": {
+        "rows": 200,
+        "sha256": "d4ba39f5bb60dfb4c23b1e7804632819288c9b6c95d5fc1bd36b4d06a7d44ca8",
+        "strata": {
+          "13:3:3:1": 4,
+          "13:4:3:1": 12,
+          "19:3:3:1": 4,
+          "19:4:3:1": 28,
+          "23:3:3:1": 8,
+          "23:4:3:1": 44,
+          "29:2:3:1": 4,
+          "29:3:3:1": 16,
+          "29:4:3:1": 76,
+          "7:4:3:1": 4
+        }
+      },
+      "dev_panel_C.jsonl": {
+        "rows": 200,
+        "sha256": "98aab518a4bc99407e665f25db0e7bc2f373035927f63486d9e9f3d283d27e79",
+        "strata": {
+          "11:2:3:1": 4,
+          "11:3:3:1": 12,
+          "11:4:3:1": 36,
+          "17:2:3:1": 8,
+          "17:3:3:1": 28,
+          "17:4:3:1": 112
+        }
+      },
+      "dev_panel_D.jsonl": {
+        "rows": 200,
+        "sha256": "528e7f88f000d2c6c85bf2d7c650889047d98aed9a2982f9711261a05dff826e",
+        "strata": {
+          "11:2:3:1": 4,
+          "11:3:3:1": 12,
+          "11:4:3:1": 36,
+          "17:2:3:1": 8,
+          "17:3:3:1": 28,
+          "17:4:3:1": 112
+        }
+      },
+      "final4_A.jsonl": {
+        "rows": 200,
+        "sha256": "b8dd639fe94f9a0df3f3b4528ba5298442ee117ce78cde105f82ca524a796793",
+        "strata": {
+          "13:2:4:1": 1,
+          "13:3:4:1": 2,
+          "13:3:4:4": 1,
+          "13:4:4:1": 7,
+          "13:4:4:3": 2,
+          "13:4:4:4": 1,
+          "19:2:4:1": 1,
+          "19:3:4:1": 5,
+          "19:3:4:4": 1,
+          "19:4:4:1": 20,
+          "19:4:4:2": 2,
+          "19:4:4:3": 2,
+          "19:4:4:4": 2,
+          "19:4:4:6": 1,
+          "23:2:4:1": 2,
+          "23:3:4:1": 8,
+          "23:3:4:2": 1,
+          "23:4:4:1": 31,
+          "23:4:4:2": 3,
+          "23:4:4:4": 7,
+          "23:4:4:6": 2,
+          "29:2:4:1": 3,
+          "29:3:4:1": 9,
+          "29:3:4:3": 2,
+          "29:3:4:4": 2,
+          "29:3:4:6": 1,
+          "29:4:4:1": 59,
+          "29:4:4:2": 5,
+          "29:4:4:3": 4,
+          "29:4:4:4": 8,
+          "29:4:4:6": 1,
+          "5:4:4:1": 1,
+          "7:3:4:1": 1,
+          "7:4:4:1": 1,
+          "7:4:4:3": 1
+        }
+      },
+      "final4_B.jsonl": {
+        "rows": 200,
+        "sha256": "96f446c75fb0fd0a2ce8023d2f638a0e6b5d687447b71babca5371862aeee13e",
+        "strata": {
+          "13:2:4:1": 1,
+          "13:3:4:1": 3,
+          "13:4:4:1": 9,
+          "13:4:4:2": 1,
+          "19:2:4:1": 1,
+          "19:3:4:1": 6,
+          "19:4:4:1": 27,
+          "23:2:4:1": 2,
+          "23:3:4:1": 9,
+          "23:4:4:1": 39,
+          "23:4:4:2": 4,
+          "29:2:4:1": 3,
+          "29:3:4:1": 12,
+          "29:3:4:2": 2,
+          "29:4:4:1": 71,
+          "29:4:4:2": 6,
+          "5:4:4:1": 1,
+          "7:3:4:1": 1,
+          "7:4:4:1": 2
+        }
+      },
+      "final4_C.jsonl": {
+        "rows": 200,
+        "sha256": "418014f5d4f12cfbc591705d67a2cda04a6b5ede50843e7baebb1044b18178f3",
+        "strata": {
+          "11:2:4:1": 2,
+          "11:2:4:3": 1,
+          "11:3:4:1": 11,
+          "11:3:4:2": 1,
+          "11:4:4:1": 30,
+          "11:4:4:2": 2,
+          "11:4:4:3": 3,
+          "11:4:4:4": 3,
+          "17:2:4:1": 5,
+          "17:2:4:2": 1,
+          "17:2:4:4": 1,
+          "17:3:4:1": 19,
+          "17:3:4:2": 2,
+          "17:3:4:3": 3,
+          "17:3:4:4": 3,
+          "17:4:4:1": 87,
+          "17:4:4:2": 6,
+          "17:4:4:3": 6,
+          "17:4:4:4": 9,
+          "17:4:4:6": 5
+        }
+      },
+      "final4_D.jsonl": {
+        "rows": 200,
+        "sha256": "779bc6d99a9526a50464f5a57264a1acd265126098b8e71a55f064125598e9ed",
+        "strata": {
+          "11:2:4:1": 2,
+          "11:2:4:2": 1,
+          "11:3:4:1": 11,
+          "11:3:4:2": 1,
+          "11:4:4:1": 36,
+          "11:4:4:2": 2,
+          "17:2:4:1": 6,
+          "17:2:4:2": 1,
+          "17:3:4:1": 25,
+          "17:3:4:2": 2,
+          "17:4:4:1": 109,
+          "17:4:4:2": 4
+        }
+      },
+      "final_A.jsonl": {
+        "rows": 200,
+        "sha256": "aec55916081dff2e1601682f8936ebe2208762e475c6e46b6f7df6bc5e8b9303",
+        "strata": {
+          "13:2:3:1": 1,
+          "13:3:3:1": 3,
+          "13:4:3:1": 9,
+          "13:4:3:3": 1,
+          "19:2:3:1": 1,
+          "19:3:3:1": 5,
+          "19:3:3:2": 1,
+          "19:4:3:1": 24,
+          "19:4:3:2": 1,
+          "19:4:3:3": 2,
+          "23:2:3:1": 1,
+          "23:2:3:3": 1,
+          "23:3:3:1": 8,
+          "23:3:3:2": 1,
+          "23:4:3:1": 37,
+          "23:4:3:2": 2,
+          "23:4:3:3": 4,
+          "29:2:3:1": 1,
+          "29:2:3:2": 2,
+          "29:3:3:1": 12,
+          "29:3:3:3": 2,
+          "29:4:3:1": 63,
+          "29:4:3:2": 4,
+          "29:4:3:3": 10,
+          "5:4:3:1": 1,
+          "7:3:3:1": 1,
+          "7:4:3:1": 2
+        }
+      },
+      "final_B.jsonl": {
+        "rows": 200,
+        "sha256": "fc530d62984f8f7c993365434180485c5a9952921347765b293b8a99c94f0a10",
+        "strata": {
+          "13:2:3:1": 1,
+          "13:3:3:1": 3,
+          "13:4:3:1": 10,
+          "19:2:3:1": 1,
+          "19:3:3:1": 6,
+          "19:4:3:1": 27,
+          "23:2:3:1": 2,
+          "23:3:3:1": 9,
+          "23:4:3:1": 43,
+          "29:2:3:1": 3,
+          "29:3:3:1": 14,
+          "29:4:3:1": 77,
+          "5:4:3:1": 1,
+          "7:3:3:1": 1,
+          "7:4:3:1": 2
+        }
+      },
+      "final_C.jsonl": {
+        "rows": 200,
+        "sha256": "50dc6eb665369befd17c2529aeaa297b1e9d31f7a06abed0bfdbbceadeaae9d4",
+        "strata": {
+          "11:2:3:1": 3,
+          "11:3:3:1": 10,
+          "11:3:3:3": 2,
+          "11:4:3:1": 27,
+          "11:4:3:2": 2,
+          "11:4:3:3": 9,
+          "17:2:3:1": 6,
+          "17:2:3:3": 1,
+          "17:3:3:1": 21,
+          "17:3:3:2": 1,
+          "17:3:3:3": 5,
+          "17:4:3:1": 97,
+          "17:4:3:2": 2,
+          "17:4:3:3": 14
+        }
+      },
+      "final_D.jsonl": {
+        "rows": 200,
+        "sha256": "82a4bb8f070e897a4257d14e73deb9835f94e9c0a0cdd395e2216d5ceb0ddf6f",
+        "strata": {
+          "11:2:3:1": 3,
+          "11:3:3:1": 12,
+          "11:4:3:1": 38,
+          "17:2:3:1": 7,
+          "17:3:3:1": 27,
+          "17:4:3:1": 113
+        }
+      },
+      "final_atomic.jsonl": {
+        "rows": 1000,
+        "sha256": "392d83d7664a59777ae543cf251433b7d04b2c2577c3ef6e82798e23e5b37b8a",
+        "strata": {
+          "13:2:1:1": 18,
+          "13:3:1:1": 89,
+          "13:4:1:1": 90,
+          "19:2:1:1": 36,
+          "19:3:1:1": 77,
+          "19:4:1:1": 88,
+          "23:2:1:1": 59,
+          "23:3:1:1": 88,
+          "23:4:1:1": 93,
+          "29:2:1:1": 71,
+          "29:3:1:1": 86,
+          "29:4:1:1": 99,
+          "5:3:1:1": 7,
+          "5:4:1:1": 25,
+          "7:2:1:1": 2,
+          "7:3:1:1": 18,
+          "7:4:1:1": 54
+        }
+      },
+      "final_crossed_A.jsonl": {
+        "rows": 64,
+        "sha256": "49065e17a2654b4b965a146adbed226d24d2d9066db406cd167c5faf292dd69e"
+      },
+      "final_crossed_B.jsonl": {
+        "rows": 64,
+        "sha256": "a59826ff49686d4e5e787a6a8cf72ec20a2d23b47c987ee6d59081f32cc13b4a"
+      },
+      "final_crossed_C.jsonl": {
+        "rows": 64,
+        "sha256": "53ed06ceb8e0211315700d5af9476adb325a3b6cc90bbe51e754e4749d233e3d"
+      },
+      "final_crossed_D.jsonl": {
+        "rows": 64,
+        "sha256": "1e5bf2d6e91b078455284a4f3330b8a991f4417f8f221d0d40687b880a59ff49"
+      },
+      "final_panel_A.jsonl": {
+        "rows": 200,
+        "sha256": "f871258732917876eb4ef741d002cbf8127dd9fc52c446a6dc13097dbe4a06d0",
+        "strata": {
+          "13:3:3:1": 4,
+          "13:4:3:1": 12,
+          "19:3:3:1": 4,
+          "19:4:3:1": 28,
+          "23:3:3:1": 8,
+          "23:4:3:1": 44,
+          "29:2:3:1": 4,
+          "29:3:3:1": 16,
+          "29:4:3:1": 76,
+          "7:4:3:1": 4
+        }
+      },
+      "final_panel_B.jsonl": {
+        "rows": 200,
+        "sha256": "01778a6cf0e5b91323ba3cedfe6258b89bc66f78332181532c85f35f75c601d3",
+        "strata": {
+          "13:3:3:1": 4,
+          "13:4:3:1": 12,
+          "19:3:3:1": 4,
+          "19:4:3:1": 28,
+          "23:3:3:1": 8,
+          "23:4:3:1": 44,
+          "29:2:3:1": 4,
+          "29:3:3:1": 16,
+          "29:4:3:1": 76,
+          "7:4:3:1": 4
+        }
+      },
+      "final_panel_C.jsonl": {
+        "rows": 200,
+        "sha256": "b380e737760eeb3e790efc72c3de3be32a61829bf6f456eb1c089c2479ecf95d",
+        "strata": {
+          "11:2:3:1": 4,
+          "11:3:3:1": 12,
+          "11:4:3:1": 36,
+          "17:2:3:1": 8,
+          "17:3:3:1": 28,
+          "17:4:3:1": 112
+        }
+      },
+      "final_panel_D.jsonl": {
+        "rows": 200,
+        "sha256": "79a030a2852c329c8e2abcba5781432b22ea81d743ed47294007e51edf09b49a",
+        "strata": {
+          "11:2:3:1": 4,
+          "11:3:3:1": 12,
+          "11:4:3:1": 36,
+          "17:2:3:1": 8,
+          "17:3:3:1": 28,
+          "17:4:3:1": 112
+        }
+      },
+      "train.jsonl": {
+        "rows": 5000,
+        "sha256": "8a739c1177ceade41fdd6382e3d489dd167531bd477874b47ebc67ec81959f86",
+        "strata": {
+          "13:2:3:1": 10,
+          "13:2:3:2": 3,
+          "13:2:3:3": 3,
+          "13:3:3:1": 43,
+          "13:3:3:2": 14,
+          "13:3:3:3": 15,
+          "13:4:3:1": 155,
+          "13:4:3:2": 52,
+          "13:4:3:3": 52,
+          "19:2:3:1": 22,
+          "19:2:3:2": 7,
+          "19:2:3:3": 7,
+          "19:3:3:1": 92,
+          "19:3:3:2": 31,
+          "19:3:3:3": 31,
+          "19:4:3:1": 401,
+          "19:4:3:2": 134,
+          "19:4:3:3": 133,
+          "23:2:3:1": 28,
+          "23:2:3:2": 9,
+          "23:2:3:3": 10,
+          "23:3:3:1": 135,
+          "23:3:3:2": 45,
+          "23:3:3:3": 45,
+          "23:4:3:1": 646,
+          "23:4:3:2": 215,
+          "23:4:3:3": 216,
+          "29:2:3:1": 40,
+          "29:2:3:2": 13,
+          "29:2:3:3": 14,
+          "29:3:3:1": 215,
+          "29:3:3:2": 72,
+          "29:3:3:3": 71,
+          "29:4:3:1": 1154,
+          "29:4:3:2": 385,
+          "29:4:3:3": 384,
+          "5:4:3:1": 14,
+          "5:4:3:2": 5,
+          "5:4:3:3": 5,
+          "7:3:3:1": 11,
+          "7:3:3:2": 4,
+          "7:3:3:3": 3,
+          "7:4:3:1": 34,
+          "7:4:3:2": 11,
+          "7:4:3:3": 11
+        }
+      },
+      "train_crossed.jsonl": {
+        "rows": 256,
+        "sha256": "cca54da2c1f5a92441fda2fcb56e07a3b8d970e8f07f358e7441565a92cb486c"
+      },
+      "train_four.jsonl": {
+        "rows": 256,
+        "sha256": "4cc8d27c77c5a773994f1c4d42af00894989de9fee2aac6a1473713327a9a7df"
+      }
+    },
+    "historical_exposure": {
+      "074b889f677c3bdccea13e2397aff9b8e89e1794a35ef764453ed90f8786da9c": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_06_bf16/checkpoint",
+          "budget_mode": "examples",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-0.6B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed0",
+          "prefix_batch": 32,
+          "replay_fraction": 0.2,
+          "seed": 0,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": 2000,
+          "2": 2000,
+          "3": 4000,
+          "4": 2000
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+        "pairs": {
+          "AC1>AC1": 974,
+          "AC1>AX1": 608,
+          "AC1>SC2": 808,
+          "AC1>SH1": 706,
+          "AX1>AC1": 620,
+          "AX1>AX1": 784,
+          "AX1>REV": 668,
+          "AX1>SC2": 816,
+          "REV>AC1": 670,
+          "REV>AX1": 674,
+          "REV>SC2": 662,
+          "REV>SH1": 814,
+          "SC2>AC1": 852,
+          "SC2>REV": 782,
+          "SC2>SC2": 934,
+          "SC2>SH1": 1106,
+          "SH1>AC1": 658,
+          "SH1>AX1": 592,
+          "SH1>REV": 710,
+          "SH1>SC2": 768,
+          "SH1>SH1": 794
+        },
+        "per_epoch": {
+          "depths": {
+            "1": 1000,
+            "2": 1000,
+            "3": 2000,
+            "4": 1000
+          },
+          "pairs": {
+            "AC1>AC1": 487,
+            "AC1>AX1": 304,
+            "AC1>SC2": 404,
+            "AC1>SH1": 353,
+            "AX1>AC1": 310,
+            "AX1>AX1": 392,
+            "AX1>REV": 334,
+            "AX1>SC2": 408,
+            "REV>AC1": 335,
+            "REV>AX1": 337,
+            "REV>SC2": 331,
+            "REV>SH1": 407,
+            "SC2>AC1": 426,
+            "SC2>REV": 391,
+            "SC2>SC2": 467,
+            "SC2>SH1": 553,
+            "SH1>AC1": 329,
+            "SH1>AX1": 296,
+            "SH1>REV": 355,
+            "SH1>SC2": 384,
+            "SH1>SH1": 397
+          }
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "1cb69a4ee2c1ae3e4f53582774dde8c8c54a5afa8c913f74ba134245829917bc": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_06_bf16/checkpoint",
+          "budget_mode": "target_tokens",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-0.6B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed1",
+          "prefix_batch": 32,
+          "replay_fraction": 1.0,
+          "seed": 1,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": null
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+        "pairs": {},
+        "per_epoch": {
+          "depths": {
+            "1": null
+          },
+          "pairs": {}
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "4e96ac6b74b11c8720745a71535a618bbf6df3281e5585dfb450ddb90e736155": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+          "budget_mode": "examples",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-8B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed2",
+          "prefix_batch": 32,
+          "replay_fraction": 0.2,
+          "seed": 2,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": 2000,
+          "2": 2000,
+          "3": 4000,
+          "4": 2000
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6",
+        "pairs": {
+          "AC1>AC1": 934,
+          "AC1>AX1": 610,
+          "AC1>SC2": 806,
+          "AC1>SH1": 656,
+          "AX1>AC1": 642,
+          "AX1>AX1": 776,
+          "AX1>REV": 648,
+          "AX1>SC2": 838,
+          "REV>AC1": 688,
+          "REV>AX1": 664,
+          "REV>SC2": 690,
+          "REV>SH1": 780,
+          "SC2>AC1": 850,
+          "SC2>REV": 812,
+          "SC2>SC2": 1014,
+          "SC2>SH1": 1126,
+          "SH1>AC1": 612,
+          "SH1>AX1": 544,
+          "SH1>REV": 750,
+          "SH1>SC2": 768,
+          "SH1>SH1": 792
+        },
+        "per_epoch": {
+          "depths": {
+            "1": 1000,
+            "2": 1000,
+            "3": 2000,
+            "4": 1000
+          },
+          "pairs": {
+            "AC1>AC1": 467,
+            "AC1>AX1": 305,
+            "AC1>SC2": 403,
+            "AC1>SH1": 328,
+            "AX1>AC1": 321,
+            "AX1>AX1": 388,
+            "AX1>REV": 324,
+            "AX1>SC2": 419,
+            "REV>AC1": 344,
+            "REV>AX1": 332,
+            "REV>SC2": 345,
+            "REV>SH1": 390,
+            "SC2>AC1": 425,
+            "SC2>REV": 406,
+            "SC2>SC2": 507,
+            "SC2>SH1": 563,
+            "SH1>AC1": 306,
+            "SH1>AX1": 272,
+            "SH1>REV": 375,
+            "SH1>SC2": 384,
+            "SH1>SH1": 396
+          }
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "5b190e41786e6d3a08567245013b3e7065a1dee8ed45b03dbaaf85201aeea291": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+          "budget_mode": "target_tokens",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-8B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed2",
+          "prefix_batch": 32,
+          "replay_fraction": 1.0,
+          "seed": 2,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": null
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6",
+        "pairs": {},
+        "per_epoch": {
+          "depths": {
+            "1": null
+          },
+          "pairs": {}
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "7465cb8de334a88ec9f73dc375a0d86a611840bd8fa4b20b63cbf2c94fc4b8a6": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_06_bf16/checkpoint",
+          "budget_mode": "examples",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-0.6B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed1",
+          "prefix_batch": 32,
+          "replay_fraction": 0.2,
+          "seed": 1,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": 2000,
+          "2": 2000,
+          "3": 4000,
+          "4": 2000
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+        "pairs": {
+          "AC1>AC1": 938,
+          "AC1>AX1": 624,
+          "AC1>SC2": 788,
+          "AC1>SH1": 708,
+          "AX1>AC1": 612,
+          "AX1>AX1": 816,
+          "AX1>REV": 684,
+          "AX1>SC2": 840,
+          "REV>AC1": 700,
+          "REV>AX1": 674,
+          "REV>SC2": 666,
+          "REV>SH1": 770,
+          "SC2>AC1": 846,
+          "SC2>REV": 790,
+          "SC2>SC2": 950,
+          "SC2>SH1": 1072,
+          "SH1>AC1": 652,
+          "SH1>AX1": 558,
+          "SH1>REV": 746,
+          "SH1>SC2": 736,
+          "SH1>SH1": 830
+        },
+        "per_epoch": {
+          "depths": {
+            "1": 1000,
+            "2": 1000,
+            "3": 2000,
+            "4": 1000
+          },
+          "pairs": {
+            "AC1>AC1": 469,
+            "AC1>AX1": 312,
+            "AC1>SC2": 394,
+            "AC1>SH1": 354,
+            "AX1>AC1": 306,
+            "AX1>AX1": 408,
+            "AX1>REV": 342,
+            "AX1>SC2": 420,
+            "REV>AC1": 350,
+            "REV>AX1": 337,
+            "REV>SC2": 333,
+            "REV>SH1": 385,
+            "SC2>AC1": 423,
+            "SC2>REV": 395,
+            "SC2>SC2": 475,
+            "SC2>SH1": 536,
+            "SH1>AC1": 326,
+            "SH1>AX1": 279,
+            "SH1>REV": 373,
+            "SH1>SC2": 368,
+            "SH1>SH1": 415
+          }
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "7e5e2700c5bd3a900e4dcca8763d4d487d7a14e6a97eccc439c7773b56ef5953": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+          "budget_mode": "examples",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-8B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed0",
+          "prefix_batch": 32,
+          "replay_fraction": 0.2,
+          "seed": 0,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": 2000,
+          "2": 2000,
+          "3": 4000,
+          "4": 2000
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6",
+        "pairs": {
+          "AC1>AC1": 974,
+          "AC1>AX1": 608,
+          "AC1>SC2": 808,
+          "AC1>SH1": 706,
+          "AX1>AC1": 620,
+          "AX1>AX1": 784,
+          "AX1>REV": 668,
+          "AX1>SC2": 816,
+          "REV>AC1": 670,
+          "REV>AX1": 674,
+          "REV>SC2": 662,
+          "REV>SH1": 814,
+          "SC2>AC1": 852,
+          "SC2>REV": 782,
+          "SC2>SC2": 934,
+          "SC2>SH1": 1106,
+          "SH1>AC1": 658,
+          "SH1>AX1": 592,
+          "SH1>REV": 710,
+          "SH1>SC2": 768,
+          "SH1>SH1": 794
+        },
+        "per_epoch": {
+          "depths": {
+            "1": 1000,
+            "2": 1000,
+            "3": 2000,
+            "4": 1000
+          },
+          "pairs": {
+            "AC1>AC1": 487,
+            "AC1>AX1": 304,
+            "AC1>SC2": 404,
+            "AC1>SH1": 353,
+            "AX1>AC1": 310,
+            "AX1>AX1": 392,
+            "AX1>REV": 334,
+            "AX1>SC2": 408,
+            "REV>AC1": 335,
+            "REV>AX1": 337,
+            "REV>SC2": 331,
+            "REV>SH1": 407,
+            "SC2>AC1": 426,
+            "SC2>REV": 391,
+            "SC2>SC2": 467,
+            "SC2>SH1": 553,
+            "SH1>AC1": 329,
+            "SH1>AX1": 296,
+            "SH1>REV": 355,
+            "SH1>SC2": 384,
+            "SH1>SH1": 397
+          }
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "988af53ad4f7809403b48c11268240d2984b4f49e606705682a9c670fe6ca303": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_06_bf16/checkpoint",
+          "budget_mode": "target_tokens",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-0.6B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed0",
+          "prefix_batch": 32,
+          "replay_fraction": 1.0,
+          "seed": 0,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": null
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+        "pairs": {},
+        "per_epoch": {
+          "depths": {
+            "1": null
+          },
+          "pairs": {}
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "af3150176f305e87e92f4ec47968e3665aa6a4d7b074e74f0fdcc67a02c44564": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+          "budget_mode": "target_tokens",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-8B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed0",
+          "prefix_batch": 32,
+          "replay_fraction": 1.0,
+          "seed": 0,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": null
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6",
+        "pairs": {},
+        "per_epoch": {
+          "depths": {
+            "1": null
+          },
+          "pairs": {}
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "c29302c050c8c8ffd5b04e3c018628b29dd34766503d269fd5cafa149bd6c1f8": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+          "budget_mode": "examples",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-8B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r20_examples_mixed_seed1",
+          "prefix_batch": 32,
+          "replay_fraction": 0.2,
+          "seed": 1,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": 2000,
+          "2": 2000,
+          "3": 4000,
+          "4": 2000
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6",
+        "pairs": {
+          "AC1>AC1": 938,
+          "AC1>AX1": 624,
+          "AC1>SC2": 788,
+          "AC1>SH1": 708,
+          "AX1>AC1": 612,
+          "AX1>AX1": 816,
+          "AX1>REV": 684,
+          "AX1>SC2": 840,
+          "REV>AC1": 700,
+          "REV>AX1": 674,
+          "REV>SC2": 666,
+          "REV>SH1": 770,
+          "SC2>AC1": 846,
+          "SC2>REV": 790,
+          "SC2>SC2": 950,
+          "SC2>SH1": 1072,
+          "SH1>AC1": 652,
+          "SH1>AX1": 558,
+          "SH1>REV": 746,
+          "SH1>SC2": 736,
+          "SH1>SH1": 830
+        },
+        "per_epoch": {
+          "depths": {
+            "1": 1000,
+            "2": 1000,
+            "3": 2000,
+            "4": 1000
+          },
+          "pairs": {
+            "AC1>AC1": 469,
+            "AC1>AX1": 312,
+            "AC1>SC2": 394,
+            "AC1>SH1": 354,
+            "AX1>AC1": 306,
+            "AX1>AX1": 408,
+            "AX1>REV": 342,
+            "AX1>SC2": 420,
+            "REV>AC1": 350,
+            "REV>AX1": 337,
+            "REV>SC2": 333,
+            "REV>SH1": 385,
+            "SC2>AC1": 423,
+            "SC2>REV": 395,
+            "SC2>SC2": 475,
+            "SC2>SH1": 536,
+            "SH1>AC1": 326,
+            "SH1>AX1": 279,
+            "SH1>REV": 373,
+            "SH1>SC2": 368,
+            "SH1>SH1": 415
+          }
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "cc6f98364f1da6f3a2aac19fe15b788796766eb00cda27686491c4f1d21cdcae": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_8b_bf16/checkpoint",
+          "budget_mode": "target_tokens",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-8B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q8b_bf16_mb16_pb32/runs/Qwen_Qwen3-8B_ce_trace_r100_target_tokens_mixed_seed1",
+          "prefix_batch": 32,
+          "replay_fraction": 1.0,
+          "seed": 1,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": null
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6",
+        "pairs": {},
+        "per_epoch": {
+          "depths": {
+            "1": null
+          },
+          "pairs": {}
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "d0ab2b3798e3b20da1c4ab05da329d744c3e3a99530d0d49af899cfe5d4310f6": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_06_bf16/checkpoint",
+          "budget_mode": "target_tokens",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-0.6B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed2",
+          "prefix_batch": 32,
+          "replay_fraction": 1.0,
+          "seed": 2,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": null
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+        "pairs": {},
+        "per_epoch": {
+          "depths": {
+            "1": null
+          },
+          "pairs": {}
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      },
+      "e285372be9ae92ff5770c9a8590c7f015b40ab8808c0b139fbd255f69252ba62": {
+        "config": {
+          "base": "/workspace/verifier-bottleneck/outputs/atomic_06_bf16/checkpoint",
+          "budget_mode": "examples",
+          "data": "/workspace/verifier-bottleneck/outputs/data",
+          "depth3_only": false,
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "effective_batch": 64,
+          "epochs": 2,
+          "gradient_checkpointing": true,
+          "learning_rate": 0.0001,
+          "lora_alpha": 64,
+          "lora_dropout": 0.05,
+          "lora_rank": 32,
+          "method": "ce",
+          "micro_batch": 16,
+          "model": "Qwen/Qwen3-0.6B",
+          "num_examples": 5000,
+          "output": "/workspace/verifier-bottleneck/outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed2",
+          "prefix_batch": 32,
+          "replay_fraction": 0.2,
+          "seed": 2,
+          "supervision": "trace"
+        },
+        "depths": {
+          "1": 2000,
+          "2": 2000,
+          "3": 4000,
+          "4": 2000
+        },
+        "epochs": 2,
+        "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+        "history_receipt_sha256": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+        "pairs": {
+          "AC1>AC1": 934,
+          "AC1>AX1": 610,
+          "AC1>SC2": 806,
+          "AC1>SH1": 656,
+          "AX1>AC1": 642,
+          "AX1>AX1": 776,
+          "AX1>REV": 648,
+          "AX1>SC2": 838,
+          "REV>AC1": 688,
+          "REV>AX1": 664,
+          "REV>SC2": 690,
+          "REV>SH1": 780,
+          "SC2>AC1": 850,
+          "SC2>REV": 812,
+          "SC2>SC2": 1014,
+          "SC2>SH1": 1126,
+          "SH1>AC1": 612,
+          "SH1>AX1": 544,
+          "SH1>REV": 750,
+          "SH1>SC2": 768,
+          "SH1>SH1": 792
+        },
+        "per_epoch": {
+          "depths": {
+            "1": 1000,
+            "2": 1000,
+            "3": 2000,
+            "4": 1000
+          },
+          "pairs": {
+            "AC1>AC1": 467,
+            "AC1>AX1": 305,
+            "AC1>SC2": 403,
+            "AC1>SH1": 328,
+            "AX1>AC1": 321,
+            "AX1>AX1": 388,
+            "AX1>REV": 324,
+            "AX1>SC2": 419,
+            "REV>AC1": 344,
+            "REV>AX1": 332,
+            "REV>SC2": 345,
+            "REV>SH1": 390,
+            "SC2>AC1": 425,
+            "SC2>REV": 406,
+            "SC2>SC2": 507,
+            "SC2>SH1": 563,
+            "SH1>AC1": 306,
+            "SH1>AX1": 272,
+            "SH1>REV": 375,
+            "SH1>SC2": 384,
+            "SH1>SH1": 396
+          }
+        },
+        "reference_manifest_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+        "stage": "historical_sft_reconstruction"
+      }
+    },
+    "length_transfer": "new continuations: atomic base and depth3-only train; historical SFT saw depth4",
+    "observed_training_pairs": [
+      [
+        "AC1",
+        "AC1"
+      ],
+      [
+        "AC1",
+        "AX1"
+      ],
+      [
+        "AC1",
+        "SC2"
+      ],
+      [
+        "AC1",
+        "SH1"
+      ],
+      [
+        "AX1",
+        "AC1"
+      ],
+      [
+        "AX1",
+        "AX1"
+      ],
+      [
+        "AX1",
+        "REV"
+      ],
+      [
+        "AX1",
+        "SC2"
+      ],
+      [
+        "REV",
+        "AC1"
+      ],
+      [
+        "REV",
+        "AX1"
+      ],
+      [
+        "REV",
+        "SC2"
+      ],
+      [
+        "REV",
+        "SH1"
+      ],
+      [
+        "SC2",
+        "AC1"
+      ],
+      [
+        "SC2",
+        "REV"
+      ],
+      [
+        "SC2",
+        "SC2"
+      ],
+      [
+        "SC2",
+        "SH1"
+      ],
+      [
+        "SH1",
+        "AC1"
+      ],
+      [
+        "SH1",
+        "AX1"
+      ],
+      [
+        "SH1",
+        "REV"
+      ],
+      [
+        "SH1",
+        "SC2"
+      ],
+      [
+        "SH1",
+        "SH1"
+      ]
+    ],
+    "reference_data_sha256": "8a1a9cbc63fa4d9fc5bbf4b82db8d87190fff44f3a88ba50aa550111e161a866",
+    "schema": "iclr.research.data.v4",
+    "source_manifest_sha256": "175be1feac55477f613bfd6e6f1e0e283935568d740e5f1e058ccba9134ce8d6",
+    "state_exclusion": "within each mask: all correct trajectories; shared states permitted only inside a matched-START panel; inherited atomic training reused",
+    "status": "frozen_new_evaluation",
+    "training_panels": "train_crossed.jsonl"
+  },
+  "parent_manifest_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+  "reference": [
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        8,
+        6,
+        16,
+        2,
+        13
+      ],
+      "states": [
+        [
+          8,
+          6,
+          16,
+          2,
+          13
+        ],
+        [
+          8,
+          7,
+          16,
+          2,
+          13
+        ],
+        [
+          8,
+          14,
+          7,
+          16,
+          18
+        ],
+        [
+          8,
+          9,
+          9,
+          14,
+          3
+        ]
+      ],
+      "target": [
+        8,
+        9,
+        9,
+        14,
+        3
+      ],
+      "task_fingerprint": "0009961741b3a836d31be487d979177138b483e3b3fa6f5419a8d26be650c60a",
+      "task_id": "s4c-0009961741b3a836d31be487",
+      "witness": [
+        "AX1",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "REV",
+          "SH1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        0,
+        7,
+        4,
+        22,
+        5
+      ],
+      "states": [
+        [
+          0,
+          7,
+          4,
+          22,
+          5
+        ],
+        [
+          0,
+          8,
+          4,
+          22,
+          5
+        ],
+        [
+          5,
+          22,
+          4,
+          8,
+          0
+        ],
+        [
+          16,
+          8,
+          5,
+          8,
+          0
+        ]
+      ],
+      "target": [
+        16,
+        8,
+        5,
+        8,
+        0
+      ],
+      "task_fingerprint": "009a016cdaa4face942e2cd92399a20688ffc27e4b5f8541f7b1f4eaca173dc1",
+      "task_id": "s4c-009a016cdaa4face942e2cd9",
+      "witness": [
+        "AX1",
+        "REV",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "REV",
+          "AX1"
+        ]
+      ],
+      "degree": 3,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        26,
+        12,
+        2,
+        17
+      ],
+      "states": [
+        [
+          26,
+          12,
+          2,
+          17
+        ],
+        [
+          28,
+          9,
+          24,
+          17
+        ],
+        [
+          17,
+          24,
+          9,
+          28
+        ],
+        [
+          17,
+          25,
+          9,
+          28
+        ]
+      ],
+      "target": [
+        17,
+        25,
+        9,
+        28
+      ],
+      "task_fingerprint": "022ac92566797252b11137c75a1e67fdd348132cda64d61096f61636e4dd9470",
+      "task_id": "s4c-022ac92566797252b11137c7",
+      "witness": [
+        "SH1",
+        "REV",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SH1",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        1,
+        8,
+        19,
+        10,
+        26
+      ],
+      "states": [
+        [
+          1,
+          8,
+          19,
+          10,
+          26
+        ],
+        [
+          26,
+          10,
+          19,
+          8,
+          1
+        ],
+        [
+          6,
+          18,
+          20,
+          12,
+          1
+        ],
+        [
+          6,
+          7,
+          22,
+          9,
+          16
+        ]
+      ],
+      "target": [
+        6,
+        7,
+        22,
+        9,
+        16
+      ],
+      "task_fingerprint": "02a7aa729b3bc2e828f5f9177bcc3d86b482e2c8451e53ebef68b59846cfb0d3",
+      "task_id": "s4c-02a7aa729b3bc2e828f5f917",
+      "witness": [
+        "REV",
+        "SH1",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SH1",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        2,
+        6,
+        6,
+        15,
+        22
+      ],
+      "states": [
+        [
+          2,
+          6,
+          6,
+          15,
+          22
+        ],
+        [
+          2,
+          12,
+          24,
+          4,
+          4
+        ],
+        [
+          17,
+          1,
+          2,
+          20,
+          4
+        ],
+        [
+          17,
+          2,
+          8,
+          15,
+          6
+        ]
+      ],
+      "target": [
+        17,
+        2,
+        8,
+        15,
+        6
+      ],
+      "task_fingerprint": "03ae627c61d2a87cbd183076d42a20d803b45997fd100226525d75a21a8fe54d",
+      "task_id": "s4c-03ae627c61d2a87cbd183076",
+      "witness": [
+        "SC2",
+        "SH1",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SH1",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        19,
+        3,
+        21,
+        1,
+        5
+      ],
+      "states": [
+        [
+          19,
+          3,
+          21,
+          1,
+          5
+        ],
+        [
+          5,
+          1,
+          21,
+          3,
+          19
+        ],
+        [
+          3,
+          13,
+          6,
+          10,
+          19
+        ],
+        [
+          3,
+          14,
+          6,
+          10,
+          19
+        ]
+      ],
+      "target": [
+        3,
+        14,
+        6,
+        10,
+        19
+      ],
+      "task_fingerprint": "03b1c28e54b78698e815a8085eb3c56171a34ce1762c77a832718422b5a29d50",
+      "task_id": "s4c-03b1c28e54b78698e815a808",
+      "witness": [
+        "REV",
+        "SH1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "AC1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "SH1",
+          "AC1"
+        ],
+        [
+          "SH1",
+          "AC1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        14,
+        2,
+        11,
+        9,
+        11
+      ],
+      "states": [
+        [
+          14,
+          2,
+          11,
+          9,
+          11
+        ],
+        [
+          15,
+          2,
+          11,
+          9,
+          11
+        ],
+        [
+          19,
+          8,
+          17,
+          24,
+          11
+        ],
+        [
+          20,
+          8,
+          17,
+          24,
+          11
+        ]
+      ],
+      "target": [
+        20,
+        8,
+        17,
+        24,
+        11
+      ],
+      "task_fingerprint": "06fcb7891f7281ed93343ba1655aa1772f6dcc5207ed295cbad02ba7643739f2",
+      "task_id": "s4c-06fcb7891f7281ed93343ba1",
+      "witness": [
+        "AC1",
+        "SH1",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 13,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        3,
+        0,
+        0,
+        7,
+        9
+      ],
+      "states": [
+        [
+          3,
+          0,
+          0,
+          7,
+          9
+        ],
+        [
+          9,
+          7,
+          0,
+          0,
+          3
+        ],
+        [
+          9,
+          1,
+          0,
+          0,
+          9
+        ],
+        [
+          9,
+          2,
+          0,
+          0,
+          1
+        ]
+      ],
+      "target": [
+        9,
+        2,
+        0,
+        0,
+        1
+      ],
+      "task_fingerprint": "072aa611a94ea69ffe2d258d2dbe43acd63945274afa16a444c62b490ce47591",
+      "task_id": "s4c-072aa611a94ea69ffe2d258d",
+      "witness": [
+        "REV",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "AX1",
+          "AX1"
+        ]
+      ],
+      "degree": 3,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        19,
+        12,
+        5,
+        28
+      ],
+      "states": [
+        [
+          19,
+          12,
+          5,
+          28
+        ],
+        [
+          28,
+          5,
+          12,
+          19
+        ],
+        [
+          28,
+          6,
+          12,
+          19
+        ],
+        [
+          28,
+          7,
+          12,
+          19
+        ]
+      ],
+      "target": [
+        28,
+        7,
+        12,
+        19
+      ],
+      "task_fingerprint": "0814285dae71c61d4e77c3523f9f8e2d0bc7e16d75ca2eac49c69831d3986221",
+      "task_id": "s4c-0814285dae71c61d4e77c352",
+      "witness": [
+        "REV",
+        "AX1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "AX1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        0,
+        18,
+        14,
+        11,
+        3
+      ],
+      "states": [
+        [
+          0,
+          18,
+          14,
+          11,
+          3
+        ],
+        [
+          3,
+          11,
+          14,
+          18,
+          0
+        ],
+        [
+          3,
+          12,
+          14,
+          18,
+          0
+        ],
+        [
+          0,
+          18,
+          14,
+          12,
+          3
+        ]
+      ],
+      "target": [
+        0,
+        18,
+        14,
+        12,
+        3
+      ],
+      "task_fingerprint": "08a33a69efc8ef0d62fc0e6a925f02b32e6edea0e33d933ddb2f7b42f8645d77",
+      "task_id": "s4c-08a33a69efc8ef0d62fc0e6a",
+      "witness": [
+        "REV",
+        "AX1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "SC2",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 13,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        2,
+        5,
+        7,
+        9,
+        1
+      ],
+      "states": [
+        [
+          2,
+          5,
+          7,
+          9,
+          1
+        ],
+        [
+          11,
+          11,
+          1,
+          0,
+          1
+        ],
+        [
+          11,
+          9,
+          4,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          4,
+          9,
+          11
+        ]
+      ],
+      "target": [
+        3,
+        0,
+        4,
+        9,
+        11
+      ],
+      "task_fingerprint": "09e38e4720975fe946d78e43cbdcf679b5d48058c983c9264c3dec965874efdf",
+      "task_id": "s4c-09e38e4720975fe946d78e43",
+      "witness": [
+        "SH1",
+        "SC2",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "AC1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "SH1",
+          "AC1"
+        ],
+        [
+          "SH1",
+          "AC1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        18,
+        23,
+        18,
+        9,
+        15
+      ],
+      "states": [
+        [
+          18,
+          23,
+          18,
+          9,
+          15
+        ],
+        [
+          19,
+          23,
+          18,
+          9,
+          15
+        ],
+        [
+          20,
+          23,
+          18,
+          9,
+          15
+        ],
+        [
+          27,
+          1,
+          19,
+          11,
+          15
+        ]
+      ],
+      "target": [
+        27,
+        1,
+        19,
+        11,
+        15
+      ],
+      "task_fingerprint": "0d03bd7646e20e648035c0c352e33cb02ee510eb609d468a6190cdf37a049faf",
+      "task_id": "s4c-0d03bd7646e20e648035c0c3",
+      "witness": [
+        "AC1",
+        "AC1",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "REV",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        2,
+        17,
+        26,
+        28,
+        3
+      ],
+      "states": [
+        [
+          2,
+          17,
+          26,
+          28,
+          3
+        ],
+        [
+          18,
+          20,
+          12,
+          11,
+          3
+        ],
+        [
+          3,
+          11,
+          12,
+          20,
+          18
+        ],
+        [
+          4,
+          11,
+          12,
+          20,
+          18
+        ]
+      ],
+      "target": [
+        4,
+        11,
+        12,
+        20,
+        18
+      ],
+      "task_fingerprint": "0f0579316804e0516f2c6d9859389d2b25a69068169e304b6eece88f49c4cbfe",
+      "task_id": "s4c-0f0579316804e0516f2c6d98",
+      "witness": [
+        "SH1",
+        "REV",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "AX1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        2,
+        19,
+        4,
+        21,
+        0
+      ],
+      "states": [
+        [
+          2,
+          19,
+          4,
+          21,
+          0
+        ],
+        [
+          0,
+          21,
+          21,
+          21,
+          0
+        ],
+        [
+          0,
+          22,
+          21,
+          21,
+          0
+        ],
+        [
+          0,
+          21,
+          21,
+          22,
+          0
+        ]
+      ],
+      "target": [
+        0,
+        21,
+        21,
+        22,
+        0
+      ],
+      "task_fingerprint": "0fa1763ce193429d23761b94fa334ebba46f7705373fb14db56f9b809baea542",
+      "task_id": "s4c-0fa1763ce193429d23761b94",
+      "witness": [
+        "SH1",
+        "AX1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 2,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        15,
+        16,
+        2
+      ],
+      "states": [
+        [
+          15,
+          16,
+          2
+        ],
+        [
+          15,
+          13,
+          8
+        ],
+        [
+          15,
+          7,
+          13
+        ],
+        [
+          15,
+          14,
+          14
+        ]
+      ],
+      "target": [
+        15,
+        14,
+        14
+      ],
+      "task_fingerprint": "10b58b06cbc179138e7301274bb3ee579ed2aeed7a1b78b68dbdd64b9593c3ab",
+      "task_id": "s4c-10b58b06cbc179138e730127",
+      "witness": [
+        "SC2",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "SH1",
+          "SH1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        2,
+        3,
+        9,
+        13,
+        14
+      ],
+      "states": [
+        [
+          2,
+          3,
+          9,
+          13,
+          14
+        ],
+        [
+          18,
+          1,
+          17,
+          0,
+          14
+        ],
+        [
+          4,
+          22,
+          9,
+          10,
+          14
+        ],
+        [
+          13,
+          11,
+          8,
+          20,
+          14
+        ]
+      ],
+      "target": [
+        13,
+        11,
+        8,
+        20,
+        14
+      ],
+      "task_fingerprint": "118c56f2c5d28a93fcc816558344ca58195dd42a1ba3cb2c9933a0ba8c3ff389",
+      "task_id": "s4c-118c56f2c5d28a93fcc81655",
+      "witness": [
+        "SH1",
+        "SH1",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "AC1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        15,
+        21,
+        21,
+        0,
+        18
+      ],
+      "states": [
+        [
+          15,
+          21,
+          21,
+          0,
+          18
+        ],
+        [
+          18,
+          0,
+          21,
+          21,
+          15
+        ],
+        [
+          19,
+          0,
+          21,
+          21,
+          15
+        ],
+        [
+          20,
+          0,
+          21,
+          21,
+          15
+        ]
+      ],
+      "target": [
+        20,
+        0,
+        21,
+        21,
+        15
+      ],
+      "task_fingerprint": "122caef82cd390e09960c7ca8e0507b16f1d014e01e9b14c21b8525bfe17294a",
+      "task_id": "s4c-122caef82cd390e09960c7ca",
+      "witness": [
+        "REV",
+        "AC1",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SH1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        7,
+        7,
+        3,
+        9,
+        7
+      ],
+      "states": [
+        [
+          7,
+          7,
+          3,
+          9,
+          7
+        ],
+        [
+          7,
+          9,
+          3,
+          7,
+          7
+        ],
+        [
+          14,
+          7,
+          9,
+          16,
+          7
+        ],
+        [
+          7,
+          16,
+          9,
+          7,
+          14
+        ]
+      ],
+      "target": [
+        7,
+        16,
+        9,
+        7,
+        14
+      ],
+      "task_fingerprint": "1392781f67ac89784e4f75c647e9a84b08bce0f3e75e2c11a6e730ea54927d71",
+      "task_id": "s4c-1392781f67ac89784e4f75c6",
+      "witness": [
+        "REV",
+        "SH1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SH1",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        11,
+        11,
+        25,
+        2,
+        3
+      ],
+      "states": [
+        [
+          11,
+          11,
+          25,
+          2,
+          3
+        ],
+        [
+          3,
+          2,
+          25,
+          11,
+          11
+        ],
+        [
+          23,
+          13,
+          8,
+          26,
+          11
+        ],
+        [
+          23,
+          14,
+          8,
+          26,
+          11
+        ]
+      ],
+      "target": [
+        23,
+        14,
+        8,
+        26,
+        11
+      ],
+      "task_fingerprint": "168dcbc558b960b4d80913759c9e34b75fc4bde267b25db6e01971d83712024d",
+      "task_id": "s4c-168dcbc558b960b4d8091375",
+      "witness": [
+        "REV",
+        "SH1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        6,
+        7,
+        20,
+        9,
+        20
+      ],
+      "states": [
+        [
+          6,
+          7,
+          20,
+          9,
+          20
+        ],
+        [
+          20,
+          9,
+          20,
+          7,
+          6
+        ],
+        [
+          20,
+          18,
+          22,
+          27,
+          9
+        ],
+        [
+          20,
+          7,
+          1,
+          13,
+          28
+        ]
+      ],
+      "target": [
+        20,
+        7,
+        1,
+        13,
+        28
+      ],
+      "task_fingerprint": "16f93043b1f99b6664318787f572a3d1d10bcd202d03df4c5eac59ee6cd92ffd",
+      "task_id": "s4c-16f93043b1f99b6664318787",
+      "witness": [
+        "REV",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SH1",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        7,
+        7,
+        15,
+        7,
+        22
+      ],
+      "states": [
+        [
+          7,
+          7,
+          15,
+          7,
+          22
+        ],
+        [
+          7,
+          14,
+          14,
+          10,
+          7
+        ],
+        [
+          6,
+          8,
+          17,
+          15,
+          7
+        ],
+        [
+          6,
+          9,
+          17,
+          15,
+          7
+        ]
+      ],
+      "target": [
+        6,
+        9,
+        17,
+        15,
+        7
+      ],
+      "task_fingerprint": "17703cffca05398096b16dcf569d03ab2a25ab283a02ea2322accd614887a0aa",
+      "task_id": "s4c-17703cffca05398096b16dcf",
+      "witness": [
+        "SC2",
+        "SH1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "AC1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "SH1",
+          "AC1"
+        ],
+        [
+          "SH1",
+          "AC1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        4,
+        4,
+        17,
+        3,
+        2
+      ],
+      "states": [
+        [
+          4,
+          4,
+          17,
+          3,
+          2
+        ],
+        [
+          5,
+          4,
+          17,
+          3,
+          2
+        ],
+        [
+          6,
+          4,
+          17,
+          3,
+          2
+        ],
+        [
+          13,
+          17,
+          0,
+          11,
+          2
+        ]
+      ],
+      "target": [
+        13,
+        17,
+        0,
+        11,
+        2
+      ],
+      "task_fingerprint": "1797dfce2b6c2fc9d382ba13027002810fb1a79b47bf8706f3903478f7a3b963",
+      "task_id": "s4c-1797dfce2b6c2fc9d382ba13",
+      "witness": [
+        "AC1",
+        "AC1",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "REV",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        20,
+        11,
+        15,
+        11,
+        12
+      ],
+      "states": [
+        [
+          20,
+          11,
+          15,
+          11,
+          12
+        ],
+        [
+          20,
+          12,
+          15,
+          11,
+          12
+        ],
+        [
+          12,
+          11,
+          15,
+          12,
+          20
+        ],
+        [
+          12,
+          12,
+          15,
+          12,
+          20
+        ]
+      ],
+      "target": [
+        12,
+        12,
+        15,
+        12,
+        20
+      ],
+      "task_fingerprint": "179b93035a78ee2c289daed80c8a78336e9102ad6a9d2178455d02206937e0a7",
+      "task_id": "s4c-179b93035a78ee2c289daed8",
+      "witness": [
+        "AX1",
+        "REV",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "AX1",
+          "AX1"
+        ],
+        [
+          "AX1",
+          "AC1",
+          "AX1"
+        ],
+        [
+          "AX1",
+          "AX1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        17,
+        18,
+        7,
+        26,
+        15
+      ],
+      "states": [
+        [
+          17,
+          18,
+          7,
+          26,
+          15
+        ],
+        [
+          17,
+          19,
+          7,
+          26,
+          15
+        ],
+        [
+          17,
+          20,
+          7,
+          26,
+          15
+        ],
+        [
+          18,
+          20,
+          7,
+          26,
+          15
+        ]
+      ],
+      "target": [
+        18,
+        20,
+        7,
+        26,
+        15
+      ],
+      "task_fingerprint": "1847bfd2a6d4b790accb5cb320ae68234fdf8422730aa1d73229084c956f5365",
+      "task_id": "s4c-1847bfd2a6d4b790accb5cb3",
+      "witness": [
+        "AX1",
+        "AX1",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SH1",
+          "SH1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        0,
+        16,
+        14,
+        3,
+        7
+      ],
+      "states": [
+        [
+          0,
+          16,
+          14,
+          3,
+          7
+        ],
+        [
+          7,
+          3,
+          14,
+          16,
+          0
+        ],
+        [
+          17,
+          10,
+          16,
+          16,
+          0
+        ],
+        [
+          13,
+          21,
+          18,
+          16,
+          0
+        ]
+      ],
+      "target": [
+        13,
+        21,
+        18,
+        16,
+        0
+      ],
+      "task_fingerprint": "186e288912d1f55a3509e9d2167045a3328d6422c9ecdfcbfff702ce5a1a6d46",
+      "task_id": "s4c-186e288912d1f55a3509e9d2",
+      "witness": [
+        "REV",
+        "SH1",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "AC1",
+          "SC2"
+        ],
+        [
+          "AC1",
+          "SC2",
+          "AC1"
+        ],
+        [
+          "SC2",
+          "AC1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        1,
+        2,
+        10,
+        25,
+        17
+      ],
+      "states": [
+        [
+          1,
+          2,
+          10,
+          25,
+          17
+        ],
+        [
+          2,
+          2,
+          10,
+          25,
+          17
+        ],
+        [
+          3,
+          2,
+          10,
+          25,
+          17
+        ],
+        [
+          3,
+          4,
+          11,
+          26,
+          11
+        ]
+      ],
+      "target": [
+        3,
+        4,
+        11,
+        26,
+        11
+      ],
+      "task_fingerprint": "19e1a983741ba3e76cf3a42c9c121af4eda480382d3bea3678515cf64a5a393e",
+      "task_id": "s4c-19e1a983741ba3e76cf3a42c",
+      "witness": [
+        "AC1",
+        "AC1",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        9,
+        12,
+        27,
+        15,
+        6
+      ],
+      "states": [
+        [
+          9,
+          12,
+          27,
+          15,
+          6
+        ],
+        [
+          6,
+          15,
+          27,
+          12,
+          9
+        ],
+        [
+          6,
+          1,
+          21,
+          9,
+          28
+        ],
+        [
+          6,
+          2,
+          26,
+          14,
+          13
+        ]
+      ],
+      "target": [
+        6,
+        2,
+        26,
+        14,
+        13
+      ],
+      "task_fingerprint": "1af1718ff6004d84dd6323b1b695988f300ddc4d27c8684cd6e44e0c81b39b31",
+      "task_id": "s4c-1af1718ff6004d84dd6323b1",
+      "witness": [
+        "REV",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        13,
+        8,
+        3,
+        16,
+        15
+      ],
+      "states": [
+        [
+          13,
+          8,
+          3,
+          16,
+          15
+        ],
+        [
+          13,
+          16,
+          12,
+          12,
+          8
+        ],
+        [
+          13,
+          3,
+          19,
+          9,
+          12
+        ],
+        [
+          13,
+          6,
+          18,
+          14,
+          18
+        ]
+      ],
+      "target": [
+        13,
+        6,
+        18,
+        14,
+        18
+      ],
+      "task_fingerprint": "20dfca8a4da5dc6d4b3d241e49faa1dae00ae3493fcf4768ee8b59a43c421b15",
+      "task_id": "s4c-20dfca8a4da5dc6d4b3d241e",
+      "witness": [
+        "SC2",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 2,
+      "correct_programs": [
+        [
+          "REV",
+          "AC1",
+          "AX1"
+        ],
+        [
+          "REV",
+          "AX1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 2,
+      "split": "dev_A",
+      "start": [
+        4,
+        6,
+        12,
+        1,
+        9
+      ],
+      "states": [
+        [
+          4,
+          6,
+          12,
+          1,
+          9
+        ],
+        [
+          9,
+          1,
+          12,
+          6,
+          4
+        ],
+        [
+          9,
+          2,
+          12,
+          6,
+          4
+        ],
+        [
+          10,
+          2,
+          12,
+          6,
+          4
+        ]
+      ],
+      "target": [
+        10,
+        2,
+        12,
+        6,
+        4
+      ],
+      "task_fingerprint": "217743ebd463d84c5ac4ac60176a67daaceaa958dd8e18bc72eb70bc921eb547",
+      "task_id": "s4c-217743ebd463d84c5ac4ac60",
+      "witness": [
+        "REV",
+        "AX1",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 2,
+      "correct_programs": [
+        [
+          "AX1",
+          "AX1",
+          "SC2"
+        ],
+        [
+          "AX1",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 2,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 13,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 2,
+      "split": "dev_A",
+      "start": [
+        9,
+        0,
+        0
+      ],
+      "states": [
+        [
+          9,
+          0,
+          0
+        ],
+        [
+          9,
+          1,
+          0
+        ],
+        [
+          9,
+          2,
+          0
+        ],
+        [
+          9,
+          4,
+          0
+        ]
+      ],
+      "target": [
+        9,
+        4,
+        0
+      ],
+      "task_fingerprint": "2347a70b1fab6c919ba3062a957da7a90af20f37a0596f37e3ec22e5f3d3225d",
+      "task_id": "s4c-2347a70b1fab6c919ba3062a",
+      "witness": [
+        "AX1",
+        "AX1",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "AX1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        15,
+        17,
+        8,
+        6,
+        9
+      ],
+      "states": [
+        [
+          15,
+          17,
+          8,
+          6,
+          9
+        ],
+        [
+          9,
+          6,
+          8,
+          17,
+          15
+        ],
+        [
+          9,
+          7,
+          8,
+          17,
+          15
+        ],
+        [
+          15,
+          17,
+          8,
+          7,
+          9
+        ]
+      ],
+      "target": [
+        15,
+        17,
+        8,
+        7,
+        9
+      ],
+      "task_fingerprint": "243bf78edc712ace3d7808b293de63d080c3ed65bc315de497176710cd04a78c",
+      "task_id": "s4c-243bf78edc712ace3d7808b2",
+      "witness": [
+        "REV",
+        "AX1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "SH1",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 5,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        3,
+        1,
+        4,
+        2,
+        3
+      ],
+      "states": [
+        [
+          3,
+          1,
+          4,
+          2,
+          3
+        ],
+        [
+          3,
+          2,
+          3,
+          4,
+          3
+        ],
+        [
+          0,
+          2,
+          3,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          3,
+          1,
+          3
+        ]
+      ],
+      "target": [
+        0,
+        3,
+        3,
+        1,
+        3
+      ],
+      "task_fingerprint": "26a33ff8742c9795a6d6916afbae8e3d14d46c268fd7b271964c7249febdaa32",
+      "task_id": "s4c-26a33ff8742c9795a6d6916a",
+      "witness": [
+        "SH1",
+        "SH1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "REV",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        8,
+        9,
+        12,
+        13,
+        22
+      ],
+      "states": [
+        [
+          8,
+          9,
+          12,
+          13,
+          22
+        ],
+        [
+          8,
+          10,
+          12,
+          13,
+          22
+        ],
+        [
+          22,
+          13,
+          12,
+          10,
+          8
+        ],
+        [
+          22,
+          26,
+          19,
+          22,
+          12
+        ]
+      ],
+      "target": [
+        22,
+        26,
+        19,
+        22,
+        12
+      ],
+      "task_fingerprint": "274c5df6ed5bdc79787f1098256340ccc127cccd5cbad0075226006218431174",
+      "task_id": "s4c-274c5df6ed5bdc79787f1098",
+      "witness": [
+        "AX1",
+        "REV",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "REV",
+          "SH1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        5,
+        18,
+        27,
+        10,
+        10
+      ],
+      "states": [
+        [
+          5,
+          18,
+          27,
+          10,
+          10
+        ],
+        [
+          5,
+          7,
+          21,
+          22,
+          15
+        ],
+        [
+          15,
+          22,
+          21,
+          7,
+          5
+        ],
+        [
+          12,
+          18,
+          14,
+          27,
+          5
+        ]
+      ],
+      "target": [
+        12,
+        18,
+        14,
+        27,
+        5
+      ],
+      "task_fingerprint": "287d0d8a9e21c24d9e3619679115320d3b3aa4a3f44ca6bff4393f9a73172fd3",
+      "task_id": "s4c-287d0d8a9e21c24d9e361967",
+      "witness": [
+        "SC2",
+        "REV",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "REV",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        13,
+        16,
+        17,
+        13,
+        14
+      ],
+      "states": [
+        [
+          13,
+          16,
+          17,
+          13,
+          14
+        ],
+        [
+          4,
+          7,
+          2,
+          0,
+          14
+        ],
+        [
+          14,
+          0,
+          2,
+          7,
+          4
+        ],
+        [
+          14,
+          0,
+          8,
+          10,
+          18
+        ]
+      ],
+      "target": [
+        14,
+        0,
+        8,
+        10,
+        18
+      ],
+      "task_fingerprint": "28c6148ee9a3e42c01804a5b5f2802134b77019970e33b32680d9452329640d4",
+      "task_id": "s4c-28c6148ee9a3e42c01804a5b",
+      "witness": [
+        "SH1",
+        "REV",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "REV",
+          "AX1"
+        ]
+      ],
+      "degree": 3,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 13,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        8,
+        0,
+        9,
+        12
+      ],
+      "states": [
+        [
+          8,
+          0,
+          9,
+          12
+        ],
+        [
+          8,
+          0,
+          10,
+          5
+        ],
+        [
+          5,
+          10,
+          0,
+          8
+        ],
+        [
+          5,
+          11,
+          0,
+          8
+        ]
+      ],
+      "target": [
+        5,
+        11,
+        0,
+        8
+      ],
+      "task_fingerprint": "29c7b787cbfb762574ce585667bdeda6039cb0366ce53490eb2bc527a0fdba4a",
+      "task_id": "s4c-29c7b787cbfb762574ce5856",
+      "witness": [
+        "SC2",
+        "REV",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 2,
+      "correct_programs": [
+        [
+          "REV",
+          "AC1",
+          "AX1"
+        ],
+        [
+          "REV",
+          "AX1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 2,
+      "split": "dev_A",
+      "start": [
+        14,
+        7,
+        28,
+        9,
+        7
+      ],
+      "states": [
+        [
+          14,
+          7,
+          28,
+          9,
+          7
+        ],
+        [
+          7,
+          9,
+          28,
+          7,
+          14
+        ],
+        [
+          8,
+          9,
+          28,
+          7,
+          14
+        ],
+        [
+          8,
+          10,
+          28,
+          7,
+          14
+        ]
+      ],
+      "target": [
+        8,
+        10,
+        28,
+        7,
+        14
+      ],
+      "task_fingerprint": "2dc120ed7d49dde1b6f5a1033eb1dc9b749b4199c80f0f0b5553d438ae0921fc",
+      "task_id": "s4c-2dc120ed7d49dde1b6f5a103",
+      "witness": [
+        "REV",
+        "AC1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SH1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 7,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        4,
+        1,
+        3,
+        0,
+        5
+      ],
+      "states": [
+        [
+          4,
+          1,
+          3,
+          0,
+          5
+        ],
+        [
+          4,
+          2,
+          5,
+          0,
+          3
+        ],
+        [
+          0,
+          3,
+          2,
+          5,
+          3
+        ],
+        [
+          3,
+          5,
+          2,
+          3,
+          0
+        ]
+      ],
+      "target": [
+        3,
+        5,
+        2,
+        3,
+        0
+      ],
+      "task_fingerprint": "2f853cb41463c539181dc3cd505dfe078750f925cd527ae818399f1f11946ebf",
+      "task_id": "s4c-2f853cb41463c539181dc3cd",
+      "witness": [
+        "SC2",
+        "SH1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        0,
+        0,
+        8,
+        21,
+        4
+      ],
+      "states": [
+        [
+          0,
+          0,
+          8,
+          21,
+          4
+        ],
+        [
+          0,
+          1,
+          8,
+          21,
+          4
+        ],
+        [
+          0,
+          2,
+          9,
+          7,
+          18
+        ],
+        [
+          0,
+          4,
+          13,
+          10,
+          12
+        ]
+      ],
+      "target": [
+        0,
+        4,
+        13,
+        10,
+        12
+      ],
+      "task_fingerprint": "32ced738031e7c27cd61166d0e13168cb262d368c3aa585f54d6d9fd9064d9bb",
+      "task_id": "s4c-32ced738031e7c27cd61166d",
+      "witness": [
+        "AX1",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "AC1",
+          "SC2"
+        ],
+        [
+          "AC1",
+          "SC2",
+          "AC1"
+        ],
+        [
+          "SC2",
+          "AC1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        1,
+        11,
+        21,
+        3,
+        14
+      ],
+      "states": [
+        [
+          1,
+          11,
+          21,
+          3,
+          14
+        ],
+        [
+          1,
+          22,
+          15,
+          1,
+          17
+        ],
+        [
+          2,
+          22,
+          15,
+          1,
+          17
+        ],
+        [
+          3,
+          22,
+          15,
+          1,
+          17
+        ]
+      ],
+      "target": [
+        3,
+        22,
+        15,
+        1,
+        17
+      ],
+      "task_fingerprint": "33885f051a1e836035570fc8d55fbf4307d7c06c054bd46c39e3e0a4e9b16d9b",
+      "task_id": "s4c-33885f051a1e836035570fc8",
+      "witness": [
+        "SC2",
+        "AC1",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 2,
+      "correct_programs": [
+        [
+          "REV",
+          "AC1",
+          "AX1"
+        ],
+        [
+          "REV",
+          "AX1",
+          "AC1"
+        ]
+      ],
+      "degree": 3,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 13,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 2,
+      "split": "dev_A",
+      "start": [
+        12,
+        4,
+        4,
+        2
+      ],
+      "states": [
+        [
+          12,
+          4,
+          4,
+          2
+        ],
+        [
+          2,
+          4,
+          4,
+          12
+        ],
+        [
+          2,
+          5,
+          4,
+          12
+        ],
+        [
+          3,
+          5,
+          4,
+          12
+        ]
+      ],
+      "target": [
+        3,
+        5,
+        4,
+        12
+      ],
+      "task_fingerprint": "33cfbd50e9772656e89c7eed5fcab02d8ff2b1369933cf9ede4fedf14d69cda7",
+      "task_id": "s4c-33cfbd50e9772656e89c7eed",
+      "witness": [
+        "REV",
+        "AX1",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SH1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        13,
+        3,
+        16,
+        18,
+        9
+      ],
+      "states": [
+        [
+          13,
+          3,
+          16,
+          18,
+          9
+        ],
+        [
+          13,
+          6,
+          18,
+          6,
+          6
+        ],
+        [
+          3,
+          15,
+          3,
+          7,
+          6
+        ],
+        [
+          6,
+          7,
+          3,
+          15,
+          3
+        ]
+      ],
+      "target": [
+        6,
+        7,
+        3,
+        15,
+        3
+      ],
+      "task_fingerprint": "34c619e64f7ef30b3a3cd804329056fc355121698d139d9288db9f4af07e88a7",
+      "task_id": "s4c-34c619e64f7ef30b3a3cd804",
+      "witness": [
+        "SC2",
+        "SH1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SC2",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        27,
+        22,
+        12,
+        19,
+        0
+      ],
+      "states": [
+        [
+          27,
+          22,
+          12,
+          19,
+          0
+        ],
+        [
+          27,
+          15,
+          19,
+          7,
+          0
+        ],
+        [
+          27,
+          1,
+          18,
+          27,
+          0
+        ],
+        [
+          0,
+          27,
+          18,
+          1,
+          27
+        ]
+      ],
+      "target": [
+        0,
+        27,
+        18,
+        1,
+        27
+      ],
+      "task_fingerprint": "376b5bc0d3c13301230849d400a89446b5f63ce980608892b30d3b1ba15d0fee",
+      "task_id": "s4c-376b5bc0d3c13301230849d4",
+      "witness": [
+        "SC2",
+        "SC2",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 2,
+      "correct_programs": [
+        [
+          "REV",
+          "AC1",
+          "SC2"
+        ],
+        [
+          "REV",
+          "SC2",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 2,
+      "split": "dev_A",
+      "start": [
+        8,
+        7,
+        27,
+        6,
+        22
+      ],
+      "states": [
+        [
+          8,
+          7,
+          27,
+          6,
+          22
+        ],
+        [
+          22,
+          6,
+          27,
+          7,
+          8
+        ],
+        [
+          23,
+          6,
+          27,
+          7,
+          8
+        ],
+        [
+          23,
+          12,
+          21,
+          27,
+          12
+        ]
+      ],
+      "target": [
+        23,
+        12,
+        21,
+        27,
+        12
+      ],
+      "task_fingerprint": "37c7e915200bee77aaf7ed732564dfb6415330faf4758c077ea517b23ca7e3dc",
+      "task_id": "s4c-37c7e915200bee77aaf7ed73",
+      "witness": [
+        "REV",
+        "AC1",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "SH1",
+          "AX1"
+        ]
+      ],
+      "degree": 3,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        15,
+        21,
+        13,
+        3
+      ],
+      "states": [
+        [
+          15,
+          21,
+          13,
+          3
+        ],
+        [
+          6,
+          10,
+          22,
+          3
+        ],
+        [
+          18,
+          17,
+          8,
+          3
+        ],
+        [
+          18,
+          18,
+          8,
+          3
+        ]
+      ],
+      "target": [
+        18,
+        18,
+        8,
+        3
+      ],
+      "task_fingerprint": "3901fbdd12bc5ae0cbf50afec188718ca8759977fafb89444d9b2aff24028eb1",
+      "task_id": "s4c-3901fbdd12bc5ae0cbf50afe",
+      "witness": [
+        "SH1",
+        "SH1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "REV",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        25,
+        17,
+        15,
+        0,
+        17
+      ],
+      "states": [
+        [
+          25,
+          17,
+          15,
+          0,
+          17
+        ],
+        [
+          25,
+          18,
+          15,
+          0,
+          17
+        ],
+        [
+          17,
+          0,
+          15,
+          18,
+          25
+        ],
+        [
+          18,
+          0,
+          15,
+          18,
+          25
+        ]
+      ],
+      "target": [
+        18,
+        0,
+        15,
+        18,
+        25
+      ],
+      "task_fingerprint": "3987c0ac6b97c1ff9a970587e3b7f11425c94b427be8cad99e3a64a00dd781fc",
+      "task_id": "s4c-3987c0ac6b97c1ff9a970587",
+      "witness": [
+        "AX1",
+        "REV",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "AX1",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        8,
+        7,
+        20,
+        19,
+        6
+      ],
+      "states": [
+        [
+          8,
+          7,
+          20,
+          19,
+          6
+        ],
+        [
+          8,
+          8,
+          20,
+          19,
+          6
+        ],
+        [
+          8,
+          9,
+          20,
+          19,
+          6
+        ],
+        [
+          8,
+          10,
+          20,
+          19,
+          6
+        ]
+      ],
+      "target": [
+        8,
+        10,
+        20,
+        19,
+        6
+      ],
+      "task_fingerprint": "3c7cc96ffb76a241432bb419aafdbeeeb23c170095bc82840b6d50cd36d63ad8",
+      "task_id": "s4c-3c7cc96ffb76a241432bb419",
+      "witness": [
+        "AX1",
+        "AX1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "REV",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        6,
+        6,
+        2,
+        9,
+        5
+      ],
+      "states": [
+        [
+          6,
+          6,
+          2,
+          9,
+          5
+        ],
+        [
+          6,
+          7,
+          2,
+          9,
+          5
+        ],
+        [
+          5,
+          9,
+          2,
+          7,
+          6
+        ],
+        [
+          5,
+          18,
+          8,
+          18,
+          1
+        ]
+      ],
+      "target": [
+        5,
+        18,
+        8,
+        18,
+        1
+      ],
+      "task_fingerprint": "3cd1c5662e89711ee1d854a5d222face1bd9ce405e2b0609557e0014c05012ae",
+      "task_id": "s4c-3cd1c5662e89711ee1d854a5",
+      "witness": [
+        "AX1",
+        "REV",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "REV",
+          "SC2"
+        ]
+      ],
+      "degree": 3,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        17,
+        8,
+        1,
+        14
+      ],
+      "states": [
+        [
+          17,
+          8,
+          1,
+          14
+        ],
+        [
+          2,
+          14,
+          5,
+          14
+        ],
+        [
+          14,
+          5,
+          14,
+          2
+        ],
+        [
+          14,
+          10,
+          18,
+          16
+        ]
+      ],
+      "target": [
+        14,
+        10,
+        18,
+        16
+      ],
+      "task_fingerprint": "3cd82dff86708e741ff28e6304eaf6babc6c03efa284b977c3f7a97fb3667e07",
+      "task_id": "s4c-3cd82dff86708e741ff28e63",
+      "witness": [
+        "SH1",
+        "REV",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "SC2",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        17,
+        17,
+        16,
+        10,
+        15
+      ],
+      "states": [
+        [
+          17,
+          17,
+          16,
+          10,
+          15
+        ],
+        [
+          6,
+          1,
+          21,
+          1,
+          15
+        ],
+        [
+          6,
+          2,
+          15,
+          8,
+          10
+        ],
+        [
+          10,
+          8,
+          15,
+          2,
+          6
+        ]
+      ],
+      "target": [
+        10,
+        8,
+        15,
+        2,
+        6
+      ],
+      "task_fingerprint": "3d8d9da65fda65104c14cfcace9a3178a088273929c7d6f1edf175cf430dc55f",
+      "task_id": "s4c-3d8d9da65fda65104c14cfca",
+      "witness": [
+        "SH1",
+        "SC2",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "AX1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        14,
+        17,
+        22,
+        3,
+        16
+      ],
+      "states": [
+        [
+          14,
+          17,
+          22,
+          3,
+          16
+        ],
+        [
+          16,
+          3,
+          22,
+          17,
+          14
+        ],
+        [
+          16,
+          4,
+          22,
+          17,
+          14
+        ],
+        [
+          14,
+          17,
+          22,
+          4,
+          16
+        ]
+      ],
+      "target": [
+        14,
+        17,
+        22,
+        4,
+        16
+      ],
+      "task_fingerprint": "3fc0a78d82dc4236dfc184e735f8d2713ebd72b0003ce33b9fdbb9a269798d65",
+      "task_id": "s4c-3fc0a78d82dc4236dfc184e7",
+      "witness": [
+        "REV",
+        "AX1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "SC2",
+          "SC2"
+        ],
+        [
+          "SC2",
+          "AC1",
+          "SC2"
+        ],
+        [
+          "SC2",
+          "SC2",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        15,
+        4,
+        6,
+        14,
+        19
+      ],
+      "states": [
+        [
+          15,
+          4,
+          6,
+          14,
+          19
+        ],
+        [
+          15,
+          8,
+          1,
+          20,
+          5
+        ],
+        [
+          15,
+          16,
+          4,
+          22,
+          11
+        ],
+        [
+          16,
+          16,
+          4,
+          22,
+          11
+        ]
+      ],
+      "target": [
+        16,
+        16,
+        4,
+        22,
+        11
+      ],
+      "task_fingerprint": "44bcc415448fa0500e688bd9bfcb9d36fa5b6231cda9ee7d9cbd5d65d0da4bb3",
+      "task_id": "s4c-44bcc415448fa0500e688bd9",
+      "witness": [
+        "SC2",
+        "SC2",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SH1",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 19,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        4,
+        9,
+        7,
+        12,
+        11
+      ],
+      "states": [
+        [
+          4,
+          9,
+          7,
+          12,
+          11
+        ],
+        [
+          4,
+          18,
+          9,
+          1,
+          5
+        ],
+        [
+          18,
+          2,
+          4,
+          2,
+          5
+        ],
+        [
+          18,
+          4,
+          16,
+          16,
+          4
+        ]
+      ],
+      "target": [
+        18,
+        4,
+        16,
+        16,
+        4
+      ],
+      "task_fingerprint": "468b8ac50f053fd8397b4342b55d5d492ae3f4e11ceaea1e9b535bff10b6a32a",
+      "task_id": "s4c-468b8ac50f053fd8397b4342",
+      "witness": [
+        "SC2",
+        "SH1",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "AX1",
+          "SC2",
+          "SC2"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 13,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        0,
+        11,
+        8,
+        0,
+        6
+      ],
+      "states": [
+        [
+          0,
+          11,
+          8,
+          0,
+          6
+        ],
+        [
+          0,
+          12,
+          8,
+          0,
+          6
+        ],
+        [
+          0,
+          11,
+          6,
+          0,
+          5
+        ],
+        [
+          0,
+          9,
+          11,
+          0,
+          2
+        ]
+      ],
+      "target": [
+        0,
+        9,
+        11,
+        0,
+        2
+      ],
+      "task_fingerprint": "477768eda190a2217e9befa9f778531f4d322f5f344f96a538ba15259b7bc634",
+      "task_id": "s4c-477768eda190a2217e9befa9",
+      "witness": [
+        "AX1",
+        "SC2",
+        "SC2"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "AX1",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 23,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        10,
+        16,
+        5,
+        20,
+        22
+      ],
+      "states": [
+        [
+          10,
+          16,
+          5,
+          20,
+          22
+        ],
+        [
+          4,
+          13,
+          13,
+          16,
+          22
+        ],
+        [
+          4,
+          14,
+          13,
+          16,
+          22
+        ],
+        [
+          22,
+          16,
+          13,
+          14,
+          4
+        ]
+      ],
+      "target": [
+        22,
+        16,
+        13,
+        14,
+        4
+      ],
+      "task_fingerprint": "493c1713a16a9ce6082aea35668c8d866a7e8f38236bfed6f4b3bd5f4049986f",
+      "task_id": "s4c-493c1713a16a9ce6082aea35",
+      "witness": [
+        "SH1",
+        "AX1",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "REV",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        28,
+        15,
+        24,
+        25,
+        4
+      ],
+      "states": [
+        [
+          28,
+          15,
+          24,
+          25,
+          4
+        ],
+        [
+          9,
+          9,
+          7,
+          12,
+          4
+        ],
+        [
+          4,
+          12,
+          7,
+          9,
+          9
+        ],
+        [
+          4,
+          13,
+          7,
+          9,
+          9
+        ]
+      ],
+      "target": [
+        4,
+        13,
+        7,
+        9,
+        9
+      ],
+      "task_fingerprint": "4b298d5a1a423642b46cbe14a5d90576d1aa6459d54ae3e7e5478caad478edc1",
+      "task_id": "s4c-4b298d5a1a423642b46cbe14",
+      "witness": [
+        "SH1",
+        "REV",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "REV",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        4,
+        15,
+        10,
+        11,
+        10
+      ],
+      "states": [
+        [
+          4,
+          15,
+          10,
+          11,
+          10
+        ],
+        [
+          21,
+          21,
+          16,
+          22,
+          10
+        ],
+        [
+          10,
+          22,
+          16,
+          21,
+          21
+        ],
+        [
+          11,
+          22,
+          16,
+          21,
+          21
+        ]
+      ],
+      "target": [
+        11,
+        22,
+        16,
+        21,
+        21
+      ],
+      "task_fingerprint": "4bec7cc1b46eda1c7f6ca90a5669bcd80a8b725a3336bd014f19b5377d2936a6",
+      "task_id": "s4c-4bec7cc1b46eda1c7f6ca90a",
+      "witness": [
+        "SH1",
+        "REV",
+        "AC1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SC2",
+          "REV"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        12,
+        25,
+        21,
+        23,
+        14
+      ],
+      "states": [
+        [
+          12,
+          25,
+          21,
+          23,
+          14
+        ],
+        [
+          14,
+          23,
+          21,
+          25,
+          12
+        ],
+        [
+          14,
+          17,
+          26,
+          26,
+          18
+        ],
+        [
+          18,
+          26,
+          26,
+          17,
+          14
+        ]
+      ],
+      "target": [
+        18,
+        26,
+        26,
+        17,
+        14
+      ],
+      "task_fingerprint": "4ca8063fe70f93b3bdf6119ecd370ada6be37bb99dcb5ca216e292fc5a1c753b",
+      "task_id": "s4c-4ca8063fe70f93b3bdf6119e",
+      "witness": [
+        "REV",
+        "SC2",
+        "REV"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "AX1",
+          "AX1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        15,
+        3,
+        8,
+        0,
+        10
+      ],
+      "states": [
+        [
+          15,
+          3,
+          8,
+          0,
+          10
+        ],
+        [
+          10,
+          0,
+          8,
+          3,
+          15
+        ],
+        [
+          10,
+          1,
+          8,
+          3,
+          15
+        ],
+        [
+          10,
+          2,
+          8,
+          3,
+          15
+        ]
+      ],
+      "target": [
+        10,
+        2,
+        8,
+        3,
+        15
+      ],
+      "task_fingerprint": "4cb9a83f3bdab89c234ea238328dcb09a5b10441d6af13fa2735359387d2dd22",
+      "task_id": "s4c-4cb9a83f3bdab89c234ea238",
+      "witness": [
+        "REV",
+        "AX1",
+        "AX1"
+      ]
+    },
+    {
+      "correct_count": 3,
+      "correct_programs": [
+        [
+          "AC1",
+          "SC2",
+          "SH1"
+        ],
+        [
+          "SC2",
+          "AC1",
+          "SH1"
+        ],
+        [
+          "SC2",
+          "SH1",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 3,
+      "split": "dev_A",
+      "start": [
+        16,
+        18,
+        17,
+        8,
+        25
+      ],
+      "states": [
+        [
+          16,
+          18,
+          17,
+          8,
+          25
+        ],
+        [
+          16,
+          7,
+          10,
+          6,
+          23
+        ],
+        [
+          17,
+          7,
+          10,
+          6,
+          23
+        ],
+        [
+          5,
+          21,
+          21,
+          11,
+          23
+        ]
+      ],
+      "target": [
+        5,
+        21,
+        21,
+        11,
+        23
+      ],
+      "task_fingerprint": "4d62061de462d2849d81c75bc42a1ca03a70eb82c99b3788b357310bb3430fab",
+      "task_id": "s4c-4d62061de462d2849d81c75b",
+      "witness": [
+        "SC2",
+        "AC1",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "REV",
+          "SC2",
+          "SH1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        28,
+        4,
+        11,
+        8,
+        1
+      ],
+      "states": [
+        [
+          28,
+          4,
+          11,
+          8,
+          1
+        ],
+        [
+          1,
+          8,
+          11,
+          4,
+          28
+        ],
+        [
+          1,
+          16,
+          15,
+          3,
+          13
+        ],
+        [
+          19,
+          20,
+          15,
+          26,
+          13
+        ]
+      ],
+      "target": [
+        19,
+        20,
+        15,
+        26,
+        13
+      ],
+      "task_fingerprint": "4ded1c8dc84e29e69633e0c1a3b95c09d02ec7cb774b7a4eb4073bfa4f1d76ee",
+      "task_id": "s4c-4ded1c8dc84e29e69633e0c1",
+      "witness": [
+        "REV",
+        "SC2",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SC2",
+          "SH1",
+          "SH1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        17,
+        16,
+        12,
+        0,
+        12
+      ],
+      "states": [
+        [
+          17,
+          16,
+          12,
+          0,
+          12
+        ],
+        [
+          17,
+          3,
+          19,
+          0,
+          18
+        ],
+        [
+          28,
+          26,
+          11,
+          14,
+          18
+        ],
+        [
+          10,
+          17,
+          16,
+          28,
+          18
+        ]
+      ],
+      "target": [
+        10,
+        17,
+        16,
+        28,
+        18
+      ],
+      "task_fingerprint": "510d5ad6931804c7dfa265184f95911368f6dd3dc01b72e601d23363c9ca0660",
+      "task_id": "s4c-510d5ad6931804c7dfa26518",
+      "witness": [
+        "SC2",
+        "SH1",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 1,
+      "correct_programs": [
+        [
+          "SH1",
+          "SH1",
+          "SH1"
+        ]
+      ],
+      "degree": 2,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 1,
+      "split": "dev_A",
+      "start": [
+        27,
+        1,
+        17
+      ],
+      "states": [
+        [
+          27,
+          1,
+          17
+        ],
+        [
+          16,
+          6,
+          17
+        ],
+        [
+          10,
+          11,
+          17
+        ],
+        [
+          9,
+          16,
+          17
+        ]
+      ],
+      "target": [
+        9,
+        16,
+        17
+      ],
+      "task_fingerprint": "528b56c2af28a1c4023a3ebadf2c6be98c8518e2929b9c0f2a793e5e57f9edcc",
+      "task_id": "s4c-528b56c2af28a1c4023a3eba",
+      "witness": [
+        "SH1",
+        "SH1",
+        "SH1"
+      ]
+    },
+    {
+      "correct_count": 2,
+      "correct_programs": [
+        [
+          "REV",
+          "AC1",
+          "SC2"
+        ],
+        [
+          "REV",
+          "SC2",
+          "AC1"
+        ]
+      ],
+      "degree": 4,
+      "depth": 3,
+      "family": "A",
+      "heldout_motifs": [
+        [
+          "AX1",
+          "SH1"
+        ],
+        [
+          "AC1",
+          "REV"
+        ],
+        [
+          "SC2",
+          "AX1"
+        ]
+      ],
+      "p": 29,
+      "schema": "stage4.composition.v5.task.v1",
+      "shortest_depth": 3,
+      "shortest_solution_count": 2,
+      "split": "dev_A",
+      "start": [
+        26,
+        16,
+        28,
+        9,
+        15
+      ],
+      "states": [
+        [
+          26,
+          16,
+          28,
+          9,
+          15
+        ],
+        [
+          15,
+          9,
+          28,
+          16,
+          26
+        ],
+        [
+          16,
+          9,
+          28,
+          16,
+          26
+        ],
+        [
+          16,
+          18,
+          25,
+          12,
+          10
+        ]
+      ],
+      "target": [
+        16,
+        18,
+        25,
+        12,
+        10
+      ],
+      "task_fingerprint": "53472155627723551a3a9f390fcfeb4dd7669ed562fa4eaaee47050618202253",
+      "task_id": "s4c-53472155627723551a3a9f39",
+      "witness": [
+        "REV",
+        "AC1",
+        "SC2"
+      ]
+    }
+  ],
+  "scope": "derived lossless subset of receipt-verified depth3 scores; reference A and evaluation B/D, both policies; original full archives retain original receipt/rankings verification",
+  "source_scores_sha256": "c143f045188f23c7d60d0f80b8dac0f27c22086ffe81edf620c6fe2321ea4bab",
+  "sources": {
+    "q06_atomic_control_seed0": {
+      "binding": {
+        "adapter_hash": "e52395f797f6b9753bfd1b6b07f294b1dee3f9adbf03410023351c3819e26e1a",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "atomic_control",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "e52395f797f6b9753bfd1b6b07f294b1dee3f9adbf03410023351c3819e26e1a",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_atomic_control_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "a2aa7a77b342d0dbf1204523b254736cc1d51f9c92c96e8f4417249c12c9248e"
+    },
+    "q06_atomic_control_seed1": {
+      "binding": {
+        "adapter_hash": "9b920bad61523c64f36add425ce2475fd2e3372609411b8f46e49cca39ef4ee6",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed1/adapter",
+          "analysis_lock": null,
+          "arm": "atomic_control",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "9b920bad61523c64f36add425ce2475fd2e3372609411b8f46e49cca39ef4ee6",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_atomic_control_seed1",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 1,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "8f96df1ba95d01e662536b6b2d16d06a40377e5d39f5c2d4101d5eb12a9924c3"
+    },
+    "q06_atomic_control_seed2": {
+      "binding": {
+        "adapter_hash": "f5d9c58c859209c11f1e9f0cb1851e011ba93cc1a88007a8bd6d4231c5d60d1d",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed2/adapter",
+          "analysis_lock": null,
+          "arm": "atomic_control",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "f5d9c58c859209c11f1e9f0cb1851e011ba93cc1a88007a8bd6d4231c5d60d1d",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_atomic_control_seed2",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 2,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "d207f7100ef7be3ff294d6d61ff66339d07e145d100c612fd398053a84b5d4ba"
+    },
+    "q06_composition_seed0": {
+      "binding": {
+        "adapter_hash": "a7ea007c63bf88bea85144103cf63e387943e3a3aa3c475f25b3db3aa5453857",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "composition",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "a7ea007c63bf88bea85144103cf63e387943e3a3aa3c475f25b3db3aa5453857",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_composition_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "642c644b34d4e1354873b2f4da882d08da9e054079b5da178e5bb97a49d32951"
+    },
+    "q06_composition_seed1": {
+      "binding": {
+        "adapter_hash": "b5cc211abaf5d108afff888b8e02b73f142abf57dae5c1ece2bc6965488ff4e5",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed1/adapter",
+          "analysis_lock": null,
+          "arm": "composition",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "b5cc211abaf5d108afff888b8e02b73f142abf57dae5c1ece2bc6965488ff4e5",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_composition_seed1",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 1,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "0be6746162484e18b3d71e67116670a282b78b11f95dc53f4792899a8f727d5a"
+    },
+    "q06_composition_seed2": {
+      "binding": {
+        "adapter_hash": "912c8031be128a6c8c0ea1ea5184a1e075d6374d95161f217c988397c8f26610",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed2/adapter",
+          "analysis_lock": null,
+          "arm": "composition",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "912c8031be128a6c8c0ea1ea5184a1e075d6374d95161f217c988397c8f26610",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_composition_seed2",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 2,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "5852e6a1347f7f90aa610941e3c092d17d5a6e31d1b1c93ff50ff6450f8e9409"
+    }
+  }
+}

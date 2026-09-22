@@ -1,0 +1,2 @@
+{"step": 1, "task_id": "replay-c5998ba22ca41536a01f35b9", "kind": "PLAN", "operation": "AX1", "p": 13, "target_tokens": 2}
+{"step": 1, "task_id": "replay-c5998ba22ca41536a01f35b9", "kind": "APPLY", "operation": "AX1", "p": 13, "target_tokens": 12}

@@ -8,6 +8,7 @@ from pathlib import Path
 import numpy as np
 
 from .common import ROOT, file_hash, read_jsonl, verify_data, verify_receipt, write_json
+from .research_io import plan_path
 
 ENDPOINTS = ('crossed_joint_accuracy_strict', 'crossed_cell_accuracy', 'crossed_interaction',
              'ordinary_hit1', 'ordinary_hit8', 'ordinary_correct_mass', 'four_target_pair_accuracy',
@@ -39,17 +40,18 @@ def observations(path, panels):
             for key, rows in values.items()}
 
 
-def compare(paths, control, treatment, out):
+def compare(paths, control, treatment, out, plan='v4'):
     if control == treatment:
         raise ValueError('Choose distinct conditions')
-    plan_hash = file_hash(ROOT / 'plans/research_v4.json')
+    plan_hash = file_hash(plan_path(plan))
     groups, common, names, masks, initializations, exposures = defaultdict(dict), set(), {}, {}, defaultdict(set), {}
     dataset_statuses = {}
     for path in map(Path, paths):
         receipt = verify_receipt(path)
         result = json.loads((path / 'panel_metrics.json').read_text())
         binding, cfg = result['binding'], result['binding']['config']
-        if binding != receipt['binding'] or cfg['arm'] not in (control, treatment) or binding['plan_hash'] != plan_hash:
+        if (binding != receipt['binding'] or cfg['arm'] not in (control, treatment) or binding['plan_hash'] != plan_hash
+                or cfg.get('mode', 'full') != 'full'):
             raise ValueError('Wrong comparison arm, result binding or v4 analysis plan')
         dataset = path.parent.parent / 'data' / Path(cfg['data']).name
         if not (dataset / 'manifest.json').is_file():
@@ -124,18 +126,24 @@ def compare(paths, control, treatment, out):
     confirmation = (phase == 'final' and len(groups) == 2 and set(names.values()) == {'mask1', 'mask2'}
         and all(v in ('frozen', 'frozen_new_evaluation') for v in dataset_statuses.values())
         and all(v == [0, 1, 2] for v in seeds_by_mask.values()))
-    write_json(out, {'schema': 'iclr.research.comparison.v4', 'control': control, 'treatment': treatment,
+    verified = bool(exposures) and all(e and e.get('provenance_status') == 'verified' for e in exposures.values())
+    never_seen = verified and all(e.get('recorded_history_excludes_mask') for e in exposures.values())
+    length = verified and all(e.get('depth_history_status') == 'verified' and not e.get('historical_depth4') for e in exposures.values())
+    write_json(out, {'schema': 'iclr.research.comparison.' + plan, 'control': control, 'treatment': treatment,
         'plan_hash': plan_hash, 'endpoints': endpoints, 'distinct_masks': len(groups),
         'dataset_statuses': dataset_statuses,
         'initializations': {d: {'base_hash': base, 'adapter_hash': next(iter(v))} for d, v in initializations.items()},
         'success_rule': {'conditional_pattern': conditional, 'ordinary_solving_pattern': solving,
             'ordinary_hit1_confirmatory_test_open': crossed_test, 'confirmation_scope_complete': confirmation,
-            'supports_joint_conditioning_claim': conditional and confirmation,
-            'supports_task_solving_claim': solving and confirmation,
+            'supports_joint_conditioning_claim': conditional and confirmation and never_seen,
+            'supports_task_solving_claim': solving and confirmation and never_seen,
             'scope': 'fixed sequence: crossed joint then ordinary Hit@1; other intervals descriptive; dev is screening',
             'domain': domain, 'missing_crossed': 'no START x TARGET claim; external DSL reports domain adaptation only'},
         'interval_scope': 'paired panels/task clusters conditional on these checkpoints and masks; seeds averaged first, equal B/D and mask weights',
         'replication_scope': 'continuation seeds are not independent full training replications',
+        'claim_eligibility': {'descriptive_checkpoint_comparison': True, 'never_seen_pairs': never_seen,
+            'length_extrapolation': length, 'historical_recipe': verified,
+            'missing_history': 'unknown is neither demonstrated leakage nor demonstrated clean history'},
         'exposure_ledgers': exposures, 'sources': {str(p): file_hash(Path(p) / 'DONE') for p in paths}})
 
 
@@ -145,8 +153,9 @@ def main():
     parser.add_argument('--control', default='ce')
     parser.add_argument('--treatment', default='ce_cf')
     parser.add_argument('--out', required=True)
+    parser.add_argument('--plan', choices=['v4', 'v5'], default='v4')
     args = parser.parse_args()
-    compare(args.runs, args.control, args.treatment, args.out)
+    compare(args.runs, args.control, args.treatment, args.out, args.plan)
 
 
 if __name__ == '__main__':

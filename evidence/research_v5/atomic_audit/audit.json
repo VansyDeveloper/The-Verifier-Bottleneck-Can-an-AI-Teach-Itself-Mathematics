@@ -1,0 +1,356 @@
+{
+  "coefficient_order": "ascending: constant coefficient first",
+  "examples": 20,
+  "interpretation": "valid canonical labels and repeatable evaluator outcomes do not establish the cause of model errors",
+  "label_mismatches": 0,
+  "parser_or_accuracy_mismatches": 0,
+  "prompt_check": "canonical APPLY prompt reconstructed from saved rows; no evidence here for the original base-training tokenizer or prompts",
+  "sources": {
+    "q06_mask1_ce_cf_entropy_seed0": {
+      "binding": {
+        "adapter_hash": "b25e5aba0573a7a4134caf3a05c47ce9a976b745db6da998a3d49163b3a770f7",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_cf_entropy_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "ce_cf_entropy",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q3_q06_a3/data/mask1",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": null,
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q3_q06_a3/evaluations/q06_mask1_ce_cf_entropy_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8,
+          "training_receipt": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_cf_entropy_seed0"
+        },
+        "data_hash": "a434d5978f69482d87f74991a7a4b48e4900cb5dc2d3dd2daca3c5cdf690616f",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "SC2>REV",
+            "SC2>SC2",
+            "SH1>SC2"
+          ],
+          "recorded_history_excludes_mask": true,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {
+                "3": 512
+              },
+              "domain": "affine_polynomial_v1",
+              "objective": "ce_cf_entropy",
+              "pairs": {
+                "AC1>AC1": 40,
+                "AC1>REV": 44,
+                "AX1>AX1": 80,
+                "AX1>REV": 56,
+                "AX1>SC2": 64,
+                "AX1>SH1": 80,
+                "REV>AC1": 64,
+                "REV>AX1": 36,
+                "REV>SC2": 44,
+                "REV>SH1": 100,
+                "SC2>AX1": 20,
+                "SC2>SH1": 76,
+                "SH1>AX1": 92,
+                "SH1>REV": 152,
+                "SH1>SH1": 76
+              },
+              "stage": "current_continuation"
+            }
+          ]
+        },
+        "initial_adapter_hash": null,
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757",
+        "training_receipt_hash": "7e8d515afacb5a5758cae7988699640dbb78584ae0dbc5b5d6fba0cfe51d2d2a"
+      },
+      "receipt_sha256": "c1041f25bbe62689a778f4cf832e6b21d6e94745fb9e17522620ac429b61e22d"
+    },
+    "q06_mask1_ce_cf_seed0": {
+      "binding": {
+        "adapter_hash": "d7b1ff0777540af2b124cfbd82c48a044ecd985efa3e4433655bdf4daf588ae1",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_cf_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "ce_cf",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q3_q06_a3/data/mask1",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": null,
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q3_q06_a3/evaluations/q06_mask1_ce_cf_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8,
+          "training_receipt": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_cf_seed0"
+        },
+        "data_hash": "a434d5978f69482d87f74991a7a4b48e4900cb5dc2d3dd2daca3c5cdf690616f",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "SC2>REV",
+            "SC2>SC2",
+            "SH1>SC2"
+          ],
+          "recorded_history_excludes_mask": true,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {
+                "3": 512
+              },
+              "domain": "affine_polynomial_v1",
+              "objective": "ce_cf",
+              "pairs": {
+                "AC1>AC1": 40,
+                "AC1>REV": 44,
+                "AX1>AX1": 80,
+                "AX1>REV": 56,
+                "AX1>SC2": 64,
+                "AX1>SH1": 80,
+                "REV>AC1": 64,
+                "REV>AX1": 36,
+                "REV>SC2": 44,
+                "REV>SH1": 100,
+                "SC2>AX1": 20,
+                "SC2>SH1": 76,
+                "SH1>AX1": 92,
+                "SH1>REV": 152,
+                "SH1>SH1": 76
+              },
+              "stage": "current_continuation"
+            }
+          ]
+        },
+        "initial_adapter_hash": null,
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757",
+        "training_receipt_hash": "9dc4202ff20d93e87b6533f41d555430a9694e81dd8705e81dae465e855b2952"
+      },
+      "receipt_sha256": "0c4e29c3063defcb6c66f532f491fb674c13d907911c64bd681d5e20068e6625"
+    },
+    "q06_mask1_ce_entropy_seed0": {
+      "binding": {
+        "adapter_hash": "cb156ac7ee2f761d87fa19935c5599087a3978cc5104a876d821a4df9f934ce7",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_entropy_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "ce_entropy",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q3_q06_a3/data/mask1",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": null,
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q3_q06_a3/evaluations/q06_mask1_ce_entropy_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8,
+          "training_receipt": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_entropy_seed0"
+        },
+        "data_hash": "a434d5978f69482d87f74991a7a4b48e4900cb5dc2d3dd2daca3c5cdf690616f",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "SC2>REV",
+            "SC2>SC2",
+            "SH1>SC2"
+          ],
+          "recorded_history_excludes_mask": true,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {
+                "3": 512
+              },
+              "domain": "affine_polynomial_v1",
+              "objective": "ce_entropy",
+              "pairs": {
+                "AC1>AC1": 40,
+                "AC1>REV": 44,
+                "AX1>AX1": 80,
+                "AX1>REV": 56,
+                "AX1>SC2": 64,
+                "AX1>SH1": 80,
+                "REV>AC1": 64,
+                "REV>AX1": 36,
+                "REV>SC2": 44,
+                "REV>SH1": 100,
+                "SC2>AX1": 20,
+                "SC2>SH1": 76,
+                "SH1>AX1": 92,
+                "SH1>REV": 152,
+                "SH1>SH1": 76
+              },
+              "stage": "current_continuation"
+            }
+          ]
+        },
+        "initial_adapter_hash": null,
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757",
+        "training_receipt_hash": "663741904c42b0e19dc29d5317825a94ce3e0eb6f53f21c17a267f74980429e8"
+      },
+      "receipt_sha256": "a04fe8ba22352e98b60433570bbbfd3f07bc15a432c12ab6bb7d3981ba9168ea"
+    },
+    "q06_mask1_ce_seed0": {
+      "binding": {
+        "adapter_hash": "79d110782cd42a3c34fa1336b5889c96763c4eb3ce69206329fd69a48a51c260",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "ce",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q3_q06_a3/data/mask1",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": null,
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q3_q06_a3/evaluations/q06_mask1_ce_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8,
+          "training_receipt": "outputs/v4_Q3_q06_a3/training/q06_mask1_ce_seed0"
+        },
+        "data_hash": "a434d5978f69482d87f74991a7a4b48e4900cb5dc2d3dd2daca3c5cdf690616f",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "SC2>REV",
+            "SC2>SC2",
+            "SH1>SC2"
+          ],
+          "recorded_history_excludes_mask": true,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {
+                "3": 512
+              },
+              "domain": "affine_polynomial_v1",
+              "objective": "ce",
+              "pairs": {
+                "AC1>AC1": 40,
+                "AC1>REV": 44,
+                "AX1>AX1": 80,
+                "AX1>REV": 56,
+                "AX1>SC2": 64,
+                "AX1>SH1": 80,
+                "REV>AC1": 64,
+                "REV>AX1": 36,
+                "REV>SC2": 44,
+                "REV>SH1": 100,
+                "SC2>AX1": 20,
+                "SC2>SH1": 76,
+                "SH1>AX1": 92,
+                "SH1>REV": 152,
+                "SH1>SH1": 76
+              },
+              "stage": "current_continuation"
+            }
+          ]
+        },
+        "initial_adapter_hash": null,
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757",
+        "training_receipt_hash": "fe1237dc5a8f8e2bf7f40cade14a9888eca28c9cd96c51dfb921a1ffe6842ebf"
+      },
+      "receipt_sha256": "463ba0ee0a7f1a84fc3f48ed106e2821a57d1c0157065cc5261743d90ce4026e"
+    },
+    "q06_mask1_initial": {
+      "binding": {
+        "adapter_hash": null,
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "analysis_lock": null,
+          "arm": "initial",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q3_q06_a3/data/mask1",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q3_q06_a3/evaluations/q06_mask1_initial",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": -1,
+          "solve_per_family": 8
+        },
+        "data_hash": "a434d5978f69482d87f74991a7a4b48e4900cb5dc2d3dd2daca3c5cdf690616f",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "SC2>REV",
+            "SC2>SC2",
+            "SH1>SC2"
+          ],
+          "recorded_history_excludes_mask": true,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "c575625fd255419ea77eed09e538a16fd1359f0115a24f578bb492840200a9f4"
+    }
+  },
+  "token_ids_check": "NOT VERIFIED against original atomic training: its receipt/tokenizer snapshot was not supplied"
+}

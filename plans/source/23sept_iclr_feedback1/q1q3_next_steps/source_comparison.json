@@ -1,0 +1,13 @@
+{
+  "scope": "supplied protocol fragments vs local c37cfe0 snapshot, not current remote branch",
+  "matches": {
+    "plans/research_v4.json": true,
+    "iclr/research_analysis.py": true,
+    "iclr/research_model.py": true,
+    "iclr/research_evaluate.py": true,
+    "iclr/__init__.py": true,
+    "iclr/research_objectives.py": true,
+    "iclr/research_train.py": true,
+    "iclr/common.py": true
+  }
+}

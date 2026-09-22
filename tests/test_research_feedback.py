@@ -33,13 +33,19 @@ def test_rare_reward_is_inconclusive_with_a_bounded_diagnostic_budget(monkeypatc
 
 
 def test_exposure_distinguishes_historical_mask_from_continuation_mask():
-    stage = {'stage': 'historical_sft', **program_exposure([['SC2', 'REV', 'SC2', 'SC2']])}
+    stage = {'stage': 'historical_sft', 'provenance_status': 'verified', **program_exposure([['SC2', 'REV', 'SC2', 'SC2']])}
     new = exposure_ledger({'constraints': {'heldout_motifs': [['SC2', 'REV']]}}, [stage])
     original = exposure_ledger({'constraints': {'heldout_motifs': [['AX1', 'SH1']]}}, [stage])
     assert not new['recorded_history_excludes_mask'] and new['historical_depth4']
     assert original['recorded_history_excludes_mask']
     unknown = exposure_ledger({'constraints': {'heldout_motifs': []}}, [{'pairs': None}])
     assert not unknown['recorded_history_excludes_mask']
+    declared = exposure_ledger({'constraints': {'heldout_motifs': []}}, [{'pairs': {}, 'depths': {}, 'provenance_status': 'declared_only'}])
+    assert declared['provenance_status'] == 'declared_only' and not declared['recorded_history_excludes_mask']
+    assert declared['depth_history_status'] == 'unknown'
+    incomplete_depth = exposure_ledger({'constraints': {'heldout_motifs': []}},
+        [{'pairs': {}, 'depths': {'4': None}, 'provenance_status': 'verified'}])
+    assert incomplete_depth['depth_history_status'] == 'unknown'
 
 
 def test_reward_defaults_to_original_and_rejects_unmatched_mask(tmp_path):

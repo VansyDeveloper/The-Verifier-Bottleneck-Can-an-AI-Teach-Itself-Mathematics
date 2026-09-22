@@ -418,6 +418,8 @@ def import_data(args):
 def export_provenance(root):
     """Include dev decisions, gates and transitive training inputs outside the queue."""
     receipt_links = (('gate', 'receipt', 'gate_receipt_hash'),
+        ('base_training_receipt', 'receipt', 'base_training_receipt_hash'),
+        ('amendment', 'amendment', 'amendment_hash'),
         ('training_receipt', 'receipt', 'training_receipt_hash'),
         ('initial_training_receipt', 'receipt', 'initial_training_receipt_hash'),
         ('atomic_gate', 'receipt', 'atomic_gate_receipt_hash'),
@@ -436,6 +438,10 @@ def export_provenance(root):
         seen.add(path)
         references[str(path)] = {'kind': kind, 'sha256': digest}
         sources.add(path.parent if kind == 'queue' else path)
+        if kind == 'amendment':
+            verify_data(path.parent)
+            sources.add(path.parent)
+            continue
         if kind == 'receipt':
             binding = verify_receipt(path).get('binding', {})
             cfg = binding.get('config', {})
@@ -452,7 +458,7 @@ def export_provenance(root):
                 references[str(data)] = {'kind': 'data', 'sha256': digest}
             continue
         value = json.loads(path.read_text())
-        if kind == 'selection':
+        if kind in ('selection', 'stability_selection'):
             pending.append(('queue', value['source_queue'], value['source_queue_sha256']))
         elif kind == 'lock':
             pending.extend(('queue', p, h) for p, h in value['queues'].items())
@@ -463,6 +469,7 @@ def export_provenance(root):
                     raise ValueError('Referenced dev queue is incomplete')
                 collect(argparse.Namespace(out=str(path.parent)))
             for key, label, hash_key in (('selection_path', 'selection', 'selection_hash'),
+                                         ('stability_selection_path', 'stability_selection', 'stability_selection_hash'),
                                          ('analysis_lock_path', 'lock', 'analysis_lock_sha256')):
                 if value.get(key):
                     pending.append((label, value[key], value[hash_key]))
@@ -510,7 +517,7 @@ def bundle(args):
     collect(argparse.Namespace(out=str(root)))
     files = [(p, 'results/' + p.relative_to(root).as_posix()) for p in sorted(root.rglob('*')) if p.is_file()]
     dependencies = {}
-    if queue.get('schema') in ('iclr.research.queue.v3', 'iclr.research.queue.v4'):
+    if queue.get('schema') in ('iclr.research.queue.v3', 'iclr.research.queue.v4', 'iclr.research.queue.v5'):
         extra, dependencies = export_provenance(root)
         files.extend(extra)
     files = [(p, name) for p, name in files if p.name != '.queue.lock' and

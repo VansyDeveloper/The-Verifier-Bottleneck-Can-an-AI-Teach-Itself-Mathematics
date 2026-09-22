@@ -1,0 +1,39 @@
+{
+  "depth_history_status": "unknown",
+  "historical_depth4": false,
+  "mask_pairs": [
+    "SC2>REV",
+    "SC2>SC2",
+    "SH1>SC2"
+  ],
+  "provenance_status": "declared_only",
+  "recorded_history_excludes_mask": false,
+  "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+  "stages": [
+    {
+      "depths": {},
+      "pairs": {},
+      "provenance_status": "declared_only",
+      "scope": "role declaration only; task-training history not verified",
+      "stage": "declared_atomic_task_initialization"
+    },
+    {
+      "depths": {
+        "1": 2,
+        "3": 4
+      },
+      "domain": "affine_polynomial_v1",
+      "objective": "ce",
+      "pairs": {
+        "AC1>REV": 2,
+        "REV>AC1": 1,
+        "REV>SH1": 1,
+        "SC2>SH1": 2,
+        "SH1>AX1": 1,
+        "SH1>SH1": 1
+      },
+      "provenance_status": "verified",
+      "stage": "current_continuation"
+    }
+  ]
+}

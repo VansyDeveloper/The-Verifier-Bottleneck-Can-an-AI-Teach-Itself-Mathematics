@@ -6,18 +6,19 @@ import json
 import math
 from pathlib import Path
 import random
+import shutil
 import time
 import traceback
 
 import torch
 
 import composition_core as core
-from .common import read_jsonl, write_json
+from .common import file_hash, read_jsonl, tree_hash, verify_receipt, write_json
 from .modeling import load, seed_all, encode, collate, ce_sum
 from .research_data import check_panels, program_exposure
 from .research_dsl import DOMAIN, apply_prompt, plan_prompt, trajectory
 from .research_io import start_run, finish_run, require_gate, exposure_ledger
-from .research_model import deterministic_training, score_task
+from .research_model import deterministic_training, evaluation_context, restore_rng, rng_state, score_task
 from .research_objectives import StateProjection, conditional_loss, entropy, sigreg
 from .reward_control import exact_reward_loss, sampled_reward_loss
 
@@ -27,12 +28,14 @@ OBJECTIVES = ('atomic', 'ce', 'ce_entropy', 'ce_cf', 'ce_cf_entropy',
 DEFAULTS = dict(objective='ce', seed=0, epochs=2, panel_batch=1, prefix_batch=32,
                 learning_rate=1e-4, cf_weight=.1, tau=1., entropy_weight=.01,
                 state_weight=.1, sigreg_weight=.01, state_dimension=32,
-                group_size=32, device='cuda', dtype='bfloat16', reward_steps=32)
+                group_size=32, device='cuda', dtype='bfloat16', reward_steps=32,
+                replay_weight=0., max_steps=None, checkpoint_steps=[], monitor=False)
 
 
 def config_checked(config):
     allowed = DEFAULTS.keys() | {'base', 'adapter', 'model', 'data', 'output', 'expected_base_hash',
-                                'expected_adapter_hash', 'gate', 'atomic_gate', 'initial_training_receipt', 'smoke'}
+                                'expected_adapter_hash', 'gate', 'atomic_gate', 'initial_training_receipt', 'smoke',
+                                'plan', 'amendment', 'base_training_receipt'}
     if set(config) - allowed:
         raise ValueError(f'Unknown v4 training settings: {set(config) - allowed}')
     cfg = {**DEFAULTS, **config}
@@ -43,13 +46,64 @@ def config_checked(config):
             raise ValueError(f'Invalid integer {key}')
     if cfg['seed'] >= 2**32:
         raise ValueError('seed is out of range')
-    for key in ('learning_rate', 'tau', 'cf_weight', 'entropy_weight', 'state_weight', 'sigreg_weight'):
+    for key in ('learning_rate', 'tau', 'cf_weight', 'entropy_weight', 'state_weight', 'sigreg_weight', 'replay_weight'):
         if not math.isfinite(cfg[key]) or cfg[key] < 0 or key in ('learning_rate', 'tau') and cfg[key] == 0:
             raise ValueError(f'Invalid {key}')
+    if cfg['max_steps'] is not None and (type(cfg['max_steps']) is not int or cfg['max_steps'] < 1):
+        raise ValueError('max_steps must be a positive composition update budget')
+    if (not isinstance(cfg['checkpoint_steps'], list) or any(type(s) is not int or s < 0 for s in cfg['checkpoint_steps'])
+            or cfg['checkpoint_steps'] != sorted(set(cfg['checkpoint_steps']))):
+        raise ValueError('checkpoint_steps must be sorted distinct nonnegative integers')
+    if (cfg['monitor'] or cfg['replay_weight']) and not cfg.get('amendment'):
+        raise ValueError('Replay/monitor requires a frozen amendment')
+    if cfg['replay_weight'] and (cfg['panel_batch'] != 1 or cfg['objective'] not in ('ce', 'ce_cf', 'ce_entropy', 'ce_cf_entropy')):
+        raise ValueError('Replay pilot requires one panel and a supervised CE/CF/H objective')
+    if cfg['objective'] == 'atomic' and (cfg['checkpoint_steps'] or cfg['max_steps'] or cfg['monitor']):
+        raise ValueError('Step checkpoints apply to panel continuation, not the legacy atomic warmup')
     return cfg
 
 
-def run(config):
+def checkpoint(out, step, model, tokenizer, head, optimizer, counts, binding, manifest, planned_steps):
+    directory = out / 'checkpoints' / f'step_{step:06d}'
+    if directory.exists():
+        raise FileExistsError(f'Checkpoint is immutable: {directory}')
+    temporary = directory.with_name(directory.name + '.partial')
+    if temporary.exists():
+        shutil.rmtree(temporary)
+    temporary.mkdir(parents=True)
+    state = rng_state()
+    try:
+        model.save_pretrained(temporary / 'adapter'); tokenizer.save_pretrained(temporary / 'adapter')
+        if head is not None:
+            write_json(temporary / 'adapter/state_projection.json', head.config)
+            torch.save(head.state_dict(), temporary / 'adapter/state_projection.pt')
+        torch.save({'optimizer': optimizer.state_dict(), 'rng': state, 'next_step': step,
+                    'counts': dict(counts)}, temporary / 'resume_state.pt')
+        write_json(temporary / 'binding.json', binding)
+        write_json(temporary / 'budget.json', {**counts, 'optimizer_steps': step, 'completed': False,
+                    'planned_steps': planned_steps, 'cursor': {'next_composition_step': step, 'next_replay_step': step}})
+        rows = read_jsonl(out / 'training_stream.jsonl') if (out / 'training_stream.jsonl').exists() else []
+        stage = {'stage': 'current_continuation', 'provenance_status': 'verified',
+                 **program_exposure(r['program'] for r in rows if r['step'] < step)}
+        if binding['config']['replay_weight']:
+            stage['atomic_replay_examples'] = counts['replay_examples']
+            stage['depths'][1] = counts['replay_examples']
+        write_json(temporary / 'exposure.json', exposure_ledger(manifest, [*binding['exposure']['stages'], stage]))
+        finish_run(temporary, binding, payload=True)
+        receipt = json.loads((temporary / 'DONE').read_text())
+        receipt.update(checkpoint_step=step, completed_training=False,
+                       parent_initialization={'base_hash': binding['base_hash'], 'adapter_hash': binding['adapter_hash']},
+                       resume_state_hash=file_hash(temporary / 'resume_state.pt'))
+        write_json(temporary / 'DONE', receipt)
+        temporary.rename(directory)
+    finally:
+        restore_rng(state)
+    return directory
+
+
+def run(config, *, resume_from=None, stop_after=None):
+    config = dict(config)
+    resume_from = resume_from or config.pop('resume_from', None)
     cfg = config_checked(config)
     manifest, binding, done = start_run(cfg, 'train')
     if done:
@@ -62,12 +116,29 @@ def run(config):
     state_path = method in ('state_ce', 'state', 'sigreg', 'state_sigreg')
     if reward or state_path:
         require_gate(cfg.get('gate'), 'reward' if reward else 'state', binding)
+    if resume_from == 'latest':
+        snapshots = sorted((out / 'checkpoints').glob('step_*/DONE'))
+        resume_from = str(snapshots[-1].parent) if snapshots else None
+    resumed = None
+    if resume_from:
+        resumed = verify_receipt(resume_from)
+        if (resumed['binding'] != binding
+                or tree_hash(Path(resume_from) / 'adapter') != resumed['payload_hash']
+                or file_hash(Path(resume_from) / 'resume_state.pt') != resumed['resume_state_hash']):
+            raise ValueError('Resume checkpoint differs from the exact run or its saved state')
+        later = sorted((out / 'checkpoints').glob('step_*/DONE'))
+        if later and later[-1].parent.name > Path(resume_from).name:
+            raise ValueError('Resume the latest immutable checkpoint; use a new run for an independent restart')
+    elif (out / 'training_metrics.jsonl').exists() and (out / 'training_metrics.jsonl').stat().st_size:
+        raise ValueError('Partial run exists: explicitly resume a checkpoint or choose a new output for a restart')
     seed_all(cfg['seed'])
-    model, tokenizer, ids = load(cfg['base'], adapter=cfg.get('adapter'), train=True,
+    model, tokenizer, ids = load(cfg['base'], adapter=str(Path(resume_from) / 'adapter') if resumed else cfg.get('adapter'), train=True,
                                 device=cfg['device'], dtype=cfg['dtype'], lora_dropout=0.)
     deterministic_training(model)
     device = next(model.parameters()).device
     head = StateProjection(model.config.hidden_size, cfg['state_dimension']).to(device) if state_path else None
+    if resumed and head is not None:
+        head.load_state_dict(torch.load(Path(resume_from) / 'adapter/state_projection.pt', weights_only=True, map_location=device))
     parameters = [p for p in model.parameters() if p.requires_grad] + (list(head.parameters()) if head else [])
     optimizer = torch.optim.AdamW(parameters, lr=cfg['learning_rate'], weight_decay=0., fused=device.type == 'cuda')
     panels = check_panels(read_jsonl(data / manifest['training_panels']))
@@ -80,13 +151,53 @@ def run(config):
         groups.extend(order[i:i + cfg['panel_batch']] for i in range(0, len(order), cfg['panel_batch']))
     if reward:
         groups = [groups[i % len(groups)] for i in range(cfg['reward_steps'])]
+    if cfg['max_steps']:
+        if cfg['max_steps'] > len(groups):
+            raise ValueError('max_steps exceeds the declared epoch stream; no implicit repeated training')
+        groups = groups[:cfg['max_steps']]
+    replay = []
+    if cfg['replay_weight']:
+        for row in read_jsonl(Path(cfg['amendment']).parent / 'atomic_replay.jsonl'):
+            replay.append([encode(tokenizer, {'prompt': prompt({**row, 'program': row['witness']}), 'answer': answer,
+                'task_id': row['task_id'], 'kind': kind, 'operation': row['witness'][0], 'p': row['p']})
+                for kind, prompt, answer in [('PLAN', plan_prompt, core.program_answer(row['witness'])),
+                                             ('APPLY', apply_prompt, core.format_state(row['target']))]])
     counts, started = Counter(), time.monotonic()
+    first_step = 0
+    if resumed:
+        state = torch.load(Path(resume_from) / 'resume_state.pt', weights_only=False, map_location='cpu')
+        if state['next_step'] != resumed['checkpoint_step'] or not 0 <= state['next_step'] <= len(groups):
+            raise ValueError('Invalid saved stream cursor')
+        optimizer.load_state_dict(state['optimizer'])
+        first_step, counts = state['next_step'], Counter(state['counts'])
+        restore_rng(state['rng'])
+        for name, keep in [('training_metrics.jsonl', lambda r: r['step'] <= first_step),
+                           ('training_stream.jsonl', lambda r: r['step'] < first_step),
+                           ('replay_stream.jsonl', lambda r: r['step'] <= first_step)]:
+            path = out / name
+            if path.exists():
+                path.write_bytes(core.canonical_jsonl_bytes([r for r in read_jsonl(path) if keep(r)]))
     if device.type == 'cuda':
         torch.cuda.reset_peak_memory_stats()
     probe = panels[0][0]
+    def monitor_step(path, step):
+        if cfg['monitor']:
+            from .research_evaluate import monitor_model
+            monitor_out = out / 'monitors' / f'step_{step:06d}'
+            monitor_model(model, tokenizer, ids, cfg, monitor_out, head)
+            finish_run(monitor_out, {**binding, 'kind': 'monitor', 'checkpoint_step': step,
+                'training_receipt_hash': file_hash(path / 'DONE'), 'payload_hash': tree_hash(path / 'adapter')})
+    def save_step(step):
+        path = checkpoint(out, step, model, tokenizer, head, optimizer, counts, binding, manifest, len(groups))
+        monitor_step(path, step)
     try:
-        with (out / 'training_metrics.jsonl').open('w') as log, (out / 'training_stream.jsonl').open('w') as stream:
-            for step, group in enumerate(groups):
+        if resumed and cfg['monitor'] and not (out / 'monitors' / f'step_{first_step:06d}' / 'DONE').exists():
+            monitor_step(Path(resume_from), first_step)
+        if not resumed and 0 in cfg['checkpoint_steps']:
+            save_step(0)
+        with (out / 'training_metrics.jsonl').open('a' if resumed else 'w') as log, (out / 'training_stream.jsonl').open('a' if resumed else 'w') as stream, (out / 'replay_stream.jsonl').open('a' if resumed else 'w') as replay_log:
+            for step in range(first_step, len(groups)):
+                group = groups[step]
                 optimizer.zero_grad(set_to_none=True)
                 metrics = Counter()
                 for panel in group:
@@ -101,6 +212,9 @@ def run(config):
                         if abs(float(torch.logsumexp(local.detach(), 0))) > 1e-4:
                             raise ValueError('Local policy failed normalization')
                         h = entropy(logq)
+                        metrics['ce_full_vocab'] += float((-full[witness] / row['depth']).detach()) / 4 / len(group)
+                        metrics['ce_local_actions'] += float((-local[witness] / row['depth']).detach()) / 4 / len(group)
+                        metrics['ce_legal_gate'] += float((-(full[witness]-local[witness]) / row['depth']).detach()) / 4 / len(group)
                         if reward:
                             correct = torch.tensor([list(p) in row['correct_programs'] for p in programs], device=device)
                             mass = float(logq[correct].exp().sum().detach())
@@ -120,6 +234,8 @@ def run(config):
                         matrix.append(local[[programs.index(tuple(p)) for p in candidates]])
                         losses.append(loss)
                         metrics['entropy'] += float(h.detach()) / 4
+                        metrics['entropy_raw'] += float(h.detach()) / 4 / len(group)
+                        metrics['entropy_weighted'] += (cfg['entropy_weight'] if method.endswith('entropy') else 0.) * float(h.detach()) / 4 / len(group)
                         if head:
                             true_states = trajectory(row, row['witness'])
                             lookup = {r['prefix']: r['representation'] for r in prefixes}
@@ -132,8 +248,10 @@ def run(config):
                             'sampled_programs': [list(programs[i]) for i in draw.tolist()] if reward and method.startswith('sampled') else None}) + '\n')
                         counts['example_exposures'] += 1
                     loss = torch.stack(losses).mean()
+                    cf = conditional_loss(torch.stack(matrix), kind, cfg['tau'])
+                    metrics['counterfactual_loss_raw'] += float(cf.detach()) / len(group)
+                    metrics['counterfactual_loss_weighted'] += (cfg['cf_weight'] if '_cf' in method else 0.) * float(cf.detach()) / len(group)
                     if '_cf' in method:
-                        cf = conditional_loss(torch.stack(matrix), kind, cfg['tau'])
                         loss = loss + cfg['cf_weight'] * cf
                         metrics['counterfactual_loss'] += float(cf.detach())
                     if head:
@@ -149,12 +267,38 @@ def run(config):
                         metrics['sigreg'] += float(regularizer.detach())
                     (loss / len(group)).backward()
                     metrics['loss'] += float(loss.detach()) / len(group)
+                metrics['composition_loss'] = metrics['loss']
+                if replay:
+                    atomic_losses = []
+                    for example in replay[step % len(replay)]:
+                        loss_atomic = ce_sum(model, collate(tokenizer, [example], device, include_target_types=True)) / example['target_tokens']
+                        atomic_losses.append(loss_atomic)
+                        kind = example['kind'].lower()
+                        counts[f'replay_{kind}_tokens'] += example['target_tokens']
+                        counts['replay_forward_tokens'] += len(example['input_ids'])
+                        counts['total_forward_tokens'] += len(example['input_ids'])
+                        counts['replay_examples'] += 1
+                        counts[f'replay_{kind}_examples'] += 1
+                        metrics[f'replay_{kind}_ce'] = float(loss_atomic.detach())
+                        replay_log.write(json.dumps({'step': step + 1, **{k: example[k] for k in ('task_id', 'kind', 'operation', 'p', 'target_tokens')}}) + '\n')
+                    atomic_loss = torch.stack(atomic_losses).mean() * cfg['replay_weight']
+                    atomic_loss.backward()
+                    metrics['replay_weighted'] = float(atomic_loss.detach())
+                    metrics['loss'] += float(atomic_loss.detach())
                 norm = torch.nn.utils.clip_grad_norm_(parameters, 1., error_if_nonfinite=True)
+                before_update = [p.detach().clone() for p in parameters]
                 optimizer.step()
-                log.write(json.dumps({'step': step + 1, 'gradient_norm': float(norm),
+                update_norm = math.sqrt(sum(float((p.detach().float() - old.float()).square().sum()) for p, old in zip(parameters, before_update)))
+                del before_update
+                log.write(json.dumps({'step': step + 1, 'gradient_norm': float(norm), 'gradient_norm_before_clip': float(norm),
+                                       'clipping_factor': min(1., 1. / (float(norm) + 1e-6)), 'actual_parameter_update_norm': update_norm,
                                        'seconds': time.monotonic() - started, **metrics}, allow_nan=False) + '\n')
-                log.flush(); stream.flush()
+                log.flush(); stream.flush(); replay_log.flush()
                 print(f'{method}: step {step + 1}/{len(groups)} loss={metrics["loss"]:.5f}', flush=True)
+                if step + 1 in cfg['checkpoint_steps'] or stop_after == step + 1:
+                    save_step(step + 1)
+                if stop_after == step + 1 and step + 1 < len(groups):
+                    return  # Deliberate interruption leaves checkpoint receipts, no completed run receipt.
         with torch.no_grad():
             before = score_task(model, tokenizer, ids, probe, cfg['prefix_batch'], head=head)[1].cpu()
         model.save_pretrained(out / 'adapter'); tokenizer.save_pretrained(out / 'adapter')
@@ -166,12 +310,17 @@ def run(config):
             'training_panels': manifest['training_panels'], 'initialization_hash': binding['base_hash'],
             'initial_adapter_hash': binding['adapter_hash'], 'continuation_seed': cfg['seed'],
             'max_training_depth': 3, 'ce': 'mean full-vocabulary operation-token NLL; fixed-length program, no EOS target',
-            'dropout': 0, 'kl_beta': 0, 'clip_norm': 1, 'optimizer': 'AdamW, zero initial moments',
+            'replay_weight': cfg['replay_weight'], 'amendment_hash': binding.get('amendment_hash'),
+            'composition_examples': counts['example_exposures'],
+            'replay_example_fraction': counts['replay_examples'] / (counts['replay_examples'] + counts['example_exposures']),
+            'replay_loss_tokens': counts['replay_plan_tokens'] + counts['replay_apply_tokens'],
+            'replay_objective': 'weight * 0.5 * (mean-token PLAN CE + mean-token APPLY CE), each includes EOS',
+            'dropout': 0, 'kl_beta': 0, 'clip_norm': 1, 'optimizer': 'AdamW; moments restored on resume',
             'peak_memory_bytes': torch.cuda.max_memory_allocated() if device.type == 'cuda' else None,
             'runtime_verifier_calls': 0,
             'verifier_scope': 'objective label lookups in precomputed labels; diagnostic full-set lookups are separate; dataset-generation interpreter work is in the CPU audit',
             'exact_is_diagnostic_oracle': reward})
-        del optimizer, parameters, model, head, loss, full, local, prefixes, logq, matrix, losses
+        del optimizer, parameters, model, head
         if state_path:
             del z, zs, auxiliary, regularizer, lookup
         if device.type == 'cuda':
@@ -184,8 +333,10 @@ def run(config):
         tolerance = .1 if cfg['dtype'] == 'bfloat16' else 1e-4
         torch.testing.assert_close(before, after, atol=tolerance, rtol=0)
         write_json(out / 'reload_check.json', {'maximum_error': float((before - after).abs().max()), 'tolerance': tolerance})
-        stage = {'stage': 'current_continuation', 'domain': manifest.get('domain', 'affine_polynomial_v1'),
+        stage = {'stage': 'current_continuation', 'provenance_status': 'verified', 'domain': manifest.get('domain', 'affine_polynomial_v1'),
             'objective': method, **program_exposure(r['witness'] for group in groups for panel in group for r in panel)}
+        if replay:
+            stage['depths'][1] = counts['replay_examples']
         write_json(out / 'exposure.json', exposure_ledger(manifest, [*binding['exposure']['stages'], stage]))
         finish_run(out, binding, payload=True)
     except Exception:
@@ -230,7 +381,7 @@ def atomic_warmup(cfg, manifest, binding):
         'epochs': cfg['epochs'], 'fields': sorted({r['p'] for r in rows}), 'max_training_depth': 1,
         'wall_seconds': time.monotonic() - started, 'purpose': 'shared atomic PLAN/APPLY preparation, no composition supervision'})
     # Polynomial history describes different operation semantics; retain it explicitly outside this domain's pair ledger.
-    ledger = exposure_ledger(manifest, [{'stage': 'list_dsl_atomic_warmup', 'domain': DOMAIN,
+    ledger = exposure_ledger(manifest, [{'stage': 'list_dsl_atomic_warmup', 'domain': DOMAIN, 'provenance_status': 'verified',
         **program_exposure(r['witness'] for _ in range(cfg['epochs'] * 2) for r in rows)}])
     ledger['previous_domain_exposure'] = binding['exposure']
     write_json(out / 'exposure.json', ledger)
@@ -249,7 +400,10 @@ def atomic_warmup(cfg, manifest, binding):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, required=True)
-    run(json.loads(parser.parse_args().config.read_text()))
+    parser.add_argument('--resume-from', help='Exact checkpoint directory, or latest in the same output')
+    parser.add_argument('--stop-after', type=int, help='Plumbing/interruption check; leaves an incomplete run')
+    args = parser.parse_args()
+    run(json.loads(args.config.read_text()), resume_from=args.resume_from, stop_after=args.stop_after)
 
 
 if __name__ == '__main__':

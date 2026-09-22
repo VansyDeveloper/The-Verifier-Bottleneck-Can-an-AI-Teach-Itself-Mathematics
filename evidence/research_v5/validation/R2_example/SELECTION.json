@@ -1,0 +1,17 @@
+{
+  "files": {
+    "DONE": "af3a66cb6fb34ec690181df3dba857eeb388ae276d175996b418ac0bb74a5333",
+    "binding.json": "473a9318019e743dd79d8efaa552dcb4af3f4e283aba9b4ff6dad001b569c850",
+    "budget.json": "844b64ad2ec20a567eee1b43da83faf41c8893b30673375c20ad5e876199dced",
+    "checkpoints/step_000001/DONE": "64d165cab6b9941669ae1a5c9a4d9d2811bbe70be0ab14fe5f4aa4a6d4297e74",
+    "checkpoints/step_000001/budget.json": "5ec76342a277e0cfa0b3be20096b2f976d24c74b7e762542f05c24820695f769",
+    "exposure.json": "eb364a3081582b0ce7ff552ee64f81504357a9de4f364ee5acfed8c744b2f0e0",
+    "monitors/step_000001/monitor.json": "ddbc0108f89350ba18f9c0af2ca088fe1ecf86c2ec619ee5ed3651d254a8d02b",
+    "reload_check.json": "754b3c872d66d65b9802d2a2daecc25af76b6d671cc9da3def989b23c31ed751",
+    "replay_stream.jsonl": "0add2dd81622ac79cc027408b31b3a0363b9197e5077ae044cc6dab310b052f8",
+    "training_metrics.jsonl": "a43eb07d4a4b5f40f8135008459914bc563225232ea1aedbe5c0a7f521ffbf0f",
+    "training_stream.jsonl": "7d1b0c169747bf47535cecf40c4bc380ebeeef41e8df28083f5050052ba4a881"
+  },
+  "scope": "selected diagnostic files from a completed tiny GPU smoke, not a complete run export; parent receipt lists omitted files; weights and optimizer state omitted",
+  "source_receipt_sha256": "af3a66cb6fb34ec690181df3dba857eeb388ae276d175996b418ac0bb74a5333"
+}

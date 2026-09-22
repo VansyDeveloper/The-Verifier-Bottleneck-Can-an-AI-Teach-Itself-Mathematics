@@ -1,0 +1,21 @@
+{
+  "files": {
+    "iclr/modeling.py": {
+      "archived_sha256": "76fba5cbaaed3eafe819a516fd3d49e8360999d5b85c29e9a85db752f632d28c",
+      "current_sha256": "76fba5cbaaed3eafe819a516fd3d49e8360999d5b85c29e9a85db752f632d28c",
+      "identical": true
+    },
+    "iclr/research_dsl.py": {
+      "archived_sha256": "428b8535b0e858dfd334d58dd4ff8faab49c092c6309060ed8bae86b22be1aba",
+      "current_sha256": "428b8535b0e858dfd334d58dd4ff8faab49c092c6309060ed8bae86b22be1aba",
+      "identical": true
+    },
+    "legacy/composition_core.py": {
+      "archived_sha256": "e62cab096f7a8524092e5343fd037adb6d67ed13fd8c0b6ded9537757cb5a89a",
+      "current_sha256": "e62cab096f7a8524092e5343fd037adb6d67ed13fd8c0b6ded9537757cb5a89a",
+      "identical": true
+    }
+  },
+  "scope": "interpreter, canonical prompts and tokenization validation code unchanged; original base-training token IDs and prompts still unavailable",
+  "source_commit": "c37cfe083787f21af9a9aab0ef1d02c63cf603d3"
+}

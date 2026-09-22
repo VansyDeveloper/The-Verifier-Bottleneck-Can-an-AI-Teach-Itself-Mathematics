@@ -1,0 +1,93 @@
+{
+  "binding": {
+    "adapter_hash": null,
+    "amendment_hash": "a1e5b6167cc386e1763b431354ddc1a2bc11a337c0775dcd68077a529eb495dc",
+    "base_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+    "code_hash": "73a57125b662d7eb70a252d0e674e15203ac04cc27c748f5d1a1e1916b991f82",
+    "config": {
+      "amendment": "/tmp/artem_iclr/outputs/review_23sept/smoke_amendments/mask1/manifest.json",
+      "base": "outputs/research_tiny_base",
+      "cf_weight": 0.1,
+      "checkpoint_steps": [
+        0,
+        1
+      ],
+      "data": "outputs/review_23sept/gpu_release/data/mask1",
+      "device": "cuda",
+      "dtype": "bfloat16",
+      "entropy_weight": 0.01,
+      "epochs": 1,
+      "expected_base_hash": null,
+      "gate": null,
+      "group_size": 32,
+      "learning_rate": 0.0001,
+      "max_steps": 1,
+      "model": "random-tiny",
+      "monitor": true,
+      "objective": "ce",
+      "output": "outputs/review_23sept/gpu_release/training/tiny_mask1_R2_seed0",
+      "panel_batch": 1,
+      "plan": "v5",
+      "prefix_batch": 8,
+      "replay_weight": 0.25,
+      "reward_steps": 1,
+      "seed": 0,
+      "sigreg_weight": 0.01,
+      "state_dimension": 32,
+      "state_weight": 0.1,
+      "tau": 1.0
+    },
+    "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+    "exposure": {
+      "depth_history_status": "unknown",
+      "historical_depth4": false,
+      "mask_pairs": [
+        "SC2>REV",
+        "SC2>SC2",
+        "SH1>SC2"
+      ],
+      "provenance_status": "declared_only",
+      "recorded_history_excludes_mask": false,
+      "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+      "stages": [
+        {
+          "depths": {},
+          "pairs": {},
+          "provenance_status": "declared_only",
+          "scope": "role declaration only; task-training history not verified",
+          "stage": "declared_atomic_task_initialization"
+        }
+      ]
+    },
+    "kind": "train",
+    "plan": "v5",
+    "plan_hash": "68ffe875039d3a9c7597ef4b485b75730bf2ea130db932c6f312a401a81a2914"
+  },
+  "files": {
+    "binding.json": "473a9318019e743dd79d8efaa552dcb4af3f4e283aba9b4ff6dad001b569c850",
+    "budget.json": "844b64ad2ec20a567eee1b43da83faf41c8893b30673375c20ad5e876199dced",
+    "checkpoints/step_000000/DONE": "6d247d7816258529d64ac79113d9fcf3f6af72da997b48d84137881bbc0fb613",
+    "checkpoints/step_000000/binding.json": "473a9318019e743dd79d8efaa552dcb4af3f4e283aba9b4ff6dad001b569c850",
+    "checkpoints/step_000000/budget.json": "86223f31c0227c25a46dc6d6b4d9c6dda0737db08b7b82fc99dfffe3add46abe",
+    "checkpoints/step_000000/exposure.json": "e1c33c136ec5a5af2ca2520c35869c755ea4da0480dc06441b320a560a11f1ea",
+    "checkpoints/step_000001/DONE": "64d165cab6b9941669ae1a5c9a4d9d2811bbe70be0ab14fe5f4aa4a6d4297e74",
+    "checkpoints/step_000001/binding.json": "473a9318019e743dd79d8efaa552dcb4af3f4e283aba9b4ff6dad001b569c850",
+    "checkpoints/step_000001/budget.json": "5ec76342a277e0cfa0b3be20096b2f976d24c74b7e762542f05c24820695f769",
+    "checkpoints/step_000001/exposure.json": "e70558aefb9ece359a16699c068c950169bdcfd26fa0389a1e3de013168d6f76",
+    "environment.json": "6362dc59d5994034943563ab9a338039d1068dae9ed76a5de0d3ea4998785d98",
+    "exposure.json": "eb364a3081582b0ce7ff552ee64f81504357a9de4f364ee5acfed8c744b2f0e0",
+    "monitors/step_000000/DONE": "93eddb8a2cac67b1b2c9c68ece1fe0c682b60f8dfb556ff94ec7238f510fbc90",
+    "monitors/step_000000/atomic_retention.json": "044d1d32c6acbc0ee0a1e15ba30b9b63e82c1e25af8837c48262ce99da48ba5e",
+    "monitors/step_000000/monitor.json": "28d9c8a3983821db77fa81c31e084bcd9acac9a4331194a5bae2fce227e9d18a",
+    "monitors/step_000000/rankings.jsonl": "3eb6bc8fa763ee83eabd024470253ad87990189187ae5b074986798db72dd16c",
+    "monitors/step_000001/DONE": "467e10a888f07168ea38836aaa18ffb741fa547e9e6fcd72ba87d61b74265260",
+    "monitors/step_000001/atomic_retention.json": "044d1d32c6acbc0ee0a1e15ba30b9b63e82c1e25af8837c48262ce99da48ba5e",
+    "monitors/step_000001/monitor.json": "ddbc0108f89350ba18f9c0af2ca088fe1ecf86c2ec619ee5ed3651d254a8d02b",
+    "monitors/step_000001/rankings.jsonl": "199d48e136fc035cad74bf553c72d062faa5f6cbfa6018b857f5e0de83d807e7",
+    "reload_check.json": "754b3c872d66d65b9802d2a2daecc25af76b6d671cc9da3def989b23c31ed751",
+    "replay_stream.jsonl": "0add2dd81622ac79cc027408b31b3a0363b9197e5077ae044cc6dab310b052f8",
+    "training_metrics.jsonl": "a43eb07d4a4b5f40f8135008459914bc563225232ea1aedbe5c0a7f521ffbf0f",
+    "training_stream.jsonl": "7d1b0c169747bf47535cecf40c4bc380ebeeef41e8df28083f5050052ba4a881"
+  },
+  "payload_hash": "6a23e07bf2938a8c9e76f386f21c92ccba05b4e6865e4d392ed66a424cf26485"
+}

@@ -1,0 +1,10 @@
+{
+  "Q1": {
+    "export_manifest_sha256": "ae5cf00359a7b8f18d966a388a6d153dd1491808b89baf2d6c967dab19f0df81",
+    "files_verified": 367
+  },
+  "Q3": {
+    "export_manifest_sha256": "6ec8a9e536eb6136dce21994b6eb82650dddcd41d0fc506e64f01f31fc00ac30",
+    "files_verified": 419
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "binding": {
+    "adapter_hash": null,
+    "amendment_hash": "a1e5b6167cc386e1763b431354ddc1a2bc11a337c0775dcd68077a529eb495dc",
+    "base_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98",
+    "code_hash": "73a57125b662d7eb70a252d0e674e15203ac04cc27c748f5d1a1e1916b991f82",
+    "config": {
+      "amendment": "/tmp/artem_iclr/outputs/review_23sept/smoke_amendments/mask1/manifest.json",
+      "base": "outputs/research_tiny_base",
+      "cf_weight": 0.1,
+      "checkpoint_steps": [
+        0,
+        1
+      ],
+      "data": "outputs/review_23sept/gpu_release/data/mask1",
+      "device": "cuda",
+      "dtype": "bfloat16",
+      "entropy_weight": 0.01,
+      "epochs": 1,
+      "expected_base_hash": null,
+      "gate": null,
+      "group_size": 32,
+      "learning_rate": 0.0001,
+      "max_steps": 1,
+      "model": "random-tiny",
+      "monitor": true,
+      "objective": "ce",
+      "output": "outputs/review_23sept/gpu_release/training/tiny_mask1_R2_seed0",
+      "panel_batch": 1,
+      "plan": "v5",
+      "prefix_batch": 8,
+      "replay_weight": 0.25,
+      "reward_steps": 1,
+      "seed": 0,
+      "sigreg_weight": 0.01,
+      "state_dimension": 32,
+      "state_weight": 0.1,
+      "tau": 1.0
+    },
+    "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+    "exposure": {
+      "depth_history_status": "unknown",
+      "historical_depth4": false,
+      "mask_pairs": [
+        "SC2>REV",
+        "SC2>SC2",
+        "SH1>SC2"
+      ],
+      "provenance_status": "declared_only",
+      "recorded_history_excludes_mask": false,
+      "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+      "stages": [
+        {
+          "depths": {},
+          "pairs": {},
+          "provenance_status": "declared_only",
+          "scope": "role declaration only; task-training history not verified",
+          "stage": "declared_atomic_task_initialization"
+        }
+      ]
+    },
+    "kind": "train",
+    "plan": "v5",
+    "plan_hash": "68ffe875039d3a9c7597ef4b485b75730bf2ea130db932c6f312a401a81a2914"
+  },
+  "checkpoint_step": 1,
+  "completed_training": false,
+  "files": {
+    "binding.json": "473a9318019e743dd79d8efaa552dcb4af3f4e283aba9b4ff6dad001b569c850",
+    "budget.json": "5ec76342a277e0cfa0b3be20096b2f976d24c74b7e762542f05c24820695f769",
+    "exposure.json": "e70558aefb9ece359a16699c068c950169bdcfd26fa0389a1e3de013168d6f76"
+  },
+  "parent_initialization": {
+    "adapter_hash": null,
+    "base_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98"
+  },
+  "payload_hash": "6a23e07bf2938a8c9e76f386f21c92ccba05b4e6865e4d392ed66a424cf26485",
+  "resume_state_hash": "89c86240767cfbc24a5e7da4d5a23b1e9f0a1d75cbcfedf42075e2e3324e8251"
+}

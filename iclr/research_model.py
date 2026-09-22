@@ -2,13 +2,45 @@
 
 from pathlib import Path
 import json
+import random
+from contextlib import contextmanager
 
+import numpy as np
 import torch
 
 import composition_core as core
 from .modeling import program_scores
 from .research_objectives import StateProjection
 from .research_dsl import plan_prompt, prompt_prefix, trajectory, verify
+
+
+def rng_state():
+    return {'python': random.getstate(), 'numpy': np.random.get_state(), 'torch': torch.get_rng_state(),
+            'cuda': torch.cuda.get_rng_state_all() if torch.cuda.is_available() else []}
+
+
+def restore_rng(state):
+    random.setstate(state['python']); np.random.set_state(state['numpy']); torch.set_rng_state(state['torch'])
+    if state['cuda']:
+        torch.cuda.set_rng_state_all(state['cuda'])
+
+
+@contextmanager
+def evaluation_context(model, head=None):
+    """Evaluation must not consume the training RNG or change any module's mode."""
+    state = rng_state()
+    modules = list(model.modules()) + (list(head.modules()) if head is not None else [])
+    modes = [m.training for m in modules]
+    try:
+        model.eval()
+        if head is not None:
+            head.eval()
+        with torch.no_grad():
+            yield
+    finally:
+        for module, mode in zip(modules, modes):
+            module.training = mode
+        restore_rng(state)
 
 
 def deterministic_training(model):

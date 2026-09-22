@@ -67,14 +67,19 @@ def code_hash():
 
 def environment():
     import torch
+    try:
+        commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True, stderr=subprocess.DEVNULL).strip()
+        status = subprocess.check_output(['git', 'status', '--short'], cwd=ROOT, text=True, stderr=subprocess.DEVNULL)
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        commit, status = None, 'unavailable: source archive without Git metadata'
     return {
         'python': platform.python_version(),
         'packages': {name: importlib.metadata.version(name) for name in
                      ('torch', 'transformers', 'peft', 'numpy', 'scipy')},
         'cuda': torch.version.cuda,
         'gpu': torch.cuda.get_device_name() if torch.cuda.is_available() else None,
-        'git_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-        'git_status': subprocess.check_output(['git', 'status', '--short'], cwd=ROOT, text=True),
+        'git_commit': commit,
+        'git_status': status,
     }
 
 

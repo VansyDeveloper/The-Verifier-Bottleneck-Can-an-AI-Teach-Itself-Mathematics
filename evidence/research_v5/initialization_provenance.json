@@ -1,0 +1,90 @@
+{
+  "operator_action": "Supply original training receipts for these exact hashes. For repackaging, compare logical tensor names/dtypes/shapes/values and tokenizer/config against the original payload; preserve both digests and evidence. Names alone are insufficient.",
+  "runs": [
+    {
+      "adapter_hash": "e52395f797f6b9753bfd1b6b07f294b1dee3f9adbf03410023351c3819e26e1a",
+      "adapter_history_status": "unknown",
+      "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "base_history_status": "declared_only",
+      "evaluation_receipt_sha256": "a2aa7a77b342d0dbf1204523b254736cc1d51f9c92c96e8f4417249c12c9248e",
+      "required_missing": [
+        "source base-training config/receipt/data manifest/budget/tokenizer",
+        "actual adapter training receipt/config/data manifest/budget/stream"
+      ],
+      "run": "q06_atomic_control_seed0"
+    },
+    {
+      "adapter_hash": "9b920bad61523c64f36add425ce2475fd2e3372609411b8f46e49cca39ef4ee6",
+      "adapter_history_status": "unknown",
+      "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "base_history_status": "declared_only",
+      "evaluation_receipt_sha256": "8f96df1ba95d01e662536b6b2d16d06a40377e5d39f5c2d4101d5eb12a9924c3",
+      "required_missing": [
+        "source base-training config/receipt/data manifest/budget/tokenizer",
+        "actual adapter training receipt/config/data manifest/budget/stream"
+      ],
+      "run": "q06_atomic_control_seed1"
+    },
+    {
+      "adapter_hash": "f5d9c58c859209c11f1e9f0cb1851e011ba93cc1a88007a8bd6d4231c5d60d1d",
+      "adapter_history_status": "unknown",
+      "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "base_history_status": "declared_only",
+      "evaluation_receipt_sha256": "d207f7100ef7be3ff294d6d61ff66339d07e145d100c612fd398053a84b5d4ba",
+      "required_missing": [
+        "source base-training config/receipt/data manifest/budget/tokenizer",
+        "actual adapter training receipt/config/data manifest/budget/stream"
+      ],
+      "run": "q06_atomic_control_seed2"
+    },
+    {
+      "adapter_hash": null,
+      "adapter_history_status": "declared_only",
+      "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "base_history_status": "declared_only",
+      "evaluation_receipt_sha256": "71cbdab40d1da9ad0033117ba7e7eb5746e3ddee1c44cf2372f59f1432d270a4",
+      "required_missing": [
+        "source base-training config/receipt/data manifest/budget/tokenizer"
+      ],
+      "run": "q06_baseline_seed-1"
+    },
+    {
+      "adapter_hash": "a7ea007c63bf88bea85144103cf63e387943e3a3aa3c475f25b3db3aa5453857",
+      "adapter_history_status": "unknown",
+      "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "base_history_status": "declared_only",
+      "evaluation_receipt_sha256": "642c644b34d4e1354873b2f4da882d08da9e054079b5da178e5bb97a49d32951",
+      "required_missing": [
+        "source base-training config/receipt/data manifest/budget/tokenizer",
+        "actual adapter training receipt/config/data manifest/budget/stream"
+      ],
+      "run": "q06_composition_seed0"
+    },
+    {
+      "adapter_hash": "b5cc211abaf5d108afff888b8e02b73f142abf57dae5c1ece2bc6965488ff4e5",
+      "adapter_history_status": "unknown",
+      "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "base_history_status": "declared_only",
+      "evaluation_receipt_sha256": "0be6746162484e18b3d71e67116670a282b78b11f95dc53f4792899a8f727d5a",
+      "required_missing": [
+        "source base-training config/receipt/data manifest/budget/tokenizer",
+        "actual adapter training receipt/config/data manifest/budget/stream"
+      ],
+      "run": "q06_composition_seed1"
+    },
+    {
+      "adapter_hash": "912c8031be128a6c8c0ea1ea5184a1e075d6374d95161f217c988397c8f26610",
+      "adapter_history_status": "unknown",
+      "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "base_history_status": "declared_only",
+      "evaluation_receipt_sha256": "5852e6a1347f7f90aa610941e3c092d17d5a6e31d1b1c93ff50ff6450f8e9409",
+      "required_missing": [
+        "source base-training config/receipt/data manifest/budget/tokenizer",
+        "actual adapter training receipt/config/data manifest/budget/stream"
+      ],
+      "run": "q06_composition_seed2"
+    }
+  ],
+  "scope": "payload identities reported and bound by the original evaluations; weights absent in result archives; do not assert newly verified tensor identities",
+  "status": "incomplete; description is allowed, strong exposure/history claims are blocked"
+}

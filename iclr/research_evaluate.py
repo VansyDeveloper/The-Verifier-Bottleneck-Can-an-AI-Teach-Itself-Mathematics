@@ -14,10 +14,10 @@ import composition_core as core
 from .common import ROOT, code_hash, file_hash, read_jsonl, write_json
 from .modeling import load, seed_all
 from .research_data import check_panels
-from .research_dsl import DOMAIN, apply_prompt, trajectory, verify
+from .research_dsl import DOMAIN, apply_prompt, plan_prompt, trajectory, verify
 from .research_io import start_run, finish_run
-from .research_model import load_head, score_task, solve
-from .research_objectives import assignment_cycles, entropy_report, interaction
+from .research_model import evaluation_context, load_head, score_task, solve
+from .research_objectives import assignment_cycles, conditional_loss, entropy_report, interaction
 from .upgrade_evaluate import execute_programs
 
 
@@ -32,13 +32,20 @@ def panel_metrics(rows):
             matrix = torch.tensor([[row[policy][i] for i in indices] for row in panel], dtype=torch.float64)
             item = {k: panel[0][k] for k in ('panel_id', 'family', 'depth', 'p')}
             item.update(policy=policy, kind='crossed' if crossed else 'four_target',
-                        starts=[row['start'] for row in panel], task_ids=[row['task_id'] for row in panel])
+                        starts=[row['start'] for row in panel], task_ids=[row['task_id'] for row in panel],
+                        score_matrix=matrix.tolist())
             if crossed:
                 desired = torch.tensor([1., -1., -1., 1.])
                 margin = (matrix[:, 0] - matrix[:, 1]) * desired
                 credit = (margin > 1e-8).double() + .5 * (margin.abs() <= 1e-8)
                 item.update(interaction=float(interaction(matrix)), cell_accuracy=float(credit.mean()),
                             joint_accuracy=float(credit.prod()), all_cells_strict=bool((margin > 1e-8).all()))
+                d = matrix[:, 0] - matrix[:, 1]
+                item.update(signed_margins=margin.tolist(), minimum_margin=float(margin.min()),
+                    interaction_positive=bool(interaction(matrix) > 1e-8),
+                    nuisance=dict(a=float(d.sum()/4), b=float((d[0]+d[1]-d[2]-d[3])/4),
+                                  c=float((d[0]-d[1]+d[2]-d[3])/4), h=float(interaction(matrix)/4)),
+                    scalar_offset_gap=float(torch.min(d[[0, 3]]) - torch.max(d[[1, 2]])))
             else:
                 cycles = assignment_cycles(matrix)
                 item['pair_accuracy'] = float(((cycles > 1e-8).double() + .5 * (cycles.abs() <= 1e-8)).mean())
@@ -71,16 +78,69 @@ def evaluation_rows(data, phase):
 
 def atomic_results(model, tokenizer, ids, rows, prefix_batch, head=None):
     with torch.no_grad():
-        planned = [{'task_id': row['task_id'], 'operation': row['witness'][0],
+        planned = [{**row, 'operation': row['witness'][0], 'prompt': plan_prompt(row),
+                    'prompt_token_ids': tokenizer.encode(plan_prompt(row), add_special_tokens=False),
                     **solve(model, tokenizer, ids, row, head=head)} for row in rows]
         applied = execute_programs(model, tokenizer, [{**r, 'kind': 'atomic', 'program': r['witness']} for r in rows],
                                    min(8, prefix_batch), prompt_builder=apply_prompt)
+        for row in applied:
+            row['prompt'] = apply_prompt({**row, 'program': row['witness']})
+            row['prompt_token_ids'] = tokenizer.encode(row['prompt'], add_special_tokens=False)
     return {'plan': planned, 'apply': applied}
+
+
+def atomic_summary(result):
+    return {op: {mode: {'n': len(rows),
+        'accuracy': float(np.mean([r['correct' if mode == 'plan' else 'semantic_correct'] for r in rows])) if rows else None,
+        'parse_rate': float(np.mean([r['parse_ok'] for r in rows])) if rows else None}
+        for mode in ('plan', 'apply')
+        for rows in [[r for r in result[mode] if (r.get('operation') or r['witness'][0]) == op]]}
+        for op in core.OPS}
+
+
+def monitor_model(model, tokenizer, ids, cfg, out, head=None):
+    data, out = Path(cfg['data']), Path(out)
+    manifest = json.loads((data / 'manifest.json').read_text())
+    selected = json.loads(Path(cfg['amendment']).read_text())['monitor']
+    wanted = set(selected['ordinary'] + selected['crossed'])
+    rows = [r for r in evaluation_rows(data, 'dev') if r['task_id'] in wanted]
+    rows += [r for r in read_jsonl(data / manifest['training_panels']) if r['task_id'] in set(selected['train'])]
+    saved, metrics = [], defaultdict(list)
+    with evaluation_context(model, head):
+        for row in rows:
+            full, local, _ = score_task(model, tokenizer, ids, row, cfg['prefix_batch'], head=head)
+            programs = list(core.enumerate_programs(row['depth']))
+            correct = np.array([verify(row, p) for p in programs])
+            scores = local.cpu().numpy()
+            q = torch.softmax(local, 0).cpu().numpy()
+            order = sorted(range(len(programs)), key=lambda i: (-scores[i], tuple(programs[i])))
+            rank = min(np.flatnonzero(correct[order])) + 1
+            record = {**row, 'full': full.cpu().tolist(), 'local': scores.tolist(),
+                      'hit1': float(rank <= 1), 'hit8': float(rank <= 8), 'correct_mass': float(q[correct].sum())}
+            saved.append(record)
+            kind = 'train_probe' if row['family'] == 'TRAIN' else 'crossed' if row.get('panel_id') else 'ordinary'
+            metrics[row['family'], kind].append(record)
+        atomic_rows = [r for r in read_jsonl(data / 'dev_atomic.jsonl') if r['task_id'] in set(selected['atomic'])]
+        atomic = atomic_results(model, tokenizer, ids, atomic_rows, cfg['prefix_batch'], head)
+    panels = panel_metrics([r for r in saved if r.get('panel_id')])
+    for panel in panels:
+        panel['cf_loss'] = float(conditional_loss(torch.tensor(panel['score_matrix'], dtype=torch.float64), panel['kind'], cfg.get('tau', 1.)))
+    report = {'phase': 'dev', 'mode': 'monitor', 'selection': selected,
+        'scope': 'TRAIN probes measure fitting; dev families remain separate; constrained PLAN parse is imposed',
+        'atomic': atomic_summary(atomic), 'panels': panels,
+        'ordinary': [{'family': f, 'kind': k, 'n': len(v), **{metric: float(np.mean([r[metric] for r in v]))
+                     for metric in ('hit1', 'hit8', 'correct_mass')}} for (f, k), v in metrics.items()]}
+    write_json(out / 'monitor.json', report)
+    write_json(out / 'atomic_retention.json', {'phase': 'dev', **atomic})
+    (out / 'rankings.jsonl').write_bytes(core.canonical_jsonl_bytes(saved))
+    return report
 
 
 def run(config):
     cfg = {**dict(phase='dev', seed=0, arm='baseline', device='cuda', dtype='bfloat16', prefix_batch=32,
-                  solve_per_family=8), **config}
+                  solve_per_family=8, mode='full'), **config}
+    if cfg['mode'] not in ('full', 'monitor') or cfg['mode'] == 'monitor' and (cfg['phase'] != 'dev' or not cfg.get('amendment')):
+        raise ValueError('monitor needs a frozen dev amendment; full uses the original complete evaluator')
     manifest, binding, done = start_run(cfg, 'evaluate')
     if done:
         return
@@ -90,8 +150,8 @@ def run(config):
         if not cfg.get('analysis_lock'):
             raise ValueError('Final requires a v4 immutable analysis lock')
         lock = json.loads(Path(cfg['analysis_lock']).read_text())
-        if (lock['schema'] != 'iclr.research.lock.v4' or lock['code_hash'] != code_hash()
-                or lock['plan_hash'] != file_hash(ROOT / 'plans/research_v4.json')
+        if (lock['schema'] != 'iclr.research.lock.' + cfg.get('plan', 'v4') or lock['code_hash'] != code_hash()
+                or lock['plan_hash'] != binding['plan_hash']
                 or binding['data_hash'] not in lock['dataset_hashes']
                 or [binding['base_hash'], binding['adapter_hash']] not in lock['checkpoints']):
             raise ValueError('Final lock differs from data, code, or selected checkpoints')
@@ -99,6 +159,10 @@ def run(config):
     seed_all(0 if cfg['seed'] == -1 and cfg['arm'] in ('baseline', 'initial') else cfg['seed'])
     model, tokenizer, ids = load(cfg['base'], adapter=cfg.get('adapter'), device=cfg['device'], dtype=cfg['dtype'])
     head = load_head(cfg.get('adapter'), next(model.parameters()).device)
+    if cfg['mode'] == 'monitor':
+        monitor_model(model, tokenizer, ids, cfg, out, head)
+        finish_run(out, binding)
+        return
     rows, summaries, budget = [], defaultdict(list), defaultdict(int)
     started = time.monotonic()
     with torch.no_grad(), (out / 'rankings.jsonl').open('w') as raw, (out / 'prefixes.jsonl').open('w') as prefixes_file:
@@ -150,7 +214,7 @@ def run(config):
         atomic = read_jsonl(data / (cfg['phase'] + '_atomic.jsonl'))
         retained = atomic_results(model, tokenizer, ids, atomic, cfg['prefix_batch'], head)
     write_json(out / 'solutions.json', solutions)
-    write_json(out / 'atomic_retention.json', {'phase': cfg['phase'], **retained})
+    write_json(out / 'atomic_retention.json', {'phase': cfg['phase'], 'summary': atomic_summary(retained), **retained})
     write_json(out / 'budget.json', {**budget, 'wall_seconds': time.monotonic() - started,
         'scored_tasks': len(rows), 'full_candidate_spaces': sorted({5 ** r['depth'] for r in rows}),
         'solution_forward_tokens': sum(s[k]['forward_tokens'] for s in solutions for k in ('greedy', 'free')),

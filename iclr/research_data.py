@@ -303,16 +303,115 @@ def prepare(source, reference, out, train_panels=64, eval_panels=16, seed=202609
     return reports
 
 
+def monitor_selection(data, manifest):
+    data = Path(data)
+    atomic = read_jsonl(data / 'dev_atomic.jsonl')
+    train = check_panels(read_jsonl(data / manifest['training_panels']))
+    return {
+        'atomic': [r['task_id'] for op in core.OPS for r in sorted(
+            (r for r in atomic if r['witness'] == [op]), key=lambda r: r['task_id'])[:20]],
+        'ordinary': [r['task_id'] for f in 'ABCD' if (data / f'dev_{f}.jsonl').exists()
+                     for r in sorted(read_jsonl(data / f'dev_{f}.jsonl'), key=lambda r: r['task_id'])[:16]],
+        'crossed': [r['task_id'] for f in 'BD' if (data / f'dev_crossed_{f}.jsonl').exists()
+                    for r in read_jsonl(data / f'dev_crossed_{f}.jsonl')],
+        'train': [r['task_id'] for panel in sorted(train, key=lambda p: p[0]['panel_id'])[:4] for r in panel],
+        'reference': [r['task_id'] for r in sorted(read_jsonl(data / 'dev_A.jsonl'), key=lambda r: r['task_id'])[:64]]}
+
+
+def prepare_amendment(data, out, per_stratum=8, seed=20260923):
+    """Fresh train-only atomic replay; the parent dataset is never modified."""
+    from .research_io import plan_path
+    data, out = Path(data), Path(out)
+    manifest = verify_data(data)
+    if manifest['schema'] != 'iclr.research.data.v4' or manifest.get('domain', 'affine_polynomial_v1') != 'affine_polynomial_v1':
+        raise ValueError('This amendment is for the frozen affine v4 inputs')
+    if type(per_stratum) is not int or per_stratum < 1:
+        raise ValueError('Positive replay count per operation/field required')
+    if out.exists() and any(out.iterdir()):
+        raise FileExistsError('Amendments are immutable; choose a new output')
+    registry = reference_registry(data)
+    rng, rows = random.Random(seed), []
+    for index in range(per_stratum):
+        strata = list(itertools.product(core.OPS, core.KNOWN_FIELDS))
+        rng.shuffle(strata)
+        for op, p in strata:
+            for _ in range(20000):
+                degree = rng.choice(core.DEGREES)
+                start = [rng.randrange(p) for _ in range(degree + 1)]
+                target = list(core.trajectory(start, [op], p)[-1])
+                if start == target or not any(start):
+                    continue
+                correct = [list(z) for z in core.enumerate_programs(1) if core.verify_program(start, target, z, p)]
+                row = dict(p=p, degree=degree, depth=1, start=start, target=target, witness=[op],
+                           correct_programs=correct, correct_count=len(correct), family='ATOMIC', split='train_replay')
+                fp = core.canonical_task_fingerprint(p, start, target, 1)
+                states = _full_states(row, [[op]])
+                if correct != [[op]] or states & registry.states or fp in registry.tasks:
+                    continue
+                rows.append({**row, 'task_id': 'replay-' + fp[:24], 'task_fingerprint': fp})
+                registry.states.update(states); registry.tasks.add(fp)
+                break
+            else:
+                raise RuntimeError(f'Replay capacity exhausted for {op}/{p}')
+    out.mkdir(parents=True, exist_ok=True)
+    path = out / 'atomic_replay.jsonl'
+    path.write_bytes(core.canonical_jsonl_bytes(rows))
+    write_json(out / 'manifest.json', {'schema': 'iclr.research.amendment.v5',
+        'parent_manifest_sha256': file_hash(data / 'manifest.json'), 'plan_hash': file_hash(plan_path('v5')),
+        'seed': seed, 'per_operation_field': per_stratum, 'modes': ['PLAN', 'APPLY'],
+        'files': {path.name: {'sha256': file_hash(path), 'rows': len(rows)}},
+        'monitor': monitor_selection(data, manifest),
+        'exclusions': 'all parent task identities and full correct-trajectory states, including final inputs; no final scores or outcomes used'})
+    verify_amendment(out / 'manifest.json', data, file_hash(plan_path('v5')))
+
+
+def verify_amendment(path, data, plan_hash):
+    path, data = Path(path), Path(data)
+    amended, parent = verify_data(path.parent), verify_data(data)
+    if (path.name != 'manifest.json' or amended['schema'] != 'iclr.research.amendment.v5'
+            or amended['parent_manifest_sha256'] != file_hash(data / 'manifest.json')
+            or amended['plan_hash'] != plan_hash or amended['modes'] != ['PLAN', 'APPLY']
+            or amended['monitor'] != monitor_selection(data, parent)):
+        raise ValueError('Amendment differs from its frozen parent/plan/monitor')
+    registry = reference_registry(data)
+    balance = Counter()
+    rows = read_jsonl(path.parent / 'atomic_replay.jsonl')
+    for row in rows:
+        fp = core.canonical_task_fingerprint(row['p'], row['start'], row['target'], 1)
+        if (row['split'] != 'train_replay' or row['family'] != 'ATOMIC' or row['depth'] != 1
+                or row['witness'][0] not in core.OPS or len(row['witness']) != 1 or row['p'] not in core.KNOWN_FIELDS
+                or row['task_fingerprint'] != fp or row['task_id'] != 'replay-' + fp[:24]
+                or not core.verify_program(row['start'], row['target'], row['witness'], row['p'])):
+            raise ValueError('Invalid train-only replay row')
+        states = _full_states(row, [row['witness']])
+        if states & registry.states or fp in registry.tasks:
+            raise ValueError('Replay overlaps parent or other replay states/tasks')
+        registry.states.update(states); registry.tasks.add(fp)
+        balance[row['witness'][0], row['p']] += 1
+    expected = Counter({(op, p): amended['per_operation_field'] for op in core.OPS for p in core.KNOWN_FIELDS})
+    if balance != expected:
+        raise ValueError('Replay must balance all five operations and known train fields')
+    return amended
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--source', required=True)
-    parser.add_argument('--reference', required=True)
+    parser.add_argument('--source')
+    parser.add_argument('--reference')
+    parser.add_argument('--amend-data', help='Prepare v5 replay/monitor beside this immutable v4 dataset')
     parser.add_argument('--out', required=True)
     parser.add_argument('--train-panels', type=int, default=64)
     parser.add_argument('--eval-panels', type=int, default=16)
     parser.add_argument('--seed', type=int, default=20260923)
     parser.add_argument('--smoke', action='store_true')
-    prepare(**vars(parser.parse_args()))
+    args = vars(parser.parse_args())
+    amended = args.pop('amend_data')
+    if amended:
+        prepare_amendment(amended, args['out'], seed=args['seed'])
+    else:
+        if not args['source'] or not args['reference']:
+            parser.error('--source and --reference are required for v4 generation')
+        prepare(**args)
 
 
 if __name__ == '__main__':

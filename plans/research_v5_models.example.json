@@ -1,0 +1,8 @@
+[
+  {
+    "base": "/ABSOLUTE/PATH/atomic_06_bf16/checkpoint",
+    "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+    "model": "Qwen/Qwen3-0.6B",
+    "name": "q06"
+  }
+]

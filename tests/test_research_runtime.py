@@ -10,7 +10,7 @@ import torch
 
 import iclr
 import composition_core as core
-from iclr.common import file_hash, read_jsonl, verify_receipt, write_json
+from iclr.common import file_hash, read_jsonl, tree_hash, verify_receipt, write_json
 from iclr.data import _atomic_split
 from iclr.modeling import load, program_scores
 from iclr.research_data import generate_rows
@@ -79,8 +79,13 @@ def test_real_forward_backward_save_reload_and_projection_branches(tmp_path, mon
 
 def test_exact_sampled_actual_optimizer_diagnostic_and_gate(tmp_path):
     data, base = tiny_setup(tmp_path)
+    provenance = tmp_path / 'base_receipt'
+    write_json(provenance / 'exposure.json', {'stages': [{'stage': 'random_tiny_creation',
+        'provenance_status': 'verified', 'pairs': {}, 'depths': {'0': 0}}]})
+    write_json(provenance / 'DONE', {'payload_hash': tree_hash(base),
+        'files': {'exposure.json': file_hash(provenance / 'exposure.json')}})
     device = os.environ.get('ICLR_SMOKE_DEVICE', 'cpu')
-    cfg = dict(base=str(base), data=str(data), output=str(tmp_path / 'gradient'), device=device,
+    cfg = dict(base=str(base), base_training_receipt=str(provenance), data=str(data), output=str(tmp_path / 'gradient'), device=device,
                dtype='bfloat16' if device == 'cuda' else 'float32', prefix_batch=8,
                train_tasks=1, dev_panels_per_family=1, mc_groups=16, mc_max_groups=16, mc_blocks=4, learning_rates=[1e-5, 1e-6])
     gradient_diagnostic(cfg)

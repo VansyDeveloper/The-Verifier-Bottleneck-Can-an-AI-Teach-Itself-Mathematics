@@ -1,0 +1,42 @@
+{
+  "archive_scope": "ready source and immutable data, no model weights; actual operator base checkpoint and missing historical training receipts must be supplied externally",
+  "code_hash": "73a57125b662d7eb70a252d0e674e15203ac04cc27c748f5d1a1e1916b991f82",
+  "cpu_tests": {
+    "command": "python -m pytest -q --disable-warnings --maxfail=2",
+    "log_sha256": "53f4cf8011cd0fc2576062871f4d4c3ac716b9d20e69bb6d04a347cd5652e16a",
+    "result": "57 passed, 14 subtests passed"
+  },
+  "date": "2026-09-23",
+  "gpu_queue": {
+    "code_hash": "73a57125b662d7eb70a252d0e674e15203ac04cc27c748f5d1a1e1916b991f82",
+    "export_sha256": "e12c15aabd9b40e4b58f4c7fbc4ce0469801e7ab57db5f7ab326727419f0b4ff",
+    "log_sha256": "63759f1d54463af01efa7ff94f0f5262e79e1065a02b08b695b5c3c17c33988b",
+    "result": "10/10 jobs done; four one-step CE runs with/without replay, full dev, checkpoint monitors and verified weight-free export"
+  },
+  "gpu_regression": {
+    "code_hash": "d9a62cfc0743f857f60952bbe066bc7859db03bc38309b64afb9843d13e2c972",
+    "device": "NVIDIA GeForce RTX 3050 Ti Laptop GPU, 4 GiB",
+    "dtype": "bfloat16",
+    "note": "before the final Git-metadata fallback; final fallback is covered by full CPU suite and the subsequent final-code GPU queue",
+    "result": "5 passed",
+    "scope": "actual tiny trajectory equivalence with monitor and exact Adam/RNG/cursor resume; absolute parameter tolerance 1e-6 on one GPU, CPU bit-exact; no cross-platform identity claim"
+  },
+  "immutable_v4_replay": "34 hashes and 35 endpoint comparisons passed using archived check_primary.py",
+  "plan_v5_sha256": "68ffe875039d3a9c7597ef4b485b75730bf2ea130db932c6f312a401a81a2914",
+  "q1_compact_replay": "summary.json byte-identical to raw-archive analysis",
+  "science_plan_preview": {
+    "path": "outputs/review_23sept/release_science_preview/queue.json",
+    "scope": "planned only; four CE conditions, 64 panels, seed0, 128 max steps; no full training"
+  },
+  "source_file_checks": {
+    "Q1": {
+      "export_manifest_sha256": "ae5cf00359a7b8f18d966a388a6d153dd1491808b89baf2d6c967dab19f0df81",
+      "files_verified": 367
+    },
+    "Q3": {
+      "export_manifest_sha256": "6ec8a9e536eb6136dce21994b6eb82650dddcd41d0fc506e64f01f31fc00ac30",
+      "files_verified": 419
+    }
+  },
+  "unchanged_plan_v4_sha256": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+}

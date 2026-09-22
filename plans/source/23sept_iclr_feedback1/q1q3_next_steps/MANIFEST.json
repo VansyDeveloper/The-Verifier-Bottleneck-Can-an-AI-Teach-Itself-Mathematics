@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": "BRANCH_NEXT_STEPS_RU.md",
+      "bytes": 28677,
+      "sha256": "d228d2d0daed0834fe66b639a42210f5d87bfc1035915904f67ebe89f42befc8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 997,
+      "sha256": "c0d2c11aa76773612a43a52dab45c62d86aaca7ae62b8d529cf1a63461b6d21f"
+    },
+    {
+      "path": "SOURCE_RESULTS_RU.md",
+      "bytes": 41170,
+      "sha256": "76d44fb9a04c31c724acaa66bc73f691e1ae2d43d99cf572e9bc2f105a3d0351"
+    },
+    {
+      "path": "check_feedback_and_diagnostics.py",
+      "bytes": 7088,
+      "sha256": "28919b240d44c53c12f3481f063ea04686a558bde61e3e35e5b85f81d158149a"
+    },
+    {
+      "path": "independent_checks.json",
+      "bytes": 2489,
+      "sha256": "28ade7fb108a896c919d5edeb070eb84570df5316352196faf8c5345f1a3acac"
+    },
+    {
+      "path": "source_comparison.json",
+      "bytes": 402,
+      "sha256": "b1683fbb246c96bbbd08c25eebcc6f0186f22956520c78f81e9d2e023bbbf8dd"
+    }
+  ]
+}
