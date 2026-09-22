@@ -9,12 +9,13 @@
 | Q3 atomic APPLY audit | Выполнено локально на CPU | Canonical labels/parser outcomes совпали; 20 raw initial ошибок сохранены. Причина ошибок модели не установлена. |
 | Восстановление истории шести Q1 adapters и initial base | Не завершено: исходные training artifacts отсутствуют | Описательные сравнения допустимы; claims о невиденных парах/длине/историческом рецепте блокируются. |
 | v5 replay/monitor manifests mask1 и mask2 | Сгенерированы и проверены | По 240 train-only atomic rows, баланс 5 операций × 6 известных полей × 8; exclusions против всех parent task/trajectory states. |
-| v5 код: checkpoints/resume, monitor/full, replay, diagnostics, explicit plan | Реализован, проверен CPU/GPU smoke | Это техническая готовность, не результат научного обучения. Точные завершённые проверки — в `evidence/research_v5/VALIDATION.json`. |
-| Полные R0–R3 на исходной 0.6B | Подготовлены, не запущены | Следующая рекомендуемая научная очередь после проверки этого пакета. |
+| v5 код после feedback1 | Исторические CPU/GPU smoke сохранены | Проверки снимка `056fd9a` — в `evidence/research_v5/VALIDATION.json`; второй feedback обнаружил непокрытые случаи resume. |
+| Recovery-fix после feedback2 | Исправлены config + CLI, torn JSONL tails, `.partial` checkpoints | Новые CPU/CUDA проверки и code hash — в `evidence/research_v5/feedback2/VALIDATION.json`. Траектория сравнивается с непрерывным запуском, включая Adam и оба потока. |
+| Полные R0–R3 на исходной 0.6B | Подготовлены, не запущены | Следующая научная очередь после успешной регрессии; дополнительное внешнее ревью не обязательно. Нужен фактический pinned base на машине оператора. |
 | Matched CE/CF на сохранённом режиме | Код готов, gate ещё не пройден | Запускать после full dev retention и nonzero composition progress одного CE режима. |
 | v5 2 masks × 3 seeds и final | Код готов, научный выбор ещё не сделан | После выбора одной пары; final закрыт для tuning. |
 | Q2 / Q4 / 8B / дополнительные epochs | Не запущены в этой итерации | Q2 требует verified history и numerical gate; Q4 — положительного state gate. Остальное не является автоматическим продолжением. |
 
 Все новые локальные GPU-прогоны — tiny random model, BF16, RTX 3050 Ti 4 GiB, ограниченные smoke budgets. Они проверяют реальные forward/backward, optimizer, save/reload, checkpoint/resume, evaluation и очередь. Они не заменяют научные R0–R3 на исходной базе и не являются независимыми replications.
 
-Original v4 plan, endpoint hierarchy, исходный компактный ZIP и его analyzer сохранены без изменений. Полная методика и команды находятся в `RUN_V5_RU.md`, запрос следующему reviewer — в корневом `REVIEW_REQUEST_RU.md`. Источник нового ТЗ сохранён в `source/23sept_iclr_feedback1/`.
+Original v4/v5 plans, endpoint hierarchy, replay/monitor manifests, исходный компактный ZIP и его analyzer сохранены без изменений. После изменения code hash создаётся новая очередь; старые receipts/checkpoints не мигрируются. Полная методика и команды находятся в `RUN_V5_RU.md`, запрос reviewer — в корневом `REVIEW_REQUEST_RU.md`. Оба исходных feedback сохранены в `source/23sept_iclr_feedback1/` и `source/23sept_iclr_feedback2/`.

@@ -1,14 +1,16 @@
-# Запуски после feedback от 23 сентября
+# Запуски после второго feedback от 23 сентября
 
 Это exploratory amendment к неизменённому v4. Endpoint hierarchy сохранена. Отдельные plan/data/code hashes проходят через очереди, обучение, evaluation, selection и final lock. Результаты старой версии проверяются её архивным analyzer.
 
 ## A. Проверка устойчивости
 
-Подготовка и запуск R0–R3 приведены в корневом README. Все четыре условия стартуют из одного base с hash `a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938`. Нужен именно этот payload на машине оператора. Декларация atomic-роли базы не подтверждает её training history.
+Подготовка и запуск R0–R3 приведены в корневом README. После recovery-fix и успешной регрессии это следующий научный запуск; ещё одно внешнее ревью не является обязательным допуском. Все четыре условия стартуют из одного base с hash `a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938`. Нужен именно этот payload на машине оператора. Декларация atomic-роли базы не подтверждает её training history, но R0–R3 не требуют предварительного восстановления истории всех шести Q1 adapters.
 
 На двух GPU планировщик выполняет R0/R1, затем R2/R3; между train/eval могут размещаться готовые задачи. На четырёх GPU — все четыре условия. Initial full dev считается один раз. На каждом checkpoint monitor сохраняет полный 125-candidate score space выбранных depth3 задач, все dev B/D crossed, 20 atomic задач на операцию и четыре целые train-панели. Входы заданы manifest, train и dev помечены отдельно. На полном dev считаются все прежние ordinary/panel/depth4/atomic задачи.
 
 В `training_metrics.jsonl`: full-vocabulary CE, local-action CE, legal-token gate CE, raw/weighted CF и entropy, replay CE, pre-clip norm, clipping factor и фактическая норма изменения параметров. В `budget.json`: composition/replay exposures, PLAN/APPLY loss tokens, replay weight и доля примеров. Replay/no-replay не является сравнением равных вычислительных бюджетов.
+
+Полный replay pool содержит 240 задач, но при 128 updates используются первые 128 уникальных строк. Для mask1 это AX1=26, SC2=26, REV=25, SH1=26, AC1=25; каждая предъявляется как PLAN и APPLY, всего 256 примеров. Баланс полного пула не означает точного баланса каждого короткого префикса.
 
 В output каждой тренировки:
 
@@ -17,10 +19,12 @@
 - `training_stream.jsonl`, `replay_stream.jsonl` — фактические потоки;
 - корневой `DONE` появляется только после завершения всего объявленного run и проверки save/reload.
 
-Для ручного resume использовать исходный config, исходный output и последний целый checkpoint. Восстанавливаются Adam, Python/NumPy/Torch/CUDA RNG, счетчики и курсор. Изменение LR/числа шагов/данных — новый run с другим output. `resume_state.pt` и веса нужны для resume; обычный weight-free export их не содержит.
+Для ручного resume использовать исходный config, исходный output и последний опубликованный checkpoint. Восстанавливаются Adam, Python/NumPy/Torch/CUDA RNG, счетчики и курсор. Явный `--resume-from` имеет приоритет над полем config. `resume_state.pt` содержит byte offsets и SHA256 трёх журналов: сначала проверяются все сохранённые префиксы, затем отрезаются незафиксированные хвосты, включая оборванный JSON. Повреждение сохранённого префикса вызывает отказ без изменения журналов. Каталоги `.partial` не считаются опубликованными, даже если в них уже есть `DONE`.
+
+Это восстановление после прерывания процесса при целостном checkpoint и доступном хранилище. Гарантии сохранности при физическом сбое диска не заявляются. Изменение кода/LR/числа шагов/данных — новый run с другим output. Старые checkpoints версии `056fd9a` не содержат log snapshots и не мигрируются; не переписывать их receipts. Для нового кода сформировать свежую очередь. `resume_state.pt` и веса нужны для resume; обычный weight-free export их не содержит.
 
 ```bash
-uv run python -m iclr.research_train --config outputs/v5_stability/configs/q06_mask1_R2_seed0_train.json --resume-from latest
+uv run python -m iclr.research_train --config outputs/v5_stability_feedback2/configs/q06_mask1_R2_seed0_train.json --resume-from latest
 ```
 
 ## Выбор одного режима
@@ -28,8 +32,8 @@ uv run python -m iclr.research_train --config outputs/v5_stability/configs/q06_m
 Числа ниже — пример команды для шага 32 R2, а не рекомендация заранее выбрать именно его. Сначала посмотреть monitor, затем получить **full dev** для кандидата:
 
 ```bash
-uv run python -m iclr.research_stability evaluate-step --training outputs/v5_stability/training/q06_mask1_R2_seed0 --step 32 --out outputs/v5_R2_step32_full
-uv run python -m iclr.research_stability select --queue outputs/v5_stability/queue.json --condition R2 --step 32 --full-evaluation outputs/v5_R2_step32_full --out outputs/v5_stability_selection.json
+uv run python -m iclr.research_stability evaluate-step --training outputs/v5_stability_feedback2/training/q06_mask1_R2_seed0 --step 32 --out outputs/v5_R2_step32_full
+uv run python -m iclr.research_stability select --queue outputs/v5_stability_feedback2/queue.json --condition R2 --step 32 --full-evaluation outputs/v5_R2_step32_full --out outputs/v5_stability_selection.json
 ```
 
 Для конечного шага 128 `--full-evaluation` можно опустить: используется уже готовая full dev evaluation очереди. Сначала дождаться завершения выбранного train run: intermediate checkpoint не превращает его в completed training.
@@ -37,10 +41,12 @@ uv run python -m iclr.research_stability select --queue outputs/v5_stability/que
 Инженерный допуск записан до следующих запусков в `research_v5.json`:
 
 1. На **каждой** PLAN-операции снижение accuracy не больше 5 п.п.; APPLY — то же для операций с initial accuracy ≥0,8. В обеих оценках одинаковое число задач, не меньше 20 на операцию. SH1/SC2 APPLY с низким initial не выдаются за уже освоенные навыки.
-2. Нужен прирост mean correct mass минимум 0,001 на фиксированном TRAIN probe либо на полном ordinary dev A. Это отсеивает отсутствие изменений. B/D не участвуют в выборе режима.
+2. Нужен прирост mean correct mass минимум 0,001 на фиксированном TRAIN probe либо на полном ordinary dev A: 0,1 п.п. вероятностной массы, а не прирост Hit@1. Это отсеивает отсутствие изменений. Проход только по TRAIN устанавливает fitting, но не перенос. B/D не участвуют в выборе режима.
 3. Smoke не получает научный admission даже при случайном выполнении численных условий. Gate artifact с `pass=false` сохраняется для разбора, а очередь `matched` его отклоняет.
 
 Если проходят несколько режимов, заранее оговорён порядок: меньше шагов, затем меньшая стоимость replay. Зафиксировать один общий выбор; не подбирать длительность отдельно для будущих arms. Если ни один не проходит, остановить масштабирование CF и разобрать сохранённые diagnostics. Новая LR-точка потребует отдельной явно обозначенной dev-итерации.
+
+В monitor 20 atomic задач на операцию: одна ошибка меняет accuracy на 5 п.п. Поэтому monitor помогает назначить ограниченное число full dev оценок, но сам не устанавливает retention PASS/FAIL. Плохие monitor-результаты всех шагов ещё не означают full-dev fail каждого checkpoint; кандидатов выбирать по train/A/retention, без подгонки под B/D.
 
 ## B. CE/CF на выбранном режиме
 
@@ -48,7 +54,7 @@ uv run python -m iclr.research_stability select --queue outputs/v5_stability/que
 uv run python -m iclr.research start --queue-name matched --inputs outputs/shared_inputs_v4 --amendments evidence/research_v5/amendments --models models.local.json --model-names q06 --stability-selection outputs/v5_stability_selection.json --out outputs/v5_matched --gpus 0 1
 ```
 
-Общий LR, replay, max steps, panel batch, seed, base и manifest наследуются от допуска. CF weight=0,1, tau=1. Для полного факторного сравнения добавить `--with-entropy`; entropy weight=0,01. Наличие этого флага не объявляет комбинацию победителем.
+Общий LR, replay, max steps, panel batch, seed, base и manifest наследуются от допуска. CF weight=0,1, tau=1. Допуск CE не гарантирует сохранения навыков после CF: заново проверить atomic результаты обоих arms. Для полного факторного сравнения добавить `--with-entropy`; entropy weight=0,01. Наличие этого флага не объявляет комбинацию победителем.
 
 ```bash
 uv run python -m iclr.research_analysis --plan v5 --runs outputs/v5_matched/evaluations/q06_mask1_ce_seed0 outputs/v5_matched/evaluations/q06_mask1_ce_cf_seed0 --control ce --treatment ce_cf --out outputs/v5_matched_comparison.json
@@ -82,4 +88,4 @@ Q1 post-hoc уже выполнен. Его можно полностью пер
 
 Если понадобятся все освоенные APPLY-примитивы, нужна отдельная общая atomic initialization на train-only данных и отдельный dev допуск. Текущий replay даёт технический путь обучения PLAN/APPLY, но не является доказательством освоения отсутствующих навыков. Старую и новую initialization нельзя смешивать в одном paired effect.
 
-Q2 не зависит от завершения R0–R3, но требует verified task-training history и собственного numeric gate. Q4/SIGReg — только после положительной state-access диагностики. Четыре эпохи, 8B и увеличение entropy weight сейчас не являются автоматическими следующими шагами.
+Q2 не зависит от завершения R0–R3, но требует verified task-training history именно используемой initialization и собственного numeric gate. Для исторических сравнений всех шести Q1 adapters нужна история всей соответствующей группы. Q4/SIGReg — только после положительной state-access диагностики. Четыре эпохи, 8B и увеличение entropy weight сейчас не являются автоматическими следующими шагами.

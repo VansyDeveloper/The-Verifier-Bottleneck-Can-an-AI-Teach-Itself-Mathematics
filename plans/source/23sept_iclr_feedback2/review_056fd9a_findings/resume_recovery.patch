@@ -1,0 +1,170 @@
+--- a/iclr/research_train.py
++++ b/iclr/research_train.py
+@@ -1,6 +1,7 @@
+ """Panel-matched CE/counterfactual/entropy and gated reward/state pilots."""
+ 
+ import argparse
++import hashlib
+ from collections import Counter
+ import json
+ import math
+@@ -63,6 +64,50 @@
+     return cfg
+ 
+ 
++LOG_NAMES = ('training_metrics.jsonl', 'training_stream.jsonl', 'replay_stream.jsonl')
++
++
++def snapshot_logs(out):
++    """Record committed byte boundaries; called after all training logs are flushed."""
++    result = {}
++    for name in LOG_NAMES:
++        path = Path(out) / name
++        contents = path.read_bytes() if path.exists() else b''
++        result[name] = {'bytes': len(contents), 'sha256': hashlib.sha256(contents).hexdigest()}
++    return result
++
++
++def restore_logs(out, snapshot):
++    """Verify every committed prefix before discarding uncommitted trailing bytes."""
++    if not isinstance(snapshot, dict) or set(snapshot) != set(LOG_NAMES):
++        raise ValueError('Checkpoint has no complete committed-log snapshot; do not guess recovery boundaries')
++    # Validate all files first: never silently discard damage inside a checkpoint.
++    for name in LOG_NAMES:
++        entry = snapshot[name]
++        size = entry.get('bytes')
++        if type(size) is not int or size < 0:
++            raise ValueError(f'Invalid committed log boundary: {name}')
++        path = Path(out) / name
++        if path.exists():
++            with path.open('rb') as stream:
++                prefix = stream.read(size)
++        else:
++            prefix = b''
++        if len(prefix) != size or hashlib.sha256(prefix).hexdigest() != entry.get('sha256'):
++            raise ValueError(f'Committed log prefix is missing or damaged: {name}')
++    for name in LOG_NAMES:
++        path = Path(out) / name
++        if path.exists():
++            with path.open('r+b') as stream:
++                stream.truncate(snapshot[name]['bytes'])
++
++
++def complete_checkpoint_receipts(out):
++    """A .partial directory is not an atomically published checkpoint."""
++    return sorted(p for p in (Path(out) / 'checkpoints').glob('step_*/DONE')
++                  if p.parent.name.removeprefix('step_').isdigit())
++
++
+ def checkpoint(out, step, model, tokenizer, head, optimizer, counts, binding, manifest, planned_steps):
+     directory = out / 'checkpoints' / f'step_{step:06d}'
+     if directory.exists():
+@@ -78,7 +123,7 @@
+             write_json(temporary / 'adapter/state_projection.json', head.config)
+             torch.save(head.state_dict(), temporary / 'adapter/state_projection.pt')
+         torch.save({'optimizer': optimizer.state_dict(), 'rng': state, 'next_step': step,
+-                    'counts': dict(counts)}, temporary / 'resume_state.pt')
++                    'counts': dict(counts), 'logs': snapshot_logs(out)}, temporary / 'resume_state.pt')
+         write_json(temporary / 'binding.json', binding)
+         write_json(temporary / 'budget.json', {**counts, 'optimizer_steps': step, 'completed': False,
+                     'planned_steps': planned_steps, 'cursor': {'next_composition_step': step, 'next_replay_step': step}})
+@@ -103,7 +148,8 @@
+ 
+ def run(config, *, resume_from=None, stop_after=None):
+     config = dict(config)
+-    resume_from = resume_from or config.pop('resume_from', None)
++    configured_resume = config.pop('resume_from', None)
++    resume_from = resume_from if resume_from is not None else configured_resume
+     cfg = config_checked(config)
+     manifest, binding, done = start_run(cfg, 'train')
+     if done:
+@@ -117,7 +163,7 @@
+     if reward or state_path:
+         require_gate(cfg.get('gate'), 'reward' if reward else 'state', binding)
+     if resume_from == 'latest':
+-        snapshots = sorted((out / 'checkpoints').glob('step_*/DONE'))
++        snapshots = complete_checkpoint_receipts(out)
+         resume_from = str(snapshots[-1].parent) if snapshots else None
+     resumed = None
+     if resume_from:
+@@ -126,7 +172,7 @@
+                 or tree_hash(Path(resume_from) / 'adapter') != resumed['payload_hash']
+                 or file_hash(Path(resume_from) / 'resume_state.pt') != resumed['resume_state_hash']):
+             raise ValueError('Resume checkpoint differs from the exact run or its saved state')
+-        later = sorted((out / 'checkpoints').glob('step_*/DONE'))
++        later = complete_checkpoint_receipts(out)
+         if later and later[-1].parent.name > Path(resume_from).name:
+             raise ValueError('Resume the latest immutable checkpoint; use a new run for an independent restart')
+     elif (out / 'training_metrics.jsonl').exists() and (out / 'training_metrics.jsonl').stat().st_size:
+@@ -171,12 +217,7 @@
+         optimizer.load_state_dict(state['optimizer'])
+         first_step, counts = state['next_step'], Counter(state['counts'])
+         restore_rng(state['rng'])
+-        for name, keep in [('training_metrics.jsonl', lambda r: r['step'] <= first_step),
+-                           ('training_stream.jsonl', lambda r: r['step'] < first_step),
+-                           ('replay_stream.jsonl', lambda r: r['step'] <= first_step)]:
+-            path = out / name
+-            if path.exists():
+-                path.write_bytes(core.canonical_jsonl_bytes([r for r in read_jsonl(path) if keep(r)]))
++        restore_logs(out, state.get('logs'))
+     if device.type == 'cuda':
+         torch.cuda.reset_peak_memory_stats()
+     probe = panels[0][0]
+--- /dev/null
++++ b/tests/test_research_resume_recovery.py
+@@ -0,0 +1,55 @@
++"""Recovery regressions to run in the project's locked environment after the patch."""
++import json
++from pathlib import Path
++
++import pytest
++
++from iclr import research_train as train
++
++
++def test_explicit_resume_and_config_resume_do_not_conflict(monkeypatch):
++    # Exercise actual configuration handling before model loading. The existing
++    # test_research_v5 suite separately checks real Adam/model continuation.
++    monkeypatch.setattr(train, 'start_run', lambda cfg, kind: ({}, {}, True))
++    train.run({'resume_from': 'latest'}, resume_from='latest')
++
++
++def test_recovery_discards_only_uncommitted_torn_tail(tmp_path):
++    committed = {}
++    for index, name in enumerate(train.LOG_NAMES):
++        committed[name] = json.dumps({'step': 1, 'index': index}).encode() + b'\n'
++        (tmp_path / name).write_bytes(committed[name])
++    snapshot = train.snapshot_logs(tmp_path)
++    for name in train.LOG_NAMES:
++        with (tmp_path / name).open('ab') as stream:
++            stream.write(b'{"step": 2, "loss":')
++    train.restore_logs(tmp_path, snapshot)
++    assert all((tmp_path / name).read_bytes() == value for name, value in committed.items())
++
++
++def test_recovery_rejects_committed_corruption_before_truncating(tmp_path):
++    for name in train.LOG_NAMES:
++        (tmp_path / name).write_bytes(b'{"step": 1}\n')
++    snapshot = train.snapshot_logs(tmp_path)
++    (tmp_path / 'training_stream.jsonl').write_bytes(b'X"step": 1}\n')
++    with (tmp_path / 'training_metrics.jsonl').open('ab') as stream:
++        stream.write(b'uncommitted tail')
++    before = {name: (tmp_path / name).read_bytes() for name in train.LOG_NAMES}
++    with pytest.raises(ValueError, match='Committed log prefix'):
++        train.restore_logs(tmp_path, snapshot)
++    assert before == {name: (tmp_path / name).read_bytes() for name in train.LOG_NAMES}
++
++
++def test_step0_missing_logs_are_valid(tmp_path):
++    snapshot = train.snapshot_logs(tmp_path)
++    (tmp_path / 'training_metrics.jsonl').write_bytes(b'{"step": 1,')
++    train.restore_logs(tmp_path, snapshot)
++    assert (tmp_path / 'training_metrics.jsonl').read_bytes() == b''
++
++
++def test_latest_ignores_unpublished_partial_checkpoints(tmp_path):
++    for name in ('step_000008', 'step_000016.partial'):
++        path = tmp_path / 'checkpoints' / name
++        path.mkdir(parents=True)
++        (path / 'DONE').write_text('{}')
++    assert [p.parent.name for p in train.complete_checkpoint_receipts(tmp_path)] == ['step_000008']

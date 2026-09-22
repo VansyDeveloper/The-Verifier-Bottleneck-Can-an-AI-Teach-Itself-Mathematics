@@ -1,0 +1,81 @@
+{
+  "code_hash": "a3e70a7a4e344f88ce67176233d59b5fd0822b6c7f84316faccd32779883e2cc",
+  "jobs": 10,
+  "queue_sha256": "0a68ef98603ef570d05a26e57d7c960d01ba3e438c898c7e67736f6f84c9db51",
+  "scope": "No full scientific training or actual base-weight validation; example base path is a placeholder",
+  "status": "PLANNED_ONLY",
+  "training": [
+    {
+      "base": "/ABSOLUTE/PATH/atomic_06_bf16/checkpoint",
+      "checkpoint_steps": [
+        0,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "learning_rate": 0.0001,
+      "max_steps": 128,
+      "objective": "ce",
+      "replay_weight": 0.0,
+      "resume_from": "latest",
+      "seed": 0
+    },
+    {
+      "base": "/ABSOLUTE/PATH/atomic_06_bf16/checkpoint",
+      "checkpoint_steps": [
+        0,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "learning_rate": 3e-05,
+      "max_steps": 128,
+      "objective": "ce",
+      "replay_weight": 0.0,
+      "resume_from": "latest",
+      "seed": 0
+    },
+    {
+      "base": "/ABSOLUTE/PATH/atomic_06_bf16/checkpoint",
+      "checkpoint_steps": [
+        0,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "learning_rate": 0.0001,
+      "max_steps": 128,
+      "objective": "ce",
+      "replay_weight": 0.25,
+      "resume_from": "latest",
+      "seed": 0
+    },
+    {
+      "base": "/ABSOLUTE/PATH/atomic_06_bf16/checkpoint",
+      "checkpoint_steps": [
+        0,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+      "learning_rate": 3e-05,
+      "max_steps": 128,
+      "objective": "ce",
+      "replay_weight": 0.25,
+      "resume_from": "latest",
+      "seed": 0
+    }
+  ]
+}

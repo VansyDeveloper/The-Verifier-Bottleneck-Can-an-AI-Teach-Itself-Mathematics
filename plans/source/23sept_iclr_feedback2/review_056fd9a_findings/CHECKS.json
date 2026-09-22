@@ -1,0 +1,94 @@
+{
+  "archive_checks": {
+    "archive_sha256": "377755369604b10024e644fe04143346295e34f41da7b2d543353dffad701339",
+    "files_verified": 352,
+    "mismatches": [],
+    "code_hash": "73a57125b662d7eb70a252d0e674e15203ac04cc27c748f5d1a1e1916b991f82",
+    "matches_manifest_code": true
+  },
+  "data_checks": {
+    "mask1": {
+      "replay_rows": 240,
+      "unique_correct_witnesses": true,
+      "training_panels": 64,
+      "full_pool_operations": {
+        "AX1": 48,
+        "SC2": 48,
+        "REV": 48,
+        "SH1": 48,
+        "AC1": 48
+      },
+      "first128_operations": {
+        "AX1": 26,
+        "SC2": 26,
+        "REV": 25,
+        "SH1": 26,
+        "AC1": 25
+      },
+      "monitor_counts": {
+        "atomic": 100,
+        "crossed": 128,
+        "ordinary": 64,
+        "reference": 64,
+        "train": 16
+      },
+      "passed": true
+    },
+    "mask2": {
+      "replay_rows": 240,
+      "unique_correct_witnesses": true,
+      "training_panels": 64,
+      "full_pool_operations": {
+        "AX1": 48,
+        "SC2": 48,
+        "REV": 48,
+        "SH1": 48,
+        "AC1": 48
+      },
+      "first128_operations": {
+        "AX1": 25,
+        "SC2": 27,
+        "REV": 27,
+        "SH1": 25,
+        "AC1": 24
+      },
+      "monitor_counts": {
+        "atomic": 100,
+        "crossed": 128,
+        "ordinary": 64,
+        "reference": 64,
+        "train": 16
+      },
+      "passed": true
+    }
+  },
+  "independent_source_checks": {
+    "compact_raw_records": 5952,
+    "unique_tasks_checked_with_exact_interpreter": 992,
+    "all_correct_sets_match_interpreter": true,
+    "all_score_vectors_finite_length125": true,
+    "atomic_error_examples_rechecked": 20,
+    "atomic_examples_have_no_label_or_parser_disagreements": true,
+    "scope": "Compact records only; no fresh inference, no full operator-archive receipt audit or base-training history verification."
+  },
+  "resume_checks": {
+    "original_config_only_resume": "passes configuration parsing (start_run returns completed sentinel)",
+    "original_explicit_plus_config_resume": "Unknown v4 training settings: {'resume_from'}",
+    "original_torn_tail_recovery": "JSONDecodeError",
+    "patched_explicit_plus_config_resume": "PASS",
+    "patched_torn_tail_recovery": "PASS; committed bytes preserved exactly",
+    "patched_rejects_committed_corruption_without_mutation": "PASS",
+    "patched_ignores_unpublished_partial_checkpoint": "PASS",
+    "patched_empty_step0_logs": "PASS"
+  },
+  "cpu_tests": "28 passed; no full-model tests or CUDA",
+  "v4_replay": "34 hashes and 35 comparisons passed",
+  "q1_summary_byte_identical": true,
+  "patch_applies": true,
+  "full_model_patch_regression": "NOT RUN; requires locked project environment",
+  "verdict": {
+    "experimental_design_R0_R3": "OK",
+    "uninterrupted_training": "no blocking correctness defect found in reviewed path; models not run",
+    "documented_recovery": "NOT OK; local fixes required before long frozen-code queue"
+  }
+}

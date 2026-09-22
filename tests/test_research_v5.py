@@ -19,11 +19,11 @@ from iclr.research import plan
 from iclr.research_data import prepare_amendment, verify_amendment
 from iclr.research_io import plan_path, start_run
 from iclr.research_model import evaluation_context, rng_state, restore_rng
-from iclr.research_train import run
+from iclr.research_train import LOG_NAMES, run, snapshot_logs
 from test_research_runtime import tiny_setup
 
 
-def test_replay_monitor_and_resume_preserve_actual_optimizer_trajectory(tmp_path):
+def test_replay_monitor_and_resume_preserve_actual_optimizer_trajectory(tmp_path, monkeypatch):
     data, base = tiny_setup(tmp_path)
     amendment = tmp_path / 'amendment/manifest.json'
     prepare_amendment(data, amendment.parent, per_stratum=1)
@@ -34,13 +34,36 @@ def test_replay_monitor_and_resume_preserve_actual_optimizer_trajectory(tmp_path
     cfg = dict(base=str(base), data=str(data), device=device, dtype='bfloat16' if device == 'cuda' else 'float32',
                prefix_batch=8, epochs=3, max_steps=3, checkpoint_steps=[0,1,2,3],
                objective='ce_cf_entropy', plan='v5', amendment=str(amendment), replay_weight=.25)
-    for name, monitor, interrupted in [('continuous', False, False), ('monitored', True, False), ('resumed', True, True)]:
+    for name, monitor, interrupted in [('continuous', False, False), ('monitored', True, False),
+                                        ('resumed', True, True), ('recovered', True, False)]:
         out = tmp_path / name
-        config = {**cfg, 'output': str(out), 'monitor': monitor}
-        run(config, stop_after=1 if interrupted else None)
+        config = {**cfg, 'output': str(out), 'monitor': monitor, 'resume_from': 'latest'}
+        if name == 'recovered':
+            rename = Path.rename
+            def interrupt_publication(path, target):
+                if path.name == 'step_000002.partial':
+                    raise RuntimeError('Injected interruption before checkpoint publication')
+                return rename(path, target)
+            with monkeypatch.context() as patch:
+                patch.setattr(Path, 'rename', interrupt_publication)
+                with pytest.raises(RuntimeError, match='Injected interruption'):
+                    run(config)
+            assert not (out / 'DONE').exists()
+            partial = out / 'checkpoints/step_000002.partial'
+            assert (partial / 'DONE').exists()
+            for log in LOG_NAMES:
+                with (out / log).open('ab') as stream:
+                    stream.write(b'{"step": 3, "unfinished":')
+            with pytest.raises(ValueError, match='published checkpoint'):
+                run(config, resume_from=str(partial))
+            # The generated config and explicit CLI argument both request latest.
+            run(config, resume_from='latest')
+            assert not partial.exists()
+        else:
+            run(config, stop_after=1 if interrupted else None)
         if interrupted:
             assert not (out / 'DONE').exists()
-            run(config, resume_from=str(out / 'checkpoints/step_000001'))
+            run({**config, 'resume_from': 'must-be-overridden'}, resume_from=str(out / 'checkpoints/step_000001'))
         verify_receipt(out)
         # Completed replay is idempotent, not a second training run.
         run(config)
@@ -57,12 +80,19 @@ def test_replay_monitor_and_resume_preserve_actual_optimizer_trajectory(tmp_path
             receipt = verify_receipt(cp)
             assert receipt['checkpoint_step'] == step and not receipt['completed_training']
             assert file_hash(cp / 'resume_state.pt') == receipt['resume_state_hash']
+        state = torch.load(cp / 'resume_state.pt', weights_only=False, map_location='cpu')
+        assert state['logs'] == snapshot_logs(out)
     expected = load_file(tmp_path / 'continuous/adapter/adapter_model.safetensors')
-    for name in ('monitored', 'resumed'):
+    expected_state = torch.load(tmp_path / 'continuous/checkpoints/step_000003/resume_state.pt', weights_only=False, map_location='cpu')
+    for name in ('monitored', 'resumed', 'recovered'):
         actual = load_file(tmp_path / name / 'adapter/adapter_model.safetensors')
         for key in expected:
             torch.testing.assert_close(expected[key], actual[key], atol=1e-6 if device == 'cuda' else 0, rtol=0)
-        assert read_jsonl(tmp_path / 'continuous/training_stream.jsonl') == read_jsonl(tmp_path / name / 'training_stream.jsonl')
+        for log in ('training_stream.jsonl', 'replay_stream.jsonl'):
+            assert (tmp_path / 'continuous' / log).read_bytes() == (tmp_path / name / log).read_bytes()
+        state = torch.load(tmp_path / name / 'checkpoints/step_000003/resume_state.pt', weights_only=False, map_location='cpu')
+        assert state['next_step'] == expected_state['next_step'] and state['counts'] == expected_state['counts']
+        torch.testing.assert_close(state['optimizer'], expected_state['optimizer'], atol=1e-6 if device == 'cuda' else 0, rtol=0)
     # A final receipt must not be substituted for a step-1 adapter.
     with pytest.raises(ValueError, match='training receipt'):
         start_run({**cfg, 'output': str(tmp_path / 'wrong_receipt'), 'arm': cfg['objective'], 'seed': 0,

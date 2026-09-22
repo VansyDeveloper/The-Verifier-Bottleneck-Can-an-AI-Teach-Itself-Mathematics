@@ -1,0 +1,7 @@
+PASS Q1_composition_minus_atomic_control.json
+PASS Q3_ce_cf_entropy_minus_ce.json
+PASS Q3_ce_cf_entropy_minus_ce_entropy.json
+PASS Q3_ce_cf_minus_ce.json
+PASS Q3_ce_entropy_minus_ce.json
+PASS: 34 file hashes; 35 endpoint comparisons; paired identities and per-seed values.
+Scope: stored panel/START-cluster values. Raw logits and model inference are not replayed.

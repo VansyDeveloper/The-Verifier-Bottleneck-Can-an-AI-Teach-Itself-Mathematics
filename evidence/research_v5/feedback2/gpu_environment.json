@@ -1,0 +1,14 @@
+{
+  "cuda": "12.4",
+  "git_commit": "056fd9ad5e3eebf33fcd65eefdabf8235b86bd46",
+  "git_status": " M README.md\n M iclr/research_train.py\n M plans/RUN_V5_RU.md\n M tests/test_research_v5.py\n?? plans/source/23sept_iclr_feedback2/\n?? tests/test_research_resume_recovery.py\n",
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "packages": {
+    "numpy": "2.4.6",
+    "peft": "0.19.1",
+    "scipy": "1.17.1",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.1"
+  },
+  "python": "3.11.13"
+}

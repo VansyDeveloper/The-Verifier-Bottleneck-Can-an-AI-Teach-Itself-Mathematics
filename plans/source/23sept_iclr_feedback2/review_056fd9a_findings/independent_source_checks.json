@@ -1,0 +1,9 @@
+{
+  "compact_raw_records": 5952,
+  "unique_tasks_checked_with_exact_interpreter": 992,
+  "all_correct_sets_match_interpreter": true,
+  "all_score_vectors_finite_length125": true,
+  "atomic_error_examples_rechecked": 20,
+  "atomic_examples_have_no_label_or_parser_disagreements": true,
+  "scope": "Compact records only; no fresh inference, no full operator-archive receipt audit or base-training history verification."
+}

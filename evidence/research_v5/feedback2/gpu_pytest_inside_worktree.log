@@ -1,0 +1,18 @@
+.....F........                                                           [100%]
+=================================== FAILURES ===================================
+________________ test_source_archive_runs_without_git_metadata _________________
+
+tmp_path = PosixPath('/tmp/artem_iclr/outputs/feedback2_validation/gpu_pytest_tmp/test_source_archive_runs_witho0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8702c8ecd0>
+
+    def test_source_archive_runs_without_git_metadata(tmp_path, monkeypatch):
+        from iclr import common
+        monkeypatch.setattr(common, 'ROOT', tmp_path)
+        result = common.environment()
+>       assert result['git_commit'] is None and 'without Git metadata' in result['git_status']
+E       AssertionError: assert ('056fd9ad5e3eebf33fcd65eefdabf8235b86bd46' is None)
+
+tests/test_research_v5.py:233: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_research_v5.py::test_source_archive_runs_without_git_metadata
+1 failed, 13 passed in 18.60s

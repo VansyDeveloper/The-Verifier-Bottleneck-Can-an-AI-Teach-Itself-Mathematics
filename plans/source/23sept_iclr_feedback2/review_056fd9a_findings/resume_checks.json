@@ -1,0 +1,10 @@
+{
+  "original_config_only_resume": "passes configuration parsing (start_run returns completed sentinel)",
+  "original_explicit_plus_config_resume": "Unknown v4 training settings: {'resume_from'}",
+  "original_torn_tail_recovery": "JSONDecodeError",
+  "patched_explicit_plus_config_resume": "PASS",
+  "patched_torn_tail_recovery": "PASS; committed bytes preserved exactly",
+  "patched_rejects_committed_corruption_without_mutation": "PASS",
+  "patched_ignores_unpublished_partial_checkpoint": "PASS",
+  "patched_empty_step0_logs": "PASS"
+}

@@ -1,0 +1,56 @@
+{
+  "mask1": {
+    "replay_rows": 240,
+    "unique_correct_witnesses": true,
+    "training_panels": 64,
+    "full_pool_operations": {
+      "AX1": 48,
+      "SC2": 48,
+      "REV": 48,
+      "SH1": 48,
+      "AC1": 48
+    },
+    "first128_operations": {
+      "AX1": 26,
+      "SC2": 26,
+      "REV": 25,
+      "SH1": 26,
+      "AC1": 25
+    },
+    "monitor_counts": {
+      "atomic": 100,
+      "crossed": 128,
+      "ordinary": 64,
+      "reference": 64,
+      "train": 16
+    },
+    "passed": true
+  },
+  "mask2": {
+    "replay_rows": 240,
+    "unique_correct_witnesses": true,
+    "training_panels": 64,
+    "full_pool_operations": {
+      "AX1": 48,
+      "SC2": 48,
+      "REV": 48,
+      "SH1": 48,
+      "AC1": 48
+    },
+    "first128_operations": {
+      "AX1": 25,
+      "SC2": 27,
+      "REV": 27,
+      "SH1": 25,
+      "AC1": 24
+    },
+    "monitor_counts": {
+      "atomic": 100,
+      "crossed": 128,
+      "ordinary": 64,
+      "reference": 64,
+      "train": 16
+    },
+    "passed": true
+  }
+}

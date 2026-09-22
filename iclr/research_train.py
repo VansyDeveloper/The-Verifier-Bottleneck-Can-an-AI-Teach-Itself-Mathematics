@@ -2,6 +2,7 @@
 
 import argparse
 from collections import Counter
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -30,6 +31,44 @@ DEFAULTS = dict(objective='ce', seed=0, epochs=2, panel_batch=1, prefix_batch=32
                 state_weight=.1, sigreg_weight=.01, state_dimension=32,
                 group_size=32, device='cuda', dtype='bfloat16', reward_steps=32,
                 replay_weight=0., max_steps=None, checkpoint_steps=[], monitor=False)
+LOG_NAMES = ('training_metrics.jsonl', 'training_stream.jsonl', 'replay_stream.jsonl')
+
+
+def snapshot_logs(out):
+    snapshot = {}
+    for name in LOG_NAMES:
+        path = Path(out) / name
+        contents = path.read_bytes() if path.exists() else b''
+        snapshot[name] = {'bytes': len(contents), 'sha256': hashlib.sha256(contents).hexdigest()}
+    return snapshot
+
+
+def restore_logs(out, snapshot):
+    if not isinstance(snapshot, dict) or set(snapshot) != set(LOG_NAMES):
+        raise ValueError('Checkpoint has no complete committed-log snapshot; do not guess recovery boundaries')
+    # Validate every committed prefix before changing any live log.
+    for name in LOG_NAMES:
+        entry = snapshot[name]
+        if not isinstance(entry, dict) or type(entry.get('bytes')) is not int or entry['bytes'] < 0:
+            raise ValueError(f'Invalid committed log boundary: {name}')
+        path, size = Path(out) / name, entry['bytes']
+        if path.exists():
+            with path.open('rb') as stream:
+                prefix = stream.read(size)
+        else:
+            prefix = b''
+        if len(prefix) != size or hashlib.sha256(prefix).hexdigest() != entry.get('sha256'):
+            raise ValueError(f'Committed log prefix is missing or damaged: {name}')
+    for name in LOG_NAMES:
+        path = Path(out) / name
+        if path.exists():
+            with path.open('r+b') as stream:
+                stream.truncate(snapshot[name]['bytes'])
+
+
+def complete_checkpoint_receipts(out):
+    return sorted(p for p in (Path(out) / 'checkpoints').glob('step_*/DONE')
+                  if p.parent.name.removeprefix('step_').isdigit())
 
 
 def config_checked(config):
@@ -78,7 +117,7 @@ def checkpoint(out, step, model, tokenizer, head, optimizer, counts, binding, ma
             write_json(temporary / 'adapter/state_projection.json', head.config)
             torch.save(head.state_dict(), temporary / 'adapter/state_projection.pt')
         torch.save({'optimizer': optimizer.state_dict(), 'rng': state, 'next_step': step,
-                    'counts': dict(counts)}, temporary / 'resume_state.pt')
+                    'counts': dict(counts), 'logs': snapshot_logs(out)}, temporary / 'resume_state.pt')
         write_json(temporary / 'binding.json', binding)
         write_json(temporary / 'budget.json', {**counts, 'optimizer_steps': step, 'completed': False,
                     'planned_steps': planned_steps, 'cursor': {'next_composition_step': step, 'next_replay_step': step}})
@@ -103,7 +142,8 @@ def checkpoint(out, step, model, tokenizer, head, optimizer, counts, binding, ma
 
 def run(config, *, resume_from=None, stop_after=None):
     config = dict(config)
-    resume_from = resume_from or config.pop('resume_from', None)
+    configured_resume = config.pop('resume_from', None)
+    resume_from = resume_from if resume_from is not None else configured_resume
     cfg = config_checked(config)
     manifest, binding, done = start_run(cfg, 'train')
     if done:
@@ -117,16 +157,18 @@ def run(config, *, resume_from=None, stop_after=None):
     if reward or state_path:
         require_gate(cfg.get('gate'), 'reward' if reward else 'state', binding)
     if resume_from == 'latest':
-        snapshots = sorted((out / 'checkpoints').glob('step_*/DONE'))
+        snapshots = complete_checkpoint_receipts(out)
         resume_from = str(snapshots[-1].parent) if snapshots else None
     resumed = None
     if resume_from:
+        if Path(resume_from).name.endswith('.partial'):
+            raise ValueError('Resume requires a published checkpoint, not a .partial directory')
         resumed = verify_receipt(resume_from)
         if (resumed['binding'] != binding
                 or tree_hash(Path(resume_from) / 'adapter') != resumed['payload_hash']
                 or file_hash(Path(resume_from) / 'resume_state.pt') != resumed['resume_state_hash']):
             raise ValueError('Resume checkpoint differs from the exact run or its saved state')
-        later = sorted((out / 'checkpoints').glob('step_*/DONE'))
+        later = complete_checkpoint_receipts(out)
         if later and later[-1].parent.name > Path(resume_from).name:
             raise ValueError('Resume the latest immutable checkpoint; use a new run for an independent restart')
     elif (out / 'training_metrics.jsonl').exists() and (out / 'training_metrics.jsonl').stat().st_size:
@@ -171,12 +213,7 @@ def run(config, *, resume_from=None, stop_after=None):
         optimizer.load_state_dict(state['optimizer'])
         first_step, counts = state['next_step'], Counter(state['counts'])
         restore_rng(state['rng'])
-        for name, keep in [('training_metrics.jsonl', lambda r: r['step'] <= first_step),
-                           ('training_stream.jsonl', lambda r: r['step'] < first_step),
-                           ('replay_stream.jsonl', lambda r: r['step'] <= first_step)]:
-            path = out / name
-            if path.exists():
-                path.write_bytes(core.canonical_jsonl_bytes([r for r in read_jsonl(path) if keep(r)]))
+        restore_logs(out, state.get('logs'))
     if device.type == 'cuda':
         torch.cuda.reset_peak_memory_stats()
     probe = panels[0][0]

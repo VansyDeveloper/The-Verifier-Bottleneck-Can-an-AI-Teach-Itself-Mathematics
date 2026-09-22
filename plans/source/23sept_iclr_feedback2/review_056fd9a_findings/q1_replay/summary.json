@@ -1,0 +1,6418 @@
+{
+  "alpha": 1,
+  "amendment_plan_hash": "68ffe875039d3a9c7597ef4b485b75730bf2ea130db932c6f312a401a81a2914",
+  "interaction_transitions": {
+    "full": {
+      "I_nonpositive_to_positive": 14,
+      "I_positive_to_nonpositive": 4,
+      "panel_seed_records": 96,
+      "unique_panels": 32
+    },
+    "local": {
+      "I_nonpositive_to_positive": 21,
+      "I_positive_to_nonpositive": 4,
+      "panel_seed_records": 96,
+      "unique_panels": 32
+    }
+  },
+  "limitations": "additive score model, not causal; no alpha tuning; no new training; same historical masks/checkpoints; provenance gaps remain",
+  "metrics": [
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.07166666666666667,
+      "metric": "hit8",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.25583333333333336,
+      "metric": "hit32",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.000947711864898013,
+      "metric": "correct_mass",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.023797392694651514,
+      "metric": "iid_success32",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7066666666666666,
+      "metric": "four_target_pair",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.09375,
+      "metric": "joint",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5364583333333334,
+      "metric": "cell",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 8.209527497490248,
+      "metric": "interaction",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7083333333333334,
+      "metric": "interaction_positive",
+      "policy": "local",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.008333333333333333,
+      "metric": "hit8",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.09583333333333333,
+      "metric": "hit32",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0027538624707204944,
+      "metric": "correct_mass",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.07644193987371997,
+      "metric": "iid_success32",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8224999999999999,
+      "metric": "four_target_pair",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.4270833333333333,
+      "metric": "joint",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7552083333333334,
+      "metric": "cell",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 6.998054541647434,
+      "metric": "interaction",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8854166666666666,
+      "metric": "interaction_positive",
+      "policy": "local",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0075,
+      "metric": "hit8",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.1925,
+      "metric": "hit32",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0024925986998817337,
+      "metric": "correct_mass",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.05791491984873168,
+      "metric": "iid_success32",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7066666666666666,
+      "metric": "four_target_pair",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.11458333333333333,
+      "metric": "joint",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.546875,
+      "metric": "cell",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 8.209527497490248,
+      "metric": "interaction",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7083333333333334,
+      "metric": "interaction_positive",
+      "policy": "local",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.005833333333333333,
+      "metric": "hit8",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.29083333333333333,
+      "metric": "hit32",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 5.0056486154753664e-05,
+      "metric": "correct_mass",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0015613960888493086,
+      "metric": "iid_success32",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8224999999999999,
+      "metric": "four_target_pair",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.09375,
+      "metric": "joint",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5598958333333334,
+      "metric": "cell",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 6.998054541647434,
+      "metric": "interaction",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8854166666666666,
+      "metric": "interaction_positive",
+      "policy": "local",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit8",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.13333333333333333,
+      "metric": "hit32",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0013311625485136018,
+      "metric": "correct_mass",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.03441742825354,
+      "metric": "iid_success32",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5,
+      "metric": "four_target_pair",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "joint",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5,
+      "metric": "cell",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "interaction",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "interaction_positive",
+      "policy": "local",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.028333333333333332,
+      "metric": "hit8",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.3225,
+      "metric": "hit32",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0002660506733984052,
+      "metric": "correct_mass",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0068087229309588436,
+      "metric": "iid_success32",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7463888888888889,
+      "metric": "four_target_pair",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.08333333333333333,
+      "metric": "joint",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5625,
+      "metric": "cell",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 7.1066045959790545,
+      "metric": "interaction",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.78125,
+      "metric": "interaction_positive",
+      "policy": "full",
+      "variant": "control"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.008333333333333333,
+      "metric": "hit8",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.09583333333333333,
+      "metric": "hit32",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0027524369158827655,
+      "metric": "correct_mass",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.07642412877756695,
+      "metric": "iid_success32",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8227777777777779,
+      "metric": "four_target_pair",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.4270833333333333,
+      "metric": "joint",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7552083333333334,
+      "metric": "cell",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 6.993450803061326,
+      "metric": "interaction",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8854166666666666,
+      "metric": "interaction_positive",
+      "policy": "full",
+      "variant": "composition"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.03333333333333333,
+      "metric": "hit1",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.04916666666666667,
+      "metric": "hit8",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.19416666666666668,
+      "metric": "hit32",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.01067995560339941,
+      "metric": "correct_mass",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.08232397739550808,
+      "metric": "iid_success32",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.7463888888888889,
+      "metric": "four_target_pair",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0625,
+      "metric": "joint",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5442708333333334,
+      "metric": "cell",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 7.1066045959790545,
+      "metric": "interaction",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.78125,
+      "metric": "interaction_positive",
+      "policy": "full",
+      "variant": "control_plus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0025,
+      "metric": "hit8",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.3541666666666667,
+      "metric": "hit32",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 2.189870285197681e-06,
+      "metric": "correct_mass",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 7.001236446591825e-05,
+      "metric": "iid_success32",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8227777777777779,
+      "metric": "four_target_pair",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.08333333333333333,
+      "metric": "joint",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5442708333333334,
+      "metric": "cell",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 6.993450803061326,
+      "metric": "interaction",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.8854166666666666,
+      "metric": "interaction_positive",
+      "policy": "full",
+      "variant": "composition_minus_prior"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "hit1",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.014166666666666668,
+      "metric": "hit8",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.105,
+      "metric": "hit32",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0013741860423988402,
+      "metric": "correct_mass",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.032456577755794726,
+      "metric": "iid_success32",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5,
+      "metric": "four_target_pair",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "joint",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.5,
+      "metric": "cell",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "interaction",
+      "policy": "full",
+      "variant": "prior_only"
+    },
+    {
+      "mean_over_seeds_and_BD": 0.0,
+      "metric": "interaction_positive",
+      "policy": "full",
+      "variant": "prior_only"
+    }
+  ],
+  "per_seed_family": [
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.115,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.28,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0014396428744205625,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.036067678905747254,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.04,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.23,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.000990465643818641,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.02220045045447806,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.7266666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.705,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.546875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 8.985840231180191,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.8125,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.515625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 8.467233642935753,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.625,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.015,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.13,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0033833615620527053,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.09209952923557672,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.035,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.095,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0032750722622949314,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.08631830997297645,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.8416666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.8266666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.84375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 9.700037866830826,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.4375,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 6.0854532122612,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.01,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.235,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.003847960239444449,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.08532792526488103,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.14,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0010444407030189074,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.029031849040172482,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.7266666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.705,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.59375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.985840231180191,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.8125,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.53125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 8.467233642935753,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.625,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.015,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.275,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 5.6297082187150674e-05,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0017384002794035291,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.015,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.27,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 3.932991867595499e-05,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.001236949846537677,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.8416666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.8266666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.578125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 9.700037866830826,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.515625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 6.0854532122612,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.14,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0011632976324270172,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.03220320289055868,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.19,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0016229844959265358,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.044497259737038226,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.045,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.345,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.00043505676957383886,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.010739953661648326,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.01,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.26,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0003428483550866959,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.007990396842996789,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.77,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.7383333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 8.381260633468628,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.515625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 6.162070989608765,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.6875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.015,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.13,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0033792344259166796,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.09205711067155509,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.035,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.095,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0032758298831100574,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.08633937178102938,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.84,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.8266666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.84375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 9.693455129861832,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.4375,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 6.077420949935913,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.055,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.07,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.245,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0165983907487186,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.10664372986318982,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.02,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.025,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.145,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.005575225217559974,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.04344273882697165,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.77,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.7383333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.381260633468628,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.515625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 6.162070989608765,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.6875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.39,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 2.1287528908022332e-06,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 6.806226071326987e-05,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.29,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 1.4524718914534808e-06,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 4.6461569377514776e-05,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.84,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.8266666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.1875,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.59375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 9.693455129861832,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.546875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 6.077420949935913,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.1,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0006864962784135032,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.020180645584975173,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.145,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0009309537133765105,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.027188719348658418,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 0,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.095,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.29,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0005462894100391316,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.015884367373281992,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.02,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.24,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0002584046809514857,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.007540529073460566,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.6966666666666665,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.6966666666666665,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.53125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 7.8442807495594025,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.6875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.53125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 8.822085231542587,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.105,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0024895664130442957,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.07187353292207381,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.075,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.001912792082636274,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0565565572912514,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.8533333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.7950000000000002,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.796875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 8.047976434230804,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.1875,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.640625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 4.861832022666931,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.015,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.24,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0030334591746768646,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.06920737093584059,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.125,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0009165176679452064,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.024255261251903068,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.6966666666666665,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.6966666666666665,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.53125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 7.8442807495594025,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.6875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.546875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 8.822085231542587,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.32,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 3.79451726666938e-05,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0011976120957702136,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.005,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.255,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 5.230027382882618e-05,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0016321206571710428,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.8533333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.7950000000000002,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.1875,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.59375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.047976434230804,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.5625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 4.861832022666931,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.1,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0007470755416222254,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.02116144174881049,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.145,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0009206108924751134,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.026266165548085755,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.02,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.355,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0001403897114725746,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.003962348362376836,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.03,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.295,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.00016306260467681535,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.004340908874158417,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.76,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.7399999999999999,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.53125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 7.770952343940735,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.8125,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.546875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 6.7184144258499146,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.8125,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.105,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0024877519013691046,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.07183021397410873,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.075,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0019116653170655883,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.05653011747536784,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.8533333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.7966666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.796875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 8.04771700501442,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.1875,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.640625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 4.858439117670059,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.045,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.07,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.225,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.016339757375454327,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.11043577293690297,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.02,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.025,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.12,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.005596918672073119,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.04259955260981675,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.76,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.7399999999999999,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.59375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 7.770952343940735,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.8125,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.515625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 6.7184144258499146,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.8125,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.36,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 1.395056640412794e-06,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 4.4631816319772155e-05,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.005,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.31,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 3.0524068531860766e-06,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 9.747033844274612e-05,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.8533333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.7966666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.578125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.04771700501442,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 4.858439117670059,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.1,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.000848403725606862,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.022767476382882186,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.145,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0012797420771510995,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.03425749535442989,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 1,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.115,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.29,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0017321397668030288,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.04286668606986902,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.045,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.205,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0007193288133552286,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.018224644291072206,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.7083333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.7066666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.53125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 8.202653914690018,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.5625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 6.935071215033531,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.625,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.095,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.003049288705816755,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.08486096681483907,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.075,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0024130937984780045,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.06694274300560239,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.8166666666666668,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.8016666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.8125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 8.067369401454926,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.3125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.6875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 5.2256583124399185,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.02,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.255,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.004629861885098561,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.10106663338976446,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.16,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.001483352529106414,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.038600479209828446,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.7083333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.7066666666666667,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.202653914690018,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.75,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.515625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 6.935071215033531,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.625,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.335,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 6.698861224939433e-05,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0020763793910087308,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.29,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 4.747785732050201e-05,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.001486914263204659,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.8166666666666668,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.8016666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.578125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.067369401454926,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.53125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 5.2256583124399185,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.09,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0014348452366642847,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.03344897776237951,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.135,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0020981614919664336,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.048927521834367355,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "local",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.045,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.39,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.00028980195339732014,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.007865727819779272,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.02,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.29,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0002251446461831861,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.005953002024793419,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.7533333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.7166666666666666,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.59375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 7.909100890159607,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.5625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 5.69782829284668,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "D",
+      "mean": 0.625,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.095,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.003046773080555607,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.08481948634903681,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.075,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0024133668872795555,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.0669684724143038,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.8183333333333335,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.8016666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.8125,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 8.06332103908062,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.3125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.6875,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 5.220351576805115,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition"
+    },
+    {
+      "family": "B",
+      "mean": 0.05,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.075,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.265,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.015110350181011933,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.1355371653649066,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.01,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.03,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.165,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.00485909142557851,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.05528490477126068,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.7533333333333333,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.7166666666666666,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 7.909100890159607,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0625,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.515625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 5.69782829284668,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.625,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "control_plus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.43,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 2.536073111954421e-06,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.112863197060799e-05,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.01,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.345,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 2.574460323377083e-06,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 8.231956997159861e-05,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.8183333333333335,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.8016666666666669,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.125,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.5625,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 8.06332103908062,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.9375,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.484375,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 5.220351576805115,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "D",
+      "mean": 0.875,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "composition_minus_prior"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.035,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.05,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0018017254720644037,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.035951392428017676,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "hit1",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.05,
+      "metric": "hit8",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.09,
+      "metric": "hit32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.002697794987780662,
+      "metric": "correct_mass",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.054393737435805035,
+      "metric": "iid_success32",
+      "n": 200,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "four_target_pair",
+      "n": 50,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "B",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "joint",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.5,
+      "metric": "cell",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    },
+    {
+      "family": "D",
+      "mean": 0.0,
+      "metric": "interaction_positive",
+      "n": 16,
+      "policy": "full",
+      "seed": 2,
+      "variant": "prior_only"
+    }
+  ],
+  "pool_decomposition": {
+    "full": {
+      "between": 0.0018148413407497233,
+      "delta_mass": 0.0024863862424843604,
+      "within": 0.0006715449017346372
+    },
+    "local": {
+      "between": 0.001146492185356821,
+      "delta_mass": 0.0018061506058224812,
+      "within": 0.00065965842046566
+    }
+  },
+  "reference_ids": [
+    "s4c-0009961741b3a836d31be487",
+    "s4c-009a016cdaa4face942e2cd9",
+    "s4c-022ac92566797252b11137c7",
+    "s4c-02a7aa729b3bc2e828f5f917",
+    "s4c-03ae627c61d2a87cbd183076",
+    "s4c-03b1c28e54b78698e815a808",
+    "s4c-06fcb7891f7281ed93343ba1",
+    "s4c-072aa611a94ea69ffe2d258d",
+    "s4c-0814285dae71c61d4e77c352",
+    "s4c-08a33a69efc8ef0d62fc0e6a",
+    "s4c-09e38e4720975fe946d78e43",
+    "s4c-0d03bd7646e20e648035c0c3",
+    "s4c-0f0579316804e0516f2c6d98",
+    "s4c-0fa1763ce193429d23761b94",
+    "s4c-10b58b06cbc179138e730127",
+    "s4c-118c56f2c5d28a93fcc81655",
+    "s4c-122caef82cd390e09960c7ca",
+    "s4c-1392781f67ac89784e4f75c6",
+    "s4c-168dcbc558b960b4d8091375",
+    "s4c-16f93043b1f99b6664318787",
+    "s4c-17703cffca05398096b16dcf",
+    "s4c-1797dfce2b6c2fc9d382ba13",
+    "s4c-179b93035a78ee2c289daed8",
+    "s4c-1847bfd2a6d4b790accb5cb3",
+    "s4c-186e288912d1f55a3509e9d2",
+    "s4c-19e1a983741ba3e76cf3a42c",
+    "s4c-1af1718ff6004d84dd6323b1",
+    "s4c-20dfca8a4da5dc6d4b3d241e",
+    "s4c-217743ebd463d84c5ac4ac60",
+    "s4c-2347a70b1fab6c919ba3062a",
+    "s4c-243bf78edc712ace3d7808b2",
+    "s4c-26a33ff8742c9795a6d6916a",
+    "s4c-274c5df6ed5bdc79787f1098",
+    "s4c-287d0d8a9e21c24d9e361967",
+    "s4c-28c6148ee9a3e42c01804a5b",
+    "s4c-29c7b787cbfb762574ce5856",
+    "s4c-2dc120ed7d49dde1b6f5a103",
+    "s4c-2f853cb41463c539181dc3cd",
+    "s4c-32ced738031e7c27cd61166d",
+    "s4c-33885f051a1e836035570fc8",
+    "s4c-33cfbd50e9772656e89c7eed",
+    "s4c-34c619e64f7ef30b3a3cd804",
+    "s4c-376b5bc0d3c13301230849d4",
+    "s4c-37c7e915200bee77aaf7ed73",
+    "s4c-3901fbdd12bc5ae0cbf50afe",
+    "s4c-3987c0ac6b97c1ff9a970587",
+    "s4c-3c7cc96ffb76a241432bb419",
+    "s4c-3cd1c5662e89711ee1d854a5",
+    "s4c-3cd82dff86708e741ff28e63",
+    "s4c-3d8d9da65fda65104c14cfca",
+    "s4c-3fc0a78d82dc4236dfc184e7",
+    "s4c-44bcc415448fa0500e688bd9",
+    "s4c-468b8ac50f053fd8397b4342",
+    "s4c-477768eda190a2217e9befa9",
+    "s4c-493c1713a16a9ce6082aea35",
+    "s4c-4b298d5a1a423642b46cbe14",
+    "s4c-4bec7cc1b46eda1c7f6ca90a",
+    "s4c-4ca8063fe70f93b3bdf6119e",
+    "s4c-4cb9a83f3bdab89c234ea238",
+    "s4c-4d62061de462d2849d81c75b",
+    "s4c-4ded1c8dc84e29e69633e0c1",
+    "s4c-510d5ad6931804c7dfa26518",
+    "s4c-528b56c2af28a1c4023a3eba",
+    "s4c-53472155627723551a3a9f39"
+  ],
+  "reference_scope": "fixed first 64 dev A ordinary tasks, known fields; chosen post-hoc; no B/D outcomes used",
+  "source_manifest_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+  "sources": {
+    "q06_atomic_control_seed0": {
+      "binding": {
+        "adapter_hash": "e52395f797f6b9753bfd1b6b07f294b1dee3f9adbf03410023351c3819e26e1a",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "atomic_control",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "e52395f797f6b9753bfd1b6b07f294b1dee3f9adbf03410023351c3819e26e1a",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_atomic_control_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "a2aa7a77b342d0dbf1204523b254736cc1d51f9c92c96e8f4417249c12c9248e"
+    },
+    "q06_atomic_control_seed1": {
+      "binding": {
+        "adapter_hash": "9b920bad61523c64f36add425ce2475fd2e3372609411b8f46e49cca39ef4ee6",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed1/adapter",
+          "analysis_lock": null,
+          "arm": "atomic_control",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "9b920bad61523c64f36add425ce2475fd2e3372609411b8f46e49cca39ef4ee6",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_atomic_control_seed1",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 1,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "8f96df1ba95d01e662536b6b2d16d06a40377e5d39f5c2d4101d5eb12a9924c3"
+    },
+    "q06_atomic_control_seed2": {
+      "binding": {
+        "adapter_hash": "f5d9c58c859209c11f1e9f0cb1851e011ba93cc1a88007a8bd6d4231c5d60d1d",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r100_target_tokens_mixed_seed2/adapter",
+          "analysis_lock": null,
+          "arm": "atomic_control",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "f5d9c58c859209c11f1e9f0cb1851e011ba93cc1a88007a8bd6d4231c5d60d1d",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_atomic_control_seed2",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 2,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "d207f7100ef7be3ff294d6d61ff66339d07e145d100c612fd398053a84b5d4ba"
+    },
+    "q06_composition_seed0": {
+      "binding": {
+        "adapter_hash": "a7ea007c63bf88bea85144103cf63e387943e3a3aa3c475f25b3db3aa5453857",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed0/adapter",
+          "analysis_lock": null,
+          "arm": "composition",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "a7ea007c63bf88bea85144103cf63e387943e3a3aa3c475f25b3db3aa5453857",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_composition_seed0",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 0,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "642c644b34d4e1354873b2f4da882d08da9e054079b5da178e5bb97a49d32951"
+    },
+    "q06_composition_seed1": {
+      "binding": {
+        "adapter_hash": "b5cc211abaf5d108afff888b8e02b73f142abf57dae5c1ece2bc6965488ff4e5",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed1/adapter",
+          "analysis_lock": null,
+          "arm": "composition",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "b5cc211abaf5d108afff888b8e02b73f142abf57dae5c1ece2bc6965488ff4e5",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_composition_seed1",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 1,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "0be6746162484e18b3d71e67116670a282b78b11f95dc53f4792899a8f727d5a"
+    },
+    "q06_composition_seed2": {
+      "binding": {
+        "adapter_hash": "912c8031be128a6c8c0ea1ea5184a1e075d6374d95161f217c988397c8f26610",
+        "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+        "code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+        "config": {
+          "adapter": "outputs/q06_bf16_mb16_pb32/runs/Qwen_Qwen3-0.6B_ce_trace_r20_examples_mixed_seed2/adapter",
+          "analysis_lock": null,
+          "arm": "composition",
+          "base": "outputs/atomic_06_bf16/checkpoint",
+          "data": "outputs/v4_Q1_q06_a3/data/original",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "expected_adapter_hash": "912c8031be128a6c8c0ea1ea5184a1e075d6374d95161f217c988397c8f26610",
+          "expected_base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+          "model": "Qwen/Qwen3-0.6B",
+          "output": "outputs/v4_Q1_q06_a3/evaluations/q06_composition_seed2",
+          "phase": "dev",
+          "prefix_batch": 32,
+          "seed": 2,
+          "solve_per_family": 8
+        },
+        "data_hash": "b68a9bb828781d35181c90053cb1278de5c965f37924eeeb4454bc032f393fad",
+        "exposure": {
+          "historical_depth4": false,
+          "mask_pairs": [
+            "AX1>SH1",
+            "AC1>REV",
+            "SC2>AX1"
+          ],
+          "recorded_history_excludes_mask": false,
+          "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+          "stages": [
+            {
+              "depths": {
+                "1": null
+              },
+              "pairs": {},
+              "stage": "declared_atomic_task_initialization"
+            },
+            {
+              "depths": {},
+              "pairs": null,
+              "stage": "unrecorded_adapter_history"
+            }
+          ]
+        },
+        "kind": "evaluate",
+        "plan_hash": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757"
+      },
+      "receipt_sha256": "5852e6a1347f7f90aa610941e3c092d17d5a6e31d1b1c93ff50ff6450f8e9409"
+    }
+  },
+  "status": "POST_HOC_CPU_REPLAY"
+}

@@ -1,0 +1,80 @@
+{
+  "code_hash": "a3e70a7a4e344f88ce67176233d59b5fd0822b6c7f84316faccd32779883e2cc",
+  "comparisons": {
+    "monitored": {
+      "checkpoint_state_sha256": "7791f1f17f674344b3c532f88024236fea021d0cde795c2971e647e0c5f1e260",
+      "committed_logs": {
+        "replay_stream.jsonl": {
+          "bytes": 743,
+          "sha256": "58450ff190b73105ed8a28ae7a03f98faa1d223ffa98c12eb115dc9495a91318"
+        },
+        "training_metrics.jsonl": {
+          "bytes": 2243,
+          "sha256": "ea6ab328c9eee5a72963ebde3d3ca2f6c1a8246f549fa82c973fa9d18f3f7b88"
+        },
+        "training_stream.jsonl": {
+          "bytes": 2280,
+          "sha256": "ef3bc588879ecd4a064b03a22f9a1b109d613f1a7eec39436e47cbbbdce716f7"
+        }
+      },
+      "composition_and_replay_streams_byte_identical": true,
+      "counts_equal": true,
+      "cursor_equal": true,
+      "final_receipt_sha256": "f0faef96ad303d364821b1c6b7b7e92e3377ca5c2e6314af307995d6d9f1c174",
+      "maximum_parameter_absolute_difference": 0.0,
+      "optimizer_bit_exact": true,
+      "rng_bit_exact": true
+    },
+    "recovered": {
+      "checkpoint_state_sha256": "cdb16b95531031468a2dc65f10be83d394f0d81d75740c9359b427fa70d6f0d5",
+      "committed_logs": {
+        "replay_stream.jsonl": {
+          "bytes": 743,
+          "sha256": "58450ff190b73105ed8a28ae7a03f98faa1d223ffa98c12eb115dc9495a91318"
+        },
+        "training_metrics.jsonl": {
+          "bytes": 2246,
+          "sha256": "020fda693b128071504ba4fa40110f86f9ad90cc185512e41c43edb443e71b43"
+        },
+        "training_stream.jsonl": {
+          "bytes": 2280,
+          "sha256": "ef3bc588879ecd4a064b03a22f9a1b109d613f1a7eec39436e47cbbbdce716f7"
+        }
+      },
+      "composition_and_replay_streams_byte_identical": true,
+      "counts_equal": true,
+      "cursor_equal": true,
+      "final_receipt_sha256": "6119f014f994ba9b20888b2299f1d7b37a891eed7ef4c8b8658d57b431764f95",
+      "maximum_parameter_absolute_difference": 0.0,
+      "optimizer_bit_exact": true,
+      "rng_bit_exact": true
+    },
+    "resumed": {
+      "checkpoint_state_sha256": "0d8928ab5bae31a06607a609783d70c6bb51b8c22d66a8a38b7dc124b182a8c8",
+      "committed_logs": {
+        "replay_stream.jsonl": {
+          "bytes": 743,
+          "sha256": "58450ff190b73105ed8a28ae7a03f98faa1d223ffa98c12eb115dc9495a91318"
+        },
+        "training_metrics.jsonl": {
+          "bytes": 2246,
+          "sha256": "976385b3ec948e87ae7d7ad2b4e9da18af46eaca6ac3d6575c2a4c1d8772792f"
+        },
+        "training_stream.jsonl": {
+          "bytes": 2280,
+          "sha256": "ef3bc588879ecd4a064b03a22f9a1b109d613f1a7eec39436e47cbbbdce716f7"
+        }
+      },
+      "composition_and_replay_streams_byte_identical": true,
+      "counts_equal": true,
+      "cursor_equal": true,
+      "final_receipt_sha256": "0f326bd7e2b300f0786340563f4ecb0cf44dae10c35adf19ffc2f5df95243351",
+      "maximum_parameter_absolute_difference": 0.0,
+      "optimizer_bit_exact": true,
+      "rng_bit_exact": true
+    }
+  },
+  "reference": "continuous",
+  "scope": "tiny random Qwen3 with LoRA; BF16 on one RTX 3050 Ti; three updates; controlled publication exception and injected torn log tails, not SIGKILL or disk power-loss test",
+  "source_fixture_local": "/tmp/artem_iclr_feedback2_gpu_tests/test_replay_monitor_and_resume0"
+}
