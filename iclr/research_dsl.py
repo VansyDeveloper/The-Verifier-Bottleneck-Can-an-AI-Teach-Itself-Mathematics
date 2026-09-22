@@ -92,6 +92,9 @@ def prepare(out, train_panels=64, eval_panels=16, ordinary=32, seed=20260924, sm
             candidates = [(target, programs) for target, programs in grouped.items()
                 if target not in shorter and (not panel or len(programs) == 1)
                 and (family == 'ATOMIC' or {constraint_hits(p, spec) for p in programs} == {int(family in ('B', 'D'))})]
+            operation = core.OPS[len(rows) % len(core.OPS)] if family == 'ATOMIC' else None
+            if operation:
+                candidates = [(target, programs) for target, programs in candidates if (operation,) in programs]
             rng.shuffle(candidates)
             selected, states = [], set()
             for target, programs in candidates:
@@ -100,7 +103,7 @@ def prepare(out, train_panels=64, eval_panels=16, ordinary=32, seed=20260924, sm
                 if trajectories & used or fingerprint in task_ids:
                     continue
                 selected.append({**template, 'target': list(target), 'correct_programs': list(map(list, programs)),
-                    'witness': list(programs[0]), 'correct_count': len(programs), 'shortest_depth': depth,
+                    'witness': [operation] if operation else list(programs[0]), 'correct_count': len(programs), 'shortest_depth': depth,
                     'task_fingerprint': fingerprint, 'task_id': 'list-' + fingerprint[:24], 'split': split, 'family': family})
                 states.update(trajectories)
                 if len(selected) == (4 if panel else 1):
@@ -126,6 +129,7 @@ def prepare(out, train_panels=64, eval_panels=16, ordinary=32, seed=20260924, sm
         reports[split] = {'tasks': len(rows), 'attempts': attempts,
                          'program_support': dict(Counter(' '.join(p) for r in rows for p in r['correct_programs']))}
         print(f'{DOMAIN} {split}: {len(rows)} tasks', flush=True)
+    generate('atomic_train', 'ATOMIC', 10 if smoke else 320, depth=1)
     generate('train_four', 'TRAIN', 4 * train_panels, panel=True)
     # Reward uses the same task identities as the panel arms, not a different pool.
     (directory / 'train.jsonl').write_bytes((directory / 'train_four.jsonl').read_bytes())
@@ -136,19 +140,20 @@ def prepare(out, train_panels=64, eval_panels=16, ordinary=32, seed=20260924, sm
             generate(f'{phase}4_{family}', family, ordinary, depth=4)
             generate(f'{phase}_panel_{family}', family, 4 * eval_panels, panel=True)
         generate(f'{phase}_atomic', 'ATOMIC', 10 if smoke else 100, depth=1)
-    write_json(directory / 'manifest.json', {'schema': 'iclr.research.data.v3', 'domain': DOMAIN,
+    write_json(directory / 'manifest.json', {'schema': 'iclr.research.data.v4', 'domain': DOMAIN,
         'files': files, 'status': 'smoke' if smoke else 'frozen', 'constraints': spec,
         'training_panels': 'train_four.jsonl', 'config': {'seed': seed, 'train_panels': train_panels},
         'definitions': DEFINITIONS, 'max_training_depth': 3, 'evaluation_depths': [3, 4],
+        'atomic_warmup_fields': [7, 11, 13], 'withheld_fields': [17, 19],
         'scope': 'new finite nonlinear list DSL; not a full RobustFill, DeepCoder or ExeDec benchmark'})
     write_json(out / 'audit.json', {'status': 'PASS', 'smoke': smoke, 'domain': DOMAIN,
         'scope': 'complete solution sets, minimum lengths, masks, task/state exclusions, unique four-TARGET panels',
         'splits': reports, 'states': len(used), 'tasks': len(task_ids),
         'aliases': 'train.jsonl equals train_four.jsonl intentionally; it is not an additional split'})
-    write_json(out / 'protocol.json', {'schema': 'iclr.research.protocol.v3', 'smoke': smoke, 'domain': DOMAIN,
+    write_json(out / 'protocol.json', {'schema': 'iclr.research.protocol.v4', 'smoke': smoke, 'domain': DOMAIN,
         'reference_manifest_sha256': None, 'seed': seed,
         'datasets': {'listdsl': {'manifest_sha256': file_hash(directory / 'manifest.json'), 'constraints': spec}},
-        'audit_sha256': file_hash(out / 'audit.json'), 'analysis_plan_sha256': file_hash(ROOT / 'plans/research_v3.json')})
+        'audit_sha256': file_hash(out / 'audit.json'), 'analysis_plan_sha256': file_hash(ROOT / 'plans/research_v4.json')})
 
 
 def main():

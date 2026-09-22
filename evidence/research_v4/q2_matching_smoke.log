@@ -1,0 +1,11 @@
+Started inputs slot cpu PID 1661055
+inputs done
+Started tiny_mask1_sft_init slot 0 PID 1661088
+tiny_mask1_sft_init done
+Started tiny_mask1_diagnostic slot 0 PID 1661235
+tiny_mask1_diagnostic done
+{"index": "/tmp/artem_iclr/outputs/research_v4_matching/analysis", "jobs": 3, "summary_rows": 0}
+{"archive": "/tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_matching_20260922_081129_207874.zip.partial", "verified_files": 293, "status": "complete"}
+{"archive": "/tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_matching_20260922_081129_207874.zip", "sha256": "cf15f778f2ee9e7482119b9198f32d773d094cc7674cf75d96654290c34d0234", "files": 293}
+ОТПРАВИТЬ АРТЁМУ: /tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_matching_20260922_081129_207874.zip
+Папка с тем же содержимым: /tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_matching_20260922_081129_207874

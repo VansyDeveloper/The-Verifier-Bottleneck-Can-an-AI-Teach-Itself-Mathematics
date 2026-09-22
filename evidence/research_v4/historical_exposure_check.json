@@ -1,0 +1,36 @@
+{
+  "q06": {
+    "adapter_hash": "074b889f677c3bdccea13e2397aff9b8e89e1794a35ef764453ed90f8786da9c",
+    "depths": {
+      "1": 2000,
+      "2": 2000,
+      "3": 4000,
+      "4": 2000
+    },
+    "epochs": 2,
+    "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+    "history_receipt_sha256": "f419f195695c3d76d89551e4f02bea21e61a27daee25b2ff4b77cb28f3efa996",
+    "per_epoch_mask1_pairs": {
+      "SC2>REV": 391,
+      "SC2>SC2": 467,
+      "SH1>SC2": 384
+    }
+  },
+  "q8b": {
+    "adapter_hash": "7e5e2700c5bd3a900e4dcca8763d4d487d7a14e6a97eccc439c7773b56ef5953",
+    "depths": {
+      "1": 2000,
+      "2": 2000,
+      "3": 4000,
+      "4": 2000
+    },
+    "epochs": 2,
+    "evidence_scope": "deterministic mixture reconstruction, not an independently observed training stream",
+    "history_receipt_sha256": "19c1e3bc198827adf1d75ee15a1e07a82323e70d55db5da63654c791585e79f6",
+    "per_epoch_mask1_pairs": {
+      "SC2>REV": 391,
+      "SC2>SC2": 467,
+      "SH1>SC2": 384
+    }
+  }
+}

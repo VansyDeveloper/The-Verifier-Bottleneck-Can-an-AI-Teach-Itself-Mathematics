@@ -42,7 +42,7 @@ def tiny_setup(tmp_path):
     save('dev_A', generate_rows('dev_A', 1, spec, registry, 40))
     save('dev_atomic', _atomic_split('dev_atomic', 1, 50, registry))
     save('final_atomic', _atomic_split('final_atomic', 1, 60, registry))
-    write_json(data / 'manifest.json', {'schema': 'iclr.research.data.v3', 'status': 'smoke',
+    write_json(data / 'manifest.json', {'schema': 'iclr.research.data.v4', 'status': 'smoke',
         'files': files, 'training_panels': 'train_four.jsonl', 'constraints': spec})
     source = create_tiny_model(tmp_path / 'source')
     model, tokenizer, ids = load(source, initialize=True, device='cpu')
@@ -82,13 +82,15 @@ def test_exact_sampled_actual_optimizer_diagnostic_and_gate(tmp_path):
     device = os.environ.get('ICLR_SMOKE_DEVICE', 'cpu')
     cfg = dict(base=str(base), data=str(data), output=str(tmp_path / 'gradient'), device=device,
                dtype='bfloat16' if device == 'cuda' else 'float32', prefix_batch=8,
-               train_tasks=1, dev_panels_per_family=1, mc_groups=16, mc_blocks=4, learning_rates=[1e-5, 1e-6])
+               train_tasks=1, dev_panels_per_family=1, mc_groups=16, mc_max_groups=16, mc_blocks=4, learning_rates=[1e-5, 1e-6])
     gradient_diagnostic(cfg)
     receipt = verify_receipt(tmp_path / 'gradient')
     gate = json.loads((tmp_path / 'gradient/gate.json').read_text())
     assert gate['pass'] is False  # One task is never the scientific admission gate.
     result = json.loads((tmp_path / 'gradient/gradient_diagnostic.json').read_text())
     assert not set(result['train_ids']) & set(result['dev_ids'])
+    assert set(result['train_ids']) <= {r['task_id'] for r in read_jsonl(data / result['training_panel_source'])}
+    assert gate['kernel_ok'] and gate['status'] != 'kernel_check_failed'
     assert {s['method'] for r in result['reports'] for s in r['isolated_steps']} == {'exact', 'sampled_one_group', 'sampled_mc_mean'}
     if device == 'cuda':
         assert {r['dtype'] for r in result['reports']} == {'float32', 'bfloat16'}
@@ -146,3 +148,37 @@ def test_crossed_training_uses_four_independent_cells(tmp_path):
     stream = read_jsonl(output / 'training_stream.jsonl')
     assert len(stream) == 4 and len({r['task_id'] for r in stream}) == 4
     assert {r['kind'] for r in stream} == {'crossed'}
+
+
+def test_shared_list_atomic_warmup_and_gate(tmp_path, monkeypatch):
+    from iclr.research_dsl import prepare
+    from iclr.research_evaluate import atomic_check
+    _, base = tiny_setup(tmp_path)
+    prepare(tmp_path / 'dsl', smoke=True)
+    data, warmup = tmp_path / 'dsl/listdsl', tmp_path / 'warmup'
+    device = os.environ.get('ICLR_SMOKE_DEVICE', 'cpu')
+    cfg = dict(base=str(base), data=str(data), device=device,
+               dtype='bfloat16' if device == 'cuda' else 'float32', prefix_batch=8)
+    train({**cfg, 'objective': 'atomic', 'epochs': 1, 'output': str(warmup)})
+    assert verify_receipt(warmup)['payload_hash']
+    assert set(json.loads((warmup / 'budget.json').read_text())['fields']) <= {7, 11, 13}
+    source = {**cfg, 'adapter': str(warmup / 'adapter'), 'initial_training_receipt': str(warmup)}
+    gate = tmp_path / 'atomic_gate'
+    atomic_check({**source, 'output': str(gate)})
+    status = json.loads((gate / 'gate.json').read_text())
+    assert not status['pass'] and {r['operation'] for r in status['checks']} == set(core.OPS)
+    assert all(r['tasks'] == 2 for r in status['checks'])
+    with pytest.raises(ValueError, match='atomic_skills_insufficient'):
+        train({**source, 'atomic_gate': str(gate), 'objective': 'ce', 'output': str(tmp_path / 'blocked')})
+    # Synthetic admission tests the receipt chain only; the real tiny gate above stays closed.
+    checked = []
+    def admitted(path, kind, binding):
+        assert kind == 'atomic' and binding['adapter_hash'] == verify_receipt(warmup)['payload_hash']
+        checked.append(kind)
+    monkeypatch.setattr('iclr.research_io.require_gate', admitted)
+    continued = tmp_path / 'continued'
+    train({**source, 'atomic_gate': str(gate), 'objective': 'ce', 'epochs': 1, 'output': str(continued)})
+    evaluate({**source, 'atomic_gate': str(gate), 'adapter': str(continued / 'adapter'),
+              'training_receipt': str(continued), 'arm': 'ce', 'seed': 0,
+              'solve_per_family': 1, 'output': str(tmp_path / 'evaluated')})
+    assert checked == ['atomic', 'atomic']

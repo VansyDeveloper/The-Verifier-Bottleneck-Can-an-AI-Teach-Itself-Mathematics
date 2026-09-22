@@ -1,0 +1,19 @@
+{"queue": "outputs/research_v4_final/queue.json", "jobs": 6, "training_jobs": 0, "phase": "final"}
+Started inputs slot cpu PID 1659498
+inputs done
+Started tiny_mask1_initial slot 0 PID 1659544
+tiny_mask1_initial done
+Started tiny_mask1_ce_seed0_eval slot 0 PID 1659757
+tiny_mask1_ce_seed0_eval done
+Started tiny_mask1_ce_entropy_seed0_eval slot 0 PID 1659961
+tiny_mask1_ce_entropy_seed0_eval done
+Started tiny_mask1_ce_cf_seed0_eval slot 0 PID 1660188
+tiny_mask1_ce_cf_seed0_eval done
+Started tiny_mask1_ce_cf_entropy_seed0_eval slot 0 PID 1660420
+tiny_mask1_ce_cf_entropy_seed0_eval done
+{"index": "/tmp/artem_iclr/outputs/research_v4_final/analysis", "jobs": 6, "summary_rows": 480}
+{"index": "/tmp/artem_iclr/outputs/research_v4_validated/analysis", "jobs": 10, "summary_rows": 480}
+{"archive": "/tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_final_20260922_081055_963663.zip.partial", "verified_files": 578, "status": "complete"}
+{"archive": "/tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_final_20260922_081055_963663.zip", "sha256": "b7c478e3510ba2311f267dea19ae90597981c3dc3433bca9a0e52fac8979f300", "files": 578}
+ОТПРАВИТЬ АРТЁМУ: /tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_final_20260922_081055_963663.zip
+Папка с тем же содержимым: /tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_final_20260922_081055_963663

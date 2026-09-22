@@ -1,0 +1,15 @@
+{
+  "dtypes": [
+    "float32",
+    "bfloat16"
+  ],
+  "kernel_ok": true,
+  "kind": "reward",
+  "mc_ok": false,
+  "minimum_train_tasks": 4,
+  "numerical_checks": false,
+  "optimizer_ok": false,
+  "pass": false,
+  "scientific_gpu_gate": true,
+  "status": "optimizer_check_failed"
+}

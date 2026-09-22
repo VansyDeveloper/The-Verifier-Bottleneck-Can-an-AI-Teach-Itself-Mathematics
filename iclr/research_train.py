@@ -13,15 +13,15 @@ import torch
 
 import composition_core as core
 from .common import read_jsonl, write_json
-from .modeling import load, seed_all
-from .research_data import check_panels
-from .research_dsl import trajectory
-from .research_io import start_run, finish_run, require_gate
+from .modeling import load, seed_all, encode, collate, ce_sum
+from .research_data import check_panels, program_exposure
+from .research_dsl import DOMAIN, apply_prompt, plan_prompt, trajectory
+from .research_io import start_run, finish_run, require_gate, exposure_ledger
 from .research_model import deterministic_training, score_task
 from .research_objectives import StateProjection, conditional_loss, entropy, sigreg
 from .reward_control import exact_reward_loss, sampled_reward_loss
 
-OBJECTIVES = ('ce', 'ce_entropy', 'ce_cf', 'ce_cf_entropy',
+OBJECTIVES = ('atomic', 'ce', 'ce_entropy', 'ce_cf', 'ce_cf_entropy',
               'sampled', 'sampled_entropy', 'exact', 'exact_entropy',
               'state_ce', 'state', 'sigreg', 'state_sigreg')
 DEFAULTS = dict(objective='ce', seed=0, epochs=2, panel_batch=1, prefix_batch=32,
@@ -32,9 +32,9 @@ DEFAULTS = dict(objective='ce', seed=0, epochs=2, panel_batch=1, prefix_batch=32
 
 def config_checked(config):
     allowed = DEFAULTS.keys() | {'base', 'adapter', 'model', 'data', 'output', 'expected_base_hash',
-                                'expected_adapter_hash', 'gate', 'smoke'}
+                                'expected_adapter_hash', 'gate', 'atomic_gate', 'initial_training_receipt', 'smoke'}
     if set(config) - allowed:
-        raise ValueError(f'Unknown v3 training settings: {set(config) - allowed}')
+        raise ValueError(f'Unknown v4 training settings: {set(config) - allowed}')
     cfg = {**DEFAULTS, **config}
     if cfg['objective'] not in OBJECTIVES:
         raise ValueError('Unknown objective')
@@ -56,6 +56,8 @@ def run(config):
         return
     out, data = Path(cfg['output']), Path(cfg['data'])
     method = cfg['objective']
+    if method == 'atomic':
+        return atomic_warmup(cfg, manifest, binding)
     reward = method.startswith(('sampled', 'exact'))
     state_path = method in ('state_ce', 'state', 'sigreg', 'state_sigreg')
     if reward or state_path:
@@ -182,10 +184,66 @@ def run(config):
         tolerance = .1 if cfg['dtype'] == 'bfloat16' else 1e-4
         torch.testing.assert_close(before, after, atol=tolerance, rtol=0)
         write_json(out / 'reload_check.json', {'maximum_error': float((before - after).abs().max()), 'tolerance': tolerance})
+        stage = {'stage': 'current_continuation', 'domain': manifest.get('domain', 'affine_polynomial_v1'),
+            'objective': method, **program_exposure(r['witness'] for group in groups for panel in group for r in panel)}
+        write_json(out / 'exposure.json', exposure_ledger(manifest, [*binding['exposure']['stages'], stage]))
         finish_run(out, binding, payload=True)
     except Exception:
         (out / 'FAILED').write_text(traceback.format_exc())
         raise
+
+
+def atomic_warmup(cfg, manifest, binding):
+    """One shared list-DSL PLAN/APPLY initialization, without any composition labels."""
+    rows = read_jsonl(Path(cfg['data']) / 'atomic_train.jsonl')
+    if (manifest.get('domain') != DOMAIN or not rows
+            or any(r['depth'] != 1 or r['family'] != 'ATOMIC' or r['p'] not in manifest['atomic_warmup_fields'] for r in rows)
+            or {r['witness'][0] for r in rows} != set(core.OPS)):
+        raise ValueError('Atomic warm-up needs all list-DSL operations on allowed train fields only')
+    seed_all(cfg['seed'])
+    model, tokenizer, ids = load(cfg['base'], adapter=cfg.get('adapter'), train=True,
+                               device=cfg['device'], dtype=cfg['dtype'], lora_dropout=0.)
+    deterministic_training(model)
+    device = next(model.parameters()).device
+    examples = [encode(tokenizer, {'prompt': prompt({**row, 'program': row['witness']}), 'answer': answer,
+                'task_id': row['task_id'], 'kind': kind}) for row in rows for kind, prompt, answer in
+                [('PLAN', plan_prompt, core.program_answer(row['witness'])), ('APPLY', apply_prompt, core.format_state(row['target']))]]
+    parameters = [p for p in model.parameters() if p.requires_grad]
+    optimizer = torch.optim.AdamW(parameters, lr=cfg['learning_rate'], weight_decay=0., fused=device.type == 'cuda')
+    out, counts, started, steps = Path(cfg['output']), Counter(), time.monotonic(), 0
+    with (out / 'training_stream.jsonl').open('w') as stream:
+        for epoch in range(cfg['epochs']):
+            order = list(examples); random.Random(cfg['seed'] + epoch).shuffle(order)
+            for offset in range(0, len(order), cfg['prefix_batch']):
+                group = order[offset:offset + cfg['prefix_batch']]
+                optimizer.zero_grad(set_to_none=True)
+                loss = ce_sum(model, collate(tokenizer, group, device, include_target_types=True), counts) / sum(e['target_tokens'] for e in group)
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(parameters, 1., error_if_nonfinite=True)
+                optimizer.step(); steps += 1
+                for e in group:
+                    stream.write(json.dumps({'epoch': epoch, 'step': steps, 'task_id': e['task_id'], 'kind': e['kind']}) + '\n')
+    with torch.no_grad():
+        before = score_task(model, tokenizer, ids, rows[0], cfg['prefix_batch'])[1].cpu()
+    model.save_pretrained(out / 'adapter'); tokenizer.save_pretrained(out / 'adapter')
+    write_json(out / 'budget.json', {**counts, 'optimizer_steps': steps, 'example_exposures': len(examples) * cfg['epochs'],
+        'epochs': cfg['epochs'], 'fields': sorted({r['p'] for r in rows}), 'max_training_depth': 1,
+        'wall_seconds': time.monotonic() - started, 'purpose': 'shared atomic PLAN/APPLY preparation, no composition supervision'})
+    # Polynomial history describes different operation semantics; retain it explicitly outside this domain's pair ledger.
+    ledger = exposure_ledger(manifest, [{'stage': 'list_dsl_atomic_warmup', 'domain': DOMAIN,
+        **program_exposure(r['witness'] for _ in range(cfg['epochs'] * 2) for r in rows)}])
+    ledger['previous_domain_exposure'] = binding['exposure']
+    write_json(out / 'exposure.json', ledger)
+    del loss, optimizer, parameters, model
+    if device.type == 'cuda':
+        torch.cuda.empty_cache()
+    model, tokenizer, ids = load(cfg['base'], adapter=str(out / 'adapter'), device=cfg['device'], dtype=cfg['dtype'])
+    with torch.no_grad():
+        after = score_task(model, tokenizer, ids, rows[0], cfg['prefix_batch'])[1].cpu()
+    tolerance = .1 if cfg['dtype'] == 'bfloat16' else 1e-4
+    torch.testing.assert_close(before, after, atol=tolerance, rtol=0)
+    write_json(out / 'reload_check.json', {'maximum_error': float((before - after).abs().max()), 'tolerance': tolerance})
+    finish_run(out, binding, payload=True)
 
 
 def main():

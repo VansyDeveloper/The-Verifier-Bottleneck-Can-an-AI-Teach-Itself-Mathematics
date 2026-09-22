@@ -75,23 +75,32 @@ def test_state_projection_has_action_path_and_duplicate_safe_sigreg():
 
 
 def test_comparison_pairs_seeds_and_rejects_domain_or_mask_pooling(tmp_path):
-    def runs(name, domain, pair, seed=0):
+    def runs(name, domain, pair, seed=0, phase='dev', status='frozen_new_evaluation', joint_gain=False):
         data = tmp_path / name
         data.mkdir(exist_ok=True)
         (data / 'tasks.jsonl').write_text('{}\n')
-        write_json(data / 'manifest.json', {'domain': domain, 'constraints': {'heldout_motifs': [pair]},
+        write_json(data / 'manifest.json', {'domain': domain, 'status': status, 'constraints': {'heldout_motifs': [pair]},
             'files': {'tasks.jsonl': {'sha256': file_hash(data / 'tasks.jsonl')}}})
         result = []
         for arm, accuracy in (('ce', .5), ('ce_cf', .75)):
             out = tmp_path / f'{name}_{arm}_{seed}'
-            binding = dict(code_hash='same-code', plan_hash='same-plan', base_hash='same-base',
+            binding = dict(code_hash='same-code', plan_hash=file_hash('plans/research_v4.json'), base_hash='same-base',
                 data_hash=file_hash(data / 'manifest.json'),
-                config=dict(data=str(data), seed=seed, arm=arm, dtype='float32', phase='dev'))
+                config=dict(data=str(data), seed=seed, arm=arm, dtype='float32', phase=phase))
             panels = [dict(panel_id=f'{f}-{i}', policy='local', kind='four_target', family=f, depth=3,
                 task_ids=[f'{f}-{i}-{j}' for j in range(4)], starts=[[i, 0]], pair_accuracy=accuracy)
                 for f in ('B', 'D') for i in range(2)]
+            panels += [dict(panel_id=f'cross-{f}-{i}', policy='local', kind='crossed', family=f, depth=3,
+                task_ids=[f'cross-{f}-{i}-{j}' for j in range(4)], starts=[[i, 0]],
+                cell_accuracy=.5, joint_accuracy=0., all_cells_strict=joint_gain and arm == 'ce_cf', interaction=0.)
+                for f in ('B', 'D') for i in range(2)]
+            ordinary = [dict(task_id=f'{f}-{i}', family=f, depth=3, p=7, start=[i, 0], target=[1, i],
+                correct_programs=[['SH1'] * 3], correct_count=1,
+                entropy={'local': [{'temperature': 1, 'hit1': int(arm == 'ce_cf'), 'hit8': 1,
+                                   'correct_mass': accuracy, 'correct_entropy': 0.}]}) for f in ('B', 'D') for i in range(2)]
             write_json(out / 'panel_metrics.json', {'binding': binding, 'panels': panels})
-            write_json(out / 'DONE', {'binding': binding, 'files': {'panel_metrics.json': file_hash(out / 'panel_metrics.json')}})
+            (out / 'rankings.jsonl').write_bytes(core.canonical_jsonl_bytes(ordinary))
+            write_json(out / 'DONE', {'binding': binding, 'files': {p: file_hash(out / p) for p in ('panel_metrics.json', 'rankings.jsonl')}})
             result.append(str(out))
         return result
     first = runs('mask1', 'affine', ['SH1', 'SC2'])
@@ -99,7 +108,11 @@ def test_comparison_pairs_seeds_and_rejects_domain_or_mask_pooling(tmp_path):
     out = tmp_path / 'contrast.json'
     compare(first + second, 'ce', 'ce_cf', out)
     report = json.loads(out.read_text())
-    assert report['equal_mask_mean'] == .25 and report['distinct_masks'] == 2
+    assert report['endpoints']['four_target_pair_accuracy']['estimate'] == .25 and report['distinct_masks'] == 2
+    assert report['endpoints']['ordinary_hit1']['estimate'] == 1.
+    assert not report['success_rule']['conditional_pattern']
+    assert not report['success_rule']['ordinary_hit1_confirmatory_test_open']
+    assert report['endpoints']['crossed_joint_accuracy_strict']['masks'][0]['families']['B']['units'] == 2
     with pytest.raises(ValueError, match='Unpaired'):
         compare(first[:1], 'ce', 'ce_cf', out)
     third = runs('external', 'nonlinear', ['AX1', 'SC2'])
@@ -114,6 +127,14 @@ def test_comparison_pairs_seeds_and_rejects_domain_or_mask_pooling(tmp_path):
         result = json.loads((path / 'panel_metrics.json').read_text())
         result['binding']['data_hash'] = file_hash(tmp_path / 'same_mask/manifest.json')
         write_json(path / 'panel_metrics.json', result)
-        write_json(path / 'DONE', {'binding': result['binding'], 'files': {'panel_metrics.json': file_hash(path / 'panel_metrics.json')}})
+        write_json(path / 'DONE', {'binding': result['binding'], 'files': {p: file_hash(path / p) for p in ('panel_metrics.json', 'rankings.jsonl')}})
     with pytest.raises(ValueError, match='same mask'):
         compare(first + repeated, 'ce', 'ce_cf', out)
+    for status, supported in (('frozen_new_evaluation', True), ('smoke', False)):
+        final = [p for name, pair in (('mask1', ['SH1', 'SC2']), ('mask2', ['REV', 'SC2']))
+                 for seed in range(3) for p in runs(name, 'affine', pair, seed,
+                     phase='final', status=status, joint_gain=True)]
+        compare(final, 'ce', 'ce_cf', out)
+        rule = json.loads(out.read_text())['success_rule']
+        assert rule['conditional_pattern'] and rule['ordinary_solving_pattern']
+        assert rule['supports_task_solving_claim'] is supported

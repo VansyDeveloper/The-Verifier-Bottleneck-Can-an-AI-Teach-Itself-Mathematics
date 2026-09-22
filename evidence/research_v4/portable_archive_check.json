@@ -1,0 +1,19 @@
+{
+  "archive": "/tmp/artem_iclr/outputs/send_to_artem_exp_research_v4_final_20260922_081055_963663.zip",
+  "archive_sha256": "b7c478e3510ba2311f267dea19ae90597981c3dc3433bca9a0e52fac8979f300",
+  "files": 578,
+  "includes_weights": false,
+  "references": 8,
+  "standalone_analysis": "PASS; imported code and data from extracted bundle; no source weights read",
+  "success_rule": {
+    "conditional_pattern": false,
+    "confirmation_scope_complete": false,
+    "domain": "affine_polynomial_v1",
+    "missing_crossed": "no START x TARGET claim; external DSL reports domain adaptation only",
+    "ordinary_hit1_confirmatory_test_open": false,
+    "ordinary_solving_pattern": false,
+    "scope": "fixed sequence: crossed joint then ordinary Hit@1; other intervals descriptive; dev is screening",
+    "supports_joint_conditioning_claim": false,
+    "supports_task_solving_claim": false
+  }
+}

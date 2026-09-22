@@ -1,0 +1,14 @@
+{
+  "cuda": "12.4",
+  "git_commit": "3d02434c5008647f4dc89998c4c474000adaddc1",
+  "git_status": " M README.md\n M iclr/research.py\n M iclr/research_analysis.py\n M iclr/research_data.py\n M iclr/research_dsl.py\n M iclr/research_evaluate.py\n M iclr/research_gradient.py\n M iclr/research_io.py\n M iclr/research_train.py\n M iclr/upgrade.py\n M tests/test_research.py\n M tests/test_research_runtime.py\n M tests/test_upgrade_queue.py\n?? plans/RUN_V4_RU.md\n?? plans/research_v4.json\n?? plans/source/22sept_iclr_feedback2/\n?? tests/test_research_feedback.py\n",
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "packages": {
+    "numpy": "2.4.6",
+    "peft": "0.19.1",
+    "scipy": "1.17.1",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.1"
+  },
+  "python": "3.11.13"
+}

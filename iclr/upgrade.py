@@ -276,8 +276,8 @@ def run_queue(args):
         raise ValueError('Code changed after planning; prepare a new queue directory')
     if queue.get('analysis_plan_sha256') and queue['analysis_plan_sha256'] != file_hash(ROOT / 'plans/upgrade_analysis_plan.json'):
         raise ValueError('Analysis plan changed after planning; preserve this queue and prepare a new protocol')
-    if queue.get('research_plan_sha256') and queue['research_plan_sha256'] != file_hash(ROOT / 'plans/research_v3.json'):
-        raise ValueError('V3 analysis plan changed after planning; choose a new protocol')
+    if queue.get('research_plan_sha256') and queue['research_plan_sha256'] != file_hash(ROOT / queue.get('research_plan_path', 'plans/research_v3.json')):
+        raise ValueError('Research analysis plan changed after planning; choose a new protocol')
     if len(set(args.gpus)) != len(args.gpus) or not args.gpus:
         raise ValueError('Specify distinct GPU indices; one process will occupy each GPU')
     if args.cpu_threads < 1:
@@ -416,7 +416,12 @@ def import_data(args):
 
 
 def export_provenance(root):
-    """Include v3 dev decisions, gates and training records referenced outside the queue."""
+    """Include dev decisions, gates and transitive training inputs outside the queue."""
+    receipt_links = (('gate', 'receipt', 'gate_receipt_hash'),
+        ('training_receipt', 'receipt', 'training_receipt_hash'),
+        ('initial_training_receipt', 'receipt', 'initial_training_receipt_hash'),
+        ('atomic_gate', 'receipt', 'atomic_gate_receipt_hash'),
+        ('analysis_lock', 'lock', 'analysis_lock_hash'))
     pending = [('queue', root / 'queue.json', None)]
     seen, sources = set(), {root}
     references = {}
@@ -432,7 +437,19 @@ def export_provenance(root):
         references[str(path)] = {'kind': kind, 'sha256': digest}
         sources.add(path.parent if kind == 'queue' else path)
         if kind == 'receipt':
-            verify_receipt(path)
+            binding = verify_receipt(path).get('binding', {})
+            cfg = binding.get('config', {})
+            for key, label, hash_key in receipt_links:
+                if cfg.get(key):
+                    pending.append((label, cfg[key], binding[hash_key]))
+            if cfg.get('data'):
+                data = Path(cfg['data']).resolve()
+                verify_data(data)
+                digest = file_hash(data / 'manifest.json')
+                if digest != binding['data_hash']:
+                    raise ValueError(f'Exported training data changed: {data}')
+                sources.add(data)
+                references[str(data)] = {'kind': 'data', 'sha256': digest}
             continue
         value = json.loads(path.read_text())
         if kind == 'selection':
@@ -456,9 +473,7 @@ def export_provenance(root):
                     raise ValueError('Exported job config changed')
                 cfg = json.loads(Path(job['config_path']).read_text())
                 binding = verify_receipt(job['result'])['binding']
-                for key, label, hash_key in (('gate', 'receipt', 'gate_receipt_hash'),
-                    ('training_receipt', 'receipt', 'training_receipt_hash'),
-                    ('analysis_lock', 'lock', 'analysis_lock_hash')):
+                for key, label, hash_key in receipt_links:
                     if cfg.get(key):
                         pending.append((label, cfg[key], binding[hash_key]))
     locations = {root: 'results'}
@@ -495,7 +510,7 @@ def bundle(args):
     collect(argparse.Namespace(out=str(root)))
     files = [(p, 'results/' + p.relative_to(root).as_posix()) for p in sorted(root.rglob('*')) if p.is_file()]
     dependencies = {}
-    if queue.get('schema') == 'iclr.research.queue.v3':
+    if queue.get('schema') in ('iclr.research.queue.v3', 'iclr.research.queue.v4'):
         extra, dependencies = export_provenance(root)
         files.extend(extra)
     files = [(p, name) for p, name in files if p.name != '.queue.lock' and
@@ -510,7 +525,8 @@ def bundle(args):
     source = [*(ROOT / 'iclr').glob('*.py'), *(ROOT / 'legacy').glob('*.py'),
               ROOT / 'uv.lock', ROOT / 'pyproject.toml', ROOT / 'README.md',
               *(ROOT / 'plans').rglob('*'), *(ROOT / 'evidence/upgrade').rglob('*'),
-              *(ROOT / 'evidence/feedback_v2').rglob('*'), *(ROOT / 'evidence/research_v3').rglob('*')]
+              *(ROOT / 'evidence/feedback_v2').rglob('*'), *(ROOT / 'evidence/research_v3').rglob('*'),
+              *(ROOT / 'evidence/research_v4').rglob('*')]
     source = [p for p in source if p.is_file()]
     files.extend((p, 'code/' + p.relative_to(ROOT).as_posix()) for p in source)
     target.parent.mkdir(parents=True, exist_ok=True)

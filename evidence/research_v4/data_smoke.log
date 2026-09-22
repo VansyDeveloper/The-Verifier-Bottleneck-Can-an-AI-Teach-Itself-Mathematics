@@ -1,0 +1,3 @@
+original: train=train_four.jsonl; crossed support=2 panels/4 programs
+mask1: train=train_four.jsonl; crossed support=2 panels/4 programs
+mask2: train=train_four.jsonl; crossed support=2 panels/4 programs

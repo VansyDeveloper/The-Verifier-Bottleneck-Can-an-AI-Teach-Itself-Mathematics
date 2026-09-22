@@ -1,4 +1,4 @@
-"""V3 complete-space metrics, entropy accounting, and paired state-access diagnosis."""
+"""V4 complete-space metrics, entropy accounting, and paired state-access diagnosis."""
 
 import argparse
 from collections import defaultdict
@@ -69,6 +69,15 @@ def evaluation_rows(data, phase):
     return rows
 
 
+def atomic_results(model, tokenizer, ids, rows, prefix_batch, head=None):
+    with torch.no_grad():
+        planned = [{'task_id': row['task_id'], 'operation': row['witness'][0],
+                    **solve(model, tokenizer, ids, row, head=head)} for row in rows]
+        applied = execute_programs(model, tokenizer, [{**r, 'kind': 'atomic', 'program': r['witness']} for r in rows],
+                                   min(8, prefix_batch), prompt_builder=apply_prompt)
+    return {'plan': planned, 'apply': applied}
+
+
 def run(config):
     cfg = {**dict(phase='dev', seed=0, arm='baseline', device='cuda', dtype='bfloat16', prefix_batch=32,
                   solve_per_family=8), **config}
@@ -79,10 +88,10 @@ def run(config):
         raise ValueError('Unknown evaluation phase')
     if cfg['phase'] == 'final':
         if not cfg.get('analysis_lock'):
-            raise ValueError('Final requires a v3 immutable analysis lock')
+            raise ValueError('Final requires a v4 immutable analysis lock')
         lock = json.loads(Path(cfg['analysis_lock']).read_text())
-        if (lock['schema'] != 'iclr.research.lock.v3' or lock['code_hash'] != code_hash()
-                or lock['plan_hash'] != file_hash(ROOT / 'plans/research_v3.json')
+        if (lock['schema'] != 'iclr.research.lock.v4' or lock['code_hash'] != code_hash()
+                or lock['plan_hash'] != file_hash(ROOT / 'plans/research_v4.json')
                 or binding['data_hash'] not in lock['dataset_hashes']
                 or [binding['base_hash'], binding['adapter_hash']] not in lock['checkpoints']):
             raise ValueError('Final lock differs from data, code, or selected checkpoints')
@@ -139,17 +148,42 @@ def run(config):
                 'greedy': solve(model, tokenizer, ids, row, head=head),
                 'free': solve(model, tokenizer, ids, row, head=head, free=True)})
         atomic = read_jsonl(data / (cfg['phase'] + '_atomic.jsonl'))
-        atomic_plan = []
-        for row in atomic:
-            atomic_plan.append({'task_id': row['task_id'], 'operation': row['witness'][0],
-                                **solve(model, tokenizer, ids, row, head=head)})
-        applied = execute_programs(model, tokenizer, [{**r, 'kind': 'atomic', 'program': r['witness']} for r in atomic], min(8, cfg['prefix_batch']), prompt_builder=apply_prompt)
+        retained = atomic_results(model, tokenizer, ids, atomic, cfg['prefix_batch'], head)
     write_json(out / 'solutions.json', solutions)
-    write_json(out / 'atomic_retention.json', {'phase': cfg['phase'], 'plan': atomic_plan, 'apply': applied})
+    write_json(out / 'atomic_retention.json', {'phase': cfg['phase'], **retained})
     write_json(out / 'budget.json', {**budget, 'wall_seconds': time.monotonic() - started,
         'scored_tasks': len(rows), 'full_candidate_spaces': sorted({5 ** r['depth'] for r in rows}),
         'solution_forward_tokens': sum(s[k]['forward_tokens'] for s in solutions for k in ('greedy', 'free')),
         'atomic_tasks': len(atomic), 'ordinary_inference_state_access': False})
+    finish_run(out, binding)
+
+
+def atomic_check(config):
+    cfg = {**dict(seed=0, phase='dev', device='cuda', dtype='bfloat16', prefix_batch=16), **config}
+    manifest, binding, done = start_run(cfg, 'atomic_check')
+    if done:
+        return
+    if cfg['phase'] != 'dev' or manifest.get('domain') != DOMAIN:
+        raise ValueError('Atomic preparation check is dev-only in the list DSL')
+    rows = read_jsonl(Path(cfg['data']) / 'dev_atomic.jsonl')
+    if not rows or any(r['p'] not in manifest['atomic_warmup_fields'] or r['depth'] != 1 for r in rows):
+        raise ValueError('Atomic admission must not expose withheld fields or compositions')
+    seed_all(cfg['seed'])
+    model, tokenizer, ids = load(cfg['base'], adapter=cfg.get('adapter'), device=cfg['device'], dtype=cfg['dtype'])
+    result = atomic_results(model, tokenizer, ids, rows, cfg['prefix_batch'])
+    checks = []
+    for op in core.OPS:
+        planned = [r['correct'] for r in result['plan'] if r['operation'] == op]
+        applied = [r['semantic_correct'] for r in result['apply'] if r['witness'][0] == op]
+        checks.append({'operation': op, 'tasks': len(planned),
+                       'plan_accuracy': float(np.mean(planned)) if planned else 0.,
+                       'apply_accuracy': float(np.mean(applied)) if applied else 0.})
+    passed = all(r['tasks'] >= 20 and min(r['plan_accuracy'], r['apply_accuracy']) >= .8 for r in checks)
+    out = Path(cfg['output'])
+    write_json(out / 'atomic_retention.json', {'phase': 'dev', **result})
+    write_json(out / 'gate.json', {'kind': 'atomic', 'pass': passed, 'checks': checks,
+        'status': 'passed' if passed else 'atomic_skills_insufficient',
+        'criterion': '>=20 dev tasks per operation; PLAN and APPLY accuracy >=0.8 each, allowed train fields only'})
     finish_run(out, binding)
 
 
@@ -193,9 +227,11 @@ def state_access(config):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, required=True)
-    parser.add_argument('--state-access', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--state-access', action='store_true')
+    mode.add_argument('--atomic-check', action='store_true')
     args = parser.parse_args()
-    (state_access if args.state_access else run)(json.loads(args.config.read_text()))
+    (state_access if args.state_access else atomic_check if args.atomic_check else run)(json.loads(args.config.read_text()))
 
 
 if __name__ == '__main__':

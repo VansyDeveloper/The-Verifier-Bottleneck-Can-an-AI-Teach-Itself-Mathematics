@@ -1,0 +1,3 @@
+original: train=train_crossed.jsonl; crossed support=64 panels/41 programs
+mask1: train=train_crossed.jsonl; crossed support=64 panels/39 programs
+mask2: train=train_crossed.jsonl; crossed support=64 panels/39 programs

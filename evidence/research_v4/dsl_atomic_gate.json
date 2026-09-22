@@ -1,0 +1,38 @@
+{
+  "checks": [
+    {
+      "apply_accuracy": 0.0,
+      "operation": "SH1",
+      "plan_accuracy": 1.0,
+      "tasks": 2
+    },
+    {
+      "apply_accuracy": 0.0,
+      "operation": "SC2",
+      "plan_accuracy": 0.0,
+      "tasks": 2
+    },
+    {
+      "apply_accuracy": 0.0,
+      "operation": "REV",
+      "plan_accuracy": 0.0,
+      "tasks": 2
+    },
+    {
+      "apply_accuracy": 0.0,
+      "operation": "AC1",
+      "plan_accuracy": 0.0,
+      "tasks": 2
+    },
+    {
+      "apply_accuracy": 0.0,
+      "operation": "AX1",
+      "plan_accuracy": 0.0,
+      "tasks": 2
+    }
+  ],
+  "criterion": ">=20 dev tasks per operation; PLAN and APPLY accuracy >=0.8 each, allowed train fields only",
+  "kind": "atomic",
+  "pass": false,
+  "status": "atomic_skills_insufficient"
+}

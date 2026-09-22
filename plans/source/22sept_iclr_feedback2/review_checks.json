@@ -1,0 +1,204 @@
+{
+  "review_target": "artem_iclr_review_3d02434.zip",
+  "comparison_target": "artem_iclr_review_1566f5d.zip",
+  "archive_diff": {
+    "new": [
+      "evidence/research_v3/README.md",
+      "evidence/research_v3/cpu_tests.log",
+      "evidence/research_v3/cuda_tests.log",
+      "evidence/research_v3/export_tests.log",
+      "evidence/research_v3/gates_cuda.json",
+      "evidence/research_v3/gpu_environment.json",
+      "evidence/research_v3/gradient_cuda.json",
+      "evidence/research_v3/handoff_final_cuda.log",
+      "evidence/research_v3/handoff_queue_cuda.log",
+      "evidence/research_v3/handoff_tests.log",
+      "evidence/research_v3/handoff_validation.json",
+      "evidence/research_v3/queue_cuda.log",
+      "evidence/research_v3/validation.json",
+      "iclr/research.py",
+      "iclr/research_analysis.py",
+      "iclr/research_data.py",
+      "iclr/research_dsl.py",
+      "iclr/research_evaluate.py",
+      "iclr/research_gradient.py",
+      "iclr/research_io.py",
+      "iclr/research_model.py",
+      "iclr/research_objectives.py",
+      "iclr/research_train.py",
+      "plans/LAUNCH_V2_RU.md",
+      "plans/RUN_V3_RU.md",
+      "plans/research_v3.json",
+      "plans/source/22sept_iclr_feedback/RESEARCH_PLAN_RU.md",
+      "plans/source/22sept_iclr_feedback/archive_status_21sept.md",
+      "plans/source/22sept_iclr_feedback/archive_support_summary.json",
+      "plans/source/22sept_iclr_feedback/crossed_panel_fixture.json",
+      "plans/source/22sept_iclr_feedback/short_feedback.md",
+      "tests/test_research.py",
+      "tests/test_research_runtime.py"
+    ],
+    "modified": [
+      "README.md",
+      "iclr/modeling.py",
+      "iclr/upgrade.py",
+      "iclr/upgrade_evaluate.py",
+      "tests/test_upgrade_queue.py"
+    ],
+    "removed": [],
+    "submitted_pdf_byte_identical": true
+  },
+  "independent_checks": {
+    "cpu_subset": "28 passed; torch 2.10.0+cpu, Python 3.13.5, not project-pinned environment",
+    "full_suite": "Not reproduced: environment lacks transformers/peft; six collection errors. Not attributed to repository defects.",
+    "gpu_training": "Not run in this review; no model weights/GPU used",
+    "v3_full_data_generation": {
+      "mask1": {
+        "status": "PASS",
+        "new_tasks": 1152,
+        "selected_training_panels": "train_crossed.jsonl",
+        "train_crossed_panels": 64,
+        "train_crossed_programs": 39,
+        "evaluation_crossed_panels": {
+          "dev_crossed_A": 16,
+          "dev_crossed_B": 16,
+          "dev_crossed_C": 16,
+          "dev_crossed_D": 16,
+          "final_crossed_A": 16,
+          "final_crossed_B": 16,
+          "final_crossed_C": 16,
+          "final_crossed_D": 16
+        }
+      },
+      "mask2": {
+        "status": "PASS",
+        "new_tasks": 1152,
+        "selected_training_panels": "train_crossed.jsonl",
+        "train_crossed_panels": 64,
+        "train_crossed_programs": 39,
+        "evaluation_crossed_panels": {
+          "dev_crossed_A": 16,
+          "dev_crossed_B": 16,
+          "dev_crossed_C": 16,
+          "dev_crossed_D": 16,
+          "final_crossed_A": 16,
+          "final_crossed_B": 16,
+          "final_crossed_C": 16,
+          "final_crossed_D": 16
+        }
+      },
+      "original": {
+        "status": "PASS",
+        "new_tasks": 1024,
+        "selected_training_panels": "train_crossed.jsonl",
+        "train_crossed_panels": 64,
+        "train_crossed_programs": 41,
+        "evaluation_crossed_panels": {
+          "dev_crossed_A": 16,
+          "dev_crossed_B": 16,
+          "dev_crossed_C": 16,
+          "dev_crossed_D": 16,
+          "final_crossed_A": 16,
+          "final_crossed_B": 16,
+          "final_crossed_C": 16,
+          "final_crossed_D": 16
+        }
+      }
+    },
+    "generation_inputs": "Full non-smoke shared_inputs_feedback_v2.tar.gz from previous user archive; original generator/defaults from 3d02434; no training or model selection"
+  },
+  "toy_four_target_vs_crossed": {
+    "interpretation": "A TARGET-only scoring construction can have perfect four-TARGET assignment while failing the crossed START x TARGET requirement. This is a mathematical counterexample, not a model result.",
+    "four_target_matrix": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "four_target_pair_accuracy": 1.0,
+    "crossed_matrix": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "crossed_interaction": 0.0,
+    "crossed_cell_accuracy": 0.5,
+    "crossed_joint_accuracy": 0.0
+  },
+  "rare_reward_gate_counterexample": {
+    "scope": "Hypothetical two-program softmax; illustrates rare-event sample failure, not a Qwen3 observation",
+    "correct_mass": 1e-06,
+    "group_size": 32,
+    "mc_groups": 128,
+    "probability_no_positive_in_all_draws": 0.9959123751267251,
+    "exact_gradient_norm_two_logits": 7.873933574372716e-06,
+    "when_no_positive_mc_mean_norm": 0,
+    "when_no_positive_empirical_SE": 0,
+    "existing_gate_pass_for_zero_positive_draws": false
+  },
+  "historical_exposure_reconstruction": {
+    "scope": "Reconstruction from preserved historical train pool and unchanged mixture function; not a new model run or independent verification of old training stream",
+    "counts": {
+      "mask1": {
+        "SC2>REV": {
+          "per_epoch": 391,
+          "two_epochs": 782
+        },
+        "SC2>SC2": {
+          "per_epoch": 467,
+          "two_epochs": 934
+        },
+        "SH1>SC2": {
+          "per_epoch": 384,
+          "two_epochs": 768
+        }
+      },
+      "mask2": {
+        "AX1>REV": {
+          "per_epoch": 334,
+          "two_epochs": 668
+        },
+        "SH1>REV": {
+          "per_epoch": 355,
+          "two_epochs": 710
+        },
+        "SH1>SC2": {
+          "per_epoch": 384,
+          "two_epochs": 768
+        }
+      }
+    }
+  }
+}

@@ -131,7 +131,7 @@ write_json(out / "DONE", {"files": {p.name: file_hash(p) for p in out.glob("*.js
         verify_bundle(argparse.Namespace(archive=str(changed)))
 
 
-def test_v3_export_includes_external_decisions_and_training_without_weights(tmp_path):
+def test_research_export_includes_external_decisions_and_training_without_weights(tmp_path):
     prior, final = tmp_path / 'dev', tmp_path / 'final'
     prior.mkdir(); final.mkdir()
     (prior / 'rankings.jsonl').write_text('{"scores": [1, 2]}\n')
@@ -148,6 +148,17 @@ def test_v3_export_includes_external_decisions_and_training_without_weights(tmp_
         write_json(directory / 'DONE', {'files': {'budget.json': file_hash(directory / 'budget.json')}})
         for suffix in ('.safetensors', '.bin', '.pt', '.pth', '.ckpt'):
             (directory / ('weights' + suffix)).write_bytes(b'omit')
+    # A user-supplied SFT receipt can depend on a warm-up outside every queued directory.
+    warmup, data = tmp_path / 'external_warmup', tmp_path / 'external_data'
+    warmup.mkdir(); data.mkdir()
+    (data / 'tasks.jsonl').write_text('{}\n')
+    write_json(data / 'manifest.json', {'files': {'tasks.jsonl': {'sha256': file_hash(data / 'tasks.jsonl')}}})
+    write_json(warmup / 'budget.json', {'tokens': 4})
+    write_json(warmup / 'DONE', {'binding': {'config': {'data': str(data)}, 'data_hash': file_hash(data / 'manifest.json')},
+        'files': {'budget.json': file_hash(warmup / 'budget.json')}})
+    write_json(train / 'DONE', {'binding': {'config': {'initial_training_receipt': str(warmup)},
+        'initial_training_receipt_hash': file_hash(warmup / 'DONE')},
+        'files': {'budget.json': file_hash(train / 'budget.json')}})
     result, config = final / 'evaluation', final / 'config.json'
     result.mkdir()
     write_json(config, {'training_receipt': str(train), 'gate': str(gate), 'analysis_lock': str(lock)})
@@ -165,7 +176,7 @@ def test_v3_export_includes_external_decisions_and_training_without_weights(tmp_
     destination = tmp_path / 'send_to_artem_exp_final'
     send_results(argparse.Namespace(out=str(final), destination=str(destination), allow_incomplete=False))
     references = json.loads((destination / 'DEPENDENCIES.json').read_text())
-    for source in (selection, lock, train, gate, prior / 'queue.json'):
+    for source in (selection, lock, train, gate, warmup, data, prior / 'queue.json'):
         exported = destination / references[str(source)]['archive_path']
         assert exported.exists()
         if source.is_file():

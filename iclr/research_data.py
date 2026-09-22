@@ -1,4 +1,4 @@
-"""Frozen v3 panels. Crossed panels are a diagnostic unless support passes preflight."""
+"""Frozen v4 panels. Crossed panels are a diagnostic unless support passes preflight."""
 
 import argparse
 from collections import Counter, defaultdict
@@ -12,8 +12,45 @@ import numpy as np
 
 import composition_core as core
 from .common import ROOT, file_hash, read_jsonl, verify_data, write_json
-from .data import _full_states, constraint_hits
+from .data import _full_states, constraint_hits, mixture
 from .upgrade_data import affine_maps, generate_rows, reference_registry, signatures, reachable
+
+
+def program_exposure(programs):
+    pairs, depths = Counter(), Counter()
+    for program in programs:
+        depths[len(program)] += 1
+        pairs.update('>'.join(pair) for pair in zip(program, program[1:]))
+    return {'pairs': dict(sorted(pairs.items())), 'depths': dict(sorted(depths.items()))}
+
+
+def historical_exposure(reference):
+    """Reconstruct the recorded SFT mixtures; this is not an observed historical log."""
+    digest = file_hash(reference / 'manifest.json')
+    rows, atomic = read_jsonl(reference / 'train.jsonl'), read_jsonl(reference / 'atomic_train.jsonl')
+    result = {}
+    for path in sorted((ROOT / 'evidence/upgrade').glob('previous_q*.json')):
+        for run in json.loads(path.read_text())['runs']:
+            if run['data_hash'] != digest:
+                continue
+            cfg = run['historical_config']
+            source = [r for r in rows if not cfg['depth3_only'] or r['depth'] == 3]
+            examples = mixture(source, atomic, cfg['num_examples'], cfg['replay_fraction'], cfg['seed'],
+                               'program_trace' if cfg['supervision'] == 'trace' else 'program_only')
+            programs = [e['row']['witness'] for e in examples]
+            counts = program_exposure(programs * cfg['epochs'])
+            per_epoch = program_exposure(programs)
+            if cfg['budget_mode'] == 'target_tokens':
+                # Historical atomic control resampled to a token budget, but has no pairs.
+                if cfg['replay_fraction'] != 1:
+                    raise ValueError('Cannot infer mixed target-token exposure without its training stream')
+                counts = per_epoch = {'pairs': {}, 'depths': {'1': None}}
+            result[run['adapter_hash']] = {'stage': 'historical_sft_reconstruction',
+                **counts, 'per_epoch': per_epoch,
+                'epochs': cfg['epochs'], 'reference_manifest_sha256': digest, 'config': cfg,
+                'history_receipt_sha256': file_hash(path),
+                'evidence_scope': 'deterministic mixture reconstruction, not an independently observed training stream'}
+    return result
 
 
 def modular_solutions(matrix, rhs, p):
@@ -201,6 +238,7 @@ def prepare(source, reference, out, train_panels=64, eval_panels=16, seed=202609
         train_panels, eval_panels = 2, 1
     out.mkdir(parents=True, exist_ok=True)
     inherited = reference_registry(reference)
+    history = historical_exposure(reference)
     manifests, reports = {}, {}
     for index, name in enumerate(('original', 'mask1', 'mask2')):
         directory, prior = out / name, source / name
@@ -247,20 +285,21 @@ def prepare(source, reference, out, train_panels=64, eval_panels=16, seed=202609
             path.write_bytes(core.canonical_jsonl_bytes(rows))
             files[path.name] = {'rows': len(rows), 'sha256': file_hash(path)}
         training = 'train_crossed.jsonl' if use_crossed else 'train_four.jsonl'
-        write_json(directory / 'manifest.json', {**manifest, 'schema': 'iclr.research.data.v3', 'files': files,
+        write_json(directory / 'manifest.json', {**manifest, 'schema': 'iclr.research.data.v4', 'files': files,
             'source_manifest_sha256': file_hash(prior / 'manifest.json'), 'training_panels': training,
+            'historical_exposure': history,
             'crossed_training_gate': {'pass': use_crossed, 'minimum_panels': train_panels, 'minimum_programs': 8},
             'length_transfer': 'new continuations: atomic base and depth3-only train; historical SFT saw depth4'})
         reports[name] = {**report, 'crossed_search': searches, 'selected_training_panels': training}
         manifests[name] = {'manifest_sha256': file_hash(directory / 'manifest.json'), 'constraints': spec}
         print(f'{name}: train={training}; crossed support={cross["panels"]} panels/{cross["program_union"]} programs', flush=True)
-    write_json(out / 'audit.json', {'schema': 'iclr.research.audit.v3', 'status': 'PASS', 'datasets': reports,
-        'scope': 'new v3 panels: independent full interpreter, shortest depth, all-solution states, input/split exclusion; reused v2 files: exact hashes',
+    write_json(out / 'audit.json', {'schema': 'iclr.research.audit.v4', 'status': 'PASS', 'datasets': reports,
+        'scope': 'new v4 panels: independent full interpreter, shortest depth, all-solution states, input/split exclusion; reused v2 files: exact hashes',
         'smoke': smoke})
-    write_json(out / 'protocol.json', {'schema': 'iclr.research.protocol.v3', 'smoke': smoke, 'seed': seed,
+    write_json(out / 'protocol.json', {'schema': 'iclr.research.protocol.v4', 'smoke': smoke, 'seed': seed,
         'datasets': manifests, 'source_protocol_sha256': file_hash(source / 'protocol.json'),
         'reference_manifest_sha256': file_hash(reference / 'manifest.json'),
-        'analysis_plan_sha256': file_hash(ROOT / 'plans/research_v3.json'), 'audit_sha256': file_hash(out / 'audit.json')})
+        'analysis_plan_sha256': file_hash(ROOT / 'plans/research_v4.json'), 'audit_sha256': file_hash(out / 'audit.json')})
     return reports
 
 

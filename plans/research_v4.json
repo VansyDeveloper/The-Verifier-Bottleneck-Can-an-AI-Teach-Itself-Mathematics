@@ -1,0 +1,134 @@
+{
+  "schema": "iclr.research.analysis.v4",
+  "source": "plans/source/22sept_iclr_feedback2/REVIEW_RU.md",
+  "primary": {
+    "metric": "crossed_joint_accuracy_strict",
+    "contrast": "selected method minus its baseline; screening ce_cf minus ce",
+    "families": {
+      "B": 0.5,
+      "D": 0.5
+    },
+    "depth": 3,
+    "checkpoint": "fixed final continuation checkpoint",
+    "confirmatory_sequence": [
+      "crossed_joint_accuracy_strict",
+      "ordinary_hit1"
+    ],
+    "correction": "fixed sequence at alpha 0.05; second test confirmatory only after first passes; other intervals descriptive",
+    "conditional_success": "positive lower 95% paired-panel bootstrap bound for crossed joint accuracy AND nonnegative crossed cell difference",
+    "task_solving_success": "conditional_success AND positive lower 95% paired bootstrap bound for ordinary Hit@1 AND nonnegative ordinary Hit@8 and correct-mass differences",
+    "missing_crossed": "no START x TARGET claim, including in the nonlinear DSL; report ordinary-domain adaptation separately"
+  },
+  "screening": {
+    "dataset": "mask1",
+    "seed": 0,
+    "epochs": 2,
+    "panel_batch": 1,
+    "learning_rate": 0.0001,
+    "cf_weight": 0.1,
+    "tau": 1.0,
+    "entropy_weight": 0.01,
+    "state_weight": 0.1,
+    "sigreg_weight": 0.01,
+    "state_dimension": 32,
+    "tune_on": "dev only"
+  },
+  "queues": {
+    "Q1": "existing 0.6B/8B checkpoints: crossed panels, ordinary tasks, four-TARGET alignment and entropy diagnostics; no training",
+    "Q2": "historical composition seed0, original mask by default; matching-mask SFT receipts required for reward confirmation on masks1/2",
+    "Q3": "ce, ce_entropy, ce_cf, ce_cf_entropy; identical task panels, seed, exposure order, operation-token CE and prefix scorer",
+    "Q4": "plain/state/token-control inference on chosen prefixes; state/SIGReg factorial only after a positive paired dev signal"
+  },
+  "secondary": [
+    "crossed interaction I",
+    "crossed per-cell A/B accuracy and four-cell joint accuracy",
+    "raw H1/H8 and correct-set mass over all candidates",
+    "entropy correct/incorrect decomposition",
+    "entropy affine function/program decomposition",
+    "positive post-hoc program-score temperatures 0.5/1/2",
+    "greedy constrained and unconstrained program execution",
+    "atomic PLAN/APPLY retention",
+    "state prediction and causal projection ablation"
+  ],
+  "policy": {
+    "primary": "local prefix renormalization, temperature 1",
+    "secondary": "full-vocabulary program score with global leaf softmax; never pooled with local policy",
+    "reward": "binary population-standard-deviation advantages, G=32, KL=0; exact expectation before Adam/clipping"
+  },
+  "data": {
+    "crossed_train_gate": "requested panel count AND >=8 distinct programs; otherwise train four-TARGET assignment loss",
+    "exclusion": "all correct-trajectory states and task identities disjoint from inherited data and across new panels/splits",
+    "length": "new atomic-start continuations train only depth<=3; historical SFT has already seen depth4",
+    "exposure_scope": "witness/supervised correct-program pairs across recorded task-training stages; base pretraining is unknown; enumerated scoring prefixes are not withheld"
+  },
+  "gates": {
+    "reward": "kernel enumeration; MC enough informative groups and 4-SE agreement, bounded 128/512/2048-group diagnosis; inconclusive rare reward is distinct from failure; isolated FP32/BF16 Adam and Taylor checks",
+    "state": "paired dev gain of true-current-state over BOTH plain and token-matched control, positive lower 95% panel bootstrap bound",
+    "confirmation": "explicit dev selection artifact; exactly baseline plus one selected method, masks1/2 and paired seeds0/1/2",
+    "external": "shared atomic PLAN/APPLY warm-up on train fields only, per-operation dev accuracy >=0.8 with >=20 tasks/op; then paired method continuation from that same adapter"
+  },
+  "statistics": {
+    "bootstrap": 2000,
+    "unit": "whole crossed/four-TARGET panels; ordinary tasks clustered by (field, START); paired arms, seeds averaged first; stratified B/D and masks",
+    "masks": "report separately and equal mean; tasks do not replace independent masks",
+    "initialization": "Q3/Q4: shared inherited atomic base; Q2 masks: matching-mask SFT adapter from that base; paired arms share initialization within each mask; continuation seeds are not independent full training replications"
+  },
+  "final": "new immutable v4 lock binds endpoint hierarchy, plan/code/data/selection and completed training cells; v2/v3 unchanged",
+  "sigreg": {
+    "source": "https://arxiv.org/html/2511.08544v1#S4",
+    "definition": "random unit projections and Gaussian-weighted empirical-characteristic-function distance to N(0,1)",
+    "slices": 256,
+    "quadrature": "17 trapezoid points on [-5,5]",
+    "duplicates": "one mean representation per exact (field, dimension, state) within batch",
+    "interpretation": "regularization of compact state projection; no imported LeJEPA guarantees"
+  },
+  "previous_immutable_plan": "plans/research_v3.json",
+  "budget_curve": {
+    "epochs": [
+      1,
+      2,
+      4
+    ],
+    "arms": "selected baseline plus one method",
+    "mask": "dev selection mask",
+    "seed": 0,
+    "scope": "explicit dev stage only; separate same-initialization runs; negative small-pilot results are inconclusive",
+    "families": [
+      "Q3",
+      "Q4"
+    ]
+  },
+  "atomic_warmup": {
+    "epochs": 2,
+    "train_tasks_per_operation": 64,
+    "dev_tasks_per_operation": 20,
+    "minimum_accuracy": 0.8,
+    "fields": [
+      7,
+      11,
+      13
+    ],
+    "withheld_fields": [
+      17,
+      19
+    ]
+  },
+  "mc_diagnostic": {
+    "budgets": [
+      128,
+      512,
+      2048
+    ],
+    "minimum_mixed_groups": 8,
+    "minimum_informative_blocks": 4,
+    "training_rows": "manifest.training_panels; same pool as reward pilot"
+  },
+  "matching_mask_sft": {
+    "activation": "explicit --prepare-matching-sft, or verified reward_initializations per mask in model profile",
+    "initialization": "inherited atomic base, no historical composition adapter",
+    "objective": "ce",
+    "epochs": 2,
+    "cost": "two shared SFT initialization runs before twelve reward continuations in confirmation",
+    "exposure": "recorded task-training pairs must exclude the target mask at every stage"
+  }
+}

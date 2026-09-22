@@ -1,0 +1,261 @@
+{
+  "cpu_tests": {
+    "command": "OMP_NUM_THREADS=1 .venv/bin/python -m pytest -q",
+    "result": "51 passed, 14 subtests passed"
+  },
+  "cuda_runtime_tests": {
+    "command": "ICLR_SMOKE_DEVICE=cuda OMP_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_research_runtime.py --basetemp outputs/research_v4_gpu_validated",
+    "device": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+    "result": "5 passed",
+    "sandbox": "outside",
+    "scientific_gates": "real tiny gates remain closed; explicit test monkeypatch exercises post-gate plumbing only"
+  },
+  "dsl_gate": {
+    "checks": [
+      {
+        "apply_accuracy": 0.0,
+        "operation": "SH1",
+        "plan_accuracy": 1.0,
+        "tasks": 2
+      },
+      {
+        "apply_accuracy": 0.0,
+        "operation": "SC2",
+        "plan_accuracy": 0.0,
+        "tasks": 2
+      },
+      {
+        "apply_accuracy": 0.0,
+        "operation": "REV",
+        "plan_accuracy": 0.0,
+        "tasks": 2
+      },
+      {
+        "apply_accuracy": 0.0,
+        "operation": "AC1",
+        "plan_accuracy": 0.0,
+        "tasks": 2
+      },
+      {
+        "apply_accuracy": 0.0,
+        "operation": "AX1",
+        "plan_accuracy": 0.0,
+        "tasks": 2
+      }
+    ],
+    "criterion": ">=20 dev tasks per operation; PLAN and APPLY accuracy >=0.8 each, allowed train fields only",
+    "kind": "atomic",
+    "pass": false,
+    "status": "atomic_skills_insufficient"
+  },
+  "feedback_source_files": {
+    "REVIEW_RU.md": "bc4355429340e1c1170f752673e3c24122833247d6a1e3e2417304f09316f0dd",
+    "cpu_tests.log": "f55321d06d906880972f74c253ab4f209b6f08c262e6444485f0387641344118",
+    "full_generation.log": "3672a16e117b12c5d95ff8b28376b37ac930bc9d06116a20551abb29fa6071e2",
+    "full_v3_data_audit.json": "fc11d2dd6e35f626667e81768c04a85731f76bf7f32105854c1a986f75bbc485",
+    "review_3d02434_findings.zip": "1d02a7be60604df56312e697b074cc92b5ce66f80eaa4ce4eaccd985709ba68a",
+    "review_checks.json": "0176116ceb4ff01a66f1838295c74d60b0c987e3aadb02d209a645b2768906fb",
+    "short.md": "7b362967fa64590e2ea1e4b0638d153ea109e17b281c8dd058504184c3d5282c"
+  },
+  "logs": {
+    "cpu_tests.log": "7020455bab67a013b7922fa028ecdad92b4b802678860d8d49c289238e47ab43",
+    "cuda_smoke.log": "89123e3c27b1adb922d7abbb90f1bc799a435ba02b24a8b7a6fe71109c7445aa",
+    "data_smoke.log": "ef6228549b50e8cd847a5739ae53ca2e77c587e39394f0d68b8d0ef47776c835",
+    "dsl_data_smoke.log": "58012cf043d22b8234ee69fcc73035e9718d96a92c161f331b968a4ab3c92bf1",
+    "final_smoke.log": "e70cc5d7a5f8d3611e97bcd6442e29a259fe9fe7be3e531e061319290b77c152",
+    "q2_matching_smoke.log": "555956f856d617c9a9520cbee0550e6ed5ff07d661d1757f70d254c2ff94a888",
+    "q3_smoke.log": "57d134d96ac3556aedce2435dfba6e52f5fa5b87db4b0b972b4dc0268b2f1943"
+  },
+  "plan_only": {
+    "budget": {
+      "jobs": 6,
+      "scope": "planned only; not executed",
+      "training_jobs": 2
+    },
+    "confirm": {
+      "jobs": 27,
+      "scope": "planned only; not executed",
+      "training_jobs": 12
+    },
+    "external": {
+      "jobs": 8,
+      "scope": "planned only; not executed",
+      "training_jobs": 3
+    }
+  },
+  "portable_archive": "portable_archive_check.json",
+  "preserved_artifacts": {
+    "evidence/feedback_v2/analysis_lock.json": "d407d8dbba610cc1ccffe174488c780791723a16afc95be09e4ab34128bf42f6",
+    "plans/RUN_V3_RU.md": "93b4c953e5213a3e8a01fefb21c2628b219aab506237128c64630ec4e652aa51",
+    "plans/research_v3.json": "561b01b346626b6da13adbc063e0642e0ea6c6e7e6ff3c1f0afcf0301131b016",
+    "plans/upgrade_analysis_plan.json": "2b152eb241949cedcbe32c3fd5a683fa9caff80248d17edb1f65a3a96beebdb8"
+  },
+  "q2_gate": {
+    "dtypes": [
+      "float32",
+      "bfloat16"
+    ],
+    "kernel_ok": true,
+    "kind": "reward",
+    "mc_ok": false,
+    "minimum_train_tasks": 4,
+    "numerical_checks": false,
+    "optimizer_ok": false,
+    "pass": false,
+    "scientific_gpu_gate": true,
+    "status": "optimizer_check_failed"
+  },
+  "q2_limitation": "16 MC groups and one train task; rare reward inconclusive in both dtypes; one BF16 sampled_mc_mean Taylor error 0.00255553598685191 exceeds tolerance; pilot stays closed",
+  "queues": {
+    "final": {
+      "jobs": 6,
+      "path": "outputs/research_v4_final",
+      "queue_sha256": "f12a8cdae134e94c5f12fbdfa1120f7035945d0abaa91e272637f297a25c7801",
+      "receipts": [
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_initial",
+          "kind": "receipt",
+          "receipt_sha256": "ac4a6ab6588705bc680bad7dbbcfe6bb040ab046c29d51610e12cc0905836d57"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "6422bd9f0214f516efd07d6ef227d7082ce3bdeef22e0c9f5ef4c633460ccb26"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_entropy_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "6d9f711c57e7a5369902afcc8b81beda05181842572a61b51d6ff443e7080072"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_cf_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "1f101df5d4eb74fc3d056ac612348fdb3df6ab25acfbdda85d7edd90eed7be64"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_cf_entropy_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "fd883ed3290f10777fc385425099b4ac5daee8dc58646dbdca8fe2339a8c59ce"
+        }
+      ],
+      "status": "all done",
+      "training_jobs": 0
+    },
+    "matching": {
+      "jobs": 3,
+      "path": "outputs/research_v4_matching",
+      "queue_sha256": "baa1ede8d59b65daf3530c878d7c4c95741a9a899e150cc2083ad0083863a147",
+      "receipts": [
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_sft_init",
+          "kind": "train",
+          "receipt_sha256": "95b7d09d114922ae8ffe5f7340c5f499ddcd5c45396e9145f832e90ba6cb365a"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_diagnostic",
+          "kind": "receipt",
+          "receipt_sha256": "e18f1e54fa267c5a9df217d5f87459adbbd3a91ba2f508b4e9642afb464b7848"
+        }
+      ],
+      "status": "all done",
+      "training_jobs": 1
+    },
+    "validated": {
+      "jobs": 10,
+      "path": "outputs/research_v4_validated",
+      "queue_sha256": "d5032660cf317e70b906b42cbb413c668b76e548c7ba2c6efdffbda7807bfaa9",
+      "receipts": [
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_initial",
+          "kind": "receipt",
+          "receipt_sha256": "938378f59ee8ac1c5a03d21dd18cf110f499e51c2b8bfccb3245946108608859"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_seed0_train",
+          "kind": "train",
+          "receipt_sha256": "9b89209c3f064c3f8c6c42afe8dadfa6e9636440987a94c4cfedf7c9f9f96cd6"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "7300269751833d9f5f887ba8e07599e2c3a79005ca66be8377516c843c5b1afd"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_entropy_seed0_train",
+          "kind": "train",
+          "receipt_sha256": "e88a1422cb5038dba616e5864ddc648f7adcdd64ba9998c87768ad3cbdac4b32"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_entropy_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "7a5f33cc767b2adc52fd10fea914527c0faa810555d1c047f6b412c45d6d7c11"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_cf_seed0_train",
+          "kind": "train",
+          "receipt_sha256": "5c441cf238772845cf9e15e2edefc2173957a3ae76d608490eca6aee3ec4c949"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_cf_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "d2b938ee2e7bbfe2e4c26093c5c35069677917b39d9e8be21e913e2961645d90"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_cf_entropy_seed0_train",
+          "kind": "train",
+          "receipt_sha256": "23a9ff56801c7def5ce744ca9abcc434946dc36191957e00d620937089089ca4"
+        },
+        {
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "id": "tiny_mask1_ce_cf_entropy_seed0_eval",
+          "kind": "receipt",
+          "receipt_sha256": "fa225cf726281b7dc589f60c3c229ade6d72f347a880aee342d55beeb2dd420a"
+        }
+      ],
+      "status": "all done",
+      "training_jobs": 4
+    }
+  },
+  "research_plan_sha256": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757",
+  "reviewed_parent_commit": "3d02434c5008647f4dc89998c4c474000adaddc1",
+  "scope": "technical smoke only; no full Qwen3-0.6B/8B training or A100 runs; v4 data generation smoke only",
+  "source_code_hash": "fbbde31e0adc4bbd50d4c8567c14578e387a13bdcac1955041c80dbed94e4763",
+  "tiny_model": {
+    "hidden_size": 32,
+    "model_type": "qwen3",
+    "num_attention_heads": 4,
+    "num_hidden_layers": 1,
+    "vocab_size": 64
+  }
+}
