@@ -1,0 +1,101 @@
+{
+  "archive": {
+    "files_checked": 378,
+    "errors": [],
+    "code_hash": "a3e70a7a4e344f88ce67176233d59b5fd0822b6c7f84316faccd32779883e2cc",
+    "matches_code_hash": true,
+    "sizes_checked": 378
+  },
+  "recovery": {
+    "submitted_cpu_cases": 8,
+    "exit_code": 0,
+    "scope": "Actual recovery/config function AST; mocked start_run returns completed sentinel; no real model or optimizer continuation."
+  },
+  "queue": {
+    "jobs": 10,
+    "train_jobs": 4,
+    "initial_evaluations": 1,
+    "final_dev_evaluations": 4,
+    "conditions": [
+      {
+        "id": "q06_mask1_R0_seed0_train",
+        "lr": 0.0001,
+        "replay": 0.0,
+        "max_steps": 128,
+        "depends_on": [
+          "q06_mask1_initial"
+        ]
+      },
+      {
+        "id": "q06_mask1_R1_seed0_train",
+        "lr": 3e-05,
+        "replay": 0.0,
+        "max_steps": 128,
+        "depends_on": [
+          "q06_mask1_initial"
+        ]
+      },
+      {
+        "id": "q06_mask1_R2_seed0_train",
+        "lr": 0.0001,
+        "replay": 0.25,
+        "max_steps": 128,
+        "depends_on": [
+          "q06_mask1_initial"
+        ]
+      },
+      {
+        "id": "q06_mask1_R3_seed0_train",
+        "lr": 3e-05,
+        "replay": 0.25,
+        "max_steps": 128,
+        "depends_on": [
+          "q06_mask1_initial"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  "data": {
+    "all_mask1_file_hashes_and_amendment_verified": true,
+    "dev_file_rows": {
+      "dev_D.jsonl": 200,
+      "dev_crossed_B.jsonl": 64,
+      "dev_panel_A.jsonl": 200,
+      "dev_A.jsonl": 200,
+      "dev_crossed_D.jsonl": 64,
+      "dev4_A.jsonl": 16,
+      "dev4_D.jsonl": 16,
+      "dev_panel_B.jsonl": 200,
+      "dev4_C.jsonl": 16,
+      "dev_panel_D.jsonl": 200,
+      "dev_crossed_C.jsonl": 64,
+      "dev_B.jsonl": 200,
+      "dev_panel_C.jsonl": 200,
+      "dev_atomic.jsonl": 1000,
+      "dev_crossed_A.jsonl": 64,
+      "dev4_B.jsonl": 16,
+      "dev_C.jsonl": 200
+    },
+    "monitor_rows_per_checkpoint": 208,
+    "monitor_atomic_tasks": 100,
+    "monitor_calls": 24,
+    "monitor_depth3_task_evaluations": 4992,
+    "supervised_composition_task_presentations": 2048,
+    "full_evals_depth3_rows": 1856,
+    "full_evals_depth4_rows": 64
+  },
+  "scope": "Archive-bound code/data review; pinned operator weights absent; no production training or inference; no cross-device determinism claim.",
+  "cpu_suite": {
+    "tests": 28,
+    "result": "passed",
+    "log": "cpu_tests.log",
+    "environment": "Python current sandbox; torch 2.10.0+cpu; transformers/peft absent; not the pinned GPU environment"
+  },
+  "runbook": {
+    "bash_blocks_syntax_checked": 10,
+    "python_snippets_syntax_checked": 4,
+    "remote_execution_tested": false,
+    "gpu_commands_executed": false
+  }
+}

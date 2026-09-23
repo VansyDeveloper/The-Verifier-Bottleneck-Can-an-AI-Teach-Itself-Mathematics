@@ -1,0 +1,20 @@
+{"queue": "outputs/feedback3_validation/partial_test/queue.json", "jobs": 6, "training_jobs": 2, "phase": "dev"}
+Started inputs slot cpu PID 32
+inputs done
+Started q06_mask1_initial slot cpu PID 33
+q06_mask1_initial failed
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/artem_iclr/iclr/research.py", line 468, in <module>
+    main()
+  File "/tmp/artem_iclr/iclr/research.py", line 461, in main
+    run_queue(args)
+  File "/tmp/artem_iclr/iclr/upgrade.py", line 388, in run_queue
+    raise RuntimeError('Queue has incomplete jobs; inspect status.json and logs; retry requires --retry-failed')
+RuntimeError: Queue has incomplete jobs; inspect status.json and logs; retry requires --retry-failed
+{"index": "/tmp/artem_iclr/outputs/feedback3_validation/partial_test/analysis", "jobs": 6, "summary_rows": 0}
+{"archive": "/tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_8_partial_test.zip.partial", "verified_files": 348, "status": "partial"}
+{"archive": "/tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_8_partial_test.zip", "sha256": "7e15415b15bff28d6b32097b28ba274e0e3a6f972e9c8fb645aa0cfb8f26df3c", "files": 348}
+ОТПРАВИТЬ АРТЁМУ: /tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_8_partial_test.zip
+Папка с тем же содержимым: /tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_8_partial_test

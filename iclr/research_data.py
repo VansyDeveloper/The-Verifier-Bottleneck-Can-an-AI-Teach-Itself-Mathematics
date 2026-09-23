@@ -318,7 +318,7 @@ def monitor_selection(data, manifest):
         'reference': [r['task_id'] for r in sorted(read_jsonl(data / 'dev_A.jsonl'), key=lambda r: r['task_id'])[:64]]}
 
 
-def prepare_amendment(data, out, per_stratum=8, seed=20260923):
+def prepare_amendment(data, out, per_stratum=8, seed=20260923, plan='v5'):
     """Fresh train-only atomic replay; the parent dataset is never modified."""
     from .research_io import plan_path
     data, out = Path(data), Path(out)
@@ -357,12 +357,12 @@ def prepare_amendment(data, out, per_stratum=8, seed=20260923):
     path = out / 'atomic_replay.jsonl'
     path.write_bytes(core.canonical_jsonl_bytes(rows))
     write_json(out / 'manifest.json', {'schema': 'iclr.research.amendment.v5',
-        'parent_manifest_sha256': file_hash(data / 'manifest.json'), 'plan_hash': file_hash(plan_path('v5')),
+        'parent_manifest_sha256': file_hash(data / 'manifest.json'), 'plan_hash': file_hash(plan_path(plan)),
         'seed': seed, 'per_operation_field': per_stratum, 'modes': ['PLAN', 'APPLY'],
         'files': {path.name: {'sha256': file_hash(path), 'rows': len(rows)}},
         'monitor': monitor_selection(data, manifest),
         'exclusions': 'all parent task identities and full correct-trajectory states, including final inputs; no final scores or outcomes used'})
-    verify_amendment(out / 'manifest.json', data, file_hash(plan_path('v5')))
+    verify_amendment(out / 'manifest.json', data, file_hash(plan_path(plan)))
 
 
 def verify_amendment(path, data, plan_hash):
@@ -399,6 +399,7 @@ def main():
     parser.add_argument('--source')
     parser.add_argument('--reference')
     parser.add_argument('--amend-data', help='Prepare v5 replay/monitor beside this immutable v4 dataset')
+    parser.add_argument('--amend-plan', choices=['v5', 'v6'], default='v5')
     parser.add_argument('--out', required=True)
     parser.add_argument('--train-panels', type=int, default=64)
     parser.add_argument('--eval-panels', type=int, default=16)
@@ -406,8 +407,9 @@ def main():
     parser.add_argument('--smoke', action='store_true')
     args = vars(parser.parse_args())
     amended = args.pop('amend_data')
+    amendment_plan = args.pop('amend_plan')
     if amended:
-        prepare_amendment(amended, args['out'], seed=args['seed'])
+        prepare_amendment(amended, args['out'], seed=args['seed'], plan=amendment_plan)
     else:
         if not args['source'] or not args['reference']:
             parser.error('--source and --reference are required for v4 generation')

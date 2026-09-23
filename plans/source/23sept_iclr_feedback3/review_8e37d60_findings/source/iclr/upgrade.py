@@ -517,7 +517,7 @@ def bundle(args):
     collect(argparse.Namespace(out=str(root)))
     files = [(p, 'results/' + p.relative_to(root).as_posix()) for p in sorted(root.rglob('*')) if p.is_file()]
     dependencies = {}
-    if queue.get('schema') in ('iclr.research.queue.v3', 'iclr.research.queue.v4', 'iclr.research.queue.v5', 'iclr.research.queue.v6'):
+    if queue.get('schema') in ('iclr.research.queue.v3', 'iclr.research.queue.v4', 'iclr.research.queue.v5'):
         extra, dependencies = export_provenance(root)
         files.extend(extra)
     files = [(p, name) for p, name in files if p.name != '.queue.lock' and

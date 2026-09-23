@@ -1,6 +1,4 @@
-# Запуски после feedback от 23 сентября
-
-Это прежний поэтапный маршрут. Текущая большая пачка запускается по [README](../README.md) и [RUN_V6_RU.md](RUN_V6_RU.md), без выбора режима между запусками.
+# Запуски после второго feedback от 23 сентября
 
 Это exploratory amendment к неизменённому v4. Endpoint hierarchy сохранена. Отдельные plan/data/code hashes проходят через очереди, обучение, evaluation, selection и final lock. Результаты старой версии проверяются её архивным analyzer.
 
@@ -8,7 +6,7 @@
 
 Подготовка и запуск R0–R3 приведены в корневом README. После recovery-fix и успешной регрессии это следующий научный запуск; ещё одно внешнее ревью не является обязательным допуском. Все четыре условия стартуют из одного base с hash `a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938`. Нужен именно этот payload на машине оператора. Декларация atomic-роли базы не подтверждает её training history, но R0–R3 не требуют предварительного восстановления истории всех шести Q1 adapters.
 
-На двух GPU одного сервера планировщик выполняет R0/R1, затем R2/R3; между train/eval могут размещаться готовые задачи. На четырёх GPU — все четыре условия. Для разных серверов: [прежняя инструкция по распределению v5](source/23sept_iclr_feedback3/review_8e37d60_findings/A100_RUNBOOK_RU.md). Initial full dev считается один раз. На каждом checkpoint monitor сохраняет полный 125-candidate score space выбранных depth3 задач, все dev B/D crossed, 20 atomic задач на операцию и четыре целые train-панели. Входы заданы manifest, train и dev помечены отдельно. На полном dev считаются все прежние ordinary/panel/depth4/atomic задачи.
+На двух GPU планировщик выполняет R0/R1, затем R2/R3; между train/eval могут размещаться готовые задачи. На четырёх GPU — все четыре условия. Initial full dev считается один раз. На каждом checkpoint monitor сохраняет полный 125-candidate score space выбранных depth3 задач, все dev B/D crossed, 20 atomic задач на операцию и четыре целые train-панели. Входы заданы manifest, train и dev помечены отдельно. На полном dev считаются все прежние ordinary/panel/depth4/atomic задачи.
 
 В `training_metrics.jsonl`: full-vocabulary CE, local-action CE, legal-token gate CE, raw/weighted CF и entropy, replay CE, pre-clip norm, clipping factor и фактическая норма изменения параметров. В `budget.json`: composition/replay exposures, PLAN/APPLY loss tokens, replay weight и доля примеров. Replay/no-replay не является сравнением равных вычислительных бюджетов.
 

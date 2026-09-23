@@ -20,7 +20,6 @@ SCOPES = {
     'budget': 'Selected supervised pair at one prespecified dev budget, same initialization',
     'stability': 'V5: bounded four-condition CE retention screening, mask1 seed0',
     'matched': 'V5: CE/CF on one admitted retention/progress recipe',
-    'batch': 'V6: fixed exploratory batch; no intermediate scientific selection',
 }
 ARMS = {'Q2': ['sampled', 'sampled_entropy', 'exact', 'exact_entropy'],
         'Q3': ['ce', 'ce_entropy', 'ce_cf', 'ce_cf_entropy'],
@@ -60,21 +59,10 @@ def import_inputs(args):
 
 
 def plan(args):
-    version = getattr(args, 'plan', None) or ('v6' if args.queue_name == 'batch' else
-        'v5' if args.queue_name in ('stability', 'matched') else 'v4')
+    version = getattr(args, 'plan', None) or ('v5' if args.queue_name in ('stability', 'matched') else 'v4')
     active_plan = plan_path(version)
     plan_hash = file_hash(active_plan)
     spec = json.loads(active_plan.read_text())
-    batch_number = getattr(args, 'batch', None)
-    if args.queue_name == 'batch':
-        if (version != 'v6' or args.phase != 'dev' or args.stage != 'screen' or args.mask is not None
-                or str(batch_number) not in spec.get('batch', {}).get('blocks', {})
-                or getattr(args, 'with_entropy', False)):
-            raise ValueError('Batch requires v6 dev, --batch 1..8 and the fixed masks/arms')
-    elif version == 'v6' or batch_number is not None:
-        raise ValueError('V6 and --batch apply only to --queue-name batch')
-    block = spec['batch']['blocks'][str(batch_number)] if args.queue_name == 'batch' else None
-    schedule = spec['batch'] if block else spec.get('stability', {})
     if args.queue_name in ('stability', 'matched') and (version != 'v5' or args.phase != 'dev' or args.mask not in (None, 'mask1')):
         raise ValueError('Stability/matched screening uses v5 dev mask1 only')
     if version == 'v5' and args.queue_name not in ('stability', 'matched', 'confirm', 'Q1', 'Q2'):
@@ -115,9 +103,9 @@ def plan(args):
             lock = json.loads(Path(args.analysis_lock).read_text())
             if file_hash(args.selection) not in lock['selection_hashes']:
                 raise ValueError('Final selection differs from the frozen dev choice')
-    family = selection['family'] if selection else 'Q3' if args.queue_name in ('stability', 'matched', 'batch') else args.queue_name
-    if args.queue_name in ('stability', 'matched', 'batch') and tuning:
-        raise ValueError('Fixed queues use the declared plan settings or an admitted stability selection')
+    family = selection['family'] if selection else 'Q3' if args.queue_name in ('stability', 'matched') else args.queue_name
+    if args.queue_name in ('stability', 'matched') and tuning:
+        raise ValueError('Bounded screening uses the declared v5 settings or an admitted stability selection')
     if args.queue_name == 'budget' and (args.phase != 'dev' or family not in ('Q3', 'Q4')
             or set(tuning) != {'epochs'} or args.epochs not in (1, 2, 4)):
         raise ValueError('Budget curve: selected supervised pair, dev only, --epochs 1, 2 or 4; no other tuning')
@@ -139,8 +127,6 @@ def plan(args):
         if history['runs'] and args.queue_name != 'external' and {r['data_hash'] for r in history['runs']} != {protocol['reference_manifest_sha256']}:
             raise ValueError('Model history and inherited data differ')
         base_hash = history['runs'][0]['base_hash'] if history['runs'] else model.get('base_hash')
-        if block and not args.smoke and (model['model'] != spec['model'] or base_hash != spec['base_hash']):
-            raise ValueError('V6 batch requires the declared common 0.6B initialization')
         if selection and (selection['initialization']['model'] != model['model']
                 or selection['initialization']['base_hash'] != (base_hash or tree_hash(model['base']))
                 or selection['initialization']['dtype'] != args.dtype):
@@ -177,18 +163,15 @@ def plan(args):
         default_mask = selection['dataset'] if args.queue_name == 'budget' else 'original' if reward else 'mask1'
         masks = ['mask1', 'mask2'] if args.queue_name == 'confirm' else ['listdsl'] if args.queue_name == 'external' else [args.mask or default_mask]
         seeds = [0, 1, 2] if args.queue_name == 'confirm' else [0]
-        if block:
-            masks = schedule['masks'][:1] if args.smoke else schedule['masks']
-            seeds = schedule['seeds'][:1] if args.smoke else schedule['seeds']
         if args.queue_name == 'external' and protocol.get('domain') != 'nonlinear_list_v1':
             raise ValueError('External queue requires the frozen nonlinear list DSL inputs')
         for mask in masks:
             if mask not in protocol['datasets']:
                 raise ValueError(f'Missing dataset {mask}')
             source = {**common, 'data': str(data / mask)}
-            if version in ('v5', 'v6') and family == 'Q3':
+            if version == 'v5' and family == 'Q3':
                 if not getattr(args, 'amendments', None):
-                    raise ValueError('V5/v6 needs --amendments with frozen per-mask replay/monitor manifests')
+                    raise ValueError('V5 needs --amendments with frozen per-mask replay/monitor manifests')
                 from .research_data import verify_amendment
                 amendment = Path(args.amendments).resolve() / mask / 'manifest.json'
                 verify_amendment(amendment, Path(args.inputs) / mask, plan_hash)
@@ -199,8 +182,8 @@ def plan(args):
                     from .common import read_jsonl
                     from .research_data import check_panels
                     parent = verify_data(Path(args.inputs) / mask)
-                    if (parent.get('status') == 'smoke' or len(check_panels(read_jsonl(Path(args.inputs) / mask / parent['training_panels']))) != schedule['panels']):
-                        raise ValueError('V5/v6 requires exactly 64 frozen composition panels')
+                    if (parent.get('status') == 'smoke' or len(check_panels(read_jsonl(Path(args.inputs) / mask / parent['training_panels']))) != spec['stability']['panels']):
+                        raise ValueError('V5 screening requires exactly 64 frozen composition panels')
             gate, dependencies = args.gate, ['inputs']
             if reward and mask not in ('original', 'listdsl'):
                 receipt_path = model.get('reward_initializations', {}).get(mask)
@@ -260,7 +243,7 @@ def plan(args):
                 dependencies = [name]
                 if args.queue_name not in ('confirm', 'external', 'budget'):
                     continue
-            arms = (block['arms'] if block else list(spec['stability']['conditions']) if args.queue_name == 'stability' else
+            arms = (list(spec['stability']['conditions']) if args.queue_name == 'stability' else
                     (ARMS['Q3'] if getattr(args, 'with_entropy', False) else ['ce', 'ce_cf']) if args.queue_name == 'matched'
                     else selection['arms'] if selection else ARMS[family])
             baseline_name = f'{model["name"]}_{mask}_initial'
@@ -274,18 +257,18 @@ def plan(args):
                 for arm in arms:
                     name = f'{model["name"]}_{mask}_{arm}_seed{seed}'
                     directory = out / 'training' / name
-                    settings = (schedule['recipes'][block['recipe']] if block else stable['settings'] if stable else spec['stability']['conditions'][arm]
+                    settings = (stable['settings'] if stable else spec['stability']['conditions'][arm]
                                 if args.queue_name == 'stability' else selection['settings'][arm] if selection else {})
                     objective = 'ce' if args.queue_name == 'stability' else arm
                     training = {**settings, **source, **tuning, 'output': str(directory), 'objective': objective, 'seed': seed,
                         'epochs': 1 if args.smoke else tuning.get('epochs', settings.get('epochs', 2)), 'gate': gate}
                     if args.smoke:
                         training['reward_steps'] = 1
-                    if version in ('v5', 'v6') and family == 'Q3':
-                        training.update(max_steps=1 if args.smoke else settings.get('max_steps', schedule['max_steps']),
+                    if version == 'v5' and family == 'Q3':
+                        training.update(max_steps=1 if args.smoke else settings.get('max_steps', spec['stability']['max_steps']),
                             cf_weight=.1, tau=1., entropy_weight=.01, monitor=True, resume_from='latest')
                         training['checkpoint_steps'] = sorted({0, training['max_steps'],
-                            *(s for s in schedule['checkpoint_steps'] if s <= training['max_steps'])})
+                            *(s for s in spec['stability']['checkpoint_steps'] if s <= training['max_steps'])})
                     if args.phase == 'dev':
                         add(name + '_train', 'iclr.research_train', training, kind='train', depends=dependencies)
                         eval_dependencies = [name + '_train']
@@ -317,8 +300,6 @@ def plan(args):
         'phase': args.phase, 'stage': args.stage, 'smoke': args.smoke, 'experiments': [args.queue_name],
         'scope': {args.queue_name: SCOPES[args.queue_name]}, 'protocol_hash': file_hash(Path(args.inputs) / 'protocol.json')}
     queue['selection_hash'] = file_hash(args.selection) if args.selection else None
-    if block:
-        queue.update(batch=batch_number, batch_recipe=block['recipe'], batch_priority=block['priority'])
     queue['selection_path'] = str(Path(args.selection).resolve()) if args.selection else None
     queue['analysis_lock_path'] = str(Path(args.analysis_lock).resolve()) if args.analysis_lock else None
     queue['analysis_lock_sha256'] = file_hash(args.analysis_lock) if args.analysis_lock else None
@@ -408,8 +389,7 @@ def main():
     for action in ('plan', 'start'):
         p = sub.add_parser(action)
         p.add_argument('--queue-name', choices=SCOPES, required=True)
-        p.add_argument('--plan', choices=['v4', 'v5', 'v6'])
-        p.add_argument('--batch', type=int, choices=range(1, 9), help='Fixed v6 block: 1-4 main comparisons, 5-8 entropy comparisons')
+        p.add_argument('--plan', choices=['v4', 'v5'])
         p.add_argument('--amendments', help='Directory containing mask1/mask2 amendment manifests')
         p.add_argument('--stability-selection', help='Admitted single recipe/step for the matched queue')
         p.add_argument('--with-entropy', action='store_true', help='Matched queue only: complete CE/CF x H factorial')

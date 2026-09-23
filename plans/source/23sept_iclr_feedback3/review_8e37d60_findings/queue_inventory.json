@@ -1,0 +1,86 @@
+{
+  "schema": "iclr.research.queue.v5",
+  "phase": "dev",
+  "source_code_hash": "a3e70a7a4e344f88ce67176233d59b5fd0822b6c7f84316faccd32779883e2cc",
+  "jobs": [
+    {
+      "id": "inputs",
+      "kind": "data",
+      "depends_on": [],
+      "resource": "cpu"
+    },
+    {
+      "id": "q06_mask1_initial",
+      "kind": "receipt",
+      "depends_on": [
+        "inputs"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R0_seed0_train",
+      "kind": "train",
+      "depends_on": [
+        "q06_mask1_initial"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R0_seed0_eval",
+      "kind": "receipt",
+      "depends_on": [
+        "q06_mask1_R0_seed0_train"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R1_seed0_train",
+      "kind": "train",
+      "depends_on": [
+        "q06_mask1_initial"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R1_seed0_eval",
+      "kind": "receipt",
+      "depends_on": [
+        "q06_mask1_R1_seed0_train"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R2_seed0_train",
+      "kind": "train",
+      "depends_on": [
+        "q06_mask1_initial"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R2_seed0_eval",
+      "kind": "receipt",
+      "depends_on": [
+        "q06_mask1_R2_seed0_train"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R3_seed0_train",
+      "kind": "train",
+      "depends_on": [
+        "q06_mask1_initial"
+      ],
+      "resource": "gpu"
+    },
+    {
+      "id": "q06_mask1_R3_seed0_eval",
+      "kind": "receipt",
+      "depends_on": [
+        "q06_mask1_R3_seed0_train"
+      ],
+      "resource": "gpu"
+    }
+  ],
+  "scope": "Inventory from a real generated full-data non-smoke plan; no jobs executed"
+}

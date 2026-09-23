@@ -1,0 +1,80 @@
+{
+  "code_hash": "a3e70a7a4e344f88ce67176233d59b5fd0822b6c7f84316faccd32779883e2cc",
+  "cpu_tests": {
+    "command": ".venv/bin/python -m pytest -q --disable-warnings --maxfail=2",
+    "log_sha256": "820321df22ecd22072e87f8dd0283eac0c891beb3de883cc433490da62aaca9f",
+    "result": "65 passed, 14 subtests passed in 90.72s"
+  },
+  "date": "2026-09-23",
+  "evidence_limit": "Process recovery with intact storage/checkpoints. No cross-device determinism, physical durability, production 0.6B learning or new science claim.",
+  "feedback_source_files": {
+    "review_056fd9a_findings/CHECKS.json": "4d60d189e69256edecc7fcdcfc35b6ade89a20987c1ec9801db297afb0e64d51",
+    "review_056fd9a_findings/REVIEW_RU.md": "5bb203f6f1ec3e57c632c3dbac624edaefd822c444bd9267816de965515555e6",
+    "review_056fd9a_findings/archive_checks.json": "739f92cb98a0fecfd66f817e02168d1cc2f49907b9c5eabcda0b62fe84e339c9",
+    "review_056fd9a_findings/check_resume_and_patch.py": "b57f01b61f7fc094732a223aee7765a344af989edce5db97a25206f2ffde2629",
+    "review_056fd9a_findings/cpu_tests.log": "6ec34aed67e5b99545ae7d20b17e8e37f890a666a5e49e1a3e4d52d22f695abf",
+    "review_056fd9a_findings/data_checks.json": "ea613cc9968d5805b7b19a074c56cce503e3f07beee6c81553f816c78e03edbe",
+    "review_056fd9a_findings/independent_q1_and_atomic.py": "c45caaa2512019d90fe8bc856f2074afe9a509109290a3c0b6c54a61d2517d46",
+    "review_056fd9a_findings/independent_source_checks.json": "be4cdcd9c03bcac61c4e4cc8ba6210c90730b79aac8b4783df0890f6399b7327",
+    "review_056fd9a_findings/q1_replay/summary.json": "e836be7153e5e203c94688f13305085262df8db552a9a4c6bb2d3c057aab6c65",
+    "review_056fd9a_findings/resume_checks.json": "f3e0ed97baedac0950f2b08506726ea283695ef52d7bc58c71cf985ad38ea0b5",
+    "review_056fd9a_findings/resume_recovery.patch": "b58b9ee573b29db5c4b9b646e8579a37b09554ddce7d161c07dc6f7d2251fbf8",
+    "review_056fd9a_findings/source/POSTHOC_RESULTS_RU.md": "62e9e7cd0faa6d6b28ddfe9047a32da3c43c563d075dcf526d383d9edb042be4",
+    "review_056fd9a_findings/source/REVIEW_REQUEST_RU.md": "7781fa7ebd7d18d6b448591fa12656e897490229cbf465ead4f8f0ae04a45ee5",
+    "review_056fd9a_findings/source/research_v5.json": "68ffe875039d3a9c7597ef4b485b75730bf2ea130db932c6f312a401a81a2914",
+    "review_056fd9a_findings/test_research_resume_recovery.py": "2670fcbc23698df5bd6a2182d7ec8520f83e44bdf35a25da138946a926134980",
+    "review_056fd9a_findings/v4_check.log": "0cafb26602b421314f65786c2b5bfed46871d5bd315413012ce89f1d42578f9e",
+    "short_feedback.md": "30860559c6192923f617346473feb8b14c441130bbb099a30d67dff6b6273034"
+  },
+  "gpu_tests": {
+    "command": "ICLR_SMOKE_DEVICE=cuda .venv/bin/python -m pytest tests/test_research_v5.py tests/test_research_resume_recovery.py -q --disable-warnings --basetemp /tmp/artem_iclr_feedback2_gpu_tests",
+    "device": "NVIDIA GeForce RTX 3050 Ti Laptop GPU, 4 GiB",
+    "dtype": "bfloat16",
+    "environment": "gpu_environment.json",
+    "initial_attempt": "13 passed, 1 failed: archive-without-Git test used a basetemp inside the worktree and found parent Git metadata. No product change; rerun outside the worktree passed all 14. Model trajectory test passed on both attempts.",
+    "initial_attempt_log_sha256": "3e7ad2cabe37c1ffdb9ff1015d9f99a8ece577d502ea5d448f14e31c88949f6f",
+    "log_sha256": "c9693412351cbc665c0c480ca526482e52dcd9be6ff91c46637bcd083e502142",
+    "result": "14 passed in 18.21s",
+    "trajectory_evidence": "gpu_trajectory.json"
+  },
+  "mask1_replay": {
+    "PLAN_and_APPLY_examples": 256,
+    "operations_in_prefix": {
+      "AC1": 25,
+      "AX1": 26,
+      "REV": 25,
+      "SC2": 26,
+      "SH1": 26
+    },
+    "pool_rows": 240,
+    "unique_rows_used_in_128_updates": 128
+  },
+  "parent_commit": "056fd9ad5e3eebf33fcd65eefdabf8235b86bd46",
+  "plan_sha256": {
+    "v4": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757",
+    "v5": "68ffe875039d3a9c7597ef4b485b75730bf2ea130db932c6f312a401a81a2914"
+  },
+  "regressions": [
+    "explicit resume consumes config field and takes precedence",
+    "all committed prefixes validated before any log truncation",
+    "torn uncommitted JSONL tails discarded",
+    "corrupt, shortened or missing committed logs rejected without mutation",
+    "step0 empty logs supported",
+    "missing log snapshot rejected",
+    "unpublished .partial/DONE ignored by latest and refused explicitly",
+    "real optimizer trajectory preserved after publication failure, with regenerated partial checkpoint"
+  ],
+  "science_preview": "science_preview.json",
+  "scientific_runs": "R0-R3 prepared, not executed; actual pinned operator base is required",
+  "scope": "Feedback2 recovery repair only; v4/v5 science design and frozen inputs unchanged",
+  "unchanged_since_parent": [
+    "plans/research_v4.json",
+    "plans/research_v5.json",
+    "evidence/research_v4",
+    "evidence/research_v5/amendments",
+    "evidence/research_v5/q1_posthoc",
+    "evidence/research_v5/atomic_audit",
+    "evidence/research_v5/VALIDATION.json",
+    "evidence/research_v5/validation"
+  ]
+}

@@ -1,0 +1,18 @@
+{"queue": "outputs/feedback3_validation/batch_07/queue.json", "jobs": 6, "training_jobs": 2, "phase": "dev"}
+Started inputs slot cpu PID 2945742
+inputs done
+Started q06_mask1_initial slot 0 PID 2945848
+q06_mask1_initial done
+Started q06_mask1_ce_entropy_seed0_train slot 0 PID 2946172
+q06_mask1_ce_entropy_seed0_train done
+Started q06_mask1_ce_entropy_seed0_eval slot 0 PID 2946445
+q06_mask1_ce_entropy_seed0_eval done
+Started q06_mask1_ce_cf_entropy_seed0_train slot 0 PID 2946789
+q06_mask1_ce_cf_entropy_seed0_train done
+Started q06_mask1_ce_cf_entropy_seed0_eval slot 0 PID 2947082
+q06_mask1_ce_cf_entropy_seed0_eval done
+{"index": "/tmp/artem_iclr/outputs/feedback3_validation/batch_07/analysis", "jobs": 6, "summary_rows": 288}
+{"archive": "/tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_07_20260922_235800_531056.zip.partial", "verified_files": 464, "status": "complete"}
+{"archive": "/tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_07_20260922_235800_531056.zip", "sha256": "b367d990659cfec9a07e9b0a7519dc703e0f6abfd862045edfa1aae757c327b0", "files": 464}
+ОТПРАВИТЬ АРТЁМУ: /tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_07_20260922_235800_531056.zip
+Папка с тем же содержимым: /tmp/artem_iclr/outputs/feedback3_validation/send_to_artem_exp_batch_07_20260922_235800_531056

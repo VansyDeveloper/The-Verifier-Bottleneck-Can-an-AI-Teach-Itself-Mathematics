@@ -153,7 +153,7 @@ def main():
     parser.add_argument('--control', default='ce')
     parser.add_argument('--treatment', default='ce_cf')
     parser.add_argument('--out', required=True)
-    parser.add_argument('--plan', choices=['v4', 'v5'], default='v4')
+    parser.add_argument('--plan', choices=['v4', 'v5', 'v6'], default='v4')
     args = parser.parse_args()
     compare(args.runs, args.control, args.treatment, args.out, args.plan)
 

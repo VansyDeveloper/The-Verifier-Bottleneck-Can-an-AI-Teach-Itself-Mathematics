@@ -1,0 +1,86 @@
+{
+  "code_hash": "429ba7aab354c2dbd4c85add8973fabc710f8b8353b66b2f307bc0dea9ac7154",
+  "cpu_tests": {
+    "command": ".venv/bin/python -m pytest -q --disable-warnings --maxfail=2",
+    "log_sha256": "05925e9a5f84bae6ebcc2ce479fec6aac4aae88eec71ce3faeb63a8416f26d5d",
+    "result": "66 passed, 14 subtests passed in 585.82s"
+  },
+  "date": "2026-09-23",
+  "documentation": "README commands syntax checked; humanizer-ru applied to new Russian instructions; historical Q1/Q3 table retained",
+  "gpu_smoke": {
+    "checks": [
+      {
+        "analysis_from_export": true,
+        "batch": 1,
+        "comparison_sha256": "c725fac6d07266aa18290dbc5096a435cbbd2a3ac2e4f283034f8cd126b04074",
+        "export_bytes": 10572514,
+        "export_files": 464,
+        "export_sha256": "98e38714e3a1a2d941bd3dc1f3835a5ce882d6ae956fcf1098931520fddf57d7",
+        "export_verified": true,
+        "jobs_done": 6,
+        "queue_sha256": "72a689599bab27f60fbe664a3852cf792b799208df47c5ab97f009d3e05a8373",
+        "training_jobs": 2
+      },
+      {
+        "analysis_from_export": true,
+        "batch": 7,
+        "comparison_sha256": "fe1d06f0ae6e4855a664e187641f382bd5bef7f45199f5ab4c15a676689a9fed",
+        "export_bytes": 10576070,
+        "export_files": 464,
+        "export_sha256": "b367d990659cfec9a07e9b0a7519dc703e0f6abfd862045edfa1aae757c327b0",
+        "export_verified": true,
+        "jobs_done": 6,
+        "queue_sha256": "7713e5545c62c8ae47eccc2ab263e146bea76ab4d8c0eb639b487383234e53c8",
+        "training_jobs": 2
+      }
+    ],
+    "device": "RTX 3050 Ti Laptop GPU, 4 GiB",
+    "dtype": "bfloat16",
+    "gpu_jobs": 10,
+    "model": "local random tiny Qwen3 with LoRA; not actual operator 0.6B base",
+    "per_training_steps": 1,
+    "total_jobs_done": 12,
+    "training_jobs": 4,
+    "command_template": ".venv/bin/python -m iclr.research start --queue-name batch --batch N --inputs outputs/research_v4_smoke --amendments outputs/feedback3_validation/batch_amendments --models outputs/feedback3_validation/models.json --model-names q06 --out outputs/feedback3_validation/batch_NN --smoke --gpus 0 --cpu-threads 2 --prefix-batch 16; N=1 and 7",
+    "preparation": "Existing local tiny Qwen3 base and frozen v4 smoke inputs; prepare_amendment(..., plan=\"v6\") for smoke mask1. Production masks use bundled immutable inputs and unchanged v5 replay rows."
+  },
+  "parent_commit": "8e37d60b0f647d8790e315968cb705b4551fc573",
+  "partial_export": {
+    "all_hashes_verified": true,
+    "files": 348,
+    "log_sha256": "b55fc0519d4e5e4ac6d568b3cc15666dd2857920a3e9c36756630b3af41867e5",
+    "sha256": "7e15415b15bff28d6b32097b28ba274e0e3a6f972e9c8fb645aa0cfb8f26df3c",
+    "status": "partial",
+    "trigger": "deliberately wrong expected base hash; no model training"
+  },
+  "plan_v6_sha256": "46ada49efe15d4879abe10bc719f5314c8c2ab91c7e6ffe56f795bbe67931832",
+  "production_inventory": {
+    "all_cells_unique": true,
+    "base_weights_validated": false,
+    "batches": 8,
+    "file": "batch_inventory.json",
+    "jobs_per_batch": 27,
+    "masks": [
+      "mask1",
+      "mask2"
+    ],
+    "max_steps": 128,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "total_training": 96,
+    "training_per_batch": 12
+  },
+  "replay_and_monitor": "identical v5 rows/membership; v6 manifests differ only in plan_hash",
+  "scientific_status": "All 96 scientific trainings remain unrun. A100 performance and multi-host execution are not measured. Separate queues and portable ZIPs tested locally; closed final is unopened.",
+  "scope": "User-requested fixed exploratory v6 grid after feedback3; no operator decisions between batches",
+  "unchanged_since_parent": [
+    "plans/research_v4.json",
+    "plans/research_v5.json",
+    "evidence/research_v4",
+    "evidence/research_v5",
+    "iclr/research_train.py"
+  ]
+}

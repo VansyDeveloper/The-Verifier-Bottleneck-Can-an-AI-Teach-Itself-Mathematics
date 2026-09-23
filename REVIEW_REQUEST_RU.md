@@ -1,30 +1,13 @@
-# После feedback2: проверка исправленного recovery и запуск R0–R3
+# Большая пачка после feedback3
 
-Пожалуйста, дайте явный итог **OK / NOT OK для запуска R0–R3** после recovery-fix. Если NOT OK — конкретный дефект, файл и минимальная необходимая поправка. Затем отдельно укажите **что запускать сейчас, что только после gate и что пока не запускать**. Дизайн R0–R3 и Q1 post-hoc уже одобрены во втором feedback; эта дополнительная проверка не вводит нового обязательного допуска или этапа научного проектирования.
+Feedback3 одобрил ограниченный R0–R3. После него пользователь попросил собрать больше данных одной заранее заданной серией, без промежуточного выбора. Это отдельный exploratory план v6: восемь пачек, 96 обучений. Одобрение reviewer для R0–R3 не выдаётся за review этой расширенной серии.
 
-В пакете — состояние ветки `artem_iclr` после второго feedback от 23 сентября, оба исходных feedback, frozen v4 evidence, post-hoc результаты, код, тесты и готовые данные без весов. Новые большие scientific trainings не выполнялись. Локальные изменения закоммичены; push не выполнялся. Commit и состав архива указаны во внешнем `REVIEW_ARCHIVE_MANIFEST.json`.
+Для дополнительной проверки нужны короткие ответы:
 
-Исправлено:
+- Покрывает ли сетка в `plans/research_v6.json` все заявленные пары ровно один раз, с одинаковыми базой, данными, seeds и бюджетом внутри сравнения?
+- Верны ли команды в README для независимых серверов и нескольких GPU одного сервера? Может ли оператор выполнить все пачки без решений по метрикам?
+- Достаточны ли экспортируемые scores, checkpoints/monitor metadata и provenance для дальнейшего анализа? Веса и resume state сохраняются у оператора отдельно.
 
-- `resume_from` всегда удаляется из runtime config до проверки ключей; явный аргумент имеет приоритет.
-- В `resume_state.pt`, защищённом hash в checkpoint receipt, сохраняются byte offsets и SHA256 трёх журналов. Проверка всех сохранённых префиксов предшествует обрезанию хвостов. Повреждённая или недостающая зафиксированная история вызывает отказ без изменения журналов.
-- `latest` и проверка более поздних checkpoints игнорируют `.partial`; явное восстановление из `.partial` тоже отклоняется.
-- Реальная tiny-модель сравнивается в четырёх режимах: непрерывно, с monitor, с чистым resume и после ошибки перед публикацией checkpoint плюс оборванных JSONL хвостов. Проверяются итоговые веса, Adam, курсор, счётчики и composition/replay streams. Это fault injection в реальный model/optimizer path, не системный тест отключения питания или физической durability.
+Укажите конкретные дефекты, если они есть. Планы v4/v5 и старые Q1/Q3 результаты сохранены. Final закрыт; Q2/SIGReg/8B не добавлены. Новые scientific trainings ещё не выполнялись.
 
-Научные планы, данные, replay/monitor manifests, objectives и пороги не менялись. Старые receipts остаются историческими. После исправления строится новая очередь; checkpoints `056fd9a` без log snapshots не продолжаются новым кодом.
-
-Порядок чтения:
-
-1. `README.md`, `plans/RESEARCH_STATUS.md` — что уже запускалось и что только подготовлено.
-2. `plans/research_v5.json`, `plans/RUN_V5_RU.md` — amendment, admission criteria и команды.
-3. `iclr/research_train.py`, `tests/test_research_resume_recovery.py`, `tests/test_research_v5.py` — recovery-fix, проверки повреждения журналов и actual forward/backward/resume checks.
-4. `evidence/research_v5/POSTHOC_RESULTS_RU.md` и `q1_posthoc/` — новая арифметика Q1 и raw scores для независимого CPU-пересчёта. `atomic_audit/` — raw ошибки и проверка меток.
-5. `evidence/research_v5/feedback2/VALIDATION.json` — новые проверки и logs; прежний `evidence/research_v5/VALIDATION.json` относится к предыдущему code hash. `plans/source/23sept_iclr_feedback2/` — неизменённый источник замечаний. `evidence/research_v4/Q1_Q3_20260923/feedback_Q1_Q3_20260923.zip` — неизменённый прежний пакет с оригинальным analyzer и `check_primary.py`.
-
-Проверьте, пожалуйста:
-
-- Закрыты ли оба дефекта resume и случай незавершённой публикации checkpoint? Корректен ли отказ при повреждении зафиксированного префикса?
-- Достаточны ли реальные CPU/CUDA регрессии для следующего ограниченного запуска? Какие остаются конкретные дефекты, если они есть?
-- Соответствуют ли README и `RUN_V5_RU.md` принятому порядку: R0–R3 сейчас, matched CE/CF после full-dev retention/progress, без автоматического расширения?
-
-Следующий запуск после успешной технической регрессии: R0–R3 на одной фактической 0.6B базе с ожидаемым hash, mask1/seed0, максимум 128 updates. Восстановление всей истории Q1 и новая atomic initialization не являются предварительным условием. CE/CF — после full-dev retention/progress admission; atomic skills после CF проверяются заново. Progress 0,001 означает 0,1 п.п. correct probability mass; TRAIN-only PASS подтверждает fitting. Monitor с 20 задачами на операцию не заменяет full dev. Replication/final, 8B, дополнительные epochs и SIGReg сейчас не запускать автоматически. Q2 требует verified history своей initialization и отдельного numerical gate.
+Начало: `README.md`, подробности: `plans/RUN_V6_RU.md`, выполненные проверки: `evidence/research_v6/VALIDATION.json`. Исходный feedback: `plans/source/23sept_iclr_feedback3/`. Commit и состав review-архива указаны в `REVIEW_ARCHIVE_MANIFEST.json`.

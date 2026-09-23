@@ -1,0 +1,379 @@
+{
+  "claim_eligibility": {
+    "descriptive_checkpoint_comparison": true,
+    "historical_recipe": false,
+    "length_extrapolation": false,
+    "missing_history": "unknown is neither demonstrated leakage nor demonstrated clean history",
+    "never_seen_pairs": false
+  },
+  "control": "ce",
+  "dataset_statuses": {
+    "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a": "smoke"
+  },
+  "distinct_masks": 1,
+  "endpoints": {
+    "crossed_cell_accuracy": {
+      "available_in_all_masks": true,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "estimate": 0.0,
+      "masks": [
+        {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+          "dataset": "mask1",
+          "estimate": 0.0,
+          "families": {
+            "B": {
+              "estimate": 0.0,
+              "units": 1
+            },
+            "D": {
+              "estimate": 0.0,
+              "units": 1
+            }
+          },
+          "per_seed": {
+            "0": 0.0
+          },
+          "seeds": [
+            0
+          ]
+        }
+      ],
+      "unit": "whole panel"
+    },
+    "crossed_interaction": {
+      "available_in_all_masks": true,
+      "ci95": [
+        0.0008664131164550781,
+        0.0008664131164550781
+      ],
+      "estimate": 0.0008664131164550781,
+      "masks": [
+        {
+          "ci95": [
+            0.0008664131164550781,
+            0.0008664131164550781
+          ],
+          "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+          "dataset": "mask1",
+          "estimate": 0.0008664131164550781,
+          "families": {
+            "B": {
+              "estimate": -0.0009703636169433594,
+              "units": 1
+            },
+            "D": {
+              "estimate": 0.0027031898498535156,
+              "units": 1
+            }
+          },
+          "per_seed": {
+            "0": 0.0008664131164550781
+          },
+          "seeds": [
+            0
+          ]
+        }
+      ],
+      "unit": "whole panel"
+    },
+    "crossed_joint_accuracy_strict": {
+      "available_in_all_masks": true,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "estimate": 0.0,
+      "masks": [
+        {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+          "dataset": "mask1",
+          "estimate": 0.0,
+          "families": {
+            "B": {
+              "estimate": 0.0,
+              "units": 1
+            },
+            "D": {
+              "estimate": 0.0,
+              "units": 1
+            }
+          },
+          "per_seed": {
+            "0": 0.0
+          },
+          "seeds": [
+            0
+          ]
+        }
+      ],
+      "unit": "whole panel"
+    },
+    "four_target_pair_accuracy": {
+      "available_in_all_masks": true,
+      "ci95": [
+        0.08333333333333334,
+        0.08333333333333337
+      ],
+      "estimate": 0.08333333333333336,
+      "masks": [
+        {
+          "ci95": [
+            0.08333333333333334,
+            0.08333333333333337
+          ],
+          "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+          "dataset": "mask1",
+          "estimate": 0.08333333333333336,
+          "families": {
+            "B": {
+              "estimate": 0.1666666666666667,
+              "units": 2
+            },
+            "D": {
+              "estimate": 0.0,
+              "units": 2
+            }
+          },
+          "per_seed": {
+            "0": 0.08333333333333336
+          },
+          "seeds": [
+            0
+          ]
+        }
+      ],
+      "unit": "whole panel"
+    },
+    "ordinary_correct_mass": {
+      "available_in_all_masks": true,
+      "ci95": [
+        -1.7318323467054895e-07,
+        3.911662087025637e-06
+      ],
+      "estimate": 1.7714280721619833e-06,
+      "masks": [
+        {
+          "ci95": [
+            -1.7318323467054895e-07,
+            3.911662087025637e-06
+          ],
+          "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+          "dataset": "mask1",
+          "estimate": 1.7714280721619833e-06,
+          "families": {
+            "B": {
+              "estimate": 5.85325878083541e-07,
+              "units": 5
+            },
+            "D": {
+              "estimate": 2.9575302662404256e-06,
+              "units": 5
+            }
+          },
+          "per_seed": {
+            "0": 1.7714280721619833e-06
+          },
+          "seeds": [
+            0
+          ]
+        }
+      ],
+      "unit": "shared (field, START) task cluster"
+    },
+    "ordinary_hit1": {
+      "available_in_all_masks": true,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "estimate": 0.0,
+      "masks": [
+        {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+          "dataset": "mask1",
+          "estimate": 0.0,
+          "families": {
+            "B": {
+              "estimate": 0.0,
+              "units": 5
+            },
+            "D": {
+              "estimate": 0.0,
+              "units": 5
+            }
+          },
+          "per_seed": {
+            "0": 0.0
+          },
+          "seeds": [
+            0
+          ]
+        }
+      ],
+      "unit": "shared (field, START) task cluster"
+    },
+    "ordinary_hit8": {
+      "available_in_all_masks": true,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "estimate": 0.0,
+      "masks": [
+        {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "data_hash": "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a",
+          "dataset": "mask1",
+          "estimate": 0.0,
+          "families": {
+            "B": {
+              "estimate": 0.0,
+              "units": 5
+            },
+            "D": {
+              "estimate": 0.0,
+              "units": 5
+            }
+          },
+          "per_seed": {
+            "0": 0.0
+          },
+          "seeds": [
+            0
+          ]
+        }
+      ],
+      "unit": "shared (field, START) task cluster"
+    },
+    "ordinary_multiple_solution_correct_entropy": {
+      "available_in_all_masks": false,
+      "ci95": null,
+      "estimate": null,
+      "masks": [],
+      "unit": "shared (field, START) task cluster"
+    }
+  },
+  "exposure_ledgers": {
+    "outputs/feedback3_validation/send_to_artem_exp_batch_01_20260922_235651_414999/results/evaluations/q06_mask1_ce_cf_seed0": {
+      "depth_history_status": "unknown",
+      "historical_depth4": false,
+      "mask_pairs": [
+        "SC2>REV",
+        "SC2>SC2",
+        "SH1>SC2"
+      ],
+      "provenance_status": "declared_only",
+      "recorded_history_excludes_mask": false,
+      "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+      "stages": [
+        {
+          "depths": {},
+          "pairs": {},
+          "provenance_status": "declared_only",
+          "scope": "role declaration only; task-training history not verified",
+          "stage": "declared_atomic_task_initialization"
+        },
+        {
+          "depths": {
+            "3": 4
+          },
+          "domain": "affine_polynomial_v1",
+          "objective": "ce_cf",
+          "pairs": {
+            "AC1>REV": 2,
+            "REV>AC1": 1,
+            "REV>SH1": 1,
+            "SC2>SH1": 2,
+            "SH1>AX1": 1,
+            "SH1>SH1": 1
+          },
+          "provenance_status": "verified",
+          "stage": "current_continuation"
+        }
+      ]
+    },
+    "outputs/feedback3_validation/send_to_artem_exp_batch_01_20260922_235651_414999/results/evaluations/q06_mask1_ce_seed0": {
+      "depth_history_status": "unknown",
+      "historical_depth4": false,
+      "mask_pairs": [
+        "SC2>REV",
+        "SC2>SC2",
+        "SH1>SC2"
+      ],
+      "provenance_status": "declared_only",
+      "recorded_history_excludes_mask": false,
+      "scope": "witness/correct-solution supervision in recorded task-training stages; base pretraining unknown; complete-space scoring visits all legal prefixes",
+      "stages": [
+        {
+          "depths": {},
+          "pairs": {},
+          "provenance_status": "declared_only",
+          "scope": "role declaration only; task-training history not verified",
+          "stage": "declared_atomic_task_initialization"
+        },
+        {
+          "depths": {
+            "3": 4
+          },
+          "domain": "affine_polynomial_v1",
+          "objective": "ce",
+          "pairs": {
+            "AC1>REV": 2,
+            "REV>AC1": 1,
+            "REV>SH1": 1,
+            "SC2>SH1": 2,
+            "SH1>AX1": 1,
+            "SH1>SH1": 1
+          },
+          "provenance_status": "verified",
+          "stage": "current_continuation"
+        }
+      ]
+    }
+  },
+  "initializations": {
+    "49fcb1a440c3f72133c51f8efaf0a46de142e1f9dcc2e47e6806197bb0a52f5a": {
+      "adapter_hash": null,
+      "base_hash": "abcda6b332ef082cd771feb2ae1cd8885c5f5c68250177752316becf58dd9c98"
+    }
+  },
+  "interval_scope": "paired panels/task clusters conditional on these checkpoints and masks; seeds averaged first, equal B/D and mask weights",
+  "plan_hash": "46ada49efe15d4879abe10bc719f5314c8c2ab91c7e6ffe56f795bbe67931832",
+  "replication_scope": "continuation seeds are not independent full training replications",
+  "schema": "iclr.research.comparison.v6",
+  "sources": {
+    "outputs/feedback3_validation/send_to_artem_exp_batch_01_20260922_235651_414999/results/evaluations/q06_mask1_ce_cf_seed0": "c913e58ecb716f0dbc9d33f8aedb8a6776885b016287960059dc286da75c5318",
+    "outputs/feedback3_validation/send_to_artem_exp_batch_01_20260922_235651_414999/results/evaluations/q06_mask1_ce_seed0": "c1ea0532d29b3354855833355d096c7eeb20bb40486761aed6801cc67af29a9a"
+  },
+  "success_rule": {
+    "conditional_pattern": false,
+    "confirmation_scope_complete": false,
+    "domain": "affine_polynomial_v1",
+    "missing_crossed": "no START x TARGET claim; external DSL reports domain adaptation only",
+    "ordinary_hit1_confirmatory_test_open": false,
+    "ordinary_solving_pattern": false,
+    "scope": "fixed sequence: crossed joint then ordinary Hit@1; other intervals descriptive; dev is screening",
+    "supports_joint_conditioning_claim": false,
+    "supports_task_solving_claim": false
+  },
+  "treatment": "ce_cf"
+}

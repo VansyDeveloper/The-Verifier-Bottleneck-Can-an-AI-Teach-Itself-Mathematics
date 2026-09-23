@@ -1,0 +1,46 @@
+{
+  "schema": "iclr.research.analysis.v6",
+  "status": "Fixed exploratory batch requested by the user on 2026-09-23; no intermediate scientific selection",
+  "parent": "plans/research_v5.json",
+  "parent_sha256": "68ffe875039d3a9c7597ef4b485b75730bf2ea130db932c6f312a401a81a2914",
+  "base_hash": "a3ca02aa9e41ea7899c5217bf766a596d369b9ff0f92d51320d5ad3d4327d938",
+  "model": "Qwen/Qwen3-0.6B",
+  "batch": {
+    "masks": ["mask1", "mask2"], "seeds": [0, 1, 2],
+    "panels": 64, "panel_batch": 1, "epochs": 2, "max_steps": 128,
+    "checkpoint_steps": [0, 8, 16, 32, 64, 128],
+    "cf_weight": 0.1, "tau": 1.0, "entropy_weight": 0.01,
+    "recipes": {
+      "R0": {"learning_rate": 0.0001, "replay_weight": 0.0},
+      "R1": {"learning_rate": 0.00003, "replay_weight": 0.0},
+      "R2": {"learning_rate": 0.0001, "replay_weight": 0.25},
+      "R3": {"learning_rate": 0.00003, "replay_weight": 0.25}
+    },
+    "blocks": {
+      "1": {"recipe": "R0", "arms": ["ce", "ce_cf"], "priority": 1},
+      "2": {"recipe": "R1", "arms": ["ce", "ce_cf"], "priority": 1},
+      "3": {"recipe": "R2", "arms": ["ce", "ce_cf"], "priority": 1},
+      "4": {"recipe": "R3", "arms": ["ce", "ce_cf"], "priority": 1},
+      "5": {"recipe": "R0", "arms": ["ce_entropy", "ce_cf_entropy"], "priority": 2},
+      "6": {"recipe": "R1", "arms": ["ce_entropy", "ce_cf_entropy"], "priority": 2},
+      "7": {"recipe": "R2", "arms": ["ce_entropy", "ce_cf_entropy"], "priority": 2},
+      "8": {"recipe": "R3", "arms": ["ce_entropy", "ce_cf_entropy"], "priority": 2}
+    },
+    "total_training_cells": 96,
+    "initial": "One full-dev initial evaluation per mask per independent block; repeated initial evaluations are operational checks, not independent observations",
+    "full": "Initial and final adapter for every cell; intermediate checkpoints retain fixed v5 monitors and weights",
+    "execution": "Run all eight blocks; blocks 1-4 first, then 5-8. No retention gate or operator choice between blocks. Each block is an independent local queue and produces its own weight-free ZIP.",
+    "replay": "Unchanged v5 atomic rows and monitor membership, copied into separately plan-bound v6 manifests; one PLAN and one APPLY per composition step",
+    "smoke": "First mask and seed only, one update, checkpoints 0/1; never scientific evidence"
+  },
+  "analysis": {
+    "primary": "v4 crossed joint and ordinary task-solving endpoints retained; all v6 results are exploratory development evidence",
+    "paired_contrasts": "Within each recipe: CE+CF minus CE, CE+CF+H minus CE+H; entropy contrasts and CF x H interaction use matching recipe/mask/seed/checkpoint",
+    "reporting": "Report every predeclared cell, including failed retention; do not pool LR/replay recipes or select a winner and present its unadjusted interval as confirmatory",
+    "retention": "Report PLAN per operation, initially strong APPLY and TRAIN/A correct-mass progress for every cell; no filtering of runs before collection",
+    "seeds": "Paired continuation seeds from one shared initialization; not independent base-model training",
+    "final": "Closed final remains unopened; no automatic final evaluation or confirmatory claim from this grid",
+    "provenance": "Unchanged limitations of the actual base history; no new never-seen-pairs, length-extrapolation or historical-recipe claim"
+  },
+  "not_in_this_batch": ["Q2 without verified initialization history and its numeric gate", "SIGReg without state gate", "8B", "new atomic initialization", "256 updates", "final-based tuning"]
+}

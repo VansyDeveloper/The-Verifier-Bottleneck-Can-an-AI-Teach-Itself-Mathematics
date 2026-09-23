@@ -7,8 +7,8 @@ from .common import ROOT, code_hash, environment, file_hash, tree_hash, verify_d
 
 
 def plan_path(version='v4'):
-    if version not in ('v4', 'v5', 'v6'):
-        raise ValueError('Unknown research plan; use v4, v5 or v6 explicitly')
+    if version not in ('v4', 'v5'):
+        raise ValueError('Unknown research plan; use v4 or v5 explicitly')
     return ROOT / 'plans' / f'research_{version}.json'
 
 

@@ -1,0 +1,34 @@
+{
+  "schema": "iclr.research.analysis.v5",
+  "status": "exploratory amendment, 2026-09-23; no new scientific results",
+  "parent": "plans/research_v4.json",
+  "parent_sha256": "773927fc37071af946ad802d22e63473d4fab3585fa9106939230beeaf3cf757",
+  "primary": "Unchanged v4 endpoint hierarchy, policy and paired bootstrap; new diagnostics are post-hoc.",
+  "stability": {
+    "mask": "mask1", "seed": 0, "panels": 64, "panel_batch": 1,
+    "max_steps": 128, "checkpoint_steps": [0, 8, 16, 32, 64, 128],
+    "conditions": {
+      "R0": {"learning_rate": 0.0001, "replay_weight": 0.0},
+      "R1": {"learning_rate": 0.00003, "replay_weight": 0.0},
+      "R2": {"learning_rate": 0.0001, "replay_weight": 0.25},
+      "R3": {"learning_rate": 0.00003, "replay_weight": 0.25}
+    },
+    "replay": "One PLAN and one APPLY per panel step; 0.5 times their separate mean token CE, including canonical EOS; train-only balanced operation/field pool",
+    "retention_max_drop": 0.05, "initially_strong_apply": 0.8,
+    "progress_min_gain": 0.001,
+    "progress_rule": "positive >=0.001 absolute mean correct-mass gain on fixed TRAIN probe OR full dev ordinary A; no B/D selection",
+    "selection_rule": "Explicit single recipe/step with full dev retention gate and nonzero composition progress; ties prefer fewer steps then lower replay cost; not a paper success gate",
+    "full": "initial, final, and explicitly selected intermediate step; all 125 depth3 candidates",
+    "monitor": "fixed dev atomic 20/op, dev ordinary 16/family, all dev B/D crossed, first 4 complete TRAIN panels; never final",
+    "resume": "checkpoint adapter + Adam + RNG Python/NumPy/Torch/CUDA + exact next step and counters; independent restart is not resume",
+    "compute": "replay/no-replay is a diagnostic ablation, not equal compute"
+  },
+  "matched": {"arms": ["ce", "ce_cf"], "cf_weight": 0.1, "tau": 1.0, "entropy_weight": 0.01,
+    "rule": "same selected steps/LR/replay/data/order/base; optional complete entropy factorial only after stability admission"},
+  "confirmation": "one selected pair, masks1/2, paired seeds0/1/2; immutable lock before final; no automatic confirmation from stability screening",
+  "provenance": "verified / declared_only / unknown; missing history permits description, blocks never_seen_pairs, length_extrapolation and historical_recipe claims; Q2 requires verified task-training history and its unchanged numeric gate",
+  "q1_posthoc": {"reference": "fixed first 64 ordinary dev A tasks from inherited v4 data, known fields only; post-hoc permitted A reference, no B/D or new fields",
+    "alpha": 1, "variants": ["control", "composition", "control_plus_prior", "composition_minus_prior", "prior_only"],
+    "scope": "additive model of program scores, no causal neural-module interpretation; normalize each row; per-task between/within pool identity; never replaces primary"},
+  "not_authorized_by_plan": ["automatic 256 steps", "automatic four-method confirmation", "final-based tuning", "raising Q2 tolerance", "SIGReg without positive state gate"]
+}
