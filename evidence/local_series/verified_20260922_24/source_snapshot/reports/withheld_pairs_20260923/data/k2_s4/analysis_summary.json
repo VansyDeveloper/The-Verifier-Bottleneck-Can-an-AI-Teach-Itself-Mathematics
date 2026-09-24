@@ -1,0 +1,28 @@
+{
+  "schema": "withheld-pairs.amended-set-audited.v1",
+  "status": "VALID",
+  "freeze_sha256": "99DF70CE2030C18F3E86368E1C4A86EA3704FA729C6C355EE8A90C90D1333DD2",
+  "k": 2,
+  "subset": 4,
+  "gpu_host": "cdsserver",
+  "gpu_name": "NVIDIA_GeForce_RTX_3060",
+  "gpu_uuid": "GPU-5ca74087-cb26-d642-b80e-377780c28736",
+  "completed_trainings": 6,
+  "completed_evaluations": 6,
+  "withheld_hit32_difference": {
+    "n": 3,
+    "mean_difference": -0.19933333333333333,
+    "sd": 0.04315476026272578,
+    "ci95_low": -0.30653570074351505,
+    "ci95_high": -0.09213096592315163,
+    "exact_signflip_two_sided_p": 0.25,
+    "positive_pairs": 0,
+    "negative_pairs": 3
+  },
+  "per_seed_differences": {
+    "85000": -0.21299999999999997,
+    "85001": -0.23400000000000004,
+    "85002": -0.15099999999999997
+  },
+  "interpretation": "one preselected set only; no inference over k or subsets"
+}

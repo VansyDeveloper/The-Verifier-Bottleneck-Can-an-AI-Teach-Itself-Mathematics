@@ -1,0 +1,535 @@
+{
+  "draw_seed": 84000,
+  "k_groups": [
+    {
+      "k": 1,
+      "sets": [
+        {
+          "pairs": [
+            [
+              "AX1",
+              "REV"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 699,
+            "3": 615,
+            "4": 621
+          },
+          "subset": 1
+        },
+        {
+          "pairs": [
+            [
+              "REV",
+              "SH1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 703,
+            "3": 671,
+            "4": 630
+          },
+          "subset": 2
+        },
+        {
+          "pairs": [
+            [
+              "SH1",
+              "SC2"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 712,
+            "3": 705,
+            "4": 691
+          },
+          "subset": 3
+        },
+        {
+          "pairs": [
+            [
+              "SH1",
+              "AC1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 711,
+            "3": 717,
+            "4": 668
+          },
+          "subset": 4
+        },
+        {
+          "pairs": [
+            [
+              "REV",
+              "SC2"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 725,
+            "3": 659,
+            "4": 652
+          },
+          "subset": 5
+        }
+      ]
+    },
+    {
+      "k": 2,
+      "sets": [
+        {
+          "pairs": [
+            [
+              "AC1",
+              "AX1"
+            ],
+            [
+              "SH1",
+              "AX1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 673,
+            "3": 619,
+            "4": 547
+          },
+          "subset": 1
+        },
+        {
+          "pairs": [
+            [
+              "AX1",
+              "AC1"
+            ],
+            [
+              "REV",
+              "AC1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 669,
+            "3": 609,
+            "4": 612
+          },
+          "subset": 2
+        },
+        {
+          "pairs": [
+            [
+              "SC2",
+              "SC2"
+            ],
+            [
+              "SH1",
+              "REV"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 669,
+            "3": 600,
+            "4": 531
+          },
+          "subset": 3
+        },
+        {
+          "pairs": [
+            [
+              "AC1",
+              "AX1"
+            ],
+            [
+              "SC2",
+              "AC1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 633,
+            "3": 629,
+            "4": 568
+          },
+          "subset": 4
+        },
+        {
+          "pairs": [
+            [
+              "AX1",
+              "AC1"
+            ],
+            [
+              "REV",
+              "AX1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 671,
+            "3": 654,
+            "4": 617
+          },
+          "subset": 5
+        }
+      ]
+    },
+    {
+      "k": 3,
+      "sets": [
+        {
+          "pairs": [
+            [
+              "REV",
+              "AC1"
+            ],
+            [
+              "SC2",
+              "AC1"
+            ],
+            [
+              "SH1",
+              "AX1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 608,
+            "3": 572,
+            "4": 492
+          },
+          "subset": 1
+        },
+        {
+          "pairs": [
+            [
+              "SC2",
+              "AC1"
+            ],
+            [
+              "SC2",
+              "SH1"
+            ],
+            [
+              "SH1",
+              "SC2"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 636,
+            "3": 593,
+            "4": 472
+          },
+          "subset": 2
+        },
+        {
+          "pairs": [
+            [
+              "AX1",
+              "AC1"
+            ],
+            [
+              "SC2",
+              "REV"
+            ],
+            [
+              "SH1",
+              "SC2"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 643,
+            "3": 562,
+            "4": 562
+          },
+          "subset": 3
+        },
+        {
+          "pairs": [
+            [
+              "AC1",
+              "SC2"
+            ],
+            [
+              "AX1",
+              "AX1"
+            ],
+            [
+              "SC2",
+              "SH1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 700,
+            "3": 552,
+            "4": 396
+          },
+          "subset": 4
+        },
+        {
+          "pairs": [
+            [
+              "AX1",
+              "AX1"
+            ],
+            [
+              "SC2",
+              "SC2"
+            ],
+            [
+              "SH1",
+              "AC1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 625,
+            "3": 591,
+            "4": 456
+          },
+          "subset": 5
+        }
+      ]
+    },
+    {
+      "k": 5,
+      "sets": [
+        {
+          "pairs": [
+            [
+              "AC1",
+              "AX1"
+            ],
+            [
+              "AX1",
+              "AC1"
+            ],
+            [
+              "SC2",
+              "REV"
+            ],
+            [
+              "SC2",
+              "SC2"
+            ],
+            [
+              "SH1",
+              "SH1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 583,
+            "3": 413,
+            "4": 364
+          },
+          "subset": 1
+        },
+        {
+          "pairs": [
+            [
+              "AC1",
+              "SC2"
+            ],
+            [
+              "AX1",
+              "REV"
+            ],
+            [
+              "REV",
+              "SC2"
+            ],
+            [
+              "SH1",
+              "AC1"
+            ],
+            [
+              "SH1",
+              "SC2"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 585,
+            "3": 417,
+            "4": 354
+          },
+          "subset": 2
+        },
+        {
+          "pairs": [
+            [
+              "AC1",
+              "AC1"
+            ],
+            [
+              "AX1",
+              "SC2"
+            ],
+            [
+              "SH1",
+              "AC1"
+            ],
+            [
+              "SH1",
+              "SC2"
+            ],
+            [
+              "SH1",
+              "SH1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 629,
+            "3": 521,
+            "4": 351
+          },
+          "subset": 3
+        },
+        {
+          "pairs": [
+            [
+              "AC1",
+              "SC2"
+            ],
+            [
+              "AC1",
+              "SH1"
+            ],
+            [
+              "AX1",
+              "REV"
+            ],
+            [
+              "SH1",
+              "AX1"
+            ],
+            [
+              "SH1",
+              "SC2"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 544,
+            "3": 416,
+            "4": 362
+          },
+          "subset": 4
+        },
+        {
+          "pairs": [
+            [
+              "AC1",
+              "AC1"
+            ],
+            [
+              "AC1",
+              "SC2"
+            ],
+            [
+              "AX1",
+              "SC2"
+            ],
+            [
+              "REV",
+              "SH1"
+            ],
+            [
+              "SH1",
+              "AC1"
+            ]
+          ],
+          "remaining_by_depth": {
+            "2": 616,
+            "3": 519,
+            "4": 299
+          },
+          "subset": 5
+        }
+      ]
+    }
+  ],
+  "minimum_remaining_per_depth": 250,
+  "pair_universe": [
+    [
+      "AC1",
+      "AC1"
+    ],
+    [
+      "AC1",
+      "AX1"
+    ],
+    [
+      "AC1",
+      "SC2"
+    ],
+    [
+      "AC1",
+      "SH1"
+    ],
+    [
+      "AX1",
+      "AC1"
+    ],
+    [
+      "AX1",
+      "AX1"
+    ],
+    [
+      "AX1",
+      "REV"
+    ],
+    [
+      "AX1",
+      "SC2"
+    ],
+    [
+      "REV",
+      "AC1"
+    ],
+    [
+      "REV",
+      "AX1"
+    ],
+    [
+      "REV",
+      "SC2"
+    ],
+    [
+      "REV",
+      "SH1"
+    ],
+    [
+      "SC2",
+      "AC1"
+    ],
+    [
+      "SC2",
+      "REV"
+    ],
+    [
+      "SC2",
+      "SC2"
+    ],
+    [
+      "SC2",
+      "SH1"
+    ],
+    [
+      "SH1",
+      "AC1"
+    ],
+    [
+      "SH1",
+      "AX1"
+    ],
+    [
+      "SH1",
+      "REV"
+    ],
+    [
+      "SH1",
+      "SC2"
+    ],
+    [
+      "SH1",
+      "SH1"
+    ]
+  ],
+  "schema": "verifier-bottleneck.future-withheld-pairs.v1",
+  "source_sha256": "3C2BD26D16AA7BAA0EB2D6CC277C4FFD97C189B3C3405D6CD9FFEAE325C2550F",
+  "status": "DESIGN_ONLY_NO_TRAINING"
+}

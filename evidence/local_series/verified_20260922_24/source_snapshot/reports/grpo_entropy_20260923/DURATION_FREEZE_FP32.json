@@ -1,0 +1,29 @@
+{
+  "schema": "grpo-entropy.duration-freeze-fp32.v1",
+  "status": "FROZEN_BEFORE_FULL_PAIR",
+  "decision_utc": "2026-09-23T14:29:16Z",
+  "deadline_utc": "2026-09-24T05:00:00Z",
+  "steps_per_arm": 150,
+  "benchmark_training_containers": [
+    "verifier_grpo_entropy_benchmark_seed0_control_fp32_gc_30steps",
+    "verifier_grpo_entropy_benchmark_seed1_control_fp32_gc_30steps"
+  ],
+  "benchmark_training_steps_each": 30,
+  "benchmark_training_elapsed_seconds": [459.7309980392456, 665.527675151825],
+  "benchmark_late_step_max_seconds": [18.539737224578857, 31.79157328605652],
+  "benchmark_evaluation_container": "verifier_grpo_entropy_eval_speed_fp32_20260923",
+  "benchmark_evaluation_task_count": 10,
+  "benchmark_evaluation_seconds": 36.58223099305178,
+  "benchmark_evaluation_task_max_seconds": 3.953122175007593,
+  "benchmark_evaluation_input": "10 depth-three training tasks, not held-out tasks",
+  "conservative_step_seconds": 32,
+  "conservative_evaluation_task_seconds": 4,
+  "per_arm_loading_overhead_seconds": 120,
+  "paired_seed_waves": 2,
+  "arms_per_wave": 2,
+  "predicted_makespan_seconds": 35680,
+  "with_25_percent_margin_seconds": 44600,
+  "400_step_with_25_percent_margin_seconds": 84600,
+  "available_to_0800_msk_seconds": 52244,
+  "heldout_outcomes_viewed_before_decision": false
+}

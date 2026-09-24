@@ -1,0 +1,56 @@
+[
+  {
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k1_s1_seed85000_random",
+    "adapter_tree_sha256": "b765bb0f4ed2bfcce032df3530809bcadc771e8a61983d1d632e6654195c6380",
+    "arm": "random",
+    "seed": 85000,
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "10C9324E480A2FBF85208288F359CF9C11BD0B0E9E8747B653154E49B785197E"
+  },
+  {
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k1_s1_seed85000_withheld",
+    "adapter_tree_sha256": "bbfcd4be3210265617af953f852cd187f587f6c4adaeb14081b5373b05138263",
+    "arm": "withheld",
+    "seed": 85000,
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "B56583C926BDBD387576C668A879DF20D628B61CB4EC9DBBAE6D90B34A55357F"
+  },
+  {
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k1_s1_seed85001_random",
+    "adapter_tree_sha256": "4c45ab034de39490c90d2a38a1d58d5521688846574f3bb69f76cf0930693b8f",
+    "arm": "random",
+    "seed": 85001,
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "D2C7C8969F7FFD6783D4B1EA5E8C4596B41F07C237F2DC9B87F91A83885CBDD9"
+  },
+  {
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k1_s1_seed85001_withheld",
+    "adapter_tree_sha256": "cf2a76721d98db879a12282ebf45bb9aa470cc05c13e1df8b9bc2d39e98364d7",
+    "arm": "withheld",
+    "seed": 85001,
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "22CD75E85F34C311350A7E6EEF082F2BA2F834895D71EA0A72689FAD1DE2905F"
+  },
+  {
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k1_s1_seed85002_random",
+    "adapter_tree_sha256": "9eaceed5ce2709c3b0143f468f223ce99dacb3d4ad70ca4e1a9d52fd7143567a",
+    "arm": "random",
+    "seed": 85002,
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "DB33A94F5443541CA83F313E36ED0FE068F1A59CA9E54FA7CDEB9A783569E5B9"
+  },
+  {
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k1_s1_seed85002_withheld",
+    "adapter_tree_sha256": "595d959baf9b7e89032c1e7da978a763b5d6ab3a44132160a18e3d0173709b32",
+    "arm": "withheld",
+    "seed": 85002,
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "96D3E3CBF3AE3AC112B67C456EF4CEEC88829C460FC95CFDA1E219E345679152"
+  }
+]

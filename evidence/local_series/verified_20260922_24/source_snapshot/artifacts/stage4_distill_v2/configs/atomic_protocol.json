@@ -1,0 +1,17 @@
+{
+  "schema":"stage4.v2.atomic.v1",
+  "model":"Qwen/Qwen3-0.6B",
+  "source_adapter":"artifacts/adapters/sft_atomic_r32_pilot_aw4_cont",
+  "operations":["SH1","SC2","REV","AC1","AX1"],
+  "operation_tokens":{"SH1":"<OP0>","SC2":"<OP1>","REV":"<OP2>","AC1":"<OP3>","AX1":"<OP4>"},
+  "fields":[5,7,13,19,23,29],
+  "train_per_operation":5000,
+  "dev_per_operation":200,
+  "hard_cycle_per_operation":10000,
+  "seed":0,
+  "lora":{"r":64,"alpha":128,"dropout":0.05},
+  "phase1":{"epochs":1,"lr":0.0002,"effective_batch":64,"warmup_ratio":0.03,"max_grad_norm":1.0},
+  "phase2":{"epochs":2,"lr":0.0001,"effective_batch":64,"warmup_ratio":0.03,"max_grad_norm":1.0,"plan_replay":0.1},
+  "hard_cycle":{"epochs":1,"lr":0.00005,"effective_batch":64,"warmup_ratio":0.03,"max_grad_norm":1.0,"all_operation_replay":0.1},
+  "gates":{"plan":0.95,"apply_each":0.90,"spread":0.10}
+}

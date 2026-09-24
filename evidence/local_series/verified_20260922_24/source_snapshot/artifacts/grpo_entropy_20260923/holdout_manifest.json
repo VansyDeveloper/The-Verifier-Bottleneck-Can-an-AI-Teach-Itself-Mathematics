@@ -1,0 +1,23 @@
+{
+  "design": "depth=3,p=11|17,degree_cap=2|3,order_sensitive,legacy_action_protocol",
+  "schema": "grpo-entropy.holdout.v1",
+  "seed": 20260923,
+  "sha256": "703049FB3B5655AFED95B2BADA36B3C85ADC2712EF5C03A8DBF54A12AFA9C57D",
+  "source_sha256": {
+    "artifacts/data/pilot/dev_exploration.jsonl": "F4202F592AFFC2114BF3C4313B383FC73CC987AFF48D180F865135BDD1A18132",
+    "artifacts/data/pilot/final_like_heldout.jsonl": "848055628805D5C1091390231A5DA669D4C639FA4F0E4994B6410BE10F1E0DDD",
+    "artifacts/data/pilot/rl_train.jsonl": "140E95B8192D0E19E79716385FCDD2361483B07990324F7F933C007AACE7715F",
+    "artifacts/data/pilot/sft_calibration_sh1.jsonl": "330896C166C59CA8B7EFD22A2B92D7FA929FA90B583E569D1366A8328BB551F9",
+    "artifacts/data/pilot/sft_train_apply.jsonl": "05AECECBDF53D2D56744E6FB1C7CFFA032BD363BFBBDC96572421C27871608D2",
+    "artifacts/data/pilot/sft_train_plan.jsonl": "D60B1B354002DF3E846A7093755518135FD6E221BDD4DC9699A16DED932F8D16",
+    "artifacts/data/pilot/sft_validation_apply.jsonl": "335D0861D55EFE9B96C83689BA38A87D6D5B4C735BC08218A134E73BA421D0D3",
+    "artifacts/data/pilot/sft_validation_apply_non_sh1.jsonl": "25091306302389C8578EEC37DCAFA95B5137EAEB7EA3EEB19EFBD76876354FBA",
+    "artifacts/data/pilot/sft_validation_plan.jsonl": "3EB60862970CDB16FD56A2C47BE8D12CF34D9455F9C547EC3A2750D638D3E6C8",
+    "artifacts/data/true_composition/final_signature_disjoint.jsonl": "1EF2A5F1071AD36516F4000140E7BA83D6B20C41ECE63BA6D23C4C7ADA822A82",
+    "artifacts/data/true_composition/final_signature_disjoint_apply.jsonl": "66540B35B5AC0D9A74AE4992330BBF9F0EB50D9C11FB451F44B43A8A6685E8BA",
+    "artifacts/data/true_composition/rl_train_signature_disjoint.jsonl": "D6211A4AADFC2F85A5D44C8825F28CA42094303AE039DA1FE6079E97804352BB",
+    "artifacts/trajectory_diversity_20260922/data/holdout_final_a.jsonl": "EBA422674369C788C1B06616BBFB0E02CE4C0E52162CFDE066ED3C80AD6299DF"
+  },
+  "status": "FROZEN",
+  "tasks": 1000
+}

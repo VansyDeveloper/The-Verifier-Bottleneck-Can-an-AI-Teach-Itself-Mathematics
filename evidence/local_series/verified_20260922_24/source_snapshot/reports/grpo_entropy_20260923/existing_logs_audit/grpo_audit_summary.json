@@ -1,0 +1,15 @@
+{
+  "schema": "verifier-bottleneck.grpo-sample-entropy.v1",
+  "status": "DONE",
+  "runs": 6,
+  "steps_per_run": 400,
+  "group_size": 8,
+  "groups": 2400,
+  "answers": 19200,
+  "archive_sha256": "6a028af242859bffb8fab89dcaa4b88c063c39fd43bdd327af8540036b2fe61e",
+  "measure": "empirical entropy of eight sampled answers within one task group; not policy entropy",
+  "output_sha256": {
+    "grpo_blocks_per_seed.csv": "eed27a74a7fd93fa7129177ba3c5ea9eb87637eb883c264612df941c633685f4",
+    "grpo_groups.csv": "1914831f742b3e742ee38b733a9e776c93b8ea5a0d97422a3f4cdff0a190cb64"
+  }
+}

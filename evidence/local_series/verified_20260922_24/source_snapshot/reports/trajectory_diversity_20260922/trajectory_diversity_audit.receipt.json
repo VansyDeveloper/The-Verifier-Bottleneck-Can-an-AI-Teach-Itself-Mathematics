@@ -1,0 +1,9 @@
+{
+  "schema": "trajectory-diversity.audit-archive-receipt.v1",
+  "status": "DONE",
+  "path": "C:\\MyProject\\verifier_bottleneck_codex_pack\\reports\\trajectory_diversity_20260922\\trajectory_diversity_audit.zip",
+  "bytes": 85931488,
+  "sha256": "68108283D5F03029484065C8A2C93BAFFDFE17E9463B6FFEB36DFAF7C9CCBA27",
+  "included_files": 2341,
+  "model_weights_included": false
+}

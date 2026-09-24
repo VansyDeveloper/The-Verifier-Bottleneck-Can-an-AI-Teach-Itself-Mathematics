@@ -1,0 +1,27 @@
+{
+  "schema": "grpo-entropy.complete-paired-audit.v1",
+  "status": "VALID",
+  "algorithm": "group_normalized_categorical_policy_gradient_without_clipping",
+  "duration_freeze_sha256": "2D3BA9B90F376CD81A49605F8ABB9175F649C765494B6F5C5B512F84D81C2B91",
+  "holdout_sha256": "703049FB3B5655AFED95B2BADA36B3C85ADC2712EF5C03A8DBF54A12AFA9C57D",
+  "training_steps_per_arm": 150,
+  "completed_trainings": 6,
+  "completed_evaluations": 6,
+  "candidate_program_scores": 750000,
+  "primary_hit32_entropy_minus_control": {
+    "n": 3,
+    "mean_difference": -0.005666666666666671,
+    "sd": 0.014047538337136997,
+    "ci95_low": -0.04056268640851957,
+    "ci95_high": 0.02922935307518623,
+    "exact_signflip_two_sided_p": 0.75,
+    "positive_pairs": 1,
+    "negative_pairs": 2
+  },
+  "per_seed_hit32_differences": {
+    "0": -0.019000000000000017,
+    "1": -0.007000000000000006,
+    "2": 0.009000000000000008
+  },
+  "signflip_resolution_note": "n=3 gives minimum two-sided exact p=0.25"
+}

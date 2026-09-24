@@ -1,0 +1,26 @@
+{
+  "schema": "withheld-pairs.first-block-audited.v1",
+  "status": "VALID",
+  "freeze_sha256": "99DF70CE2030C18F3E86368E1C4A86EA3704FA729C6C355EE8A90C90D1333DD2",
+  "k": 1,
+  "subset": 1,
+  "completed_trainings": 6,
+  "planned_trainings": 120,
+  "completed_evaluations": 6,
+  "withheld_hit32_difference": {
+    "n": 3,
+    "mean_difference": -0.29,
+    "sd": 0.06863672486358888,
+    "ci95_low": -0.46050307664255974,
+    "ci95_high": -0.11949692335744025,
+    "exact_signflip_two_sided_p": 0.25,
+    "positive_pairs": 0,
+    "negative_pairs": 3
+  },
+  "per_seed_differences": {
+    "85000": -0.369,
+    "85001": -0.256,
+    "85002": -0.245
+  },
+  "interpretation": "first set only; no inference over k or pair subsets"
+}

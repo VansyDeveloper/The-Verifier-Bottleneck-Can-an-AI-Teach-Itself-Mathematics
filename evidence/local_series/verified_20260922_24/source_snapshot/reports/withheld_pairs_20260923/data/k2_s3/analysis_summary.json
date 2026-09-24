@@ -1,0 +1,28 @@
+{
+  "schema": "withheld-pairs.amended-set-audited.v1",
+  "status": "VALID",
+  "freeze_sha256": "99DF70CE2030C18F3E86368E1C4A86EA3704FA729C6C355EE8A90C90D1333DD2",
+  "k": 2,
+  "subset": 3,
+  "gpu_host": "cds2",
+  "gpu_name": "Tesla_V100-SXM2-32GB",
+  "gpu_uuid": "GPU-8b832400-dafc-234e-fe65-5e9644f14d83",
+  "completed_trainings": 6,
+  "completed_evaluations": 6,
+  "withheld_hit32_difference": {
+    "n": 3,
+    "mean_difference": -0.3376666666666666,
+    "sd": 0.0384230833397495,
+    "ci95_low": -0.43311489699266414,
+    "ci95_high": -0.24221843634066906,
+    "exact_signflip_two_sided_p": 0.25,
+    "positive_pairs": 0,
+    "negative_pairs": 3
+  },
+  "per_seed_differences": {
+    "85000": -0.32799999999999996,
+    "85001": -0.38,
+    "85002": -0.30499999999999994
+  },
+  "interpretation": "one preselected set only; no inference over k or subsets"
+}

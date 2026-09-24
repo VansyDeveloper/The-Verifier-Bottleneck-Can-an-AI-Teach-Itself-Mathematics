@@ -1,0 +1,7 @@
+seed,arm,selected_trajectories,removed_trajectories,selected_with_excluded_pairs,composition_target_tokens_per_epoch
+85000,random,750,420,132,41659
+85000,withheld,750,420,0,41659
+85001,random,750,420,119,41714
+85001,withheld,750,420,0,41714
+85002,random,750,420,123,41768
+85002,withheld,750,420,0,41768

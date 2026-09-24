@@ -1,0 +1,62 @@
+[
+  {
+    "adapter_config_sha256": "E30BA09B82E022DEDFB66AC0F2304EDABA87E4246C3307CF649D972260378FC1",
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k2_s2_seed85000_random",
+    "arm": "random",
+    "seed": 85000,
+    "training_receipt_sha256": "02E35EA5BDA7B2FD91A35CDD6E6AECAE483A8AE56119EFF6BF1742D2E6608BBC",
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "E260F2984121FE89663DD3654C7B71DDB413312FC186FDCB387739D8A4E07B42"
+  },
+  {
+    "adapter_config_sha256": "032B659B2F420E989BC3C907F92BE6EBA7E860844BAD914278BD9134C5EAB0B5",
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k2_s2_seed85000_withheld",
+    "arm": "withheld",
+    "seed": 85000,
+    "training_receipt_sha256": "FE003C942CC4A524CEE35A43B7A66E91654CB3763DF5B5AC1398402FBF218DDD",
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "B76FE766A30F1659EBE127D2A95F9699DFDCE454A2193973007DC021A62B9B3C"
+  },
+  {
+    "adapter_config_sha256": "FFA1EDD8DBA27CB6C56A364815868B8C4690498C1C0D2FDA1ED35820D481C776",
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k2_s2_seed85001_random",
+    "arm": "random",
+    "seed": 85001,
+    "training_receipt_sha256": "9902680FB9357AE29D2556AE93F3EEFD59806AE798BF471F09A404991CE0FF63",
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "4E39EE34F92924B9EE47C8673F3CA82B7F10414E9B22E1B3FDF8430E1B800243"
+  },
+  {
+    "adapter_config_sha256": "3F5AB180A32F2FE9B1DD886D19D76039D176F95FE3AD4DFE914896A954050E6F",
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k2_s2_seed85001_withheld",
+    "arm": "withheld",
+    "seed": 85001,
+    "training_receipt_sha256": "22C72F8E31C25B22F77CD8041C918EF3C8DB853E72E34AFC797C764B761779C8",
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "9ECDBAE21252A587AABF18DDE02A4F82F678AAFB0C0E1C3735490AAE4967E375"
+  },
+  {
+    "adapter_config_sha256": "AF7A1735A48BBE87E62B9C3E495E55B247A945F178FF83C3F1054BB4FD2B4976",
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k2_s2_seed85002_random",
+    "arm": "random",
+    "seed": 85002,
+    "training_receipt_sha256": "5E1B8B226F39CD3B290508DC342A2B02137724A5D0F9E3B9F9DF81600BE12517",
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "07A5CA6725D7BAC86B10FD414CCDA224B325D60967C39F3EAA637D21CE984F5E"
+  },
+  {
+    "adapter_config_sha256": "6E831725FE825A3F364457342C59BCD8FC068AAF48024CED61EF0A0FFB41BA50",
+    "adapter_path": "artifacts/withheld_pairs_20260923/adapters/k2_s2_seed85002_withheld",
+    "arm": "withheld",
+    "seed": 85002,
+    "training_receipt_sha256": "EA5767BDF7D526A825A56AB5BA9034606638A17375E376CFEA29FAF2090C651C",
+    "weights_bytes": 80813072,
+    "weights_in_audit_zip": false,
+    "weights_sha256": "869E9DC7A4668ADAB9EEBE815C0B6CBC9FE8FFCE0D9AD7B0E08328761DA668DE"
+  }
+]

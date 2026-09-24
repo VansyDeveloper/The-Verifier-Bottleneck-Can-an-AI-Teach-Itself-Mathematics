@@ -1,0 +1,39 @@
+{
+  "schema": "trajectory-diversity.final-analysis.v1",
+  "status": "DONE",
+  "study_class": "exploratory-dataset-composition-intervention",
+  "holdout_sha256": "EBA422674369C788C1B06616BBFB0E02CE4C0E52162CFDE066ED3C80AD6299DF",
+  "freeze_sha256": "609EA5657269B4371A3033DE29BC2099CF629549F3133A3C8F3DC32E492FE9D0",
+  "task_rows": 12000,
+  "verified_shards": 480,
+  "hit32_differences_by_seed": {
+    "83000": 0.017000000000000015,
+    "83001": -0.020000000000000018,
+    "83002": -0.0050000000000000044,
+    "83003": -0.020000000000000018,
+    "83004": -0.01200000000000001,
+    "83005": 0.025000000000000022
+  },
+  "primary": {
+    "n": 6,
+    "mean_difference": -0.0025000000000000022,
+    "sd": 0.019211975432005958,
+    "ci95_low": -0.022661731731153104,
+    "ci95_high": 0.0176617317311531,
+    "exact_signflip_two_sided_p": 0.8125,
+    "positive_pairs": 2,
+    "negative_pairs": 4
+  },
+  "limits": [
+    "different source tasks in the two selection arms",
+    "post-hoc entropy and full Hit@K are exploratory",
+    "conditional entropy among 125 admissible programs, not full-vocabulary entropy"
+  ],
+  "output_sha256": {
+    "atomic_forgetting.csv": "0F23B20EC8DF5C84B5A0583EC49E9998C05977A2C2BFF31415B870DA1DDDE85F",
+    "hitk_mean.csv": "23296D904BA5B6F0BE64D228AADFAF42B7A0BA396D356459602EA5A4686A398D",
+    "hitk_per_seed.csv": "02D2225C78C75883A242A5493C85EF134E328E1ED9152E702771A83EFCE4867A",
+    "seed_metrics.csv": "974CD12C4FADAE780DCCA9C73B3F8A1D306EEFB853CD8252B4B002826D90374B",
+    "task_metrics.csv": "F40CF7C05F29BD7774C668285DB2DE32654CB09646C6C2DD890D999EE2CFACEA"
+  }
+}

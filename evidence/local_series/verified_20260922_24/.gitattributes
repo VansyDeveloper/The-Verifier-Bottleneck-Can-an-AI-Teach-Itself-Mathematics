@@ -1,0 +1,5 @@
+# Preserve immutable generated evidence while checking new prose and code normally.
+source_snapshot/reports/withheld_pairs_20260923/data/first_block/*.svg whitespace=cr-at-eol,-trailing-space
+source_snapshot/artifacts/stage4_distill_v3/configs/protocol.json whitespace=cr-at-eol,-blank-at-eof
+source_snapshot/artifacts/stage4_sh1_v5_0p6b/configs/protocol.json whitespace=cr-at-eol,-blank-at-eof
+source_snapshot/src/vbexp/experiment.py whitespace=cr-at-eol,-blank-at-eof

@@ -1,0 +1,25 @@
+{"container_id": "052adf1d65c2b5c3f637d408bc30e2780215fabf0af18a8fa32feac3ec1a6257", "job": "verifier_withheld_train_20260923_k1s5_85000_random", "status": "STARTED", "time_utc": "2026-09-23T17:58:32.378655+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s5_85000_random", "status": "DONE", "time_utc": "2026-09-23T18:03:33.048536+00:00"}
+{"container_id": "4d0d8eb79f565d80286cc678565acff4335c53a095cc50cb080018a8e3790464", "job": "verifier_withheld_train_20260923_k1s5_85000_withheld", "status": "STARTED", "time_utc": "2026-09-23T18:03:34.233328+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s5_85000_withheld", "status": "DONE", "time_utc": "2026-09-23T18:08:34.875190+00:00"}
+{"container_id": "cd34afea33fc655c86a5d7a8f9e73048c86c010f542ef00ce49ac4d4d3e94e08", "job": "verifier_withheld_train_20260923_k1s5_85001_random", "status": "STARTED", "time_utc": "2026-09-23T18:08:36.285867+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s5_85001_random", "status": "DONE", "time_utc": "2026-09-23T18:13:36.919940+00:00"}
+{"container_id": "b2234fb3c3c37e61ddd269d0cb1040ff830558bdd976fb5fa147a865a85fd2bb", "job": "verifier_withheld_train_20260923_k1s5_85001_withheld", "status": "STARTED", "time_utc": "2026-09-23T18:13:38.177679+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s5_85001_withheld", "status": "DONE", "time_utc": "2026-09-23T18:18:38.896406+00:00"}
+{"container_id": "b08ffefbfed001088606c0c4d58e2a020658d04982ec3547172a7ca7ba71d254", "job": "verifier_withheld_train_20260923_k1s5_85002_random", "status": "STARTED", "time_utc": "2026-09-23T18:18:40.513929+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s5_85002_random", "status": "DONE", "time_utc": "2026-09-23T18:23:41.198700+00:00"}
+{"container_id": "1561b8d15f5f8f765b87f678185789cc63a7e01be33d5385da56a9e24449ee91", "job": "verifier_withheld_train_20260923_k1s5_85002_withheld", "status": "STARTED", "time_utc": "2026-09-23T18:23:42.537320+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s5_85002_withheld", "status": "DONE", "time_utc": "2026-09-23T18:28:43.214252+00:00"}
+{"container_id": "fb85370cb53439a1717bd5dfa3f04fc41f19c7445d91d6e6962ab30ed5748fc6", "job": "verifier_withheld_eval_20260923_k1s5_85000_random", "status": "STARTED", "time_utc": "2026-09-23T18:28:44.655081+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s5_85000_random", "status": "DONE", "time_utc": "2026-09-23T18:59:08.563550+00:00"}
+{"container_id": "8879eeab6360012285a88d9b176bf83f455a56babdf1fc88ef632e7d0e485174", "job": "verifier_withheld_eval_20260923_k1s5_85000_withheld", "status": "STARTED", "time_utc": "2026-09-23T18:59:09.958072+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s5_85000_withheld", "status": "DONE", "time_utc": "2026-09-23T19:29:33.865594+00:00"}
+{"container_id": "342cc60dc32ea630f798959b9710796753f02a85821fee11e7dd7eb4990d66ea", "job": "verifier_withheld_eval_20260923_k1s5_85001_random", "status": "STARTED", "time_utc": "2026-09-23T19:29:35.142149+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s5_85001_random", "status": "DONE", "time_utc": "2026-09-23T19:59:38.709664+00:00"}
+{"container_id": "fae22fc94942f7b0bb1d5773727c669d7044fe491785672b244e492aff99d554", "job": "verifier_withheld_eval_20260923_k1s5_85001_withheld", "status": "STARTED", "time_utc": "2026-09-23T19:59:40.193528+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s5_85001_withheld", "status": "DONE", "time_utc": "2026-09-23T20:30:04.105851+00:00"}
+{"container_id": "72fde5f0fd0dcd0a8e6617bc26f744a5671410da499b716fd109e5c4e9a4fb8f", "job": "verifier_withheld_eval_20260923_k1s5_85002_random", "status": "STARTED", "time_utc": "2026-09-23T20:30:05.452448+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s5_85002_random", "status": "DONE", "time_utc": "2026-09-23T21:00:29.347431+00:00"}
+{"container_id": "debb476dae03cc3069a3d1c169af84213118e196d1e3b276ba04b4e860b5db71", "job": "verifier_withheld_eval_20260923_k1s5_85002_withheld", "status": "STARTED", "time_utc": "2026-09-23T21:00:30.591104+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s5_85002_withheld", "status": "DONE", "time_utc": "2026-09-23T21:30:34.414113+00:00"}
+{"jobs": 12, "k": 1, "status": "SET_DONE", "subset": 5, "time_utc": "2026-09-23T21:30:34.414365+00:00"}

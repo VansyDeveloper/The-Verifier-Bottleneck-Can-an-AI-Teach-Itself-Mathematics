@@ -1,0 +1,10 @@
+{
+  "forbidden_state_count": 194632,
+  "forbidden_task_count": 112665,
+  "rows": 1000,
+  "schema": "trajectory-diversity.holdout.v1",
+  "seed": 83100,
+  "sha256": "EBA422674369C788C1B06616BBFB0E02CE4C0E52162CFDE066ED3C80AD6299DF",
+  "source_freeze_sha256": "609EA5657269B4371A3033DE29BC2099CF629549F3133A3C8F3DC32E492FE9D0",
+  "status": "DONE"
+}

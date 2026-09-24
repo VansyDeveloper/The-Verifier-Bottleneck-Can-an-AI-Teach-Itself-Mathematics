@@ -1,0 +1,18 @@
+{
+  "schema": "verifier-bottleneck.hitk-entropy.v1",
+  "status": "DONE",
+  "replicates": 6,
+  "tasks_per_replicate": 1000,
+  "candidate_programs": 125,
+  "total_arm_task_rows": 12000,
+  "verified_shards": 480,
+  "conditional_distribution": "softmax of sum log-probabilities of admissible operation tokens",
+  "source_root": "C:\\MyProject\\verifier_bottleneck_codex_pack\\artifacts\\stage4_composition_confirm_v1_0p6b",
+  "source_primary_table_sha256": "ba8952da353976e9f4e7372f3afb638e3c4f21ee416c8eb182a729ac15fbf8c4",
+  "output_sha256": {
+    "hitk_mean.csv": "f7d2a1e1a464ddbf6a83b9aa49134299485b282024ab2b896d15fe5b885fce50",
+    "hitk_per_seed.csv": "f7823a01d8c5b46f7fe91c72fe0d180e94dae64746db267b69d1ee2cf3ab5991",
+    "seed_metrics.csv": "d69660a510a8acf3e1abbbaf01c8c9758ae07de94b662e140480ad51b0e5d123",
+    "task_metrics.csv": "c7f041aa67d703f76f7355918eb20823de4b5ced8d169edfa399ac55e4118a13"
+  }
+}

@@ -1,0 +1,7 @@
+seed,arm,run_name,gpu_index,training_status,evaluation_status
+0,control,seed0_control_fp32,1,DONE,DONE
+0,entropy,seed0_entropy_fp32,1,DONE,DONE
+1,control,seed1_control_fp32,2,DONE,DONE
+1,entropy,seed1_entropy_fp32,2,DONE,DONE
+2,control,seed2_control_fp32,1,DONE,DONE
+2,entropy,seed2_entropy_fp32,1,DONE,DONE

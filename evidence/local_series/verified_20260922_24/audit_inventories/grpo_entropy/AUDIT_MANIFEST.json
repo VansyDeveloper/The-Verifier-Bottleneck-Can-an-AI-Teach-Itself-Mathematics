@@ -1,0 +1,3482 @@
+[
+  {
+    "bytes": 186985,
+    "path": "artifacts/data/pilot/rl_train.jsonl",
+    "sha256": "140E95B8192D0E19E79716385FCDD2361483B07990324F7F933C007AACE7715F"
+  },
+  {
+    "bytes": 346999,
+    "path": "artifacts/grpo_entropy_20260923/holdout_1000.jsonl",
+    "sha256": "703049FB3B5655AFED95B2BADA36B3C85ADC2712EF5C03A8DBF54A12AFA9C57D"
+  },
+  {
+    "bytes": 1939,
+    "path": "artifacts/grpo_entropy_20260923/holdout_manifest.json",
+    "sha256": "A4843E000CF66E4F5F733AD56B0777E5E96D1E8635A19F066B964F2BC725918D"
+  },
+  {
+    "bytes": 9326,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_control_fp32.inspect.json",
+    "sha256": "20F80CAF9DE7C95B577FC4235F4E0FB2C4AB0B0CDB4FD4AF91D03DF0EBC93202"
+  },
+  {
+    "bytes": 191,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_control_fp32.stderr.log",
+    "sha256": "A582780CE2BD42FA5348AF606E5D1B88210EB4F56735E17A8B7C61EAD9A45C16"
+  },
+  {
+    "bytes": 740,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_control_fp32.stdout.log",
+    "sha256": "D7462407F21F764AD35969BA230345C8932621FE2516ECA72DC31C52935E379D"
+  },
+  {
+    "bytes": 8626,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_control_fp32_eval.inspect.json",
+    "sha256": "14B2E76E0B36DED6F25F49F85E4E2468F089270D77FAB9551967CBF2BF2F69DB"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_control_fp32_eval.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 3939,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_control_fp32_eval.stdout.log",
+    "sha256": "1B4D797000F2BD994281B48A7C1B9442D8CBC2A0504317BDE141595D4D9E6A67"
+  },
+  {
+    "bytes": 9332,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_entropy_fp32.inspect.json",
+    "sha256": "0CAD2444F9AA2E5F9C482D8BD4870ED65B4CDC87B66CA2AFBE4C25619DD73B8C"
+  },
+  {
+    "bytes": 191,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_entropy_fp32.stderr.log",
+    "sha256": "A582780CE2BD42FA5348AF606E5D1B88210EB4F56735E17A8B7C61EAD9A45C16"
+  },
+  {
+    "bytes": 740,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_entropy_fp32.stdout.log",
+    "sha256": "F49390E98FC7C353352948EEEF1645C11D50B96783F26961BE0665205542C604"
+  },
+  {
+    "bytes": 8627,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_entropy_fp32_eval.inspect.json",
+    "sha256": "B1AABAF3615F6F024B04E8C2CA8BAE7129CC80DF778A6C739245F66C3F0F2A9D"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_entropy_fp32_eval.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 3939,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed0_entropy_fp32_eval.stdout.log",
+    "sha256": "C85E29BF9D7EA36729D88E4836A10B297E6AD556BF73C1183293598B6CA43D93"
+  },
+  {
+    "bytes": 9326,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_control_fp32.inspect.json",
+    "sha256": "9738317D18A98124E2AA171917336019B19F334459AB3E1A9EA211CAB72EB446"
+  },
+  {
+    "bytes": 191,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_control_fp32.stderr.log",
+    "sha256": "A582780CE2BD42FA5348AF606E5D1B88210EB4F56735E17A8B7C61EAD9A45C16"
+  },
+  {
+    "bytes": 740,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_control_fp32.stdout.log",
+    "sha256": "9377A8702A0A7493EACB7604B658E013986CDC7D5973A35C0C1F61359C4BAD21"
+  },
+  {
+    "bytes": 8627,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_control_fp32_eval.inspect.json",
+    "sha256": "573B2BD8175E26A7F3F9BD496047CB48AC449E47552BB56561BBFDEC4704558A"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_control_fp32_eval.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 3939,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_control_fp32_eval.stdout.log",
+    "sha256": "9FF597E1EF031EB7DAC44904C4129B9AB71D9B2EA09684849F9ED4F95DB5794D"
+  },
+  {
+    "bytes": 9332,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_entropy_fp32.inspect.json",
+    "sha256": "98F25380E09CFA09FB5FAC0EFB609D657E483DEBC0E72784CCE58322848B1028"
+  },
+  {
+    "bytes": 191,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_entropy_fp32.stderr.log",
+    "sha256": "A582780CE2BD42FA5348AF606E5D1B88210EB4F56735E17A8B7C61EAD9A45C16"
+  },
+  {
+    "bytes": 736,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_entropy_fp32.stdout.log",
+    "sha256": "38DE7E10813CA282CF4076AE7016A2F5A6D512D0DA377F7F42DA035D69F63916"
+  },
+  {
+    "bytes": 8627,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_entropy_fp32_eval.inspect.json",
+    "sha256": "D0C6253B2EE21F812BC2A4B4EE7A4AEEE8E0E579BA9D943C578BDB2829769D2B"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_entropy_fp32_eval.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 3939,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed1_entropy_fp32_eval.stdout.log",
+    "sha256": "D402C030E7C64E4658D21E17A65A602D6E2CA31CBE844649D7776AE9703441F6"
+  },
+  {
+    "bytes": 9326,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_control_fp32.inspect.json",
+    "sha256": "CEC129869697C78AA52F0F9C597E9DD24E5661F3EB9E3C69993765827B22670E"
+  },
+  {
+    "bytes": 191,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_control_fp32.stderr.log",
+    "sha256": "A582780CE2BD42FA5348AF606E5D1B88210EB4F56735E17A8B7C61EAD9A45C16"
+  },
+  {
+    "bytes": 742,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_control_fp32.stdout.log",
+    "sha256": "A93CFF6C4243E477C8A214E8F59C03BAB5E15FF767C085ED729EE3B5CFF5C47B"
+  },
+  {
+    "bytes": 8626,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_control_fp32_eval.inspect.json",
+    "sha256": "D22B64A2EC75395E09E2794F5F9521B673777581AC8BC95E24B98E713B61EB6C"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_control_fp32_eval.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 3939,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_control_fp32_eval.stdout.log",
+    "sha256": "6FD9626FD550C1E2D27B8F212A80E62EB46817310416D7720B5DAC2D4D3D659B"
+  },
+  {
+    "bytes": 9332,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_entropy_fp32.inspect.json",
+    "sha256": "14D92F663A55E223C53E497E7312BEDEDB84699188677B7BDA775E85C331332F"
+  },
+  {
+    "bytes": 191,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_entropy_fp32.stderr.log",
+    "sha256": "A582780CE2BD42FA5348AF606E5D1B88210EB4F56735E17A8B7C61EAD9A45C16"
+  },
+  {
+    "bytes": 741,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_entropy_fp32.stdout.log",
+    "sha256": "2B91D7407950C527C594C8150606F9199A7517A9C43BEF6A4499A3535C74C716"
+  },
+  {
+    "bytes": 8627,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_entropy_fp32_eval.inspect.json",
+    "sha256": "FE809BB9A21FC1CF346671AC88AE343EA4A65C27F04B073726DF0BF373B6A001"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_entropy_fp32_eval.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 3939,
+    "path": "artifacts/grpo_entropy_20260923/queue_evidence/verifier_grpo_entropy_seed2_entropy_fp32_eval.stdout.log",
+    "sha256": "0F0D8600EECB94B1EE4557192D956EC8739FC2452F1B00AADD80AF00261202CA"
+  },
+  {
+    "bytes": 6,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1.host.pid",
+    "sha256": "D2378C28A19A55C869EE1FBB0F1ED7E3D96825B3F495205AB239A2365E0DF41B"
+  },
+  {
+    "bytes": 839,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1.host.stderr.log",
+    "sha256": "A8E39D75C613983C067EA9338A80C8DFE02B93E7CAD374343A20F3A3E6D623E4"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1.host.stdout.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1.lock",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 667,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1_allocation.json",
+    "sha256": "DF39E7EB971001001E3CCE9E9C6F1F92C34DDF45D5E5D2AD9EE912E100E6DA89"
+  },
+  {
+    "bytes": 6,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1_fp32.host.pid",
+    "sha256": "C5AB31FCB788C60C538E99EEFDF6DDAF05BAEE367E00653966FA06611E72C2EB"
+  },
+  {
+    "bytes": 2917,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1_fp32.jsonl",
+    "sha256": "C4723ED729C57AC12F1050A42742020E8AC6B89E09EC231D2AC7569304DF227F"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1_fp32.lock",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1_fp32.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1_fp32.stdout.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 761,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu1_fp32_allocation.json",
+    "sha256": "D8F886768F22E4B63DDB3ED138EAB77C5E53F32964BDA471D1DFB195217F992D"
+  },
+  {
+    "bytes": 6,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2.host.pid",
+    "sha256": "11A03EBF951731339846B8303043F58ED4CA027BEB044288F201513433C5E10A"
+  },
+  {
+    "bytes": 839,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2.host.stderr.log",
+    "sha256": "A8E39D75C613983C067EA9338A80C8DFE02B93E7CAD374343A20F3A3E6D623E4"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2.host.stdout.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2.lock",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 664,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2_allocation.json",
+    "sha256": "6747664E6EB32122DA9C89066D2AE455F821BA86A40A3471AC730829DA43FB1C"
+  },
+  {
+    "bytes": 6,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2_fp32.host.pid",
+    "sha256": "90D5F01D1980A3916FBBCB1FDADB7F8E863114CCB6E6CC71FFA5DAE2E340E724"
+  },
+  {
+    "bytes": 1506,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2_fp32.jsonl",
+    "sha256": "90667D0054DA87BF9AF0F073C1FFF7586E5BDCDFFB928DC0E7E8869C0B01D412"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2_fp32.lock",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2_fp32.stderr.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 0,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2_fp32.stdout.log",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "bytes": 758,
+    "path": "artifacts/grpo_entropy_20260923/queue_gpu2_fp32_allocation.json",
+    "sha256": "299CCDC660AF38695C0C83870617DA203579D7E61FBA86C05AD045CE00ECE027"
+  },
+  {
+    "bytes": 686,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control/FAILED.json",
+    "sha256": "59D0364C2883219FA2E1049DC398121A700F9232282DBB58D1A00A8956CC46CF"
+  },
+  {
+    "bytes": 108,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control/RUNNING.json",
+    "sha256": "F04196F2FDF8B6919AE588C77F594A47C6689F3069C29529581FB12058D25880"
+  },
+  {
+    "bytes": 2011,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_30steps/FAILED.json",
+    "sha256": "FA438FF0BA57E57FBDDC9802D10F27FB14CDFE4ED3BECE0AA428D310473C3287"
+  },
+  {
+    "bytes": 121,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_30steps/RUNNING.json",
+    "sha256": "6DD1DE7DC00E8FB7E1362E4F7C67D4EA8952EDB19493DD087474E27DFBF794E9"
+  },
+  {
+    "bytes": 1134,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_30steps/config.json",
+    "sha256": "E0C73845B6D423E967E3F51402A775CE94A3101B34143A93385654510F3B3BB1"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_30steps/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 856,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_30steps/generations.jsonl",
+    "sha256": "2395ABE23359A50D452A90484D89D672575B55CDE3F8D07808DF76D664572EBF"
+  },
+  {
+    "bytes": 1773,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/DONE.json",
+    "sha256": "8BFB1989FB4023AFA6D65D92F9F0E7EAFA43C47AA47BFDA3FD27410F0BAA2DBB"
+  },
+  {
+    "bytes": 124,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/RUNNING.json",
+    "sha256": "D20894E8D973E3B522154859FD6BA815CA38912DB0C86A53D09CE323F3B10190"
+  },
+  {
+    "bytes": 1195,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/config.json",
+    "sha256": "F181DE6CE035ADE1ADB55E5393AB0F5A23D477DE7277F5B60D08CB2D921CF013"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/final_adapter/adapter_config.json",
+    "sha256": "2524E8E8E3C8DE942174CD1A7A1D2A2E0C0B666D41B0844F29DA8055F00276FC"
+  },
+  {
+    "bytes": 25115,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/generations.jsonl",
+    "sha256": "E21CDCA6F5261DE0A3DE87830C28CD6B955FE82E03F9012F786FABA48AED9102"
+  },
+  {
+    "bytes": 13151,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_fp32_gc_30steps/metrics.jsonl",
+    "sha256": "713F7EB5E15B015B0F39E62FDD4B0976C3184AC003D5973F2602695D5F9EB488"
+  },
+  {
+    "bytes": 531,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry1/FAILED.json",
+    "sha256": "1FA526BC104218B702CE4F60C49018C601BD888164E47EE543FB795782E6E6AF"
+  },
+  {
+    "bytes": 115,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry1/RUNNING.json",
+    "sha256": "780F2A1E6FEC439D6B903872A486D4281D15DA85D5C10414C4626B28F638DC04"
+  },
+  {
+    "bytes": 1619,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/DONE.json",
+    "sha256": "87E526372FF5708345B728F3ABDD8640D2615EB0908A0110F6A96CA816FC6A4C"
+  },
+  {
+    "bytes": 114,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/RUNNING.json",
+    "sha256": "375F3A64660CAB19B34D92D0064A010E94806A59C65DA241B4A169A606924AE7"
+  },
+  {
+    "bytes": 1059,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/config.json",
+    "sha256": "DFEF526C0AE112558BB823EEB500023F80FE95F2C3973CC1798DBF8A733319CF"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/environment.json",
+    "sha256": "ED5A6DAB4139777708665C89A56F73653C2351738E53F3A23DD45B1628167937"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/final_adapter/adapter_config.json",
+    "sha256": "6307D504E92B3731EAF6CBA2320C33AB545F2F01A17501CD3528A8A9E35CD505"
+  },
+  {
+    "bytes": 2470,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/generations.jsonl",
+    "sha256": "E9460AE0039316ED51E03E587F4BE42A683EE9F1919C1FDC8A9678A11DD40304"
+  },
+  {
+    "bytes": 1322,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed0_control_retry2/metrics.jsonl",
+    "sha256": "C50B1E8C99AD825C2E4B89EDD68016472A5EC845962932FDEA0498787E5C3F20"
+  },
+  {
+    "bytes": 2011,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_30steps/FAILED.json",
+    "sha256": "59200B86B050D2833766BD9DE6FBD3F1E4FD151940FB48E4F2129299152B1582"
+  },
+  {
+    "bytes": 121,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_30steps/RUNNING.json",
+    "sha256": "5C10DD1FCDF6AEF9429A6F56A720F8BCF368D24F488844957FDD7442EB146A9F"
+  },
+  {
+    "bytes": 1134,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_30steps/config.json",
+    "sha256": "43290F72476FD74B1D4CD69EA254DD7146C686FBA93CEECF9AF3258FCFAB9589"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_30steps/environment.json",
+    "sha256": "36A1EF6AAC1CAE08A584CF6C9B94E4E9797D7CE89EF0C798A17691C02063F697"
+  },
+  {
+    "bytes": 4944,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_30steps/generations.jsonl",
+    "sha256": "023176D2280CC17C14F9FFA66614BC0CA9CBC6FF94B1C547F60D2026BBBDF6D2"
+  },
+  {
+    "bytes": 2186,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_30steps/metrics.jsonl",
+    "sha256": "5763E88D8444E3C965E27A846AD724BF2C48E8183C0D49230BD54606A13C8F7F"
+  },
+  {
+    "bytes": 1771,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/DONE.json",
+    "sha256": "A4EADDC4F431D28C5EA43783CF91C6F2963591507D9CA2F79727488F92E089B3"
+  },
+  {
+    "bytes": 124,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/RUNNING.json",
+    "sha256": "C862723F6CAAC01D3A398338BB8CFF29B6B3206D7952D4F8977179A54BE9FEA1"
+  },
+  {
+    "bytes": 1195,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/config.json",
+    "sha256": "E754DE8A2A46A82B00082EBA4D8B0A8B0405309DE5C427C10D7AE0964A2FFC0C"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/environment.json",
+    "sha256": "36A1EF6AAC1CAE08A584CF6C9B94E4E9797D7CE89EF0C798A17691C02063F697"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/final_adapter/adapter_config.json",
+    "sha256": "AA381F9C70C5FD3508EDD0492888207312DA8F982180439C72CEF4D92DF312D7"
+  },
+  {
+    "bytes": 25126,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/generations.jsonl",
+    "sha256": "F9C20CFD32B21FB2FA255FD9CA0A6CB9F8DCC101C032F4440E83B04E3A22EEAB"
+  },
+  {
+    "bytes": 13138,
+    "path": "artifacts/grpo_entropy_20260923/runs/benchmark_seed1_control_fp32_gc_30steps/metrics.jsonl",
+    "sha256": "A6A5E8D0929D2C0C8D069EEE4D5F62EED07B7BF0BDF7E23E67FA8C8DA7A4BA9E"
+  },
+  {
+    "bytes": 426,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control/FAILED.json",
+    "sha256": "461D6D7D66DF959FC7FA905E4EAE4B8CD6C2EAEDBAE6A899542926BC02B1DD84"
+  },
+  {
+    "bytes": 98,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control/RUNNING.json",
+    "sha256": "FC19F93AF9196E57871EFE9D44997DD227711A857B0A42976CB5ADAAE31BC6DA"
+  },
+  {
+    "bytes": 1061,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control/config.json",
+    "sha256": "E953D1CFC31C743F43D480373EEDD65660D08E68331AF9B1E85E1BCCD957C393"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control/environment.json",
+    "sha256": "ED5A6DAB4139777708665C89A56F73653C2351738E53F3A23DD45B1628167937"
+  },
+  {
+    "bytes": 3278,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control/generations.jsonl",
+    "sha256": "B425C8313718AAE78816F2140F364E11FC0AA0C9BD7448E934A10B3664EA7699"
+  },
+  {
+    "bytes": 1324,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control/metrics.jsonl",
+    "sha256": "D9E9CFA624325F33A41C9D958D1DC5282B775F59AA798D0561AA9CF14EF89AD5"
+  },
+  {
+    "bytes": 1757,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/DONE.json",
+    "sha256": "3E6D744B766075DB6D5B4BC93ECAE0501FED9DA74BFDE0AFBF05B65A1B394F41"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/RUNNING.json",
+    "sha256": "F720962C709202709E4A9FF0ABA7A18EEAD55B9BEBC197C0681D79579661FAC8"
+  },
+  {
+    "bytes": 1196,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/config.json",
+    "sha256": "CFE14E9EC348C8A01EF4C652C6D0048B1180775A753615D6C6F764F3A09200E2"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 2692,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/DONE.json",
+    "sha256": "53B683FFCBB11F1686ACC1DB0D5F7E23E8FC71E19FD6057604C061A5A3197985"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/RUNNING.json",
+    "sha256": "65D48D4A7F357B46B47D53E613F3A693B13B46AC26739F71064019459E83D9D6"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 48464,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00000.jsonl.gz",
+    "sha256": "E82464E613D97CA5D3E25D0975EEDB9F50C0C385DAA3B70AC617388F7D3595B0"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00000.receipt.json",
+    "sha256": "2BC35707D432EFC4A986F4ED6F5981387D07213072B6A0C871BC93AB71BAEEB7"
+  },
+  {
+    "bytes": 48569,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00001.jsonl.gz",
+    "sha256": "B44685DA00D4FF6422F547A13210BA4A9705464AC0C3F9059C0F36C75FC5C239"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00001.receipt.json",
+    "sha256": "C5B09DBFA4206A494A74CBEC6779B5FAF4DC649725CC6479BF136F25125EF961"
+  },
+  {
+    "bytes": 48708,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00002.jsonl.gz",
+    "sha256": "F13794953BBE9FE7782E4E231133FADAD2401F53AA5AEAAC5D87FCDA252FA033"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00002.receipt.json",
+    "sha256": "0D8868E1BBC74EEE514CDD7B8AD7E4557E570E71D0A2092882654A1EB234DCCE"
+  },
+  {
+    "bytes": 48577,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00003.jsonl.gz",
+    "sha256": "E185F9BCEDF0CEFC081B2299EB97AEFD2403351B60081A9EAC606C79451CDF7A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00003.receipt.json",
+    "sha256": "CB3AF13B7816F81B91850DC835447529AC3992838912BD34227E53E8BCDBE0EB"
+  },
+  {
+    "bytes": 48769,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00004.jsonl.gz",
+    "sha256": "927B3390494B597776AF9E718FCB9D9EABC964829F5405499D2ED038F229FE54"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00004.receipt.json",
+    "sha256": "D5A693B512111E42A2A67430B7DDB7E5AAF794978CC37989B7BA9809E0DCC969"
+  },
+  {
+    "bytes": 48405,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00005.jsonl.gz",
+    "sha256": "0ECF0CA18B619CA81B8258C7B04F3605203E2EE2625F917DFA8F5D932633CBB8"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00005.receipt.json",
+    "sha256": "5BC23AAB0CACED3006CAB85EF40729B8978A01055900BA24766A92DB351F0233"
+  },
+  {
+    "bytes": 48562,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00006.jsonl.gz",
+    "sha256": "371DA3602E70DA60AC3ECA6EF05A8EEA56F0CCF54189717C6F6C2351FD45A85F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00006.receipt.json",
+    "sha256": "3A4502EB6AB549C7EEBC58401BCA6BF44BC3DCAF4A74922D89ABA25E17B87C22"
+  },
+  {
+    "bytes": 48706,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00007.jsonl.gz",
+    "sha256": "6460797AD446C284F63C996B246A5C20FF2931AF8BC3FDA719C16BC6F2E52B37"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00007.receipt.json",
+    "sha256": "0C901A3477E15B2FD26D29A7D641A29CD07DB2D3E7A04E76ACE822A2988EAE8C"
+  },
+  {
+    "bytes": 48489,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00008.jsonl.gz",
+    "sha256": "9F28392D56554D7F6B7D522A8648F73E7E3E2D1AED3DEBB6717CEFC60AEB57D7"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00008.receipt.json",
+    "sha256": "928B8E1E468F5BC00617C0F313B474E89639C26D6DC3B8DD483E3FC211D9A13F"
+  },
+  {
+    "bytes": 48567,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00009.jsonl.gz",
+    "sha256": "C8BB92407BE3A086154B20D29310401D0F9BCED5B712F9470FB8F8C75F53D024"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00009.receipt.json",
+    "sha256": "3F529253E6064A43B49D4E30C45C738C27639D85FA1A3E6349086FF8EBE16D9E"
+  },
+  {
+    "bytes": 48488,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00010.jsonl.gz",
+    "sha256": "374E27AB789ED1AFA845A8576B2F5B5242B25F55EE94C393D1284DDF1CB70D7A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00010.receipt.json",
+    "sha256": "583DE498D27FA1C1213AED12DF7CC813F9A0632598849DA377391F44FC35AD07"
+  },
+  {
+    "bytes": 48406,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00011.jsonl.gz",
+    "sha256": "5FDF8C0D12E04AB6E6245635C7644671F922681A773A137E458157FFC45B0173"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00011.receipt.json",
+    "sha256": "983488699AE6FCC0C18A862E0345E28DA86D3AA622D954E0284E5F141FB0B758"
+  },
+  {
+    "bytes": 48537,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00012.jsonl.gz",
+    "sha256": "6A88DF02FB2CF48564B7FB10069019334E5D2E458914C46E6FB95C496D06BC6D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00012.receipt.json",
+    "sha256": "98FFEB57882E6E49706576C57B1DEA718B85A878AE307070F07757501ABB829A"
+  },
+  {
+    "bytes": 48543,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00013.jsonl.gz",
+    "sha256": "DBF8FC7BA248002F917C11C771A9E66F8FF2096C216FC017E2FADE1C7019B1AC"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00013.receipt.json",
+    "sha256": "BA8875D1CA1FAEDD6DDF78791CFA005CE80881B712BE41256A2A5A1AE9748064"
+  },
+  {
+    "bytes": 48356,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00014.jsonl.gz",
+    "sha256": "FD9D8315254F4F9339B405C9955FD7512AF95974FF5F0895A60CE02773745D81"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00014.receipt.json",
+    "sha256": "92F1C0EFAB4111814DDB0D8096FA9B10334FF42DA3B78121D05C544D0BA0307C"
+  },
+  {
+    "bytes": 48832,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00015.jsonl.gz",
+    "sha256": "726AF9D391389BA1E219F43B526E232E6B235A74947CFA2B95EF2D46EF89C7A7"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00015.receipt.json",
+    "sha256": "F06748F9189F0B1C936DE0359518555DA480139B4919DF36F00263E918966C66"
+  },
+  {
+    "bytes": 48556,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00016.jsonl.gz",
+    "sha256": "0E93DC04D33FDA1B603D6D0B4AC4A02554DC899B8643670EC98CEA4E3F6CF93E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00016.receipt.json",
+    "sha256": "E913F826D1BBCC7C0B12D9433988D938F5D0263E213222C0273FE45629E7A4CE"
+  },
+  {
+    "bytes": 48407,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00017.jsonl.gz",
+    "sha256": "473B9DB8F01537C191BD22ABB07CC05880458358467DF7112F3BDAB7F52E58AF"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00017.receipt.json",
+    "sha256": "DCDE21397655CD01BBBAAD816B34CA0FD3C968D252BFABAD70D2BF9E754FEC90"
+  },
+  {
+    "bytes": 48640,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00018.jsonl.gz",
+    "sha256": "71E1E0DE4CA27B9A53125579C4B908D0EEA7C704F3A5092FA08B4FD3FF915107"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00018.receipt.json",
+    "sha256": "A974EAF05CEBB2BE5529D478662D9178E274DEB2DA6444FF089D33BF66E3EC67"
+  },
+  {
+    "bytes": 48331,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00019.jsonl.gz",
+    "sha256": "427A8C5184A882B7BF1260BD11F7AB19F519CA921C3CCD2858B8C5513305B502"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00019.receipt.json",
+    "sha256": "23874F348C663C306DA23732E6613D9F6DFBE24F4BDB458B1A5AAB1D936852F4"
+  },
+  {
+    "bytes": 48062,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00020.jsonl.gz",
+    "sha256": "4096EC6526E91FEAE54827BF4F8A7225AA83F03B5998DFFF645BD631B0CE9E84"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00020.receipt.json",
+    "sha256": "5ECA80F1BC1A2433D9D701C33D2BF987C0F90BBE35D8F5499F002F607F469B8F"
+  },
+  {
+    "bytes": 48556,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00021.jsonl.gz",
+    "sha256": "13DDFDE1B551250CC00091233C81B42A14F73C125689BDDC1218DDA2324430BB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00021.receipt.json",
+    "sha256": "1030E8AB41E67D27E6CF424AE9A76EEE7649B0C432284C81035908CB8A295BA3"
+  },
+  {
+    "bytes": 48484,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00022.jsonl.gz",
+    "sha256": "486FD15BE6DE34A4A12AFF7684772384B5D4375B896131D32618655FFD1C94E1"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00022.receipt.json",
+    "sha256": "28562FAF6B5A198FBBD6D00051753F5C15184EF59F5F841E08DF3EAE5D20FABD"
+  },
+  {
+    "bytes": 48614,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00023.jsonl.gz",
+    "sha256": "D880AA02CD8CDFAB91B704758C7314095A99B274798ACBF90996868893F52729"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00023.receipt.json",
+    "sha256": "5F4BDE33FCBD6B107EF6E82C0352FE9D70B9F0AEAEB8A55D0A2A0E1547A0C7E3"
+  },
+  {
+    "bytes": 48485,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00024.jsonl.gz",
+    "sha256": "5D77E835F0470BB7A02A99D4BCB64526A9DF815248964114389C072E6931831D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00024.receipt.json",
+    "sha256": "4939BC64B77DC7437992DA469CE1F64B5C2C9F088CAA67C02058960137BCBCA7"
+  },
+  {
+    "bytes": 48528,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00025.jsonl.gz",
+    "sha256": "A75F604FDD170A9D4E223443B1CA7E918CC19FF4275405AFB602BF03FFA51235"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00025.receipt.json",
+    "sha256": "7B8DECF43D89CB5F3E3E4A131CDB0B3EDD5EC5E9B8BD6894ED8AF69424083E03"
+  },
+  {
+    "bytes": 48613,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00026.jsonl.gz",
+    "sha256": "37415D8F89D8742CA4C4C05142280BFD8AFB29B4D22C433C3BDE38B74DFEB8D6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00026.receipt.json",
+    "sha256": "020BB29FB6A93DF0C15475104803040A0734C30E43DEE23015E6EBCB4D8627CA"
+  },
+  {
+    "bytes": 48638,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00027.jsonl.gz",
+    "sha256": "F7F91B725E2B8595FB53501EF180466AB9CE75C65515CEB815F333E07B9997BA"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00027.receipt.json",
+    "sha256": "1987AB6AA772E5D404CA8FAA5A1FA67CEBD363985093DC1E33744C79B4FFEDE6"
+  },
+  {
+    "bytes": 48674,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00028.jsonl.gz",
+    "sha256": "98FD04FB3F74A9B86995D39D11C24CCBD2DB04755715A7E6F462E2A1CACFBBC4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00028.receipt.json",
+    "sha256": "83778FB190A7A0A53007E9938DC8EF3FB790E7655E82FBF11DEAB515EC7B0ED9"
+  },
+  {
+    "bytes": 48611,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00029.jsonl.gz",
+    "sha256": "143ADE2946F3B5517F3A6E8B4B3C4009CCB5908CCD776A88AE09A5B1810E9747"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00029.receipt.json",
+    "sha256": "839D25B7E84DA2D57721AADFCD0E071EF792507A9D69230848F20421969B10C3"
+  },
+  {
+    "bytes": 48435,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00030.jsonl.gz",
+    "sha256": "4D3581797D6F45BDD7BFFEB036093EEF08E0F1ACB21791A0EEB1CE67962BD0D4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00030.receipt.json",
+    "sha256": "CCA7EE0CA67461551FF4710FC73B4AE29567D3D4AD36B2DDDEB8336570BF9CF9"
+  },
+  {
+    "bytes": 48721,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00031.jsonl.gz",
+    "sha256": "572BCDAF51245807D603FB22B4CA3AF0BCD5AE73D4D263FA82F373F8B8617EDE"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00031.receipt.json",
+    "sha256": "E9782FEB53907EBBB3B538A4F30B0D4C2AF52B87C1FDD2F2962B09A709AF5A5B"
+  },
+  {
+    "bytes": 48749,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00032.jsonl.gz",
+    "sha256": "E96A8D5D117589C2ADDA93E4BB748185437643E10E54927678CF64B45E6BF68C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00032.receipt.json",
+    "sha256": "556314480FAF29D45D9664ABE5A9B808958FB213319B76EDD24F4B097B441988"
+  },
+  {
+    "bytes": 48518,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00033.jsonl.gz",
+    "sha256": "BDBE6228B6C1AD08B2FAA91C3264C3C60F73FC853F9864AD6546D4B628134A6A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00033.receipt.json",
+    "sha256": "9CEBC32FA7C51C00153EB6F4BEEE3364F282F82C8BCBB4F9339B90C60942AC04"
+  },
+  {
+    "bytes": 48437,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00034.jsonl.gz",
+    "sha256": "F68C676D7D57BBC225FDEA0490C96CAEECC3004210ECAFC211FCAC6FEEB421AD"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00034.receipt.json",
+    "sha256": "BEE532DFC2E4EC69BD8760B61B4B635625386F868F6752331A0C9C43E6C65D71"
+  },
+  {
+    "bytes": 48472,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00035.jsonl.gz",
+    "sha256": "AFB49E90BCB245139630C216F43FE0B06A1BCC898F6BD6A0004E1D1EECCD3818"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00035.receipt.json",
+    "sha256": "B3489ABAE316EBEC93C99A9C935549FDFE7DD3661490EDC7D51D18569578E791"
+  },
+  {
+    "bytes": 48521,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00036.jsonl.gz",
+    "sha256": "46986DCC463081BE7E7BFDE068663E0853EC3A59ADA79374C0AB6B17ADC71EB6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00036.receipt.json",
+    "sha256": "471088288580ABA6194C624FF31BA02A01ECDC0C52D9FF7AB6BDE8C32916B1F3"
+  },
+  {
+    "bytes": 48608,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00037.jsonl.gz",
+    "sha256": "50C8E4C0118DFC9662A6E845D3B3856CD7C3A24F56BA00E8F17FCEDCBD9ACF78"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00037.receipt.json",
+    "sha256": "647567565DD03F52CEAA40BDA36214FB0940AACC8A1350A0F3892E426376C9B3"
+  },
+  {
+    "bytes": 48370,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00038.jsonl.gz",
+    "sha256": "D0DFF32219471BBFFA546A011B6A54A8B3FAEED2EF478C382932B8707867E864"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00038.receipt.json",
+    "sha256": "9291ED4766FD98C9DC254DEBEF69D0A4FD4E1EC37592C49B96CB9E0F2D348082"
+  },
+  {
+    "bytes": 48392,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00039.jsonl.gz",
+    "sha256": "75E667E5B4C52A7123EC4A9F2B7B08FCF90E695D5790C55011FE0E3D79B8768F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/evaluation/shards/part-00039.receipt.json",
+    "sha256": "76870A657B2C59B93949527FB4306810B7C5877F5EAF8AF703CC5264E499F23E"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/final_adapter/adapter_config.json",
+    "sha256": "EABAB02E41E1FDAC700AADD858A7778612F205570FA3FB7282C243CA908C393E"
+  },
+  {
+    "bytes": 126415,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/generations.jsonl",
+    "sha256": "B95F1FD51BE884353F4FEF49A9CF3D4C755FF1B2C99DDCE9D3FD79A75E0F3ACB"
+  },
+  {
+    "bytes": 66066,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_control_fp32/metrics.jsonl",
+    "sha256": "13A3B55A5D2D89220B0977F2010D31DA8E4ED4A1B4506FE29F09C8EE67A6CDCD"
+  },
+  {
+    "bytes": 1757,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/DONE.json",
+    "sha256": "03C51F8F4ABAD6FFBF8635F56B365038E06973C1D96DD977F6DFA884D00F18A8"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/RUNNING.json",
+    "sha256": "0405A3DC58C40CA4469B2073CFFF51D2A1B714593124CE041302517D1121A73A"
+  },
+  {
+    "bytes": 1197,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/config.json",
+    "sha256": "7A020D05BF8CE1629971AC4F9971A84260666FEB40DFFD0BFF0D41D19BC66504"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 2692,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/DONE.json",
+    "sha256": "98A52FB92DCFCFCDA00833632CC06A27FF98E9520740C2F44EF9C1796B981D9C"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/RUNNING.json",
+    "sha256": "B31E10D4471E722393811B47A803EDDE43F3A4231761273AA1AA3EE57D8800D8"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 48576,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00000.jsonl.gz",
+    "sha256": "B1B186C26BE8BFAD89A04E4B6891ECC4E7AD45FE6E168AF87CD9B88F485E75B0"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00000.receipt.json",
+    "sha256": "E3228FFF7C9E19D0973F8BC5642F81BA794897F6BAE2A95D11120C72DEBCE537"
+  },
+  {
+    "bytes": 48660,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00001.jsonl.gz",
+    "sha256": "5B6E3DB9F2892AC6AFD35A7E46B09D9F3AD6D5117674C7EFC76C39A7C1A3823F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00001.receipt.json",
+    "sha256": "ADD51640283A8ACBA8C1208F6A11E921D2E42FDC08F7546FE4128C1AC3A2015D"
+  },
+  {
+    "bytes": 48655,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00002.jsonl.gz",
+    "sha256": "11559B293B6BFA663E149BB2BFCF840C9CBF75AE802FF54490D69BF6BA399B98"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00002.receipt.json",
+    "sha256": "A389D502058D0252EFFA1DEB8531A2EDECADDB981FA5209625B02733C6F05F5D"
+  },
+  {
+    "bytes": 48588,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00003.jsonl.gz",
+    "sha256": "98AF41FF035452DB5C37D067076C9CB8226347AD2B55FE69E8DD10909C5363CF"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00003.receipt.json",
+    "sha256": "621662DFF60D3E32A1E4D53766B861887FB04D0F801F5B9375FD243E3E172992"
+  },
+  {
+    "bytes": 48782,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00004.jsonl.gz",
+    "sha256": "ABB4BBB9E56F34B7D85C63C9091E1C4CAD14BFE653AD9AF1F314AF40D03C6A6E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00004.receipt.json",
+    "sha256": "E9A2CFA666A141B6A32A05E482404D17C67DACCF8473699AD6CC06C7323091FB"
+  },
+  {
+    "bytes": 48550,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00005.jsonl.gz",
+    "sha256": "B9B63FCA8B9A6AB904391504D141760F6DC23D6A2BC7F5A548E2BFD084E8D967"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00005.receipt.json",
+    "sha256": "058F8ED4E7580BE559C0841DC473C1111374AFD34668730E274D278B468235F4"
+  },
+  {
+    "bytes": 48671,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00006.jsonl.gz",
+    "sha256": "86226F0F7D9A301365FD487CDBFC3151B6EE7E24970DA7D9563935CDC1D407EF"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00006.receipt.json",
+    "sha256": "CEC4CFEF1817C3D24A2AF1AC2E33A9FB642FD6790DFA1E942900EF0FE7077BF4"
+  },
+  {
+    "bytes": 48740,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00007.jsonl.gz",
+    "sha256": "BC35B1177C12C646F318771AAA72BD7B139FEAF3AE06AC93D36CDFD59E723F65"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00007.receipt.json",
+    "sha256": "1CC498B1A910AF39261769ED1284F9907801BBDD4C9ED3D37176A806CCA3494B"
+  },
+  {
+    "bytes": 48478,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00008.jsonl.gz",
+    "sha256": "C03A4C581F7865F8F12E0EDF1148843C34E019644804EC2BDB706E8A47EDAC78"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00008.receipt.json",
+    "sha256": "838D48C99921E65574052BAB52FEBE737A69F2BD786702597D53206C8DDF887F"
+  },
+  {
+    "bytes": 48634,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00009.jsonl.gz",
+    "sha256": "C2822E7B29EF85AFE84E2244E22B67E3B144718EB9493174691305F45DE47768"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00009.receipt.json",
+    "sha256": "2CC38A8DFA6947846331B3F8AEF20EA541A237425B84DF06E9007C420D098BF9"
+  },
+  {
+    "bytes": 48473,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00010.jsonl.gz",
+    "sha256": "F4FC9F4DE5BC66FA72D42AAB56DD80398D3E8EB45BAA9178E9599C822551E944"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00010.receipt.json",
+    "sha256": "BD499B47EB1652FA90828771E89D1398B7B94630E782E74E0373AC824B45C4BE"
+  },
+  {
+    "bytes": 48476,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00011.jsonl.gz",
+    "sha256": "6E75B97BEAAA32016C7533A7AEBF4B9901B7389BB479E3770EAA0BE23B83A32E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00011.receipt.json",
+    "sha256": "07E3F81172AA889643F26C12B333377CCA3B36F01EFFC04228CEAAC6A544B44E"
+  },
+  {
+    "bytes": 48550,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00012.jsonl.gz",
+    "sha256": "677A01BFC5FB0F4EB9E3EBB895EB99BA993ADBCBE7361CCDB80358992572DBC3"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00012.receipt.json",
+    "sha256": "77D73DC323C2A58196DAD25A8348F163AF4C11979EFC861D5169BBE54BFF8938"
+  },
+  {
+    "bytes": 48651,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00013.jsonl.gz",
+    "sha256": "5ABEC6E42111085AF86B94AED912C3AB27CAA738C82FDA90042B505149E90BCC"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00013.receipt.json",
+    "sha256": "F2F509295010CE36B559FAD37757D35E92BF131E76ED8956CBEAEB98F14E7C1B"
+  },
+  {
+    "bytes": 48376,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00014.jsonl.gz",
+    "sha256": "3F7060B496B4EF1E396A19A2942B236CD6BDC4955F28586198A71C5BB131D419"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00014.receipt.json",
+    "sha256": "A178915C1BAF93B33342203EFF3B969636BBD440962BB8910C58E9C20B25F821"
+  },
+  {
+    "bytes": 48747,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00015.jsonl.gz",
+    "sha256": "776CB2BFDBA256E0055356526FA0B18AE93A857883CE9FE7F03DC4320DEC568F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00015.receipt.json",
+    "sha256": "50C1301562A9EDA4E951BB79F7218FCA81D6FBBD92B67CC4A0AF882862A5CF08"
+  },
+  {
+    "bytes": 48725,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00016.jsonl.gz",
+    "sha256": "089CEB4F3895E04BC0A0D8737A3B6235933F6B465E67A30709FC0F6F18C31174"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00016.receipt.json",
+    "sha256": "88B4671EA4690216AA34775FB4C5788A375604957A409444CB62EE8C3A66E891"
+  },
+  {
+    "bytes": 48447,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00017.jsonl.gz",
+    "sha256": "76FA6EB7DB083811611319CB31F3D563D6C9B8B2E334B83288B76083A89CA2C9"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00017.receipt.json",
+    "sha256": "015A0605E13855A2FBD1854B8D1A29CBA9004197797E40152DC9B1ADF1EA97AD"
+  },
+  {
+    "bytes": 48767,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00018.jsonl.gz",
+    "sha256": "D71041D35F17C43F603193034D0F65EADE7CD241DDFEFE3B95C8D25D443613C4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00018.receipt.json",
+    "sha256": "5E3AA07BF0F30CD03A439F717421FDB4B00911B9363F3A45746A1BEC23D2ECE3"
+  },
+  {
+    "bytes": 48494,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00019.jsonl.gz",
+    "sha256": "5F288638C5806049B7EC703CD4961BB157A246BE5884F136C07AA44C3C8C07FE"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00019.receipt.json",
+    "sha256": "8E6D9776AD839EEBCEA8497B1463BB5A4752122E14D4AB9F1376A107971D9094"
+  },
+  {
+    "bytes": 48058,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00020.jsonl.gz",
+    "sha256": "494297D47B3139E9965FB5FF964E7D35496B80509B193F8413A18A04AFF2B180"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00020.receipt.json",
+    "sha256": "296FDB2AF1901D611A7A7E3C594B722DC9D00718A92F60CEA78F02546882FC0D"
+  },
+  {
+    "bytes": 48622,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00021.jsonl.gz",
+    "sha256": "93DC101F5B6C6F4BA1A33E46B3216E2E25F213DB003FD7A2C56D0EA734F68332"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00021.receipt.json",
+    "sha256": "FC9926EC3AB6400E55DE1193BA980CA56B26E1C24AADC5F3730D016167DE1788"
+  },
+  {
+    "bytes": 48436,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00022.jsonl.gz",
+    "sha256": "E4B3BF3F81AE3E6D0F1C82602A91F5E84F3EEA65BF172C185CEFA8B1D31C2FA3"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00022.receipt.json",
+    "sha256": "0C11195C2F133FB50BB450E16E76F4FBE4927FC22FE45DCDE462D57736D04EF8"
+  },
+  {
+    "bytes": 48582,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00023.jsonl.gz",
+    "sha256": "AB4805A10CD246714DFF0BF9456821CB8AD313C5ABA16B6B07DC857456903B3A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00023.receipt.json",
+    "sha256": "02E1A6ECD7C66388CAC5FE7CF443DC0955624CAE1D7590915B000423930031F1"
+  },
+  {
+    "bytes": 48508,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00024.jsonl.gz",
+    "sha256": "40BAB5CE6F43FC2889E4AB5B6DACCC01FD1EE4E6CFACF9466B191747640A3940"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00024.receipt.json",
+    "sha256": "2DDB01DC82E248EC93099440D9106AE4E765924B2E698E5E3FBE86D1DF3D960E"
+  },
+  {
+    "bytes": 48570,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00025.jsonl.gz",
+    "sha256": "69D08440E4263B62FD0399E4D8E88DCA3A7AA1A274DB6AFCD7DEF54122BE56F2"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00025.receipt.json",
+    "sha256": "9F755DBFEAF9AA0C9986BC526C21609CBCA18B77228846878D2B73AC5AFF7E85"
+  },
+  {
+    "bytes": 48680,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00026.jsonl.gz",
+    "sha256": "E1023B981C5ADADB1EB679BB5EABC51A2F21C2FA4713437F825B1178470702E4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00026.receipt.json",
+    "sha256": "B72243B3FCD0FD29261328E8B03E613D4F778160EC1532C61CF535FDB4435176"
+  },
+  {
+    "bytes": 48696,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00027.jsonl.gz",
+    "sha256": "705FC0401DD28D096F19E24D55A43B1047EDFCF672BBEF45CFCA8E4163F7BF8A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00027.receipt.json",
+    "sha256": "B25EB15F67E81B4ACF193422B4CCADEA41523E9A802DC0A4CFF93A45F2AFAD1C"
+  },
+  {
+    "bytes": 48822,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00028.jsonl.gz",
+    "sha256": "D463AE7AC16A563ABCEA012EF7773B436288FE6F52E7FFCF7976758A45BD399E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00028.receipt.json",
+    "sha256": "3DE2D2D8565B23CC92A01281F95B86A12D2AED09026D38C372C06A11A7F83C36"
+  },
+  {
+    "bytes": 48636,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00029.jsonl.gz",
+    "sha256": "E78F34D41ED30DE4BBC69A7BDF28E506A04E66D09BDD45AEF2BCFF00A5EB997D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00029.receipt.json",
+    "sha256": "BFB914FF2243703786DDF4321A1D518D98EE7F4328A4CE90EF3ECE3554537E7E"
+  },
+  {
+    "bytes": 48464,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00030.jsonl.gz",
+    "sha256": "4D40A0AAB1C5C58FE765270014DE169006912084F9D30FAEBB0ECC7222260CEA"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00030.receipt.json",
+    "sha256": "7FD717CFB86885357FB33135986A6D8E0555555304363D02B7470242C38D4073"
+  },
+  {
+    "bytes": 48849,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00031.jsonl.gz",
+    "sha256": "CA516F39994A3F0C522F66CA59FD59658C588FB25DCC9A8CF67308F40BB65282"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00031.receipt.json",
+    "sha256": "8D469E63DB065DDD8D79746CE02446762DB2AF45B639103E1D0B38E2A527C79C"
+  },
+  {
+    "bytes": 48815,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00032.jsonl.gz",
+    "sha256": "6D0FB8AAA0339614FE9267FF2558A2AAA33B0EAD3CBCD1DEDF8DE9DEFA54F306"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00032.receipt.json",
+    "sha256": "3280562864746618EB04202FCAEDED00DBD7920DB71F38F898C51FBEF52E6229"
+  },
+  {
+    "bytes": 48561,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00033.jsonl.gz",
+    "sha256": "E2631040E2A8A3BD51B7E5BD08C5EA7A2E2CFD9D3575505E0B7E63BF745E948A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00033.receipt.json",
+    "sha256": "DC3D62D18716D6C3B8042106CD6E4E71DF0D542EABBD17A7A7B6B3EDFA897D95"
+  },
+  {
+    "bytes": 48522,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00034.jsonl.gz",
+    "sha256": "E40118AA1C1687CD4AF00C55F3107DAF059D77E64552FB49C8F6B83D65DD9422"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00034.receipt.json",
+    "sha256": "67A4AC587EA16B1E375B8A5B03539BA546C4DF8DB15049F2675F4A20818D066C"
+  },
+  {
+    "bytes": 48702,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00035.jsonl.gz",
+    "sha256": "B80A4062DD50AA3B1525956904B46EAA5B506207E41854F8F3DF173A5C2DFFAB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00035.receipt.json",
+    "sha256": "68BD9DA561C503B6BFC2E84DCD9A15D61A757610666E4CCFC058DD192C1A9CE4"
+  },
+  {
+    "bytes": 48765,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00036.jsonl.gz",
+    "sha256": "2AF081131285BF285DE7B7FA539AB689FF23FE5AA7729D33BED9255F7FB3AD54"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00036.receipt.json",
+    "sha256": "26E035CACF3640515D26E2799B48FE203B7C783ECA81040B45BDBEC1FB0BB286"
+  },
+  {
+    "bytes": 48709,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00037.jsonl.gz",
+    "sha256": "9B4D107FAC5CE55337AAACB7FC3FC36EEC3D091F0C37ECD229760ED83864DC7C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00037.receipt.json",
+    "sha256": "5FB08F8FB43ED0B7D1B9D71F4D348075D6A5E5025C1A5E6CE10E67965B657C6F"
+  },
+  {
+    "bytes": 48433,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00038.jsonl.gz",
+    "sha256": "861509D71D26D8151F0D71DE9934E692FECEF53F970AB910D654DCC7168088F1"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00038.receipt.json",
+    "sha256": "BCAA52EBF69FB416BBFF9BA1C04AE672239B860A61D457EAAD4FEBEC214C5C21"
+  },
+  {
+    "bytes": 48399,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00039.jsonl.gz",
+    "sha256": "03C4B80C942ECBFE485CAAC80F201AB809E5EA7FC38E4D23D242F5F37E21A51A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/evaluation/shards/part-00039.receipt.json",
+    "sha256": "56DEB486416E68BE5432F4E4A5B1F8C8E044AFB78987DD9DF1117B674F56948A"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/final_adapter/adapter_config.json",
+    "sha256": "3110F306147BF452C1A0027DF23FD1EBE6FFE9378C9EF4AE2D0B156571AF254C"
+  },
+  {
+    "bytes": 126408,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/generations.jsonl",
+    "sha256": "B0CD9D61B2C495A997A0ACD070711162C0D13C85BAAD1B1D0D4FF24BB6F474EB"
+  },
+  {
+    "bytes": 66159,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed0_entropy_fp32/metrics.jsonl",
+    "sha256": "D768E0C7FF9075241032DC156F9F0651FA781EDBC410B540BBF0DE51DA28A2B7"
+  },
+  {
+    "bytes": 427,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control/FAILED.json",
+    "sha256": "B8D7F2ECA746EDA1639DB931AF8D3B323B640129885746AE3D3C85634D60F04F"
+  },
+  {
+    "bytes": 98,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control/RUNNING.json",
+    "sha256": "3278E8AE61F6D05C12BFDE7DE3DF63301A22C507F73A2B022B8849DA382D9260"
+  },
+  {
+    "bytes": 1061,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control/config.json",
+    "sha256": "FD1F9D34BFD8812243E3B2999E2DBD99F18089749C61B8F24C41B6FB3A668E50"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control/environment.json",
+    "sha256": "CF386B1C8911A1D82EDAC2F1E55C6A8651AD3E2AB5F021249A5C59B1A1A5ECE0"
+  },
+  {
+    "bytes": 14230,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control/generations.jsonl",
+    "sha256": "0CB6FE67165F817CC981751EDADF111F2B3C9CD1BBC8DB6D3114EF13ED6D7FB8"
+  },
+  {
+    "bytes": 6982,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control/metrics.jsonl",
+    "sha256": "89A71A1D26F6F60B179FDBABB0C1895C946AEC9A066400BACBF5CE44F2151E5A"
+  },
+  {
+    "bytes": 1756,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/DONE.json",
+    "sha256": "76A27A0BDD0E292B05D57D83DF9A59D57FFAE14D7346C293E9EDAE2DB889F915"
+  },
+  {
+    "bytes": 102,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/RUNNING.json",
+    "sha256": "2E48FAC376F30A74DC3650A9E41C50C48D1D91A736A5C854F407D1874B032174"
+  },
+  {
+    "bytes": 1196,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/config.json",
+    "sha256": "9B5F031A02E513BBF15055C11274D4A713955A7CE028B431B6FA719948DE0319"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/environment.json",
+    "sha256": "36A1EF6AAC1CAE08A584CF6C9B94E4E9797D7CE89EF0C798A17691C02063F697"
+  },
+  {
+    "bytes": 2691,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/DONE.json",
+    "sha256": "E90AC830AC0D01BE34141509533257E07A9CD509E12A94268196F6527872569B"
+  },
+  {
+    "bytes": 102,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/RUNNING.json",
+    "sha256": "248EE7447500EB33E6E6BC1BA057614071272619227A4CD2815BB8D7D85C1578"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/environment.json",
+    "sha256": "36A1EF6AAC1CAE08A584CF6C9B94E4E9797D7CE89EF0C798A17691C02063F697"
+  },
+  {
+    "bytes": 48573,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00000.jsonl.gz",
+    "sha256": "8921D324DDCF9974FBF9906A6222EFDA4C6BD6CD77F8A68D5A923E14617CE383"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00000.receipt.json",
+    "sha256": "AFF32FE8F3C71A1552A5849193672DF752DA9E984EB6BA7141DD8614A75E1210"
+  },
+  {
+    "bytes": 48705,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00001.jsonl.gz",
+    "sha256": "346E9471684BD6FC7CF916D466021FCD6EF1D9D116498AEE46B515A14D54CE53"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00001.receipt.json",
+    "sha256": "2E03A3F08D39CF6E778012722E3FBA1292278752869D49BD4BCFC480F1B013AA"
+  },
+  {
+    "bytes": 48666,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00002.jsonl.gz",
+    "sha256": "0EE5ABB6E5027AF4503172B01AEF99F315535F6A7D4D935FB1B423ED192F7E6E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00002.receipt.json",
+    "sha256": "FD3FE8672F71E3F2072098BDF5BA0F574B6264EC63F2622585BCC3A9D548F844"
+  },
+  {
+    "bytes": 48657,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00003.jsonl.gz",
+    "sha256": "817B0EBDCBBE2D0C3D5E44D0DD62397AF98C898117462F6EF57E62FB66A2A1E6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00003.receipt.json",
+    "sha256": "4549660F1DBCF3F65DF059A4B20A9DC14D024F9B5D17458AEACA98AE15225474"
+  },
+  {
+    "bytes": 48792,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00004.jsonl.gz",
+    "sha256": "FDECC40E54829D4ACC99F088AD3284E93A3628D6AFEC8ABFB18F5839A213C80F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00004.receipt.json",
+    "sha256": "5EE9261DBD774C796BA3FB5F84CECD689EC57359384CC7A4D6AF42662078F9D5"
+  },
+  {
+    "bytes": 48461,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00005.jsonl.gz",
+    "sha256": "1800C270EA07F4312D6B75C49EB1EA579BFE9159708503220251D8B25C30D213"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00005.receipt.json",
+    "sha256": "167DDCC8550A953B902DF0F5DC29324A4C1F9E312A62F49C31A5886392B3FD02"
+  },
+  {
+    "bytes": 48618,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00006.jsonl.gz",
+    "sha256": "89D50AB3F3E1C8A4F0FCA4810C1B730E2E65456ED359D77754858869602F2F9B"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00006.receipt.json",
+    "sha256": "0954629132A6255D8986443B1762C5E33CAB1E4E6407BEDB6908D199A3878D85"
+  },
+  {
+    "bytes": 48733,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00007.jsonl.gz",
+    "sha256": "535CED6B7CF859139548E31D24E2B7BE9714FEA991FAF0C68239CAE0EEB3CFB5"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00007.receipt.json",
+    "sha256": "9CB8E15D58E513C2EEC524DEB6BC191E625819CD1F906CBE27D2214591689C2C"
+  },
+  {
+    "bytes": 48368,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00008.jsonl.gz",
+    "sha256": "A963DC456515A4DB6B0B7D90745DFA93C96C9689A6468215918ED1B667F2E65C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00008.receipt.json",
+    "sha256": "A77456F038284A68C5083E527FE95BC48D54BE997DAD2866DF9E55F252F6F7E5"
+  },
+  {
+    "bytes": 48623,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00009.jsonl.gz",
+    "sha256": "FF15D99F6E8D038A4526CA94725FA67823718243F85281F9D1198C8B8AFE880F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00009.receipt.json",
+    "sha256": "39DC63043948072B3228449D85F3A32A0C509BA53EA53C9D221D384D757DEC89"
+  },
+  {
+    "bytes": 48435,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00010.jsonl.gz",
+    "sha256": "98739D59DD6D1AE6CCABFB26BAE03AFB01DCDDDFAFB6F9482E311F730F5E7A00"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00010.receipt.json",
+    "sha256": "8379C029B63652BC087754A8B0482B65F0A8BDEF4A137B1878FB4095E1102DEF"
+  },
+  {
+    "bytes": 48463,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00011.jsonl.gz",
+    "sha256": "AF7E0377671C3948C260678B78A51CDCA4859D7D17CE45836DB0BE3582F6626C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00011.receipt.json",
+    "sha256": "2824570B8EBB1EB213D6E3788D447D4EF9EF505B13FD20DE583F116A3E04E895"
+  },
+  {
+    "bytes": 48511,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00012.jsonl.gz",
+    "sha256": "20693E3D08E5EAD604D88BCA93D6E0B6288917783D3925154F62516B94803DBE"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00012.receipt.json",
+    "sha256": "B5B52CF871F9BE17C0FD97FF2610E9C1618DEED3A0229A4B017F0687466051DC"
+  },
+  {
+    "bytes": 48686,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00013.jsonl.gz",
+    "sha256": "A11246A5B67C6699B8802A047D15009CA9CAA688146585DD460145348A38DAE6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00013.receipt.json",
+    "sha256": "DF15F5895D6A025277095EEB6271B18B993EB5EA472395D22C1FD205287167CA"
+  },
+  {
+    "bytes": 48388,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00014.jsonl.gz",
+    "sha256": "CD67293449A827E8755B675F6233F3E42FF27CE25299B59DCD61FD54C9E3E619"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00014.receipt.json",
+    "sha256": "D42AD98D7CE2104FB54248523F226BCFD7E1CD4347C9D4BD1D7B09581A6AFBB8"
+  },
+  {
+    "bytes": 48780,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00015.jsonl.gz",
+    "sha256": "E46576944A950196B4587460E215C041CEC62B3AC4FB1FCAACF9773BB68FEE7C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00015.receipt.json",
+    "sha256": "6B230D0EF8607B4DD5D5338BEC2F5AE663A39DE8A2BEB529BCB74ADAFF1310A5"
+  },
+  {
+    "bytes": 48675,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00016.jsonl.gz",
+    "sha256": "9383AA72DD0B74F2226A26D941F845FB079F49BC1B9506A12986335E48329633"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00016.receipt.json",
+    "sha256": "9F800190DB802D12AB92F27DFC4F6190C2B2EDCB61E5ABEE8AF219EB7A06A942"
+  },
+  {
+    "bytes": 48373,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00017.jsonl.gz",
+    "sha256": "54DC0886A4FA6B01A6C6741267B8B3822CA0833C8ACD5E4845F8D2709592BAE5"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00017.receipt.json",
+    "sha256": "304D2BC577E3075F56894D9E47C74A97B82A3E5955A79A112A23C619A297ABF3"
+  },
+  {
+    "bytes": 48818,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00018.jsonl.gz",
+    "sha256": "10D7821D68D97F1CDBF9DF5C3D4537107337726C37C33D4E3746B13FB35637ED"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00018.receipt.json",
+    "sha256": "E89F6CBA1CC28254B15D0A512407224723965E8D0DA9132CE85D207AC48631A6"
+  },
+  {
+    "bytes": 48512,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00019.jsonl.gz",
+    "sha256": "FCE9C6576107E7B952FC2F605D9182EA1B39E203CF5BD68331F6B10BC06E4095"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00019.receipt.json",
+    "sha256": "E857EB5F4C07F014E9E4E21C0A1151CEBFC520B39AFE45FD8FE1CB7ED2BC694D"
+  },
+  {
+    "bytes": 48117,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00020.jsonl.gz",
+    "sha256": "969ED99DDFD80FD75E7BEA901AD4A88F7B87AAD60EFBBFE041E63E36817BBEAD"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00020.receipt.json",
+    "sha256": "700C39554D95362E03E62AC4B45403BA41D45504143C26FBC922A0BF69DF4773"
+  },
+  {
+    "bytes": 48590,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00021.jsonl.gz",
+    "sha256": "459E890C97B7CAFD516AE12D5DC4480B257EC452A831ECD81C6E1A2B14D388A6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00021.receipt.json",
+    "sha256": "BB075CA22AEBAB43C00B28661A0F3FC31D6E45AAB7912D5D60FBEABB4EB08E29"
+  },
+  {
+    "bytes": 48499,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00022.jsonl.gz",
+    "sha256": "0CF8A1A8F22A7329B938EEA47BD93737B4860C67C67A1A9863034559BD6FA60A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00022.receipt.json",
+    "sha256": "5865230FACB3240BBC50B2E03A653D0ECAE1F3AA71A93451DA67932C257B1DC7"
+  },
+  {
+    "bytes": 48623,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00023.jsonl.gz",
+    "sha256": "24BEE8F07F4BDA84FE15EB09CE3A08592B5FC64DAD0DE43D61EF805C21BDC340"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00023.receipt.json",
+    "sha256": "CC90561739296F435E512916E6D7E4BD7EA296081F32A15797AC6D1981F2F327"
+  },
+  {
+    "bytes": 48494,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00024.jsonl.gz",
+    "sha256": "05317208A65BFBB81B6DEAFB28D4E165CBD1D59D9A8BB830E5BB6E315E822FAF"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00024.receipt.json",
+    "sha256": "A23B02B2FE5853074E39D949B96C3A880E21D81476EA34464598335A98FFDFB9"
+  },
+  {
+    "bytes": 48680,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00025.jsonl.gz",
+    "sha256": "339C91E2EDA96F5F49321BD8B0CE45918A61B705894F139A64C0A32BE12F0BD4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00025.receipt.json",
+    "sha256": "A6F298E938D678A3E09E3CB1377DD706577AA79FC48C9B3D83204627EA058D1A"
+  },
+  {
+    "bytes": 48674,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00026.jsonl.gz",
+    "sha256": "53A7C5780F91B01ABCEA29DAAC0080DFE724BC2A2AB0924972FE7F5D334AF292"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00026.receipt.json",
+    "sha256": "3D7CCB8DC36363E1204DD4494F05A5D59C3931FC27BD7878C0FA9390D91C1A36"
+  },
+  {
+    "bytes": 48670,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00027.jsonl.gz",
+    "sha256": "21217D5DEF04AA198EAAF762D580ABA3805728B102AE94A0318B9C7214EE1071"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00027.receipt.json",
+    "sha256": "CA168B2F66729014FB5150184388CAB6C810517DD7EB727F1576ED84215EDC2F"
+  },
+  {
+    "bytes": 48775,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00028.jsonl.gz",
+    "sha256": "1041CF48FDB1BF7D0BB4597DB8A573B7639CE6C102D4FE31DDDB6A2BAB35C928"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00028.receipt.json",
+    "sha256": "63358C8F3F7B9878A464372E7D9B0AE80386E8E835C80E2D24A438F57160E2EF"
+  },
+  {
+    "bytes": 48582,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00029.jsonl.gz",
+    "sha256": "0421D0D496310971BD4C3ED32078F0EA7795F2E23825C74F782EAC3063D9A3D7"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00029.receipt.json",
+    "sha256": "FFF18175D36800DA1E1B20350880FE1711E20AE9B2765E5A002FD33E0C09D75B"
+  },
+  {
+    "bytes": 48643,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00030.jsonl.gz",
+    "sha256": "9D3A7435FF2EB6156505CBCE5FE6889498707E8B5C7C9740C765BADBB13DDDC7"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00030.receipt.json",
+    "sha256": "1B472D9A7608196BDA7D05956A36081589A022A0FEED1FF812C5372921DE1C66"
+  },
+  {
+    "bytes": 48705,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00031.jsonl.gz",
+    "sha256": "8A0FDFC42B1394DA3E2D1515507A43CA49B0EDBC632A99252088AE780502F26B"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00031.receipt.json",
+    "sha256": "BB9892BEAE5D4CA39A7483019A02545C0DD7EECABD159CA373F894A52C557F78"
+  },
+  {
+    "bytes": 48912,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00032.jsonl.gz",
+    "sha256": "842B0A76035B7F26E3352B58212E370251E82E9D4DA3B3DFF51EC0AA1E838B00"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00032.receipt.json",
+    "sha256": "9D36FDFA8516E007D34B7771C5BE37BBF74058C2B30ACEDF10D90878A945CABD"
+  },
+  {
+    "bytes": 48487,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00033.jsonl.gz",
+    "sha256": "E93C10FEFE8763BE06F4A9FFCA6F7F887337FF92094A595C1E72E8B2C9F15BAB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00033.receipt.json",
+    "sha256": "594D946A78D8A3866D9A50DE198B3E639430C71FA801F4628F218A259ADDDD1B"
+  },
+  {
+    "bytes": 48457,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00034.jsonl.gz",
+    "sha256": "200C674CEDBE8979390F21E6FA587DB2AE45B75963DE861C6F2C0E435506E94D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00034.receipt.json",
+    "sha256": "E7A18EBC910FAE4A207B7DD0E75F1E9C02C1EF028F51E1D916D80BFF7C586EDB"
+  },
+  {
+    "bytes": 48643,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00035.jsonl.gz",
+    "sha256": "4DF3D6A1C1A753B71AD475D57F68F74F7ED9C470869DFA9BF78295E3BF9497A7"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00035.receipt.json",
+    "sha256": "873AABD01B6143529A4DB26B771C50EBBACD725BDB9EB3727CBE0D5B30CBE6C0"
+  },
+  {
+    "bytes": 48808,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00036.jsonl.gz",
+    "sha256": "B0B1C60B5CD0168AEF8A8FF795D89D18FB91E80252F226CFFD05F4FFD916BAE4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00036.receipt.json",
+    "sha256": "60AA8DD60F17B6C2BDC1CC4A5296D12F3224275CD9745AC483367BC247992436"
+  },
+  {
+    "bytes": 48660,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00037.jsonl.gz",
+    "sha256": "B343211B52CDA7C10766BC3AC391EFDBE13CD1D5567189467F69BEA318E58CCC"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00037.receipt.json",
+    "sha256": "774704DACF0EE2D9EE1A2C259A086CFE815AB7E13ECAE46E72001848A49BAFF2"
+  },
+  {
+    "bytes": 48445,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00038.jsonl.gz",
+    "sha256": "E91F29971D82D5B0C0E25BAD182BA5A65EBEB4B7E9836A6463A2A790B4EA43C4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00038.receipt.json",
+    "sha256": "8883BBDBC869A70FD2E33EC158D61AD7ADB17DBBEC3776510F56DF99083FBE0B"
+  },
+  {
+    "bytes": 48364,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00039.jsonl.gz",
+    "sha256": "7D0B57B8E2CC5163DE46DFAF3F3687E720344D740FE41B8BF5F0BB303699F720"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/evaluation/shards/part-00039.receipt.json",
+    "sha256": "C40245186DDB5D41106345CC3DA0259FC04A0A3A5B53B0FB2D5BFCB8FD1240E5"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/final_adapter/adapter_config.json",
+    "sha256": "29F541D519E01E038BAEB001021482B9B96A75ADAF99B9232AE2E1ABF90D0C37"
+  },
+  {
+    "bytes": 126425,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/generations.jsonl",
+    "sha256": "E3A0A47ED911CB66D9C53CA63E24D57A7701DB6B3540354CFA161F8EB8488BAB"
+  },
+  {
+    "bytes": 66020,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_control_fp32/metrics.jsonl",
+    "sha256": "CD59465D5B29249117B5BAE2855CBD0A8FB522D0076FD53C045CEC37D7147732"
+  },
+  {
+    "bytes": 1757,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/DONE.json",
+    "sha256": "84335089F62D65A163ADCA5B0765B646F7C1A39DD3466B48B054EA37C5725232"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/RUNNING.json",
+    "sha256": "FADABE19032C6694EAA354778CD017A7036C266482312A65B0C76C3F0D50228C"
+  },
+  {
+    "bytes": 1197,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/config.json",
+    "sha256": "C866FB4C8AD1BB78517A47E8FF0573A5FA972839318B9C6EBEAF7B45B0123439"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/environment.json",
+    "sha256": "36A1EF6AAC1CAE08A584CF6C9B94E4E9797D7CE89EF0C798A17691C02063F697"
+  },
+  {
+    "bytes": 2684,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/DONE.json",
+    "sha256": "B9E23E3A81CAC5D6B0367045A16E98F273066025D44CDEC421713F1268A77394"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/RUNNING.json",
+    "sha256": "1E0E746222EB97B86BA19643F9E454DB55F4E304E509B2ABA24DB37D8C21F440"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/environment.json",
+    "sha256": "36A1EF6AAC1CAE08A584CF6C9B94E4E9797D7CE89EF0C798A17691C02063F697"
+  },
+  {
+    "bytes": 48618,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00000.jsonl.gz",
+    "sha256": "7AF08E995C2C18B419A648FF6E87F5CAFFA32FF0DEA6498E2B0869E3813D16C4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00000.receipt.json",
+    "sha256": "3398375F29B09F5AEB77DA7CAED7CDA7336712E74F0AD4A27D9550DC9EA1E8D8"
+  },
+  {
+    "bytes": 48542,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00001.jsonl.gz",
+    "sha256": "881A75A2605E1959131C9CDC64489C96E3EA5C69C4F0D9E738E7D0774C25F71F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00001.receipt.json",
+    "sha256": "E997332AE9E31986579DF6B2B0E10B6D2C2607ACE58CD4F6B70A2B61D32EAEB0"
+  },
+  {
+    "bytes": 48676,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00002.jsonl.gz",
+    "sha256": "9BFB1AFDB6257CF0F28A965A244D01A97E14FD24D2A411D6296DA1171C78BE9D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00002.receipt.json",
+    "sha256": "21B2B840F9A98A39948045F113E540ECA6577DC0ED6150134C9768E40AEFFAED"
+  },
+  {
+    "bytes": 48594,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00003.jsonl.gz",
+    "sha256": "D93259C421A77573B21C4D16D682C56C3B43160457394E2708BA15830D61AD6D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00003.receipt.json",
+    "sha256": "C56E7CD73ADF171B7AD82F1A27F08B8F2DDDA19E9DCEBFE468B9EB69E0111E2D"
+  },
+  {
+    "bytes": 48655,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00004.jsonl.gz",
+    "sha256": "3044692B39BDA31775956243AAD44C23FE0E856CC1DA49BD001505F9B905229E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00004.receipt.json",
+    "sha256": "895CBC9168D58539EF00EEA33F1234F93975C13ED3A218EF080B0B545357BEE3"
+  },
+  {
+    "bytes": 48518,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00005.jsonl.gz",
+    "sha256": "B1E5E66336BD0045026BD94396DDDC58C10742D79D807257A54B3B5233B87D55"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00005.receipt.json",
+    "sha256": "DA26C657454563A710A3D8E07AB7A5C35DDFA676FF96695450F9E2792161F1DE"
+  },
+  {
+    "bytes": 48655,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00006.jsonl.gz",
+    "sha256": "A45A95A53C7ACC069DC0DAA8E8B8F296FEB8C164CDE4892343ACD963A56A19FF"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00006.receipt.json",
+    "sha256": "60B6AD5350B60423D66B97FCB5865FCDA68DB26E24C3D85C02A33D1F1C5CB118"
+  },
+  {
+    "bytes": 48718,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00007.jsonl.gz",
+    "sha256": "FCA123AC4793A4C57D642C004C0EDC2D8D5FE47742F1F96A7495A866A90BFE84"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00007.receipt.json",
+    "sha256": "5837115B31EB303ADB8692B86A9B1F2326FC7BA2C53927D331652B5D2CEC1EDF"
+  },
+  {
+    "bytes": 48519,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00008.jsonl.gz",
+    "sha256": "3F9F0E620DD4118842F96FD7431D547A9D85D997794AA86E14A0A7133F678F60"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00008.receipt.json",
+    "sha256": "7C80A530D56CB7073B7E42AB7F14A4B8DF9F14FBD10B40E9BEFD1B4810E147CC"
+  },
+  {
+    "bytes": 48668,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00009.jsonl.gz",
+    "sha256": "1FEE784AB96FB6DCDF81AF05AFA0446BF68007E030368DA404E115314AFFAB09"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00009.receipt.json",
+    "sha256": "7955A1EEA6FE410F50B9A1D4BBAC12593C2F26B9EF5D0CEC3D3C8074C024DF86"
+  },
+  {
+    "bytes": 48419,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00010.jsonl.gz",
+    "sha256": "2DA8C1FE54913AA3A05909B7517DF6D8CCE9E53F10451E23A680B6534A782B19"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00010.receipt.json",
+    "sha256": "172ADF4EB4229C7B241F5461A63593C062DF41816953C2E7321EB2DA79A460A7"
+  },
+  {
+    "bytes": 48495,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00011.jsonl.gz",
+    "sha256": "6CBF66F50E521E2B27F563B1487283510B487ABAD162AFFDA794C4F76AA9751F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00011.receipt.json",
+    "sha256": "157127E27AAC47329775C3E4BF30CEBEAE48E074F62F6ACF2137AEA568A128E4"
+  },
+  {
+    "bytes": 48499,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00012.jsonl.gz",
+    "sha256": "90708AB73712BE4E48F0DFDD12950EF1CD789B244A43D29443F6DA3D110F706D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00012.receipt.json",
+    "sha256": "E887C22FC917978B3A676B408EB9F3CB32519EF266F212C5F2DC2C7391B6B817"
+  },
+  {
+    "bytes": 48588,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00013.jsonl.gz",
+    "sha256": "D744FF6E77CC375D105F8E852492638B1BE9A09EF4F3CEF2897E94A3BC72CC0B"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00013.receipt.json",
+    "sha256": "34D2707BD40DE019934E8E1265AC8670A0144A36C75C38FBA3CD545F50F32759"
+  },
+  {
+    "bytes": 48370,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00014.jsonl.gz",
+    "sha256": "2A540791B8B2ADB31D719A05B76B881D6CE9C9EE3B6655A1243C42D6C8D53C64"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00014.receipt.json",
+    "sha256": "46ADF3D8226FCB886812465A6C32B2587EFFC7AE298B5E5E0D291ED5E4C6E900"
+  },
+  {
+    "bytes": 48765,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00015.jsonl.gz",
+    "sha256": "B587813E9EB5DFEEA9C32D7BBED224C222F6D08990626A1D26DAF7F728A1C208"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00015.receipt.json",
+    "sha256": "21676DF33B1DA1B7604B9E693DE9EAC0AB252106711922D64C7CC6F286A4DD66"
+  },
+  {
+    "bytes": 48646,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00016.jsonl.gz",
+    "sha256": "A262B4A1620F3EBB415C4E5AF8ED679CD752854B9FBC0C1B441EBFA0F63CC273"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00016.receipt.json",
+    "sha256": "1A6429E739C1C6115D559D380A736946BDAEBC020101E597CF286E5E460000A8"
+  },
+  {
+    "bytes": 48401,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00017.jsonl.gz",
+    "sha256": "386D3B86A4DF14D9FB5819BFC200D5C2D326A53C2AF6DB0E129425DBE5D5EAF1"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00017.receipt.json",
+    "sha256": "B47A2A0124C26495C8887E90B13459B862E1E9D2F0F2B94C1F2ABB932D224C5A"
+  },
+  {
+    "bytes": 48686,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00018.jsonl.gz",
+    "sha256": "4A4B5C46C61B6F90719A3C1ECE373362DBA357D340C964A996A8D224F508BDCC"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00018.receipt.json",
+    "sha256": "7E6F40898B6E21E751A7D311F950D5B1742E1B5492C1FF34B1C082C039A67DFE"
+  },
+  {
+    "bytes": 48404,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00019.jsonl.gz",
+    "sha256": "1145B71D634A6E24212E780D3E8A4AF61FEA5F5C3E6AEED9A0516253D8F12098"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00019.receipt.json",
+    "sha256": "238A9ECBB25BE61D8BB1AB365349E06F23E26DB624653181E0268709872D7997"
+  },
+  {
+    "bytes": 48103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00020.jsonl.gz",
+    "sha256": "2216878BFC94986054EB510E861A76032FB59E6FF0860F287F2D776ECB2ED3CD"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00020.receipt.json",
+    "sha256": "4E7F6460409DD5C77D561F8FA8D4249CCABDE6886F6C582D5514FA30333EAD68"
+  },
+  {
+    "bytes": 48575,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00021.jsonl.gz",
+    "sha256": "AFEBFD193583517C96E623C5E522A73106271268E43914DE2F2EBED2CE0976E2"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00021.receipt.json",
+    "sha256": "3E4BAA559BEF68A09CAE67405D83DDCA7D6ECDADEFBC69F5F4DC8F784C3E240E"
+  },
+  {
+    "bytes": 48393,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00022.jsonl.gz",
+    "sha256": "6D8193E0E6D9036DA92F6B69F6784C0E9D1769A9448E313189B2EF902FFBAE32"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00022.receipt.json",
+    "sha256": "A08C886223F0C7E2556976E60DE6EF521DAC9375DD2A94DEE0B70978BF88E574"
+  },
+  {
+    "bytes": 48564,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00023.jsonl.gz",
+    "sha256": "1748FEE9EF770292D267D146A6C84F5DE33473E22BBDB599B49DA3331E6ED625"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00023.receipt.json",
+    "sha256": "C0B5AE65D13D7038226FB363F3E9478F2F0BE08010929C413C2F89FF6D50FD9D"
+  },
+  {
+    "bytes": 48442,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00024.jsonl.gz",
+    "sha256": "FA187B730F18FA2AB7DECAA11306BA687D1114F95A8B4142493D1A1FA0A0D169"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00024.receipt.json",
+    "sha256": "B5613C5B79B9E047D4C70FD96D778E5D5CBF49B100A31657A3C3F2E056B6EB04"
+  },
+  {
+    "bytes": 48488,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00025.jsonl.gz",
+    "sha256": "35EB772317033E7B952CB848208ED0A28FA0EAAC918BE812836D5E1286FAC047"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00025.receipt.json",
+    "sha256": "759A43D8F6605030DBCC7E55CDD3DE49DC455CE2BE00FC06EAE12415ABDD9AEB"
+  },
+  {
+    "bytes": 48584,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00026.jsonl.gz",
+    "sha256": "9846B52F2518325737A2B4088758B2F09BA1EB33CD4A2973F7E232434D28415F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00026.receipt.json",
+    "sha256": "56B3358529D524B2D31C4657164A3481EF9CC9A8C2FF84C75680F9FC65D9353E"
+  },
+  {
+    "bytes": 48627,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00027.jsonl.gz",
+    "sha256": "8ADB55A7978F586C7A05A96EF03FB2D49819EC7427C3B7DAA0EE1E9D885BF041"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00027.receipt.json",
+    "sha256": "9C989CF880327A048086B7E063079EF71A1C7956362A1BEC85E0613835054761"
+  },
+  {
+    "bytes": 48743,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00028.jsonl.gz",
+    "sha256": "32A0B534101952DB30F13B92201C530B6E2CDA767A0E017A69A13472EA3E17BB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00028.receipt.json",
+    "sha256": "6E4FCFB1B7DF5946FD6EE6235F8ABD1963CB07152526C394BFB77D6084E6BD7E"
+  },
+  {
+    "bytes": 48514,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00029.jsonl.gz",
+    "sha256": "85E62BFA522A7E57492C92A7E891C6B8865A83A1EABF800E9B113A369BE15603"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00029.receipt.json",
+    "sha256": "0315D648A8956F3C9AD8F31ADC7417C458BE83F6FB7921B4B3B2AE59F72C4CF8"
+  },
+  {
+    "bytes": 48485,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00030.jsonl.gz",
+    "sha256": "1B68BAF50E0D5C401E05ADF05182F1D7ED570CCA02257908E2E12C40C2F750CB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00030.receipt.json",
+    "sha256": "5BCC5CD4E451BA028209FC0A37B34484983BA35149FBCF90B83AD17C403A3C9D"
+  },
+  {
+    "bytes": 48732,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00031.jsonl.gz",
+    "sha256": "9A552E2CD39C3892B0790EC905A1700413C1DD628F1D9EFFE0F361D79BB34E4D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00031.receipt.json",
+    "sha256": "F47EDE07702469C5D95FD46DE8F45C834468AD7D64D8AC15779D4654E09F6E17"
+  },
+  {
+    "bytes": 48775,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00032.jsonl.gz",
+    "sha256": "A00FC7BE9BCEC4B89F3FA5FE25EA68113FFEAF8598B5977F2576E2D8A23CE4D4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00032.receipt.json",
+    "sha256": "3404F188B1D5CFB529BA56599D4BF1C4302860CF466B1026FFA4E69BCED47DD0"
+  },
+  {
+    "bytes": 48463,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00033.jsonl.gz",
+    "sha256": "B44A4F6563F18BA4CE083B2D7AB7F00E19CC00746A8B5DF5A0071FBB6B1ECC37"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00033.receipt.json",
+    "sha256": "4F425AA8D6448BA9B0933D7F978589D8B39BD7E1F3D3DEBC15F7A0F8923CEC9D"
+  },
+  {
+    "bytes": 48424,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00034.jsonl.gz",
+    "sha256": "81D14DA4599AC139A6B17FC2AEE2B22EF048159B977D72DF05548E69E738E281"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00034.receipt.json",
+    "sha256": "F0C4912B019C685D0F47F2FEAB6666ADA528274856B89363BFA660A4FCFC4A4C"
+  },
+  {
+    "bytes": 48575,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00035.jsonl.gz",
+    "sha256": "DF85F81189BD410A39B9A941F629974DDC86B941BCFE7C68D4BB8CA92A40CF66"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00035.receipt.json",
+    "sha256": "C5AA3D53CC96DE32A64289FF5EE35356CA626E7B574FA83ADFF79B9A9B366CBF"
+  },
+  {
+    "bytes": 48664,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00036.jsonl.gz",
+    "sha256": "431B885D9D1D674F4B73802742674150858E6BC846F2E5E57A76F0D0FD2B516E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00036.receipt.json",
+    "sha256": "5BFEA0BE37D3B9D454461E8F4FA94B2437288D0BF98F25778924D9C10CF93441"
+  },
+  {
+    "bytes": 48755,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00037.jsonl.gz",
+    "sha256": "D4454CC33B93AC2F686E9A71D8913E952D7A137A4CDE14007276F670C6BE2BEA"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00037.receipt.json",
+    "sha256": "9E84940FB894A7250550611034EC54F4DFA8791605BC11A6D7390541E5E8B57B"
+  },
+  {
+    "bytes": 48408,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00038.jsonl.gz",
+    "sha256": "3BBDB603BF675E9893FF7814A5394BE6EF05E4A122E0A264894BC5DD31D6CB21"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00038.receipt.json",
+    "sha256": "5CEB626BBF0CCF823F74121CBE15B3CA5A74C4718E5406F9012C5B13FAD1D8A5"
+  },
+  {
+    "bytes": 48407,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00039.jsonl.gz",
+    "sha256": "A6CADA2B834C5424120B4BF25DCB811C82F8B5564305E64CA2D2BD2197AA86FD"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/evaluation/shards/part-00039.receipt.json",
+    "sha256": "952CCB785EB14AEB0309E416F71DA04D53B90E70CE142FC321A8EA6EA1D6F111"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/final_adapter/adapter_config.json",
+    "sha256": "724F747A7374B7CAD542097B3DDA68EAABE61730A0C68DFE918F1DABD240823B"
+  },
+  {
+    "bytes": 126424,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/generations.jsonl",
+    "sha256": "C26A6548E6CC6637F97F705B99AFB1EA0A785FAEB8AB84E97DC8C3C37A9C1D61"
+  },
+  {
+    "bytes": 66303,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed1_entropy_fp32/metrics.jsonl",
+    "sha256": "856B20168277D06536CF8A34E0CA0D045056E6C7AB10573A661EC1A3CE50E55D"
+  },
+  {
+    "bytes": 1757,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/DONE.json",
+    "sha256": "DB3382796733DD6A7C48C931F4DC894A7AEE7E3120198247D58EFDFDCA93A8FB"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/RUNNING.json",
+    "sha256": "7364D6C0737D6309C80FCBD3F1486FBDCA63E87469D20464270BF42675854FC2"
+  },
+  {
+    "bytes": 1196,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/config.json",
+    "sha256": "2A68BC867C498D24C537F9E5A01AD4F4BC73857D6BFCABE5CF8A48782EF2C222"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 2695,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/DONE.json",
+    "sha256": "DFCA2B4F07FE5A690931CEF9F81757AB1AD2A463DE6F80A062B3A46562254691"
+  },
+  {
+    "bytes": 102,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/RUNNING.json",
+    "sha256": "6D6F817061F26E9FEB6632CF0EEB2CE5518E61C58A395F0021461D1EFA1E3DE8"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 48544,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00000.jsonl.gz",
+    "sha256": "C6F80DDAEF9AD214968451D88A7DC7C5F53D386682A971A7F01AEDAD69AE45A8"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00000.receipt.json",
+    "sha256": "872915ABAE92B266BC335F69AA0AB7975A8B6AE517A5798489A1A995A3645E0F"
+  },
+  {
+    "bytes": 48713,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00001.jsonl.gz",
+    "sha256": "4650EE8946E127C2B22B1C3A2115807D425202359737B5DBE553593B4C13137B"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00001.receipt.json",
+    "sha256": "8DD431EE09BB6019C72A4181EAF29637ED2816001B4FC9A522B47EA967788248"
+  },
+  {
+    "bytes": 48724,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00002.jsonl.gz",
+    "sha256": "1DBDD88C4B9238583FF9D43746C9C0FA98E68AC5408D0FB0CA12D837DE4D4301"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00002.receipt.json",
+    "sha256": "00BC5EFF1B02493BA408EF525DAF980E19EF6CD95BC2875A79B47C97227A453A"
+  },
+  {
+    "bytes": 48705,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00003.jsonl.gz",
+    "sha256": "097794A6F989F40AA69A73A183A5BB83C3130A4ECA69818EB769E47B87F0F56D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00003.receipt.json",
+    "sha256": "2FBC3678238133104B9BAEFD914CD070369299EC43A2E731196B8556249A6ADE"
+  },
+  {
+    "bytes": 48837,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00004.jsonl.gz",
+    "sha256": "31D680187CC26478A7061E3B6B8AF1C29A6A1C3C146154F09126D9168138A084"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00004.receipt.json",
+    "sha256": "C79B18D643923FB6A96BA3E168689D5C1400D5D628F98D1697E0989E87968C69"
+  },
+  {
+    "bytes": 48633,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00005.jsonl.gz",
+    "sha256": "9BC248559B053BFF76600E11B9BCD262D76751902F3A60319BC139B8F6B2CDFA"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00005.receipt.json",
+    "sha256": "4313C9C8E6D5DC340935DFDE744E8EA7A6C699D517A8CD050A2AF4C870010890"
+  },
+  {
+    "bytes": 48726,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00006.jsonl.gz",
+    "sha256": "4E5536ED1B242C6C5FDD8889339C71BDE8802596B02320F9825E3E4D0BE01B71"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00006.receipt.json",
+    "sha256": "01E2862BED0517318B172A0B0E211EED48A8326CB872BE13CDD88B40FE725C27"
+  },
+  {
+    "bytes": 48850,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00007.jsonl.gz",
+    "sha256": "2D44C0C842A240BB4257091B181EC3C3632FA768E56C88E032AD680ECA5FB40A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00007.receipt.json",
+    "sha256": "C4F021E460FB36687FAA8203D60A889EB70803A13B23BC892AD9ACE4EC509FF5"
+  },
+  {
+    "bytes": 48593,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00008.jsonl.gz",
+    "sha256": "7018732B42F45A561E3C5460B63C441D8B04A18BEB500B6D7CBA0FC9642503D4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00008.receipt.json",
+    "sha256": "EC95795B2281E8791300B7FBB5DEC6937FC0D46409B3E399D821604686025103"
+  },
+  {
+    "bytes": 48693,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00009.jsonl.gz",
+    "sha256": "F13EB2088515ADBE9C4CCCA07E16039DB2EC138194AFCE81E29E64ED86FDDE0B"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00009.receipt.json",
+    "sha256": "8111E95ED15ADF758AD62D44FD75AE51780E6940D03DEC10647D8220B20DA091"
+  },
+  {
+    "bytes": 48541,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00010.jsonl.gz",
+    "sha256": "57DC3949A5A2FB33830F61B60F8877A60620A5A9D9EBD86739D765DA442CB833"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00010.receipt.json",
+    "sha256": "D572C0AA8CE527CAF983FB8BBC25F0CD4C9DBD5A753F404AFC28A1861EFCDA61"
+  },
+  {
+    "bytes": 48499,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00011.jsonl.gz",
+    "sha256": "9A2C6359E6FC93F4AB4A12C4FFF3FE58CCACC67814E5DF9F31942543B3CAD02C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00011.receipt.json",
+    "sha256": "CC620DC4A0FADA7A7BA5FA74EBB44C8DB50297DF2F50180619595D1B4E3583C4"
+  },
+  {
+    "bytes": 48563,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00012.jsonl.gz",
+    "sha256": "4D801ED122F92D5D2036886448B6C81E0FE36405FBAAA4589E81B017859BCD86"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00012.receipt.json",
+    "sha256": "D61EEE97E8D0D5CCEA1E2972D22B2E2DABF87355D0CC296D6085713A2A47FCE5"
+  },
+  {
+    "bytes": 48645,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00013.jsonl.gz",
+    "sha256": "8C0C617D9C7D736522BEE448D5C2E79546E816D44E7A0D0200F51BF5012C1DF8"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00013.receipt.json",
+    "sha256": "1324C1204692563E3EBE8E800731CB0A3396C07E8594CA3E8C3C24131C040C50"
+  },
+  {
+    "bytes": 48451,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00014.jsonl.gz",
+    "sha256": "DEDEA897DB9E181F79D62AE70D0E640E27E482C8A300D4B2C19824EA8A9267D9"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00014.receipt.json",
+    "sha256": "430ECD5A3748A81DBEB6EEC0758369394A51A90E13DCBCBA2C59953D4830C930"
+  },
+  {
+    "bytes": 48757,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00015.jsonl.gz",
+    "sha256": "3506B9CD65D9BF0A841AC40830BF18FA66D3FEEF514BEC42656A5C2579C1DF55"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00015.receipt.json",
+    "sha256": "CF00E87181528CBD1671FC9BD003298890F6BC9D7D92D8C33AE821487B83DEAF"
+  },
+  {
+    "bytes": 48673,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00016.jsonl.gz",
+    "sha256": "E09164DA70A81721D5AE338B08865D2B62F18F841CFAA83FB5805E962EF9883D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00016.receipt.json",
+    "sha256": "2E5E20A82F3482A92AF1A5B56A557A8FC7C91859667A8A5B0447CC40F8531A2E"
+  },
+  {
+    "bytes": 48424,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00017.jsonl.gz",
+    "sha256": "CBAA6572B1B6EE3706735C704C6F456446D71C8DC585E8C6B9158D002C4B6635"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00017.receipt.json",
+    "sha256": "CE5FFF6A3A771754793231AB1E1E0AE94A10A8A28D23E6359809463A2988CD68"
+  },
+  {
+    "bytes": 48648,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00018.jsonl.gz",
+    "sha256": "DED5B05E802717996331473CCDE24456E710CEE9858BB67BD6941B0C4F45E1E2"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00018.receipt.json",
+    "sha256": "552007BF7EEE65C12AD95806512D96FA967E2179ECCFDAAA8152081FDC9BD1F6"
+  },
+  {
+    "bytes": 48547,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00019.jsonl.gz",
+    "sha256": "0C93568D8CE87289B28687891A8AC9867F2DB18DD1B249277C0E93F72DA7B62C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00019.receipt.json",
+    "sha256": "13D5A74F768E859F24FAB7C3CFFB14FF3D176D2E89705CB0EC777930C51D55BF"
+  },
+  {
+    "bytes": 48219,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00020.jsonl.gz",
+    "sha256": "CBB8F0B0806A5E5F4A4A50DA87FC1330431D0B860507B3CF062B81B40007B34A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00020.receipt.json",
+    "sha256": "6F6C793210D3577A9E3F4163198632715D2F98C209270E4D312CC08279DF7C54"
+  },
+  {
+    "bytes": 48710,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00021.jsonl.gz",
+    "sha256": "95603973FF7568A609B764924D0C312E7E2111767CF89DEE460D2B68FA7128A4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00021.receipt.json",
+    "sha256": "EF9B869C3A7C99B0805B5663CE5AC319C83CC2AE62470021191E744AA6FFB695"
+  },
+  {
+    "bytes": 48556,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00022.jsonl.gz",
+    "sha256": "52BE18E639002F1EA7CD1A50AEC059DB8E8CDB2CAED2555D49EB0F3746D539EB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00022.receipt.json",
+    "sha256": "8E5EAF4ED723F8C739B17DF3FA214B68AF7F1B75DB12D2F04707AD47AEFEF36A"
+  },
+  {
+    "bytes": 48523,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00023.jsonl.gz",
+    "sha256": "1957E293F9533624EB1022839CEB768B1410BABC26EB261475DBC7786BBA7E19"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00023.receipt.json",
+    "sha256": "BBCE7F350CB55BD9608C9AA8CB75BE752D0CB5AB80A64E8D6A6F6BEE24F255CD"
+  },
+  {
+    "bytes": 48765,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00024.jsonl.gz",
+    "sha256": "5B681041AFE3A716F83B8CECD7BF0BC4E60432391C1B57AA6FCC8AA7E044209C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00024.receipt.json",
+    "sha256": "F5079D6F0EA27F0CFC239CF6EA72FFEFF82ED705957C1D74F025EA363DC56F97"
+  },
+  {
+    "bytes": 48730,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00025.jsonl.gz",
+    "sha256": "7E4450B888297BFEB4F7A930276E99CC7B56FB9FF2EB7FA37530A2E60A512478"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00025.receipt.json",
+    "sha256": "6FED9D41B4B9E17A0984B970F3FBB3814A046E8DE817625ED5313C962A8DD740"
+  },
+  {
+    "bytes": 48608,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00026.jsonl.gz",
+    "sha256": "99B3ED20532D0CC45161B77CD8E3BBA9876016B25C8400BA5D25DC114763B14A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00026.receipt.json",
+    "sha256": "561B46EEFF4CC0CCC7CD014DD45B21543F31C8E9C6D3111CF405EC3488C38E8C"
+  },
+  {
+    "bytes": 48654,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00027.jsonl.gz",
+    "sha256": "E246F997E0E3474EC2FAC700451E89EE5CC1D36A69BE5A6A1C2FC60B4384D279"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00027.receipt.json",
+    "sha256": "D0D7D3D1AFC17E2F1E27A2EC2256B9664A4F4C226CFD87F4E8958460F8E9C6FB"
+  },
+  {
+    "bytes": 48721,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00028.jsonl.gz",
+    "sha256": "76E947F5A22A11F894F617CE0AC9E4B237280C6198CD62F5D17F703DF9ACC5C8"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00028.receipt.json",
+    "sha256": "48BFE3DA4BFAFB0F8559E732751628CBFE36353FB70E25E06AFF1765A9805DEE"
+  },
+  {
+    "bytes": 48665,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00029.jsonl.gz",
+    "sha256": "4646A6A49BC926371DE2FA00CCEB62D76B14AEE6BEBDBA9182045F14CC957493"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00029.receipt.json",
+    "sha256": "BD6C467766E332A9A2B0AB80A3B5D1CA6BAC0809BDC794BA8A5DA26A7215447F"
+  },
+  {
+    "bytes": 48514,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00030.jsonl.gz",
+    "sha256": "128F25356DC0C3BF0827F9ECB4C49D7E13658CB9083F5D966E6B68BFEE1758EA"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00030.receipt.json",
+    "sha256": "4A50041DA52F5962B584F61018D01504B2B9F1468BDE293D2C3F00D42C8DF879"
+  },
+  {
+    "bytes": 48775,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00031.jsonl.gz",
+    "sha256": "E549824A8CAA79FFAEE948E450CA322DCFC61FCB0E399AF18DD8FD570EA8A3BB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00031.receipt.json",
+    "sha256": "CB9C778C39F434F0C7C100830F465E4D54BA94C5AFB1BCE9720D88DF3F2068B3"
+  },
+  {
+    "bytes": 48920,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00032.jsonl.gz",
+    "sha256": "088C17252FFDA7EED376B57077D6BEB63800D254650DC8C1110E5FDB09FF1EDB"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00032.receipt.json",
+    "sha256": "642271DCC1B44ACD5F3734448A6F3248A119D6314447DCE927B30EB9AD8F96E0"
+  },
+  {
+    "bytes": 48651,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00033.jsonl.gz",
+    "sha256": "848AD608D07022CA755B19037C25638B78D468CD959BFC634748C2021DC33D4C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00033.receipt.json",
+    "sha256": "C3AEFBA3BAD6B2B0E468269E8A343492F64A2014F5439B6DEA95830AA7244873"
+  },
+  {
+    "bytes": 48517,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00034.jsonl.gz",
+    "sha256": "BA93702A7806BE5A04A1E3A82C8A4825B615F54495107892B3AA5D2AF08173FD"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00034.receipt.json",
+    "sha256": "FDD38A22B7F6592CF89DC52C9C1CE8506386A9920E44C83C37F53A9EF53822D1"
+  },
+  {
+    "bytes": 48681,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00035.jsonl.gz",
+    "sha256": "9CB323ADE9CDF84CA8F9E96F6CDB2C567BFD17623076A18A572CB254F7F6EF3C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00035.receipt.json",
+    "sha256": "50E3232A6FB1DFBF4A29E2ECFB493CF6DCEB3F9E51DE9D1CCD698DAAA1C19CF7"
+  },
+  {
+    "bytes": 48873,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00036.jsonl.gz",
+    "sha256": "E84456161B36AD4D7BF86BA9EC2AA9E72E474BE5E79BA5F712599924A8D28FD6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00036.receipt.json",
+    "sha256": "6B6ADF2AC4C4DFE0754741166FA6DBFB8E7D6CCFB30A46BC573404DE33DEF7AA"
+  },
+  {
+    "bytes": 48867,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00037.jsonl.gz",
+    "sha256": "59A00414BF308DB948AE21797F12C6CEA1A872E19B2AE0F5C07FD51B1DE1BC04"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00037.receipt.json",
+    "sha256": "B7FA0D54E1610064B98099482F4E2C125C983A76ED342093A959B3A1499238EA"
+  },
+  {
+    "bytes": 48476,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00038.jsonl.gz",
+    "sha256": "60B65618A1A8C1E8B928B5C43697B1913633D048A7A9767505E536E750BF6798"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00038.receipt.json",
+    "sha256": "4FF73BACF547EDE3BB99B27F640C535E57E2A9970680CC7C31EBCF4360050B5A"
+  },
+  {
+    "bytes": 48552,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00039.jsonl.gz",
+    "sha256": "9FD844A18E11A5E67D2D8006CD83B949CC7DB34025B5C9C14E8216AAC0A4B2C7"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/evaluation/shards/part-00039.receipt.json",
+    "sha256": "51477F59146DCD2A83A201D5DDEB2E72D0BD16FE2882DD9A86FE9C63DE8B46DD"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/final_adapter/adapter_config.json",
+    "sha256": "C207B64246414F6172F21C19D2481E6BAD4A77EFF673E5B095B004EE91ABF2DD"
+  },
+  {
+    "bytes": 126391,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/generations.jsonl",
+    "sha256": "D086C5B9FA58B6314B4CB6C51740BBF7048C691A947A1DD2E839F125E0F3C78E"
+  },
+  {
+    "bytes": 66138,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_control_fp32/metrics.jsonl",
+    "sha256": "78FBD908F73371CF12B3A68FABD69CADDEAE1B5272E7D6BCB573EB30AEA19E39"
+  },
+  {
+    "bytes": 1758,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/DONE.json",
+    "sha256": "E4678CA68C3EA6665B6F445D2AE5DCA9C91DEB639326F8B35FAC701B44223190"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/RUNNING.json",
+    "sha256": "BF27FA4F898D81BBB662783B6883DCE28B4D2F488F8EC8549196A067FD7002C8"
+  },
+  {
+    "bytes": 1197,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/config.json",
+    "sha256": "253B17DD771241E8A94EEF46B947D5AC6A022B6D3DC3290D693B83AD08FB16FA"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 2688,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/DONE.json",
+    "sha256": "3F4A0B82992450DDCE7BC409B6015D7C43B6F9AD82A599AFD621D2A25732C8FA"
+  },
+  {
+    "bytes": 103,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/RUNNING.json",
+    "sha256": "3656AC6694FB2F09B250828C8480441DAEDA57DA1E06EFBB3823CBAB05B97A0A"
+  },
+  {
+    "bytes": 175,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/environment.json",
+    "sha256": "80258204E9B218DFDADAF473C09E8540EFE400B814874A2BDA53F5339A515983"
+  },
+  {
+    "bytes": 48562,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00000.jsonl.gz",
+    "sha256": "729858D89BB10D12BE95DC041BC60084F52FB8B423364E6B33D9FE3D293A349A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00000.receipt.json",
+    "sha256": "83676186D1D8F6654E83D35DD40C06D00ACD275498EB79FF47E29338C46C577A"
+  },
+  {
+    "bytes": 48621,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00001.jsonl.gz",
+    "sha256": "E5683FC821E74CC43D21471E70E92DD8E7FC5B7D2FE67E5EDDCCEDCFF536E253"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00001.receipt.json",
+    "sha256": "85E22EBFE9138716328A9F59A59B24CF00414A26C32398404A8A33DAA2B5F8B6"
+  },
+  {
+    "bytes": 48621,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00002.jsonl.gz",
+    "sha256": "BF9EBEE9AB89AD0716545C5BF881D88680822A7266A9C5B9C4138B0D8B6BFB3B"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00002.receipt.json",
+    "sha256": "0FA56247F4C860C7DA2E032DA3FFC254CB754829D59514DEB89B1D4742851970"
+  },
+  {
+    "bytes": 48652,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00003.jsonl.gz",
+    "sha256": "6AE8057FF9F43F95089F6BECB5F989994A6BD4BDAA8F7968BB53DF48F0065A25"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00003.receipt.json",
+    "sha256": "3184E415E86F42532F764D4586735BCD39843D5FBE94C94F25FBE88735A3242F"
+  },
+  {
+    "bytes": 48912,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00004.jsonl.gz",
+    "sha256": "463E8BF39734E17C8E5E8CEB20F3D667F458148C894FE1D0A0B6E848761D9AFE"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00004.receipt.json",
+    "sha256": "6F7C10E34DFC0A960F209F002EEF67FDBC232EAA1A47A16F359DCCA3D64F0B7B"
+  },
+  {
+    "bytes": 48486,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00005.jsonl.gz",
+    "sha256": "350F1B906B9887A58DEDD9BE28643007A62C10D0897F22CB7797EA9655BE1955"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00005.receipt.json",
+    "sha256": "E1EFB668795D476F231A531FF96EDA90DF1A50DF34C07DFC2BA9580AE93E9CEA"
+  },
+  {
+    "bytes": 48584,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00006.jsonl.gz",
+    "sha256": "CC84F01FD6D0C0185177A4286FA5481B5590DEA340ADB30FDCA8B149EDDB076E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00006.receipt.json",
+    "sha256": "DDD47A49715657F04326596321A19B8C2EE21ADC646B4523537FCA7A2462DA04"
+  },
+  {
+    "bytes": 48767,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00007.jsonl.gz",
+    "sha256": "F4119BA1BE5DA25AF7F1E45C880DF95ACB82A893DD4BA91BF7AB28D39FDBC260"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00007.receipt.json",
+    "sha256": "843E838A6ED7F48067621ADD9170C1DAFC11D65045379F92BA649C944DB6782F"
+  },
+  {
+    "bytes": 48522,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00008.jsonl.gz",
+    "sha256": "714C933548B14DF98FC7AC4DCBD3AC52CB4D9A0E0F74C790C509544571F1D40D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00008.receipt.json",
+    "sha256": "51928B73236B446C990AA7C25B7996F65781A7CE0758C3FEA9CC917F1A5B6C0A"
+  },
+  {
+    "bytes": 48595,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00009.jsonl.gz",
+    "sha256": "2939429CD739F19D3DC7BE2946FE8C9093441A47FC32894E28315AF02A211FD8"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00009.receipt.json",
+    "sha256": "D8407C6A2DC7FDC64F3E96D63B074E5A777CE534F3679331368E57C68074587A"
+  },
+  {
+    "bytes": 48570,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00010.jsonl.gz",
+    "sha256": "8A2D03BAFF0AAF6E244C641F55C5592B7A2B2161CE0591776F387B8132A27711"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00010.receipt.json",
+    "sha256": "050659D01092F5ECC7E5EFE7DD063A54D2DDCA24691F3B7463FDA3BF413252FF"
+  },
+  {
+    "bytes": 48500,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00011.jsonl.gz",
+    "sha256": "ECFB826E4CE7F964E04BE178EF53A6C120C697C47C0259626B94C1C7F8ACA58C"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00011.receipt.json",
+    "sha256": "64CD4FF5741C0DE539267E3736CC1CB29F5CFD37481061A1BB2B11395240840D"
+  },
+  {
+    "bytes": 48586,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00012.jsonl.gz",
+    "sha256": "30089768283D7BF3C2B33309821A55FCF911F4545020620DFBB65EB461D44C74"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00012.receipt.json",
+    "sha256": "D54D34809E46603603F82D1C2521EA3C84E2AC67C5C4D2051CA2270BC50CA25C"
+  },
+  {
+    "bytes": 48666,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00013.jsonl.gz",
+    "sha256": "D227BFC045BBEDF28F49284A639E150484F9460B571D769DFD6A0BDC695551B9"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00013.receipt.json",
+    "sha256": "1E1BC1F4BC7BEA819A776074A1B31646B7DFAC4ACE66FE6B103BFA5118649307"
+  },
+  {
+    "bytes": 48464,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00014.jsonl.gz",
+    "sha256": "EA8E73B482A99DA962D932E80DA12A3337169962E91040BAA6B9062EEB040EB4"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00014.receipt.json",
+    "sha256": "1FE0CD815807C81BA653119908DFB17B966430811E22FD9512D008F2E9AEE7F9"
+  },
+  {
+    "bytes": 48896,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00015.jsonl.gz",
+    "sha256": "50C372C8AEE8932E4739D76A87C9F19ADDE2B74983CC8A07CB4F756491C2DB68"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00015.receipt.json",
+    "sha256": "81DEAF175B9A5EF8EFFAA1DFC15195FE74985C5136EA3BC5C404E38D9306898A"
+  },
+  {
+    "bytes": 48599,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00016.jsonl.gz",
+    "sha256": "6193720C14D27542B2A527A04F7F3267F6FB257A854607305178A3A470BD37E9"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00016.receipt.json",
+    "sha256": "5DE34A0E7265CEBB4E17E9E9B530CD375EF05325EA5AA076FB97E763EFD9B164"
+  },
+  {
+    "bytes": 48346,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00017.jsonl.gz",
+    "sha256": "4DFD047E42EB5E9F8125E9A1A4580FBC07CD5BF606953B42AB1A52A4F11842DE"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00017.receipt.json",
+    "sha256": "0DAC434C99BC6E7B6FEC61FD3B206433B263C6310D4A1F7A65DB7C2DFB06D855"
+  },
+  {
+    "bytes": 48686,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00018.jsonl.gz",
+    "sha256": "3F7940FDC425B7A5CEA4E84573D5D125F392C0A743F560E63AA4B2257D06586B"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00018.receipt.json",
+    "sha256": "BFDF165401130708DF0FD8EF2288F14E86A09FD0F372D382D11E49B7FF5A5D86"
+  },
+  {
+    "bytes": 48497,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00019.jsonl.gz",
+    "sha256": "C2FB8F2F4A1260402A23D07DA8FE444A008883E0000B717C4EB877F644E5A4F9"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00019.receipt.json",
+    "sha256": "D1C6E7225291A34D0093F28908C2088760BCCFBB653F7D213FA9574825FB896E"
+  },
+  {
+    "bytes": 48173,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00020.jsonl.gz",
+    "sha256": "4ED1239BA6C3A25CDDB33068B9AC30143D99B125938CE990490F1D3713CD8766"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00020.receipt.json",
+    "sha256": "26231DBD88728A571B079CA9B1C65B29DA618FA0C74E7DD4AC6B99605227ED9B"
+  },
+  {
+    "bytes": 48516,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00021.jsonl.gz",
+    "sha256": "89F8F91568D6C43D31CC4DE62F4995B72BFBB04F31A54DB220C82821BFB1F499"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00021.receipt.json",
+    "sha256": "15F54A9D89D361C5CC780E2B721C84B38DDA57F21147B145278A031702D856CA"
+  },
+  {
+    "bytes": 48518,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00022.jsonl.gz",
+    "sha256": "C370E7A00813A9AF5AD5871BE486E3E429BD9D6DE07330E5CFAC4A15C36ED1E9"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00022.receipt.json",
+    "sha256": "4E40CB9AD0F576C69B41B2AA9B17A6D4924FC04775FAA3000D4AB831A9BA99E1"
+  },
+  {
+    "bytes": 48603,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00023.jsonl.gz",
+    "sha256": "3FF0102E1AECDDBF4AC6A8D08A2AD047D5B6110AF3FEA13577C558DFD6F59992"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00023.receipt.json",
+    "sha256": "FE20F8A4099BCF0F729C4B20A083ED8B25D5CFE5641A047A9F13BE81C6F07955"
+  },
+  {
+    "bytes": 48522,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00024.jsonl.gz",
+    "sha256": "FE60E9877AAA5BD2E09B0BF48F0811A0E8E7BBB0BE87038CD0B59C240DDA361E"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00024.receipt.json",
+    "sha256": "666A8537FD803D60342FDAB50C5EF80E59D4A04F6DE39002D0F835F227EBFB42"
+  },
+  {
+    "bytes": 48515,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00025.jsonl.gz",
+    "sha256": "3528BDDBCFAD6CAA0A7FF046E486C605067A64FF5823C8D401D77295515E4316"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00025.receipt.json",
+    "sha256": "4635655BDDE4A17948EBF9C3A22850FEB5C33F5F8190CE307D69D76D9D62A633"
+  },
+  {
+    "bytes": 48585,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00026.jsonl.gz",
+    "sha256": "70CAEA688E1A02A12A99329B9FCFA1ED74E0D0935219C689DEF7F29673FEAD71"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00026.receipt.json",
+    "sha256": "3E642881DEE92AE2126D78ACC19D53521EF1DA2C7EFB9AB4402F43E3E37991DA"
+  },
+  {
+    "bytes": 48669,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00027.jsonl.gz",
+    "sha256": "70542617A228C527522BA06984B22297C2D1CB549A3807084BE9323416356F2A"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00027.receipt.json",
+    "sha256": "CB69FD917127B4C4C3A257BE8447199DDB23EC902D833C38DC8753CDB2155BFB"
+  },
+  {
+    "bytes": 48763,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00028.jsonl.gz",
+    "sha256": "A22282763F88C9C3B3A0771A41F373A441EE2CA976DA7563F4890295CB9A964F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00028.receipt.json",
+    "sha256": "0186A9C34D20E827445DA8C7688484D534D7A620D6172E7B2451BDA93AEF7558"
+  },
+  {
+    "bytes": 48760,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00029.jsonl.gz",
+    "sha256": "423C69626C201A96651347AB0991443D47486E0CEF1B42140F496DB08D0E77E6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00029.receipt.json",
+    "sha256": "D7DC435758F195BB6C740667B50B49745E9DB37823B4874812C4BA2736D0B198"
+  },
+  {
+    "bytes": 48556,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00030.jsonl.gz",
+    "sha256": "4C6606B134C53A5B57197D7C5280681E33847752CFED0B8629AC31373A96673D"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00030.receipt.json",
+    "sha256": "5FA0A65D1A440B24B7208FAD673B5FEF721351234719D0D458993F9222E2225C"
+  },
+  {
+    "bytes": 48728,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00031.jsonl.gz",
+    "sha256": "73FABE630CCF681DCB0CE00448051E5CD07D4B3F2BBD4A81C6DBAB1CB8BC1547"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00031.receipt.json",
+    "sha256": "A94C19243F1A43289F90BEE33A2F17635FA3B32C8CF5532BE66F90F646D13DEF"
+  },
+  {
+    "bytes": 48783,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00032.jsonl.gz",
+    "sha256": "7EE4BCA98C981913F9302E5351C61E07482C992C58D1D2F2027BC286865878CC"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00032.receipt.json",
+    "sha256": "110661D862C35F75F9C6268DCBA35E4FDF1F0860E2EF4E27DCF00247496B59A0"
+  },
+  {
+    "bytes": 48549,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00033.jsonl.gz",
+    "sha256": "28A59445D484AEAEFBAA97AD4D762D80E82DB0EA7436338BDDABC8B121443DA0"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00033.receipt.json",
+    "sha256": "0998A5472AF8EBDBE801A7533F2CA92FCBE78CF576C6C46EB9DF3C8928AE6595"
+  },
+  {
+    "bytes": 48530,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00034.jsonl.gz",
+    "sha256": "882A40003334BAAF45B9E50D8B637177380B9B0D02EA89A7D57FA3D78EE7AA1F"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00034.receipt.json",
+    "sha256": "C63277A2662014611D8A3BEF22FF969CAA3315633F67225867275EDD6508CBC6"
+  },
+  {
+    "bytes": 48565,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00035.jsonl.gz",
+    "sha256": "3EE22B6920D0A28C171B8C55A3832007839185C28FCF77D26C43D9B0549445C6"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00035.receipt.json",
+    "sha256": "9BA9E735F731AD9F5388CC6215F16B1F75E0A7B08FD95CAAB30D5DA5FBD7E3E3"
+  },
+  {
+    "bytes": 48741,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00036.jsonl.gz",
+    "sha256": "D9A915141DF9C1EA4959F5165D9734B1F9C4DF6B1D3CA25F043AABEB9064FA89"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00036.receipt.json",
+    "sha256": "B6E33966C403516939994F8F55878D7807DD2726A9F43407034824F404DEF48A"
+  },
+  {
+    "bytes": 48720,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00037.jsonl.gz",
+    "sha256": "38DE2E22764C4B202FF5CE98A8E74747445A0C894C300F25332615941FDD5043"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00037.receipt.json",
+    "sha256": "3E0C4B87959132B87CFB8ACA6F133650B105039D7FC7038FB416F94C8F12B880"
+  },
+  {
+    "bytes": 48394,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00038.jsonl.gz",
+    "sha256": "649EE0FE35A76C064E531A3F401E8D7DBF66F8CB628FD8E37FE63D4DBD6FA418"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00038.receipt.json",
+    "sha256": "C0CB2461ACC0F63610C22FB5842E4DE072AD612534F20723575990AD469DE64A"
+  },
+  {
+    "bytes": 48463,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00039.jsonl.gz",
+    "sha256": "C3A6927760210B92A79A4F0E726A0E7A13D3F61B09A4224DBF6F7880605A6920"
+  },
+  {
+    "bytes": 838,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/evaluation/shards/part-00039.receipt.json",
+    "sha256": "F86F6051FD741E4DBA1BA40923E98052D136ABFA41A466CBBDE9B2A280247182"
+  },
+  {
+    "bytes": 5254,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/final_adapter/README.md",
+    "sha256": "F96755E38E2F906BCA4F497652EF8BBF3ACF13805E0D879AE13B91616735465C"
+  },
+  {
+    "bytes": 1099,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/final_adapter/adapter_config.json",
+    "sha256": "2517F60881A8AF16FEFB9C2617DD70761444322D6356C579CE582DD5C2EEBC18"
+  },
+  {
+    "bytes": 126399,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/generations.jsonl",
+    "sha256": "C8E5200BA4C315053ABF3B578854D480C38ADE67D44950CBED6FE44D0227AC92"
+  },
+  {
+    "bytes": 66128,
+    "path": "artifacts/grpo_entropy_20260923/runs/seed2_entropy_fp32/metrics.jsonl",
+    "sha256": "60278E848786E6BE580832EEF9F43B7006F6F9D942D452CCB19589D7C294C369"
+  },
+  {
+    "bytes": 803,
+    "path": "reports/grpo_entropy_20260923/AMENDMENT_001.md",
+    "sha256": "E106F4EC5502FA87DF9F1E65E3B07C8A976BE12449332F76C892C616669341A4"
+  },
+  {
+    "bytes": 665,
+    "path": "reports/grpo_entropy_20260923/AMENDMENT_002.md",
+    "sha256": "D6DF2EB192746E80CD3FD8DCCE17AF506EDEC7F1BBD1BD8645B02FDA1D363016"
+  },
+  {
+    "bytes": 1265,
+    "path": "reports/grpo_entropy_20260923/AMENDMENT_003.md",
+    "sha256": "609E3F794C2271F2CC2834088EFFF3DF2115F13316723972E20FCAE15AB11C01"
+  },
+  {
+    "bytes": 1790,
+    "path": "reports/grpo_entropy_20260923/AMENDMENT_004.md",
+    "sha256": "3F9027CA2E48B4E0BA1C2743D0EE1B65569C0A22905C23B52A19452B853B16DB"
+  },
+  {
+    "bytes": 960,
+    "path": "reports/grpo_entropy_20260923/DURATION_FREEZE.json",
+    "sha256": "D41F2BFAF5F785C422FF606B561E21AF0AB31238395B52B88B57258D42822B0D"
+  },
+  {
+    "bytes": 1303,
+    "path": "reports/grpo_entropy_20260923/DURATION_FREEZE_FP32.json",
+    "sha256": "2D3BA9B90F376CD81A49605F8ABB9175F649C765494B6F5C5B512F84D81C2B91"
+  },
+  {
+    "bytes": 4055,
+    "path": "reports/grpo_entropy_20260923/PROTOCOL.md",
+    "sha256": "8EE87D02BB7C9617F15A18C9C3FF1C2628D69D6D4591C6A8D1FCC7829C2A568B"
+  },
+  {
+    "bytes": 21869,
+    "path": "reports/grpo_entropy_20260923/audit_ablation.py",
+    "sha256": "6101AAAEEDF44F511FFC1DA6795FF40363DA49B90FD40389AB325D256D50211E"
+  },
+  {
+    "bytes": 2276,
+    "path": "reports/grpo_entropy_20260923/benchmark_evaluation.py",
+    "sha256": "71C1F90A30BD805EF89C8F073FBA50F2CA12C531D3408746326887400B86E067"
+  },
+  {
+    "bytes": 2868,
+    "path": "reports/grpo_entropy_20260923/build_grpo_run_index.py",
+    "sha256": "3F2846B81554A1275EB1F928D33F23EC3340889EB1996F128AF75081DF66F62A"
+  },
+  {
+    "bytes": 9076,
+    "path": "reports/grpo_entropy_20260923/bundle_ablation.py",
+    "sha256": "BE1846FA37C8D3299C4E887BE00AD3F42E092932A2C43A7BBFA20A8480E5DBE4"
+  },
+  {
+    "bytes": 980,
+    "path": "reports/grpo_entropy_20260923/data/paired_ablation/analysis_summary.json",
+    "sha256": "45EEF320550741D0075408089EC6EA21DDCB33AE9FD707DB7E4943E7435619F1"
+  },
+  {
+    "bytes": 2547,
+    "path": "reports/grpo_entropy_20260923/data/paired_ablation/group_blocks.csv",
+    "sha256": "A667665D7AFE79BAF7AA09DD816F3E0960D1D213E7D2DDC955EDD6ED11E21234"
+  },
+  {
+    "bytes": 80335,
+    "path": "reports/grpo_entropy_20260923/data/paired_ablation/group_steps.csv",
+    "sha256": "FF39E56F7ADCB3DB05440C0E12F0CF40666B98D0F0EE6A9EF476BAB39FCE4E31"
+  },
+  {
+    "bytes": 15000,
+    "path": "reports/grpo_entropy_20260923/data/paired_ablation/hit_k.csv",
+    "sha256": "8B49C2A695D92D94BB8F94C5D112EC9AF15846A43E1521609CC03E777BD1EC1B"
+  },
+  {
+    "bytes": 1644,
+    "path": "reports/grpo_entropy_20260923/data/paired_ablation/seed_metrics.csv",
+    "sha256": "8301626A892AEC41FF2A793FB27DBBD67D1F8C3E23BF5024AF8F6F90AD5C5604"
+  },
+  {
+    "bytes": 659588,
+    "path": "reports/grpo_entropy_20260923/data/paired_ablation/task_metrics.csv",
+    "sha256": "31391058843DD4E6D9086452058E63CE13BEF37D1F4F6623F500F76A4C86B184"
+  },
+  {
+    "bytes": 349,
+    "path": "reports/grpo_entropy_20260923/data/run_index.csv",
+    "sha256": "60CCAD6C2683C3B86B842E81FD04B3EDFA8F9711F3153A19468EDBAAA1E79C7D"
+  },
+  {
+    "bytes": 18490,
+    "path": "reports/grpo_entropy_20260923/grpo_queue.py",
+    "sha256": "EB263E0F54A16F81FC0790B2CDFFA57CE753ADC0DBCA9D24183361AAE6F893C4"
+  },
+  {
+    "bytes": 4341,
+    "path": "reports/grpo_entropy_20260923/metrics.py",
+    "sha256": "64C06D070526B2E227B9C6EBA4FF405F6EC32AC1C6C7092E136C4B56A65FBFA3"
+  },
+  {
+    "bytes": 14347,
+    "path": "reports/grpo_entropy_20260923/run_ablation.py",
+    "sha256": "5E0D5C1FE53BE54E75F0BEA01BF94A865DD3F73827EF47409482B8EE14299188"
+  },
+  {
+    "bytes": 9316,
+    "path": "reports/grpo_entropy_20260923/run_evaluation.py",
+    "sha256": "815B78726B9C0B8053FE87CB9D016A979D6F98A8B94C5DAC4717D385238374A5"
+  },
+  {
+    "bytes": 1867,
+    "path": "reports/grpo_entropy_20260923/test_build_grpo_run_index.py",
+    "sha256": "8875594CF453AB3A14E7BB3834E4A8D893FED51E48BF0100FDC06218FDB942EA"
+  },
+  {
+    "bytes": 5260,
+    "path": "reports/grpo_entropy_20260923/test_bundle_ablation.py",
+    "sha256": "CD2777F097E4509CA34CF2D76382F4C5CBB2B911FE5AF31A1159BD816A40E95F"
+  },
+  {
+    "bytes": 9928,
+    "path": "scripts/train_action_grpo.py",
+    "sha256": "C11715035A3BC3A11271179E8B132ABAAF08639B53AB00F4508228BACD5E2215"
+  },
+  {
+    "bytes": 79,
+    "path": "src/vbexp/__init__.py",
+    "sha256": "A271B8CF5317DE8AA00E0443355228F94740403D0E6B2E711F56AC4FFE0A8AFE"
+  },
+  {
+    "bytes": 606,
+    "path": "src/vbexp/action_protocol.py",
+    "sha256": "4FF17B30BDB80E625B4492830F5C135F1678FA0003ED14DCF2CA44AF6A9E0BAA"
+  },
+  {
+    "bytes": 2844,
+    "path": "src/vbexp/cli.py",
+    "sha256": "38695D4B5B75D7E502ECA6CCB5458CA8F9DD1A880B05138BB4F6FB48DF8AFAB5"
+  },
+  {
+    "bytes": 6888,
+    "path": "src/vbexp/experiment.py",
+    "sha256": "5F450A24851446DCA1D1032F518187F9041B087277A3D5C91D0559C8F048F1D5"
+  },
+  {
+    "bytes": 3699,
+    "path": "src/vbexp/generator.py",
+    "sha256": "3252D0F270C19773C48246BF1DB8B212E585A6D2ECAE0205E92C0DEA58313031"
+  },
+  {
+    "bytes": 720,
+    "path": "src/vbexp/io.py",
+    "sha256": "098FE028ED5D175F559F88F7A56302684CFC143976E63FF6F854C3F7B4A5A65D"
+  },
+  {
+    "bytes": 878,
+    "path": "src/vbexp/metrics.py",
+    "sha256": "7873384195A9000D01CE6AD404B42AD1077822BB376F121EDD5DBA993406D0AA"
+  },
+  {
+    "bytes": 4053,
+    "path": "src/vbexp/modeling.py",
+    "sha256": "80A477F76BA267D796F503FF362E2782DDFD9C1289FD3735DFA525F1F04E7378"
+  },
+  {
+    "bytes": 2799,
+    "path": "src/vbexp/polynomial.py",
+    "sha256": "C96BB2DF709AA64EA2A32895053F5876636FC1FF7D0349652B58085E2437718E"
+  },
+  {
+    "bytes": 1216,
+    "path": "src/vbexp/prompts.py",
+    "sha256": "A4AD429A59D08075E658504025C36EB2407084D3033137B67FED9B7F863F6914"
+  },
+  {
+    "bytes": 1456,
+    "path": "src/vbexp/search.py",
+    "sha256": "22B48677C00322B014B1D4F6461E241194F6F33AE480D7780797B3C3749265BF"
+  },
+  {
+    "bytes": 1098,
+    "path": "src/vbexp/task.py",
+    "sha256": "6067D1CBF193E021275578E34C88C19E745FBBF4842E6187FB1EAEA73BB84F82"
+  },
+  {
+    "bytes": 2474,
+    "path": "src/vbexp/verifier.py",
+    "sha256": "B7F84164CD322F4EE14EC75C264CA52958B5E6CC3F0ADD905A74F3C6E8E3B2AE"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "schema": "grpo-entropy.duration-freeze.v1",
+  "status": "FROZEN_BEFORE_EXPERIMENT",
+  "decision_utc": "2026-09-23T13:53:53Z",
+  "deadline_utc": "2026-09-24T05:00:00Z",
+  "steps_per_arm": 400,
+  "benchmark_training_container": "verifier_grpo_entropy_benchmark_seed0_control_retry2",
+  "benchmark_training_step_seconds": [16.125, 9.191, 9.15],
+  "benchmark_evaluation_container": "verifier_grpo_entropy_eval_speed_20260923_retry1",
+  "benchmark_evaluation_task_count": 10,
+  "benchmark_evaluation_seconds": 35.91414213180542,
+  "benchmark_evaluation_input": "10 depth-3 training tasks, not the held-out set",
+  "conservative_step_seconds": 10,
+  "conservative_evaluation_task_seconds": 4,
+  "per_arm_loading_overhead_seconds": 120,
+  "paired_seed_waves": 2,
+  "arms_per_wave": 2,
+  "predicted_makespan_seconds": 32480,
+  "with_25_percent_margin_seconds": 40600,
+  "available_to_0800_msk_seconds": 54367,
+  "heldout_outcomes_viewed_before_decision": false
+}

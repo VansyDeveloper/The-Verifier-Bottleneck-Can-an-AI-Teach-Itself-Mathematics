@@ -1,0 +1,23 @@
+{"job": "verifier_withheld_train_20260923_k1s1_85000_random", "status": "DONE", "time_utc": "2026-09-22T22:11:05.585163+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s1_85000_withheld", "status": "DONE", "time_utc": "2026-09-22T22:13:05.922975+00:00"}
+{"container_id": "4cc6c843904737ba560a7ed031a1b96bfd9e305fc4764ac38c66f08fba688e9b", "job": "verifier_withheld_train_20260923_k1s1_85001_random", "status": "STARTED", "time_utc": "2026-09-22T22:13:06.644480+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s1_85001_random", "status": "DONE", "time_utc": "2026-09-22T22:17:47.253431+00:00"}
+{"container_id": "73ff1b0d7a30358030e30f9ff37b1494fb8952ac993495137aafb1a0ee44bcfb", "job": "verifier_withheld_train_20260923_k1s1_85001_withheld", "status": "STARTED", "time_utc": "2026-09-22T22:17:47.874079+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s1_85001_withheld", "status": "DONE", "time_utc": "2026-09-22T22:22:48.614669+00:00"}
+{"container_id": "40136cd92fa23379f46e589c975e04c94f05f45834abfd1e25692bdecfa41a23", "job": "verifier_withheld_train_20260923_k1s1_85002_random", "status": "STARTED", "time_utc": "2026-09-22T22:22:49.292909+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s1_85002_random", "status": "DONE", "time_utc": "2026-09-22T22:27:30.353806+00:00"}
+{"container_id": "c4221d58bb48a2837d9aa0aac00a647cf117cf1ebbbd66e6d23838ed00cff9a2", "job": "verifier_withheld_train_20260923_k1s1_85002_withheld", "status": "STARTED", "time_utc": "2026-09-22T22:27:31.042650+00:00"}
+{"job": "verifier_withheld_train_20260923_k1s1_85002_withheld", "status": "DONE", "time_utc": "2026-09-22T22:32:11.677488+00:00"}
+{"container_id": "9a21c0d6987c29d101855e723cb681eb9b6075b07e6bb6df8ce178f3c8d07dcf", "job": "verifier_withheld_eval_20260923_k1s1_85000_random", "status": "STARTED", "time_utc": "2026-09-22T22:32:12.392270+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s1_85000_random", "status": "DONE", "time_utc": "2026-09-22T22:52:54.999037+00:00"}
+{"container_id": "5e16c4943523ea6ba28ce29315b8220009b4d912796a670e0d7e32d7e7fdde74", "job": "verifier_withheld_eval_20260923_k1s1_85000_withheld", "status": "STARTED", "time_utc": "2026-09-22T22:52:55.660807+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s1_85000_withheld", "status": "DONE", "time_utc": "2026-09-22T23:13:38.232128+00:00"}
+{"container_id": "f4daaa0dd2152d67808173b715c57f7d613b47396cb1ecb7c3a6ab78901d0d9f", "job": "verifier_withheld_eval_20260923_k1s1_85001_random", "status": "STARTED", "time_utc": "2026-09-22T23:13:38.881895+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s1_85001_random", "status": "DONE", "time_utc": "2026-09-22T23:34:21.518291+00:00"}
+{"container_id": "ae33571014f8858d99de99440567c33d860dde93fe59b1ee6b44de5c6f376987", "job": "verifier_withheld_eval_20260923_k1s1_85001_withheld", "status": "STARTED", "time_utc": "2026-09-22T23:34:22.192327+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s1_85001_withheld", "status": "DONE", "time_utc": "2026-09-22T23:55:04.929565+00:00"}
+{"container_id": "fe2bdc78ebd29f4c2e7f23808015c9cc2571ce85b243af8fe39fc7a125c8c3df", "job": "verifier_withheld_eval_20260923_k1s1_85002_random", "status": "STARTED", "time_utc": "2026-09-22T23:55:05.719419+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s1_85002_random", "status": "DONE", "time_utc": "2026-09-23T00:15:48.328151+00:00"}
+{"container_id": "6d3a49b3f72dc34a2e55a4aedf7003c8d9d52fbdbb3ed134f06e42fb8211e42b", "job": "verifier_withheld_eval_20260923_k1s1_85002_withheld", "status": "STARTED", "time_utc": "2026-09-23T00:15:49.040181+00:00"}
+{"job": "verifier_withheld_eval_20260923_k1s1_85002_withheld", "status": "DONE", "time_utc": "2026-09-23T00:36:31.582376+00:00"}
+{"jobs": 12, "status": "FIRST_BLOCK_JOBS_DONE", "time_utc": "2026-09-23T00:36:31.582514+00:00"}
